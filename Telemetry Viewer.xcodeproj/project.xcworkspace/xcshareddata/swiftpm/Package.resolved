@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "TelemetryClient",
+        "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
+        "state": {
+          "branch": "main",
+          "revision": "c30aa3b3f63475f5da4fed2e9ba412e750013aeb",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
