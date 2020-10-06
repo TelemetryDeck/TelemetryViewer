@@ -70,8 +70,8 @@ struct LineChartView: View {
     
     var body: some View {
         ZStack {
-            LineChart(data: data, shouldCloseShape: true).fill(Color.blue.opacity(0.2))
-            LineChart(data: data, shouldCloseShape: false).stroke(Color.blue.opacity(0.5), style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
+            LineChart(data: data, shouldCloseShape: true).fill(Color.accentColor.opacity(0.2))
+            LineChart(data: data, shouldCloseShape: false).stroke(Color.accentColor.opacity(0.5), style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
         }
     }
     

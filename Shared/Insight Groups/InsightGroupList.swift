@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct InsightGroupList: View {
+    
+    @EnvironmentObject var telemetryManager: TelemetryManager
     @EnvironmentObject var api: APIRepresentative
     var app: TelemetryApp
     
@@ -53,7 +56,7 @@ struct InsightGroupList: View {
         }
         .onAppear {
             api.getInsightGroups(for: app)
-            TelemetryManager().send(.telemetryAppInsightsShown, for: api.user?.email)
+            telemetryManager.send(TelemetrySignal.telemetryAppInsightsShown.rawValue, for: api.user?.email)
         }
         .navigationTitle(app.name)
         .toolbar {

@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct SignalList: View {
+    @EnvironmentObject var telemetryManager: TelemetryManager
     @EnvironmentObject var api: APIRepresentative
     @Binding var isPresented: Bool
     var app: TelemetryApp
@@ -32,7 +34,7 @@ struct SignalList: View {
         }
         .onAppear {
             api.getSignals(for: app)
-            TelemetryManager().send(.telemetryAppSignalsShown, for: api.user?.email)
+            telemetryManager.send(TelemetrySignal.telemetryAppSignalsShown.rawValue, for: api.user?.email)
         }
         
         #if os(macOS)

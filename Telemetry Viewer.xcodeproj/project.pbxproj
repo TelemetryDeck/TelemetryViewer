@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -44,6 +44,8 @@
 		DC98AAB8250A671900FF26FD /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AAB6250A671900FF26FD /* AppSettingsView.swift */; };
 		DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
 		DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
+		DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = DC9C0830252CD622001C0F94 /* TelemetryClient */; };
+		DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = DC9C0841252CEAC9001C0F94 /* TelemetryClient */; };
 		DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
 		DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B5C25001A2600304964 /* DashedCardView.swift */; };
 		DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B5C25001A2600304964 /* DashedCardView.swift */; };
@@ -112,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,9 +162,15 @@
 		DC98AABA250BC2F100FF26FD /* Telemetry */ = {
 			isa = PBXGroup;
 			children = (
-				DC98AABB250BC30200FF26FD /* Telemetry.swift */,
 			);
 			path = Telemetry;
+			sourceTree = "<group>";
+		};
+		DC9C0840252CEAC9001C0F94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DCB02B65250027C700304964 /* Models */ = {
@@ -214,6 +224,7 @@
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
 				DCE23A0424D3687D00053370 /* Products */,
+				DC9C0840252CEAC9001C0F94 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,6 +233,7 @@
 			children = (
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */,
 				DCB02B752502809200304964 /* RootView.swift */,
+				DC98AABB250BC30200FF26FD /* Telemetry.swift */,
 				DCE239FE24D3687D00053370 /* Assets.xcassets */,
 				DCB02B65250027C700304964 /* Models */,
 				DC45BB1824E1F01F004E6392 /* SidebarView.swift */,
@@ -278,6 +290,9 @@
 			dependencies = (
 			);
 			name = "Telemetry Viewer (iOS)";
+			packageProductDependencies = (
+				DC9C0830252CD622001C0F94 /* TelemetryClient */,
+			);
 			productName = "Telemetry Viewer (iOS)";
 			productReference = DCE23A0324D3687D00053370 /* Telemetry Viewer.app */;
 			productType = "com.apple.product-type.application";
@@ -295,6 +310,9 @@
 			dependencies = (
 			);
 			name = "Telemetry Viewer (macOS)";
+			packageProductDependencies = (
+				DC9C0841252CEAC9001C0F94 /* TelemetryClient */,
+			);
 			productName = "Telemetry Viewer (macOS)";
 			productReference = DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */;
 			productType = "com.apple.product-type.application";
@@ -325,6 +343,9 @@
 				Base,
 			);
 			mainGroup = DCE239F624D3687C00053370;
+			packageReferences = (
+				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
+			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -669,6 +690,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DC9C0830252CD622001C0F94 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
+		};
+		DC9C0841252CEAC9001C0F94 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DCE239F724D3687C00053370 /* Project object */;
 }

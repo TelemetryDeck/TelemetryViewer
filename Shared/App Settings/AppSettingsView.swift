@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct AppSettingsView: View {
     @Binding var isPresented: Bool
 
+    @EnvironmentObject var telemetryManager: TelemetryManager
     @EnvironmentObject var api: APIRepresentative
     var app: TelemetryApp
     @State var newName: String = ""
@@ -18,7 +20,7 @@ struct AppSettingsView: View {
         let saveButton = Button("Save Changes") {
             api.update(app: app, newName: newName)
             isPresented = false
-            TelemetryManager().send(.telemetryAppUpdated, for: api.user?.email)
+            telemetryManager.send(TelemetrySignal.telemetryAppUpdated.rawValue, for: api.user?.email)
         }
         .keyboardShortcut(.defaultAction)
         
@@ -49,7 +51,7 @@ struct AppSettingsView: View {
                 Button("Delete App \"\(app.name)\"") {
                     api.delete(app: app)
                     isPresented = false
-                    TelemetryManager().send(.telemetryAppDeleted, for: api.user?.email)
+                    telemetryManager.send(TelemetrySignal.telemetryAppDeleted.rawValue, for: api.user?.email)
                 }.accentColor(.red)
             }
             
@@ -69,7 +71,7 @@ struct AppSettingsView: View {
             .padding()
             .onAppear {
                 newName = app.name
-                TelemetryManager().send(.telemetryAppSettingsShown, for: api.user?.email)
+                telemetryManager.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
             }
         #else
         NavigationView {
@@ -79,7 +81,7 @@ struct AppSettingsView: View {
         }
         .onAppear {
             newName = app.name
-            TelemetryManager().send(.telemetryAppSettingsShown, for: api.user?.email)
+            telemetryManager.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
         }
         #endif
         

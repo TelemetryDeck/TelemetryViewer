@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct NewAppView: View {
+    @EnvironmentObject var telemetryManager: TelemetryManager
     @Binding var isPresented: Bool
     @EnvironmentObject var api: APIRepresentative
     @Environment(\.presentationMode) var presentationMode
@@ -18,7 +20,7 @@ struct NewAppView: View {
         let saveButton = Button("Save") {
             api.create(appNamed: newAppName)
             self.presentationMode.wrappedValue.dismiss()
-            TelemetryManager().send(.telemetryAppCreated, for: api.user?.email)
+            telemetryManager.send(TelemetrySignal.telemetryAppCreated.rawValue, for: api.user?.email)
         }
         .keyboardShortcut(.defaultAction)
         

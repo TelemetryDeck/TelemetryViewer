@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var telemetryManager: TelemetryManager
     
     var body: some View {
         if let user = api.user {
@@ -35,7 +37,7 @@ struct UserSettingsView: View {
             }
             .navigationTitle("User Settings")
             .onAppear {
-                TelemetryManager().send(.userSettingsShown, for: api.user?.email)
+                telemetryManager.send(TelemetrySignal.userSettingsShown.rawValue, for: api.user?.email)
             }
         }
     }

@@ -5,9 +5,9 @@
         "package": "TelemetryClient",
         "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
         "state": {
-          "branch": "main",
-          "revision": "c30aa3b3f63475f5da4fed2e9ba412e750013aeb",
-          "version": null
+          "branch": null,
+          "revision": "87388624fd8bb507b1ad29c8360c00c699aad1d9",
+          "version": "1.0.4"
         }
       }
     ]
