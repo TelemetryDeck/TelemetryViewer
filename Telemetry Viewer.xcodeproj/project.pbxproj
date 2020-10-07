@@ -572,7 +572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.breakthesystem.Telemetry-Viewer";
+				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -594,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.breakthesystem.Telemetry-Viewer";
+				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -609,10 +609,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -622,7 +622,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.breakthesystem.Telemetry-Viewer";
+				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -635,10 +635,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -648,7 +648,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.breakthesystem.Telemetry-Viewer";
+				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
