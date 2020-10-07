@@ -89,8 +89,6 @@ struct InsightView: View {
             .font(.footnote)
             .foregroundColor(grayColor)
             .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
-            .shadow(color: Color("CardBackgroundColor"), radius: 1, x: 0.0, y: 0.0)
-            .shadow(color: Color("CardBackgroundColor"), radius: 5, x: 0.0, y: 0.0)
             .onTapGesture {
                 insightAgeText = "Reloading..."
                 api.getInsightData(for: insight, in: insightGroup, in: app)

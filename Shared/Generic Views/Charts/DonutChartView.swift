@@ -88,13 +88,16 @@ struct DonutChartView: View {
         }
         
         let legend = VStack(alignment: .leading, spacing: -5) {
-            Text(pieSegments[selectedSegmentIndex].data.id)
-            Text("\(numberFormatter.string(from: NSNumber(value: pieSegments[selectedSegmentIndex].data.value)) ?? "–")")
+            
+            if pieSegments.count > 0 {
+                Text(pieSegments[selectedSegmentIndex].data.id)
+                Text("\(numberFormatter.string(from: NSNumber(value: pieSegments[selectedSegmentIndex].data.value)) ?? "–")")
                 .font(.system(size:48, weight: .black, design: .monospaced))
+            } else {
+                Text("No Data Recorded Yet")
+            }
         }
         .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
-        .shadow(color: Color("CardBackgroundColor"), radius: 1, x: 0.0, y: 0.0)
-        .shadow(color: Color("CardBackgroundColor"), radius: 5, x: 0.0, y: 0.0)
         
         
         GeometryReader { reader in
