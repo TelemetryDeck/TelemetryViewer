@@ -9,8 +9,6 @@ import SwiftUI
 import TelemetryClient
 
 struct InsightView: View {
-    
-    @EnvironmentObject var telemetryManager: TelemetryManager
     @EnvironmentObject var api: APIRepresentative
     let app: TelemetryApp
     let insightGroup: InsightGroup
@@ -97,7 +95,7 @@ struct InsightView: View {
                 insightAgeText = "Reloading..."
                 api.getInsightData(for: insight, in: insightGroup, in: app)
                 api.getInsightHistoricalData(for: insight, in: insightGroup, in: app)
-                telemetryManager.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email)
+                TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email)
             }
         }
         .padding()
@@ -115,7 +113,7 @@ struct InsightView: View {
         if let insightData = api.insightData[insight.id] {
             if abs(insightData.calculatedAt.timeIntervalSinceNow) > 60*5 { // data is over 5 minutes old
                 api.getInsightData(for: insight, in: insightGroup, in: app)
-                telemetryManager.send(TelemetrySignal.insightUpdatedAutomatically.rawValue, for: api.user?.email)
+                TelemetryManager.shared.send(TelemetrySignal.insightUpdatedAutomatically.rawValue, for: api.user?.email)
             }
         } else {
             api.getInsightData(for: insight, in: insightGroup, in: app)

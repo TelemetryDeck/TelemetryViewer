@@ -22,6 +22,3 @@ enum TelemetrySignal: String {
     case insightUpdatedAutomatically
     case insightUpdatedManually
 }
-
-// TelemetryManager needs to be an ObservableObject so we can save it in the environment
-extension TelemetryManager: ObservableObject {}

@@ -159,13 +159,6 @@
 			path = "App Settings";
 			sourceTree = "<group>";
 		};
-		DC98AABA250BC2F100FF26FD /* Telemetry */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Telemetry;
-			sourceTree = "<group>";
-		};
 		DC9C0840252CEAC9001C0F94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +212,6 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
-				DC98AABA250BC2F100FF26FD /* Telemetry */,
 				DCE239FB24D3687C00053370 /* Shared */,
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
@@ -697,7 +689,7 @@
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
+				minimumVersion = 1.0.5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
