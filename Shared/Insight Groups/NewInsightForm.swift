@@ -47,6 +47,8 @@ struct NewInsightForm: View {
             insightCreateRequestBody.insightType = insightTypes[selectedInsightTypeIndex]
             insightCreateRequestBody.timeInterval = -timeInterval
             
+            guard api.insightGroups[app]?.count ?? 0 > 0 else { return }
+            
             guard let insightGroup = api.insightGroups[app]?[selectedInsightGroupIndex] else { return }
             api.create(insightWith: insightCreateRequestBody, in: insightGroup, for: app)
             isPresented = false

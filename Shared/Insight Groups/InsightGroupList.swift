@@ -76,6 +76,7 @@ struct InsightGroupList: View {
                 }
                 .sheet(isPresented: $isShowingNewInsightForm) {
                     NewInsightForm(app: app, isPresented: $isShowingNewInsightForm)
+                        .environmentObject(api)
                 }
                 
                 Button(action: {
