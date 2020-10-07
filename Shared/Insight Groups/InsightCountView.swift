@@ -18,9 +18,14 @@ struct InsightCountView: View {
     
     var body: some View {
         ZStack {
+            #if os(macOS)
+            let paddingBottom: CGFloat = -37
+            #else
+            let paddingBottom: CGFloat = -40
+            #endif
+            
             LineChartView(data: insightHistoricalData.map { ChartDataPoint(date: $0.calculatedAt, value: $0.data["count"] ?? 0) })
-//                .blur(radius: 3.0)
-                .padding(.bottom, -37)
+                .padding(.bottom, paddingBottom)
                 .padding(.horizontal, -16)
             
             HStack {
