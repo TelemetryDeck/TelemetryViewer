@@ -16,30 +16,15 @@ struct InsightBreakdownView: View {
     }()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading) {
-                let breakdowns = insightData.data
-                    .map { ($0.key, $0.value) }
-                    .sorted { $0.1 > $1.1 }
-                
-                
-                let dictionaryKeys = Array(insightData.data.keys).sorted()
-                ForEach(breakdowns, id: \.0) { breakdown in
-                    Text(breakdown.0)
-                    
-                    if let insightData = breakdown.1 {
-                        Text("\(numberFormatter.string(from: NSNumber(value: insightData)) ?? "–")")
-                            .font(.system(size: 17, weight: .black, design: .monospaced))
-                            .frame(width: 80, alignment: .trailing)
-                    } else {
-                        Text("–")
-                    }
-                }
-            }
-            }
-            .frame(maxHeight: 155)
-        }
+        let breakdowns = insightData.data
+            .map { ($0.key, $0.value) }
+            .sorted { $0.1 > $1.1 }
+            .map { DonutChartDataPoint(key: $0.0, value: $0.1) }
+        
+        DonutChartView(dataPoints: breakdowns)
+            .frame(minHeight: 140)
+            .padding(.bottom, -25)
+            .padding(.top, -25)
     }
 }
 

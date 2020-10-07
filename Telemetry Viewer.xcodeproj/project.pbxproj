@@ -34,6 +34,8 @@
 		DC53394625222FC600D9C889 /* NewInsightGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53394425222FC600D9C889 /* NewInsightGroupView.swift */; };
 		DC53394C2522620E00D9C889 /* NewInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53394B2522620E00D9C889 /* NewInsightForm.swift */; };
 		DC53394D2522620E00D9C889 /* NewInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53394B2522620E00D9C889 /* NewInsightForm.swift */; };
+		DC591398252DF975007360A9 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591397252DF975007360A9 /* DonutChartView.swift */; };
+		DC591399252DF975007360A9 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591397252DF975007360A9 /* DonutChartView.swift */; };
 		DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
 		DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
 		DC815F3C24E283640095A047 /* SignalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC815F3B24E283640095A047 /* SignalList.swift */; };
@@ -85,6 +87,7 @@
 		DC53393F25222C2F00D9C889 /* InsightGroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGroupList.swift; sourceTree = "<group>"; };
 		DC53394425222FC600D9C889 /* NewInsightGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInsightGroupView.swift; sourceTree = "<group>"; };
 		DC53394B2522620E00D9C889 /* NewInsightForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInsightForm.swift; sourceTree = "<group>"; };
+		DC591397252DF975007360A9 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
 		DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		DC815F3B24E283640095A047 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
 		DC90D08A25063A6B00634B72 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
@@ -142,6 +145,15 @@
 				DC04C3DC252364C000483AF5 /* InsightCountView.swift */,
 			);
 			path = "Insight Groups";
+			sourceTree = "<group>";
+		};
+		DC591394252DF93F007360A9 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				DC04C3EA2523BD6300483AF5 /* LineChartView.swift */,
+				DC591397252DF975007360A9 /* DonutChartView.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		DC90D08925063A5700634B72 /* Settings */ = {
@@ -204,7 +216,7 @@
 				DCB02B5C25001A2600304964 /* DashedCardView.swift */,
 				DC5339352521CE6200D9C889 /* CardView.swift */,
 				DCB02B6D250277A700304964 /* AdaptiveStack.swift */,
-				DC04C3EA2523BD6300483AF5 /* LineChartView.swift */,
+				DC591394252DF93F007360A9 /* Charts */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -396,6 +408,7 @@
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC04C3EB2523BD6300483AF5 /* LineChartView.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
+				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
 				DC53394025222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC04C3DD252364C000483AF5 /* InsightCountView.swift in Sources */,
@@ -432,6 +445,7 @@
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
+				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC04C3EC2523BD6300483AF5 /* LineChartView.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
