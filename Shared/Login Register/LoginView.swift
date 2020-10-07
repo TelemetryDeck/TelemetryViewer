@@ -38,6 +38,7 @@ struct LoginView: View {
                             isLoading = false
                         }
                     }
+                    .keyboardShortcut(.defaultAction)
                 }
             }
         }
