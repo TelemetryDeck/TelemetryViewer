@@ -45,7 +45,7 @@ final class APIRepresentative: ObservableObject {
 }
 
 extension APIRepresentative {
-    func login(loginRequestBody: LoginRequestBody, callback: @escaping () -> ()) {
+    func login(loginRequestBody: LoginRequestBody, callback: @escaping (Bool) -> ()) {
         let url = urlForPath("users", "login")
 
         var request = URLRequest(url: url)
@@ -53,8 +53,6 @@ extension APIRepresentative {
         request.setValue(loginRequestBody.basicHTMLAuthString, forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            callback()
-            
             if let data = data {
                 print(String(decoding: data, as: UTF8.self))
                 
@@ -64,9 +62,13 @@ extension APIRepresentative {
                         
                         self.getUserInformation()
                         self.getApps()
+                        
+                        callback(true)
                     }
                 } else {
-                    fatalError("Could not decode a user token")
+                    DispatchQueue.main.async {
+                        callback(false)
+                    }
                 }
             }
         }.resume()
