@@ -59,16 +59,19 @@ struct InsightView: View {
         #endif
         
         VStack(alignment: .leading) {
-            Text(insight.title).font(.title3)
+            Text(insight.title)
+                .font(.title3)
+                .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             Text("\(insight.insightType.humanReadableName) of signals less than \(humanreadableTimeInterval) old")
                 .font(.footnote)
                 .foregroundColor(grayColor)
+                .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             
             
             if let insightData = api.insightData[insight.id] {
                     switch insightData.insightType {
                     case .breakdown:
-                        InsightBreakdownView(insightData: insightData)
+                        InsightBreakdownView(insightData: insightData).zIndex(-1)
                     case .count:
                         InsightCountView(insightData: insightData, insightHistoricalData: api.insightHistoricalData[insight.id] ?? [])
                     default:
