@@ -54,15 +54,15 @@
 		DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B6D250277A700304964 /* AdaptiveStack.swift */; };
 		DCB02B722502781A00304964 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B712502781A00304964 /* LoginView.swift */; };
 		DCB02B732502781A00304964 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B712502781A00304964 /* LoginView.swift */; };
-		DCB02B7425027B2500304964 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B6A2502773D00304964 /* WelcomeView.swift */; };
 		DCB02B762502809200304964 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B752502809200304964 /* RootView.swift */; };
 		DCB02B772502809200304964 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B752502809200304964 /* RootView.swift */; };
 		DCB02B792503897D00304964 /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B782503897D00304964 /* RegisterButtonView.swift */; };
-		DCB02B7A2503897D00304964 /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B782503897D00304964 /* RegisterButtonView.swift */; };
 		DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DCB02B7F25038F5000304964 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
 		DCB02B8025038F5000304964 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
+		DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BCE252DB40900A00C5B /* WelcomeView.swift */; };
+		DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */; };
 		DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
 		DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
 		DCE23A1324D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
@@ -99,6 +99,8 @@
 		DCB02B782503897D00304964 /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
 		DCB02B7B25038F4600304964 /* APIRepresentative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepresentative.swift; sourceTree = "<group>"; };
 		DCB02B7E25038F5000304964 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
 		DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_ViewerApp.swift; sourceTree = "<group>"; };
 		DCE239FE24D3687D00053370 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCE23A0324D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,10 +192,8 @@
 		DCB02B692502764200304964 /* Login Register */ = {
 			isa = PBXGroup;
 			children = (
-				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
 				DCA10F7A24DA722700A62C26 /* RegisterView.swift */,
 				DCB02B712502781A00304964 /* LoginView.swift */,
-				DCB02B782503897D00304964 /* RegisterButtonView.swift */,
 			);
 			path = "Login Register";
 			sourceTree = "<group>";
@@ -252,6 +252,8 @@
 		DCE23A0524D3687D00053370 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
+				DCB02B782503897D00304964 /* RegisterButtonView.swift */,
 				DCE23A0624D3687D00053370 /* Info.plist */,
 			);
 			path = iOS;
@@ -260,6 +262,8 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
+				DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */,
 				DCE23A0D24D3687D00053370 /* Info.plist */,
 				DCE23A0E24D3687D00053370 /* macOS.entitlements */,
 			);
@@ -419,22 +423,22 @@
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
 				DC45BB1A24E1F01F004E6392 /* SidebarView.swift in Sources */,
 				DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
+				DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */,
 				DCB02B8025038F5000304964 /* MockData.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
+				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				DC98AAB8250A671900FF26FD /* AppSettingsView.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC04C3EC2523BD6300483AF5 /* LineChartView.swift in Sources */,
-				DCB02B7425027B2500304964 /* WelcomeView.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC04C3DE252364C000483AF5 /* InsightCountView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC45BAEF24DFF895004E6392 /* Models.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
-				DCB02B7A2503897D00304964 /* RegisterButtonView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC4F7DBE25069C3200B54561 /* NewAppView.swift in Sources */,
 			);

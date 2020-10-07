@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 final class APIRepresentative: ObservableObject {
-    private static let baseURLString = "https://apptelemetry.io/api/v1/"
-    // private static let baseURLString = "http://localhost:8080/api/v1/"
+//    private static let baseURLString = "https://apptelemetry.io/api/v1/"
+     private static let baseURLString = "http://localhost:8080/api/v1/"
     private static let userTokenStandardsKey = "org.breakthesystem.telemetry.viewer.userToken"
     
     init() {
@@ -78,7 +78,7 @@ extension APIRepresentative {
         user = nil
     }
     
-    func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping () -> ()) {
+    func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping (Bool) -> ()) {
         let url = urlForPath("users", "register")
         
         var request = URLRequest(url: url)
@@ -87,14 +87,9 @@ extension APIRepresentative {
         request.httpBody = try! JSONEncoder().encode(registrationRequestBody)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            callback()
-            
             if let data = data {
                 print(String(decoding: data, as: UTF8.self))
-                
-                if let decodedResponse = try? JSONDecoder.telemetryDecoder.decode(UserToken.self, from: data) {
-                    print(decodedResponse)
-                }
+                callback((response as! HTTPURLResponse).statusCode == 200)
             }
         }.resume()
     }

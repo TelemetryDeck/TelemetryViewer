@@ -43,6 +43,9 @@ struct RegisterView: View {
     @State private var isLoading = false
     @State private var registrationRequestBody = RegistrationRequestBody()
     @State private var loginRequestBody = LoginRequestBody()
+    @State private var showingSuccessAlert = false
+    @State private var showingFailureAlert = false
+
     
     var body: some View {
         Form {
@@ -68,6 +71,9 @@ struct RegisterView: View {
             Section(header: Text("Your Password")) {
                 SecureField("Password", text: $registrationRequestBody.userPassword)
                 SecureField("Confirm Password", text: $registrationRequestBody.userPasswordConfirm)
+                    .alert(isPresented: $showingSuccessAlert) {
+                        Alert(title: Text("Registration Success"), message: Text("You're now officially registered with Telemetry. Please log in now!"), dismissButton: .default(Text("Got it!")))
+                    }
             }
             
             Section {
@@ -81,12 +87,21 @@ struct RegisterView: View {
         }
         .disabled(isLoading)
         .navigationTitle("Register a new Organization")
+        .alert(isPresented: $showingFailureAlert) {
+            Alert(title: Text("Something went wrong"), message: Text("We got an error message from the server. Please try again later."), dismissButton: .default(Text("Oof!")))
+        }
     }
     
     func register() {
         isLoading = true
-        api.register(registrationRequestBody: registrationRequestBody) {
+        api.register(registrationRequestBody: registrationRequestBody) { success in
             isLoading = false
+            
+            if success {
+                showingSuccessAlert = true
+            } else {
+                showingFailureAlert = true
+            }
         }
         
     }
