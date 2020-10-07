@@ -11,7 +11,6 @@ struct SidebarView: View {
     @EnvironmentObject var api: APIRepresentative
     @Binding var selectedApp: TelemetryApp?
     @State var isCreatingANewApp: Bool = false
-    @State var isShowingAppSettingsView: Bool = false
     
     var body: some View {
         List(selection: $selectedApp) {
@@ -70,19 +69,6 @@ struct SidebarView: View {
                     }
                     .sheet(isPresented: $isCreatingANewApp) {
                         NewAppView(isPresented: $isCreatingANewApp)
-                    }
-                }
-            }
-            
-            ToolbarItem(placement: ToolbarItemPlacement.automatic) {
-                Button(action: {
-                    isShowingAppSettingsView = true
-                }) {
-                    Label("App Settings", systemImage: "gear")
-                }
-                .sheet(isPresented: $isShowingAppSettingsView) {
-                    if let app = $selectedApp.wrappedValue {
-                        AppSettingsView(isPresented: $isShowingAppSettingsView, app: app)
                     }
                 }
             }

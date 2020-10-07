@@ -16,6 +16,7 @@ struct InsightGroupList: View {
     @State var isShowingRawSignalsView = false
     @State var isShowingNewInsightGroupView = false
     @State var isShowingNewInsightForm = false
+    @State var isShowingAppSettingsView: Bool = false
     
     var body: some View {
         ScrollView(.vertical) {
@@ -86,6 +87,16 @@ struct InsightGroupList: View {
                 }
                 .sheet(isPresented: $isShowingRawSignalsView) {
                     SignalList(isPresented: $isShowingRawSignalsView, app: app)
+                }
+                
+                Button(action: {
+                    isShowingAppSettingsView = true
+                }) {
+                    Label("App Settings", systemImage: "gear")
+                }
+                .sheet(isPresented: $isShowingAppSettingsView) {
+                    AppSettingsView(isPresented: $isShowingAppSettingsView, app: app)
+                        .environmentObject(api)
                 }
             }
         }
