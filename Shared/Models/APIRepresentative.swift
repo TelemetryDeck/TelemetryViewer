@@ -336,31 +336,34 @@ extension APIRepresentative {
 
 // MARK: - Downloading
 extension APIRepresentative {
-    func fetch<T: Decodable>(_ url: URL, defaultValue: T, setterKeyPath: ReferenceWritableKeyPath<APIRepresentative, T>) {
+    private func fetch<T: Decodable>(_ url: URL, defaultValue: T) -> Publishers.ReplaceError<Publishers.Decode<Publishers.MapKeyPath<Publishers.ReceiveOn<AnyPublisher<Publishers.Retry<URLSession.DataTaskPublisher>.Output, ValidationError>, DispatchQueue>, JSONDecoder.Input>, T, JSONDecoder>>{
         let request = authenticatedURLRequest(for: url)
         
-        URLSession.shared.dataTaskPublisher(for: request)
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .retry(1)
             .validateStatusCode({ (200..<300).contains($0) })
+            .receive(on: DispatchQueue.main)
             .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder.telemetryDecoder)
             .replaceError(with: defaultValue)
-            .receive(on: DispatchQueue.main)
+    }
+    
+    func fetch<T: Decodable>(_ url: URL, defaultValue: T, setterKeyPath: ReferenceWritableKeyPath<APIRepresentative, T>) {
+        
+            
+        DispatchQueue.main.async {
+            self.fetch(url, defaultValue: defaultValue)
             .assign(to: setterKeyPath, on: self)
-            .store(in: &requests)
+                .store(in: &self.requests)
+        }
     }
     
     func fetch<T: Decodable>(_ url: URL, defaultValue: T, completion: @escaping (T) -> Void) {
-        let request = authenticatedURLRequest(for: url)
-        
-        URLSession.shared.dataTaskPublisher(for: request)
-            .retry(1)
-            .validateStatusCode({ (200..<300).contains($0) })
-            .map(\.data)
-            .decode(type: T.self, decoder: JSONDecoder.telemetryDecoder)
-            .replaceError(with: defaultValue)
-            .receive(on: DispatchQueue.main)
+        DispatchQueue.main.async {
+            self.fetch(url, defaultValue: defaultValue)
             .sink(receiveValue: completion)
-            .store(in: &requests)
+                .store(in: &self.requests)
+        }
     }
 }
 
