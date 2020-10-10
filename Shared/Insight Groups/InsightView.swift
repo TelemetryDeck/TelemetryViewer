@@ -10,11 +10,14 @@ import TelemetryClient
 
 struct InsightView: View {
     @EnvironmentObject var api: APIRepresentative
+    
     let app: TelemetryApp
     let insightGroup: InsightGroup
     let insight: Insight
     
-    @State var insightAgeText: String = "Loading..."
+    @State private var isDetailViewShowing: Bool = false
+    @State private var isEditViewShowing: Bool = false
+    @State private var insightAgeText: String = "Loading..."
     
     let refreshTimer = Timer.publish(
         every: 1, // second
@@ -59,9 +62,33 @@ struct InsightView: View {
         #endif
         
         VStack(alignment: .leading) {
-            Text(insight.title)
-                .font(.title3)
-                .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
+            HStack {
+                Text(insight.title)
+                    .font(.title3)
+                Spacer()
+                Image(systemName: "eye")
+                    .foregroundColor(grayColor)
+                    .onTapGesture {
+                        isDetailViewShowing = true
+                    }
+                    .sheet(isPresented: $isDetailViewShowing) {
+                        InsightDetailView(isPresented: $isDetailViewShowing, insight: insight, insightGroup: insightGroup, app: app)
+                            .environmentObject(api)
+                    }
+                
+                #if os(macOS)
+                Image(systemName: "square.and.pencil")
+                    .foregroundColor(grayColor)
+                    .onTapGesture {
+                        isEditViewShowing = true
+                    }
+                    .sheet(isPresented: $isEditViewShowing) {
+                        InsightEditView(isPresented: $isEditViewShowing, insight: insight, insightGroup: insightGroup, app: app)
+                            .environmentObject(api)
+                    }
+                #endif
+            }
+            .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             Text("\(insight.insightType.humanReadableName) of signals less than \(humanreadableTimeInterval) old")
                 .font(.footnote)
                 .foregroundColor(grayColor)

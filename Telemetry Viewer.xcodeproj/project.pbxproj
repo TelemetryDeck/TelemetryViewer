@@ -15,6 +15,10 @@
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC2328722522740900DB6145 /* InsightBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2328712522740900DB6145 /* InsightBreakdownView.swift */; };
 		DC2328732522740900DB6145 /* InsightBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2328712522740900DB6145 /* InsightBreakdownView.swift */; };
+		DC340E502531B78900514FD6 /* InsightEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E4F2531B78900514FD6 /* InsightEditView.swift */; };
+		DC340E552531B7DE00514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E542531B7DE00514FD6 /* InsightDetailView.swift */; };
+		DC340E5F2531C23800514FD6 /* InsightEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5E2531C23800514FD6 /* InsightEditView.swift */; };
+		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC45BAEE24DFF895004E6392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
 		DC45BAEF24DFF895004E6392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
 		DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
@@ -78,6 +82,10 @@
 		DC04C3EA2523BD6300483AF5 /* LineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC2328712522740900DB6145 /* InsightBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightBreakdownView.swift; sourceTree = "<group>"; };
+		DC340E4F2531B78900514FD6 /* InsightEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditView.swift; sourceTree = "<group>"; };
+		DC340E542531B7DE00514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
+		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
+		DC340E5E2531C23800514FD6 /* InsightEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditView.swift; sourceTree = "<group>"; };
 		DC45BAED24DFF895004E6392 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DC45BB1824E1F01F004E6392 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
@@ -264,6 +272,8 @@
 		DCE23A0524D3687D00053370 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				DC340E542531B7DE00514FD6 /* InsightDetailView.swift */,
+				DC340E4F2531B78900514FD6 /* InsightEditView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
 				DCB02B782503897D00304964 /* RegisterButtonView.swift */,
 				DCE23A0624D3687D00053370 /* Info.plist */,
@@ -274,6 +284,8 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				DC340E5D2531C23800514FD6 /* InsightDetailView.swift */,
+				DC340E5E2531C23800514FD6 /* InsightEditView.swift */,
 				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
 				DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */,
 				DCE23A0D24D3687D00053370 /* Info.plist */,
@@ -410,11 +422,13 @@
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
+				DC340E552531B7DE00514FD6 /* InsightDetailView.swift in Sources */,
 				DC53394025222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC04C3DD252364C000483AF5 /* InsightCountView.swift in Sources */,
 				DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC45BAEE24DFF895004E6392 /* Models.swift in Sources */,
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
+				DC340E502531B78900514FD6 /* InsightEditView.swift in Sources */,
 				DCB02B792503897D00304964 /* RegisterButtonView.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC4F7DBD25069C3200B54561 /* NewAppView.swift in Sources */,
@@ -447,11 +461,13 @@
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC04C3EC2523BD6300483AF5 /* LineChartView.swift in Sources */,
+				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC04C3DE252364C000483AF5 /* InsightCountView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC45BAEF24DFF895004E6392 /* Models.swift in Sources */,
+				DC340E5F2531C23800514FD6 /* InsightEditView.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC4F7DBE25069C3200B54561 /* NewAppView.swift in Sources */,

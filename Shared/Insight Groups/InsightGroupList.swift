@@ -25,27 +25,18 @@ struct InsightGroupList: View {
                     ForEach(insightGroups, id: \.id) { insightGroup in
                         Section(header: HStack {
                             Text(insightGroup.title).font(.title)
-                            Button(
-                                action: { api.delete(insightGroup: insightGroup, in: app) },
-                                label: { Image(systemName: "xmark.circle.fill") })
+                            
+                            if insightGroup.insights.isEmpty {
+                                Button(
+                                    action: { api.delete(insightGroup: insightGroup, in: app) },
+                                    label: { Image(systemName: "xmark.circle.fill") })
+                            }
                             
                         }) {
                             ForEach(insightGroup.insights, id: \.id) { insight in
-                                ZStack(alignment: Alignment.topTrailing) {
-                                    CardView {
-                                        InsightView(app: app, insightGroup: insightGroup, insight: insight)
-                                            .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-                                    }
-                                    
-                                    
-                                    Button(
-                                        action: {
-                                            api.delete(insight: insight, in: insightGroup, in: app)
-                                        },
-                                        label: {
-                                            Image(systemName: "xmark.circle.fill")
-                                        })
-                                        .offset(x: -10, y: 10)
+                                CardView {
+                                    InsightView(app: app, insightGroup: insightGroup, insight: insight)
+                                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                                 }
                             }
                         }
