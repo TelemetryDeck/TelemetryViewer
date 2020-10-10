@@ -31,7 +31,7 @@ struct InsightDetailView: View {
                     .font(.system(.body, design: .monospaced))
 
                 NavigationLink(
-                    destination: InsightEditView(isPresented: .constant(false), insight: insight, insightGroup: insightGroup, app: app),
+                    destination: InsightEditView(insight: insight, insightGroup: insightGroup, app: app, isPresented: $isPresented, initApi: api).environmentObject(api),
                     label: {
                         Label("Edit", systemImage: "square.and.pencil")
                     }

@@ -30,7 +30,7 @@ struct SignalView: View {
                     Text(signal.clientUser).bold()
                 }
                 
-                Text(signal.payload?.debugDescription ?? "No Payload").foregroundColor(.gray)
+                Text(signal.payload?.debugDescription ?? "No Payload").foregroundColor(.grayColor)
             }
         } icon: {
             Image(systemName: "waveform")

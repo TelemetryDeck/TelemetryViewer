@@ -94,7 +94,14 @@ struct DonutChartView: View {
                 Text("\(numberFormatter.string(from: NSNumber(value: pieSegments[selectedSegmentIndex].data.value)) ?? "–")")
                 .font(.system(size:48, weight: .black, design: .monospaced))
             } else {
-                Text("No Data Recorded Yet")
+                HStack {
+                    Spacer()
+                    Text("No Data Recorded Yet")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
+                    Spacer()
+                    
+                }
             }
         }
         .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)

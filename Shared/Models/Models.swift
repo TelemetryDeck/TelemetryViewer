@@ -79,6 +79,7 @@ struct DerivedStatisticCreateRequestBody: Codable {
 struct InsightGroup: Codable {
     var id: UUID
     var title: String
+    var order: Double?
     var insights: [Insight] = []
 }
 
@@ -88,6 +89,7 @@ struct Insight: Codable {
     let insightType: InsightType
     let timeInterval: TimeInterval
     var configuration: [String: String]
+    var order: Double?
     var historicalData: [InsightHistoricalData]?
 }
 
@@ -129,6 +131,12 @@ struct InsightCreateRequestBody: Codable {
     var insightType: InsightType
     var timeInterval: TimeInterval
     var configuration: [String: String]
+}
+
+struct InsightUpdateRequestBody: Codable {
+    var title: String
+    var insightGroupID: UUID
+    var order: Double?
 }
 
 struct ChartDataPoint: Hashable {

@@ -22,7 +22,7 @@ struct InsightGroupList: View {
         ScrollView(.vertical) {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 300))], alignment: .leading) {
                 if let insightGroups = api.insightGroups[app] {
-                    ForEach(insightGroups, id: \.id) { insightGroup in
+                    ForEach(insightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 }), id: \.id) { insightGroup in
                         Section(header: HStack {
                             Text(insightGroup.title).font(.title)
                             
@@ -33,14 +33,14 @@ struct InsightGroupList: View {
                             }
                             
                         }) {
-                            ForEach(insightGroup.insights, id: \.id) { insight in
+                            ForEach(insightGroup.insights.sorted(by: { $0.order ?? 0 < $1.order ?? 0 }), id: \.id) { insight in
                                 CardView {
                                     InsightView(app: app, insightGroup: insightGroup, insight: insight)
                                         .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                                 }
                             }
                         }
-                    }
+                    }.animation(.easeInOut)
                 }
             }
             .padding()

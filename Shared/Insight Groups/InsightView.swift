@@ -55,11 +55,6 @@ struct InsightView: View {
     }
     
     var body: some View {
-        #if os (macOS)
-        let grayColor = Color(NSColor.systemGray)
-        #else
-        let grayColor = Color(UIColor.systemGray)
-        #endif
         
         VStack(alignment: .leading) {
             HStack {
@@ -67,7 +62,7 @@ struct InsightView: View {
                     .font(.title3)
                 Spacer()
                 Image(systemName: "eye")
-                    .foregroundColor(grayColor)
+                    .foregroundColor(.grayColor)
                     .onTapGesture {
                         isDetailViewShowing = true
                     }
@@ -78,12 +73,12 @@ struct InsightView: View {
                 
                 #if os(macOS)
                 Image(systemName: "square.and.pencil")
-                    .foregroundColor(grayColor)
+                    .foregroundColor(.grayColor)
                     .onTapGesture {
                         isEditViewShowing = true
                     }
                     .sheet(isPresented: $isEditViewShowing) {
-                        InsightEditView(isPresented: $isEditViewShowing, insight: insight, insightGroup: insightGroup, app: app)
+                        InsightEditView(insight: insight, insightGroup: insightGroup, app: app, isPresented: $isEditViewShowing)
                             .environmentObject(api)
                     }
                 #endif
@@ -91,7 +86,7 @@ struct InsightView: View {
             .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             Text("\(insight.insightType.humanReadableName) of signals less than \(humanreadableTimeInterval) old")
                 .font(.footnote)
-                .foregroundColor(grayColor)
+                .foregroundColor(.grayColor)
                 .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             
             
@@ -102,7 +97,19 @@ struct InsightView: View {
                     case .count:
                         InsightCountView(insightData: insightData, insightHistoricalData: api.insightHistoricalData[insight.id] ?? [])
                     default:
-                        Text("This Insight Type is not supported yet in this version.")
+                        VStack {
+                            Spacer()
+                            
+                            HStack {
+                                Spacer()
+                                Text("This Insight Type is not supported yet in this version.")
+                                    .font(.footnote)
+                                    .foregroundColor(.grayColor)
+                                    .padding(.vertical)
+                                Spacer()
+                            }
+                            Spacer()
+                        }
                     }
             }
             
@@ -117,7 +124,7 @@ struct InsightView: View {
                 Text(insightAgeText)
             }
             .font(.footnote)
-            .foregroundColor(grayColor)
+            .foregroundColor(.grayColor)
             .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             .onTapGesture {
                 insightAgeText = "Reloading..."

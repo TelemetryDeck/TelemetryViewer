@@ -301,6 +301,30 @@ extension APIRepresentative {
         }.resume()
     }
     
+    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightUpdateRequestBody) {
+        let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
+        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(insightUpdateRequestBody)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                print(String(decoding: data, as: UTF8.self))
+                
+                let decodedResponse = try! JSONDecoder.telemetryDecoder.decode(InsightDataTransferObject.self, from: data)
+                print(decodedResponse)
+                
+                DispatchQueue.main.async {
+                    self.getInsightGroups(for: app)
+                }
+                
+            }
+        }.resume()
+    }
+    
     func delete(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         

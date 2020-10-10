@@ -97,7 +97,7 @@ struct NewInsightForm: View {
                     HStack {
                         Text("\(dateComponentsFormatter.string(from: dateComponents) ?? "—")")
                             .font(.footnote)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.grayColor)
                     }
                 }
             }
