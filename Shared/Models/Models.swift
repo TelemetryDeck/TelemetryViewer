@@ -143,3 +143,9 @@ struct ChartDataPoint: Hashable {
     let date: Date
     let value: Double
 }
+
+enum RegistrationStatus: String, Codable {
+    case closed
+    case tokenOnly
+    case open
+}

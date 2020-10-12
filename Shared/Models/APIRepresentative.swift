@@ -22,6 +22,8 @@ final class APIRepresentative: ObservableObject {
         }
     }
     
+    @Published var registrationStatus: RegistrationStatus?
+    
     @Published var userToken: UserToken? {
         didSet {
             let encodedUserToken = try! JSONEncoder().encode(userToken)
@@ -78,6 +80,22 @@ extension APIRepresentative {
         userToken = nil
         apps = []
         user = nil
+    }
+    
+    func getRegistrationStatus() {
+        let url = urlForPath("users", "registrationStatus")
+        var request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                print(String(decoding: data, as: UTF8.self))
+                let decodedData = try! JSONDecoder.telemetryDecoder.decode([String: RegistrationStatus].self, from: data)
+                
+                DispatchQueue.main.async {
+                    self.registrationStatus = decodedData["registrationStatus"]
+                }
+            }
+        }.resume()
     }
     
     func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping (Bool) -> ()) {

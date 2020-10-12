@@ -15,6 +15,7 @@ struct WelcomeView: View {
             HStack {
                 LoginView()
                 Rectangle()
+                    .foregroundColor(.grayColor)
                     .frame(maxWidth: 1)
                     .padding()
                 RegisterButtonView()
