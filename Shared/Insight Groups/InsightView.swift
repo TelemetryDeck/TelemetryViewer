@@ -49,7 +49,7 @@ struct InsightView: View {
     
     var humanreadableTimeInterval: String {
         let calculatedAt = Date()
-        let calculationBeginDate = Date(timeInterval: insight.timeInterval, since: calculatedAt)
+        let calculationBeginDate = Date(timeInterval: insight.rollingWindowSize, since: calculatedAt)
         let dateComponents = Calendar.autoupdatingCurrent.dateComponents([.day, .hour, .minute], from: calculationBeginDate, to: calculatedAt)
         return dateComponentsFormatter.string(from: dateComponents) ?? "—"
     }
@@ -84,19 +84,14 @@ struct InsightView: View {
                 #endif
             }
             .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
-            Text("\(insight.insightType.humanReadableName) of signals less than \(humanreadableTimeInterval) old")
+            Text("of signals less than \(humanreadableTimeInterval) old")
                 .font(.footnote)
                 .foregroundColor(.grayColor)
                 .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             
             
             if let insightData = api.insightData[insight.id] {
-                    switch insightData.insightType {
-                    case .breakdown:
-                        InsightBreakdownView(insightData: insightData).zIndex(-1)
-                    case .count:
-                        InsightCountView(insightData: insightData, insightHistoricalData: api.insightHistoricalData[insight.id] ?? [])
-                    default:
+
                         VStack {
                             Spacer()
                             
@@ -110,7 +105,6 @@ struct InsightView: View {
                             }
                             Spacer()
                         }
-                    }
             }
             
             else {
@@ -166,17 +160,17 @@ struct InsightView: View {
     }
 }
 
-struct InsightView_Previews: PreviewProvider {
-    static var platform: PreviewPlatform? = nil
-    
-    static var previews: some View {
-        InsightView(
-            app: MockData.app1,
-            insightGroup: InsightGroup(id: UUID(), title: "Test Insight Group"),
-            insight: Insight(id: UUID(), title: "System Version", insightType: .breakdown, timeInterval: -3600*24, configuration: ["breakdown.payloadKey": "systemVersion"], historicalData: [])
-        )
-        .padding()
-        .environmentObject(APIRepresentative())
-        .previewLayout(.fixed(width: 400, height: 200))
-    }
-}
+//struct InsightView_Previews: PreviewProvider {
+//    static var platform: PreviewPlatform? = nil
+//
+//    static var previews: some View {
+//        InsightView(
+//            app: MockData.app1,
+//            insightGroup: InsightGroup(id: UUID(), title: "Test Insight Group"),
+//            insight: Insight(id: UUID(), title: "System Version", insightType: .breakdown, timeInterval: -3600*24, configuration: ["breakdown.payloadKey": "systemVersion"], historicalData: [])
+//        )
+//        .padding()
+//        .environmentObject(APIRepresentative())
+//        .previewLayout(.fixed(width: 400, height: 200))
+//    }
+//}

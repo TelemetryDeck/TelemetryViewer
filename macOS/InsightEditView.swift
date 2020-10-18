@@ -22,7 +22,17 @@ struct InsightEditView: View {
         self.insight = insight
         self.insightGroup = insightGroup
         self.app = app
-        let theInsightUpdateRequestBody = InsightUpdateRequestBody(title: insight.title, insightGroupID: insightGroup.id, order: insight.order)
+        let theInsightUpdateRequestBody = InsightUpdateRequestBody(
+            groupID: insight.groupID,
+            order: insight.order,
+            title: insight.title,
+            subtitle: insight.subtitle,
+            signalType: insight.signalType,
+            uniqueUser: insight.uniqueUser,
+            filters: insight.filters,
+            rollingWindowSize: insight.rollingWindowSize,
+            breakdownKey: insight.breakdownKey,
+            displayMode: insight.displayMode)
         self._insightUpdateRequestBody = State(initialValue: theInsightUpdateRequestBody)
         self._isPresented = isPresented
     }
@@ -78,13 +88,13 @@ struct InsightEditView: View {
                 isPresented = false
             }
             
-            Button("Save") {
-                guard let selectedInsightGroup = api.insightGroups[app]?[selectedInsightGroupIndex] else { return }
-                insightUpdateRequestBody.insightGroupID = selectedInsightGroup.id
-                api.update(insight: insight, in: insightGroup, in: app, with: insightUpdateRequestBody)
-                isPresented = false
-            }
-            .keyboardShortcut(.defaultAction)
+//            Button("Save") {
+//                guard let selectedInsightGroup = api.insightGroups[app]?[selectedInsightGroupIndex] else { return }
+//                insightUpdateRequestBody.insightGroupID = selectedInsightGroup.id
+//                api.update(insight: insight, in: insightGroup, in: app, with: insightUpdateRequestBody)
+//                isPresented = false
+//            }
+//            .keyboardShortcut(.defaultAction)
             
             Button("Close") {
                 isPresented = false
@@ -92,9 +102,9 @@ struct InsightEditView: View {
             .keyboardShortcut(.cancelAction)
         }
         .onAppear {
-            if let selectedGroup = api.insightGroups[app]?.firstIndex(where: { $0.id == insightUpdateRequestBody.insightGroupID }) {
-                selectedInsightGroupIndex = selectedGroup
-            }
+//            if let selectedGroup = api.insightGroups[app]?.firstIndex(where: { $0.id == insightUpdateRequestBody.insightGroupID }) {
+//                selectedInsightGroupIndex = selectedGroup
+//            }
         }
         .padding()
 

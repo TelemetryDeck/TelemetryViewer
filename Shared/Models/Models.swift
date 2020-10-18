@@ -40,42 +40,6 @@ struct Signal: Codable, Hashable {
     var payload: Dictionary<String, String>?
 }
 
-struct DerivedStatisticGroup: Codable, Hashable {
-    let id: UUID
-    let title: String
-    let derivedStatistics: [DerivedStatistic]
-}
-
-struct DerivedStatistic: Codable, Hashable {
-    var id: UUID
-    let title: String
-    let payloadKey: String
-}
-
-struct DerivedStatisticDataTransferObject: Codable, Hashable {
-    var id: UUID
-    let title: String
-    let payloadKey: String
-    let rollingCurrentStatistics: [String: Int]
-    let historicalData: [DerivedStatisticHistoricalData]
-}
-
-struct DerivedStatisticHistoricalData: Codable, Hashable {
-    var id: UUID
-    let statistics: [String: Int]
-    let calculatedAt: Date
-}
-
-struct UserCountGroupCreateRequestBody: Codable {
-    var title: String
-    var timeInterval: TimeInterval
-}
-
-struct DerivedStatisticCreateRequestBody: Codable {
-    var title: String
-    var payloadKey: String
-}
-
 struct InsightGroup: Codable {
     var id: UUID
     var title: String
@@ -83,14 +47,38 @@ struct InsightGroup: Codable {
     var insights: [Insight] = []
 }
 
+enum InsightDisplayMode: String, Codable {
+    case number
+    case barChart
+    case lineChart
+    case pieChart
+}
+
 struct Insight: Codable {
     var id: UUID
-    var title: String
-    let insightType: InsightType
-    let timeInterval: TimeInterval
-    var configuration: [String: String]
+    var groupID: UUID
+    
     var order: Double?
-    var historicalData: [InsightHistoricalData]?
+    var title: String
+    var subtitle: String?
+    
+    /// Which signal types are we interested in? If nil, do not filter by signal type
+    var signalType: String?
+    
+    /// If true, only include at the newest signal from each user
+    var uniqueUser: Bool
+    
+    /// Only include signals that match all of these key-values in the payload
+    var filters: [String: String]
+    
+    /// How far to go back to aggregate signals
+    var rollingWindowSize: TimeInterval
+    
+    /// If set, return a breakdown of the values of this payload key
+    var breakdownKey: String?
+    
+    /// How should this insight's data be displayed?
+    var displayMode: InsightDisplayMode
 }
 
 struct InsightHistoricalData: Codable {
@@ -99,44 +87,85 @@ struct InsightHistoricalData: Codable {
     var data: [String: Double]
 }
 
-enum InsightType: String, Codable {
-    case breakdown
-    case count
-    case mean
-    
-    var humanReadableName: String {
-        switch self {
-        case .breakdown:
-            return "Breakdown"
-        case .count:
-            return "Count"
-        case .mean:
-            return "Mean"
-        }
-    }
-}
-
 struct InsightDataTransferObject: Codable {
     let id: UUID
+    
+    let order: Double?
     let title: String
-    let insightType: InsightType
-    let timeInterval: TimeInterval
-    let configuration: [String: String]
+    let subtitle: String?
+    
+    /// Which signal types are we interested in? If nil, do not filter by signal type
+    let signalType: String?
+    
+    /// If true, only include at the newest signal from each user
+    let uniqueUser: Bool
+    
+    /// Only include signals that match all of these key-values in the payload
+    let filters: [String: String]
+    
+    /// How far to go back to aggregate signals
+    let rollingWindowSize: TimeInterval
+    
+    /// If set, return a breakdown of the values of this payload key
+    let breakdownKey: String?
+    
+    /// How should this insight's data be displayed?
+    var displayMode: InsightDisplayMode
+    
+    /// Current Live Calculated Data
     let data: [String: Double]
+    
+    /// When was this DTO calculated?
     let calculatedAt: Date
 }
 
 struct InsightCreateRequestBody: Codable {
-    var title: String
-    var insightType: InsightType
-    var timeInterval: TimeInterval
-    var configuration: [String: String]
+    let order: Double?
+    let title: String
+    let subtitle: String?
+    
+    /// Which signal types are we interested in? If nil, do not filter by signal type
+    let signalType: String?
+    
+    /// If true, only include at the newest signal from each user
+    let uniqueUser: Bool
+    
+    /// Only include signals that match all of these key-values in the payload
+    let filters: [String: String]
+    
+    /// How far to go back to aggregate signals
+    let rollingWindowSize: TimeInterval
+    
+    /// If set, return a breakdown of the values of this payload key
+    let breakdownKey: String?
+    
+    /// How should this insight's data be displayed?
+    var displayMode: InsightDisplayMode
 }
 
 struct InsightUpdateRequestBody: Codable {
-    var title: String
-    var insightGroupID: UUID
+    var groupID: UUID
     var order: Double?
+    var title: String
+    var subtitle: String?
+    
+    /// Which signal types are we interested in? If nil, do not filter by signal type
+    var signalType: String?
+    
+    /// If true, only include at the newest signal from each user
+    var uniqueUser: Bool
+    
+    /// Only include signals that match all of these key-values in the payload
+    var filters: [String: String]
+    
+    /// How far to go back to aggregate signals
+    var rollingWindowSize: TimeInterval
+    
+    /// If set, return a breakdown of the values of this payload key
+    var breakdownKey: String?
+    
+    /// How should this insight's data be displayed?
+    var displayMode: InsightDisplayMode
 }
 
 struct ChartDataPoint: Hashable {
@@ -149,3 +178,4 @@ enum RegistrationStatus: String, Codable {
     case tokenOnly
     case open
 }
+

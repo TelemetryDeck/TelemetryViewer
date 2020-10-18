@@ -22,13 +22,24 @@ struct InsightEditView: View {
         self.insight = insight
         self.insightGroup = insightGroup
         self.app = app
-        let theInsightUpdateRequestBody = InsightUpdateRequestBody(title: insight.title, insightGroupID: insightGroup.id, order: insight.order)
+        
+        let theInsightUpdateRequestBody = InsightUpdateRequestBody(
+            groupID: insight.groupID,
+            order: insight.order,
+            title: insight.title,
+            subtitle: insight.subtitle,
+            signalType: insight.signalType,
+            uniqueUser: insight.uniqueUser,
+            filters: insight.filters,
+            rollingWindowSize: insight.rollingWindowSize,
+            breakdownKey: insight.breakdownKey,
+            displayMode: insight.displayMode)
         self._insightUpdateRequestBody = State(initialValue: theInsightUpdateRequestBody)
         self._isPresented = isPresented
-        
-        if let selectedGroup = initApi.insightGroups[app]?.firstIndex(where: { $0.id == theInsightUpdateRequestBody.insightGroupID }) {
-            selectedInsightGroupIndex = selectedGroup
-        }
+//
+//        if let selectedGroup = initApi.insightGroups[app]?.firstIndex(where: { $0.id == theInsightUpdateRequestBody.insightGroupID }) {
+//            selectedInsightGroupIndex = selectedGroup
+//        }
     }
     
     let numberFormatter: NumberFormatter = {
@@ -55,37 +66,37 @@ struct InsightEditView: View {
                 TextField("Title", text: $insightUpdateRequestBody.title)
             }
             
-            Section(header: Text("Group")) {
-                Picker(selection: $selectedInsightGroupIndex, label: Text("Please choose a group")) {
-                    ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
-                        Text(api.insightGroups[app]?[$0].title ?? "No Title")
-                    }
-                }
-            }
-            
-            Section(header: Text("Order")) {
-                TextField("Order", text: someNumberProxy)
-            }
-            
-            Section(header: Text("Delete This Insight")) {
-                Button("Delete \(insight.title)") {
-                    api.delete(insight: insight, in: insightGroup, in: app)
-                    isPresented = false
-                }
-                .accentColor(.red)
-            }
+//            Section(header: Text("Group")) {
+//                Picker(selection: $selectedInsightGroupIndex, label: Text("Please choose a group")) {
+//                    ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
+//                        Text(api.insightGroups[app]?[$0].title ?? "No Title")
+//                    }
+//                }
+//            }
+//
+//            Section(header: Text("Order")) {
+//                TextField("Order", text: someNumberProxy)
+//            }
+//
+//            Section(header: Text("Delete This Insight")) {
+//                Button("Delete \(insight.title)") {
+//                    api.delete(insight: insight, in: insightGroup, in: app)
+//                    isPresented = false
+//                }
+//                .accentColor(.red)
+//            }
+//        }
+//        .navigationTitle("Edit \(insightUpdateRequestBody.title)")
+//        .navigationBarItems(trailing:
+//                                Button("Save") {
+//                                    guard let selectedInsightGroup = api.insightGroups[app]?[selectedInsightGroupIndex] else { return }
+//                                    insightUpdateRequestBody.insightGroupID = selectedInsightGroup.id
+//                                    api.update(insight: insight, in: insightGroup, in: app, with: insightUpdateRequestBody)
+//                                    isPresented = false
+//                                }
+//                                .keyboardShortcut(.defaultAction)
+//        )
         }
-        .navigationTitle("Edit \(insightUpdateRequestBody.title)")
-        .navigationBarItems(trailing:
-                                Button("Save") {
-                                    guard let selectedInsightGroup = api.insightGroups[app]?[selectedInsightGroupIndex] else { return }
-                                    insightUpdateRequestBody.insightGroupID = selectedInsightGroup.id
-                                    api.update(insight: insight, in: insightGroup, in: app, with: insightUpdateRequestBody)
-                                    isPresented = false
-                                }
-                                .keyboardShortcut(.defaultAction)
-        )
-
     }
 }
 

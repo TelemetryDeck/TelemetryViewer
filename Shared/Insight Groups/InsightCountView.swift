@@ -43,19 +43,19 @@ struct InsightCountView: View {
         
     }
 }
-
-struct InsightCountView_Previews: PreviewProvider {
-    static var previews: some View {
-        InsightCountView(insightData: InsightDataTransferObject(
-                            id: UUID(),
-                            title: "System Version",
-                            insightType: .count,
-                            timeInterval: -3600*24,
-                            configuration: [:],
-                            data: ["count": 1394],
-                            calculatedAt: Date(timeIntervalSinceNow: -36)),
-                         insightHistoricalData: [])
-        .environmentObject(APIRepresentative())
-        .previewLayout(.fixed(width: 300, height: 300))
-    }
-}
+//
+//struct InsightCountView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InsightCountView(insightData: InsightDataTransferObject(
+//                            id: UUID(),
+//                            title: "System Version",
+//                            insightType: .count,
+//                            timeInterval: -3600*24,
+//                            configuration: [:],
+//                            data: ["count": 1394],
+//                            calculatedAt: Date(timeIntervalSinceNow: -36)),
+//                         insightHistoricalData: [])
+//        .environmentObject(APIRepresentative())
+//        .previewLayout(.fixed(width: 300, height: 300))
+//    }
+//}

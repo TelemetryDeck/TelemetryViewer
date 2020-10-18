@@ -27,21 +27,21 @@ struct InsightBreakdownView: View {
             .padding(.top, -25)
     }
 }
-
-struct InsightBreakdownView_Previews: PreviewProvider {
-    static var platform: PreviewPlatform? = nil
-    
-    
-    static var previews: some View {
-        InsightBreakdownView(insightData: InsightDataTransferObject(
-                                id: UUID(),
-                                title: "System Version",
-                                insightType: .breakdown,
-                                timeInterval: -3600*24,
-                                configuration: ["breakdown.payloadKey": "systemVersion"],
-                                data: ["macOS 11.0.0": 1394, "iOS 14": 840, "iOS 13": 48],
-                                calculatedAt: Date(timeIntervalSinceNow: -36)))
-            .environmentObject(APIRepresentative())
-            .previewLayout(.fixed(width: 300, height: 300))
-    }
-}
+//
+//struct InsightBreakdownView_Previews: PreviewProvider {
+//    static var platform: PreviewPlatform? = nil
+//    
+//    
+//    static var previews: some View {
+//        InsightBreakdownView(insightData: InsightDataTransferObject(
+//                                id: UUID(),
+//                                title: "System Version",
+//                                insightType: .breakdown,
+//                                timeInterval: -3600*24,
+//                                configuration: ["breakdown.payloadKey": "systemVersion"],
+//                                data: ["macOS 11.0.0": 1394, "iOS 14": 840, "iOS 13": 48],
+//                                calculatedAt: Date(timeIntervalSinceNow: -36)))
+//            .environmentObject(APIRepresentative())
+//            .previewLayout(.fixed(width: 300, height: 300))
+//    }
+//}
