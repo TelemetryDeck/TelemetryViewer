@@ -26,7 +26,7 @@ struct NewInsightForm: View {
         uniqueUser: false,
         filters: [:],
         rollingWindowSize: -3600*24,
-        breakdownKey: nil,
+        payloadKey: nil,
         displayMode: .lineChart)
     
     @State private var selectedInsightGroupIndex = 0

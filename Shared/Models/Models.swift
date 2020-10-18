@@ -56,7 +56,7 @@ enum InsightDisplayMode: String, Codable {
 
 struct Insight: Codable {
     var id: UUID
-    var groupID: UUID
+    var group: [String: UUID]
     
     var order: Double?
     var title: String
@@ -74,9 +74,9 @@ struct Insight: Codable {
     /// How far to go back to aggregate signals
     var rollingWindowSize: TimeInterval
     
-    /// If set, return a breakdown of the values of this payload key
+    /// If set, break down the values in this key
     var breakdownKey: String?
-    
+
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
 }
@@ -106,8 +106,8 @@ struct InsightDataTransferObject: Codable {
     /// How far to go back to aggregate signals
     let rollingWindowSize: TimeInterval
     
-    /// If set, return a breakdown of the values of this payload key
-    let breakdownKey: String?
+    /// If set, break down the values in this key
+    var breakdownKey: String?
     
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
@@ -120,24 +120,24 @@ struct InsightDataTransferObject: Codable {
 }
 
 struct InsightCreateRequestBody: Codable {
-    let order: Double?
-    let title: String
-    let subtitle: String?
+    var order: Double?
+    var title: String
+    var subtitle: String?
     
     /// Which signal types are we interested in? If nil, do not filter by signal type
-    let signalType: String?
+    var signalType: String?
     
     /// If true, only include at the newest signal from each user
-    let uniqueUser: Bool
+    var uniqueUser: Bool
     
     /// Only include signals that match all of these key-values in the payload
-    let filters: [String: String]
+    var filters: [String: String]
     
     /// How far to go back to aggregate signals
-    let rollingWindowSize: TimeInterval
+    var rollingWindowSize: TimeInterval
     
-    /// If set, return a breakdown of the values of this payload key
-    let breakdownKey: String?
+    /// If set, break down the values in this key
+    var breakdownKey: String?
     
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
@@ -161,7 +161,7 @@ struct InsightUpdateRequestBody: Codable {
     /// How far to go back to aggregate signals
     var rollingWindowSize: TimeInterval
     
-    /// If set, return a breakdown of the values of this payload key
+    /// If set, break down the values in this key
     var breakdownKey: String?
     
     /// How should this insight's data be displayed?
@@ -179,3 +179,12 @@ enum RegistrationStatus: String, Codable {
     case open
 }
 
+enum TransferError: Error {
+    case transferFailed
+    case decodeFailed
+    case serverError(message: String)
+}
+
+struct ServerErrorMessage: Codable {
+    let detail: String
+}

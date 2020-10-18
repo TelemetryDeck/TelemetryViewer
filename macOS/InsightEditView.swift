@@ -23,7 +23,7 @@ struct InsightEditView: View {
         self.insightGroup = insightGroup
         self.app = app
         let theInsightUpdateRequestBody = InsightUpdateRequestBody(
-            groupID: insight.groupID,
+            groupID: insightGroup.id,
             order: insight.order,
             title: insight.title,
             subtitle: insight.subtitle,

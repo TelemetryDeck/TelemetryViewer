@@ -19,6 +19,7 @@
 		DC340E552531B7DE00514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E542531B7DE00514FD6 /* InsightDetailView.swift */; };
 		DC340E5F2531C23800514FD6 /* InsightEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5E2531C23800514FD6 /* InsightEditView.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
+		DC39F24E253C469100A7C325 /* NewInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39F24D253C469100A7C325 /* NewInsightForm.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC45BAEE24DFF895004E6392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
@@ -38,7 +39,6 @@
 		DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53393F25222C2F00D9C889 /* InsightGroupList.swift */; };
 		DC53394525222FC600D9C889 /* NewInsightGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53394425222FC600D9C889 /* NewInsightGroupView.swift */; };
 		DC53394625222FC600D9C889 /* NewInsightGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53394425222FC600D9C889 /* NewInsightGroupView.swift */; };
-		DC53394C2522620E00D9C889 /* NewInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53394B2522620E00D9C889 /* NewInsightForm.swift */; };
 		DC53394D2522620E00D9C889 /* NewInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53394B2522620E00D9C889 /* NewInsightForm.swift */; };
 		DC591398252DF975007360A9 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591397252DF975007360A9 /* DonutChartView.swift */; };
 		DC591399252DF975007360A9 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591397252DF975007360A9 /* DonutChartView.swift */; };
@@ -88,6 +88,7 @@
 		DC340E542531B7DE00514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC340E5E2531C23800514FD6 /* InsightEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditView.swift; sourceTree = "<group>"; };
+		DC39F24D253C469100A7C325 /* NewInsightForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInsightForm.swift; sourceTree = "<group>"; };
 		DC415C0D2531F6C300D8D0B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DC45BAED24DFF895004E6392 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DC45BB1824E1F01F004E6392 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
@@ -150,7 +151,6 @@
 			children = (
 				DC53393F25222C2F00D9C889 /* InsightGroupList.swift */,
 				DC53394425222FC600D9C889 /* NewInsightGroupView.swift */,
-				DC53394B2522620E00D9C889 /* NewInsightForm.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
 				DC2328712522740900DB6145 /* InsightBreakdownView.swift */,
 				DC04C3DC252364C000483AF5 /* InsightCountView.swift */,
@@ -276,6 +276,7 @@
 		DCE23A0524D3687D00053370 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				DC39F24D253C469100A7C325 /* NewInsightForm.swift */,
 				DC340E542531B7DE00514FD6 /* InsightDetailView.swift */,
 				DC340E4F2531B78900514FD6 /* InsightEditView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
@@ -288,6 +289,7 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				DC53394B2522620E00D9C889 /* NewInsightForm.swift */,
 				DC340E5D2531C23800514FD6 /* InsightDetailView.swift */,
 				DC340E5E2531C23800514FD6 /* InsightEditView.swift */,
 				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
@@ -407,7 +409,6 @@
 				DC23286D2522725A00DB6145 /* InsightView.swift in Sources */,
 				DC90D08B25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */,
-				DC53394C2522620E00D9C889 /* NewInsightForm.swift in Sources */,
 				DC2328722522740900DB6145 /* InsightBreakdownView.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				DC53394625222FC600D9C889 /* NewInsightGroupView.swift in Sources */,
@@ -436,6 +437,7 @@
 				DC340E502531B78900514FD6 /* InsightEditView.swift in Sources */,
 				DCB02B792503897D00304964 /* RegisterButtonView.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
+				DC39F24E253C469100A7C325 /* NewInsightForm.swift in Sources */,
 				DC4F7DBD25069C3200B54561 /* NewAppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

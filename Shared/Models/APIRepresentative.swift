@@ -26,7 +26,7 @@ final class APIRepresentative: ObservableObject {
     
     @Published var userToken: UserToken? {
         didSet {
-            let encodedUserToken = try! JSONEncoder().encode(userToken)
+            let encodedUserToken = try! JSONEncoder.telemetryEncoder.encode(userToken)
             UserDefaults.standard.setValue(encodedUserToken, forKey: APIRepresentative.userTokenStandardsKey)
             
             userNotLoggedIn = userToken == nil
@@ -104,7 +104,7 @@ extension APIRepresentative {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try! JSONEncoder().encode(registrationRequestBody)
+        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(registrationRequestBody)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
@@ -142,7 +142,15 @@ extension APIRepresentative {
     
     func getApps() {
         let url = urlForPath("apps")
-        fetch(url, defaultValue: [], setterKeyPath: \.apps)
+        
+        self.get(url) { (result: Result<[TelemetryApp], TransferError>) in
+            switch result {
+            case .success(let apps):
+                self.apps = apps
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
     }
     
     func create(appNamed name: String) {
@@ -152,7 +160,7 @@ extension APIRepresentative {
         request.httpMethod = "POST"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        request.httpBody = try! JSONEncoder().encode(["name": name])
+        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(["name": name])
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
@@ -176,7 +184,7 @@ extension APIRepresentative {
         request.httpMethod = "PATCH"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        request.httpBody = try! JSONEncoder().encode(["name": newName])
+        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(["name": newName])
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
@@ -211,12 +219,29 @@ extension APIRepresentative {
     
     func getSignals(for app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "signals")
-        fetch(url, defaultValue: [Signal]()) { self.signals[app] = $0 }
+        
+        self.get(url) { (result: Result<[Signal], TransferError>) in
+            switch result {
+            case .success(let signals):
+                self.signals[app] = signals
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
     }
     
     func getInsightGroups(for app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
-        fetch(url, defaultValue: [InsightGroup]()) { self.insightGroups[app] = $0 }
+        
+        self.get(url) { (result: Result<[InsightGroup], TransferError>) in
+            switch result {
+            case .success(let foundInsightGroups):
+                self.insightGroups[app] = foundInsightGroups
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
+        
     }
     
     func create(insightGroupNamed: String, for app: TelemetryApp) {
@@ -228,7 +253,7 @@ extension APIRepresentative {
         request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
         
         let requestBody = ["title": insightGroupNamed]
-        request.httpBody = try! JSONEncoder().encode(requestBody)
+        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(requestBody)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
@@ -309,7 +334,7 @@ extension APIRepresentative {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
         
-        request.httpBody = try! JSONEncoder().encode(requestBody)
+        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(requestBody)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
@@ -360,83 +385,86 @@ extension APIRepresentative {
     }
 }
 
+
 // MARK: - Generic Methods
 extension APIRepresentative {
-    func urlForPath(_ path: String...) -> URL {
+    /// Generate an API URL for the given Path
+    ///
+    /// Path should be supplied as a series of strings, e.g.
+    ///
+    ///     urlForPath("api", "v1", "exhibitors")
+    ///
+    /// In DEBUG configuration, this method will print out the generated URL.
+    func urlForPath(_ path: String..., appendTrailingSlash: Bool = false) -> URL {
         let url = URL(string: APIRepresentative.baseURLString + path.joined(separator: "/") + "/")!
+
         
-        print(url)
+        #if DEBUG
+        print("🌍", url)
+        #endif
         
         return url
     }
     
-    func authenticatedURLRequest(for url: URL, contentType: String = "application/json; charset=utf-8") -> URLRequest {
+    /// Given a URL, generate a URLRequest instance with included authentication headers
+    func authenticatedURLRequest(for url: URL, httpMethod: String, httpBody: Data? = nil, contentType: String = "application/json; charset=utf-8") -> URLRequest {
         var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
         request.setValue(contentType, forHTTPHeaderField: "Content-Type")
         request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
+        
+        if let httpBody = httpBody {
+            request.httpBody = httpBody
+        }
+        
         return request
     }
-}
-
-// MARK: - Downloading
-extension APIRepresentative {
-    private func fetch<T: Decodable>(_ url: URL, defaultValue: T) -> Publishers.ReplaceError<Publishers.Decode<Publishers.MapKeyPath<Publishers.ReceiveOn<AnyPublisher<Publishers.Retry<URLSession.DataTaskPublisher>.Output, ValidationError>, DispatchQueue>, JSONDecoder.Input>, T, JSONDecoder>>{
-        let request = authenticatedURLRequest(for: url)
-        
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .retry(1)
-            .validateStatusCode({ (200..<300).contains($0) })
-            .receive(on: DispatchQueue.main)
-            .map(\.data)
-            .decode(type: T.self, decoder: JSONDecoder.telemetryDecoder)
-            .replaceError(with: defaultValue)
+    
+    func get<Output: Decodable>(_ url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        let request = self.authenticatedURLRequest(for: url, httpMethod: "GET")
+        runTask(with: request, completion: completion)
     }
     
-    func fetch<T: Decodable>(_ url: URL, defaultValue: T, setterKeyPath: ReferenceWritableKeyPath<APIRepresentative, T>) {
-        
-            
-        DispatchQueue.main.async {
-            self.fetch(url, defaultValue: defaultValue)
-            .assign(to: setterKeyPath, on: self)
-                .store(in: &self.requests)
-        }
-    }
-    
-    func fetch<T: Decodable>(_ url: URL, defaultValue: T, completion: @escaping (T) -> Void) {
-        DispatchQueue.main.async {
-            self.fetch(url, defaultValue: defaultValue)
-            .sink(receiveValue: completion)
-                .store(in: &self.requests)
-        }
-    }
-}
-
-// MARK: - Uploading
-extension APIRepresentative {
-    enum UploadError: Error {
-        case uploadFailed
-        case decodeFailed
-    }
-    
-    func upload<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, httpMethod: String = "POST", contentType: String = "application/json", completion: @escaping (Result<Output, UploadError>) -> Void) {
-        var request = authenticatedURLRequest(for: url)
+    func post<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        var request = self.authenticatedURLRequest(for: url, httpMethod: "POST")
         request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
+        runTask(with: request, completion: completion)
+    }
+    
+    private func runTask<Output: Decodable>(with request: URLRequest, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        #if DEBUG
+        if let httpBody = request.httpBody {
+            print("➡️", httpBody.prettyPrintedJSONString ?? String(data: httpBody, encoding: .utf8) ?? "Undecodable")
+        }
+        #endif
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let data = data {
+                    #if DEBUG
+                    print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
+                    #endif
+                    
                     do {
                         let decoded = try JSONDecoder.telemetryDecoder.decode(Output.self, from: data)
                         completion(.success(decoded))
                     } catch {
-                        completion(.failure(.decodeFailed))
+                        if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorMessage.self, from: data) {
+                            completion(.failure(TransferError.serverError(message: decodedErrorMessage.detail)))
+                        } else {
+                            completion(.failure(.decodeFailed))
+                        }
                     }
                 } else if error != nil {
-                    completion(.failure(.uploadFailed))
+                    completion(.failure(.transferFailed))
                 } else {
                     print("Unknown result: no data and no error!")
                 }
             }
         }.resume()
+    }
+    
+    private func handleError(_ error: TransferError) {
+        print("🛑", error, error.localizedDescription)
     }
 }

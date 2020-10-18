@@ -32,7 +32,7 @@ struct InsightEditView: View {
             uniqueUser: insight.uniqueUser,
             filters: insight.filters,
             rollingWindowSize: insight.rollingWindowSize,
-            breakdownKey: insight.breakdownKey,
+            payloadKey: insight.payloadKey,
             displayMode: insight.displayMode)
         self._insightUpdateRequestBody = State(initialValue: theInsightUpdateRequestBody)
         self._isPresented = isPresented
