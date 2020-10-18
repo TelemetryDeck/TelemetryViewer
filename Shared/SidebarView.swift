@@ -48,7 +48,7 @@ struct SidebarView: View {
                     
                     
                     NavigationLink(destination: OrganizationSettingsView(), label: {
-                        Label(apiUser.organization.name, systemImage: "app.badge")
+                        Label(apiUser.organization?.name ?? "Unknown Org", systemImage: "app.badge")
                     })
                 } else {
                     Label("firstName lastName", systemImage: "person.circle").redacted(reason: .placeholder)

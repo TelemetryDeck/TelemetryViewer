@@ -15,6 +15,12 @@ struct InsightDetailView: View {
     let insightGroup: InsightGroup
     let app: TelemetryApp
     
+    private var encoder: JSONEncoder {
+        var encoder = JSONEncoder.telemetryEncoder
+        encoder.outputFormatting = .prettyPrinted
+        return encoder
+    }
+    
     var body: some View {
         let closeButton = Button("Close") {
             isPresented = false
@@ -28,7 +34,10 @@ struct InsightDetailView: View {
             
             Text("More Details about this insight will appear here.")
             
-            Text(String(data: try! JSONEncoder.telemetryEncoder.encode(insight), encoding: .utf8) ?? "An error occurred")
+            
+            
+            
+            Text(String(data: try! encoder.encode(insight), encoding: .utf8) ?? "An error occurred")
                 .font(.system(.body, design: .monospaced))
             
             

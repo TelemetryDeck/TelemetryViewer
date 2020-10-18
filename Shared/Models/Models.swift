@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct OrganizationUser: Codable, Hashable {
-    var id: UUID
-    var firstName: String
-    var lastName: String
-    var email: String
-    var organization: Organization
-    var passwordHash: String
+struct UserDataTransferObject: Codable {
+    let id: UUID
+    let organization: Organization?
+    let firstName: String
+    let lastName: String
+    let email: String
 }
 
 struct Organization: Codable, Hashable {

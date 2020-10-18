@@ -14,7 +14,7 @@ struct OrganizationSettingsView: View {
     var body: some View {
         
         if let user = api.user {
-            Text("Hello, \(user.organization.name)!").navigationTitle("Organization Settings")
+            Text("Hello!").navigationTitle("Organization Settings")
                 .onAppear {
                     TelemetryManager.shared.send(TelemetrySignal.organizationSettingsShown.rawValue, for: api.user?.email)
                 }

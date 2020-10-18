@@ -35,7 +35,7 @@ final class APIRepresentative: ObservableObject {
     
     @Published var requests = Set<AnyCancellable>()
     
-    @Published var user: OrganizationUser?
+    @Published var user: UserDataTransferObject?
     @Published var userNotLoggedIn: Bool = true
     
     @Published var apps: [TelemetryApp] = [MockData.app1, MockData.app2]
@@ -84,60 +84,47 @@ extension APIRepresentative {
     
     func getRegistrationStatus() {
         let url = urlForPath("users", "registrationStatus")
-        var request = URLRequest(url: url)
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                let decodedData = try! JSONDecoder.telemetryDecoder.decode([String: RegistrationStatus].self, from: data)
-                
+        self.get(url) { (result: Result<[String: RegistrationStatus], TransferError>) in
+            switch result {
+            case .success(let decodedData):
                 DispatchQueue.main.async {
                     self.registrationStatus = decodedData["registrationStatus"]
                 }
+            case .failure(let error):
+                self.handleError(error)
             }
-        }.resume()
+        }
     }
     
     func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping (Bool) -> ()) {
         let url = urlForPath("users", "register")
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(registrationRequestBody)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                callback((response as! HTTPURLResponse).statusCode == 200)
+        self.post(registrationRequestBody, to: url) { (result: Result<UserDataTransferObject, TransferError>) in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    callback(true)
+                }
+            case .failure(let error):
+                self.handleError(error)
             }
-        }.resume()
+        }
     }
     
     func getUserInformation() {
         let url = urlForPath("users", "me")
         
-        var request = URLRequest(url: url)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTaskPublisher(for: request)
-            .validateStatusCode({ (200..<300).contains($0) })
-            .map(\.data)
-            .decode(type: OrganizationUser.self, decoder: JSONDecoder.telemetryDecoder)
-//            .assign(to: \.user, on: self)
-            .sink(receiveCompletion: { error in
-                switch error {
-                case .finished:
-                    break
-                case .failure(_):
-                    self.logout()
-                    print(error)
+        self.get(url) { (result: Result<UserDataTransferObject, TransferError>) in
+            switch result {
+            case .success(let userDTO):
+                DispatchQueue.main.async {
+                    self.user = userDTO
                 }
-            }, receiveValue: { organizationUser in
-                DispatchQueue.main.async { self.user = organizationUser }
-            })
-            .store(in: &requests)
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
     }
     
     func getApps() {
@@ -156,65 +143,25 @@ extension APIRepresentative {
     func create(appNamed name: String) {
         let url = urlForPath("apps")
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(["name": name])
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                
-                let decodedResponse = try! JSONDecoder.telemetryDecoder.decode(TelemetryApp.self, from: data)
-                print(decodedResponse)
-                
-                DispatchQueue.main.async {
-                    self.getApps()
-                }
-                
-            }
-        }.resume()
+        self.post(["name": name], to: url) { (result: Result<TelemetryApp, TransferError>) in
+            self.getApps()
+        }
     }
     
     func update(app: TelemetryApp, newName: String) {
         let url = urlForPath("apps", app.id.uuidString)
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "PATCH"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(["name": newName])
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                
-                let decodedResponse = try! JSONDecoder.telemetryDecoder.decode(TelemetryApp.self, from: data)
-                print(decodedResponse)
-                
-                DispatchQueue.main.async {
-                    self.getApps()
-                }
-                
-            }
-        }.resume()
+        self.patch(["name": newName], to: url) { (result: Result<TelemetryApp, TransferError>) in
+            self.getApps()
+        }
     }
     
     func delete(app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString)
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            DispatchQueue.main.async {
-                self.getApps()
-            }
-        }.resume()
+        self.delete(url) { (result: Result<String, TransferError>) in
+            self.getApps()
+        }
     }
     
     func getSignals(for app: TelemetryApp) {
@@ -247,57 +194,29 @@ extension APIRepresentative {
     func create(insightGroupNamed: String, for app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
-        let requestBody = ["title": insightGroupNamed]
-        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(requestBody)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                self.getInsightGroups(for: app)
-            }
-        }.resume()
+        self.post(["title": insightGroupNamed], to: url) { (result: Result<InsightGroup, TransferError>) in
+            self.getInsightGroups(for: app)
+        }
     }
     
     func delete(insightGroup: InsightGroup, in app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString)
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            DispatchQueue.main.async {
-                self.getInsightGroups(for: app)
-            }
-        }.resume()
+        self.delete(url) { (result: Result<InsightGroup, TransferError>) in
+            self.getInsightGroups(for: app)
+        }
     }
     
     func getInsightData(for insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         
-        var request = URLRequest(url: url)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                
-                let decodedResponse = try! JSONDecoder.telemetryDecoder.decode(InsightDataTransferObject.self, from: data)
-                
+        self.get(url) { (result: Result<InsightDataTransferObject, TransferError>) in
+            if let insightDTO = try? result.get() {
                 DispatchQueue.main.async {
-                    self.insightData[decodedResponse.id] = decodedResponse
+                    self.insightData[insightDTO.id] = insightDTO
                 }
-                
             }
-        }.resume()
+        }
     }
     
     func getInsightHistoricalData(for insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp) {
@@ -308,80 +227,37 @@ extension APIRepresentative {
             insightHistoricalData[insight.id] = []
         }
         
-        var request = URLRequest(url: url)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                
-                guard let decodedResponse = try? JSONDecoder.telemetryDecoder.decode([InsightHistoricalData].self, from: data) else { return }
-                
+        self.get(url) { (result: Result<[InsightHistoricalData], TransferError>) in
+            if let insightHistoricalData = try? result.get() {
                 DispatchQueue.main.async {
-                    self.insightHistoricalData[insight.id] = decodedResponse
+                    self.insightHistoricalData[insight.id] = insightHistoricalData
                 }
-                
             }
-        }.resume()
+        }
     }
     
     func create(insightWith requestBody: InsightCreateRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights")
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
-        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(requestBody)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                self.getInsightGroups(for: app)
-            }
-        }.resume()
+        self.post(requestBody, to: url) { (result: Result<String, TransferError>) in
+            self.getInsightGroups(for: app)
+        }
     }
     
     func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightUpdateRequestBody) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "PATCH"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        request.httpBody = try! JSONEncoder.telemetryEncoder.encode(insightUpdateRequestBody)
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                print(String(decoding: data, as: UTF8.self))
-                
-                let decodedResponse = try! JSONDecoder.telemetryDecoder.decode(InsightDataTransferObject.self, from: data)
-                print(decodedResponse)
-                
-                DispatchQueue.main.async {
-                    self.getInsightGroups(for: app)
-                }
-                
-            }
-        }.resume()
+        self.patch(insightUpdateRequestBody, to: url) { (result: Result<String, TransferError>) in
+            self.getInsightGroups(for: app)
+        }
     }
     
     func delete(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            DispatchQueue.main.async {
-                self.getInsightGroups(for: app)
-            }
-        }.resume()
+        self.delete(url) { (result: Result<String, TransferError>) in
+            self.getInsightGroups(for: app)
+        }
     }
 }
 
@@ -431,6 +307,17 @@ extension APIRepresentative {
         runTask(with: request, completion: completion)
     }
     
+    func patch<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        var request = self.authenticatedURLRequest(for: url, httpMethod: "PATCH")
+        request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
+        runTask(with: request, completion: completion)
+    }
+    
+    func delete<Output: Decodable>(_ url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        let request = self.authenticatedURLRequest(for: url, httpMethod: "DELETE")
+        runTask(with: request, completion: completion)
+    }
+    
     private func runTask<Output: Decodable>(with request: URLRequest, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
         if let httpBody = request.httpBody {
@@ -451,20 +338,23 @@ extension APIRepresentative {
                     } catch {
                         if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorMessage.self, from: data) {
                             completion(.failure(TransferError.serverError(message: decodedErrorMessage.detail)))
+                            print("🛑 \(decodedErrorMessage.detail)")
                         } else {
+                            print("🛑 Decode Failed")
                             completion(.failure(.decodeFailed))
                         }
                     }
                 } else if error != nil {
+                    print("🛑 Transfer Failed")
                     completion(.failure(.transferFailed))
                 } else {
-                    print("Unknown result: no data and no error!")
+                    print("🛑 Unknown result: no data and no error!")
                 }
             }
         }.resume()
     }
     
     private func handleError(_ error: TransferError) {
-        print("🛑", error, error.localizedDescription)
+        
     }
 }
