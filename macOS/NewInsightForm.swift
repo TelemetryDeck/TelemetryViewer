@@ -155,7 +155,13 @@ struct NewInsightForm: View {
             HStack {
                 Spacer()
                 cancelButton
-                saveButton
+                saveButton.disabled(
+                        breakdownKey.isEmpty && ![.lineChart, .number].contains(displayModes[selectedDisplayModeIndex])
+                    ||
+                        !breakdownKey.isEmpty && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])
+                    
+                    )
+                
             }
             
         }

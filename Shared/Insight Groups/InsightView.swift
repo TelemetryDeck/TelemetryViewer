@@ -84,12 +84,12 @@ struct InsightView: View {
                     }
                 #endif
             }
-            .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             
-            Text("\(humanreadableTimeInterval) rolling • \(insight.subtitle ?? "")")
+            Text("\(humanreadableTimeInterval) rolling\(insight.subtitle != nil ? " • " : "")\(insight.subtitle ?? "")")
                 .font(.footnote)
+                .padding(.bottom)
                 .foregroundColor(.grayColor)
-                .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
+            
             
             if let insightData = api.insightData[insight.id] {
                 switch insightData.displayMode {
@@ -105,6 +105,8 @@ struct InsightView: View {
                     }
                 case .pieChart:
                     InsightPieChartView(insightData: insightData)
+                case .lineChart:
+                    InsightLineChartView(insightData: insightData)
                 default:
                     VStack {
                         Spacer()
