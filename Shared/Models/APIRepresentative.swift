@@ -176,13 +176,15 @@ extension APIRepresentative {
         }
     }
     
-    func getInsightGroups(for app: TelemetryApp) {
+    func getInsightGroups(for app: TelemetryApp, callback: (() -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
         
         self.get(url) { (result: Result<[InsightGroup], TransferError>) in
             switch result {
             case .success(let foundInsightGroups):
                 self.insightGroups[app] = foundInsightGroups
+                
+                callback?()
             case .failure(let error):
                 self.handleError(error)
             }
@@ -190,10 +192,11 @@ extension APIRepresentative {
         
     }
     
-    func create(insightGroupNamed: String, for app: TelemetryApp) {
+    func create(insightGroupNamed: String, for app: TelemetryApp, callback: (() -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
         
         self.post(["title": insightGroupNamed], to: url) { (result: Result<InsightGroup, TransferError>) in
+            callback?()
             self.getInsightGroups(for: app)
         }
     }

@@ -73,6 +73,10 @@
 		DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
 		DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
+		DCCD4825253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */; };
+		DCCD4826253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */; };
+		DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */; };
+		DCCD482B253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */; };
 		DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BCE252DB40900A00C5B /* WelcomeView.swift */; };
 		DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */; };
 		DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
@@ -120,6 +124,8 @@
 		DCB02B7E25038F5000304964 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		DCCD480B253D8A240098EC95 /* InsightNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightNumberView.swift; sourceTree = "<group>"; };
 		DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
+		DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDefaultInsights.swift; sourceTree = "<group>"; };
+		DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInsightsCreator.swift; sourceTree = "<group>"; };
 		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
 		DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_ViewerApp.swift; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 				DCCD480B253D8A240098EC95 /* InsightNumberView.swift */,
 				DC2328712522740900DB6145 /* InsightPieChartView.swift */,
 				DC04C3DC252364C000483AF5 /* InsightLineChartView.swift */,
+				DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */,
 			);
 			path = "Insight Groups";
 			sourceTree = "<group>";
@@ -206,6 +213,7 @@
 				DCB02B7E25038F5000304964 /* MockData.swift */,
 				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
 				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
+				DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -423,6 +431,7 @@
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
+				DCCD4825253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */,
 				DC45BB1924E1F01F004E6392 /* SidebarView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
 				DCB02B7F25038F5000304964 /* MockData.swift in Sources */,
@@ -430,6 +439,7 @@
 				DC5339372521CE6200D9C889 /* CardView.swift in Sources */,
 				DC98AAB7250A671900FF26FD /* AppSettingsView.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */,
+				DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC04C3EB2523BD6300483AF5 /* LineChartView.swift in Sources */,
@@ -465,6 +475,7 @@
 				DC53394525222FC600D9C889 /* NewInsightGroupView.swift in Sources */,
 				DC4F7DBB25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
+				DCCD4826253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */,
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
 				DC45BB1A24E1F01F004E6392 /* SidebarView.swift in Sources */,
 				DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
@@ -472,6 +483,7 @@
 				DCB02B8025038F5000304964 /* MockData.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
+				DCCD482B253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				DC98AAB8250A671900FF26FD /* AppSettingsView.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,

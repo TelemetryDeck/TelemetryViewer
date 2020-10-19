@@ -19,31 +19,47 @@ struct InsightGroupList: View {
     @State var isShowingAppSettingsView: Bool = false
     
     var body: some View {
-        ScrollView(.vertical) {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 300))], alignment: .leading) {
-                if let insightGroups = api.insightGroups[app] {
-                    ForEach(insightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 }), id: \.id) { insightGroup in
-                        Section(header: HStack {
-                            Text(insightGroup.title).font(.title)
-                            
-                            if insightGroup.insights.isEmpty {
-                                Button(
-                                    action: { api.delete(insightGroup: insightGroup, in: app) },
-                                    label: { Image(systemName: "xmark.circle.fill") })
-                            }
-                            
-                        }) {
-                            ForEach(insightGroup.insights.sorted(by: { $0.order ?? 0 < $1.order ?? 0 }), id: \.id) { insight in
-                                CardView {
-                                    InsightView(app: app, insightGroup: insightGroup, insight: insight)
-                                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+        Group {
+            if let insightGroups = api.insightGroups[app] {
+                if insightGroups.isEmpty {
+                    OfferDefaultInsights(app: app)
+                        .frame(maxWidth: 600)
+                        .padding()
+                }
+                
+                else {
+                    ScrollView(.vertical) {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 300))], alignment: .leading) {
+                            ForEach(insightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 }), id: \.id) { insightGroup in
+                                Section(header: HStack {
+                                    Text(insightGroup.title).font(.title)
+                                    
+                                    if insightGroup.insights.isEmpty {
+                                        Button(
+                                            action: { api.delete(insightGroup: insightGroup, in: app) },
+                                            label: { Image(systemName: "xmark.circle.fill") })
+                                    }
+                                    
+                                }) {
+                                    ForEach(insightGroup.insights.sorted(by: { $0.order ?? 0 < $1.order ?? 0 }), id: \.id) { insight in
+                                        CardView {
+                                            InsightView(app: app, insightGroup: insightGroup, insight: insight)
+                                                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+                                        }
+                                    }
                                 }
-                            }
+                            }.animation(.easeInOut)
+                            
+                            
                         }
-                    }.animation(.easeInOut)
+                        .padding()
+                    }
                 }
             }
-            .padding()
+            
+            else {
+                ProgressView()
+            }
         }
         .onAppear {
             api.getInsightGroups(for: app)
