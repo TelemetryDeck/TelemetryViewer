@@ -27,7 +27,7 @@ struct NewInsightForm: View {
         filters: [:],
         rollingWindowSize: -3600*24,
         breakdownKey: nil,
-        displayMode: .lineChart)
+        displayMode: .number)
     
     @State private var selectedInsightGroupIndex = 0
     
@@ -54,6 +54,7 @@ struct NewInsightForm: View {
                 insightCreateRequestBody.rollingWindowSize = windowNumber * -3600*24
             }
             
+            insightCreateRequestBody.displayMode = displayModes[selectedDisplayModeIndex]
             
             let group: InsightGroup = api.insightGroups[app]![selectedInsightGroupIndex]
             isPresented = false
@@ -119,7 +120,7 @@ struct NewInsightForm: View {
             
             LazyVGrid(columns: columns, alignment: .trailing) {
                 Text("Break down by")
-                TextField("If you enter a key for the metadata payload here, you'll get a breakdown of its values.", text: $signalType)
+                TextField("If you enter a key for the metadata payload here, you'll get a breakdown of its values.", text: $breakdownKey)
             }
             
             separator()
@@ -128,11 +129,11 @@ struct NewInsightForm: View {
                 Text("Display Mode")
                 Picker(selection: $selectedDisplayModeIndex, label: Text("")) {
                     if breakdownKey.isEmpty {
-                        Text(InsightDisplayMode.number.rawValue).tag(0)
-                        Text(InsightDisplayMode.lineChart.rawValue).tag(1)
+                        Text(InsightDisplayMode.number.rawValue.capitalized).tag(0)
+                        Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
                     } else {
-                        Text(InsightDisplayMode.barChart.rawValue).tag(2)
-                        Text(InsightDisplayMode.pieChart.rawValue).tag(3)
+                        Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
+                        Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())

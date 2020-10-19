@@ -7,42 +7,42 @@
 
 import SwiftUI
 
-struct InsightCountView: View {
-    let insightData: InsightDataTransferObject
-    var insightHistoricalData: [InsightHistoricalData]
-    
-    let numberFormatter: NumberFormatter = {
-        let numberFormatter = NumberFormatter()
-        return numberFormatter
-    }()
-    
-    var body: some View {
-        ZStack {
-            #if os(macOS)
-            let paddingBottom: CGFloat = -37
-            #else
-            let paddingBottom: CGFloat = -40
-            #endif
-            
-            LineChartView(data: insightHistoricalData.map { ChartDataPoint(date: $0.calculatedAt, value: $0.data["count"] ?? 0) })
-                .padding(.bottom, paddingBottom)
-                .padding(.horizontal, -16)
-            
-            HStack {
-                Spacer()
-                if let count = insightData.data["count"], let countText = numberFormatter.string(from: NSNumber(value: count)) {
-                    Text(countText).font(.system(size: 64, weight: .black, design: .monospaced))
-                } else {
-                    Text("–").font(.system(size: 64, weight: .black, design: .monospaced))
-                }
-            }
-            .padding(.horizontal)
-            .shadow(color: Color("CardBackgroundColor"), radius: 10, x: 0.0, y: 0.0)
-        }
-        
-        
-    }
-}
+//struct InsightCountView: View {
+//    let insightData: InsightDataTransferObject
+//    var insightHistoricalData: [InsightHistoricalData]
+//    
+//    let numberFormatter: NumberFormatter = {
+//        let numberFormatter = NumberFormatter()
+//        return numberFormatter
+//    }()
+//    
+//    var body: some View {
+//        ZStack {
+//            #if os(macOS)
+//            let paddingBottom: CGFloat = -37
+//            #else
+//            let paddingBottom: CGFloat = -40
+//            #endif
+//            
+//            LineChartView(data: insightHistoricalData.map { ChartDataPoint(date: $0.calculatedAt, value: $0.data["count"] ?? 0) })
+//                .padding(.bottom, paddingBottom)
+//                .padding(.horizontal, -16)
+//            
+//            HStack {
+//                Spacer()
+//                if let count = insightData.data["count"], let countText = numberFormatter.string(from: NSNumber(value: count)) {
+//                    Text(countText).font(.system(size: 64, weight: .black, design: .monospaced))
+//                } else {
+//                    Text("–").font(.system(size: 64, weight: .black, design: .monospaced))
+//                }
+//            }
+//            .padding(.horizontal)
+//            .shadow(color: Color("CardBackgroundColor"), radius: 10, x: 0.0, y: 0.0)
+//        }
+//        
+//        
+//    }
+//}
 //
 //struct InsightCountView_Previews: PreviewProvider {
 //    static var previews: some View {

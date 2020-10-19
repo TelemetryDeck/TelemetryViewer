@@ -112,7 +112,7 @@ struct InsightDataTransferObject: Codable {
     var displayMode: InsightDisplayMode
     
     /// Current Live Calculated Data
-    let data: [String: Double]
+    let data: [[String: String]]
     
     /// When was this DTO calculated?
     let calculatedAt: Date

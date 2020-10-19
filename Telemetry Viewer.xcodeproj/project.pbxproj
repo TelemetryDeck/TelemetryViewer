@@ -69,6 +69,8 @@
 		DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DCB02B7F25038F5000304964 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
 		DCB02B8025038F5000304964 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
+		DCCD480C253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
+		DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BCE252DB40900A00C5B /* WelcomeView.swift */; };
 		DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */; };
 		DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
@@ -114,6 +116,7 @@
 		DCB02B782503897D00304964 /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
 		DCB02B7B25038F4600304964 /* APIRepresentative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepresentative.swift; sourceTree = "<group>"; };
 		DCB02B7E25038F5000304964 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		DCCD480B253D8A240098EC95 /* InsightNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightNumberView.swift; sourceTree = "<group>"; };
 		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
 		DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_ViewerApp.swift; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 				DC53393F25222C2F00D9C889 /* InsightGroupList.swift */,
 				DC53394425222FC600D9C889 /* NewInsightGroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
+				DCCD480B253D8A240098EC95 /* InsightNumberView.swift */,
 				DC2328712522740900DB6145 /* InsightBreakdownView.swift */,
 				DC04C3DC252364C000483AF5 /* InsightCountView.swift */,
 			);
@@ -435,6 +439,7 @@
 				DC45BAEE24DFF895004E6392 /* Models.swift in Sources */,
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
 				DC340E502531B78900514FD6 /* InsightEditView.swift in Sources */,
+				DCCD480C253D8A240098EC95 /* InsightNumberView.swift in Sources */,
 				DCB02B792503897D00304964 /* RegisterButtonView.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC39F24E253C469100A7C325 /* NewInsightForm.swift in Sources */,
@@ -475,6 +480,7 @@
 				DC04C3DE252364C000483AF5 /* InsightCountView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC45BAEF24DFF895004E6392 /* Models.swift in Sources */,
+				DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */,
 				DC340E5F2531C23800514FD6 /* InsightEditView.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,

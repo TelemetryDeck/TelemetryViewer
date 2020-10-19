@@ -7,26 +7,26 @@
 
 import SwiftUI
 
-struct InsightBreakdownView: View {
-    let insightData: InsightDataTransferObject
-    
-    let numberFormatter: NumberFormatter = {
-        let numberFormatter = NumberFormatter()
-        return numberFormatter
-    }()
-    
-    var body: some View {
-        let breakdowns = insightData.data
-            .map { ($0.key, $0.value) }
-            .sorted { $0.1 > $1.1 }
-            .map { DonutChartDataPoint(key: $0.0, value: $0.1) }
-        
-        DonutChartView(dataPoints: breakdowns)
-            .frame(minHeight: 140)
-            .padding(.bottom, -25)
-            .padding(.top, -25)
-    }
-}
+//struct InsightBreakdownView: View {
+//    let insightData: InsightDataTransferObject
+//    
+//    let numberFormatter: NumberFormatter = {
+//        let numberFormatter = NumberFormatter()
+//        return numberFormatter
+//    }()
+//    
+//    var body: some View {
+//        let breakdowns = insightData.data
+//            .map { ($0.key, $0.value) }
+//            .sorted { $0.1 > $1.1 }
+//            .map { DonutChartDataPoint(key: $0.0, value: $0.1) }
+//        
+//        DonutChartView(dataPoints: breakdowns)
+//            .frame(minHeight: 140)
+//            .padding(.bottom, -25)
+//            .padding(.top, -25)
+//    }
+//}
 //
 //struct InsightBreakdownView_Previews: PreviewProvider {
 //    static var platform: PreviewPlatform? = nil

@@ -60,6 +60,7 @@ struct InsightView: View {
             HStack {
                 Text(insight.title)
                     .font(.title3)
+                
                 Spacer()
                 Image(systemName: "eye")
                     .foregroundColor(.grayColor)
@@ -84,27 +85,41 @@ struct InsightView: View {
                 #endif
             }
             .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
-            Text("of signals less than \(humanreadableTimeInterval) old")
+            
+            Text("\(humanreadableTimeInterval) rolling • \(insight.subtitle ?? "")")
                 .font(.footnote)
                 .foregroundColor(.grayColor)
                 .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
             
-            
             if let insightData = api.insightData[insight.id] {
-
-                        VStack {
+                switch insightData.displayMode {
+                case .number:
+                    VStack {
+                        Spacer()
+                        HStack {
                             Spacer()
-                            
-                            HStack {
-                                Spacer()
-                                Text("This Insight Type is not supported yet in this version.")
-                                    .font(.footnote)
-                                    .foregroundColor(.grayColor)
-                                    .padding(.vertical)
-                                Spacer()
-                            }
+                            InsightNumberView(insightData: insightData)
                             Spacer()
                         }
+                        Spacer()
+                    }
+                default:
+                    VStack {
+                        Spacer()
+                        
+                        HStack {
+                            Spacer()
+                            Text("\(insightData.displayMode.rawValue.capitalized) is not supported yet in this version.")
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
+                                .padding(.vertical)
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                }
+
+                        
             }
             
             else {
@@ -127,6 +142,7 @@ struct InsightView: View {
                 TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email)
             }
         }
+        .frame(idealHeight: 300)
         .padding()
         .onAppear() {
             updateIfNecessary()
