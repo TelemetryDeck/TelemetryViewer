@@ -103,6 +103,8 @@ struct InsightView: View {
                         }
                         Spacer()
                     }
+                case .pieChart:
+                    InsightPieChartView(insightData: insightData)
                 default:
                     VStack {
                         Spacer()

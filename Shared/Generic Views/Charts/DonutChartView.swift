@@ -87,7 +87,7 @@ struct DonutChartView: View {
             }
         }
         
-        let legend = VStack(alignment: .leading, spacing: -5) {
+        let legend = VStack(alignment: .center, spacing: -5) {
             
             if pieSegments.count > 0 {
                 Text(pieSegments[selectedSegmentIndex].data.id)
@@ -104,13 +104,11 @@ struct DonutChartView: View {
                 }
             }
         }
-        .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
-        
         
         GeometryReader { reader in
-            ZStack(alignment: .trailing) {
-                chart.frame(width: reader.size.height, alignment: .trailing)
-                legend.frame(width: reader.size.width, alignment: .leading)
+            ZStack(alignment: .center) {
+                chart
+                legend
             }
             .frame(width: reader.size.width, height: reader.size.height)
         }
@@ -130,6 +128,6 @@ struct DonutChartView_Previews: PreviewProvider {
     static var previews: some View {
         DonutChartView(dataPoints: data)
         .padding()
-        .previewLayout(.fixed(width: 400, height: 200))
+        .previewLayout(.fixed(width: 400, height: 400))
     }
 }
