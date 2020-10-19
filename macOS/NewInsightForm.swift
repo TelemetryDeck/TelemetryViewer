@@ -156,6 +156,8 @@ struct NewInsightForm: View {
                 Spacer()
                 cancelButton
                 saveButton.disabled(
+                    insightCreateRequestBody.title.isEmpty
+                    ||
                         breakdownKey.isEmpty && ![.lineChart, .number].contains(displayModes[selectedDisplayModeIndex])
                     ||
                         !breakdownKey.isEmpty && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])

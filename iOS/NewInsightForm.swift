@@ -20,127 +20,129 @@ struct NewInsightForm: View {
     // State
     @State var insightCreateRequestBody: InsightCreateRequestBody = InsightCreateRequestBody(
         order: nil,
-        title: "New Insight",
+        title: "",
         subtitle: nil,
         signalType: nil,
         uniqueUser: false,
         filters: [:],
         rollingWindowSize: -3600*24,
-        payloadKey: nil,
-        displayMode: .lineChart)
+        breakdownKey: nil,
+        displayMode: .number)
     
     @State private var selectedInsightGroupIndex = 0
-    @State private var selectedInsightTypeIndex = 0
-    @State private var breakdownpayloadKey: String = "systemVersion"
-    @State private var timeInterval: TimeInterval = 3600*24
-    @State private var conditions: String = "unique-user; platform==iOS"
     
+    @State private var breakdownKey: String = ""
+    @State private var subtitle: String = ""
+    @State private var signalType: String = ""
+    @State private var rollingWindowSize: String = "24"
     
-    // Formatters
-    let dateComponentsFormatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .full
-        return formatter
-    }()
+    @State private var selectedDisplayModeIndex = 0
+    private let displayModes: [InsightDisplayMode] = [.number, .lineChart, .barChart, .pieChart]
+    
+    @State private var selectedDateComponentIndex = 0
     
     var body: some View {
-        
         let saveButton = Button("Save") {
-//            insightCreateRequestBody.configuration["breakdown.payloadKey"] = breakdownpayloadKey
-//            insightCreateRequestBody.configuration["conditions"] = conditions
-//            insightCreateRequestBody.insightType = insightTypes[selectedInsightTypeIndex]
-//            insightCreateRequestBody.timeInterval = -timeInterval
-//
-//            guard api.insightGroups[app]?.count ?? 0 > 0 else { return }
-//
-//            guard let insightGroup = api.insightGroups[app]?[selectedInsightGroupIndex] else { return }
-//            api.create(insightWith: insightCreateRequestBody, in: insightGroup, for: app)
-//            isPresented = false
+            insightCreateRequestBody.breakdownKey = breakdownKey.isEmpty ? nil : breakdownKey
+            insightCreateRequestBody.subtitle = subtitle.isEmpty ? nil : subtitle
+            insightCreateRequestBody.signalType = signalType.isEmpty ? nil : signalType
+            
+            let windowNumber: Double = NumberFormatter().number(from: rollingWindowSize)?.doubleValue ?? 0
+            if selectedDateComponentIndex == 0 {
+                insightCreateRequestBody.rollingWindowSize = windowNumber * -3600
+            } else {
+                insightCreateRequestBody.rollingWindowSize = windowNumber * -3600*24
+            }
+            
+            insightCreateRequestBody.displayMode = displayModes[selectedDisplayModeIndex]
+            
+            let group: InsightGroup = api.insightGroups[app]![selectedInsightGroupIndex]
+            isPresented = false
+            api.create(insightWith: insightCreateRequestBody, in: group, for: app)
+            
         }
         .keyboardShortcut(.defaultAction)
         
         let cancelButton = Button("Cancel") { isPresented = false }.keyboardShortcut(.cancelAction)
-        let title = "System Version"
+        let title = "New Insight"
         
-        let form = Form {
-            #if os(macOS)
-            Text(title)
-                .font(.title2)
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-            #endif
-//
-//            Section(header: Text("Name"), footer: Text("Give your insight a human readable name, e.g. 'System Version'")) {
-//                TextField("Title", text: $insightCreateRequestBody.title)
-//            }
-//
-//
-//            Section(header: Text("Group"), footer: Text("Which group does this insight belong to?")) {
-//                Picker(selection: $selectedInsightGroupIndex, label: Text("Please choose a group")) {
-//                    ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
-//                        Text(api.insightGroups[app]?[$0].title ?? "No Title")
-//                    }
-//                }
-//            }
-//
-//            Section(header: Text("Type"), footer: Text("What kind of insight is your insight?")) {
-//                Picker(selection: $selectedInsightTypeIndex, label: Text("Please choose a type")) {
-//                    ForEach(0 ..< insightTypes.count) {
-//                        Text(self.insightTypes[$0].humanReadableName)
-//                    }
-//                }
-//            }
-//
-//            Section(header: Text("Time Frame"), footer: Text("How far should we go backwards in time to look for signals to include in this insight?")) {
-//                VStack {
-//                    Slider(value: $timeInterval, in: 0...3600*24*30, step: 3600*24)
-//
-//                    let calculatedAt = Date()
-//                    let calculationBeginDate = Date(timeInterval: -timeInterval, since: calculatedAt)
-//                    let dateComponents = Calendar.autoupdatingCurrent.dateComponents([.day, .hour, .minute], from: calculationBeginDate, to: calculatedAt)
-//
-//                    HStack {
-//                        Text("\(dateComponentsFormatter.string(from: dateComponents) ?? "—")")
-//                            .font(.footnote)
-//                            .foregroundColor(.grayColor)
-//                    }
-//                }
-//            }
-//
-//            Section(header: Text("Conditions"), footer: Text("State Conditions that must apply for the signal to be counted")) {
-//                TextField("Conditions", text: $conditions)
-//            }
-//
-//            if insightTypes[selectedInsightTypeIndex] == .breakdown {
-//                Section(header: Text("Payload Key"), footer: Text("What's the payload key you want a breakdown for? E.g. 'systemVersion' for a breakdown of system versions")) {
-//                    TextField("Payload Keyword", text: $breakdownpayloadKey)
-//
-//                }
-//            } else if insightTypes[selectedInsightTypeIndex] == .count {
-//
-//
-//            } else {
-//                Text("Sorry that Insight Type is not implemented yet :( ")
-//            }
-            
-            #if os(macOS)
-            HStack {
-                Spacer()
-                cancelButton
-                saveButton
-            }
-            #endif
-            
-        }
-        
-        #if os(macOS)
-        form.padding()
-        #else
         NavigationView {
-            form
-                .navigationTitle(title)
-                .navigationBarItems(leading: cancelButton, trailing: saveButton)
+            Form {
+                Section(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
+                    TextField("Title e.g. 'Daily Active Users'", text: $insightCreateRequestBody.title)
+                    TextField("Optional Subtitle", text: $subtitle)
+                    
+                    Picker(selection: $selectedInsightGroupIndex, label: Text("Insight Group")) {
+                        ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
+                            Text(api.insightGroups[app]?[$0].title ?? "No Title")
+                        }
+                    }
+                }
+                
+                Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in? Leave blank for any"))) {
+                    TextField("e.g. appLaunchedRegularly", text: $signalType)
+                    Toggle(isOn: $insightCreateRequestBody.uniqueUser) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Unique by User")
+                                Text("Check to count each user only once")
+                                    .font(.footnote)
+                                    .foregroundColor(.grayColor)
+                            }
+                            Spacer()
+                        }
+                    }
+                }
+                
+                Section(header: Text("Filters")) {
+                    Text("Filters are coming soon")
+                }
+                
+                Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here, you'll get a breakdown of its values.")) {
+                    TextField("e.g. systemVersion", text: $breakdownKey)
+                }
+                
+                Section(header: Text("Display")) {
+                    
+                    Picker(selection: $selectedDisplayModeIndex, label: Text("Display As")) {
+                        if breakdownKey.isEmpty {
+                            Text(InsightDisplayMode.number.rawValue.capitalized).tag(0)
+                            Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
+                        } else {
+                            Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
+                            Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
+                        }
+                    }
+                    .padding(EdgeInsets(top: 1, leading: -7, bottom: 1, trailing: 0))
+                    
+                    HStack {
+                        Text("Rolling Window")
+                        TextField("Rolling Window Size", text: $rollingWindowSize).multilineTextAlignment(.trailing)
+                        Picker(selection: $selectedDateComponentIndex, label: Text("")) {
+                            Text("Hours").tag(0)
+                            Text("Days").tag(1)
+                        }.pickerStyle(SegmentedPickerStyle())
+                    }
+                    
+                }
+            }
+            .navigationTitle("New Insight")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    cancelButton
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    saveButton.disabled(
+                        insightCreateRequestBody.title.isEmpty
+                            ||
+                        breakdownKey.isEmpty && ![.lineChart, .number].contains(displayModes[selectedDisplayModeIndex])
+                            ||
+                            !breakdownKey.isEmpty && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])
+                        
+                    )
+                }
+            }
         }
-        #endif
     }
 }
 

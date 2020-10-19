@@ -24,7 +24,7 @@ struct InsightEditView: View {
         self.app = app
         
         let theInsightUpdateRequestBody = InsightUpdateRequestBody(
-            groupID: insight.groupID,
+            groupID: insight.group["id"]!,
             order: insight.order,
             title: insight.title,
             subtitle: insight.subtitle,
@@ -32,7 +32,7 @@ struct InsightEditView: View {
             uniqueUser: insight.uniqueUser,
             filters: insight.filters,
             rollingWindowSize: insight.rollingWindowSize,
-            payloadKey: insight.payloadKey,
+            breakdownKey: insight.breakdownKey,
             displayMode: insight.displayMode)
         self._insightUpdateRequestBody = State(initialValue: theInsightUpdateRequestBody)
         self._isPresented = isPresented
