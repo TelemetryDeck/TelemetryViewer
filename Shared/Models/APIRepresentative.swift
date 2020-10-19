@@ -43,7 +43,6 @@ final class APIRepresentative: ObservableObject {
     @Published var signals: [TelemetryApp: [Signal]] = [:]
     @Published var insightGroups: [TelemetryApp: [InsightGroup]] = [:]
     @Published var insightData: [UUID: InsightDataTransferObject] = [:]
-    @Published var insightHistoricalData: [UUID: [InsightHistoricalData]] = [:]
 }
 
 extension APIRepresentative {
@@ -214,23 +213,6 @@ extension APIRepresentative {
             if let insightDTO = try? result.get() {
                 DispatchQueue.main.async {
                     self.insightData[insightDTO.id] = insightDTO
-                }
-            }
-        }
-    }
-    
-    func getInsightHistoricalData(for insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp) {
-        let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString, "historicaldata")
-        
-        // Set an empty value to show we're loading
-        if insightHistoricalData[insight.id] == nil {
-            insightHistoricalData[insight.id] = []
-        }
-        
-        self.get(url) { (result: Result<[InsightHistoricalData], TransferError>) in
-            if let insightHistoricalData = try? result.get() {
-                DispatchQueue.main.async {
-                    self.insightHistoricalData[insight.id] = insightHistoricalData
                 }
             }
         }

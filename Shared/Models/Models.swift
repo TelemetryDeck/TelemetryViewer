@@ -80,12 +80,6 @@ struct Insight: Codable {
     var displayMode: InsightDisplayMode
 }
 
-struct InsightHistoricalData: Codable {
-    var id: UUID
-    var calculatedAt: Date
-    var data: [String: Double]
-}
-
 struct InsightDataTransferObject: Codable {
     let id: UUID
     

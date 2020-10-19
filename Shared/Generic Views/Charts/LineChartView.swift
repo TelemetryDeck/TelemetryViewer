@@ -14,7 +14,6 @@ struct LineChart: Shape {
     func path(in rect: CGRect) -> Path {
         guard let firstDate = data.first?.date,
            let lastDate = data.last?.date,
-           let lowestValue = data.sorted(by: { $0.value < $1.value }).first?.value,
            let highestValue = data.sorted(by: { $0.value < $1.value }).last?.value
         else { return Path() }
         

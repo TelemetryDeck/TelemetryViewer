@@ -142,7 +142,6 @@ struct InsightView: View {
             .onTapGesture {
                 insightAgeText = "Reloading..."
                 api.getInsightData(for: insight, in: insightGroup, in: app)
-                api.getInsightHistoricalData(for: insight, in: insightGroup, in: app)
                 TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email)
             }
         }
@@ -166,14 +165,6 @@ struct InsightView: View {
             }
         } else {
             api.getInsightData(for: insight, in: insightGroup, in: app)
-        }
-        
-        if let insightHistoricalData = api.insightHistoricalData[insight.id] {
-            if let lastEntry = insightHistoricalData.sorted(by: { $0.calculatedAt < $1.calculatedAt }).last, abs(lastEntry.calculatedAt.timeIntervalSinceNow) > 3600*24 { // There should be a new historical entry available
-                api.getInsightHistoricalData(for: insight, in: insightGroup, in: app)
-            }
-        } else {
-            api.getInsightHistoricalData(for: insight, in: insightGroup, in: app)
         }
         
         insightAgeText = newInsightAgeText
