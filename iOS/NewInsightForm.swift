@@ -79,8 +79,8 @@ struct NewInsightForm: View {
                     }
                 }
                 
-                Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in? Leave blank for any"))) {
-                    TextField("e.g. appLaunchedRegularly", text: $signalType)
+                Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
+                    TextField("All Signals", text: $signalType)
                     Toggle(isOn: $insightCreateRequestBody.uniqueUser) {
                         HStack {
                             VStack(alignment: .leading) {
@@ -98,8 +98,8 @@ struct NewInsightForm: View {
                     Text("Filters are coming soon")
                 }
                 
-                Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here, you'll get a breakdown of its values.")) {
-                    TextField("e.g. systemVersion", text: $breakdownKey)
+                Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here (e.g. systemVersion), you'll get a breakdown of its values.")) {
+                    TextField("No breakdown", text: $breakdownKey)
                 }
                 
                 Section(header: Text("Display")) {

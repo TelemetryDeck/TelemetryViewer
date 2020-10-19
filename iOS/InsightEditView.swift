@@ -78,24 +78,24 @@ struct InsightEditView: View {
 //                TextField("Order", text: someNumberProxy)
 //            }
 //
-//            Section(header: Text("Delete This Insight")) {
-//                Button("Delete \(insight.title)") {
-//                    api.delete(insight: insight, in: insightGroup, in: app)
-//                    isPresented = false
-//                }
-//                .accentColor(.red)
-//            }
+            Section(header: Text("Delete This Insight")) {
+                Button("Delete \(insight.title)") {
+                    api.delete(insight: insight, in: insightGroup, in: app)
+                    isPresented = false
+                }
+                .accentColor(.red)
+            }
 //        }
-//        .navigationTitle("Edit \(insightUpdateRequestBody.title)")
-//        .navigationBarItems(trailing:
-//                                Button("Save") {
-//                                    guard let selectedInsightGroup = api.insightGroups[app]?[selectedInsightGroupIndex] else { return }
+        .navigationTitle("Edit \(insightUpdateRequestBody.title)")
+        .navigationBarItems(trailing:
+                                Button("Save") {
+                                    guard let selectedInsightGroup = api.insightGroups[app]?[selectedInsightGroupIndex] else { return }
 //                                    insightUpdateRequestBody.insightGroupID = selectedInsightGroup.id
-//                                    api.update(insight: insight, in: insightGroup, in: app, with: insightUpdateRequestBody)
-//                                    isPresented = false
-//                                }
-//                                .keyboardShortcut(.defaultAction)
-//        )
+                                    api.update(insight: insight, in: insightGroup, in: app, with: insightUpdateRequestBody)
+                                    isPresented = false
+                                }
+                                .keyboardShortcut(.defaultAction)
+        )
         }
     }
 }
