@@ -24,6 +24,5 @@ struct Telemetry_ViewerApp: App {
     init() {
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
-        TelemetryManager.shared.send(TelemetrySignal.appLaunchedRegularly.rawValue, for: api.user?.email)
     }
 }
