@@ -24,4 +24,13 @@ extension Optional where Wrapped == String {
             _bound = newValue.isEmpty ? nil : newValue
         }
     }
+    
+    public var irreversiblyBound: String {
+        get {
+            return _bound ?? ""
+        }
+        set {
+            _bound = newValue
+        }
+    }
 }

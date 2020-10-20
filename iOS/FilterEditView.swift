@@ -23,7 +23,7 @@ struct FilterEditView: View {
                     HStack {
                         Text(key).foregroundColor(.grayColor)
                         
-                        TextField("Value", text: $keysAndValues[key].bound)
+                        TextField("Value", text: $keysAndValues[key].irreversiblyBound)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                             
