@@ -79,7 +79,7 @@ struct InsightView: View {
                         isEditViewShowing = true
                     }
                     .sheet(isPresented: $isEditViewShowing) {
-                        InsightEditView(insight: insight, insightGroup: insightGroup, app: app, isPresented: $isEditViewShowing)
+                        CreateOrUpdateInsightForm(app: app, editMode: true, requestBody: InsightDefinitionRequestBody.from(insight: insight), isPresented: $isEditViewShowing, insight: insight, group: insightGroup)
                             .environmentObject(api)
                     }
                 #endif
@@ -90,59 +90,60 @@ struct InsightView: View {
                 .padding(.bottom)
                 .foregroundColor(.grayColor)
             
-            
-            if let insightData = api.insightData[insight.id] {
-                switch insightData.displayMode {
-                case .number:
-                    VStack {
-                        Spacer()
-                        HStack {
+            Group {
+                if let insightData = api.insightData[insight.id] {
+                    switch insightData.displayMode {
+                    case .number:
+                        VStack {
                             Spacer()
-                            InsightNumberView(insightData: insightData)
-                            Spacer()
-                        }
-                        Spacer()
-                    }
-                case .pieChart:
-                    InsightPieChartView(insightData: insightData)
-                case .lineChart:
-                    InsightLineChartView(insightData: insightData)
-                default:
-                    VStack {
-                        Spacer()
-                        
-                        HStack {
-                            Spacer()
-                            Text("\(insightData.displayMode.rawValue.capitalized) is not supported yet in this version.")
-                                .font(.footnote)
-                                .foregroundColor(.grayColor)
-                                .padding(.vertical)
+                            HStack {
+                                Spacer()
+                                InsightNumberView(insightData: insightData)
+                                Spacer()
+                            }
                             Spacer()
                         }
-                        Spacer()
+                    case .pieChart:
+                        InsightPieChartView(insightData: insightData)
+                    case .lineChart:
+                        InsightLineChartView(insightData: insightData)
+                    default:
+                        VStack {
+                            Spacer()
+                            
+                            HStack {
+                                Spacer()
+                                Text("\(insightData.displayMode.rawValue.capitalized) is not supported yet in this version.")
+                                    .font(.footnote)
+                                    .foregroundColor(.grayColor)
+                                    .padding(.vertical)
+                                Spacer()
+                            }
+                            Spacer()
+                        }
                     }
                 }
-
-                        
-            }
-            
-            else {
-                Text("Oh yes we are still Loading and it is taking some time so here's a secret: This data was crunched by elves!").redacted(reason: .placeholder)
+                
+                else {
+                    Text("Oh yes we are still Loading and it is taking some time so here's a secret: This data was crunched by elves!").redacted(reason: .placeholder)
+                }
             }
             
             Spacer()
-
-            HStack(spacing: 2) {
-                Image(systemName: "arrow.counterclockwise.circle")
-                Text(insightAgeText)
-            }
-            .font(.footnote)
-            .foregroundColor(.grayColor)
-            .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
-            .onTapGesture {
-                insightAgeText = "Reloading..."
-                api.getInsightData(for: insight, in: insightGroup, in: app)
-                TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email)
+            
+            Group {
+                HStack(spacing: 2) {
+                    Image(systemName: "arrow.counterclockwise.circle")
+                    Text(insightAgeText)
+                }
+                .font(.footnote)
+                .foregroundColor(.grayColor)
+                .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
+                .onTapGesture {
+                    insightAgeText = "Reloading..."
+                    api.getInsightData(for: insight, in: insightGroup, in: app)
+                    TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email)
+                }
             }
         }
         .frame(idealHeight: 200)
@@ -156,8 +157,6 @@ struct InsightView: View {
     }
     
     func updateIfNecessary() {
-        
-        
         if let insightData = api.insightData[insight.id] {
             if abs(insightData.calculatedAt.timeIntervalSinceNow) > 60*5 { // data is over 5 minutes old
                 api.getInsightData(for: insight, in: insightGroup, in: app)

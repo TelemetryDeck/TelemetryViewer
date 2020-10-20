@@ -83,7 +83,7 @@ struct InsightGroupList: View {
                     Label("New Insight", systemImage: "plus.viewfinder")
                 }
                 .sheet(isPresented: $isShowingNewInsightForm) {
-                    NewInsightForm(app: app, isPresented: $isShowingNewInsightForm)
+                    CreateOrUpdateInsightForm(app: app, editMode: false, isPresented: $isShowingNewInsightForm, insight: nil, group: nil)
                         .environmentObject(api)
                 }
                 

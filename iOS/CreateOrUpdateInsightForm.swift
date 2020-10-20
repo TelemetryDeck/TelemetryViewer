@@ -7,27 +7,19 @@
 
 import SwiftUI
 
-struct NewInsightForm: View {
+struct CreateOrUpdateInsightForm: View {
     // Environment
     @EnvironmentObject var api: APIRepresentative
     
     // Initialization Constants
     let app: TelemetryApp
+    let editMode: Bool
     
     // Bindings
     @Binding var isPresented: Bool
     
     // State
-    @State var insightCreateRequestBody: InsightCreateRequestBody = InsightCreateRequestBody(
-        order: nil,
-        title: "",
-        subtitle: nil,
-        signalType: nil,
-        uniqueUser: false,
-        filters: [:],
-        rollingWindowSize: -3600*24,
-        breakdownKey: nil,
-        displayMode: .number)
+    @State var insightCreateRequestBody: InsightDefinitionRequestBody
     
     @State private var selectedInsightGroupIndex = 0
     
@@ -40,6 +32,22 @@ struct NewInsightForm: View {
     private let displayModes: [InsightDisplayMode] = [.number, .lineChart, .barChart, .pieChart]
     
     @State private var selectedDateComponentIndex = 0
+    
+    init(app: TelemetryApp, editMode: Bool, requestBody: InsightDefinitionRequestBody? = nil) {
+        insightCreateRequestBody = requestBody ?? InsightDefinitionRequestBody(
+            order: nil,
+            title: "",
+            subtitle: nil,
+            signalType: nil,
+            uniqueUser: false,
+            filters: [:],
+            rollingWindowSize: -3600*24,
+            breakdownKey: nil,
+            displayMode: .number)
+        
+        self.app = app
+        self.editMode = editMode
+    }
     
     var body: some View {
         let saveButton = Button("Save") {
@@ -150,7 +158,7 @@ struct NewInsightForm_Previews: PreviewProvider {
     static var platform: PreviewPlatform? = nil
     
     static var previews: some View {
-        NewInsightForm(app: MockData.app1, isPresented: .constant(true))
+        CreateOrUpdateInsightForm(app: MockData.app1, isPresented: .constant(true))
             .environmentObject(APIRepresentative())
             .previewLayout(.fixed(width: 600, height: 1000))
     }

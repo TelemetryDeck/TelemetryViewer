@@ -112,7 +112,7 @@ struct InsightDataTransferObject: Codable {
     let calculatedAt: Date
 }
 
-struct InsightCreateRequestBody: Codable {
+struct InsightDefinitionRequestBody: Codable {
     var order: Double?
     var title: String
     var subtitle: String?
@@ -134,31 +134,29 @@ struct InsightCreateRequestBody: Codable {
     
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
-}
-
-struct InsightUpdateRequestBody: Codable {
-    var groupID: UUID
-    var order: Double?
-    var title: String
-    var subtitle: String?
     
-    /// Which signal types are we interested in? If nil, do not filter by signal type
-    var signalType: String?
+    /// Which group should the insight belong to? (Only use this in update mode)
+    var groupID: UUID?
     
-    /// If true, only include at the newest signal from each user
-    var uniqueUser: Bool
+    /// The ID of the insight. Not changeable, only set in update mode
+    var id: UUID?
     
-    /// Only include signals that match all of these key-values in the payload
-    var filters: [String: String]
-    
-    /// How far to go back to aggregate signals
-    var rollingWindowSize: TimeInterval
-    
-    /// If set, break down the values in this key
-    var breakdownKey: String?
-    
-    /// How should this insight's data be displayed?
-    var displayMode: InsightDisplayMode
+    static func from(insight: Insight) -> InsightDefinitionRequestBody {
+        let requestBody = Self(
+            order: insight.order,
+            title: insight.title,
+            subtitle: insight.subtitle,
+            signalType: insight.signalType,
+            uniqueUser: insight.uniqueUser,
+            filters: insight.filters,
+            rollingWindowSize: insight.rollingWindowSize,
+            breakdownKey: insight.breakdownKey,
+            displayMode: insight.displayMode,
+            groupID: insight.group["id"],
+            id: insight.id)
+        
+        return requestBody
+    }
 }
 
 struct ChartDataPoint: Hashable {

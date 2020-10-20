@@ -222,7 +222,7 @@ extension APIRepresentative {
         }
     }
     
-    func create(insightWith requestBody: InsightCreateRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp) {
+    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights")
         
         self.post(requestBody, to: url) { (result: Result<String, TransferError>) in
@@ -230,7 +230,7 @@ extension APIRepresentative {
         }
     }
     
-    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightUpdateRequestBody) {
+    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         
         self.patch(insightUpdateRequestBody, to: url) { (result: Result<String, TransferError>) in

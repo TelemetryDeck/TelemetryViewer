@@ -13,9 +13,9 @@ extension APIRepresentative {
             self.getInsightGroups(for: app) {
                 guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Users" }) else { return }
                 
-                var insightRequest: [InsightCreateRequestBody] = []
+                var insightRequest: [InsightDefinitionRequestBody] = []
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "Active Users Today",
                                         subtitle: "Number of Users of your App in the last 24 hours",
@@ -26,7 +26,7 @@ extension APIRepresentative {
                                         breakdownKey: nil,
                                         displayMode: .number))
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "Daily Active Users",
                                         subtitle: "Development of Daily Active Users over time",
@@ -37,7 +37,7 @@ extension APIRepresentative {
                                         breakdownKey: nil,
                                         displayMode: .lineChart))
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "Weekly Active Users",
                                         subtitle: "Development of Weekly Active Users over time",
@@ -48,7 +48,7 @@ extension APIRepresentative {
                                         breakdownKey: nil,
                                         displayMode: .lineChart))
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "Monthly Active Users",
                                         subtitle: "Development of Monthly Active Users over time",
@@ -67,9 +67,9 @@ extension APIRepresentative {
             self.getInsightGroups(for: app) {
                 guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Platforms" }) else { return }
                 
-                var insightRequest: [InsightCreateRequestBody] = []
+                var insightRequest: [InsightDefinitionRequestBody] = []
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "Platform Breakdown",
                                         subtitle: "Breakdown of your users' platforms in the last week",
@@ -80,7 +80,7 @@ extension APIRepresentative {
                                         breakdownKey: "platform",
                                         displayMode: .pieChart))
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "iOS Versions Breakdown",
                                         subtitle: "Which iOS versions were your users using over the last week?",
@@ -91,7 +91,7 @@ extension APIRepresentative {
                                         breakdownKey: "systemVersion",
                                         displayMode: .pieChart))
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "macOS Versions Breakdown",
                                         subtitle: "Which macOS versions were your users using over the last week?",
@@ -110,9 +110,9 @@ extension APIRepresentative {
             self.getInsightGroups(for: app) {
                 guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Signals" }) else { return }
                 
-                var insightRequest: [InsightCreateRequestBody] = []
+                var insightRequest: [InsightDefinitionRequestBody] = []
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "Signals Today",
                                         subtitle: "How many Signals did Telemetry receive from your app's users' in the last 24 hours?",
@@ -123,7 +123,7 @@ extension APIRepresentative {
                                         breakdownKey: nil,
                                         displayMode: .number))
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "Signals Types",
                                         subtitle: "What types of Signals did Telemetry receive from your app's users?",
@@ -134,6 +134,17 @@ extension APIRepresentative {
                                         breakdownKey: "signalType",
                                         displayMode: .pieChart))
                 
+                insightRequest.append(InsightDefinitionRequestBody(
+                                        order: 1,
+                                        title: "Hourly Signals",
+                                        subtitle: nil,
+                                        signalType: nil,
+                                        uniqueUser: false,
+                                        filters: [:],
+                                        rollingWindowSize: -3600,
+                                        breakdownKey: nil,
+                                        displayMode: .lineChart))
+                
                 insightRequest.forEach { self.create(insightWith: $0, in: currentGroup, for: app) }
             }
         }
@@ -142,9 +153,9 @@ extension APIRepresentative {
             self.getInsightGroups(for: app) {
                 guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Versions" }) else { return }
                 
-                var insightRequest: [InsightCreateRequestBody] = []
+                var insightRequest: [InsightDefinitionRequestBody] = []
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "App Versions",
                                         subtitle: "Which versions of the app were people using in the last 7 days?",
@@ -155,7 +166,7 @@ extension APIRepresentative {
                                         breakdownKey: "appVersion",
                                         displayMode: .pieChart))
                 
-                insightRequest.append(InsightCreateRequestBody(
+                insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
                                         title: "Build Numbers",
                                         subtitle: "Which Build Numbers were people using in the last 7 days?",
