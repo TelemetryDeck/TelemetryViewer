@@ -137,5 +137,37 @@ extension APIRepresentative {
                 insightRequest.forEach { self.create(insightWith: $0, in: currentGroup, for: app) }
             }
         }
+        
+        create(insightGroupNamed: "Versions", for: app) {
+            self.getInsightGroups(for: app) {
+                guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Versions" }) else { return }
+                
+                var insightRequest: [InsightCreateRequestBody] = []
+                
+                insightRequest.append(InsightCreateRequestBody(
+                                        order: 1,
+                                        title: "App Versions",
+                                        subtitle: "Which versions of the app were people using in the last 7 days?",
+                                        signalType: nil,
+                                        uniqueUser: true,
+                                        filters: [:],
+                                        rollingWindowSize: -24*3600*7,
+                                        breakdownKey: "appVersion",
+                                        displayMode: .pieChart))
+                
+                insightRequest.append(InsightCreateRequestBody(
+                                        order: 1,
+                                        title: "Build Numbers",
+                                        subtitle: "Which Build Numbers were people using in the last 7 days?",
+                                        signalType: nil,
+                                        uniqueUser: true,
+                                        filters: [:],
+                                        rollingWindowSize: -24*3600*7,
+                                        breakdownKey: "buildNumber",
+                                        displayMode: .pieChart))
+                
+                insightRequest.forEach { self.create(insightWith: $0, in: currentGroup, for: app) }
+            }
+        }
     }
 }
