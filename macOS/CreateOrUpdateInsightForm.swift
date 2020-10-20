@@ -202,7 +202,7 @@ struct CreateOrUpdateInsightForm: View {
             case .pieChart:
                 selectedDisplayModeIndex = 3
             case .none:
-                selectedDisplayModeIndex = -1
+                selectedDisplayModeIndex = 0
             }
             
             // Rolling Window
