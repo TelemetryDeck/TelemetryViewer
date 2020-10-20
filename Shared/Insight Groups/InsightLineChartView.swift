@@ -39,7 +39,7 @@ struct InsightLineChartView: View {
             return ChartDataPoint(date: day, value: count)
         })
             .padding(.bottom, paddingBottom)
-            .padding(.horizontal, -16)
+            .padding(.leading, -16)
     }
 }
 
