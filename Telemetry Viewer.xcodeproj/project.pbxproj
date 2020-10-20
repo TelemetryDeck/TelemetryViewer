@@ -79,6 +79,8 @@
 		DCCD482B253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */; };
 		DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BCE252DB40900A00C5B /* WelcomeView.swift */; };
 		DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */; };
+		DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
+		DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
 		DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
 		DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
 		DCE23A1324D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
@@ -128,6 +130,7 @@
 		DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInsightsCreator.swift; sourceTree = "<group>"; };
 		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
+		DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
 		DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_ViewerApp.swift; sourceTree = "<group>"; };
 		DCE239FE24D3687D00053370 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCE23A0324D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +226,7 @@
 			children = (
 				DC815F3B24E283640095A047 /* SignalList.swift */,
 				DC45BB1B24E27F12004E6392 /* SignalView.swift */,
+				DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */,
 			);
 			path = Signals;
 			sourceTree = "<group>";
@@ -434,6 +438,7 @@
 				DCCD4825253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */,
 				DC45BB1924E1F01F004E6392 /* SidebarView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
+				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCB02B7F25038F5000304964 /* MockData.swift in Sources */,
 				DCB02B762502809200304964 /* RootView.swift in Sources */,
 				DC5339372521CE6200D9C889 /* CardView.swift in Sources */,
@@ -478,6 +483,7 @@
 				DCCD4826253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */,
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
 				DC45BB1A24E1F01F004E6392 /* SidebarView.swift in Sources */,
+				DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
 				DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */,
 				DCB02B8025038F5000304964 /* MockData.swift in Sources */,

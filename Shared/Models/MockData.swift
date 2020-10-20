@@ -18,12 +18,12 @@ struct MockData {
     ]
     
     static let signals: [Signal] = [
-        .init(id: nil, receivedAt: "Date()", clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: "Date()", clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: "Date()", clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: "Date()", clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: "Date()", clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: "Date()", clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
     ]
 }
 

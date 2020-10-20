@@ -33,7 +33,7 @@ struct TelemetryApp: Codable, Hashable {
 
 struct Signal: Codable, Hashable {
     var id: UUID?
-    var receivedAt: String// Date
+    var receivedAt: Date
     var clientUser: String
     var type: String
     var payload: Dictionary<String, String>?

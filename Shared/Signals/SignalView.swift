@@ -16,33 +16,71 @@ struct SignalView: View {
         return formatter
     }()
     
+    @State private var showPayload: Bool = false
+    
+    var columns = [
+        GridItem(.fixed(50)),
+        GridItem(.fixed(150)),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+    ]
+    
+    var payloadColumns = [GridItem(.flexible())]
+    
     var body: some View {
-        Label {
-            VStack(alignment: .leading) {
-                HStack(spacing: 3) {
-                    Text(signal.type).bold()
-                    Text("received at")
-                    Text(signal.receivedAt)
-                }
+        VStack {
+            HStack(alignment: .top) {
+                Image(systemName: "arrowtriangle.right.square")
+                    .imageScale(.large)
+                    .rotationEffect(.init(degrees: showPayload ? 90 : 0))
+                    .foregroundColor(.accentColor)
                 
-                HStack(spacing: 2) {
-                    Text("from user")
-                    Text(signal.clientUser).bold()
-                }
+                Text(dateFormatter.string(from: signal.receivedAt))
+                    .frame(width: 150)
                 
-                Text(signal.payload?.debugDescription ?? "No Payload").foregroundColor(.grayColor)
+                Text(signal.type).bold()
+                
+                Spacer()
+                
+                Text(signal.clientUser).lineLimit(1)
             }
-        } icon: {
-            Image(systemName: "waveform")
+            
+            if showPayload {
+                if let payload = signal.payload {
+                    KeyValueView(keysAndValues: payload)
+                } else {
+                    Text("No Payload")
+                }
+            }
+            
+            
+            #if os(macOS)
+            Rectangle()
+                .foregroundColor(.grayColor)
+                .frame(maxHeight: 1)
+                .padding()
+            #endif
         }
-        
+        .animation(.easeOut)
+        .onTapGesture {
+            showPayload.toggle()
+        }
         
     }
 }
 
 struct SignalView_Previews: PreviewProvider {
     static var previews: some View {
-        let signal: Signal = .init(id: UUID(), receivedAt: "Date()", clientUser: "randomClientUser", type: "ExampleSignal", payload: nil)
+        let signal: Signal = .init(
+            id: UUID(),
+            receivedAt: Date(),
+            clientUser: UUID().uuidString,
+            type: "ExampleSignal",
+            payload: [
+                "appVersion": "1.0",
+                "systemVersion": "14.0"
+            ]
+        )
         SignalView(signal: signal)
     }
 }
