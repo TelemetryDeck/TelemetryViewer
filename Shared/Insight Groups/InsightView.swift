@@ -145,7 +145,7 @@ struct InsightView: View {
                 TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email)
             }
         }
-        .frame(idealHeight: 300)
+        .frame(idealHeight: 200)
         .padding()
         .onAppear() {
             updateIfNecessary()
