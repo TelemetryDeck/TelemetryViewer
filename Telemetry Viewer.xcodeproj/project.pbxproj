@@ -81,6 +81,8 @@
 		DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */; };
 		DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
 		DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
+		DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */; };
+		DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */; };
 		DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
 		DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
 		DCE23A1324D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
@@ -131,6 +133,8 @@
 		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
 		DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
+		DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEditView.swift; sourceTree = "<group>"; };
+		DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEditView.swift; sourceTree = "<group>"; };
 		DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_ViewerApp.swift; sourceTree = "<group>"; };
 		DCE239FE24D3687D00053370 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCE23A0324D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				DC39F24D253C469100A7C325 /* NewInsightForm.swift */,
+				DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */,
 				DC340E542531B7DE00514FD6 /* InsightDetailView.swift */,
 				DC340E4F2531B78900514FD6 /* InsightEditView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
@@ -310,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				DC53394B2522620E00D9C889 /* NewInsightForm.swift */,
+				DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */,
 				DC340E5D2531C23800514FD6 /* InsightDetailView.swift */,
 				DC340E5E2531C23800514FD6 /* InsightEditView.swift */,
 				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
@@ -455,6 +461,7 @@
 				DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DC53394025222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC04C3DD252364C000483AF5 /* InsightLineChartView.swift in Sources */,
+				DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */,
 				DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC45BAEE24DFF895004E6392 /* Models.swift in Sources */,
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
@@ -500,6 +507,7 @@
 				DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
+				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC04C3DE252364C000483AF5 /* InsightLineChartView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,

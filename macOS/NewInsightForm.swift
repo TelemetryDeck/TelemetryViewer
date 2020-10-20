@@ -112,7 +112,7 @@ struct NewInsightForm: View {
                 
                 LazyVGrid(columns: columns, alignment: .trailing) {
                     Text("Filters")
-                    Text("Filters are coming soon")
+                    FilterEditView(keysAndValues: $insightCreateRequestBody.filters)
                 }
                 
                 separator()

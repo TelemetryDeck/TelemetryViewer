@@ -94,8 +94,8 @@ struct NewInsightForm: View {
                     }
                 }
                 
-                Section(header: Text("Filters")) {
-                    Text("Filters are coming soon")
+                Section(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'")) {
+                    FilterEditView(keysAndValues: $insightCreateRequestBody.filters)
                 }
                 
                 Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here (e.g. systemVersion), you'll get a breakdown of its values.")) {
