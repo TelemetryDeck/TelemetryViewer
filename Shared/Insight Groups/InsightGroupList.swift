@@ -18,6 +18,12 @@ struct InsightGroupList: View {
     @State var isShowingNewInsightForm = false
     @State var isShowingAppSettingsView: Bool = false
     
+    let refreshTimer = Timer.publish(
+        every: 5*60, // 5 minutes
+        on: .main,
+        in: .common
+    ).autoconnect()
+    
     var body: some View {
         Group {
             if let insightGroups = api.insightGroups[app] {
@@ -64,6 +70,10 @@ struct InsightGroupList: View {
         .onAppear {
             api.getInsightGroups(for: app)
             TelemetryManager.shared.send(TelemetrySignal.telemetryAppInsightsShown.rawValue, for: api.user?.email)
+        }
+        .onReceive(refreshTimer) { _ in
+            api.getInsightGroups(for: app)
+            TelemetryManager.shared.send(TelemetrySignal.telemetryAppInsightsRefreshed.rawValue, for: api.user?.email)
         }
         .navigationTitle(app.name)
         .toolbar {

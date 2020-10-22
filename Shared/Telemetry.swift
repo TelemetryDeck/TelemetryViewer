@@ -15,6 +15,7 @@ enum TelemetrySignal: String {
     case telemetryAppDeleted
     case telemetryAppUsersShown
     case telemetryAppInsightsShown
+    case telemetryAppInsightsRefreshed
     case telemetryAppSignalsShown
     case telemetryAppSettingsShown
     case userSettingsShown
