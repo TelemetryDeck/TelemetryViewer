@@ -142,7 +142,7 @@ struct InsightView: View {
                 .onTapGesture {
                     insightAgeText = "Reloading..."
                     api.getInsightData(for: insight, in: insightGroup, in: app)
-                    TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email)
+                    TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
                 }
             }
         }
@@ -160,10 +160,11 @@ struct InsightView: View {
         if let insightData = api.insightData[insight.id] {
             if abs(insightData.calculatedAt.timeIntervalSinceNow) > 60 { // data is over a minute old
                 api.getInsightData(for: insight, in: insightGroup, in: app)
-                TelemetryManager.shared.send(TelemetrySignal.insightUpdatedAutomatically.rawValue, for: api.user?.email)
+                TelemetryManager.shared.send(TelemetrySignal.insightUpdatedAutomatically.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
             }
         } else {
             api.getInsightData(for: insight, in: insightGroup, in: app)
+            TelemetryManager.shared.send(TelemetrySignal.insightUpdatedFirstTime.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
         }
         
         insightAgeText = newInsightAgeText
