@@ -158,7 +158,7 @@ struct InsightView: View {
     
     func updateIfNecessary() {
         if let insightData = api.insightData[insight.id] {
-            if abs(insightData.calculatedAt.timeIntervalSinceNow) > 60*5 { // data is over 5 minutes old
+            if abs(insightData.calculatedAt.timeIntervalSinceNow) > 60 { // data is over a minute old
                 api.getInsightData(for: insight, in: insightGroup, in: app)
                 TelemetryManager.shared.send(TelemetrySignal.insightUpdatedAutomatically.rawValue, for: api.user?.email)
             }
