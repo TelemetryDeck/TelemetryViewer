@@ -55,10 +55,23 @@ struct SidebarView: View {
                     Label("organization.name", systemImage: "app.badge").redacted(reason: .placeholder)
                 }
             }
+            
+            if api.user?.organization?.isSuperOrg == true {
+                Section(header: Text("Administration")) {
+                    NavigationLink(
+                        destination: BetaRequestsList(),
+                        label: {
+                            Label("Beta Requests", systemImage: "app.badge")
+                        }
+                    )
+                }
+            }
         }
         .listStyle(SidebarListStyle())
         .navigationTitle("All Apps")
-        
+        .onAppear {
+            selectedApp = api.apps.first
+        }
         .toolbar {
             ToolbarItem(placement: ToolbarItemPlacement.primaryAction) {
                 HStack {

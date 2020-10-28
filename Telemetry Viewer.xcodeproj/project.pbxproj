@@ -67,6 +67,8 @@
 		DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DCB02B7F25038F5000304964 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
 		DCB02B8025038F5000304964 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
+		DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */; };
+		DCB1A3CC2549C94D000C6575 /* BetaRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */; };
 		DCCD480C253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
@@ -75,6 +77,8 @@
 		DCCD4826253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */; };
 		DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */; };
 		DCCD482B253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */; };
+		DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD52C492541FFE3003F12C6 /* ColSpan.swift */; };
+		DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD52C492541FFE3003F12C6 /* ColSpan.swift */; };
 		DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BCE252DB40900A00C5B /* WelcomeView.swift */; };
 		DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */; };
 		DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
@@ -126,10 +130,12 @@
 		DCB02B782503897D00304964 /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
 		DCB02B7B25038F4600304964 /* APIRepresentative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepresentative.swift; sourceTree = "<group>"; };
 		DCB02B7E25038F5000304964 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaRequestsList.swift; sourceTree = "<group>"; };
 		DCCD480B253D8A240098EC95 /* InsightNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightNumberView.swift; sourceTree = "<group>"; };
 		DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
 		DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDefaultInsights.swift; sourceTree = "<group>"; };
 		DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInsightsCreator.swift; sourceTree = "<group>"; };
+		DCD52C492541FFE3003F12C6 /* ColSpan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColSpan.swift; sourceTree = "<group>"; };
 		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
 		DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
@@ -258,6 +264,25 @@
 			path = "Generic Views";
 			sourceTree = "<group>";
 		};
+		DCB1A3C92549C936000C6575 /* Administration */ = {
+			isa = PBXGroup;
+			children = (
+				DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */,
+			);
+			path = Administration;
+			sourceTree = "<group>";
+		};
+		DCD52C4E2541FFF0003F12C6 /* Helpers + Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */,
+				DCDC6F0B253EEB9B0012D9A7 /* Optional+Bound.swift */,
+				DCDC6F12253EECA90012D9A7 /* Numbers+Bound.swift */,
+				DCD52C492541FFE3003F12C6 /* ColSpan.swift */,
+			);
+			path = "Helpers + Extensions";
+			sourceTree = "<group>";
+		};
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
@@ -272,9 +297,7 @@
 		DCE239FB24D3687C00053370 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */,
-				DCDC6F0B253EEB9B0012D9A7 /* Optional+Bound.swift */,
-				DCDC6F12253EECA90012D9A7 /* Numbers+Bound.swift */,
+				DCD52C4E2541FFF0003F12C6 /* Helpers + Extensions */,
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */,
 				DCB02B752502809200304964 /* RootView.swift */,
 				DC98AABB250BC30200FF26FD /* Telemetry.swift */,
@@ -285,6 +308,7 @@
 				DCB02B70250277C300304964 /* Generic Views */,
 				DCB02B692502764200304964 /* Login Register */,
 				DC98AAB9250A672300FF26FD /* App Settings */,
+				DCB1A3C92549C936000C6575 /* Administration */,
 				DC53393E25222C0900D9C889 /* Insight Groups */,
 				DCB02B67250027E400304964 /* Signals */,
 				DC90D08925063A5700634B72 /* Settings */,
@@ -470,6 +494,7 @@
 				DC45BAEE24DFF895004E6392 /* Models.swift in Sources */,
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCCD480C253D8A240098EC95 /* InsightNumberView.swift in Sources */,
+				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				DCB02B792503897D00304964 /* RegisterButtonView.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC39F24E253C469100A7C325 /* CreateOrUpdateInsightForm.swift in Sources */,
@@ -517,6 +542,7 @@
 				DC04C3DE252364C000483AF5 /* InsightLineChartView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC45BAEF24DFF895004E6392 /* Models.swift in Sources */,
+				DCB1A3CC2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,

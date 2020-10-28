@@ -18,6 +18,7 @@ struct UserDataTransferObject: Codable {
 struct Organization: Codable, Hashable {
     var id: UUID?
     var name: String
+    var isSuperOrg: Bool
 }
 
 struct TelemetryApp: Codable, Hashable {
@@ -178,4 +179,17 @@ enum TransferError: Error {
 
 struct ServerErrorMessage: Codable {
     let detail: String
+}
+
+struct PasswordChangeRequestBody: Codable {
+    var oldPassword: String
+    var newPassword: String
+    var newPasswordConfirm: String
+}
+
+struct BetaRequestEmail: Codable, Identifiable {
+    let id: UUID
+    let email: String
+    let requestedAt: Date
+    let isFulfilled: Bool
 }

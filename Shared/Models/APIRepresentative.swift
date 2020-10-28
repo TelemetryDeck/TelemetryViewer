@@ -43,6 +43,8 @@ final class APIRepresentative: ObservableObject {
     @Published var signals: [TelemetryApp: [Signal]] = [:]
     @Published var insightGroups: [TelemetryApp: [InsightGroup]] = [:]
     @Published var insightData: [UUID: InsightDataTransferObject] = [:]
+    
+    @Published var betaRequests: [BetaRequestEmail] = []
 }
 
 extension APIRepresentative {
@@ -259,6 +261,19 @@ extension APIRepresentative {
         
         self.delete(url) { (result: Result<String, TransferError>) in
             self.getInsightGroups(for: app)
+        }
+    }
+    
+    func getBetaRequests() {
+        let url = urlForPath("betarequests")
+        
+        self.get(url) { (result: Result<[BetaRequestEmail], TransferError>) in
+            switch result {
+            case .success(let betaRequests):
+                self.betaRequests = betaRequests
+            case .failure(let error):
+                self.handleError(error)
+            }
         }
     }
 }
