@@ -127,6 +127,22 @@ extension APIRepresentative {
         }
     }
     
+    func updatePassword(with passwordChangeRequest: PasswordChangeRequestBody) {
+        let url = urlForPath("users", "updatePassword")
+        
+        self.post(passwordChangeRequest, to: url) { (result: Result<UserDataTransferObject, TransferError>) in
+            switch result {
+            case .success(let userDTO):
+                DispatchQueue.main.async {
+                    self.user = userDTO
+                    self.logout()
+                }
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
+    }
+    
     func getApps() {
         let url = urlForPath("apps")
         

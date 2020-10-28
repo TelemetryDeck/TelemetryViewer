@@ -10,6 +10,8 @@ import TelemetryClient
 
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIRepresentative
+    @State private var showChangePasswordForm: Bool = false
+    @State private var passwordChangeRequest: PasswordChangeRequestBody = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")
     
     var body: some View {
         if let user = api.user {
@@ -33,7 +35,26 @@ struct UserSettingsView: View {
                 Button("Log Out") {
                     api.logout()
                 }
+                
+                if showChangePasswordForm {
+                    Form {
+                        SecureField("Old Password", text: $passwordChangeRequest.oldPassword)
+                        SecureField("New Password", text: $passwordChangeRequest.newPassword)
+                        SecureField("Confirm New Password", text: $passwordChangeRequest.newPasswordConfirm)
+                    
+                        Button("Save New Password") {
+                            api.updatePassword(with: passwordChangeRequest)
+                        }
+                    }
+                    .frame(maxWidth: 400)
+                } else {
+                    Button("Change Password") {
+                        showChangePasswordForm.toggle()
+                    }
+                }
             }
+            .animation(.easeIn)
+            .padding()
             .navigationTitle("User Settings")
             .onAppear {
                 TelemetryManager.shared.send(TelemetrySignal.userSettingsShown.rawValue, for: api.user?.email)
