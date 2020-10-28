@@ -54,7 +54,7 @@ enum InsightDisplayMode: String, Codable {
     case pieChart
 }
 
-struct Insight: Codable {
+struct Insight: Codable, Identifiable {
     var id: UUID
     var group: [String: UUID]
     

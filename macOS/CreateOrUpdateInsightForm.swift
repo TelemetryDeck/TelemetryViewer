@@ -108,6 +108,14 @@ struct CreateOrUpdateInsightForm: View {
                     Text("Subtitle")
                     TextField("Optionally, add a longer descriptive subtitle for your insight", text: $insightDefinitionRequestBody.subtitle.bound)
                     
+                    Text("")
+                    Toggle(isOn: $insightDefinitionRequestBody.isExpanded, label: {
+                        HStack {
+                            Text("Show Expanded")
+                            Spacer()
+                        }
+                    })
+                    
                     Text("Group")
                     Picker(selection: $selectedInsightGroupIndex, label: Text("")) {
                         ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {

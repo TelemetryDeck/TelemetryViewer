@@ -93,6 +93,10 @@ struct CreateOrUpdateInsightForm: View {
                     TextField("Title e.g. 'Daily Active Users'", text: $insightDefinitionRequestBody.title)
                     TextField("Optional Subtitle", text: $insightDefinitionRequestBody.subtitle.bound)
                     
+                    Toggle(isOn: $insightDefinitionRequestBody.isExpanded, label: {
+                        Text("Show Expanded")
+                    })
+                    
                     Picker(selection: $selectedInsightGroupIndex, label: Text("Insight Group")) {
                         ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
                             Text(api.insightGroups[app]?[$0].title ?? "No Title")
