@@ -44,6 +44,9 @@ final class APIRepresentative: ObservableObject {
     @Published var insightGroups: [TelemetryApp: [InsightGroup]] = [:]
     @Published var insightData: [UUID: InsightDataTransferObject] = [:]
     
+    @Published var lexiconSignalTypes: [TelemetryApp: [LexiconSignalType]] = [:]
+    @Published var lexiconPayloadKeys: [TelemetryApp: [LexiconPayloadKey]] = [:]
+    
     @Published var betaRequests: [BetaRequestEmail] = []
 }
 
@@ -271,6 +274,32 @@ extension APIRepresentative {
             switch result {
             case .success(let betaRequests):
                 self.betaRequests = betaRequests
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
+    }
+    
+    func getSignalTypes(for app: TelemetryApp) {
+        let url = urlForPath("apps", app.id.uuidString, "lexicon", "signaltypes")
+        
+        self.get(url) { (result: Result<[LexiconSignalType], TransferError>) in
+            switch result {
+            case .success(let lexiconItems):
+                self.lexiconSignalTypes[app] = lexiconItems
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
+    }
+    
+    func getPayloadKeys(for app: TelemetryApp) {
+        let url = urlForPath("apps", app.id.uuidString, "lexicon", "payloadkeys")
+        
+        self.get(url) { (result: Result<[LexiconPayloadKey], TransferError>) in
+            switch result {
+            case .success(let lexiconItems):
+                self.lexiconPayloadKeys[app] = lexiconItems
             case .failure(let error):
                 self.handleError(error)
             }

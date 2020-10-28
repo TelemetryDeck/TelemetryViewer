@@ -25,6 +25,28 @@ struct MockData {
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
     ]
+    
+    static let lexiconSignalTypes: [LexiconSignalType] = [
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "signalsUpdated"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "testSignal"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "pizzaModeActivated"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: true, type: "catTypeFeline"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "appFirstLaunchedNormallyAndGotUserInteraction"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "phoneRotated"),
+    ]
+    
+    static let lexiconPayloadKeys: [LexiconPayloadKey] = [
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "browser"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "platform"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "operatingSystem"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "numberOfEntriesInDatabase"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "isTestFlight"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: true, payloadKey: "isAppStore"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "isSimulator"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "numberOfRestarts"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: true, payloadKey: "appVersion"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "systemVersion"),
+    ]
 }
 
 

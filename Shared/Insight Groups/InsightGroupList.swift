@@ -17,6 +17,7 @@ struct InsightGroupList: View {
     @State var isShowingNewInsightGroupView = false
     @State var isShowingNewInsightForm = false
     @State var isShowingAppSettingsView: Bool = false
+    @State var isShowingLexicon: Bool = false
     
     let refreshTimer = Timer.publish(
         every: 5*60, // 5 minutes
@@ -90,7 +91,7 @@ struct InsightGroupList: View {
         }
         .navigationTitle(app.name)
         .toolbar {
-            HStack {
+            ToolbarItemGroup {
                 Button(action: {
                     isShowingNewInsightGroupView = true
                 }) {
@@ -109,7 +110,23 @@ struct InsightGroupList: View {
                     CreateOrUpdateInsightForm(app: app, editMode: false, isPresented: $isShowingNewInsightForm, insight: nil, group: nil)
                         .environmentObject(api)
                 }
-                
+            }
+            
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {
+                    isShowingLexicon = true
+                }) {
+                    Label("Lexicon", systemImage: "book")
+                }
+                .sheet(isPresented: $isShowingLexicon) {
+                    LexiconView(isPresented: $isShowingLexicon, app: app)
+                        .accentColor(.accentColor)
+                        .environmentObject(api)
+                    
+                }
+            }
+             
+            ToolbarItem(placement: .primaryAction) {
                 Button(action: {
                     isShowingRawSignalsView = true
                 }) {
@@ -118,7 +135,9 @@ struct InsightGroupList: View {
                 .sheet(isPresented: $isShowingRawSignalsView) {
                     SignalList(isPresented: $isShowingRawSignalsView, app: app)
                 }
+            }
                 
+            ToolbarItem(placement: .primaryAction) {
                 Button(action: {
                     isShowingAppSettingsView = true
                 }) {

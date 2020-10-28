@@ -200,3 +200,22 @@ struct BetaRequestEmail: Codable, Identifiable {
     let requestedAt: Date
     let isFulfilled: Bool
 }
+
+struct LexiconSignalType: Codable, Identifiable {
+    let id: UUID
+    let firstSeenAt: Date
+
+    /// If true, don't include this lexicon item in autocomplete lists
+    let isHidden: Bool
+    let type: String
+}
+
+struct LexiconPayloadKey: Codable, Identifiable {
+    let id: UUID
+    let firstSeenAt: Date
+
+    /// If true, don't include this lexicon item in autocomplete lists
+    let isHidden: Bool
+    let payloadKey: String
+}
+
