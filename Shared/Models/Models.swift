@@ -79,6 +79,9 @@ struct Insight: Codable {
 
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
+    
+    /// If true, the insight will be displayed bigger
+    var isExpanded: Bool
 }
 
 struct InsightDataTransferObject: Codable {
@@ -142,6 +145,9 @@ struct InsightDefinitionRequestBody: Codable {
     /// The ID of the insight. Not changeable, only set in update mode
     var id: UUID?
     
+    /// If true, the insight will be displayed bigger
+    var isExpanded: Bool
+    
     static func from(insight: Insight) -> InsightDefinitionRequestBody {
         let requestBody = Self(
             order: insight.order,
@@ -154,7 +160,8 @@ struct InsightDefinitionRequestBody: Codable {
             breakdownKey: insight.breakdownKey,
             displayMode: insight.displayMode,
             groupID: insight.group["id"],
-            id: insight.id)
+            id: insight.id,
+            isExpanded: insight.isExpanded)
         
         return requestBody
     }

@@ -49,7 +49,8 @@ struct CreateOrUpdateInsightForm: View {
             filters: [:],
             rollingWindowSize: -3600*24,
             breakdownKey: nil,
-            displayMode: .number))
+            displayMode: .number,
+            isExpanded: false))
     }
     
     var body: some View {

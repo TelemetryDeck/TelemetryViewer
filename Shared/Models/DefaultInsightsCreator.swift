@@ -24,7 +24,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600,
                                         breakdownKey: nil,
-                                        displayMode: .number))
+                                        displayMode: .number,
+                                        isExpanded: true))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
@@ -35,7 +36,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600,
                                         breakdownKey: nil,
-                                        displayMode: .lineChart))
+                                        displayMode: .lineChart,
+                                        isExpanded: false))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
@@ -46,7 +48,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600*7,
                                         breakdownKey: nil,
-                                        displayMode: .lineChart))
+                                        displayMode: .lineChart,
+                                        isExpanded: false))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
@@ -57,7 +60,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600*30,
                                         breakdownKey: nil,
-                                        displayMode: .lineChart))
+                                        displayMode: .lineChart,
+                                        isExpanded: false))
                 
                 insightRequest.forEach { self.create(insightWith: $0, in: currentGroup, for: app) }
             }
@@ -78,7 +82,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600*7,
                                         breakdownKey: "platform",
-                                        displayMode: .pieChart))
+                                        displayMode: .pieChart,
+                                        isExpanded: true))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
@@ -89,7 +94,8 @@ extension APIRepresentative {
                                         filters: ["platform": "iOS"],
                                         rollingWindowSize: -24*3600*7,
                                         breakdownKey: "systemVersion",
-                                        displayMode: .pieChart))
+                                        displayMode: .pieChart,
+                                        isExpanded: false))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
@@ -100,7 +106,8 @@ extension APIRepresentative {
                                         filters: ["platform": "macOS"],
                                         rollingWindowSize: -24*3600*7,
                                         breakdownKey: "systemVersion",
-                                        displayMode: .pieChart))
+                                        displayMode: .pieChart,
+                                        isExpanded: false))
                 
                 insightRequest.forEach { self.create(insightWith: $0, in: currentGroup, for: app) }
             }
@@ -121,7 +128,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600,
                                         breakdownKey: nil,
-                                        displayMode: .number))
+                                        displayMode: .number,
+                                        isExpanded: false))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
@@ -132,7 +140,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600,
                                         breakdownKey: "signalType",
-                                        displayMode: .pieChart))
+                                        displayMode: .pieChart,
+                                        isExpanded: false))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
@@ -143,7 +152,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -3600,
                                         breakdownKey: nil,
-                                        displayMode: .lineChart))
+                                        displayMode: .lineChart,
+                                        isExpanded: false))
                 
                 insightRequest.forEach { self.create(insightWith: $0, in: currentGroup, for: app) }
             }
@@ -164,7 +174,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600*7,
                                         breakdownKey: "appVersion",
-                                        displayMode: .pieChart))
+                                        displayMode: .pieChart,
+                                        isExpanded: true))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
                                         order: 1,
@@ -175,7 +186,8 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600*7,
                                         breakdownKey: "buildNumber",
-                                        displayMode: .pieChart))
+                                        displayMode: .pieChart,
+                                        isExpanded: false))
                 
                 insightRequest.forEach { self.create(insightWith: $0, in: currentGroup, for: app) }
             }

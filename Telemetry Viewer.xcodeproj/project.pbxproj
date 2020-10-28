@@ -459,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC23286D2522725A00DB6145 /* InsightView.swift in Sources */,
+				DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				DC90D08B25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */,
 				DC2328722522740900DB6145 /* InsightPieChartView.swift in Sources */,
@@ -507,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC23286E2522725A00DB6145 /* InsightView.swift in Sources */,
+				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
 				DC53394D2522620E00D9C889 /* CreateOrUpdateInsightForm.swift in Sources */,

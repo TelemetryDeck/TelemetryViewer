@@ -85,7 +85,7 @@ struct InsightView: View {
                 #endif
             }
             
-            Text("\(humanreadableTimeInterval) rolling\(insight.subtitle != nil ? " • " : "")\(insight.subtitle ?? "")")
+            Text("\(insight.subtitle ?? "")\(insight.subtitle != nil ? " • " : "")\(humanreadableTimeInterval) rolling")
                 .font(.footnote)
                 .padding(.bottom)
                 .foregroundColor(.grayColor)

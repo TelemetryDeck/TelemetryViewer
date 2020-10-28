@@ -119,9 +119,3 @@ struct InsightGroupList: View {
         }
     }
 }
-
-struct InsightGroupList_Previews: PreviewProvider {
-    static var previews: some View {
-        InsightGroupList(app: MockData.app1)
-    }
-}
