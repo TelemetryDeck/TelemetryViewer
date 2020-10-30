@@ -255,7 +255,7 @@ extension APIRepresentative {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         
         self.patch(insightUpdateRequestBody, to: url) { (result: Result<String, TransferError>) in
-            self.getInsightGroups(for: app)
+            self.getInsightData(for: insight, in: insightGroup, in: app)
         }
     }
     
