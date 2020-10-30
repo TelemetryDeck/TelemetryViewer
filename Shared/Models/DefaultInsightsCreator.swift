@@ -9,8 +9,8 @@ import Foundation
 
 extension APIRepresentative {
     func createDefaultInsights(for app: TelemetryApp) {
-        create(insightGroupNamed: "Users", for: app) {
-            self.getInsightGroups(for: app) {
+        create(insightGroupNamed: "Users", for: app) { _ in
+            self.getInsightGroups(for: app) { _ in
                 guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Users" }) else { return }
                 
                 var insightRequest: [InsightDefinitionRequestBody] = []
@@ -67,8 +67,8 @@ extension APIRepresentative {
             }
         }
         
-        create(insightGroupNamed: "Platforms", for: app) {
-            self.getInsightGroups(for: app) {
+        create(insightGroupNamed: "Platforms", for: app) { _ in
+            self.getInsightGroups(for: app) { _ in
                 guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Platforms" }) else { return }
                 
                 var insightRequest: [InsightDefinitionRequestBody] = []
@@ -113,8 +113,8 @@ extension APIRepresentative {
             }
         }
         
-        create(insightGroupNamed: "Signals", for: app) {
-            self.getInsightGroups(for: app) {
+        create(insightGroupNamed: "Signals", for: app) { _ in
+            self.getInsightGroups(for: app) { _ in
                 guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Signals" }) else { return }
                 
                 var insightRequest: [InsightDefinitionRequestBody] = []
@@ -159,8 +159,8 @@ extension APIRepresentative {
             }
         }
         
-        create(insightGroupNamed: "Versions", for: app) {
-            self.getInsightGroups(for: app) {
+        create(insightGroupNamed: "Versions", for: app) { _ in
+            self.getInsightGroups(for: app) { _ in
                 guard let currentGroup = self.insightGroups[app]?.first(where: { $0.title == "Versions" }) else { return }
                 
                 var insightRequest: [InsightDefinitionRequestBody] = []

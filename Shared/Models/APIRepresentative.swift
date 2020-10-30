@@ -86,7 +86,7 @@ extension APIRepresentative {
         user = nil
     }
     
-    func getRegistrationStatus() {
+    func getRegistrationStatus(callback: ((Result<[String: RegistrationStatus], TransferError>) -> ())? = nil) {
         let url = urlForPath("users", "registrationStatus")
         
         self.get(url) { (result: Result<[String: RegistrationStatus], TransferError>) in
@@ -98,6 +98,8 @@ extension APIRepresentative {
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback?(result)
         }
     }
     
@@ -116,7 +118,7 @@ extension APIRepresentative {
         }
     }
     
-    func getUserInformation() {
+    func getUserInformation(callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {
         let url = urlForPath("users", "me")
         
         self.get(url) { (result: Result<UserDataTransferObject, TransferError>) in
@@ -129,10 +131,12 @@ extension APIRepresentative {
                 self.handleError(error)
                 self.logout()
             }
+            
+            callback?(result)
         }
     }
     
-    func updatePassword(with passwordChangeRequest: PasswordChangeRequestBody) {
+    func updatePassword(with passwordChangeRequest: PasswordChangeRequestBody, callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {
         let url = urlForPath("users", "updatePassword")
         
         self.post(passwordChangeRequest, to: url) { (result: Result<UserDataTransferObject, TransferError>) in
@@ -145,10 +149,12 @@ extension APIRepresentative {
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback?(result)
         }
     }
     
-    func getApps() {
+    func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> ())? = nil) {
         let url = urlForPath("apps")
         
         self.get(url) { (result: Result<[TelemetryApp], TransferError>) in
@@ -158,34 +164,39 @@ extension APIRepresentative {
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback?(result)
         }
     }
     
-    func create(appNamed name: String) {
+    func create(appNamed name: String, callback: ((Result<TelemetryApp, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps")
         
         self.post(["name": name], to: url) { (result: Result<TelemetryApp, TransferError>) in
             self.getApps()
+            callback?(result)
         }
     }
     
-    func update(app: TelemetryApp, newName: String) {
+    func update(app: TelemetryApp, newName: String, callback: ((Result<TelemetryApp, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString)
         
         self.patch(["name": newName], to: url) { (result: Result<TelemetryApp, TransferError>) in
             self.getApps()
+            callback?(result)
         }
     }
     
-    func delete(app: TelemetryApp) {
+    func delete(app: TelemetryApp, callback: ((Result<String, TransferError>) -> ())? = nil)  {
         let url = urlForPath("apps", app.id.uuidString)
         
         self.delete(url) { (result: Result<String, TransferError>) in
             self.getApps()
+            callback?(result)
         }
     }
     
-    func getSignals(for app: TelemetryApp) {
+    func getSignals(for app: TelemetryApp, callback: ((Result<[Signal], TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "signals")
         
         self.get(url) { (result: Result<[Signal], TransferError>) in
@@ -195,10 +206,12 @@ extension APIRepresentative {
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback?(result)
         }
     }
     
-    func getInsightGroups(for app: TelemetryApp, callback: (() -> ())? = nil) {
+    func getInsightGroups(for app: TelemetryApp, callback: ((Result<[InsightGroup], TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
         
         self.get(url) { (result: Result<[InsightGroup], TransferError>) in
@@ -206,32 +219,34 @@ extension APIRepresentative {
             case .success(let foundInsightGroups):
                 self.insightGroups[app] = foundInsightGroups
                 
-                callback?()
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback?(result)
         }
         
     }
     
-    func create(insightGroupNamed: String, for app: TelemetryApp, callback: (() -> ())? = nil) {
+    func create(insightGroupNamed: String, for app: TelemetryApp, callback: ((Result<InsightGroup, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
         
         self.post(["title": insightGroupNamed], to: url) { (result: Result<InsightGroup, TransferError>) in
-            callback?()
             self.getInsightGroups(for: app)
+            callback?(result)
         }
     }
     
-    func delete(insightGroup: InsightGroup, in app: TelemetryApp) {
+    func delete(insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<InsightGroup, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString)
         
         self.delete(url) { (result: Result<InsightGroup, TransferError>) in
             self.getInsightGroups(for: app)
+            callback?(result)
         }
     }
     
-    func getInsightData(for insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp) {
+    func getInsightData(for insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<InsightDataTransferObject, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         
         self.get(url) { (result: Result<InsightDataTransferObject, TransferError>) in
@@ -239,35 +254,39 @@ extension APIRepresentative {
                 DispatchQueue.main.async {
                     self.insightData[insightDTO.id] = insightDTO
                 }
+                callback?(result)
             }
         }
     }
     
-    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp) {
+    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp, callback: ((Result<String, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights")
         
         self.post(requestBody, to: url) { (result: Result<String, TransferError>) in
             self.getInsightGroups(for: app)
+            callback?(result)
         }
     }
     
-    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody) {
+    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<String, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         
         self.patch(insightUpdateRequestBody, to: url) { (result: Result<String, TransferError>) in
             self.getInsightData(for: insight, in: insightGroup, in: app)
+            callback?(result)
         }
     }
     
-    func delete(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp) {
+    func delete(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<String, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         
         self.delete(url) { (result: Result<String, TransferError>) in
             self.getInsightGroups(for: app)
+            callback?(result)
         }
     }
     
-    func getBetaRequests() {
+    func getBetaRequests(callback: ((Result<[BetaRequestEmail], TransferError>) -> ())? = nil) {
         let url = urlForPath("betarequests")
         
         self.get(url) { (result: Result<[BetaRequestEmail], TransferError>) in
@@ -277,10 +296,12 @@ extension APIRepresentative {
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback?(result)
         }
     }
     
-    func getSignalTypes(for app: TelemetryApp) {
+    func getSignalTypes(for app: TelemetryApp, callback: ((Result<[LexiconSignalType], TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "lexicon", "signaltypes")
         
         self.get(url) { (result: Result<[LexiconSignalType], TransferError>) in
@@ -290,10 +311,12 @@ extension APIRepresentative {
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback?(result)
         }
     }
     
-    func getPayloadKeys(for app: TelemetryApp) {
+    func getPayloadKeys(for app: TelemetryApp, callback: ((Result<[LexiconPayloadKey], TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "lexicon", "payloadkeys")
         
         self.get(url) { (result: Result<[LexiconPayloadKey], TransferError>) in
@@ -303,6 +326,8 @@ extension APIRepresentative {
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback?(result)
         }
     }
 }
