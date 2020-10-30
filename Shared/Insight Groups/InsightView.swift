@@ -18,6 +18,7 @@ struct InsightView: View {
     @State private var isDetailViewShowing: Bool = false
     @State private var isEditViewShowing: Bool = false
     @State private var insightAgeText: String = "Loading..."
+    @State private var isLoading: Bool = false
     
     let refreshTimer = Timer.publish(
         every: 1, // second
@@ -31,7 +32,7 @@ struct InsightView: View {
         }
         
         else {
-            return "Loading..."
+            return "Not yet loaded"
         }
     }
     
@@ -133,15 +134,15 @@ struct InsightView: View {
             
             Group {
                 HStack(spacing: 2) {
-                    Image(systemName: "arrow.counterclockwise.circle")
-                    Text(insightAgeText)
+                    Image(systemName: isLoading ? "arrow.up.arrow.down.circle" : "arrow.counterclockwise.circle")
+                    Text(isLoading ? "Loading..." : insightAgeText)
                 }
+                .animation(nil)
                 .font(.footnote)
                 .foregroundColor(.grayColor)
                 .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
                 .onTapGesture {
-                    insightAgeText = "Reloading..."
-                    api.getInsightData(for: insight, in: insightGroup, in: app)
+                    updateNow()
                     TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
                 }
             }
@@ -156,14 +157,22 @@ struct InsightView: View {
         }
     }
     
+    func updateNow() {
+        isLoading = true
+        api.getInsightData(for: insight, in: insightGroup, in: app) { result in
+            isLoading = false
+            insightAgeText = "Updated just now"
+        }
+    }
+    
     func updateIfNecessary() {
         if let insightData = api.insightData[insight.id] {
             if abs(insightData.calculatedAt.timeIntervalSinceNow) > 60 { // data is over a minute old
-                api.getInsightData(for: insight, in: insightGroup, in: app)
+                updateNow()
                 TelemetryManager.shared.send(TelemetrySignal.insightUpdatedAutomatically.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
             }
         } else {
-            api.getInsightData(for: insight, in: insightGroup, in: app)
+            updateNow()
             TelemetryManager.shared.send(TelemetrySignal.insightUpdatedFirstTime.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
         }
         
