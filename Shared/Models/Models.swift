@@ -197,6 +197,7 @@ struct PasswordChangeRequestBody: Codable {
 struct BetaRequestEmail: Codable, Identifiable {
     let id: UUID
     let email: String
+    let registrationToken: String
     let requestedAt: Date
     let isFulfilled: Bool
 }

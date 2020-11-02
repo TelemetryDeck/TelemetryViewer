@@ -21,7 +21,14 @@ struct BetaRequestsList: View {
         List {
             ForEach(api.betaRequests) { betaRequest in
                 HStack {
-
+                    Button(betaRequest.registrationToken) {
+                        #if os(macOS)
+                        NSPasteboard.general.declareTypes([.string], owner: nil)
+                        NSPasteboard.general.setString(betaRequest.registrationToken, forType: .string)
+                        #else
+                        UIPasteboard.general.string = betaRequest.registrationToken
+                        #endif
+                    }
                     Text(betaRequest.email)
                     Spacer()
                     VStack(alignment: .trailing) {
