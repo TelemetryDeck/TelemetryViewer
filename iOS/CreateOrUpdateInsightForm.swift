@@ -86,82 +86,82 @@ struct CreateOrUpdateInsightForm: View {
             }
         }
         
-        let title = (editMode ? "Edit \(insightDefinitionRequestBody.title)" : "New Insight")
-        
-            Form {
-                Section(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
-                    TextField("Title e.g. 'Daily Active Users'", text: $insightDefinitionRequestBody.title)
-                    TextField("Optional Subtitle", text: $insightDefinitionRequestBody.subtitle.bound)
-                    
-                    Toggle(isOn: $insightDefinitionRequestBody.isExpanded, label: {
-                        Text("Show Expanded")
-                    })
-                    
-                    Picker(selection: $selectedInsightGroupIndex, label: Text("Insight Group")) {
-                        ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
-                            Text(api.insightGroups[app]?[$0].title ?? "No Title")
-                        }
+        let form = Form {
+            Section(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
+                TextField("Title e.g. 'Daily Active Users'", text: $insightDefinitionRequestBody.title)
+                TextField("Optional Subtitle", text: $insightDefinitionRequestBody.subtitle.bound)
+                
+                Toggle(isOn: $insightDefinitionRequestBody.isExpanded, label: {
+                    Text("Show Expanded")
+                })
+                
+                Picker(selection: $selectedInsightGroupIndex, label: Text("Insight Group")) {
+                    ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
+                        Text(api.insightGroups[app]?[$0].title ?? "No Title")
                     }
-                }
-                
-                Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
-                    TextField("All Signals", text: $insightDefinitionRequestBody.signalType.bound)
-                    Toggle(isOn: $insightDefinitionRequestBody.uniqueUser) {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("Unique by User")
-                                Text("Check to count each user only once")
-                                    .font(.footnote)
-                                    .foregroundColor(.grayColor)
-                            }
-                            Spacer()
-                        }
-                    }
-                }
-                
-                Section(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'")) {
-                    FilterEditView(keysAndValues: $insightDefinitionRequestBody.filters)
-                }
-                
-                Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here (e.g. systemVersion), you'll get a breakdown of its values.")) {
-                    TextField("No breakdown", text: $insightDefinitionRequestBody.breakdownKey.bound)
-                }
-                
-                Section(header: Text("Display")) {
-                    
-                    Picker(selection: $selectedDisplayModeIndex, label: Text("Display As")) {
-                        if insightDefinitionRequestBody.breakdownKey == nil {
-                            Text(InsightDisplayMode.number.rawValue.capitalized).tag(0)
-                            Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
-                        } else {
-                            Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
-                            Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(EdgeInsets(top: 1, leading: -7, bottom: 1, trailing: 0))
-                    
-                    HStack {
-                        Text("Rolling Window")
-                        TextField("Rolling Window Size", text: $rollingWindowSize.stringValue).multilineTextAlignment(.trailing)
-                        Picker(selection: $selectedDateComponentIndex, label: Text("")) {
-                            Text("Seconds").tag(0)
-                            Text("Hours").tag(1)
-                            Text("Days").tag(2)
-                        }.pickerStyle(SegmentedPickerStyle())
-                    }
-                    
-                }
-                
-                if editMode {
-                    deleteButton.foregroundColor(.red)
                 }
             }
-            .navigationTitle(title)
+            
+            Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
+                TextField("All Signals", text: $insightDefinitionRequestBody.signalType.bound)
+                Toggle(isOn: $insightDefinitionRequestBody.uniqueUser) {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Unique by User")
+                            Text("Check to count each user only once")
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
+                        }
+                        Spacer()
+                    }
+                }
+            }
+            
+            Section(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'")) {
+                FilterEditView(keysAndValues: $insightDefinitionRequestBody.filters)
+            }
+            
+            Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here (e.g. systemVersion), you'll get a breakdown of its values.")) {
+                TextField("No breakdown", text: $insightDefinitionRequestBody.breakdownKey.bound)
+            }
+            
+            Section(header: Text("Display")) {
+                
+                Picker(selection: $selectedDisplayModeIndex, label: Text("Display As")) {
+                    if insightDefinitionRequestBody.breakdownKey == nil {
+                        Text(InsightDisplayMode.number.rawValue.capitalized).tag(0)
+                        Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
+                    } else {
+                        Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
+                        Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(EdgeInsets(top: 1, leading: -7, bottom: 1, trailing: 0))
+                
+                HStack {
+                    Text("Rolling Window")
+                    TextField("Rolling Window Size", text: $rollingWindowSize.stringValue).multilineTextAlignment(.trailing)
+                    Picker(selection: $selectedDateComponentIndex, label: Text("")) {
+                        Text("Seconds").tag(0)
+                        Text("Hours").tag(1)
+                        Text("Days").tag(2)
+                    }.pickerStyle(SegmentedPickerStyle())
+                }
+                
+            }
+            
+            if editMode {
+                deleteButton.foregroundColor(.red)
+            }
+        }
+            .navigationTitle(editMode ? "Edit \(insightDefinitionRequestBody.title)" : "New Insight")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     saveButton.disabled(
                         insightDefinitionRequestBody.title.isEmpty
+                        ||
+                            selectedDisplayModeIndex < 0
                         ||
                             insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .number].contains(displayModes[selectedDisplayModeIndex])
                         ||
@@ -202,6 +202,14 @@ struct CreateOrUpdateInsightForm: View {
                     self.rollingWindowSize = insightDefinitionRequestBody.rollingWindowSize * -1
                 }
             }
+        
+        
+        
+        if editMode {
+            form
+        } else {
+            NavigationView { form }
+        }
     }
 }
 
