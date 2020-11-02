@@ -13,19 +13,75 @@ struct InsightNumberView: View {
     
     let numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.usesGroupingSeparator = true
         return numberFormatter
     }()
     
+    let percentageFormatter: NumberFormatter = {
+        let percentageFormatter = NumberFormatter()
+        percentageFormatter.numberStyle = .percent
+        return percentageFormatter
+    }()
+    
+    var currentCount: NSNumber? {
+        guard let textBasedCount = insightData.data.first?["count"] else { return nil }
+        return numberFormatter.number(from: textBasedCount)
+    }
+    
+    var previousCount: NSNumber? {
+        guard let textBasedPreviousCount = insightData.data.first?["previousCount"] else { return nil }
+        return numberFormatter.number(from: textBasedPreviousCount)
+    }
+    
     var countText: String {
-        guard let textBasedCount = insightData.data.first?["count"] else { return "No Count in Data" }
-        guard let countNumber = numberFormatter.number(from: textBasedCount) else { return "Couldn't Convert to Number" }
-        
+        guard let countNumber = currentCount else { return "–" }
         return numberFormatter.string(from: countNumber) ?? "Couldn't display as String"
+    }
+    
+    var previousPercentage: String? {
+        guard let previousCountNumber = previousCount?.doubleValue else { return nil }
+        guard let currentCountNumber = currentCount?.doubleValue else { return nil }
+        
+        let percentage: Double = (currentCountNumber - previousCountNumber) / previousCountNumber
+        let percentageNumber = NSNumber(value: percentage)
+        
+        guard let string = percentageFormatter.string(from: percentageNumber) else { return nil }
+        
+        return "\(percentage > 0 ? "▵" : "▽")\(string)"
+    }
+    
+    var previousCountText: String? {
+        guard let countNumber = previousCount else { return nil }
+        return numberFormatter.string(from: countNumber)
+    }
+    
+    var previousIntervalText: String? {
+        return "last week"
     }
     
     
     var body: some View {
-        Text(countText).font(.system(size: 64, weight: .black, design: .monospaced))
+        VStack(alignment: .leading) {
+            Text(countText)
+                .font(.system(size: 28, weight: .light, design: .rounded))
+                .padding(.bottom)
+        
+            if let previousPrecentage = previousPercentage, let previousCountText = previousCountText, let previousIntervalText = previousIntervalText {
+                
+                Text("\(previousPrecentage) compared to \(previousIntervalText) (\(previousCountText))")
+                    .foregroundColor(.gray)
+                    .font(.system(size: 12, weight: .light, design: .default))
+            }
+        }
     }
+}
 
+struct InsightNumberView_Previews: PreviewProvider {
+    static var previews: some View {
+        InsightNumberView(insightData: MockData.exampleInsight1)
+            .previewLayout(PreviewLayout.sizeThatFits)
+            .padding()
+            .previewDisplayName("Default preview")
+    }
 }

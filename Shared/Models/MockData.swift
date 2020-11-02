@@ -47,6 +47,20 @@ struct MockData {
         .init(id: UUID(), firstSeenAt: Date(), isHidden: true, payloadKey: "appVersion"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "systemVersion"),
     ]
+    
+    static let exampleInsight1: InsightDataTransferObject = InsightDataTransferObject(
+        id: UUID(),
+        order: 12,
+        title: "Users Today",
+        subtitle: "Number of users seen in the last 24 hours",
+        signalType: nil,
+        uniqueUser: true,
+        filters: [:],
+        rollingWindowSize: -24*3600,
+        breakdownKey: nil,
+        displayMode: .number,
+        data: [["count": "6841", "previousCount": "6021"]],
+        calculatedAt: Date())
 }
 
 

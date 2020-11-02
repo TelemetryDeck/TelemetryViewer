@@ -81,6 +81,16 @@
 		DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD52C492541FFE3003F12C6 /* ColSpan.swift */; };
 		DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BCE252DB40900A00C5B /* WelcomeView.swift */; };
 		DCD67BD5252DB6CA00A00C5B /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */; };
+		DCD86AE9254EF0B5008F63CB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */; };
+		DCD86AEB254EF0B5008F63CB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */; };
+		DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD86AED254EF0B5008F63CB /* TelemetryWidget.swift */; };
+		DCD86AF1254EF0B6008F63CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD86AF0254EF0B6008F63CB /* Assets.xcassets */; };
+		DCD86AF3254EF0B6008F63CB /* TelemetryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCD86AEF254EF0B5008F63CB /* TelemetryWidget.intentdefinition */; };
+		DCD86AF4254EF0B6008F63CB /* TelemetryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCD86AEF254EF0B5008F63CB /* TelemetryWidget.intentdefinition */; };
+		DCD86AF7254EF0B6008F63CB /* TelemetryWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCD86AE7254EF0B5008F63CB /* TelemetryWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DCD86AFF254EF456008F63CB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
+		DCD86B03254EF470008F63CB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
+		DCD86B0A254EF59B008F63CB /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
 		DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
 		DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */; };
@@ -100,6 +110,30 @@
 		DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 		DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DCD86AF5254EF0B6008F63CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCE239F724D3687C00053370 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCD86AE6254EF0B5008F63CB;
+			remoteInfo = TelemetryWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DCD86AF8254EF0B6008F63CB /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DCD86AF7254EF0B6008F63CB /* TelemetryWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DC04C3DC252364C000483AF5 /* InsightLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightLineChartView.swift; sourceTree = "<group>"; };
@@ -142,6 +176,13 @@
 		DCD52C492541FFE3003F12C6 /* ColSpan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColSpan.swift; sourceTree = "<group>"; };
 		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		DCD67BD4252DB6C900A00C5B /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
+		DCD86AE7254EF0B5008F63CB /* TelemetryWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		DCD86AED254EF0B5008F63CB /* TelemetryWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryWidget.swift; sourceTree = "<group>"; };
+		DCD86AEF254EF0B5008F63CB /* TelemetryWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TelemetryWidget.intentdefinition; sourceTree = "<group>"; };
+		DCD86AF0254EF0B6008F63CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DCD86AF2254EF0B6008F63CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
 		DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEditView.swift; sourceTree = "<group>"; };
 		DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEditView.swift; sourceTree = "<group>"; };
@@ -160,6 +201,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DCD86AE4254EF0B5008F63CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCD86AEB254EF0B5008F63CB /* SwiftUI.framework in Frameworks */,
+				DCD86AE9254EF0B5008F63CB /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCE23A0024D3687D00053370 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,6 +272,8 @@
 		DC9C0840252CEAC9001C0F94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */,
+				DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -289,12 +341,24 @@
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
 		};
+		DCD86AEC254EF0B5008F63CB /* TelemetryWidget */ = {
+			isa = PBXGroup;
+			children = (
+				DCD86AED254EF0B5008F63CB /* TelemetryWidget.swift */,
+				DCD86AEF254EF0B5008F63CB /* TelemetryWidget.intentdefinition */,
+				DCD86AF0254EF0B6008F63CB /* Assets.xcassets */,
+				DCD86AF2254EF0B6008F63CB /* Info.plist */,
+			);
+			path = TelemetryWidget;
+			sourceTree = "<group>";
+		};
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
 				DCE239FB24D3687C00053370 /* Shared */,
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
+				DCD86AEC254EF0B5008F63CB /* TelemetryWidget */,
 				DCE23A0424D3687D00053370 /* Products */,
 				DC9C0840252CEAC9001C0F94 /* Frameworks */,
 			);
@@ -328,6 +392,7 @@
 			children = (
 				DCE23A0324D3687D00053370 /* Telemetry Viewer.app */,
 				DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */,
+				DCD86AE7254EF0B5008F63CB /* TelemetryWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -371,6 +436,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DCD86AE6254EF0B5008F63CB /* TelemetryWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCD86AFB254EF0B6008F63CB /* Build configuration list for PBXNativeTarget "TelemetryWidgetExtension" */;
+			buildPhases = (
+				DCD86AE3254EF0B5008F63CB /* Sources */,
+				DCD86AE4254EF0B5008F63CB /* Frameworks */,
+				DCD86AE5254EF0B5008F63CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TelemetryWidgetExtension;
+			productName = TelemetryWidgetExtension;
+			productReference = DCD86AE7254EF0B5008F63CB /* TelemetryWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		DCE23A0224D3687D00053370 /* Telemetry Viewer (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCE23A1724D3687D00053370 /* Build configuration list for PBXNativeTarget "Telemetry Viewer (iOS)" */;
@@ -378,10 +460,12 @@
 				DCE239FF24D3687D00053370 /* Sources */,
 				DCE23A0024D3687D00053370 /* Frameworks */,
 				DCE23A0124D3687D00053370 /* Resources */,
+				DCD86AF8254EF0B6008F63CB /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DCD86AF6254EF0B6008F63CB /* PBXTargetDependency */,
 			);
 			name = "Telemetry Viewer (iOS)";
 			packageProductDependencies = (
@@ -417,9 +501,12 @@
 		DCE239F724D3687C00053370 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					DCD86AE6254EF0B5008F63CB = {
+						CreatedOnToolsVersion = 12.2;
+					};
 					DCE23A0224D3687D00053370 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -446,11 +533,20 @@
 			targets = (
 				DCE23A0224D3687D00053370 /* Telemetry Viewer (iOS) */,
 				DCE23A0A24D3687D00053370 /* Telemetry Viewer (macOS) */,
+				DCD86AE6254EF0B5008F63CB /* TelemetryWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DCD86AE5254EF0B5008F63CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCD86AF1254EF0B6008F63CB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCE23A0124D3687D00053370 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,6 +566,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DCD86AE3254EF0B5008F63CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCD86B0A254EF59B008F63CB /* InsightNumberView.swift in Sources */,
+				DCD86AFF254EF456008F63CB /* Models.swift in Sources */,
+				DCD86B03254EF470008F63CB /* MockData.swift in Sources */,
+				DCD86AF3254EF0B6008F63CB /* TelemetryWidget.intentdefinition in Sources */,
+				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCE239FF24D3687D00053370 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -503,6 +611,7 @@
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
 				DC340E552531B7DE00514FD6 /* InsightDetailView.swift in Sources */,
+				DCD86AF4254EF0B6008F63CB /* TelemetryWidget.intentdefinition in Sources */,
 				DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC53394025222C2F00D9C889 /* InsightGroupList.swift in Sources */,
@@ -574,7 +683,64 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		DCD86AF6254EF0B6008F63CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCD86AE6254EF0B5008F63CB /* TelemetryWidgetExtension */;
+			targetProxy = DCD86AF5254EF0B6008F63CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		DCD86AF9254EF0B6008F63CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				DEVELOPMENT_TEAM = FL4V655A94;
+				INFOPLIST_FILE = TelemetryWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DCD86AFA254EF0B6008F63CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				DEVELOPMENT_TEAM = FL4V655A94;
+				INFOPLIST_FILE = TelemetryWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		DCE23A1524D3687D00053370 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -689,6 +855,7 @@
 		DCE23A1824D3687D00053370 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -712,6 +879,7 @@
 		DCE23A1924D3687D00053370 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -788,6 +956,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DCD86AFB254EF0B6008F63CB /* Build configuration list for PBXNativeTarget "TelemetryWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD86AF9254EF0B6008F63CB /* Debug */,
+				DCD86AFA254EF0B6008F63CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DCE239FA24D3687C00053370 /* Build configuration list for PBXProject "Telemetry Viewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
