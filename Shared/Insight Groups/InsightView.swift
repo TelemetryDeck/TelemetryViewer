@@ -15,7 +15,6 @@ struct InsightView: View {
     let insightGroup: InsightGroup
     let insight: Insight
     
-    @State private var isDetailViewShowing: Bool = false
     @State private var isEditViewShowing: Bool = false
     @State private var insightAgeText: String = "Loading..."
     @State private var isLoading: Bool = false
@@ -63,17 +62,7 @@ struct InsightView: View {
                     .font(.title3)
                 
                 Spacer()
-                Image(systemName: "eye")
-                    .foregroundColor(.grayColor)
-                    .onTapGesture {
-                        isDetailViewShowing = true
-                    }
-                    .sheet(isPresented: $isDetailViewShowing) {
-                        InsightDetailView(isPresented: $isDetailViewShowing, insight: insight, insightGroup: insightGroup, app: app)
-                            .environmentObject(api)
-                    }
                 
-                #if os(macOS)
                 Image(systemName: "square.and.pencil")
                     .foregroundColor(.grayColor)
                     .onTapGesture {
@@ -83,7 +72,6 @@ struct InsightView: View {
                         CreateOrUpdateInsightForm(app: app, editMode: true, requestBody: InsightDefinitionRequestBody.from(insight: insight), isPresented: $isEditViewShowing, insight: insight, group: insightGroup)
                             .environmentObject(api)
                     }
-                #endif
             }
             
             Text("\(insight.subtitle ?? "")\(insight.subtitle != nil ? " • " : "")\(humanreadableTimeInterval) rolling")

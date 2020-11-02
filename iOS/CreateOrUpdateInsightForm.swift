@@ -86,129 +86,129 @@ struct CreateOrUpdateInsightForm: View {
             }
         }
         
-        let form = Form {
-            Section(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
-                TextField("Title e.g. 'Daily Active Users'", text: $insightDefinitionRequestBody.title)
-                TextField("Optional Subtitle", text: $insightDefinitionRequestBody.subtitle.bound)
-                
-                Toggle(isOn: $insightDefinitionRequestBody.isExpanded, label: {
-                    Text("Show Expanded")
-                })
-                
-                Picker(selection: $selectedInsightGroupIndex, label: Text("Insight Group")) {
-                    ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
-                        Text(api.insightGroups[app]?[$0].title ?? "No Title")
-                    }
-                }
-            }
-            
-            Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
-                TextField("All Signals", text: $insightDefinitionRequestBody.signalType.bound)
-                Toggle(isOn: $insightDefinitionRequestBody.uniqueUser) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Unique by User")
-                            Text("Check to count each user only once")
-                                .font(.footnote)
-                                .foregroundColor(.grayColor)
+        NavigationView {
+            Form {
+                Section(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
+                    TextField("Title e.g. 'Daily Active Users'", text: $insightDefinitionRequestBody.title)
+                    TextField("Optional Subtitle", text: $insightDefinitionRequestBody.subtitle.bound)
+                    
+                    Toggle(isOn: $insightDefinitionRequestBody.isExpanded, label: {
+                        Text("Show Expanded")
+                    })
+                    
+                    Picker(selection: $selectedInsightGroupIndex, label: Text("Insight Group")) {
+                        ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
+                            Text(api.insightGroups[app]?[$0].title ?? "No Title")
                         }
-                        Spacer()
                     }
                 }
-            }
-            
-            Section(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'")) {
-                FilterEditView(keysAndValues: $insightDefinitionRequestBody.filters)
-            }
-            
-            Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here (e.g. systemVersion), you'll get a breakdown of its values.")) {
-                TextField("No breakdown", text: $insightDefinitionRequestBody.breakdownKey.bound)
-            }
-            
-            Section(header: Text("Display")) {
                 
-                Picker(selection: $selectedDisplayModeIndex, label: Text("Display As")) {
-                    if insightDefinitionRequestBody.breakdownKey == nil {
-                        Text(InsightDisplayMode.number.rawValue.capitalized).tag(0)
-                        Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
+                Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
+                    TextField("All Signals", text: $insightDefinitionRequestBody.signalType.bound)
+                    Toggle(isOn: $insightDefinitionRequestBody.uniqueUser) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Unique by User")
+                                Text("Check to count each user only once")
+                                    .font(.footnote)
+                                    .foregroundColor(.grayColor)
+                            }
+                            Spacer()
+                        }
+                    }
+                }
+                
+                Section(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'")) {
+                    FilterEditView(keysAndValues: $insightDefinitionRequestBody.filters)
+                }
+                
+                Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here (e.g. systemVersion), you'll get a breakdown of its values.")) {
+                    TextField("No breakdown", text: $insightDefinitionRequestBody.breakdownKey.bound)
+                }
+                
+                Section(header: Text("Display")) {
+                    
+                    Picker(selection: $selectedDisplayModeIndex, label: Text("Display As")) {
+                        if insightDefinitionRequestBody.breakdownKey == nil {
+                            Text(InsightDisplayMode.number.rawValue.capitalized).tag(0)
+                            Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
+                        } else {
+                            Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
+                            Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(EdgeInsets(top: 1, leading: -7, bottom: 1, trailing: 0))
+                    
+                    HStack {
+                        Text("Rolling Window")
+                        TextField("Rolling Window Size", text: $rollingWindowSize.stringValue).multilineTextAlignment(.trailing)
+                        Picker(selection: $selectedDateComponentIndex, label: Text("")) {
+                            Text("Seconds").tag(0)
+                            Text("Hours").tag(1)
+                            Text("Days").tag(2)
+                        }.pickerStyle(SegmentedPickerStyle())
+                    }
+                    
+                }
+                
+                if editMode {
+                    deleteButton.foregroundColor(.red)
+                }
+            }
+                .navigationTitle(editMode ? "Edit \(insightDefinitionRequestBody.title)" : "New Insight")
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        saveButton.disabled(
+                            insightDefinitionRequestBody.title.isEmpty
+                            ||
+                                selectedDisplayModeIndex < 0
+                            ||
+                                insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .number].contains(displayModes[selectedDisplayModeIndex])
+                            ||
+                                insightDefinitionRequestBody.breakdownKey != nil && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])
+                            
+                            )
+                    }
+                    
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Close") {
+                            isPresented = false
+                        }
+                    }
+                }
+                .onAppear() {
+                    // Group
+                    if let groupID = insightDefinitionRequestBody.groupID {
+                        selectedInsightGroupIndex = api.insightGroups[app]?.firstIndex(where: { $0.id == groupID }) ?? 0
+                    }
+                    
+                    // Display Mode
+                    switch insight?.displayMode {
+                    case .number:
+                        selectedDisplayModeIndex = 0
+                    case .lineChart:
+                        selectedDisplayModeIndex = 1
+                    case .barChart:
+                        selectedDisplayModeIndex = 2
+                    case .pieChart:
+                        selectedDisplayModeIndex = 3
+                    case .none:
+                        selectedDisplayModeIndex = -1
+                    }
+                    
+                    // Rolling Window
+                    if insightDefinitionRequestBody.rollingWindowSize.truncatingRemainder(dividingBy: 3600 * 24) == 0 {
+                        self.selectedDateComponentIndex = 2
+                        self.rollingWindowSize = insightDefinitionRequestBody.rollingWindowSize / -3600 / 24
+                    } else if insightDefinitionRequestBody.rollingWindowSize.truncatingRemainder(dividingBy: 3600) == 0 {
+                        selectedDateComponentIndex = 1
+                        self.rollingWindowSize = insightDefinitionRequestBody.rollingWindowSize / -3600
                     } else {
-                        Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
-                        Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
+                        selectedDateComponentIndex = 0
+                        self.rollingWindowSize = insightDefinitionRequestBody.rollingWindowSize * -1
                     }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(EdgeInsets(top: 1, leading: -7, bottom: 1, trailing: 0))
-                
-                HStack {
-                    Text("Rolling Window")
-                    TextField("Rolling Window Size", text: $rollingWindowSize.stringValue).multilineTextAlignment(.trailing)
-                    Picker(selection: $selectedDateComponentIndex, label: Text("")) {
-                        Text("Seconds").tag(0)
-                        Text("Hours").tag(1)
-                        Text("Days").tag(2)
-                    }.pickerStyle(SegmentedPickerStyle())
-                }
-                
             }
-            
-            if editMode {
-                deleteButton.foregroundColor(.red)
-            }
-        }
-            .navigationTitle(editMode ? "Edit \(insightDefinitionRequestBody.title)" : "New Insight")
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    saveButton.disabled(
-                        insightDefinitionRequestBody.title.isEmpty
-                        ||
-                            selectedDisplayModeIndex < 0
-                        ||
-                            insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .number].contains(displayModes[selectedDisplayModeIndex])
-                        ||
-                            insightDefinitionRequestBody.breakdownKey != nil && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])
-                        
-                        )
-                }
-            }
-            .onAppear() {
-                // Group
-                if let groupID = insightDefinitionRequestBody.groupID {
-                    selectedInsightGroupIndex = api.insightGroups[app]?.firstIndex(where: { $0.id == groupID }) ?? 0
-                }
-                
-                // Display Mode
-                switch insight?.displayMode {
-                case .number:
-                    selectedDisplayModeIndex = 0
-                case .lineChart:
-                    selectedDisplayModeIndex = 1
-                case .barChart:
-                    selectedDisplayModeIndex = 2
-                case .pieChart:
-                    selectedDisplayModeIndex = 3
-                case .none:
-                    selectedDisplayModeIndex = -1
-                }
-                
-                // Rolling Window
-                if insightDefinitionRequestBody.rollingWindowSize.truncatingRemainder(dividingBy: 3600 * 24) == 0 {
-                    self.selectedDateComponentIndex = 2
-                    self.rollingWindowSize = insightDefinitionRequestBody.rollingWindowSize / -3600 / 24
-                } else if insightDefinitionRequestBody.rollingWindowSize.truncatingRemainder(dividingBy: 3600) == 0 {
-                    selectedDateComponentIndex = 1
-                    self.rollingWindowSize = insightDefinitionRequestBody.rollingWindowSize / -3600
-                } else {
-                    selectedDateComponentIndex = 0
-                    self.rollingWindowSize = insightDefinitionRequestBody.rollingWindowSize * -1
-                }
-            }
-        
-        
-        
-        if editMode {
-            form
-        } else {
-            NavigationView { form }
         }
     }
 }
