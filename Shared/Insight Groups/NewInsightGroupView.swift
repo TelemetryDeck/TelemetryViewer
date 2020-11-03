@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewInsightGroupView: View {
-    @Binding var isPresented: Bool
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var api: APIRepresentative
     var app: TelemetryApp
     
@@ -17,12 +17,12 @@ struct NewInsightGroupView: View {
     var body: some View {
         let saveButton = Button("Save") {
             api.create(insightGroupNamed: title, for: app)
-            isPresented = false
+            self.presentationMode.wrappedValue.dismiss()
         }
         .keyboardShortcut(.defaultAction)
         
         let cancelButton = Button("Cancel") {
-            isPresented = false
+            self.presentationMode.wrappedValue.dismiss()
         }
         .keyboardShortcut(.cancelAction)
         

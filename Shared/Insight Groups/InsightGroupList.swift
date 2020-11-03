@@ -58,7 +58,7 @@ struct InsightGroupList: View {
                         Label("New Insight Group", systemImage: "rectangle.badge.plus")
                     }
                     .sheet(isPresented: $isShowingNewInsightGroupView) {
-                        NewInsightGroupView(isPresented: $isShowingNewInsightGroupView, app: app)
+                        NewInsightGroupView(app: app)
                     }
                     
                     Button(action: {
@@ -67,7 +67,7 @@ struct InsightGroupList: View {
                         Label("New Insight", systemImage: "plus.viewfinder")
                     }
                     .sheet(isPresented: $isShowingNewInsightForm) {
-                        CreateOrUpdateInsightForm(app: app, editMode: false, isPresented: $isShowingNewInsightForm, insight: nil, group: nil)
+                        CreateOrUpdateInsightForm(app: app, editMode: false, insight: nil, group: nil)
                             .environmentObject(api)
                     }
                 }

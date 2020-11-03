@@ -32,7 +32,7 @@ struct SignalView: View {
         ListItemView {
             VStack {
                 HStack(alignment: .top) {
-                    Image(systemName: "arrowtriangle.right.square")
+                    Image(systemName: "arrowtriangle.right.fill")
                         .imageScale(.large)
                         .rotationEffect(.init(degrees: showPayload ? 90 : 0))
                         .foregroundColor(.accentColor)

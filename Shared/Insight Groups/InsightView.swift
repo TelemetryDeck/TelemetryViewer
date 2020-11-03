@@ -69,7 +69,7 @@ struct InsightView: View {
                         isEditViewShowing = true
                     }
                     .sheet(isPresented: $isEditViewShowing) {
-                        CreateOrUpdateInsightForm(app: app, editMode: true, requestBody: InsightDefinitionRequestBody.from(insight: insight), isPresented: $isEditViewShowing, insight: insight, group: insightGroup)
+                        CreateOrUpdateInsightForm(app: app, editMode: true, requestBody: InsightDefinitionRequestBody.from(insight: insight), insight: insight, group: insightGroup)
                             .environmentObject(api)
                     }
             }
