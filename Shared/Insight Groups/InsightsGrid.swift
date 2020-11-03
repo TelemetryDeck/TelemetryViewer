@@ -20,7 +20,6 @@ struct InsightsGrid: View {
             ForEach(expandedInsights) { insight in
                 CardView {
                     InsightView(app: app, insightGroup: insightGroup, insight: insight)
-                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                 }
             }
             
@@ -28,7 +27,6 @@ struct InsightsGrid: View {
                 ForEach(nonExpandedInsights) { insight in
                     CardView {
                         InsightView(app: app, insightGroup: insightGroup, insight: insight)
-                            .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                     }
                 }
             }
