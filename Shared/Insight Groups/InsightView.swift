@@ -58,8 +58,9 @@ struct InsightView: View {
         
         VStack(alignment: .leading) {
             HStack {
-                Text(insight.title)
-                    .font(.title3)
+                Text(insight.title.uppercased())
+                    .font(.footnote)
+                    .foregroundColor(.accentColor)
                 
                 Spacer()
                 

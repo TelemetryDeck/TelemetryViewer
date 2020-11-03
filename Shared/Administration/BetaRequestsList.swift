@@ -18,13 +18,17 @@ struct BetaRequestsList: View {
     }()
     
     var body: some View {
-        List {
+        ScrollView {
             ForEach(api.betaRequests) { betaRequest in
-                HStack {
+                ListItemView {
                     Button(betaRequest.registrationToken) {
                         saveToClipBoard(betaRequest.registrationToken)
                     }
-                    Text(betaRequest.email)
+                    
+                    Button(betaRequest.email) {
+                        saveToClipBoard(betaRequest.email)
+                    }
+                    
                     Spacer()
                     VStack(alignment: .trailing) {
                         Text(dateFormatter.string(from: betaRequest.requestedAt))
@@ -34,6 +38,7 @@ struct BetaRequestsList: View {
                 }
             }
         }
+        .padding(.horizontal)
         .navigationTitle("Beta Requests")
         .onAppear() {
             api.getBetaRequests()
