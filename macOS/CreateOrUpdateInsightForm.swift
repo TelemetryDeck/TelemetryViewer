@@ -10,6 +10,7 @@ import SwiftUI
 struct CreateOrUpdateInsightForm: View {
     // Environment
     @EnvironmentObject var api: APIRepresentative
+    @Environment(\.presentationMode) var presentationMode
     
     // Initialization Constants
     let app: TelemetryApp
@@ -17,9 +18,6 @@ struct CreateOrUpdateInsightForm: View {
     
     let insight: Insight?
     let insightGroup: InsightGroup?
-    
-    // Bindings
-    @Binding var isPresented: Bool
     
     // State
     @State var insightDefinitionRequestBody: InsightDefinitionRequestBody
@@ -32,10 +30,9 @@ struct CreateOrUpdateInsightForm: View {
     @State private var selectedDisplayModeIndex = 0
     private let displayModes: [InsightDisplayMode] = [.number, .lineChart, .barChart, .pieChart]
     
-    init(app: TelemetryApp, editMode: Bool, requestBody: InsightDefinitionRequestBody? = nil, isPresented: Binding<Bool>, insight: Insight?, group: InsightGroup?) {
+    init(app: TelemetryApp, editMode: Bool, requestBody: InsightDefinitionRequestBody? = nil, insight: Insight?, group: InsightGroup?) {
         self.app = app
         self.editMode = editMode
-        self._isPresented = isPresented
         
         self.insight = insight
         self.insightGroup = group
@@ -67,7 +64,7 @@ struct CreateOrUpdateInsightForm: View {
             insightDefinitionRequestBody.displayMode = displayModes[selectedDisplayModeIndex]
             
             let group: InsightGroup = api.insightGroups[app]![selectedInsightGroupIndex]
-            isPresented = false
+            self.presentationMode.wrappedValue.dismiss()
             
             if editMode {
                 insightDefinitionRequestBody.groupID = group.id
@@ -79,11 +76,11 @@ struct CreateOrUpdateInsightForm: View {
         }
         .keyboardShortcut(.defaultAction)
         
-        let cancelButton = Button("Cancel") { isPresented = false }.keyboardShortcut(.cancelAction)
+        let cancelButton = Button("Cancel") { self.presentationMode.wrappedValue.dismiss() }.keyboardShortcut(.cancelAction)
         
         let deleteButton = Button("Delete \(insightDefinitionRequestBody.title)") {
             if let insight = insight, let insightGroup = insightGroup {
-                isPresented = false
+                self.presentationMode.wrappedValue.dismiss()
                 api.delete(insight: insight, in: insightGroup, in: app)
             }
         }
