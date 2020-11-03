@@ -33,8 +33,10 @@ struct AppSettingsView: View {
             
             Section(header: Text("Unique Identifier")) {
                 VStack(alignment: .leading) {
-                    TextField("", text: .constant(app.id.uuidString))
-                    Text("Copy this UUID into your apps for tracking.").font(.footnote)
+                    Button (app.id.uuidString) {
+                        saveToClipBoard(app.id.uuidString)
+                    }
+                    Text("Tap to copy this UUID into your apps for tracking.").font(.footnote)
                 }
             }
             

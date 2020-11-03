@@ -13,8 +13,8 @@ struct SignalList: View {
     var app: TelemetryApp
     
     var body: some View {
-    
-        let list = List {
+        
+        let list = ScrollView {
             if api.signals[app] == nil {
                 ForEach(MockData.signals, id: \.self) { signal in
                     SignalView(signal: signal).redacted(reason: .placeholder)
@@ -31,6 +31,7 @@ struct SignalList: View {
         }
         
         list
+            .padding(.horizontal)
             .navigationTitle("Raw Signals")
 
     }

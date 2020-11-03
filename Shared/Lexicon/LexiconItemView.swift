@@ -18,7 +18,7 @@ struct SignalTypeView: View {
     }()
     
     var body: some View {
-        HStack() {
+        ListItemView(background: Color.accentColor.opacity(0.2)) {
             
             Text(lexiconItem.type)
                 .font(.system(.body, design: .monospaced))
@@ -36,10 +36,6 @@ struct SignalTypeView: View {
             Image(systemName: lexiconItem.isHidden ? "eye.slash" : "eye")
                 .foregroundColor(.grayColor)
         }
-        .padding(.horizontal)
-        .padding(.vertical, 5)
-        .background(Color.accentColor.opacity(0.2))
-        .cornerRadius(15)
     }
 }
 
@@ -54,7 +50,7 @@ struct PayloadKeyView: View {
     }()
     
     var body: some View {
-        HStack() {
+        ListItemView {
             
             Text(lexiconItem.payloadKey)
                 .font(.system(.body, design: .monospaced))
@@ -72,10 +68,6 @@ struct PayloadKeyView: View {
             Image(systemName: lexiconItem.isHidden ? "eye.slash" : "eye")
                 .foregroundColor(.grayColor)
         }
-        .padding(.horizontal)
-        .padding(.vertical, 5)
-        .background(Color.grayColor.opacity(0.4))
-        .cornerRadius(15)
     }
 }
 

@@ -28,38 +28,42 @@ struct SignalView: View {
     var payloadColumns = [GridItem(.flexible())]
     
     var body: some View {
-        VStack {
-            HStack(alignment: .top) {
-                Image(systemName: "arrowtriangle.right.square")
-                    .imageScale(.large)
-                    .rotationEffect(.init(degrees: showPayload ? 90 : 0))
-                    .foregroundColor(.accentColor)
-                
-                Text(dateFormatter.string(from: signal.receivedAt))
-                    .frame(width: 150)
-                
-                Text(signal.type).bold()
-                
-                Spacer()
-                
-                Text(signal.clientUser).lineLimit(1)
-            }
-            
-            if showPayload {
-                if let payload = signal.payload {
-                    KeyValueView(keysAndValues: payload)
-                } else {
-                    Text("No Payload")
+        
+        ListItemView {
+            VStack {
+                HStack(alignment: .top) {
+                    Image(systemName: "arrowtriangle.right.square")
+                        .imageScale(.large)
+                        .rotationEffect(.init(degrees: showPayload ? 90 : 0))
+                        .foregroundColor(.accentColor)
+                    
+                    Text(dateFormatter.string(from: signal.receivedAt))
+                        .frame(width: 150)
+                    
+                    Text(signal.type).bold()
+                    
+                    Spacer()
+                    
+                    Text(signal.clientUser.prefix(16))
+                        .foregroundColor(.grayColor)
                 }
+                
+                if showPayload {
+                    if let payload = signal.payload {
+                        KeyValueView(keysAndValues: payload)
+                    } else {
+                        Text("No Payload")
+                    }
+                }
+                
+                
+                #if os(macOS)
+                Rectangle()
+                    .foregroundColor(.grayColor)
+                    .frame(maxHeight: 1)
+                    .padding()
+                #endif
             }
-            
-            
-            #if os(macOS)
-            Rectangle()
-                .foregroundColor(.grayColor)
-                .frame(maxHeight: 1)
-                .padding()
-            #endif
         }
         .animation(.easeOut)
         .onTapGesture {
