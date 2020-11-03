@@ -9,8 +9,6 @@ import SwiftUI
 import TelemetryClient
 
 struct AppSettingsView: View {
-    @Binding var isPresented: Bool
-
     @EnvironmentObject var api: APIRepresentative
     var app: TelemetryApp
     @State var newName: String = ""
@@ -18,15 +16,9 @@ struct AppSettingsView: View {
     var body: some View {
         let saveButton = Button("Save Changes") {
             api.update(app: app, newName: newName)
-            isPresented = false
             TelemetryManager.shared.send(TelemetrySignal.telemetryAppUpdated.rawValue, for: api.user?.email)
         }
         .keyboardShortcut(.defaultAction)
-        
-        let cancelButton = Button("Cancel") {
-            isPresented = false
-        }
-        .keyboardShortcut(.cancelAction)
         
         let form = Form {
             #if os(macOS)
@@ -49,40 +41,22 @@ struct AppSettingsView: View {
             Section(header: Text("Delete")) {
                 Button("Delete App \"\(app.name)\"") {
                     api.delete(app: app)
-                    isPresented = false
                     TelemetryManager.shared.send(TelemetrySignal.telemetryAppDeleted.rawValue, for: api.user?.email)
                 }.accentColor(.red)
             }
             
-            #if os(macOS)
-            HStack {
-                cancelButton
-                Spacer()
-                saveButton
-            }
-            #endif
-            
         }
         
-        
-        #if os(macOS)
         form
-            .padding()
+            .navigationTitle("App Settings")
+            .toolbar {
+                ToolbarItem {
+                    saveButton
+                }
+            }
             .onAppear {
                 newName = app.name
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
             }
-        #else
-        NavigationView {
-            form
-                .navigationTitle("App Settings")
-                .navigationBarItems(leading: cancelButton, trailing: saveButton)
-        }
-        .onAppear {
-            newName = app.name
-            TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
-        }
-        #endif
-        
     }
 }

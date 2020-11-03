@@ -12,30 +12,54 @@ struct SidebarView: View {
     @Binding var selectedApp: TelemetryApp?
     @State var isCreatingANewApp: Bool = false
     
+    func section(for app: TelemetryApp) -> some View {
+        Section(header: Text(app.name)) {
+            ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                NavigationLink(
+                    destination: InsightGroupList(app: app, insightGroupID: insightGroup.id),
+                    label: {
+                        Label(insightGroup.title, systemImage: "square.grid.2x2")
+                    }
+                )
+            }
+            
+            if (api.insightGroups[app] ?? []).isEmpty {
+                NavigationLink(
+                    destination: OfferDefaultInsights(app: app),
+                    label: {
+                        Label("Start Here", systemImage: "wand.and.stars")
+                    }
+                )
+            }
+            
+            NavigationLink(
+                destination: LexiconView(app: app),
+                label: {
+                    Label("Lexicon", systemImage: "book")
+                }
+            )
+            
+            NavigationLink(
+                destination: SignalList(app: app),
+                label: {
+                    Label("Raw Signals", systemImage: "waveform")
+                }
+            )
+            
+            NavigationLink(
+                destination: AppSettingsView(app: app),
+                label: {
+                    Label("Settings", systemImage: "gear")
+                }
+            )   
+        }
+    }
+    
     var body: some View {
         List(selection: $selectedApp) {
             
-            Section(header: Text("Apps")) {
-                
-                ForEach(Array(api.apps), id: \.self) { app in
-                    if app.isMockData {
-                        
-                        NavigationLink(
-                            destination: InsightGroupList(app: app),
-                            label: {
-                                Label(app.name, systemImage: "app.badge")
-                            }
-                        )
-                        .redacted(reason: .placeholder)
-                    } else {
-                        NavigationLink(
-                            destination: InsightGroupList(app: app),
-                            label: {
-                                Label(app.name, systemImage: "app.badge")
-                            }
-                        )
-                    }
-                }
+            ForEach(Array(api.apps), id: \.self) { app in
+                section(for: app)
             }
             
             Section(header: Text("You")) {
@@ -68,7 +92,7 @@ struct SidebarView: View {
             }
         }
         .listStyle(SidebarListStyle())
-        .navigationTitle("All Apps")
+        .navigationTitle("Telemetry")
         .onAppear {
             selectedApp = api.apps.first
         }

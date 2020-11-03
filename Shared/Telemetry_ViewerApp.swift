@@ -19,6 +19,9 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(api)
                 .accentColor(Color("Torange"))
         }
+        .commands {
+            SidebarCommands()
+        }
     }
     
     init() {

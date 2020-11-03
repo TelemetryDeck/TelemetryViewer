@@ -160,7 +160,13 @@ extension APIRepresentative {
         self.get(url) { (result: Result<[TelemetryApp], TransferError>) in
             switch result {
             case .success(let apps):
-                self.apps = apps
+                DispatchQueue.main.async {
+                    self.apps = apps
+                }
+                
+                for app in apps {
+                    self.getInsightGroups(for: app)
+                }
             case .failure(let error):
                 self.handleError(error)
             }
@@ -217,7 +223,9 @@ extension APIRepresentative {
         self.get(url) { (result: Result<[InsightGroup], TransferError>) in
             switch result {
             case .success(let foundInsightGroups):
-                self.insightGroups[app] = foundInsightGroups
+                DispatchQueue.main.async {
+                    self.insightGroups[app] = foundInsightGroups
+                }
                 
             case .failure(let error):
                 self.handleError(error)

@@ -68,6 +68,8 @@
 		DCB02B8025038F5000304964 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
 		DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */; };
 		DCB1A3CC2549C94D000C6575 /* BetaRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */; };
+		DCB28D6C2550AF0B0032B9AD /* InsightsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D6B2550AF0B0032B9AD /* InsightsGrid.swift */; };
+		DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D6B2550AF0B0032B9AD /* InsightsGrid.swift */; };
 		DCCD480C253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
@@ -167,6 +169,7 @@
 		DCB02B7B25038F4600304964 /* APIRepresentative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepresentative.swift; sourceTree = "<group>"; };
 		DCB02B7E25038F5000304964 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaRequestsList.swift; sourceTree = "<group>"; };
+		DCB28D6B2550AF0B0032B9AD /* InsightsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsGrid.swift; sourceTree = "<group>"; };
 		DCCD480B253D8A240098EC95 /* InsightNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightNumberView.swift; sourceTree = "<group>"; };
 		DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
 		DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDefaultInsights.swift; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				DC53393F25222C2F00D9C889 /* InsightGroupList.swift */,
+				DCB28D6B2550AF0B0032B9AD /* InsightsGrid.swift */,
 				DC53394425222FC600D9C889 /* NewInsightGroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
 				DCCD480B253D8A240098EC95 /* InsightNumberView.swift */,
@@ -613,6 +617,7 @@
 				DC53394025222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DC04C3DD252364C000483AF5 /* InsightLineChartView.swift in Sources */,
+				DCB28D6C2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */,
 				DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC45BAEE24DFF895004E6392 /* Models.swift in Sources */,
@@ -664,6 +669,7 @@
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
+				DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC04C3DE252364C000483AF5 /* InsightLineChartView.swift in Sources */,
@@ -996,7 +1002,7 @@
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.5;
+				minimumVersion = 1.0.6;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

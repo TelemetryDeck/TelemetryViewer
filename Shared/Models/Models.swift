@@ -40,7 +40,7 @@ struct Signal: Codable, Hashable {
     var payload: Dictionary<String, String>?
 }
 
-struct InsightGroup: Codable {
+struct InsightGroup: Codable, Identifiable {
     var id: UUID
     var title: String
     var order: Double?

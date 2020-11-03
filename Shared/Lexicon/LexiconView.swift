@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LexiconView: View {
     @EnvironmentObject var api: APIRepresentative
-    @Binding var isPresented: Bool
     let app: TelemetryApp
     
     var body: some View {
@@ -29,27 +28,10 @@ struct LexiconView: View {
                         PayloadKeyView(lexiconItem: lexiconItem)
                     }
                 }
-            
-                #if os(macOS)
-                Button("Close") { isPresented = false}
-                #endif
             }
         
-        #if os(macOS)
         list
-        #else
-        NavigationView {
-            list
-                .navigationTitle("Lexicon")
-                .toolbar() {
-                    ToolbarItem(placement: .primaryAction) {
-                        
-                        Button("Close") { isPresented = false}
-                    }
-                }
-        }
-        #endif
-
+            .navigationTitle("Lexicon")
     }
 }
 
@@ -60,6 +42,6 @@ struct LexiconView_Previews: PreviewProvider {
         api.lexiconSignalTypes[app] = MockData.lexiconSignalTypes
         api.lexiconPayloadKeys[app] = MockData.lexiconPayloadKeys
         
-        return LexiconView(isPresented: .constant(true), app: app).environmentObject(api)
+        return LexiconView(app: app).environmentObject(api)
     }
 }

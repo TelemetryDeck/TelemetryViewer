@@ -10,16 +10,10 @@ import TelemetryClient
 
 struct SignalList: View {
     @EnvironmentObject var api: APIRepresentative
-    @Binding var isPresented: Bool
     var app: TelemetryApp
     
     var body: some View {
-        
-        let closeButton = Button("Close") {
-            isPresented = false
-        }
-        .keyboardShortcut(.cancelAction)
-        
+    
         let list = List {
             if api.signals[app] == nil {
                 ForEach(MockData.signals, id: \.self) { signal in
@@ -36,19 +30,8 @@ struct SignalList: View {
             TelemetryManager.shared.send(TelemetrySignal.telemetryAppSignalsShown.rawValue, for: api.user?.email)
         }
         
-        #if os(macOS)
-        VStack {
-            list
-            closeButton
-        }
-            .frame(minWidth: 800, minHeight: 600)
-            .padding()
-        #else
-        NavigationView {
-            list
-                .navigationTitle("Raw Signals")
-                .navigationBarItems(trailing: closeButton)
-        }
-        #endif
+        list
+            .navigationTitle("Raw Signals")
+
     }
 }
