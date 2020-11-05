@@ -32,6 +32,7 @@ struct AppRootView: View {
                                 .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
                         }
                     }
+                    .navigationTitle(app.name)
                 case 1:
                     LexiconView(app: app)
                 case 2:

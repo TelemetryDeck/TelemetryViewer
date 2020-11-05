@@ -17,26 +17,40 @@ struct BetaRequestsList: View {
         return formatter
     }()
     
+    func listItemView(for betaRequest: BetaRequestEmail) -> some View {
+        ListItemView {
+            Button(betaRequest.registrationToken) {
+                saveToClipBoard(betaRequest.registrationToken)
+            }
+            
+            Button(betaRequest.email) {
+                saveToClipBoard(betaRequest.email)
+            }
+            
+            Spacer()
+            VStack(alignment: .trailing) {
+                Text(dateFormatter.string(from: betaRequest.requestedAt))
+                Text(betaRequest.isFulfilled ? "Fulfilled" : "Unfulfilled")
+            }
+            .foregroundColor(.grayColor)
+        }
+    }
+    
     var body: some View {
         ScrollView {
-            ForEach(api.betaRequests) { betaRequest in
-                ListItemView {
-                    Button(betaRequest.registrationToken) {
-                        saveToClipBoard(betaRequest.registrationToken)
-                    }
-                    
-                    Button(betaRequest.email) {
-                        saveToClipBoard(betaRequest.email)
-                    }
-                    
-                    Spacer()
-                    VStack(alignment: .trailing) {
-                        Text(dateFormatter.string(from: betaRequest.requestedAt))
-                        Text(betaRequest.isFulfilled ? "Fulfilled" : "Unfulfilled")
-                    }
-                    .foregroundColor(.grayColor)
+            Section(header: Text("Unfulfilled")) {
+                ForEach(api.betaRequests.filter({ !$0.isFulfilled })) { betaRequest in
+                    listItemView(for: betaRequest)
                 }
             }
+            
+            Section(header: Text("Fulfilled")) {
+                ForEach(api.betaRequests.filter({ $0.isFulfilled })) { betaRequest in
+                    listItemView(for: betaRequest)
+                }
+            }
+            
+            
         }
         .padding(.horizontal)
         .navigationTitle("Beta Requests")
