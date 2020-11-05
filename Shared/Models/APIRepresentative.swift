@@ -51,6 +51,12 @@ final class APIRepresentative: ObservableObject {
 }
 
 extension APIRepresentative {
+    func app(with id: UUID) -> TelemetryApp? {
+        return apps.first(where: { $0.id == id })
+    }
+}
+
+extension APIRepresentative {
     func login(loginRequestBody: LoginRequestBody, callback: @escaping (Bool) -> ()) {
         let url = urlForPath("users", "login")
 

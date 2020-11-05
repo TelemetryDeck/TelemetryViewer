@@ -12,54 +12,18 @@ struct SidebarView: View {
     @Binding var selectedApp: TelemetryApp?
     @State var isCreatingANewApp: Bool = false
     
-    func section(for app: TelemetryApp) -> some View {
-        Section(header: Text(app.name)) {
-            ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                NavigationLink(
-                    destination: InsightGroupList(app: app, insightGroupID: insightGroup.id),
-                    label: {
-                        Label(insightGroup.title, systemImage: "square.grid.2x2")
-                    }
-                )
-            }
-            
-            if (api.insightGroups[app] ?? []).isEmpty {
-                NavigationLink(
-                    destination: OfferDefaultInsights(app: app),
-                    label: {
-                        Label("Start Here", systemImage: "wand.and.stars")
-                    }
-                )
-            }
-            
-            NavigationLink(
-                destination: LexiconView(app: app),
-                label: {
-                    Label("Lexicon", systemImage: "book")
-                }
-            )
-            
-            NavigationLink(
-                destination: SignalList(app: app),
-                label: {
-                    Label("Raw Signals", systemImage: "waveform")
-                }
-            )
-            
-            NavigationLink(
-                destination: AppSettingsView(app: app),
-                label: {
-                    Label("Settings", systemImage: "gear")
-                }
-            )   
-        }
-    }
-    
     var body: some View {
         List(selection: $selectedApp) {
             
-            ForEach(Array(api.apps), id: \.self) { app in
-                section(for: app)
+            Section(header: Text("Apps")) {
+                ForEach(api.apps) { app in
+                    
+                    NavigationLink(
+                        destination: AppRootView(appID: app.id),
+                        label: {
+                            Label(app.name, systemImage: "square.dashed.inset.fill")
+                        })
+                }
             }
             
             Section(header: Text("You")) {

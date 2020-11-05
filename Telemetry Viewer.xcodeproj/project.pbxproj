@@ -11,6 +11,8 @@
 		DC04C3DE252364C000483AF5 /* InsightLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04C3DC252364C000483AF5 /* InsightLineChartView.swift */; };
 		DC04C3EB2523BD6300483AF5 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04C3EA2523BD6300483AF5 /* LineChartView.swift */; };
 		DC04C3EC2523BD6300483AF5 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04C3EA2523BD6300483AF5 /* LineChartView.swift */; };
+		DC07D8F3255466D2007A89D6 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07D8F2255466D2007A89D6 /* AppRootView.swift */; };
+		DC07D8F4255466D2007A89D6 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07D8F2255466D2007A89D6 /* AppRootView.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC2328722522740900DB6145 /* InsightPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2328712522740900DB6145 /* InsightPieChartView.swift */; };
@@ -143,6 +145,7 @@
 /* Begin PBXFileReference section */
 		DC04C3DC252364C000483AF5 /* InsightLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightLineChartView.swift; sourceTree = "<group>"; };
 		DC04C3EA2523BD6300483AF5 /* LineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		DC07D8F2255466D2007A89D6 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC2328712522740900DB6145 /* InsightPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightPieChartView.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
@@ -385,6 +388,7 @@
 				DCE239FE24D3687D00053370 /* Assets.xcassets */,
 				DCB02B65250027C700304964 /* Models */,
 				DC45BB1824E1F01F004E6392 /* SidebarView.swift */,
+				DC07D8F2255466D2007A89D6 /* AppRootView.swift */,
 				DC4F7DBC25069C3200B54561 /* NewAppView.swift */,
 				DCB02B70250277C300304964 /* Generic Views */,
 				DCB02B692502764200304964 /* Login Register */,
@@ -620,6 +624,7 @@
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC04C3EB2523BD6300483AF5 /* LineChartView.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
+				DC07D8F3255466D2007A89D6 /* AppRootView.swift in Sources */,
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
 				DCB28D892551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
@@ -674,6 +679,7 @@
 				DC98AAB8250A671900FF26FD /* AppSettingsView.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
+				DC07D8F4255466D2007A89D6 /* AppRootView.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC04C3EC2523BD6300483AF5 /* LineChartView.swift in Sources */,

@@ -55,14 +55,6 @@ struct SignalView: View {
                         Text("No Payload")
                     }
                 }
-                
-                
-                #if os(macOS)
-                Rectangle()
-                    .foregroundColor(.grayColor)
-                    .frame(maxHeight: 1)
-                    .padding()
-                #endif
             }
         }
         .animation(.easeOut)

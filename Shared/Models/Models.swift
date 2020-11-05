@@ -21,7 +21,7 @@ struct Organization: Codable, Hashable {
     var isSuperOrg: Bool
 }
 
-struct TelemetryApp: Codable, Hashable {
+struct TelemetryApp: Codable, Hashable, Identifiable {
     var id: UUID
     var name: String
     var organization: [String: String]

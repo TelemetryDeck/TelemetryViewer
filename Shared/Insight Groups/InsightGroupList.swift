@@ -14,9 +14,6 @@ struct InsightGroupList: View {
     var app: TelemetryApp
     var insightGroupID: UUID
     
-    @State var isShowingNewInsightGroupView = false
-    @State var isShowingNewInsightForm = false
-    
     let refreshTimer = Timer.publish(
         every: 5*60, // 5 minutes
         on: .main,
@@ -50,28 +47,6 @@ struct InsightGroupList: View {
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppInsightsRefreshed.rawValue, for: api.user?.email)
             }
             .navigationTitle(insightGroup.title)
-            .toolbar {
-                ToolbarItemGroup {
-                    Button(action: {
-                        isShowingNewInsightGroupView = true
-                    }) {
-                        Label("New Insight Group", systemImage: "rectangle.badge.plus")
-                    }
-                    .sheet(isPresented: $isShowingNewInsightGroupView) {
-                        NewInsightGroupView(app: app)
-                    }
-                    
-                    Button(action: {
-                        isShowingNewInsightForm = true
-                    }) {
-                        Label("New Insight", systemImage: "plus.viewfinder")
-                    }
-                    .sheet(isPresented: $isShowingNewInsightForm) {
-                        CreateOrUpdateInsightForm(app: app, editMode: false, insight: nil, group: nil)
-                            .environmentObject(api)
-                    }
-                }
-            }
         }
     }
 }
