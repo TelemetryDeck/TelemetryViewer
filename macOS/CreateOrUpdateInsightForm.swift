@@ -126,7 +126,10 @@ struct CreateOrUpdateInsightForm: View {
                 
                 LazyVGrid(columns: columns, alignment: .trailing) {
                     Text("Signal Type")
-                    TextField("What signal types are you interested in? Leave blank for any", text: $insightDefinitionRequestBody.signalType.bound)
+                    AutoCompletingTextField(
+                        title: "What signal types are you interested in? Leave blank for any",
+                        text: $insightDefinitionRequestBody.signalType.bound,
+                        autocompletionOptions: api.lexiconSignalTypes[app, default: []].map { $0.type })
                     
                     Text("")
                     Toggle(isOn: $insightDefinitionRequestBody.uniqueUser) {
@@ -141,7 +144,9 @@ struct CreateOrUpdateInsightForm: View {
                 
                 LazyVGrid(columns: columns, alignment: .trailing) {
                     Text("Filters")
-                    FilterEditView(keysAndValues: $insightDefinitionRequestBody.filters)
+                    FilterEditView(
+                        keysAndValues: $insightDefinitionRequestBody.filters,
+                        autocompleteOptions: api.lexiconPayloadKeys[app, default: []].map { $0.payloadKey })
                 }
                 
                 separator()
@@ -149,7 +154,12 @@ struct CreateOrUpdateInsightForm: View {
             
             LazyVGrid(columns: columns, alignment: .trailing) {
                 Text("Break down by")
-                TextField("If you enter a key for the metadata payload here, you'll get a breakdown of its values.", text: $insightDefinitionRequestBody.breakdownKey.bound)
+                AutoCompletingTextField(
+                    title: "If you enter a key for the metadata payload here, you'll get a breakdown of its values.",
+                    text: $insightDefinitionRequestBody.breakdownKey.bound,
+                    autocompletionOptions: api.lexiconPayloadKeys[app, default: []].map { $0.payloadKey })
+                
+                
             }
             
             separator()
@@ -204,6 +214,10 @@ struct CreateOrUpdateInsightForm: View {
         .frame(width: 600)
         .padding()
         .onAppear() {
+            // Fetch Signal Types
+            api.getSignalTypes(for: app)
+            api.getPayloadKeys(for: app)
+            
             // Group
             if let groupID = insightDefinitionRequestBody.groupID {
                 selectedInsightGroupIndex = api.insightGroups[app]?.firstIndex(where: { $0.id == groupID }) ?? 0

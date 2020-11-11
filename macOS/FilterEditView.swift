@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct FilterEditView: View {
+    
     @Binding var keysAndValues: [String: String]
+    let autocompleteOptions: [String]?
     
     @State private var newKeyName: String?
     
@@ -32,7 +34,13 @@ struct FilterEditView: View {
                 }
 
             HStack {
-                TextField("New Filter Name", text: $newKeyName.bound)
+                if let autocompleteOptions = autocompleteOptions {
+                    AutoCompletingTextField(title: "New Filter Name", text: $newKeyName.bound, autocompletionOptions: autocompleteOptions)
+                } else {
+                    TextField("New Filter Name", text: $newKeyName.bound)
+                }
+                
+                
                 Button("Add") {
                     self.keysAndValues[newKeyName.bound] = ""
                     newKeyName = nil
@@ -55,6 +63,6 @@ struct FilterEditView_Previews: PreviewProvider {
             "systemVersion" : "macOS 11.0.0",
             "isSimulator" : "false",
             "signalType" : "insightUpdatedAutomatically"
-        ]))
+        ]), autocompleteOptions: [])
     }
 }
