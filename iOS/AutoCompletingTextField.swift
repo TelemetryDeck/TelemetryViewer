@@ -11,10 +11,8 @@ struct AutoCompleteListEntry: View {
     let title: String
     let significantPortion: String
     
-    @State private var overText = false
-    
     var body: some View {
-        ListItemView(background: (overText ? Color.accentColor :  Color.grayColor.opacity(0.2)), spacing: 0) {
+        ListItemView(spacing: 0) {
             let separated = title.lowercased().components(separatedBy: significantPortion)
             ForEach(separated, id: \.self) { component in
                 Text(component)
@@ -25,9 +23,7 @@ struct AutoCompleteListEntry: View {
             }
             Spacer()
         }
-        .onHover { over in
-            self.overText = over
-        }
+        .padding(EdgeInsets(top: 1, leading: 0, bottom: 1, trailing: 0))
     }
 }
 
@@ -49,25 +45,15 @@ struct AutoCompletingTextField: View {
             }
             
             if isShowingAutoCompleteList {
-                ZStack {
-                    Color("CardBackgroundColor")
-                    ScrollView {
-                        VStack {
-                            ForEach(autocompletionOptions.filter( { $0.lowercased().contains(text.wrappedValue.lowercased()) }), id: \.self) { option in
-                                AutoCompleteListEntry(title: option, significantPortion: text.wrappedValue.lowercased())
-                                    .onTapGesture {
-                                        text.wrappedValue = option
-                                        isShowingAutoCompleteList = false
-                                    }
+                List {
+                    ForEach(autocompletionOptions.filter( { $0.lowercased().contains(text.wrappedValue.lowercased()) }), id: \.self) { option in
+                        AutoCompleteListEntry(title: option, significantPortion: text.wrappedValue.lowercased())
+                            .onTapGesture {
+                                text.wrappedValue = option
+                                isShowingAutoCompleteList = false
                             }
-                        }
-                        .padding(3)
                     }
                 }
-                .frame(maxHeight: 120)
-                .shadow(color: Color(hue: 0, saturation: 0, brightness: 0, opacity: 0.1), radius: 5, x: 0, y: 3)
-                
-                
             }
         }
     }

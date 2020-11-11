@@ -101,7 +101,11 @@ struct CreateOrUpdateInsightForm: View {
                 }
                 
                 Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
-                    TextField("All Signals", text: $insightDefinitionRequestBody.signalType.bound)
+                    AutoCompletingTextField(
+                        title: "All Signals",
+                        text: $insightDefinitionRequestBody.signalType.bound,
+                        autocompletionOptions: api.lexiconSignalTypes[app, default: []].map { $0.type })
+                    
                     Toggle(isOn: $insightDefinitionRequestBody.uniqueUser) {
                         HStack {
                             VStack(alignment: .leading) {
@@ -175,6 +179,10 @@ struct CreateOrUpdateInsightForm: View {
                     }
                 }
                 .onAppear() {
+                    // Fetch Signal and Payload Lexicon
+                    api.getSignalTypes(for: app)
+                    api.getPayloadKeys(for: app)
+                    
                     // Group
                     if let groupID = insightDefinitionRequestBody.groupID {
                         selectedInsightGroupIndex = api.insightGroups[app]?.firstIndex(where: { $0.id == groupID }) ?? 0

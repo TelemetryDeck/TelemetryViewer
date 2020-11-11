@@ -51,6 +51,7 @@
 		DC98AAB8250A671900FF26FD /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AAB6250A671900FF26FD /* AppSettingsView.swift */; };
 		DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
 		DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
+		DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */; };
 		DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = DC9C0830252CD622001C0F94 /* TelemetryClient */; };
 		DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = DC9C0841252CEAC9001C0F94 /* TelemetryClient */; };
 		DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
@@ -167,6 +168,7 @@
 		DC90D08A25063A6B00634B72 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		DC98AAB6250A671900FF26FD /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		DC98AABB250BC30200FF26FD /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
+		DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompletingTextField.swift; sourceTree = "<group>"; };
 		DCA10F7A24DA722700A62C26 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		DCB02B5C25001A2600304964 /* DashedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedCardView.swift; sourceTree = "<group>"; };
 		DCB02B6A2502773D00304964 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */,
+				DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */,
 				DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
 				DCB02B782503897D00304964 /* RegisterButtonView.swift */,
@@ -621,6 +624,7 @@
 				DC5339372521CE6200D9C889 /* CardView.swift in Sources */,
 				DC98AAB7250A671900FF26FD /* AppSettingsView.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */,
+				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
