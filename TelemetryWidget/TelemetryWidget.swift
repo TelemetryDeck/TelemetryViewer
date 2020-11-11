@@ -49,7 +49,7 @@ struct TelemetryWidgetEntryView : View {
         HStack {
             VStack(alignment: .leading) {
                 Text(entry.insight.title.uppercased())
-                    .font(.system(size: 9, weight: .medium, design: .default))
+                    .font(.system(size: 12, weight: .medium, design: .default))
                     .foregroundColor(.accentColor)
                 InsightNumberView(insightData: entry.insight)
                 Spacer()

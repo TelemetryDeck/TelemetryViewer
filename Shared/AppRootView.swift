@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct AppRootView: View {
+    
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var sizeClass
+    #endif
+    
     @EnvironmentObject var api: APIRepresentative
     let appID: UUID
     
@@ -17,7 +22,7 @@ struct AppRootView: View {
     @State var isShowingNewInsightForm = false
     
     var body: some View {
-        Group {
+        let group = Group {
             if let app = api.app(with: appID) {
                 switch selectedView {
                 case 0:
@@ -47,40 +52,74 @@ struct AppRootView: View {
                 Text("This app does not exist.")
             }
         }
-        .toolbar {
-            ToolbarItemGroup {
-                if let app = api.app(with: appID) {
-                    Button(action: {
-                        isShowingNewInsightGroupView = true
-                    }) {
-                        Label("New Insight Group", systemImage: "rectangle.badge.plus")
-                    }
-                    .sheet(isPresented: $isShowingNewInsightGroupView) {
-                        NewInsightGroupView(app: app)
-                    }
-                    
-                    Button(action: {
-                        isShowingNewInsightForm = true
-                    }) {
-                        Label("New Insight", systemImage: "plus.viewfinder")
-                    }
-                    .sheet(isPresented: $isShowingNewInsightForm) {
-                        CreateOrUpdateInsightForm(app: app, editMode: false, insight: nil, group: nil)
-                            .environmentObject(api)
-                    }
-                }
-            }
-            
-            ToolbarItem {
-                Picker(selection: $selectedView, label: Text("Display Mode")) {
-                    Image(systemName: "square.dashed.inset.fill").tag(0)
-                    Image(systemName: "book").tag(1)
-                    Image(systemName: "waveform").tag(2)
-                    Image(systemName: "gear").tag(3)
-                }.pickerStyle(SegmentedPickerStyle())
-            }
-            
-
+        
+        let newGroupButton = Button(action: {
+            isShowingNewInsightGroupView = true
+        }) {
+            Label("New Insight Group", systemImage: "rectangle.badge.plus")
         }
-    }
+        .sheet(isPresented: $isShowingNewInsightGroupView) {
+            NewInsightGroupView(app: api.app(with: appID)!)
+        }
+        
+        
+        let newInsightButton = Button(action: {
+            isShowingNewInsightForm = true
+        }) {
+            Label("New Insight", systemImage: "plus.viewfinder")
+        }
+        .sheet(isPresented: $isShowingNewInsightForm) {
+            CreateOrUpdateInsightForm(app: api.app(with: appID)!, editMode: false, insight: nil, group: nil)
+                .environmentObject(api)
+        }
+        
+        let picker = Picker(selection: $selectedView, label: Text("Display Mode")) {
+            Image(systemName: "square.dashed.inset.fill").tag(0)
+            Image(systemName: "book").tag(1)
+            Image(systemName: "waveform").tag(2)
+            Image(systemName: "gear").tag(3)
+        }.pickerStyle(SegmentedPickerStyle())
+        
+  
+            
+            #if os(iOS)
+            if sizeClass == .compact {
+                group
+                    .toolbar {
+                        ToolbarItem {
+                            HStack(spacing: 10) {
+                                newGroupButton
+                                newInsightButton
+                                picker
+                            }
+                        }
+                    }
+            } else {
+                group
+                    .toolbar {
+                        ToolbarItemGroup {
+                            newGroupButton
+                            newInsightButton
+                        }
+                        
+                        ToolbarItem {
+                            picker
+                        }
+                    }
+            }
+            #else
+                group
+                    .toolbar {
+                        ToolbarItemGroup {
+                            newGroupButton
+                            newInsightButton
+                        }
+                        
+                        ToolbarItem {
+                            picker
+                        }
+                    }
+            #endif
+        }
+
 }
