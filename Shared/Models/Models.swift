@@ -220,3 +220,11 @@ struct LexiconPayloadKey: Codable, Identifiable {
     let payloadKey: String
 }
 
+struct OrganizationJoinRequest: Codable {
+    var organizationName: String
+    let organizationID: UUID
+    var email: String
+    var password: String
+    let organizationJoinToken: String
+}
+

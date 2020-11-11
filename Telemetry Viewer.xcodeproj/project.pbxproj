@@ -52,6 +52,8 @@
 		DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
 		DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
 		DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */; };
+		DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */; };
+		DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */; };
 		DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = DC9C0830252CD622001C0F94 /* TelemetryClient */; };
 		DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = DC9C0841252CEAC9001C0F94 /* TelemetryClient */; };
 		DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
@@ -169,6 +171,7 @@
 		DC98AAB6250A671900FF26FD /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		DC98AABB250BC30200FF26FD /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
 		DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompletingTextField.swift; sourceTree = "<group>"; };
+		DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinOrganizationView.swift; sourceTree = "<group>"; };
 		DCA10F7A24DA722700A62C26 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		DCB02B5C25001A2600304964 /* DashedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedCardView.swift; sourceTree = "<group>"; };
 		DCB02B6A2502773D00304964 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -322,6 +325,7 @@
 			children = (
 				DCA10F7A24DA722700A62C26 /* RegisterView.swift */,
 				DCB02B712502781A00304964 /* LoginView.swift */,
+				DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */,
 			);
 			path = "Login Register";
 			sourceTree = "<group>";
@@ -645,6 +649,7 @@
 				DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC45BAEE24DFF895004E6392 /* Models.swift in Sources */,
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
+				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DCCD480C253D8A240098EC95 /* InsightNumberView.swift in Sources */,
 				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				DCB02B792503897D00304964 /* RegisterButtonView.swift in Sources */,
@@ -701,6 +706,7 @@
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC04C3DE252364C000483AF5 /* InsightLineChartView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
+				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC45BAEF24DFF895004E6392 /* Models.swift in Sources */,
 				DCB1A3CC2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */,

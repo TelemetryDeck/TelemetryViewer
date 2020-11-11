@@ -38,7 +38,7 @@ final class APIRepresentative: ObservableObject {
     @Published var user: UserDataTransferObject?
     @Published var userNotLoggedIn: Bool = true
     
-    @Published var apps: [TelemetryApp] = [MockData.app1, MockData.app2]
+    @Published var apps: [TelemetryApp] = []
     
     @Published var signals: [TelemetryApp: [Signal]] = [:]
     @Published var insightGroups: [TelemetryApp: [InsightGroup]] = [:]
@@ -122,6 +122,12 @@ extension APIRepresentative {
                 self.handleError(error)
             }
         }
+    }
+    
+    func joinOrganization(with organizationJoinRequest: OrganizationJoinRequest, callback: @escaping (Bool) -> ()) {
+        // TOOD
+        
+        callback(true)
     }
     
     func getUserInformation(callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {

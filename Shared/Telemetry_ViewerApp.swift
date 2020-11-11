@@ -29,3 +29,22 @@ struct Telemetry_ViewerApp: App {
         TelemetryManager.initialize(with: configuration)
     }
 }
+
+enum URLAction: String {
+    case registerUserToOrg
+}
+
+extension URL {
+    var isDeeplink: Bool {
+        return scheme == "telemetryviewer"
+    }
+    
+    var urlAction: URLAction? {
+        guard isDeeplink else { return nil }
+        
+        switch host {
+        case URLAction.registerUserToOrg.rawValue: return .registerUserToOrg
+        default: return nil
+        }
+    }
+}
