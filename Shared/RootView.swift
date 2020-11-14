@@ -24,13 +24,14 @@ struct RootView: View {
             Text("Please Select an App")
                 .sheet(isPresented: $shouldShowJoinOrgScreen) {
                     #if os(macOS)
-                    organizationJoinRequest.map {
-                        JoinOrganizationView(organizationJoinRequest: $0)
+                    if organizationJoinRequest != nil {
+                        JoinOrganizationView(organizationJoinRequest: organizationJoinRequest!)
+                            .environmentObject(api)
                     }
                     #else
                     NavigationView {
-                        organizationJoinRequest.map {
-                            JoinOrganizationView(organizationJoinRequest: $0)
+                        if organizationJoinRequest != nil {
+                            JoinOrganizationView(organizationJoinRequest: organizationJoinRequest!)
                                 .environmentObject(api)
                         }
                     }
