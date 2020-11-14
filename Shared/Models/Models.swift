@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct UserDataTransferObject: Codable {
+struct UserDataTransferObject: Codable, Identifiable {
     let id: UUID
     let organization: Organization?
     let firstName: String
     let lastName: String
     let email: String
+    let isFoundingUser: Bool
 }
 
 struct Organization: Codable, Hashable {
@@ -220,11 +221,20 @@ struct LexiconPayloadKey: Codable, Identifiable {
     let payloadKey: String
 }
 
-struct OrganizationJoinRequest: Codable {
-    var organizationName: String
-    let organizationID: UUID
+/// Represents a standing invitation to join an organization
+struct OrganizationJoinRequest: Codable, Identifiable, Equatable {
+    let id: UUID
+    let registrationToken: String
+}
+
+/// Sent to the server to create a user belonging to the organization
+struct OrganizationJoinRequestURLObject: Codable {
     var email: String
+    var firstName: String
+    var lastName: String
     var password: String
-    let organizationJoinToken: String
+    let organizationID: UUID
+    let organizationName: String
+    let registrationToken: String
 }
 

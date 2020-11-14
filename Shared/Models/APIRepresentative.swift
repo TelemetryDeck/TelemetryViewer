@@ -48,6 +48,9 @@ final class APIRepresentative: ObservableObject {
     @Published var lexiconPayloadKeys: [TelemetryApp: [LexiconPayloadKey]] = [:]
     
     @Published var betaRequests: [BetaRequestEmail] = []
+    
+    @Published var organizationUsers: [UserDataTransferObject] = []
+    @Published var organizationJoinRequests: [OrganizationJoinRequest] = []
 }
 
 extension APIRepresentative {
@@ -124,11 +127,14 @@ extension APIRepresentative {
         }
     }
     
-    func joinOrganization(with organizationJoinRequest: OrganizationJoinRequest, callback: @escaping (Bool) -> ()) {
-        // TOOD
+    func joinOrganization(with organizationJoinRequest: OrganizationJoinRequestURLObject, callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {
+        let url = urlForPath("organization", "joinRequests", "join")
         
-        callback(true)
+        self.post(organizationJoinRequest, to: url) { (result: Result<UserDataTransferObject, TransferError>) in
+            callback?(result)
+        }
     }
+    
     
     func getUserInformation(callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {
         let url = urlForPath("users", "me")
@@ -347,6 +353,59 @@ extension APIRepresentative {
                 self.handleError(error)
             }
             
+            callback?(result)
+        }
+    }
+    
+    func getOrganizationUsers(callback: ((Result<[UserDataTransferObject], TransferError>) -> ())? = nil) {
+        let url = urlForPath("organization", "users")
+        
+        self.get(url) { (result: Result<[UserDataTransferObject], TransferError>) in
+            switch result {
+            case .success(let users):
+                DispatchQueue.main.async {
+                    self.organizationUsers = users
+                }
+            case .failure(let error):
+                self.handleError(error)
+            }
+            
+            callback?(result)
+        }
+    }
+    
+    func getOrganizationJoinRequests(callback: ((Result<[OrganizationJoinRequest], TransferError>) -> ())? = nil) {
+        let url = urlForPath("organization", "joinRequests")
+        
+        self.get(url) { (result: Result<[OrganizationJoinRequest], TransferError>) in
+            switch result {
+            case .success(let joinRequests):
+                DispatchQueue.main.async {
+                    self.organizationJoinRequests = joinRequests
+                }
+            case .failure(let error):
+                self.handleError(error)
+            }
+            
+            callback?(result)
+        }
+    }
+    
+    func createOrganizationJoinRequest(callback: ((Result<OrganizationJoinRequest, TransferError>) -> ())? = nil) {
+        let url = urlForPath("organization", "joinRequests")
+        
+        self.post("hi!", to: url) { (result: Result<OrganizationJoinRequest, TransferError>) in
+            callback?(result)
+            
+            self.getOrganizationJoinRequests()
+        }
+    }
+    
+    func delete(organizationJoinRequest: OrganizationJoinRequest, callback: ((Result<String, TransferError>) -> ())? = nil)  {
+        let url = urlForPath("organization", "joinRequests", organizationJoinRequest.id.uuidString)
+        
+        self.delete(url) { (result: Result<String, TransferError>) in
+            self.getOrganizationJoinRequests()
             callback?(result)
         }
     }

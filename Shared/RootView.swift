@@ -16,7 +16,7 @@ struct RootView: View {
         return api.userNotLoggedIn && !shouldShowJoinOrgScreen
     }
      
-    @State private var organizationJoinRequest: OrganizationJoinRequest?
+    @State private var organizationJoinRequest: OrganizationJoinRequestURLObject?
     
     var body: some View {
         NavigationView {
@@ -24,7 +24,9 @@ struct RootView: View {
             Text("Please Select an App")
                 .sheet(isPresented: $shouldShowJoinOrgScreen) {
                     #if os(macOS)
-                    JoinOrganizationView()
+                    organizationJoinRequest.map {
+                        JoinOrganizationView(organizationJoinRequest: $0)
+                    }
                     #else
                     NavigationView {
                         organizationJoinRequest.map {
@@ -40,23 +42,24 @@ struct RootView: View {
             WelcomeView()
         }
         .onOpenURL { url in
-            // telemetryviewer://registerUserToOrg/orgName/a9d847cd-fb46-427c-b044-4fbb9aa00414/useremail/token/
+            // telemetryviewer://registerUserToOrg/orgName/orgId/token/
             
             switch url.urlAction {
             case .registerUserToOrg:
-                guard url.pathComponents.count >= 5 else { return }
+                guard url.pathComponents.count >= 4 else { return }
                 let orgName = url.pathComponents[1]
                 let orgID = url.pathComponents[2]
-                let userEmail = url.pathComponents[3]
-                let token = url.pathComponents[4]
+                let token = url.pathComponents[3]
                 
                 guard let organization = UUID(uuidString: orgID) else { return }
-                let request = OrganizationJoinRequest(
-                    organizationName: orgName,
-                    organizationID: organization,
-                    email: userEmail,
+                let request = OrganizationJoinRequestURLObject(
+                    email: "",
+                    firstName: "",
+                    lastName: "",
                     password: "",
-                    organizationJoinToken: token)
+                    organizationID: organization,
+                    organizationName: orgName,
+                    registrationToken: token)
                 organizationJoinRequest = request
                 
                 shouldShowJoinOrgScreen = true

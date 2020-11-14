@@ -54,6 +54,8 @@
 		DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */; };
 		DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */; };
 		DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */; };
+		DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92C0255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift */; };
+		DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A92C0255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift */; };
 		DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = DC9C0830252CD622001C0F94 /* TelemetryClient */; };
 		DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = DC9C0841252CEAC9001C0F94 /* TelemetryClient */; };
 		DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
@@ -172,6 +174,7 @@
 		DC98AABB250BC30200FF26FD /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
 		DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompletingTextField.swift; sourceTree = "<group>"; };
 		DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinOrganizationView.swift; sourceTree = "<group>"; };
+		DC9A92C0255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrganizationJoinRequestView.swift; sourceTree = "<group>"; };
 		DCA10F7A24DA722700A62C26 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		DCB02B5C25001A2600304964 /* DashedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedCardView.swift; sourceTree = "<group>"; };
 		DCB02B6A2502773D00304964 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -276,6 +279,7 @@
 			children = (
 				DC90D08A25063A6B00634B72 /* UserSettingsView.swift */,
 				DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */,
+				DC9A92C0255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -632,6 +636,7 @@
 				DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
+				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC04C3EB2523BD6300483AF5 /* LineChartView.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
@@ -689,6 +694,7 @@
 				DCCD482B253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */,
+				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				DC98AAB8250A671900FF26FD /* AppSettingsView.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
@@ -745,7 +751,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				INFOPLIST_FILE = TelemetryWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -769,7 +775,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				INFOPLIST_FILE = TelemetryWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -906,7 +912,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -930,7 +936,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -957,7 +963,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1m;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -983,7 +989,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1m;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1047,7 +1053,7 @@
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.6;
+				minimumVersion = 1.0.7;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

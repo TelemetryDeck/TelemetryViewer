@@ -129,7 +129,7 @@ struct CreateOrUpdateInsightForm: View {
                     AutoCompletingTextField(
                         title: "What signal types are you interested in? Leave blank for any",
                         text: $insightDefinitionRequestBody.signalType.bound,
-                        autocompletionOptions: api.lexiconSignalTypes[app, default: []].map { $0.type })
+                        autocompletionOptions: api.lexiconSignalTypes[app, default: []].filter { !$0.isHidden }.map { $0.type })
                     
                     Text("")
                     Toggle(isOn: $insightDefinitionRequestBody.uniqueUser) {
@@ -146,7 +146,7 @@ struct CreateOrUpdateInsightForm: View {
                     Text("Filters")
                     FilterEditView(
                         keysAndValues: $insightDefinitionRequestBody.filters,
-                        autocompleteOptions: api.lexiconPayloadKeys[app, default: []].map { $0.payloadKey })
+                        autocompleteOptions: api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map { $0.payloadKey })
                 }
                 
                 separator()
@@ -157,7 +157,7 @@ struct CreateOrUpdateInsightForm: View {
                 AutoCompletingTextField(
                     title: "If you enter a key for the metadata payload here, you'll get a breakdown of its values.",
                     text: $insightDefinitionRequestBody.breakdownKey.bound,
-                    autocompletionOptions: api.lexiconPayloadKeys[app, default: []].map { $0.payloadKey })
+                    autocompletionOptions: api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map { $0.payloadKey })
                 
                 
             }
