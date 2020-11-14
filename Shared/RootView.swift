@@ -21,7 +21,6 @@ struct RootView: View {
     var body: some View {
         NavigationView {
             SidebarView(selectedApp: $selectedApp)
-            Text("Please Select an App")
                 .sheet(isPresented: $shouldShowJoinOrgScreen) {
                     #if os(macOS)
                     if organizationJoinRequest != nil {
@@ -37,6 +36,8 @@ struct RootView: View {
                     }
                     #endif
                 }
+            Text("Please Select an App")
+                
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .sheet(isPresented: .constant(shouldShowLoginScreen), onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
