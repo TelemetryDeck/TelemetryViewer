@@ -29,7 +29,7 @@ struct CreateOrganizationJoinRequestView: View {
 
         Once you have Telemetry Viewer installed on your device, tap the following link to create an account and join the organization:
 
-        telemetryviewer://registerUserToOrg/\(api.user?.organization?.name ?? "Nonexistant")/\(api.user?.organization?.id?.uuidString ?? "Nonexistant")/\(organizationJoinRequest!.registrationToken )/
+        telemetryviewer://registerUserToOrg/\(api.user?.organization?.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Nonexistant")/\(api.user?.organization?.id?.uuidString ?? "Nonexistant")/\(organizationJoinRequest!.registrationToken )/
 
         See you soon!
         Daniel from Telemetry
