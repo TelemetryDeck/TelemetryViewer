@@ -54,7 +54,7 @@ struct NewAppView: View {
         #else
         NavigationView {
             form
-                .navigationTitle("New Appp")
+                .navigationTitle("New App")
                 .navigationBarItems(leading: cancelButton, trailing: saveButton)
         }
         #endif
