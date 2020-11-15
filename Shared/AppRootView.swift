@@ -80,46 +80,46 @@ struct AppRootView: View {
             Image(systemName: "gear").tag(3)
         }.pickerStyle(SegmentedPickerStyle())
         
-  
-            
-            #if os(iOS)
-            if sizeClass == .compact {
-                group
-                    .toolbar {
-                        ToolbarItem {
-                            HStack(spacing: 10) {
-                                newGroupButton
-                                newInsightButton
-                                picker
-                            }
-                        }
-                    }
-            } else {
-                group
-                    .toolbar {
-                        ToolbarItemGroup {
+        
+        
+        #if os(iOS)
+        if sizeClass == .compact {
+            group
+                .toolbar {
+                    ToolbarItem {
+                        HStack(spacing: 10) {
                             newGroupButton
                             newInsightButton
-                        }
-                        
-                        ToolbarItem {
                             picker
                         }
                     }
-            }
-            #else
-                group
-                    .toolbar {
-                        ToolbarItemGroup {
-                            newGroupButton
-                            newInsightButton
-                        }
-                        
-                        ToolbarItem {
-                            picker
-                        }
+                }
+        } else {
+            group
+                .toolbar {
+                    ToolbarItemGroup {
+                        newGroupButton
+                        newInsightButton
                     }
-            #endif
+                    
+                    ToolbarItem {
+                        picker
+                    }
+                }
         }
-
+        #else
+        group
+            .toolbar {
+                ToolbarItemGroup {
+                    newGroupButton
+                    newInsightButton
+                }
+                
+                ToolbarItem {
+                    picker
+                }
+            }
+        #endif
+    }
+    
 }
