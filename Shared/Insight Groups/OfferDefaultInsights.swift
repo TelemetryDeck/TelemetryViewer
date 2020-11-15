@@ -28,6 +28,7 @@ struct OfferDefaultInsights: View {
                 .font(.footnote)
             
         }
+        .padding()
         .multilineTextAlignment(.center)
         .foregroundColor(.grayColor)
     }

@@ -13,25 +13,37 @@ struct LexiconView: View {
     
     var body: some View {
         let list = List {
-                Section(header: Text("Signal Types")) {
-                    ForEach(api.lexiconSignalTypes[app] ?? []) { lexiconItem in
-                        SignalTypeView(lexiconItem: lexiconItem)
-                    }
-                }
-                .onAppear() {
-                    api.getSignalTypes(for: app)
-                    api.getPayloadKeys(for: app)
+            Section(header: Text("Signal Types")) {
+                ForEach(api.lexiconSignalTypes[app] ?? []) { lexiconItem in
+                    SignalTypeView(lexiconItem: lexiconItem)
                 }
                 
-                Section(header: Text("Payload Keys")) {
-                    ForEach(api.lexiconPayloadKeys[app] ?? []) { lexiconItem in
-                        PayloadKeyView(lexiconItem: lexiconItem)
-                    }
+                if api.lexiconSignalTypes[app]?.isEmpty != false {
+                    Text("Once you've received a few Signals, this list will contain all Signal Types known to Telemetry.")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
                 }
             }
+            
+            Section(header: Text("Payload Keys")) {
+                ForEach(api.lexiconPayloadKeys[app] ?? []) { lexiconItem in
+                    PayloadKeyView(lexiconItem: lexiconItem)
+                }
+                
+                if api.lexiconPayloadKeys[app]?.isEmpty != false {
+                    Text("Once you've received a few Signals with payload metadata, this list will contain all available payload keys known to Telemetry.")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
+                }
+            }
+        }
         
         list
             .navigationTitle("Lexicon")
+            .onAppear() {
+                api.getSignalTypes(for: app)
+                api.getPayloadKeys(for: app)
+            }
     }
 }
 
