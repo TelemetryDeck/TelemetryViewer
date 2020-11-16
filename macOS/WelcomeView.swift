@@ -22,6 +22,16 @@ struct WelcomeView: View {
                 Text("Telemetry is a service that helps app and web developers improve their product by supplying immediate, accurate telemetry data while users use your app. And the best part: It's all anonymized so your users' data stays private!")
                     .padding(.bottom)
                 
+                
+                    HStack {
+                        Spacer()
+                        
+                        Image("analyzing_process")
+                            .resizable()
+                            .scaledToFit()
+                        Spacer()
+                    }
+                
                 Button("Login to Your Account") {
                     displayMode = .loginView
                 }
@@ -40,7 +50,7 @@ struct WelcomeView: View {
                 .buttonStyle(SecondaryButtonStyle())
                 .padding(.horizontal)
                 
-                Spacer()
+                
                 
                 AdaptiveStack(spacing: 15) {
                     Button("Docs: Getting Started →") {

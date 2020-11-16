@@ -16,6 +16,16 @@ struct LoginView: View {
     var body: some View {
         Form {
             
+            HStack {
+                Spacer()
+                Image("authentication").resizable().scaledToFit().frame(maxHeight: 200)
+                Spacer()
+            }
+            
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color("Torange").opacity(0.1))
+            
+            
             if showLoginErrorMessage {
                 VStack(alignment: .leading) {
                     Text("Login Failed").font(.title2)

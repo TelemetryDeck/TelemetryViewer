@@ -11,8 +11,14 @@ struct WelcomeView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 15) {
-                Text("Telemetry is a service that helps app and web developers improve their product by supplying immediate, accurate telemetry data while users use your app. And the best part: It's all anonymized so your users' data stays private!")
-                    .padding(.bottom)
+                
+                HStack {
+                    Spacer()
+                    Image("analyzing_process")
+                        .resizable()
+                        .scaledToFit()
+                    Spacer()
+                }
                 
                 NavigationLink("Login to Your Account", destination: LoginView())
                     .buttonStyle(PrimaryButtonStyle())
@@ -23,8 +29,6 @@ struct WelcomeView: View {
                 NavigationLink("Join an Organization", destination: JoinOrganizationInfoView())
                     .buttonStyle(SecondaryButtonStyle())
                     .padding(.horizontal)
-                
-                Spacer()
                 
                 AdaptiveStack(spacing: 15) {
                     Button("Docs: Getting Started →") {
