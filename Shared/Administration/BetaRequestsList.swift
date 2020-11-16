@@ -87,6 +87,12 @@ struct BetaRequestsList: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var selectedItem: BetaRequestEmail?
     
+    let refreshTimer = Timer.publish(
+        every: 1 * 60, // 1 minute
+        on: .main,
+        in: .common
+    ).autoconnect()
+    
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var sizeClass
     #else
@@ -163,6 +169,9 @@ struct BetaRequestsList: View {
         }
         .navigationTitle("Beta Requests")
         .onAppear() {
+            api.getBetaRequests()
+        }
+        .onReceive(refreshTimer) { _ in
             api.getBetaRequests()
         }
     }
