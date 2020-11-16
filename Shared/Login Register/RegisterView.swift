@@ -7,31 +7,31 @@
 
 import SwiftUI
 
-struct UserToken: Codable {
-    var id: UUID?
-    var value: String
-    var user: [String: String]
-    
-    var bearerTokenAuthString: String {
-        return "Bearer \(value)"
-    }
-}
-
 struct RegisterView: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var isLoading = false
     @State private var registrationRequestBody = RegistrationRequestBody()
     @State private var showingSuccessAlert = false
-    @State private var showingFailureAlert = false
-    
+    @State private var error: TransferError?
     
     var body: some View {
+        
+        let errorBinding = Binding<Bool>(
+            get: {
+                error != nil
+            },
+            set: { value in
+                
+            }
+        )
+        
         if showingSuccessAlert {
             VStack {
                 Text("Woohoo!").font(.largeTitle)
                 Text("You've registered successfully! Please log in now.")
             }
         } else {
+            
             Form {
                 if let registrationStatus = api.registrationStatus {
                     
@@ -74,18 +74,24 @@ struct RegisterView: View {
                         Section {
                             if isLoading {
                                 ProgressView()
-                            } else {
-                                Button("Register", action: register)
-                                    .buttonStyle(PrimaryButtonStyle())
-                                    .listRowInsets(EdgeInsets())
-                                    .keyboardShortcut(.defaultAction)
-                                    .disabled(!registrationRequestBody.isValid)
-                                    .saturation(registrationRequestBody.isValid ? 1 : 0)
-                                    .animation(.easeOut)
                             }
+                            Button("Register", action: register)
+                                .buttonStyle(PrimaryButtonStyle())
+                                .listRowInsets(EdgeInsets())
+                                .keyboardShortcut(.defaultAction)
+                                .disabled(!registrationRequestBody.isValid || isLoading)
+                                .saturation(registrationRequestBody.isValid ? 1 : 0)
+                                .animation(.easeOut)
+                            
+                            if !registrationRequestBody.isValid {
+                                Text("Please fill out all the fields")
+                                    .font(.footnote)
+                                    .foregroundColor(.grayColor)
+                            }
+                            
                         }
-                        .alert(isPresented: $showingSuccessAlert) {
-                            Alert(title: Text("Registration Success"), message: Text("You're now officially registered with Telemetry. Please log in now!"), dismissButton: .default(Text("Got it!")))
+                        .alert(isPresented: errorBinding) {
+                            Alert(title: Text("Something went wrong"), message: Text(error?.localizedDescription ?? "No Error Message"), dismissButton: .default(Text("Oof!")))
                         }
                         
                         
@@ -97,8 +103,8 @@ struct RegisterView: View {
             }
             .disabled(isLoading)
             .navigationTitle("Register")
-            .alert(isPresented: $showingFailureAlert) {
-                Alert(title: Text("Something went wrong"), message: Text("We got an error message from the server. Please try again later."), dismissButton: .default(Text("Oof!")))
+            .alert(isPresented: $showingSuccessAlert) {
+                Alert(title: Text("Registration Success"), message: Text("You're now officially registered with Telemetry. Please log in now!"), dismissButton: .default(Text("Got it!")))
             }
             .onAppear {
                 api.getRegistrationStatus()
@@ -110,13 +116,15 @@ struct RegisterView: View {
     
     func register() {
         isLoading = true
-        api.register(registrationRequestBody: registrationRequestBody) { success in
+        api.register(registrationRequestBody: registrationRequestBody) { result in
             isLoading = false
             
-            if success {
+            switch result {
+            
+            case .success(_):
                 showingSuccessAlert = true
-            } else {
-                showingFailureAlert = true
+            case .failure(let error):
+                self.error = error
             }
         }
         

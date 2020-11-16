@@ -112,18 +112,18 @@ extension APIRepresentative {
         }
     }
     
-    func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping (Bool) -> ()) {
+    func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping (Result<UserDataTransferObject, TransferError>) -> ()) {
         let url = urlForPath("users", "register")
         
         self.post(registrationRequestBody, to: url) { (result: Result<UserDataTransferObject, TransferError>) in
             switch result {
             case .success(_):
-                DispatchQueue.main.async {
-                    callback(true)
-                }
+                break
             case .failure(let error):
                 self.handleError(error)
             }
+            
+            callback(result)
         }
     }
     
@@ -486,9 +486,12 @@ extension APIRepresentative {
                         let decoded = try JSONDecoder.telemetryDecoder.decode(Output.self, from: data)
                         completion(.success(decoded))
                     } catch {
-                        if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorMessage.self, from: data) {
+                        if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorDetailMessage.self, from: data) {
                             completion(.failure(TransferError.serverError(message: decodedErrorMessage.detail)))
                             print("🛑 \(decodedErrorMessage.detail)")
+                        } else if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorReasonMessage.self, from: data) {
+                            completion(.failure(TransferError.serverError(message: decodedErrorMessage.reason)))
+                            print("🛑 \(decodedErrorMessage.reason)")
                         } else {
                             print("🛑 Decode Failed")
                             completion(.failure(.decodeFailed))

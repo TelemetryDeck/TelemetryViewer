@@ -183,10 +183,26 @@ enum TransferError: Error {
     case transferFailed
     case decodeFailed
     case serverError(message: String)
+    
+    var localizedDescription: String {
+        switch self {
+        
+        case .transferFailed:
+            return "There was a communication error with the server. Please check your internet connection and try again later."
+        case .decodeFailed:
+            return "The server returned a message that this version of the app could not decode. Please check if there is an update to the app, or contact the developer."
+        case .serverError(message: let message):
+            return "The server returned this error message: \(message)"
+        }
+    }
 }
 
-struct ServerErrorMessage: Codable {
+struct ServerErrorDetailMessage: Codable {
     let detail: String
+}
+
+struct ServerErrorReasonMessage: Codable {
+    let reason: String
 }
 
 struct PasswordChangeRequestBody: Codable {
@@ -268,3 +284,12 @@ struct LoginRequestBody {
     }
 }
 
+struct UserToken: Codable {
+    var id: UUID?
+    var value: String
+    var user: [String: String]
+    
+    var bearerTokenAuthString: String {
+        return "Bearer \(value)"
+    }
+}
