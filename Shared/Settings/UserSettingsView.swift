@@ -32,9 +32,13 @@ struct UserSettingsView: View {
                     Text(user.email).bold()
                 }
                 
+                Divider()
+                
                 Button("Log Out") {
                     api.logout()
                 }
+                
+                Divider()
                 
                 if showChangePasswordForm {
                     Form {
@@ -51,6 +55,17 @@ struct UserSettingsView: View {
                     Button("Change Password") {
                         showChangePasswordForm.toggle()
                     }
+                }
+                
+                Divider()
+                
+                let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+                let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+
+                HStack {
+                    Text("Telemetry Viewer Version")
+                    Text(appVersion ?? "–")
+                    Text("(\(buildNumber ?? "–"))")
                 }
             }
             .animation(.easeIn)
