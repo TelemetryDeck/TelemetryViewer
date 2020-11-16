@@ -59,6 +59,12 @@ struct LoginView: View {
                     .disabled(!loginRequestBody.isValid)
                     .saturation(loginRequestBody.isValid ? 1 : 0)
                     .animation(.easeOut)
+                    
+                    if !loginRequestBody.isValid {
+                        Text("Please fill out all the fields")
+                            .font(.footnote)
+                            .foregroundColor(.grayColor)
+                    }
                 }
             }
         }

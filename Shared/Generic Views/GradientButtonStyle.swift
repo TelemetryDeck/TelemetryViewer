@@ -63,3 +63,12 @@ struct SmallSecondaryButtonStyle: ButtonStyle {
     }
 }
 
+struct BackButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(configuration.isPressed ? Color.grayColor.opacity(0.5) : Color.grayColor)
+            .font(Font.system(size: 12, weight: .semibold, design: .default))
+            .padding(4)
+    }
+}
+

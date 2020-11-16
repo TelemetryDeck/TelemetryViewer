@@ -85,6 +85,8 @@
 		DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D8C2551C3330032B9AD /* TelemetryWidget.intentdefinition */; };
 		DCC8CB5B2562DC8D0019267A /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */; };
 		DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */; };
+		DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB66256308250019267A /* MacNavigationView.swift */; };
+		DCC8CB6B25630EA80019267A /* JoinOrganizationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B782503897D00304964 /* JoinOrganizationInfoView.swift */; };
 		DCCD480C253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD480B253D8A240098EC95 /* InsightNumberView.swift */; };
 		DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
@@ -97,7 +99,6 @@
 		DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD52C492541FFE3003F12C6 /* ColSpan.swift */; };
 		DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD52C492541FFE3003F12C6 /* ColSpan.swift */; };
 		DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BCE252DB40900A00C5B /* WelcomeView.swift */; };
-		DCD67BD5252DB6CA00A00C5B /* JoinOrganizationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD67BD4252DB6C900A00C5B /* JoinOrganizationInfoView.swift */; };
 		DCD86AE9254EF0B5008F63CB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */; };
 		DCD86AEB254EF0B5008F63CB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */; };
 		DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD86AED254EF0B5008F63CB /* TelemetryWidget.swift */; };
@@ -193,6 +194,7 @@
 		DCB28D8B2551C3330032B9AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/TelemetryWidget.intentdefinition; sourceTree = "<group>"; };
 		DCB28D912551C3420032B9AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TelemetryWidget.strings; sourceTree = "<group>"; };
 		DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
+		DCC8CB66256308250019267A /* MacNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
 		DCCD480B253D8A240098EC95 /* InsightNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightNumberView.swift; sourceTree = "<group>"; };
 		DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
 		DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDefaultInsights.swift; sourceTree = "<group>"; };
@@ -200,7 +202,6 @@
 		DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompletingTextField.swift; sourceTree = "<group>"; };
 		DCD52C492541FFE3003F12C6 /* ColSpan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColSpan.swift; sourceTree = "<group>"; };
 		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		DCD67BD4252DB6C900A00C5B /* JoinOrganizationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinOrganizationInfoView.swift; sourceTree = "<group>"; };
 		DCD86AE7254EF0B5008F63CB /* TelemetryWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -330,6 +331,7 @@
 		DCB02B692502764200304964 /* Login Register */ = {
 			isa = PBXGroup;
 			children = (
+				DCB02B782503897D00304964 /* JoinOrganizationInfoView.swift */,
 				DCA10F7A24DA722700A62C26 /* RegisterView.swift */,
 				DCB02B712502781A00304964 /* LoginView.swift */,
 				DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */,
@@ -340,6 +342,7 @@
 		DCB02B70250277C300304964 /* Generic Views */ = {
 			isa = PBXGroup;
 			children = (
+				DCC8CB66256308250019267A /* MacNavigationView.swift */,
 				DCB28D7425517A4B0032B9AD /* ListItemView.swift */,
 				DCB02B5C25001A2600304964 /* DashedCardView.swift */,
 				DC5339352521CE6200D9C889 /* CardView.swift */,
@@ -435,7 +438,6 @@
 				DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */,
 				DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
-				DCB02B782503897D00304964 /* JoinOrganizationInfoView.swift */,
 				DCE23A0624D3687D00053370 /* Info.plist */,
 			);
 			path = iOS;
@@ -449,7 +451,6 @@
 				DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */,
 				DC340E5D2531C23800514FD6 /* InsightDetailView.swift */,
 				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
-				DCD67BD4252DB6C900A00C5B /* JoinOrganizationInfoView.swift */,
 				DCE23A0D24D3687D00053370 /* Info.plist */,
 				DCE23A0E24D3687D00053370 /* macOS.entitlements */,
 			);
@@ -690,10 +691,10 @@
 				DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F14253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
-				DCD67BD5252DB6CA00A00C5B /* JoinOrganizationInfoView.swift in Sources */,
 				DCB28D7625517A4B0032B9AD /* ListItemView.swift in Sources */,
 				DCB02B8025038F5000304964 /* MockData.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
+				DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */,
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
 				DCCD482B253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
@@ -707,6 +708,7 @@
 				DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
+				DCC8CB6B25630EA80019267A /* JoinOrganizationInfoView.swift in Sources */,
 				DC04C3EC2523BD6300483AF5 /* LineChartView.swift in Sources */,
 				DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,

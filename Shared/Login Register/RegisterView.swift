@@ -44,6 +44,10 @@ struct RegisterView: View {
                                 TextField("Registration Token", text: $registrationRequestBody.registrationToken)
                                     .disableAutocorrection(true)
                             }
+                            
+                            #if os(macOS)
+                            Divider()
+                            #endif
                         }
                         
                         Section(header: Text("Your Organization")) {

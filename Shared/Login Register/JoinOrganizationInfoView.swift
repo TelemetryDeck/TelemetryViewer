@@ -10,15 +10,21 @@ import SwiftUI
 struct JoinOrganizationInfoView: View {
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Want to Create a New Organization?").font(.title2)
+        let stack = VStack(alignment: .leading, spacing: 10) {
             Text("Every app that sends data to Telemetry belongs to an organization.")
             Text("Once you create an organization, you become its first administrator and can invite more people.")
-            Text("If you want to join an existing organization, ask the organization's creator to send you an invitation code.")
-            
-            RegisterView()
-        }.padding()
+            Text("If you want to join an existing organization, ask the organization's creator to send you an invitation link.")
+            Text("Tap the invitation link on this device to join the organization.")
+            Spacer()
+
+        }
+        .navigationTitle("Joining?")
         
+        #if os(macOS)
+        stack
+        #else
+        stack.padding()
+        #endif
     }
 }
 
