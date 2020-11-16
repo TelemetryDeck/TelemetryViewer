@@ -16,7 +16,6 @@ struct PrimaryButtonStyle: ButtonStyle {
             .background(LinearGradient(gradient: Gradient(colors: [Color("Torange"), Color("Torange").opacity(0.7)]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(15)
             .shadow(color: Color(hue: 0, saturation: 0, brightness: 0, opacity: 0.1), radius: configuration.isPressed ? 4 : 5, x: 0, y: configuration.isPressed ? 1 : 3)
-            .padding(.horizontal, 20)
     }
 }
 
@@ -29,16 +28,38 @@ struct SecondaryButtonStyle: ButtonStyle {
             .background(Color("CardBackgroundColor"))
             .cornerRadius(15)
             .shadow(color: Color(hue: 0, saturation: 0, brightness: 0, opacity: 0.1), radius: configuration.isPressed ? 4 : 5, x: 0, y: configuration.isPressed ? 1 : 3)
-            .padding(.horizontal, 20)
     }
 }
 
-struct TertiaryButtonStyle: ButtonStyle {
+struct SmallPrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity)
             .foregroundColor(configuration.isPressed ? Color("Torange").opacity(0.5) : Color("Torange"))
-            .font(Font.system(size: 10, weight: .semibold, design: .default))
+            .font(Font.system(size: 12, weight: .semibold, design: .default))
+            .padding(4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(
+                        configuration.isPressed ? Color("Torange").opacity(0.5) : Color("Torange"),
+                        lineWidth: 1)
+            )
+    }
+}
+
+struct SmallSecondaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .foregroundColor(configuration.isPressed ? Color.grayColor.opacity(0.5) : Color.grayColor)
+            .font(Font.system(size: 12, weight: .semibold, design: .default))
+            .padding(4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(
+                        configuration.isPressed ? Color.grayColor.opacity(0.5) : Color.grayColor,
+                        lineWidth: 1)
+            )
     }
 }
 

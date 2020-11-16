@@ -16,30 +16,34 @@ struct WelcomeView: View {
                 
                 NavigationLink("Login to Your Account", destination: LoginView())
                     .buttonStyle(PrimaryButtonStyle())
+                    .padding(.horizontal)
                 NavigationLink("Create a New Organization", destination: RegisterView())
                     .buttonStyle(SecondaryButtonStyle())
+                    .padding(.horizontal)
                 NavigationLink("Join an Organization", destination: JoinOrganizationInfoView())
                     .buttonStyle(SecondaryButtonStyle())
+                    .padding(.horizontal)
                 
                 Spacer()
                 
                 AdaptiveStack(spacing: 15) {
-                    Button("Issues on GitHub →") {
-                        UIApplication.shared.open(URL(string: "https://github.com/AppTelemetry/Viewer/issues")!)
-                    }
-                    .buttonStyle(TertiaryButtonStyle())
-                    
-                    Button("Documentation →") {
+                    Button("Docs: Getting Started →") {
                         UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)
                     }
-                    .buttonStyle(TertiaryButtonStyle())
+                    .buttonStyle(SmallSecondaryButtonStyle())
                     
                     
                     Button("Privacy Policy →") {
                         UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/privacy-policy.html")!)
                     }
-                    .buttonStyle(TertiaryButtonStyle())
+                    .buttonStyle(SmallSecondaryButtonStyle())
+                    
+                    Button("Issues on GitHub →") {
+                        UIApplication.shared.open(URL(string: "https://github.com/AppTelemetry/Viewer/issues")!)
+                    }
+                    .buttonStyle(SmallSecondaryButtonStyle())
                 }
+                .padding(.horizontal)
                 
                 Text("Telemetry is currently in public beta! If things don't work the way you expect them to, please be patient, and share your thoughts with Daniel on GitHub or the Slack <3")
                     .font(.footnote)

@@ -238,3 +238,33 @@ struct OrganizationJoinRequestURLObject: Codable {
     let registrationToken: String
 }
 
+struct RegistrationRequestBody: Codable {
+    var registrationToken: String = ""
+    var organisationName: String = ""
+    var userFirstName: String = ""
+    var userLastName: String = ""
+    var userEmail: String = ""
+    var userPassword: String = ""
+    var userPasswordConfirm: String = ""
+    
+    var isValid: Bool {
+        return !organisationName.isEmpty && !userFirstName.isEmpty && !userLastName.isEmpty && !userEmail.isEmpty && !userPassword.isEmpty && !userPasswordConfirm.isEmpty
+    }
+}
+
+struct LoginRequestBody {
+    var userEmail: String = ""
+    var userPassword: String = ""
+    
+    var basicHTMLAuthString: String? {
+        let loginString = "\(userEmail):\(userPassword)"
+        guard let loginData = loginString.data(using: String.Encoding.utf8) else { return nil }
+        let base64LoginString = loginData.base64EncodedString()
+        return "Basic \(base64LoginString)"
+    }
+    
+    var isValid: Bool {
+        return !userEmail.isEmpty && !userPassword.isEmpty
+    }
+}
+

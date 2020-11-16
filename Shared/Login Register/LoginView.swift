@@ -53,10 +53,16 @@ struct LoginView: View {
                             showLoginErrorMessage = !success
                         }
                     }
+                    .buttonStyle(PrimaryButtonStyle())
+                    .listRowInsets(EdgeInsets())
                     .keyboardShortcut(.defaultAction)
+                    .disabled(!loginRequestBody.isValid)
+                    .saturation(loginRequestBody.isValid ? 1 : 0)
+                    .animation(.easeOut)
                 }
             }
         }
+        .navigationTitle("Login")
     }
 }
 

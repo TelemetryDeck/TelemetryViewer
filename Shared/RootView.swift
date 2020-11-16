@@ -36,7 +36,7 @@ struct RootView: View {
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .sheet(isPresented: $api.userNotLoggedIn, onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
-            WelcomeView()
+            WelcomeView().accentColor(Color("Torange"))
         }
         .onOpenURL { url in
             // telemetryviewer://registerUserToOrg/orgName/orgId/token/
