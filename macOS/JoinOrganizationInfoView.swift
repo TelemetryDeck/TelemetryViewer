@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RegisterButtonView: View {
+struct JoinOrganizationInfoView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 10) {
@@ -24,6 +24,6 @@ struct RegisterButtonView: View {
 
 struct RegisterButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterButtonView()
+        JoinOrganizationInfoView()
     }
 }

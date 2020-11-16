@@ -10,37 +10,32 @@ import SwiftUI
 struct RootView: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var selectedApp: TelemetryApp?
-    @State private var shouldShowJoinOrgScreen: Bool = false
-    
-    private var shouldShowLoginScreen: Bool {
-        return api.userNotLoggedIn && !shouldShowJoinOrgScreen
-    }
      
     @State private var organizationJoinRequest: OrganizationJoinRequestURLObject?
     
     var body: some View {
         NavigationView {
             SidebarView(selectedApp: $selectedApp)
-                .sheet(isPresented: $shouldShowJoinOrgScreen) {
-                    #if os(macOS)
-                    if organizationJoinRequest != nil {
-                        JoinOrganizationView(organizationJoinRequest: organizationJoinRequest!)
-                            .environmentObject(api)
-                    }
-                    #else
-                    NavigationView {
-                        if organizationJoinRequest != nil {
-                            JoinOrganizationView(organizationJoinRequest: organizationJoinRequest!)
-                                .environmentObject(api)
-                        }
-                    }
-                    #endif
-                }
+//                .sheet(isPresented: $shouldShowJoinOrgScreen) {
+//                    #if os(macOS)
+//                    if organizationJoinRequest != nil {
+//                        JoinOrganizationView(organizationJoinRequest: organizationJoinRequest!)
+//                            .environmentObject(api)
+//                    }
+//                    #else
+//                    NavigationView {
+//                        if organizationJoinRequest != nil {
+//                            JoinOrganizationView(organizationJoinRequest: organizationJoinRequest!)
+//                                .environmentObject(api)
+//                        }
+//                    }
+//                    #endif
+//                }
             Text("Please Select an App")
                 
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
-        .sheet(isPresented: .constant(shouldShowLoginScreen), onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
+        .sheet(isPresented: $api.userNotLoggedIn, onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
             WelcomeView()
         }
         .onOpenURL { url in
@@ -64,7 +59,7 @@ struct RootView: View {
                     registrationToken: token)
                 organizationJoinRequest = request
                 
-                shouldShowJoinOrgScreen = true
+//                shouldShowJoinOrgScreen = true
             default:
                 print("Got a URL but don't know what to do with it, ignoring...")
             }
