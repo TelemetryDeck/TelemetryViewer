@@ -327,6 +327,33 @@ extension APIRepresentative {
         }
     }
     
+    func sendEmail(for betaRequest: BetaRequestEmail, callback: ((Result<String, TransferError>) -> ())? = nil) {
+        let url = urlForPath("betarequests", betaRequest.id.uuidString, "send_email")
+        
+        self.post("", to: url) { (result: Result<String, TransferError>) in
+            self.getBetaRequests()
+            callback?(result)
+        }
+    }
+    
+    func update(betaRequest: BetaRequestEmail, with betaRequestUpdateBody: BetaRequestUpdateBody, callback: ((Result<String, TransferError>) -> ())? = nil) {
+        let url = urlForPath("betarequests", betaRequest.id.uuidString)
+        
+        self.patch(betaRequestUpdateBody, to: url) { (result: Result<String, TransferError>) in
+            self.getBetaRequests()
+            callback?(result)
+        }
+    }
+    
+    func delete(betaRequest: BetaRequestEmail, callback: ((Result<String, TransferError>) -> ())? = nil) {
+        let url = urlForPath("betarequests", betaRequest.id.uuidString)
+        
+        self.delete(url) { (result: Result<String, TransferError>) in
+            self.getBetaRequests()
+            callback?(result)
+        }
+    }
+    
     func getSignalTypes(for app: TelemetryApp, callback: ((Result<[LexiconSignalType], TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "lexicon", "signaltypes")
         

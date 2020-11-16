@@ -28,6 +28,8 @@
 		DC45BB1A24E1F01F004E6392 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1824E1F01F004E6392 /* SidebarView.swift */; };
 		DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1B24E27F12004E6392 /* SignalView.swift */; };
 		DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1B24E27F12004E6392 /* SignalView.swift */; };
+		DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4E2F542563290F001AD7B4 /* SingleKeyValueView.swift */; };
+		DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4E2F542563290F001AD7B4 /* SingleKeyValueView.swift */; };
 		DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */; };
 		DC4F7DBB25067C3000B54561 /* OrganizationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */; };
 		DC4F7DBD25069C3200B54561 /* NewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4F7DBC25069C3200B54561 /* NewAppView.swift */; };
@@ -165,6 +167,7 @@
 		DC45BAED24DFF895004E6392 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DC45BB1824E1F01F004E6392 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
+		DC4E2F542563290F001AD7B4 /* SingleKeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleKeyValueView.swift; sourceTree = "<group>"; };
 		DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationSettingsView.swift; sourceTree = "<group>"; };
 		DC4F7DBC25069C3200B54561 /* NewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAppView.swift; sourceTree = "<group>"; };
 		DC5339352521CE6200D9C889 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = ../CardView.swift; sourceTree = "<group>"; };
@@ -345,6 +348,7 @@
 		DCB02B70250277C300304964 /* Generic Views */ = {
 			isa = PBXGroup;
 			children = (
+				DC4E2F542563290F001AD7B4 /* SingleKeyValueView.swift */,
 				DCC8CB66256308250019267A /* MacNavigationView.swift */,
 				DCB28D7425517A4B0032B9AD /* ListItemView.swift */,
 				DCB02B5C25001A2600304964 /* DashedCardView.swift */,
@@ -416,11 +420,11 @@
 				DCB02B70250277C300304964 /* Generic Views */,
 				DCB02B692502764200304964 /* Login Register */,
 				DC98AAB9250A672300FF26FD /* App Settings */,
-				DCB1A3C92549C936000C6575 /* Administration */,
 				DCF7CD3E254A068500BFA23B /* Lexicon */,
 				DC53393E25222C0900D9C889 /* Insight Groups */,
 				DCB02B67250027E400304964 /* Signals */,
 				DC90D08925063A5700634B72 /* Settings */,
+				DCB1A3C92549C936000C6575 /* Administration */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -646,6 +650,7 @@
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
+				DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
@@ -686,6 +691,7 @@
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
 				DC53394D2522620E00D9C889 /* CreateOrUpdateInsightForm.swift in Sources */,
 				DC2328732522740900DB6145 /* InsightPieChartView.swift in Sources */,
+				DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB02B732502781A00304964 /* LoginView.swift in Sources */,
 				DC53394525222FC600D9C889 /* NewInsightGroupView.swift in Sources */,
 				DC4F7DBB25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,

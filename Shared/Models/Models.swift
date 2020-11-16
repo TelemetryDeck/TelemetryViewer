@@ -211,11 +211,12 @@ struct PasswordChangeRequestBody: Codable {
     var newPasswordConfirm: String
 }
 
-struct BetaRequestEmail: Codable, Identifiable {
+struct BetaRequestEmail: Codable, Identifiable, Equatable {
     let id: UUID
     let email: String
     let registrationToken: String
     let requestedAt: Date
+    let sentAt: Date?
     let isFulfilled: Bool
 }
 
@@ -292,4 +293,9 @@ struct UserToken: Codable {
     var bearerTokenAuthString: String {
         return "Bearer \(value)"
     }
+}
+
+struct BetaRequestUpdateBody: Codable {
+    let sentAt: Date?
+    let isFulfilled: Bool
 }
