@@ -7,37 +7,6 @@
 
 import SwiftUI
 
-struct ChartData {
-    enum DataError: Error {
-        case insufficientData
-    }
-    
-    let data: [ChartDataPoint]
-    let firstDate: Date
-    let lastDate: Date
-    let lowestValue: Double
-    let highestValue: Double
-    
-    init(data: [ChartDataPoint]) throws {
-        self.data = data
-        
-        let sortedData = data.sorted(by: { $0.value < $1.value })
-        
-        guard let firstDate = data.first?.date,
-              let lastDate = data.last?.date,
-              let highestValue = sortedData.last?.value,
-              let lowestValue = sortedData.first?.value
-        else {
-            throw DataError.insufficientData
-        }
-        
-        self.firstDate = firstDate
-        self.lastDate = lastDate
-        self.highestValue = highestValue
-        self.lowestValue = lowestValue
-    }
-}
-
 struct LineChart: Shape {
     var data: ChartData
     var shouldCloseShape: Bool
@@ -93,8 +62,6 @@ struct LineChart: Shape {
 
 struct LineChartView: View {
     var data: ChartData
-    
-    @State private var totalWidth = CGFloat(100) // no matter - just for static Preview !!
     
     var body: some View {
         VStack {

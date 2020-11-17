@@ -299,3 +299,32 @@ struct BetaRequestUpdateBody: Codable {
     let sentAt: Date?
     let isFulfilled: Bool
 }
+
+struct ChartData {
+    enum DataError: Error {
+        case insufficientData
+    }
+    
+    let data: [ChartDataPoint]
+    let firstDate: Date
+    let lastDate: Date
+    let lowestValue: Double
+    let highestValue: Double
+    
+    init(data: [ChartDataPoint]) throws {
+        self.data = data
+        
+        let sortedData = data.sorted(by: { $0.value < $1.value })
+        
+        guard let firstDate = data.first?.date,
+              let lastDate = data.last?.date
+        else {
+            throw DataError.insufficientData
+        }
+        
+        self.firstDate = firstDate
+        self.lastDate = lastDate
+        self.highestValue = data.reduce(0, { max($0, $1.value) })
+        self.lowestValue = 0
+    }
+}

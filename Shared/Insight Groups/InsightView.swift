@@ -74,6 +74,8 @@ struct InsightView: View {
                         InsightPieChartView(insightData: insightData)
                     case .lineChart:
                         InsightLineChartView(insightData: insightData)
+                    case .barChart:
+                        InsightBarChartView(insightData: insightData)
                     default:
                         VStack {
                             Spacer()

@@ -170,6 +170,7 @@ struct CreateOrUpdateInsightForm: View {
                     if insightDefinitionRequestBody.breakdownKey == nil {
                         Text(InsightDisplayMode.number.rawValue.capitalized).tag(0)
                         Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
+                        Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
                     } else {
                         Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
                         Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
@@ -202,7 +203,7 @@ struct CreateOrUpdateInsightForm: View {
                 saveButton.disabled(
                     insightDefinitionRequestBody.title.isEmpty
                     ||
-                        insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .number].contains(displayModes[selectedDisplayModeIndex])
+                        insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .number, .barChart].contains(displayModes[selectedDisplayModeIndex])
                     ||
                         insightDefinitionRequestBody.breakdownKey != nil && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])
                     
