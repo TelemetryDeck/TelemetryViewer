@@ -16,8 +16,8 @@ struct InsightView: View {
     let insight: Insight
     
     @State private var isEditViewShowing: Bool = false
-    @State private var insightAgeText: String = "Loading..."
     @State private var isLoading: Bool = false
+    @State private var loadingErrorOccurred: Bool = false
     
     let refreshTimer = Timer.publish(
         every: 1, // second
@@ -25,42 +25,24 @@ struct InsightView: View {
         in: .common
     ).autoconnect()
     
-    var newInsightAgeText: String {
-        if let insightData = api.insightData[insight.id] {
-            return "Updated \(relativeDateFormatter.localizedString(for: insightData.calculatedAt, relativeTo: Date()))"
-        }
-        
-        else {
-            return "Not yet loaded"
-        }
-    }
-    
-    let dateComponentsFormatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .full
-        return formatter
-    }()
-        
-    let relativeDateFormatter: RelativeDateTimeFormatter = {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-        return formatter
-    }()
-    
-    var humanreadableTimeInterval: String {
-        let calculatedAt = Date()
-        let calculationBeginDate = Date(timeInterval: insight.rollingWindowSize, since: calculatedAt)
-        let dateComponents = Calendar.autoupdatingCurrent.dateComponents([.day, .hour, .minute], from: calculationBeginDate, to: calculatedAt)
-        return dateComponentsFormatter.string(from: dateComponents) ?? "—"
-    }
-    
     var body: some View {
         
         VStack(alignment: .leading) {
             HStack {
                 Text(insight.title.uppercased())
                     .font(.footnote)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(.grayColor)
+                Image(systemName: isLoading ? "arrow.up.arrow.down.circle" : "arrow.counterclockwise.circle")
+                    .foregroundColor(.grayColor)
+                    .onTapGesture {
+                        updateNow()
+                        TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
+                    }
+                
+                if loadingErrorOccurred {
+                    Text("Server Error".uppercased())
+                        .foregroundColor(Color("Torange"))
+                }
                 
                 Spacer()
                 
@@ -74,11 +56,6 @@ struct InsightView: View {
                             .environmentObject(api)
                     }
             }
-            
-            Text("\(insight.subtitle ?? "")\(insight.subtitle != nil ? " • " : "")\(humanreadableTimeInterval) rolling")
-                .font(.footnote)
-                .padding(.bottom)
-                .foregroundColor(.grayColor)
             
             Group {
                 if let insightData = api.insightData[insight.id] {
@@ -118,23 +95,6 @@ struct InsightView: View {
                     Text("Oh yes we are still Loading and it is taking some time so here's a secret: This data was crunched by elves!").redacted(reason: .placeholder)
                 }
             }
-            
-            Spacer()
-            
-            Group {
-                HStack(spacing: 2) {
-                    Image(systemName: isLoading ? "arrow.up.arrow.down.circle" : "arrow.counterclockwise.circle")
-                    Text(isLoading ? "Loading..." : insightAgeText)
-                }
-                .animation(nil)
-                .font(.footnote)
-                .foregroundColor(.grayColor)
-                .shadow(color: Color("CardBackgroundColor"), radius: 3, x: 0.0, y: 0.0)
-                .onTapGesture {
-                    updateNow()
-                    TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
-                }
-            }
         }
         .frame(idealHeight: 200)
         .padding()
@@ -148,9 +108,13 @@ struct InsightView: View {
     
     func updateNow() {
         isLoading = true
+        loadingErrorOccurred = false
         api.getInsightData(for: insight, in: insightGroup, in: app) { result in
             isLoading = false
-            insightAgeText = "Updated just now"
+            
+            if ((try? result.get()) == nil) {
+                loadingErrorOccurred = true
+            }
         }
     }
     
@@ -164,8 +128,6 @@ struct InsightView: View {
             updateNow()
             TelemetryManager.shared.send(TelemetrySignal.insightUpdatedFirstTime.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
         }
-        
-        insightAgeText = newInsightAgeText
     }
 }
 

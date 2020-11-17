@@ -7,31 +7,58 @@
 
 import SwiftUI
 
+struct ChartData {
+    enum DataError: Error {
+        case insufficientData
+    }
+    
+    let data: [ChartDataPoint]
+    let firstDate: Date
+    let lastDate: Date
+    let lowestValue: Double
+    let highestValue: Double
+    
+    init(data: [ChartDataPoint]) throws {
+        self.data = data
+        
+        let sortedData = data.sorted(by: { $0.value < $1.value })
+        
+        guard let firstDate = data.first?.date,
+              let lastDate = data.last?.date,
+              let highestValue = sortedData.last?.value,
+              let lowestValue = sortedData.first?.value
+        else {
+            throw DataError.insufficientData
+        }
+        
+        self.firstDate = firstDate
+        self.lastDate = lastDate
+        self.highestValue = highestValue
+        self.lowestValue = lowestValue
+    }
+}
+
 struct LineChart: Shape {
-    var data: [ChartDataPoint]
+    var data: ChartData
     var shouldCloseShape: Bool
     
     func path(in rect: CGRect) -> Path {
-        guard let firstDate = data.first?.date,
-           let lastDate = data.last?.date,
-           let highestValue = data.sorted(by: { $0.value < $1.value }).last?.value
-        else { return Path() }
-        
-        let baselineDateInterval = firstDate.timeIntervalSinceReferenceDate
-        let furthestDateInterval = lastDate.timeIntervalSinceReferenceDate - baselineDateInterval
+        let baselineDateInterval = data.firstDate.timeIntervalSinceReferenceDate
+        let furthestDateInterval = data.lastDate.timeIntervalSinceReferenceDate - baselineDateInterval
         let numberOfTicks = furthestDateInterval
         
         let xWidthConstant = rect.size.width / CGFloat(numberOfTicks)
-        let yHeightConstant = rect.size.height / CGFloat(highestValue)
+        let yHeightConstant = rect.size.height / CGFloat(data.highestValue)
         
         let bottomRight = CGPoint(x: rect.size.width, y: rect.size.height)
         let bottomleft = CGPoint(x: 0, y: rect.size.height)
         
         let pathPoints: [CGPoint] = {
             var pathPoints: [CGPoint] = []
-            for data in self.data {
+            for data in self.data.data {
                 let dayOffset = CGFloat(data.date.timeIntervalSinceReferenceDate - baselineDateInterval) * xWidthConstant
                 let valueOffset = CGFloat(data.value) * yHeightConstant
+                
                 pathPoints.append(CGPoint(x: dayOffset, y: rect.size.height - valueOffset))
             }
             return pathPoints
@@ -46,7 +73,7 @@ struct LineChart: Shape {
                 path.move(to: firstPoint)
             }
         }
-            
+        
         for point in pathPoints {
             path.addLine(to: point)
         }
@@ -65,13 +92,59 @@ struct LineChart: Shape {
 }
 
 struct LineChartView: View {
-    var data: [ChartDataPoint]
+    var data: ChartData
+    
+    @State private var totalWidth = CGFloat(100) // no matter - just for static Preview !!
     
     var body: some View {
-        ZStack {
-            LineChart(data: data, shouldCloseShape: true).fill(Color.accentColor.opacity(0.2))
-            LineChart(data: data, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+        VStack {
+            HStack {
+                ZStack {
+                    LineChart(data: data, shouldCloseShape: true).fill(
+                        LinearGradient(gradient: Gradient(colors: [Color.accentColor.opacity(0.2), Color.accentColor.opacity(0.0)]), startPoint: .top, endPoint: .bottom)
+                    )
+                    LineChart(data: data, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                }
+                
+  
+                    GeometryReader { reader in
+                        let lastValue = data.data.last!.value
+                        let percentage = 1 - (lastValue / (data.highestValue - data.lowestValue))
+                            
+                        ZStack {
+                            
+                            if lastValue != data.lowestValue {
+                                Text(data.lowestValue.stringValue)
+                                    .position(x: 10, y: reader.size.height)
+                            }
+                            
+                            if lastValue != data.highestValue {
+                                Text(data.highestValue.stringValue)
+                                    .position(x: 10, y: 0)
+                            }
+                            
+                            Text(lastValue.stringValue)
+                                .frame(width: 30)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundColor(.accentColor)
+                                .position(x: 10, y: reader.size.height * CGFloat(percentage))
+                        }
+                    }
+                    .frame(width: 30)
+            }
+            
+            
+            HStack {
+                Text(data.firstDate, style: .date)
+                Spacer()
+                Text(data.lastDate, style: .date)
+                    .padding(.trailing, 35)
+            }
+            
+            
         }
+        .font(.footnote)
+        .foregroundColor(.grayColor)
     }
     
     func yHeightConstant(_ height: CGFloat, range: Double) -> CGFloat {
@@ -90,18 +163,20 @@ struct LineChartView: View {
 
 struct LineChartView_Previews: PreviewProvider {
     static var previews: some View {
-        LineChartView(data: [
+        let chartData = try! ChartData(data: [
             .init(date: Date(timeIntervalSinceNow: -3600*24*9), value: 1),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*8), value: 2),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*7), value: 3),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*6), value: 4),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*4), value: 3),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*3), value: 6),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*2), value: 5),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*1), value: 8),
+            .init(date: Date(timeIntervalSinceNow: -3600*24*8), value: 20),
+            .init(date: Date(timeIntervalSinceNow: -3600*24*7), value: 30),
+            .init(date: Date(timeIntervalSinceNow: -3600*24*6), value: 40),
+            .init(date: Date(timeIntervalSinceNow: -3600*24*4), value: 30),
+            .init(date: Date(timeIntervalSinceNow: -3600*24*3), value: 80),
+            .init(date: Date(timeIntervalSinceNow: -3600*24*2), value: 24),
+            .init(date: Date(timeIntervalSinceNow: -3600*24*1), value: 60),
         ])
+        
+        LineChartView(data: chartData)
         .padding()
-        .previewLayout(.fixed(width: 400, height: 400))
+        .previewLayout(.fixed(width: 400, height: 200))
     }
 }
 

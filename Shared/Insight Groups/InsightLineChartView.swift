@@ -23,13 +23,7 @@ struct InsightLineChartView: View {
 
     
     var body: some View {
-        #if os(macOS)
-        let paddingBottom: CGFloat = -37
-        #else
-        let paddingBottom: CGFloat = -40
-        #endif
-        
-        LineChartView(data: insightData.data.compactMap {
+        let dataPoints: [ChartDataPoint] = insightData.data.compactMap { 
             guard let dayStringValue = $0["day"],
                   let day = dateFormatter.date(from: dayStringValue),
                   let countStringValue = $0["count"],
@@ -37,9 +31,14 @@ struct InsightLineChartView: View {
             else { return nil }
                         
             return ChartDataPoint(date: day, value: count)
-        })
-            .padding(.bottom, paddingBottom)
-            .padding(.leading, -16)
+        }
+        
+        if let chartData = try? ChartData(data: dataPoints) {
+            LineChartView(data: chartData)
+        } else {
+            Text("Not Enough Data").foregroundColor(.grayColor)
+        }
+        
     }
 }
 

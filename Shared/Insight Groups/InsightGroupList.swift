@@ -33,9 +33,14 @@ struct InsightGroupList: View {
                         }
                     }
                 } else {
-                    
                     InsightsGrid(app: app, insightGroup: insightGroup)
                 }
+                
+                Spacer()
+                
+                Text("Insights will automatically refresh once a minute")
+                    .font(.footnote)
+                    .foregroundColor(.grayColor)
             }
             
             .onAppear {
