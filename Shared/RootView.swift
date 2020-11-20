@@ -16,22 +16,7 @@ struct RootView: View {
     var body: some View {
         NavigationView {
             SidebarView(selectedApp: $selectedApp)
-//                .sheet(isPresented: $shouldShowJoinOrgScreen) {
-//                    #if os(macOS)
-//                    if organizationJoinRequest != nil {
-//                        JoinOrganizationView(organizationJoinRequest: organizationJoinRequest!)
-//                            .environmentObject(api)
-//                    }
-//                    #else
-//                    NavigationView {
-//                        if organizationJoinRequest != nil {
-//                            JoinOrganizationView(organizationJoinRequest: organizationJoinRequest!)
-//                                .environmentObject(api)
-//                        }
-//                    }
-//                    #endif
-//                }
-            Text("Please Select an App")
+            Text(api.apps.count > 0 ? "Please Select an App" : "Welcome to Telemetry! Please create an app by tapping the plus button in the top left.")
                 
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
