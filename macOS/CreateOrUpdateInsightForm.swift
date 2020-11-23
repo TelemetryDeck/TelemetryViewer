@@ -167,14 +167,10 @@ struct CreateOrUpdateInsightForm: View {
             LazyVGrid(columns: columns, alignment: .trailing) {
                 Text("Display Mode")
                 Picker(selection: $selectedDisplayModeIndex, label: Text("")) {
-                    if insightDefinitionRequestBody.breakdownKey == nil {
-                        Text(InsightDisplayMode.raw.rawValue.capitalized).tag(0)
-                        Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
-                        Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
-                    } else {
-                        Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
-                        Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
-                    }
+                    Text(InsightDisplayMode.raw.rawValue.capitalized).tag(0)
+                    Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
+                    Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
+                    Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(EdgeInsets(top: 1, leading: -7, bottom: 1, trailing: 0))
@@ -200,15 +196,7 @@ struct CreateOrUpdateInsightForm: View {
                 
                 Spacer()
                 cancelButton
-                saveButton.disabled(
-                    insightDefinitionRequestBody.title.isEmpty
-                    ||
-                        insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .raw, .barChart].contains(displayModes[selectedDisplayModeIndex])
-                    ||
-                        insightDefinitionRequestBody.breakdownKey != nil && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])
-                    
-                    )
-                
+                saveButton.disabled(insightDefinitionRequestBody.title.isEmpty)
             }
             
         }

@@ -130,13 +130,10 @@ struct CreateOrUpdateInsightForm: View {
                 Section(header: Text("Display")) {
                     
                     Picker(selection: $selectedDisplayModeIndex, label: Text("Display As")) {
-                        if insightDefinitionRequestBody.breakdownKey == nil {
-                            Text(InsightDisplayMode.raw.rawValue.capitalized).tag(0)
-                            Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
-                        } else {
-                            Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
-                            Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
-                        }
+                        Text(InsightDisplayMode.raw.rawValue.capitalized).tag(0)
+                        Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
+                        Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
+                        Text(InsightDisplayMode.pieChart.rawValue.capitalized).tag(3)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(EdgeInsets(top: 1, leading: -7, bottom: 1, trailing: 0))
@@ -160,16 +157,7 @@ struct CreateOrUpdateInsightForm: View {
                 .navigationTitle(editMode ? "Edit \(insightDefinitionRequestBody.title)" : "New Insight")
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
-                        saveButton.disabled(
-                            insightDefinitionRequestBody.title.isEmpty
-                            ||
-                                selectedDisplayModeIndex < 0
-                            ||
-                                insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .raw].contains(displayModes[selectedDisplayModeIndex])
-                            ||
-                                insightDefinitionRequestBody.breakdownKey != nil && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])
-                            
-                            )
+                        saveButton.disabled(insightDefinitionRequestBody.title.isEmpty)
                     }
                     
                     ToolbarItem(placement: .cancellationAction) {
