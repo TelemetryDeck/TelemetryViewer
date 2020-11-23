@@ -9,12 +9,8 @@ import SwiftUI
 
 struct RawChartView: View {
     var insightDataID: UUID
-    
     @EnvironmentObject var api: APIRepresentative
-    
-    private var insightData: InsightDataTransferObject? {
-        api.insightData[insightDataID]
-    }
+    private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
     
     var body: some View {
         if let insightData = insightData, !insightData.data.isEmpty {
@@ -111,10 +107,10 @@ struct SingleValueView: View {
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
-                Text(insightData.data.first?.formattedYAxisValue ?? "0")
+                Text(insightData.data.last?.yAxisString ?? "0")
                     .font(.system(size: 28, weight: .light, design: .rounded))
                 
-                xAxisDefinition(insightData: insightData.data.first!, style: .date)
+                xAxisDefinition(insightData: insightData.data.last!, style: .date)
                     .foregroundColor(.gray)
                     .font(.system(size: 12, weight: .light, design: .default))
             }
@@ -131,7 +127,7 @@ struct SingleValueView: View {
     }
     
     func xAxisDefinition(insightData: InsightData, style: Text.DateStyle) -> Text {
-        if let date = insightData.xAxisAsDate {
+        if let date = insightData.xAxisDate {
             return Text(date, style: style)
         }
         
@@ -159,14 +155,14 @@ struct SingleValueView: View {
     
     func secondaryText() -> Text {
         guard insightData.data.count > 1 else { return Text("") }
-        let previousData = insightData.data[1]
+        let previousData = insightData.data[0]
         
-        guard let currentValue = insightData.data[0].yAxisNumber, let previousValue = insightData.data[1].yAxisNumber else { return xAxisDefinition(insightData: insightData.data[1], style: .date) }
+        guard let currentValue = insightData.data[1].yAxisNumber, let previousValue = insightData.data[0].yAxisNumber else { return xAxisDefinition(insightData: insightData.data[0], style: .date) }
         
         let percentage: Double = (currentValue.doubleValue - previousValue.doubleValue) / previousValue.doubleValue
         
         
-        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, style: .relative) + Text(" ago (\(previousData.formattedYAxisValue ))")
+        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, style: .date) + Text(" (\(previousData.yAxisString ))")
     }
 }
 
@@ -183,7 +179,7 @@ struct RawTableView: View {
             LazyVGrid(columns: columns) {
                 ForEach(insightData.data, id: \.xAxisValue) { dataRow in
                     Group {
-                        if let xAxisDate = dataRow.xAxisAsDate {
+                        if let xAxisDate = dataRow.xAxisDate {
                             
                             HStack {
                                 Text(xAxisDate, style: .date)
@@ -199,7 +195,7 @@ struct RawTableView: View {
                     .font(.footnote)
                     .foregroundColor(Color.grayColor)
                     
-                    Text(dataRow.formattedYAxisValue ?? "–")
+                    Text(dataRow.yAxisString )
                         .font(.system(size: 28, weight: .light, design: .rounded))
                 }
             }

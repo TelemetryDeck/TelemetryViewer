@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LineChart: Shape {
-    var data: ChartData
+    var data: ChartDataSet
     var shouldCloseShape: Bool
     
     func path(in rect: CGRect) -> Path {
@@ -25,8 +25,8 @@ struct LineChart: Shape {
         let pathPoints: [CGPoint] = {
             var pathPoints: [CGPoint] = []
             for data in self.data.data {
-                let dayOffset = CGFloat(data.date.timeIntervalSinceReferenceDate - baselineDateInterval) * xWidthConstant
-                let valueOffset = CGFloat(data.value) * yHeightConstant
+                let dayOffset = CGFloat(1) // TODO
+                let valueOffset = CGFloat(data.yAxisValue) * yHeightConstant
                 
                 pathPoints.append(CGPoint(x: dayOffset, y: rect.size.height - valueOffset))
             }
@@ -61,7 +61,7 @@ struct LineChart: Shape {
 }
 
 struct LineChartView: View {
-    var data: ChartData
+    var data: ChartDataSet
     
     var body: some View {
         VStack {
@@ -75,7 +75,7 @@ struct LineChartView: View {
                 
   
                     GeometryReader { reader in
-                        let lastValue = data.data.last!.value
+                        let lastValue = data.data.last!.yAxisValue
                         let percentage = 1 - (lastValue / (data.highestValue - data.lowestValue))
                             
 //                        ZStack {
@@ -128,22 +128,22 @@ struct LineChartView: View {
     
 }
 
-struct LineChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        let chartData = try! ChartData(data: [
-            .init(date: Date(timeIntervalSinceNow: -3600*24*9), value: 1),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*8), value: 20),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*7), value: 30),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*6), value: 40),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*4), value: 30),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*3), value: 80),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*2), value: 24),
-            .init(date: Date(timeIntervalSinceNow: -3600*24*1), value: 60),
-        ])
-        
-        LineChartView(data: chartData)
-        .padding()
-        .previewLayout(.fixed(width: 400, height: 200))
-    }
-}
-
+//struct LineChartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let chartData = try! ChartDataSet(data: [
+//            .init(date: Date(timeIntervalSinceNow: -3600*24*9), value: 1),
+//            .init(date: Date(timeIntervalSinceNow: -3600*24*8), value: 20),
+//            .init(date: Date(timeIntervalSinceNow: -3600*24*7), value: 30),
+//            .init(date: Date(timeIntervalSinceNow: -3600*24*6), value: 40),
+//            .init(date: Date(timeIntervalSinceNow: -3600*24*4), value: 30),
+//            .init(date: Date(timeIntervalSinceNow: -3600*24*3), value: 80),
+//            .init(date: Date(timeIntervalSinceNow: -3600*24*2), value: 24),
+//            .init(date: Date(timeIntervalSinceNow: -3600*24*1), value: 60),
+//        ])
+//        
+//        LineChartView(data: chartData)
+//        .padding()
+//        .previewLayout(.fixed(width: 400, height: 200))
+//    }
+//}
+//

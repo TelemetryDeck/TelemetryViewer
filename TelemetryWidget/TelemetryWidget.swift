@@ -50,7 +50,7 @@ struct TelemetryWidgetEntryView : View {
             VStack(alignment: .leading) {
                 Text(entry.insight.title.uppercased())
                     .font(.system(size: 12, weight: .medium, design: .default))
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(Color("Torange"))
                 InsightNumberView(insightData: entry.insight)
                 Spacer()
             }

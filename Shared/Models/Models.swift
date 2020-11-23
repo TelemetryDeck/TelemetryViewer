@@ -117,13 +117,17 @@ struct InsightData: Codable {
         return numberFormatter.number(from: yAxisValue)
     }
     
-    var formattedYAxisValue: String {
+    var yAxisDouble: Double? {
+        return yAxisNumber?.doubleValue
+    }
+    
+    var yAxisString: String {
         guard let yAxisValue = yAxisValue else { return "0" }
         guard let yAxisNumber = yAxisNumber else { return yAxisValue }
         return numberFormatter.string(from: yAxisNumber) ?? yAxisValue
     }
     
-    var xAxisAsDate: Date? {
+    var xAxisDate: Date? {
         return Formatter.iso8601noFS.date(from: xAxisValue)
     }
 }
@@ -215,8 +219,18 @@ struct InsightDefinitionRequestBody: Codable {
 }
 
 struct ChartDataPoint: Hashable {
-    let date: Date
-    let value: Double
+    let xAxisValue: String
+    let yAxisValue: Double
+    
+    init(insightData: InsightData) throws {
+        self.xAxisValue = insightData.xAxisValue
+        
+        if let yAxisValue = insightData.yAxisDouble {
+            self.yAxisValue = yAxisValue
+        } else {
+            throw ChartDataSet.DataError.insufficientData
+        }
+    }
 }
 
 enum RegistrationStatus: String, Codable {
@@ -346,7 +360,7 @@ struct BetaRequestUpdateBody: Codable {
     let isFulfilled: Bool
 }
 
-struct ChartData {
+struct ChartDataSet {
     enum DataError: Error {
         case insufficientData
     }
@@ -357,18 +371,18 @@ struct ChartData {
     let lowestValue: Double
     let highestValue: Double
     
-    init(data: [ChartDataPoint]) throws {
-        self.data = data
+    init(data: [InsightData]) throws {
+        self.data = try data.map { try ChartDataPoint(insightData: $0) }
         
-        guard let firstDate = data.first?.date,
-              let lastDate = data.last?.date
+        guard let firstDate = data.first?.xAxisDate,
+              let lastDate = data.last?.xAxisDate
         else {
             throw DataError.insufficientData
         }
         
         self.firstDate = firstDate
         self.lastDate = lastDate
-        self.highestValue = data.reduce(0, { max($0, $1.value) })
+        self.highestValue = self.data.reduce(0, { max($0, $1.yAxisValue) })
         self.lowestValue = 0
     }
 }
