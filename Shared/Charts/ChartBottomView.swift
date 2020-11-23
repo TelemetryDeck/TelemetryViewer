@@ -10,7 +10,7 @@ import SwiftUI
 struct ChartBottomView: View {
     var insightData: InsightDataTransferObject?
     
-    private let widthPerLabel: CGFloat = 140
+    private let widthPerLabel: CGFloat = 160
     
     var body: some View {
         GeometryReader { geometry in

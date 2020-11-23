@@ -218,7 +218,9 @@ struct InsightDefinitionRequestBody: Codable {
     }
 }
 
-struct ChartDataPoint: Hashable {
+struct ChartDataPoint: Hashable, Identifiable {
+    var id: String { return xAxisValue }
+    
     let xAxisValue: String
     let yAxisValue: Double
     

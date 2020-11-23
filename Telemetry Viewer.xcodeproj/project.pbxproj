@@ -7,14 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC04C3DD252364C000483AF5 /* InsightLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04C3DC252364C000483AF5 /* InsightLineChartView.swift */; };
-		DC04C3DE252364C000483AF5 /* InsightLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04C3DC252364C000483AF5 /* InsightLineChartView.swift */; };
 		DC07D8F3255466D2007A89D6 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07D8F2255466D2007A89D6 /* AppRootView.swift */; };
 		DC07D8F4255466D2007A89D6 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07D8F2255466D2007A89D6 /* AppRootView.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
-		DC2328722522740900DB6145 /* InsightPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2328712522740900DB6145 /* InsightPieChartView.swift */; };
-		DC2328732522740900DB6145 /* InsightPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2328712522740900DB6145 /* InsightPieChartView.swift */; };
 		DC25A573256A87D600EE84DA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC25A577256BBCF700EE84DA /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
@@ -171,10 +167,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DC04C3DC252364C000483AF5 /* InsightLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightLineChartView.swift; sourceTree = "<group>"; };
 		DC07D8F2255466D2007A89D6 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
-		DC2328712522740900DB6145 /* InsightPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightPieChartView.swift; sourceTree = "<group>"; };
 		DC25A58C256BF1D800EE84DA /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBottomView.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
@@ -285,8 +279,6 @@
 				DCB28D6B2550AF0B0032B9AD /* InsightsGrid.swift */,
 				DC53394425222FC600D9C889 /* NewInsightGroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
-				DC2328712522740900DB6145 /* InsightPieChartView.swift */,
-				DC04C3DC252364C000483AF5 /* InsightLineChartView.swift */,
 				DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */,
 			);
 			path = "Insight Groups";
@@ -437,11 +429,11 @@
 				DC45BB1824E1F01F004E6392 /* SidebarView.swift */,
 				DC07D8F2255466D2007A89D6 /* AppRootView.swift */,
 				DC4F7DBC25069C3200B54561 /* NewAppView.swift */,
-				DC591394252DF93F007360A9 /* Charts */,
 				DCB02B70250277C300304964 /* Generic Views */,
 				DCB02B692502764200304964 /* Login Register */,
 				DC98AAB9250A672300FF26FD /* App Settings */,
 				DCF7CD3E254A068500BFA23B /* Lexicon */,
+				DC591394252DF93F007360A9 /* Charts */,
 				DC53393E25222C0900D9C889 /* Insight Groups */,
 				DCB02B67250027E400304964 /* Signals */,
 				DC90D08925063A5700634B72 /* Settings */,
@@ -660,7 +652,6 @@
 				DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				DC90D08B25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */,
-				DC2328722522740900DB6145 /* InsightPieChartView.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				DC53394625222FC600D9C889 /* NewInsightGroupView.swift in Sources */,
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
@@ -697,7 +688,6 @@
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC53394025222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
-				DC04C3DD252364C000483AF5 /* InsightLineChartView.swift in Sources */,
 				DC4E2F642563FA48001AD7B4 /* LineChartView.swift in Sources */,
 				DCB28D6C2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */,
@@ -723,7 +713,6 @@
 				DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
 				DC53394D2522620E00D9C889 /* CreateOrUpdateInsightForm.swift in Sources */,
-				DC2328732522740900DB6145 /* InsightPieChartView.swift in Sources */,
 				DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB02B732502781A00304964 /* LoginView.swift in Sources */,
 				DC53394525222FC600D9C889 /* NewInsightGroupView.swift in Sources */,
@@ -765,7 +754,6 @@
 				DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
-				DC04C3DE252364C000483AF5 /* InsightLineChartView.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,

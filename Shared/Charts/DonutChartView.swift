@@ -7,66 +7,36 @@
 
 import SwiftUI
 
-struct DonutChartDataPoint: Identifiable {
-    let id: String
-    let value: Double
-
-    init(key: String, value: Double) {
-        self.id = key
-        self.value = value
-    }
-}
-
-struct PieSegment: Shape, Identifiable, Equatable {
-    static func == (lhs: PieSegment, rhs: PieSegment) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-    let data: DonutChartDataPoint
-    var id: String { data.id }
-    var startAngle: Double
-    var amount: Double
-    var animatableData: AnimatablePair<Double, Double> {
-        get { AnimatablePair(startAngle, amount) }
-        set {
-            startAngle = newValue.first
-            amount = newValue.second
-        }
-    }
-    
-    func path(in rect: CGRect) -> Path {
-        let radius = min(rect.width, rect.height) * 0.4
-        let center = CGPoint(x: rect.width * 0.5, y: rect.height * 0.5)
-        
-        var path = Path()
-        path.addRelativeArc(center: center, radius: radius, startAngle: Angle(radians: startAngle), delta: Angle(radians: amount - 0.02))
-        return path
-    }
-}
-
 struct DonutChartView: View {
-    let pieSegments: [PieSegment]
-    @State var selectedSegmentIndex: Int = 0
+    var insightDataID: UUID
+    @EnvironmentObject var api: APIRepresentative
+    private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
+    private var chartDataSet: ChartDataSet? {
+        guard let insightData = insightData else { return nil }
+        return try? ChartDataSet(data: insightData.data)
+    }
+    
+    
+    private var pieSegments: [PieSegment] {
+        var segments = [PieSegment]()
+        let total = chartDataSet?.data.reduce(0) { $0 + $1.yAxisValue } ?? 0
+        var startAngle = -Double.pi / 2
+        
+        for data in chartDataSet?.data ?? [] {
+            let amount = .pi * 2 * (data.yAxisValue / total)
+            let segment = PieSegment(data: data, startAngle: startAngle, amount: amount)
+            segments.append(segment)
+            startAngle += amount
+        }
+        
+        return segments
+    }
+    @State private var selectedSegmentIndex: Int = 0
     
     let numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
         return numberFormatter
     }()
-    
-    init(dataPoints: [DonutChartDataPoint]) {
-        var segments = [PieSegment]()
-        let total = dataPoints.reduce(0) { $0 + $1.value }
-        var startAngle = -Double.pi / 2
-
-        for data in dataPoints {
-            let amount = .pi * 2 * (data.value / total)
-            let segment = PieSegment(data: data, startAngle: startAngle, amount: amount)
-            segments.append(segment)
-            startAngle += amount
-        }
-
-        pieSegments = segments
-    }
     
     var body: some View {
         let chart = ZStack {
@@ -91,8 +61,8 @@ struct DonutChartView: View {
             
             if pieSegments.count > 0 {
                 Text(pieSegments[selectedSegmentIndex].data.id)
-                Text("\(numberFormatter.string(from: NSNumber(value: pieSegments[selectedSegmentIndex].data.value)) ?? "–")")
-                .font(.system(size:48, weight: .black, design: .monospaced))
+                Text("\(numberFormatter.string(from: NSNumber(value: pieSegments[selectedSegmentIndex].data.yAxisValue)) ?? "–")")
+                    .font(.system(size:48, weight: .black, design: .monospaced))
             } else {
                 HStack {
                     Spacer()
@@ -115,19 +85,65 @@ struct DonutChartView: View {
     }
 }
 
-struct DonutChartView_Previews: PreviewProvider {
-    static var data: [DonutChartDataPoint] {
-            [
-                DonutChartDataPoint(key: "macOS 10.15 and a Long Name", value: 50),
-                DonutChartDataPoint(key: "macOS 11", value: 64),
-                DonutChartDataPoint(key: "iOS 14.1", value: 20),
-                DonutChartDataPoint(key: "iOS 14.2", value: 64)
-            ]
-        }
+
+struct DonutChartDataPoint: Identifiable {
+    let id: String
+    let value: Double
     
-    static var previews: some View {
-        DonutChartView(dataPoints: data)
-        .padding()
-        .previewLayout(.fixed(width: 400, height: 400))
+    init(key: String, value: Double) {
+        self.id = key
+        self.value = value
     }
 }
+
+struct PieSegment: Shape, Identifiable, Equatable {
+    static func == (lhs: PieSegment, rhs: PieSegment) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    let data: ChartDataPoint
+    var id: String { data.id }
+    var startAngle: Double
+    var amount: Double
+    var animatableData: AnimatablePair<Double, Double> {
+        get { AnimatablePair(startAngle, amount) }
+        set {
+            startAngle = newValue.first
+            amount = newValue.second
+        }
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        let radius = min(rect.width, rect.height) * 0.4
+        let center = CGPoint(x: rect.width * 0.5, y: rect.height * 0.5)
+        
+        var path = Path()
+        path.addRelativeArc(center: center, radius: radius, startAngle: Angle(radians: startAngle), delta: Angle(radians: amount - 0.02))
+        return path
+    }
+}
+
+//struct OldDonutChartView: View {
+//
+//    init(dataPoints: [DonutChartDataPoint]) {
+//    }
+//
+////    var body: some View
+//}
+
+//struct DonutChartView_Previews: PreviewProvider {
+//    static var data: [DonutChartDataPoint] {
+//            [
+//                DonutChartDataPoint(key: "macOS 10.15 and a Long Name", value: 50),
+//                DonutChartDataPoint(key: "macOS 11", value: 64),
+//                DonutChartDataPoint(key: "iOS 14.1", value: 20),
+//                DonutChartDataPoint(key: "iOS 14.2", value: 64)
+//            ]
+//        }
+//
+//    static var previews: some View {
+//        DonutChartView(dataPoints: data)
+//        .padding()
+//        .previewLayout(.fixed(width: 400, height: 400))
+//    }
+//}

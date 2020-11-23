@@ -63,7 +63,7 @@ struct InsightView: View {
                     case .raw:
                         RawChartView(insightDataID: insight.id)
                     case .pieChart:
-                        InsightPieChartView(insightData: insightData)
+                        DonutChartView(insightDataID: insight.id)
                     case .lineChart:
                         LineChartView(insightDataID: insight.id)
                     case .barChart:
@@ -74,7 +74,7 @@ struct InsightView: View {
                             
                             HStack {
                                 Spacer()
-                                Text("\(insightData.displayMode.rawValue.capitalized) is not supported yet in this version.")
+                                Text("\(insightData.displayMode.rawValue.capitalized) is not supported in this version.")
                                     .font(.footnote)
                                     .foregroundColor(.grayColor)
                                     .padding(.vertical)
