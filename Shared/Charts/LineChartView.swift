@@ -12,11 +12,9 @@ struct LineChart: Shape {
     var shouldCloseShape: Bool
     
     func path(in rect: CGRect) -> Path {
-        let baselineDateInterval = data.firstDate.timeIntervalSinceReferenceDate
-        let furthestDateInterval = data.lastDate.timeIntervalSinceReferenceDate - baselineDateInterval
-        let numberOfTicks = furthestDateInterval
+        let numberOfTicks = data.data.count
         
-        let xWidthConstant = rect.size.width / CGFloat(numberOfTicks)
+        let xWidthConstant = rect.size.width / CGFloat(numberOfTicks - 1)
         let yHeightConstant = rect.size.height / CGFloat(data.highestValue)
         
         let bottomRight = CGPoint(x: rect.size.width, y: rect.size.height)
@@ -24,8 +22,8 @@ struct LineChart: Shape {
         
         let pathPoints: [CGPoint] = {
             var pathPoints: [CGPoint] = []
-            for data in self.data.data {
-                let dayOffset = CGFloat(1) // TODO
+            for (index, data) in self.data.data.enumerated() {
+                let dayOffset = xWidthConstant * CGFloat(index)
                 let valueOffset = CGFloat(data.yAxisValue) * yHeightConstant
                 
                 pathPoints.append(CGPoint(x: dayOffset, y: rect.size.height - valueOffset))
@@ -61,72 +59,64 @@ struct LineChart: Shape {
 }
 
 struct LineChartView: View {
-    var data: ChartDataSet
+    var insightDataID: UUID
+    @EnvironmentObject var api: APIRepresentative
+    private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
+    private var chartDataSet: ChartDataSet? {
+        guard let insightData = insightData else { return nil }
+        return try? ChartDataSet(data: insightData.data)
+    }
     
     var body: some View {
-        VStack {
-            HStack {
-                ZStack {
-                    LineChart(data: data, shouldCloseShape: true).fill(
-                        LinearGradient(gradient: Gradient(colors: [Color.accentColor.opacity(0.2), Color.accentColor.opacity(0.0)]), startPoint: .top, endPoint: .bottom)
-                    )
-                    LineChart(data: data, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+        if let chartDataSet = chartDataSet {
+            VStack {
+                HStack {
+                    ZStack {
+                        LineChart(data: chartDataSet, shouldCloseShape: true).fill(
+                            LinearGradient(gradient: Gradient(colors: [Color.accentColor.opacity(0.2), Color.accentColor.opacity(0.0)]), startPoint: .top, endPoint: .bottom)
+                        )
+                        LineChart(data: chartDataSet, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                    }
+                    
+      
+                        GeometryReader { reader in
+                            let lastValue = chartDataSet.data.last!.yAxisValue
+                            let percentage = 1 - (lastValue / (chartDataSet.highestValue - chartDataSet.lowestValue))
+                                
+                            ZStack {
+                                
+                                if lastValue != chartDataSet.lowestValue {
+                                    Text(chartDataSet.lowestValue.stringValue)
+                                        .position(x: 10, y: reader.size.height)
+                                }
+                                
+                                if lastValue != chartDataSet.highestValue {
+                                    Text(chartDataSet.highestValue.stringValue)
+                                        .position(x: 10, y: 0)
+                                }
+                                
+                                Text(lastValue.stringValue)
+                                    .frame(width: 30)
+                                    .multilineTextAlignment(.trailing)
+                                    .foregroundColor(.accentColor)
+                                    .position(x: 10, y: reader.size.height * CGFloat(percentage))
+                            }
+                        }
+                        .frame(width: 30)
                 }
                 
-  
-                    GeometryReader { reader in
-                        let lastValue = data.data.last!.yAxisValue
-                        let percentage = 1 - (lastValue / (data.highestValue - data.lowestValue))
-                            
-//                        ZStack {
-//                            
-//                            if lastValue != data.lowestValue {
-//                                Text(data.lowestValue.stringValue)
-//                                    .position(x: 10, y: reader.size.height)
-//                            }
-//                            
-//                            if lastValue != data.highestValue {
-//                                Text(data.highestValue.stringValue)
-//                                    .position(x: 10, y: 0)
-//                            }
-//                            
-//                            Text(lastValue.stringValue)
-//                                .frame(width: 30)
-//                                .multilineTextAlignment(.trailing)
-//                                .foregroundColor(.accentColor)
-//                                .position(x: 10, y: reader.size.height * CGFloat(percentage))
-//                        }
-                    }
-                    .frame(width: 30)
-            }
-            
-            
-            HStack {
-                Text(data.firstDate, style: .date)
-                Spacer()
-                Text(data.lastDate, style: .date)
+                
+                ChartBottomView(insightData: insightData)
                     .padding(.trailing, 35)
             }
-            
-            
+            .font(.footnote)
+            .foregroundColor(Color.grayColor)
+        } else {
+            Text("Cannot display this as a Chart")
         }
-        .font(.footnote)
-        .foregroundColor(Color.grayColor)
     }
-    
-    func yHeightConstant(_ height: CGFloat, range: Double) -> CGFloat {
-        height / CGFloat(range)
-    }
-    
-    func xWidthConstant(_ width: CGFloat, count: Int) -> CGFloat {
-        width / CGFloat(count)
-    }
-    
-    func valueOffset(_ temperature: Double, valueHeight: CGFloat) -> CGFloat {
-        CGFloat(temperature) * valueHeight
-    }
-    
 }
+
 
 //struct LineChartView_Previews: PreviewProvider {
 //    static var previews: some View {

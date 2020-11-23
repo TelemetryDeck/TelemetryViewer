@@ -65,7 +65,7 @@ struct InsightView: View {
                     case .pieChart:
                         InsightPieChartView(insightData: insightData)
                     case .lineChart:
-                        InsightLineChartView(insightData: insightData)
+                        LineChartView(insightDataID: insight.id)
                     case .barChart:
                         BarChartView(insightDataID: insight.id)
                     default:

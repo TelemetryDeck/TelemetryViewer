@@ -366,22 +366,12 @@ struct ChartDataSet {
     }
     
     let data: [ChartDataPoint]
-    let firstDate: Date
-    let lastDate: Date
     let lowestValue: Double
     let highestValue: Double
     
     init(data: [InsightData]) throws {
         self.data = try data.map { try ChartDataPoint(insightData: $0) }
         
-        guard let firstDate = data.first?.xAxisDate,
-              let lastDate = data.last?.xAxisDate
-        else {
-            throw DataError.insufficientData
-        }
-        
-        self.firstDate = firstDate
-        self.lastDate = lastDate
         self.highestValue = self.data.reduce(0, { max($0, $1.yAxisValue) })
         self.lowestValue = 0
     }

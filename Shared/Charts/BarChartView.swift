@@ -17,21 +17,21 @@ struct BarChartView: View {
     }
     
     var body: some View {
-        
         if let chartDataSet = chartDataSet {
-            GeometryReader { geometry in
-                HStack(alignment: .bottom) {
-                    ForEach(chartDataSet.data, id: \.self) { dataEntry in
-                        BarView(data: chartDataSet, dataEntry: dataEntry, geometry: geometry)
+            VStack(spacing: 12) {
+                GeometryReader { geometry in
+                    HStack(alignment: .bottom) {
+                        ForEach(chartDataSet.data, id: \.self) { dataEntry in
+                            BarView(data: chartDataSet, dataEntry: dataEntry, geometry: geometry)
+                        }
                     }
                 }
+                .padding(.bottom)
+                ChartBottomView(insightData: insightData)
             }
-            .padding(.bottom)
         } else {
             Text("Cannot display this as a Chart")
         }
-        
-
     }
 }
 
@@ -56,6 +56,7 @@ struct BarView: View {
                 .font(.footnote)
                 .foregroundColor(isHovering ? .grayColor : .clear)
                 .offset(x: 0, y: isHovering ? 0 : 20)
+                .padding(.horizontal, -20)
             RoundedCorners(tl: 5, tr: 5, bl: 0, br: 0)
                 .fill(isHovering ? Color.accentColor : Color.accentColor.opacity(0.7))
                 .frame(height: percentage.isNaN ? 0 : percentage * geometry.size.height)
