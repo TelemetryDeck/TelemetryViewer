@@ -56,6 +56,13 @@ enum InsightDisplayMode: String, Codable {
     case pieChart
 }
 
+enum InsightGroupByInterval: String, Codable {
+    case hour
+    case day
+    case week
+    case month
+}
+
 struct Insight: Codable, Identifiable {
     var id: UUID
     var group: [String: UUID]
@@ -78,6 +85,9 @@ struct Insight: Codable, Identifiable {
     
     /// If set, break down the values in this key
     var breakdownKey: String?
+    
+    /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
+    var groupBy: InsightGroupByInterval?
 
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
@@ -89,6 +99,33 @@ struct Insight: Codable, Identifiable {
 struct InsightData: Codable {
     let xAxisValue: String
     let yAxisValue: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case xAxisValue
+        case yAxisValue
+    }
+    
+    private let numberFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.usesGroupingSeparator = true
+        return numberFormatter
+    }()
+    
+    var yAxisNumber: NSNumber? {
+        guard let yAxisValue = yAxisValue else { return NSNumber(value: 0) }
+        return numberFormatter.number(from: yAxisValue)
+    }
+    
+    var formattedYAxisValue: String {
+        guard let yAxisValue = yAxisValue else { return "0" }
+        guard let yAxisNumber = yAxisNumber else { return yAxisValue }
+        return numberFormatter.string(from: yAxisNumber) ?? yAxisValue
+    }
+    
+    var xAxisAsDate: Date? {
+        return Formatter.iso8601noFS.date(from: xAxisValue)
+    }
 }
 
 struct InsightDataTransferObject: Codable {
@@ -112,6 +149,9 @@ struct InsightDataTransferObject: Codable {
     
     /// If set, break down the values in this key
     var breakdownKey: String?
+    
+    /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
+    var groupBy: InsightGroupByInterval?
     
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
@@ -319,8 +359,6 @@ struct ChartData {
     
     init(data: [ChartDataPoint]) throws {
         self.data = data
-        
-        let sortedData = data.sorted(by: { $0.value < $1.value })
         
         guard let firstDate = data.first?.date,
               let lastDate = data.last?.date

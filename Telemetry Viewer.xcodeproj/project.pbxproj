@@ -20,6 +20,7 @@
 		DC25A573256A87D600EE84DA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC25A577256BBCF700EE84DA /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
+		DC25A582256BC3AD00EE84DA /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC39F24E253C469100A7C325 /* CreateOrUpdateInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
@@ -641,6 +642,7 @@
 				DC25A573256A87D600EE84DA /* Color.swift in Sources */,
 				DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
+				DC25A582256BC3AD00EE84DA /* Formatter+ISO.swift in Sources */,
 				DC25A577256BBCF700EE84DA /* APIRepresentative.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

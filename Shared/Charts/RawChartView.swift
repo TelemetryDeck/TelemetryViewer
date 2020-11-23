@@ -16,32 +16,15 @@ struct RawChartView: View {
         api.insightData[insightDataID]
     }
     
-    private let numberFormatter: NumberFormatter = {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.usesGroupingSeparator = true
-        return numberFormatter
-    }()
-    
-    private let columns = [
-        GridItem(.flexible(maximum: 200), spacing: nil, alignment: .leading),
-        GridItem(.flexible(), spacing: nil, alignment: .trailing)
-    ]
-    
     var body: some View {
-        if insightData == nil {
-            Text("No Data")
-                .foregroundColor(.grayColor)
-        } else {
-            
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(insightData?.data ?? [], id: \.xAxisValue) { dataRow in
-                        Text(dataRow.xAxisValue)
-                        Text(dataRow.yAxisValue ?? "–")
-                    }
-                }
+        if let insightData = insightData, !insightData.data.isEmpty {
+            if insightData.data.count > 2 {
+                RawTableView(insightData: insightData)
+            } else {
+                SingleValueView(insightData: insightData)
             }
+        } else {
+            Text("No Data").foregroundColor(.grayColor)
         }
     }
 }
@@ -59,7 +42,7 @@ struct RawChartView_Previews: PreviewProvider {
             breakdownKey: nil,
             displayMode: .raw,
             data: [
-                InsightData(xAxisValue: "2020-11-18 00:00:00+01", yAxisValue: "102")
+                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "102")
             ],
             calculatedAt: Date())
         
@@ -74,8 +57,8 @@ struct RawChartView_Previews: PreviewProvider {
             breakdownKey: nil,
             displayMode: .raw,
             data: [
-                InsightData(xAxisValue: "2020-11-19 00:00:00+01", yAxisValue: "100"),
-                InsightData(xAxisValue: "2020-11-18 00:00:00+01", yAxisValue: "96")
+                InsightData(xAxisValue: "2020-11-20T00:00:00+01:00", yAxisValue: "10650"),
+                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "96")
             ],
             calculatedAt: Date())
         
@@ -112,6 +95,114 @@ struct RawChartView_Previews: PreviewProvider {
                 .environmentObject(api)
                 .padding()
                 .previewLayout(.fixed(width: 400, height: 200))
+        }
+    }
+}
+
+struct SingleValueView: View {
+    var insightData: InsightDataTransferObject
+    
+    let percentageFormatter: NumberFormatter = {
+        let percentageFormatter = NumberFormatter()
+        percentageFormatter.numberStyle = .percent
+        return percentageFormatter
+    }()
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            VStack(alignment: .leading) {
+                Text(insightData.data.first?.formattedYAxisValue ?? "0")
+                    .font(.system(size: 28, weight: .light, design: .rounded))
+                
+                xAxisDefinition(insightData: insightData.data.first!, style: .date)
+                    .foregroundColor(.gray)
+                    .font(.system(size: 12, weight: .light, design: .default))
+            }
+            .padding(.bottom, insightData.data.count > 1 ? nil : 0)
+
+            Spacer()
+            
+            if insightData.data.count > 1 {
+                secondaryText()
+                    .foregroundColor(.gray)
+                    .font(.system(size: 12, weight: .light, design: .default))
+            }
+        }
+    }
+    
+    func xAxisDefinition(insightData: InsightData, style: Text.DateStyle) -> Text {
+        if let date = insightData.xAxisAsDate {
+            return Text(date, style: style)
+        }
+        
+        return Text(insightData.xAxisValue)
+    }
+    
+    func percentageString(from percentage: Double) -> String {
+        let percentageNumber = NSNumber(value: percentage)
+        let percentageChangeSymbol: String
+        
+        if percentage > 0 {
+            percentageChangeSymbol = "▵"
+        } else if percentage < 0 {
+            percentageChangeSymbol = "▽"
+        } else {
+            percentageChangeSymbol = ""
+        }
+        
+        if percentageNumber.doubleValue.isNaN {
+            return "No Change"
+        }
+        
+        return "\(percentageChangeSymbol)\(percentageFormatter.string(from: percentageNumber)!)"
+    }
+    
+    func secondaryText() -> Text {
+        guard insightData.data.count > 1 else { return Text("") }
+        let previousData = insightData.data[1]
+        
+        guard let currentValue = insightData.data[0].yAxisNumber, let previousValue = insightData.data[1].yAxisNumber else { return xAxisDefinition(insightData: insightData.data[1], style: .date) }
+        
+        let percentage: Double = (currentValue.doubleValue - previousValue.doubleValue) / previousValue.doubleValue
+        
+        
+        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, style: .relative) + Text(" ago (\(previousData.formattedYAxisValue ))")
+    }
+}
+
+struct RawTableView: View {
+    var insightData: InsightDataTransferObject
+    
+    private let columns = [
+        GridItem(.flexible(maximum: 200), spacing: nil, alignment: .leading),
+        GridItem(.flexible(), spacing: nil, alignment: .trailing)
+    ]
+    
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(insightData.data, id: \.xAxisValue) { dataRow in
+                    Group {
+                        if let xAxisDate = dataRow.xAxisAsDate {
+                            
+                            HStack {
+                                Text(xAxisDate, style: .date)
+                                
+                                if insightData.groupBy == .hour {
+                                    Text(xAxisDate, style: .time)
+                                }
+                            }
+                        } else {
+                            Text(dataRow.xAxisValue)
+                        }
+                    }
+                    .font(.footnote)
+                    .foregroundColor(Color.grayColor)
+                    
+                    Text(dataRow.formattedYAxisValue ?? "–")
+                        .font(.system(size: 28, weight: .light, design: .rounded))
+                }
+            }
         }
     }
 }

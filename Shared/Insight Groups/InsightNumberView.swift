@@ -63,18 +63,7 @@ struct InsightNumberView: View {
     
     var body: some View {
         Text("Unsupported")
-//        VStack(alignment: .leading) {
-//            Text(countText)
-//                .font(.system(size: 28, weight: .light, design: .rounded))
-//                .padding(.bottom)
-//
-//            if let previousPrecentage = previousPercentage, let previousCountText = previousCountText, let previousIntervalText = previousIntervalText {
-//
-//                Text("\(previousPrecentage) compared to \(previousIntervalText) (\(previousCountText))")
-//                    .foregroundColor(.gray)
-//                    .font(.system(size: 12, weight: .light, design: .default))
-//            }
-//        }
+
     }
 }
 
