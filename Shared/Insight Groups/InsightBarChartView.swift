@@ -23,21 +23,21 @@ struct InsightBarChartView: View {
 
     
     var body: some View {
-        let dataPoints: [ChartDataPoint] = insightData.data.compactMap { 
-            guard let dayStringValue = $0["day"],
-                  let day = dateFormatter.date(from: dayStringValue),
-                  let countStringValue = $0["count"],
-                  let count = numberFormatter.number(from: countStringValue)?.doubleValue
-            else { return nil }
-                        
-            return ChartDataPoint(date: day, value: count)
-        }
-        
-        if let chartData = try? ChartData(data: dataPoints) {
-            BarChartView(data: chartData)
-        } else {
-            Text("Not Enough Data").foregroundColor(.grayColor)
-        }
+//        let dataPoints: [ChartDataPoint] = insightData.data.compactMap {
+//            guard let dayStringValue = $0["day"],
+//                  let day = dateFormatter.date(from: dayStringValue),
+//                  let countStringValue = $0["count"],
+//                  let count = numberFormatter.number(from: countStringValue)?.doubleValue
+//            else { return nil }
+//
+//            return ChartDataPoint(date: day, value: count)
+//        }
+//
+//        if let chartData = try? ChartData(data: dataPoints) {
+//            BarChartView(data: chartData)
+//        } else {
+            Text("Unsupported").foregroundColor(.grayColor)
+//        }
         
     }
 }

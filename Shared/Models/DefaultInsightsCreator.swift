@@ -24,7 +24,7 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600,
                                         breakdownKey: nil,
-                                        displayMode: .number,
+                                        displayMode: .raw,
                                         isExpanded: true))
                 
                 insightRequest.append(InsightDefinitionRequestBody(
@@ -128,7 +128,7 @@ extension APIRepresentative {
                                         filters: [:],
                                         rollingWindowSize: -24*3600,
                                         breakdownKey: nil,
-                                        displayMode: .number,
+                                        displayMode: .raw,
                                         isExpanded: false))
                 
                 insightRequest.append(InsightDefinitionRequestBody(

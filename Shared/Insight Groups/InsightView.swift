@@ -60,16 +60,8 @@ struct InsightView: View {
             Group {
                 if let insightData = api.insightData[insight.id] {
                     switch insightData.displayMode {
-                    case .number:
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Spacer()
-                                InsightNumberView(insightData: insightData)
-                                Spacer()
-                            }
-                            Spacer()
-                        }
+                    case .raw:
+                        RawChartView(insightDataID: insight.id)
                     case .pieChart:
                         InsightPieChartView(insightData: insightData)
                     case .lineChart:

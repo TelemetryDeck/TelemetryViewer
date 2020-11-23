@@ -24,56 +24,57 @@ struct InsightNumberView: View {
         return percentageFormatter
     }()
     
-    var currentCount: NSNumber? {
-        guard let textBasedCount = insightData.data.first?["count"] else { return nil }
-        return numberFormatter.number(from: textBasedCount)
-    }
-    
-    var previousCount: NSNumber? {
-        guard let textBasedPreviousCount = insightData.data.first?["previousCount"] else { return nil }
-        return numberFormatter.number(from: textBasedPreviousCount)
-    }
-    
-    var countText: String {
-        guard let countNumber = currentCount else { return "–" }
-        return numberFormatter.string(from: countNumber) ?? "Couldn't display as String"
-    }
-    
-    var previousPercentage: String? {
-        guard let previousCountNumber = previousCount?.doubleValue else { return nil }
-        guard let currentCountNumber = currentCount?.doubleValue else { return nil }
-        
-        let percentage: Double = (currentCountNumber - previousCountNumber) / previousCountNumber
-        let percentageNumber = NSNumber(value: percentage)
-        
-        guard let string = percentageFormatter.string(from: percentageNumber) else { return nil }
-        
-        return "\(percentage > 0 ? "▵" : "▽")\(string)"
-    }
-    
-    var previousCountText: String? {
-        guard let countNumber = previousCount else { return nil }
-        return numberFormatter.string(from: countNumber)
-    }
-    
-    var previousIntervalText: String? {
-        return "last week"
-    }
-    
+//    var currentCount: NSNumber? {
+//        guard let textBasedCount = insightData.data.first?["count"] else { return nil }
+//        return numberFormatter.number(from: textBasedCount)
+//    }
+//
+//    var previousCount: NSNumber? {
+//        guard let textBasedPreviousCount = insightData.data.first?["previousCount"] else { return nil }
+//        return numberFormatter.number(from: textBasedPreviousCount)
+//    }
+//
+//    var countText: String {
+//        guard let countNumber = currentCount else { return "–" }
+//        return numberFormatter.string(from: countNumber) ?? "Couldn't display as String"
+//    }
+//
+//    var previousPercentage: String? {
+//        guard let previousCountNumber = previousCount?.doubleValue else { return nil }
+//        guard let currentCountNumber = currentCount?.doubleValue else { return nil }
+//
+//        let percentage: Double = (currentCountNumber - previousCountNumber) / previousCountNumber
+//        let percentageNumber = NSNumber(value: percentage)
+//
+//        guard let string = percentageFormatter.string(from: percentageNumber) else { return nil }
+//
+//        return "\(percentage > 0 ? "▵" : "▽")\(string)"
+//    }
+//
+//    var previousCountText: String? {
+//        guard let countNumber = previousCount else { return nil }
+//        return numberFormatter.string(from: countNumber)
+//    }
+//
+//    var previousIntervalText: String? {
+//        return "last week"
+//    }
+//
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(countText)
-                .font(.system(size: 28, weight: .light, design: .rounded))
-                .padding(.bottom)
-        
-            if let previousPrecentage = previousPercentage, let previousCountText = previousCountText, let previousIntervalText = previousIntervalText {
-                
-                Text("\(previousPrecentage) compared to \(previousIntervalText) (\(previousCountText))")
-                    .foregroundColor(.gray)
-                    .font(.system(size: 12, weight: .light, design: .default))
-            }
-        }
+        Text("Unsupported")
+//        VStack(alignment: .leading) {
+//            Text(countText)
+//                .font(.system(size: 28, weight: .light, design: .rounded))
+//                .padding(.bottom)
+//
+//            if let previousPrecentage = previousPercentage, let previousCountText = previousCountText, let previousIntervalText = previousIntervalText {
+//
+//                Text("\(previousPrecentage) compared to \(previousIntervalText) (\(previousCountText))")
+//                    .foregroundColor(.gray)
+//                    .font(.system(size: 12, weight: .light, design: .default))
+//            }
+//        }
     }
 }
 

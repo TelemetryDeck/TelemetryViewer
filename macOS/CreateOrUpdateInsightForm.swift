@@ -28,7 +28,7 @@ struct CreateOrUpdateInsightForm: View {
     @State private var rollingWindowSize: Double = 24
     
     @State private var selectedDisplayModeIndex = 0
-    private let displayModes: [InsightDisplayMode] = [.number, .lineChart, .barChart, .pieChart]
+    private let displayModes: [InsightDisplayMode] = [.raw, .lineChart, .barChart, .pieChart]
     
     init(app: TelemetryApp, editMode: Bool, requestBody: InsightDefinitionRequestBody? = nil, insight: Insight?, group: InsightGroup?) {
         self.app = app
@@ -46,7 +46,7 @@ struct CreateOrUpdateInsightForm: View {
             filters: [:],
             rollingWindowSize: -3600*24,
             breakdownKey: nil,
-            displayMode: .number,
+            displayMode: .raw,
             isExpanded: false))
     }
     
@@ -168,7 +168,7 @@ struct CreateOrUpdateInsightForm: View {
                 Text("Display Mode")
                 Picker(selection: $selectedDisplayModeIndex, label: Text("")) {
                     if insightDefinitionRequestBody.breakdownKey == nil {
-                        Text(InsightDisplayMode.number.rawValue.capitalized).tag(0)
+                        Text(InsightDisplayMode.raw.rawValue.capitalized).tag(0)
                         Text(InsightDisplayMode.lineChart.rawValue.capitalized).tag(1)
                         Text(InsightDisplayMode.barChart.rawValue.capitalized).tag(2)
                     } else {
@@ -203,7 +203,7 @@ struct CreateOrUpdateInsightForm: View {
                 saveButton.disabled(
                     insightDefinitionRequestBody.title.isEmpty
                     ||
-                        insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .number, .barChart].contains(displayModes[selectedDisplayModeIndex])
+                        insightDefinitionRequestBody.breakdownKey == nil && ![.lineChart, .raw, .barChart].contains(displayModes[selectedDisplayModeIndex])
                     ||
                         insightDefinitionRequestBody.breakdownKey != nil && ![.barChart, .pieChart].contains(displayModes[selectedDisplayModeIndex])
                     
@@ -226,7 +226,7 @@ struct CreateOrUpdateInsightForm: View {
             
             // Display Mode
             switch insight?.displayMode {
-            case .number:
+            case .raw:
                 selectedDisplayModeIndex = 0
             case .lineChart:
                 selectedDisplayModeIndex = 1
@@ -234,7 +234,7 @@ struct CreateOrUpdateInsightForm: View {
                 selectedDisplayModeIndex = 2
             case .pieChart:
                 selectedDisplayModeIndex = 3
-            case .none:
+            case .none, .number:
                 selectedDisplayModeIndex = 0
             }
             

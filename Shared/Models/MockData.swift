@@ -58,8 +58,8 @@ struct MockData {
         filters: [:],
         rollingWindowSize: -24*3600,
         breakdownKey: nil,
-        displayMode: .number,
-        data: [["count": "6841", "previousCount": "6021"]],
+        displayMode: .raw,
+        data: [InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
         calculatedAt: Date())
 }
 

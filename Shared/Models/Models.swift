@@ -49,7 +49,8 @@ struct InsightGroup: Codable, Identifiable {
 }
 
 enum InsightDisplayMode: String, Codable {
-    case number
+    case number // Deprecated, use Raw instead
+    case raw
     case barChart
     case lineChart
     case pieChart
@@ -85,6 +86,11 @@ struct Insight: Codable, Identifiable {
     var isExpanded: Bool
 }
 
+struct InsightData: Codable {
+    let xAxisValue: String
+    let yAxisValue: String?
+}
+
 struct InsightDataTransferObject: Codable {
     let id: UUID
     
@@ -111,7 +117,7 @@ struct InsightDataTransferObject: Codable {
     var displayMode: InsightDisplayMode
     
     /// Current Live Calculated Data
-    let data: [[String: String]]
+    let data: [InsightData]
     
     /// When was this DTO calculated?
     let calculatedAt: Date

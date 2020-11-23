@@ -23,96 +23,96 @@ struct InsightLineChartView: View {
 
     
     var body: some View {
-        let dataPoints: [ChartDataPoint] = insightData.data.compactMap { 
-            guard let dayStringValue = $0["day"],
-                  let day = dateFormatter.date(from: dayStringValue),
-                  let countStringValue = $0["count"],
-                  let count = numberFormatter.number(from: countStringValue)?.doubleValue
-            else { return nil }
-                        
-            return ChartDataPoint(date: day, value: count)
-        }
-        
-        if let chartData = try? ChartData(data: dataPoints) {
-            LineChartView(data: chartData)
-        } else {
+//        let dataPoints: [ChartDataPoint] = insightData.data.compactMap {
+//            guard let dayStringValue = $0["day"],
+//                  let day = dateFormatter.date(from: dayStringValue),
+//                  let countStringValue = $0["count"],
+//                  let count = numberFormatter.number(from: countStringValue)?.doubleValue
+//            else { return nil }
+//
+//            return ChartDataPoint(date: day, value: count)
+//        }
+//
+//        if let chartData = try? ChartData(data: dataPoints) {
+//            LineChartView(data: chartData)
+//        } else {
             Text("Not Enough Data").foregroundColor(.grayColor)
-        }
+//        }
         
     }
 }
-
-struct InsightCountView_Previews: PreviewProvider {
-    static var previews: some View {
-        let insightDTO = InsightDataTransferObject(
-            id: UUID(),
-            order: nil,
-            title: "",
-            subtitle: nil,
-            signalType: nil,
-            uniqueUser: false,
-            filters: [:],
-            rollingWindowSize: -24*3600,
-            breakdownKey: nil,
-            displayMode: .lineChart,
-            data: [
-                [
-                  "count" : "4",
-                  "day" : "2020-10-05 00:00:00+02"
-                ],
-                [
-                  "count" : "5",
-                  "day" : "2020-10-06 00:00:00+02"
-                ],
-                [
-                  "count" : "12",
-                  "day" : "2020-10-07 00:00:00+02"
-                ],
-                [
-                  "count" : "8",
-                  "day" : "2020-10-08 00:00:00+02"
-                ],
-                [
-                  "count" : "2",
-                  "day" : "2020-10-09 00:00:00+02"
-                ],
-                [
-                  "day" : "2020-10-10 00:00:00+02",
-                  "count" : "8"
-                ],
-                [
-                  "day" : "2020-10-11 00:00:00+02",
-                  "count" : "7"
-                ],
-                [
-                  "count" : "6",
-                  "day" : "2020-10-12 00:00:00+02"
-                ],
-                [
-                  "count" : "10",
-                  "day" : "2020-10-13 00:00:00+02"
-                ],
-                [
-                  "count" : "6",
-                  "day" : "2020-10-14 00:00:00+02"
-                ],
-                [
-                  "day" : "2020-10-15 00:00:00+02",
-                  "count" : "3"
-                ],
-                [
-                  "day" : "2020-10-16 00:00:00+02",
-                  "count" : "2"
-                ],
-                [
-                  "day" : "2020-10-17 00:00:00+02",
-                  "count" : "2"
-                ]
-            ],
-            calculatedAt: Date())
-        
-        InsightLineChartView(insightData: insightDTO)
-        .environmentObject(APIRepresentative())
-        .previewLayout(.fixed(width: 300, height: 300))
-    }
-}
+//
+//struct InsightCountView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let insightDTO = InsightDataTransferObject(
+//            id: UUID(),
+//            order: nil,
+//            title: "",
+//            subtitle: nil,
+//            signalType: nil,
+//            uniqueUser: false,
+//            filters: [:],
+//            rollingWindowSize: -24*3600,
+//            breakdownKey: nil,
+//            displayMode: .lineChart,
+//            data: [
+//                [
+//                  "count" : "4",
+//                  "day" : "2020-10-05 00:00:00+02"
+//                ],
+//                [
+//                  "count" : "5",
+//                  "day" : "2020-10-06 00:00:00+02"
+//                ],
+//                [
+//                  "count" : "12",
+//                  "day" : "2020-10-07 00:00:00+02"
+//                ],
+//                [
+//                  "count" : "8",
+//                  "day" : "2020-10-08 00:00:00+02"
+//                ],
+//                [
+//                  "count" : "2",
+//                  "day" : "2020-10-09 00:00:00+02"
+//                ],
+//                [
+//                  "day" : "2020-10-10 00:00:00+02",
+//                  "count" : "8"
+//                ],
+//                [
+//                  "day" : "2020-10-11 00:00:00+02",
+//                  "count" : "7"
+//                ],
+//                [
+//                  "count" : "6",
+//                  "day" : "2020-10-12 00:00:00+02"
+//                ],
+//                [
+//                  "count" : "10",
+//                  "day" : "2020-10-13 00:00:00+02"
+//                ],
+//                [
+//                  "count" : "6",
+//                  "day" : "2020-10-14 00:00:00+02"
+//                ],
+//                [
+//                  "day" : "2020-10-15 00:00:00+02",
+//                  "count" : "3"
+//                ],
+//                [
+//                  "day" : "2020-10-16 00:00:00+02",
+//                  "count" : "2"
+//                ],
+//                [
+//                  "day" : "2020-10-17 00:00:00+02",
+//                  "count" : "2"
+//                ]
+//            ],
+//            calculatedAt: Date())
+//        
+//        InsightLineChartView(insightData: insightDTO)
+//        .environmentObject(APIRepresentative())
+//        .previewLayout(.fixed(width: 300, height: 300))
+//    }
+//}

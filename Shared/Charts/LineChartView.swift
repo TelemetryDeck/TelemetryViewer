@@ -78,24 +78,24 @@ struct LineChartView: View {
                         let lastValue = data.data.last!.value
                         let percentage = 1 - (lastValue / (data.highestValue - data.lowestValue))
                             
-                        ZStack {
-                            
-                            if lastValue != data.lowestValue {
-                                Text(data.lowestValue.stringValue)
-                                    .position(x: 10, y: reader.size.height)
-                            }
-                            
-                            if lastValue != data.highestValue {
-                                Text(data.highestValue.stringValue)
-                                    .position(x: 10, y: 0)
-                            }
-                            
-                            Text(lastValue.stringValue)
-                                .frame(width: 30)
-                                .multilineTextAlignment(.trailing)
-                                .foregroundColor(.accentColor)
-                                .position(x: 10, y: reader.size.height * CGFloat(percentage))
-                        }
+//                        ZStack {
+//                            
+//                            if lastValue != data.lowestValue {
+//                                Text(data.lowestValue.stringValue)
+//                                    .position(x: 10, y: reader.size.height)
+//                            }
+//                            
+//                            if lastValue != data.highestValue {
+//                                Text(data.highestValue.stringValue)
+//                                    .position(x: 10, y: 0)
+//                            }
+//                            
+//                            Text(lastValue.stringValue)
+//                                .frame(width: 30)
+//                                .multilineTextAlignment(.trailing)
+//                                .foregroundColor(.accentColor)
+//                                .position(x: 10, y: reader.size.height * CGFloat(percentage))
+//                        }
                     }
                     .frame(width: 30)
             }
@@ -111,7 +111,7 @@ struct LineChartView: View {
             
         }
         .font(.footnote)
-        .foregroundColor(.grayColor)
+        .foregroundColor(Color.grayColor)
     }
     
     func yHeightConstant(_ height: CGFloat, range: Double) -> CGFloat {

@@ -17,6 +17,9 @@
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC2328722522740900DB6145 /* InsightPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2328712522740900DB6145 /* InsightPieChartView.swift */; };
 		DC2328732522740900DB6145 /* InsightPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2328712522740900DB6145 /* InsightPieChartView.swift */; };
+		DC25A573256A87D600EE84DA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
+		DC25A577256BBCF700EE84DA /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
+		DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC39F24E253C469100A7C325 /* CreateOrUpdateInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
@@ -53,6 +56,9 @@
 		DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
 		DC815F3C24E283640095A047 /* SignalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC815F3B24E283640095A047 /* SignalList.swift */; };
 		DC815F3D24E283640095A047 /* SignalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC815F3B24E283640095A047 /* SignalList.swift */; };
+		DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC83C858256A857300FCF2A1 /* RawChartView.swift */; };
+		DC83C85A256A857300FCF2A1 /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC83C858256A857300FCF2A1 /* RawChartView.swift */; };
+		DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4E2F632563FA47001AD7B4 /* LineChartView.swift */; };
 		DC90D08B25063A6B00634B72 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90D08A25063A6B00634B72 /* UserSettingsView.swift */; };
 		DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90D08A25063A6B00634B72 /* UserSettingsView.swift */; };
 		DC98AAB7250A671900FF26FD /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AAB6250A671900FF26FD /* AppSettingsView.swift */; };
@@ -174,7 +180,7 @@
 		DC45BB1824E1F01F004E6392 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
 		DC4E2F542563290F001AD7B4 /* SingleKeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleKeyValueView.swift; sourceTree = "<group>"; };
-		DC4E2F632563FA47001AD7B4 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LineChartView.swift; path = ../LineChartView.swift; sourceTree = "<group>"; };
+		DC4E2F632563FA47001AD7B4 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		DC4E2F6C25641BF1001AD7B4 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		DC4E2F7225641E2B001AD7B4 /* InsightBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightBarChartView.swift; sourceTree = "<group>"; };
 		DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationSettingsView.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 		DC591397252DF975007360A9 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
 		DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		DC815F3B24E283640095A047 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
+		DC83C858256A857300FCF2A1 /* RawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
 		DC90D08A25063A6B00634B72 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		DC98AAB6250A671900FF26FD /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		DC98AABB250BC30200FF26FD /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
@@ -288,6 +295,7 @@
 		DC591394252DF93F007360A9 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				DC83C858256A857300FCF2A1 /* RawChartView.swift */,
 				DC04C3EA2523BD6300483AF5 /* BarChartView.swift */,
 				DC4E2F632563FA47001AD7B4 /* LineChartView.swift */,
 				DC591397252DF975007360A9 /* DonutChartView.swift */,
@@ -365,7 +373,6 @@
 				DCB02B5C25001A2600304964 /* DashedCardView.swift */,
 				DC5339352521CE6200D9C889 /* CardView.swift */,
 				DCB02B6D250277A700304964 /* AdaptiveStack.swift */,
-				DC591394252DF93F007360A9 /* Charts */,
 				DC415C0D2531F6C300D8D0B1 /* Color.swift */,
 				DCB28D7D25517EDD0032B9AD /* Helpers.swift */,
 				DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */,
@@ -429,6 +436,7 @@
 				DC45BB1824E1F01F004E6392 /* SidebarView.swift */,
 				DC07D8F2255466D2007A89D6 /* AppRootView.swift */,
 				DC4F7DBC25069C3200B54561 /* NewAppView.swift */,
+				DC591394252DF93F007360A9 /* Charts */,
 				DCB02B70250277C300304964 /* Generic Views */,
 				DCB02B692502764200304964 /* Login Register */,
 				DC98AAB9250A672300FF26FD /* App Settings */,
@@ -627,9 +635,13 @@
 			files = (
 				DCD86B0A254EF59B008F63CB /* InsightNumberView.swift in Sources */,
 				DCD86AFF254EF456008F63CB /* Models.swift in Sources */,
+				DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */,
+				DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */,
 				DCD86B03254EF470008F63CB /* MockData.swift in Sources */,
+				DC25A573256A87D600EE84DA /* Color.swift in Sources */,
 				DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
+				DC25A577256BBCF700EE84DA /* APIRepresentative.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +699,7 @@
 				DC45BAEE24DFF895004E6392 /* Models.swift in Sources */,
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
+				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
 				DCCD480C253D8A240098EC95 /* InsightNumberView.swift in Sources */,
 				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				DCB02B792503897D00304964 /* JoinOrganizationInfoView.swift in Sources */,
@@ -756,6 +769,7 @@
 				DCCD480D253D8A240098EC95 /* InsightNumberView.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,
+				DC83C85A256A857300FCF2A1 /* RawChartView.swift in Sources */,
 				DC4F7DBE25069C3200B54561 /* NewAppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
