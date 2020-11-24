@@ -10,14 +10,12 @@ import SwiftUI
 struct DetailSidebar<Content>: View where Content: View {
     private let content: Content
     private let maxWidth: CGFloat
-    private let title: String
 
     @Binding var isOpen: Bool
 
-    public init(isOpen: Binding<Bool>, title: String = "", maxWidth: CGFloat, @ViewBuilder content: () -> Content) {
+    public init(isOpen: Binding<Bool>, maxWidth: CGFloat, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.maxWidth = maxWidth
-        self.title = title
         self._isOpen = isOpen
     }
 
@@ -54,7 +52,7 @@ struct DetailSidebar_Previews: PreviewProvider {
 
         HStack {
             Color.blue
-            DetailSidebar(isOpen: .constant(true), title: "Hello world", maxWidth: 500) {
+            DetailSidebar(isOpen: .constant(true), maxWidth: 500) {
                 Color.green
             }
         }

@@ -82,8 +82,7 @@ struct CreateOrUpdateInsightForm: View {
                 api.delete(insight: insight, in: insightGroup, in: app)
             }
         }
-        
-        NavigationView {
+
             Form {
                 Section(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
                     TextField("Title e.g. 'Daily Active Users'", text: $insightDefinitionRequestBody.title)
@@ -154,18 +153,18 @@ struct CreateOrUpdateInsightForm: View {
                     deleteButton.foregroundColor(.red)
                 }
             }
-                .navigationTitle(editMode ? "Edit \(insightDefinitionRequestBody.title)" : "New Insight")
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        saveButton.disabled(insightDefinitionRequestBody.title.isEmpty)
-                    }
-                    
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Close") {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
-                    }
-                }
+//                .navigationTitle(editMode ? "Edit \(insightDefinitionRequestBody.title)" : "New Insight")
+//                .toolbar {
+//                    ToolbarItem(placement: .confirmationAction) {
+//                        saveButton.disabled(insightDefinitionRequestBody.title.isEmpty)
+//                    }
+//                    
+//                    ToolbarItem(placement: .cancellationAction) {
+//                        Button("Close") {
+//                            self.presentationMode.wrappedValue.dismiss()
+//                        }
+//                    }
+//                }
                 .onAppear() {
                     // Fetch Signal and Payload Lexicon
                     api.getSignalTypes(for: app)
@@ -202,7 +201,7 @@ struct CreateOrUpdateInsightForm: View {
                         self.rollingWindowSize = insightDefinitionRequestBody.rollingWindowSize * -1
                     }
             }
-        }
+        
     }
 }
 
