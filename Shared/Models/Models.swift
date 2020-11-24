@@ -327,7 +327,7 @@ struct RegistrationRequestBody: Codable {
     var userPasswordConfirm: String = ""
     
     var isValid: Bool {
-        return !organisationName.isEmpty && !userFirstName.isEmpty && !userLastName.isEmpty && !userEmail.isEmpty && !userPassword.isEmpty && !userPasswordConfirm.isEmpty
+        return !organisationName.isEmpty && !userFirstName.isEmpty && !userEmail.isEmpty && !userPassword.isEmpty && !userPasswordConfirm.isEmpty && !userPassword.contains(":")
     }
 }
 

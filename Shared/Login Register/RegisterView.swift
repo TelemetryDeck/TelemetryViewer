@@ -56,7 +56,7 @@ struct RegisterView: View {
                         }
                         
                         Section(header: Text("You")) {
-                            TextField("First Name", text: $registrationRequestBody.userFirstName)
+                            TextField("First Name (or Display Name)", text: $registrationRequestBody.userFirstName)
                             TextField("Last Name", text: $registrationRequestBody.userLastName)
                             
                             #if os(macOS)
@@ -72,7 +72,6 @@ struct RegisterView: View {
                         Section(header: Text("Your Password")) {
                             SecureField("Password", text: $registrationRequestBody.userPassword)
                             SecureField("Confirm Password", text: $registrationRequestBody.userPasswordConfirm)
-                            
                         }
                         
                         Section {
@@ -88,7 +87,7 @@ struct RegisterView: View {
                                 .animation(.easeOut)
                             
                             if !registrationRequestBody.isValid {
-                                Text("Please fill out all the fields")
+                                Text(registrationRequestBody.userPassword.contains(":") ? "Your password cannot contain a colon (:) character because we use it to represent cute lil' piglets." : "Please fill out all the fields.")
                                     .font(.footnote)
                                     .foregroundColor(.grayColor)
                             }
