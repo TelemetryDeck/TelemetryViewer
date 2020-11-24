@@ -9,9 +9,11 @@ import SwiftUI
 
 struct CardView<Content>: View where Content: View {
     private let content: Content
+    private var isSelected: Bool
 
-    public init(@ViewBuilder content: () -> Content) {
+    public init(selected: Bool = false, @ViewBuilder content: () -> Content) {
         self.content = content()
+        self.isSelected = selected
     }
 
     var body : some View {
@@ -23,6 +25,10 @@ struct CardView<Content>: View where Content: View {
             content
                     .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         }
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.accentColor, lineWidth: isSelected ? 5 : 0)
+        )
         .padding()
     }
 }

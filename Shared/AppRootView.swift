@@ -8,6 +8,20 @@
 import SwiftUI
 
 struct AppRootView: View {
+    @EnvironmentObject var api: APIRepresentative
+    let appID: UUID
+
+    var body: some View {
+        if let app = api.apps.first(where: { $0.id == appID }), let insightGroup = api.insightGroups[app]?.first {
+            InsightsGrid(app: app, insightGroup: insightGroup)
+
+        } else {
+            Text("The App no longer exists")
+        }
+    }
+}
+
+struct AppRootView2: View {
     
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var sizeClass

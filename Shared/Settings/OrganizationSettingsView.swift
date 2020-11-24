@@ -36,6 +36,7 @@ struct OrganizationSettingsView: View {
     #endif
     
     @State private var selectedItem: OrganizationJoinRequest?
+    @State private var sidebarShown: Bool = false
     
     var body: some View {
         HStack {
@@ -67,14 +68,20 @@ struct OrganizationSettingsView: View {
                                 Spacer()
                             }.onTapGesture {
                                 selectedItem = joinRequest
+                                withAnimation {
+                                    sidebarShown = true
+                                }
                             }
                         }
                         #else
-                        ListItemView(background: joinRequest == selectedItem ? Color.accentColor : Color.grayColor.opacity(0.2)) {
+                        ListItemView(selected: joinRequest == selectedItem && sidebarShown) {
                             Text(joinRequest.registrationToken)
                             Spacer()
                         }.onTapGesture {
                             selectedItem = joinRequest
+                            withAnimation {
+                                sidebarShown = true
+                            }
                         }
                         #endif
                     }
@@ -89,12 +96,10 @@ struct OrganizationSettingsView: View {
             
             
             
-            if selectedItem != nil {
-                HStack {
-                    Divider()
+            if sidebarShown {
+                DetailSidebar(isOpen: $sidebarShown, maxWidth: 400) {
                     CreateOrganizationJoinRequestView(organizationJoinRequest: $selectedItem)
-                }
-                .frame(maxWidth: 400)
+                }.transition(.move(edge: .trailing))
             }
             
         }
