@@ -11,8 +11,10 @@ struct ListItemView<Content>: View where Content: View {
     private let content: Content
     private let backgroundColor: Color
     private let spacing: CGFloat?
+    private var isSelected: Bool
 
-    public init(background: Color = Color.grayColor.opacity(0.2), spacing: CGFloat? = nil, @ViewBuilder content: () -> Content) {
+    public init(selected: Bool = false, background: Color = Color.grayColor.opacity(0.2), spacing: CGFloat? = nil, @ViewBuilder content: () -> Content) {
+        self.isSelected = selected
         self.backgroundColor = background
         self.spacing = spacing
         self.content = content()
@@ -26,5 +28,9 @@ struct ListItemView<Content>: View where Content: View {
         .padding(.vertical, 5)
         .background(backgroundColor)
         .cornerRadius(15)
+        .overlay(
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.accentColor, lineWidth: isSelected ? 5 : 0)
+        )
     }
 }

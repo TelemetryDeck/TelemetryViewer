@@ -16,36 +16,36 @@ struct BetaRequestDetailView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if let betaRequest = api.betaRequests.first { $0.id == betaRequestID } {
-            
-            Text(betaRequest.email).font(.title2)
-            
-                LazyVGrid(columns: [GridItem(.flexible(maximum: 150)), GridItem(.flexible())], alignment: .leading) {
-                    Text("Email").padding(3)
+
+                Group {
+                    Text("Email")
                     Button(betaRequest.email) {
                         saveToClipBoard(betaRequest.email)
                     }
                     .buttonStyle(SmallSecondaryButtonStyle())
-                    
-                    Text("Registration Token").padding(3)
+
+                    Text("Registration Token")
                     Button(betaRequest.registrationToken) {
                         saveToClipBoard(betaRequest.registrationToken)
                     }
                     .buttonStyle(SmallSecondaryButtonStyle())
-                    
-                    Text("Requested At").padding(3)
-                    
+
+                    Text("Requested At")
+
                     Text(betaRequest.requestedAt, style: .date) + Text(" at ") + Text(betaRequest.requestedAt, style: .time)
-                    
-                    Text("Email Sent at").padding(3)
+
+                    Text("Email Sent at")
                     if let sentAt = betaRequest.sentAt {
                         Text(sentAt, style: .date) + Text(" at ") + Text(sentAt, style: .time)
                     } else {
                         Text("–")
                     }
-                    
-                    Text("Fulfilled").padding(3)
+
+                    Text("Fulfilled")
                     Text(betaRequest.isFulfilled ? "Yes" : "No")
+
                 }
+
                 
                 
                 
@@ -72,7 +72,7 @@ struct BetaRequestDetailView: View {
                 
                 
                 Spacer()
-            
+
             } else {
                 Text("This Item does no longer exist.")
                     .foregroundColor(.grayColor)
@@ -86,6 +86,7 @@ struct BetaRequestDetailView: View {
 struct BetaRequestsList: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var selectedItem: BetaRequestEmail?
+    @State private var sidebarShown: Bool = false
     
     let refreshTimer = Timer.publish(
         every: 1 * 60, // 1 minute
@@ -112,23 +113,31 @@ struct BetaRequestsList: View {
                     Text(betaRequest.email)
                 }
             } else {
-                ListItemView(background: betaRequest == selectedItem ? Color.accentColor : Color.grayColor.opacity(0.2)) {
+                ListItemView(selected: betaRequest == selectedItem && sidebarShown == true) {
                     Text(betaRequest.email)
                     Spacer()
                     Text(betaRequest.requestedAt, style: .date)
                     Text(betaRequest.requestedAt, style: .time)
                 }.onTapGesture {
                     selectedItem = betaRequest
+                    
+                    withAnimation {
+                        sidebarShown = true
+                    }
                 }
             }
             #else
-            ListItemView(background: betaRequest == selectedItem ? Color.accentColor : Color.grayColor.opacity(0.2)) {
+            ListItemView(selected: betaRequest == selectedItem && sidebarShown == true) {
                 Text(betaRequest.email)
                 Spacer()
                 Text(betaRequest.requestedAt, style: .date)
                 Text(betaRequest.requestedAt, style: .time)
             }.onTapGesture {
                 selectedItem = betaRequest
+                
+                withAnimation {
+                    sidebarShown = true
+                }
             }
             #endif
         }
@@ -159,12 +168,10 @@ struct BetaRequestsList: View {
                 }
             }
             
-            if selectedItem != nil {
-                HStack {
-                    Divider()
+            if sidebarShown {
+                DetailSidebar(isOpen: $sidebarShown, maxWidth: 300) {
                     BetaRequestDetailView(betaRequestID: selectedItem?.id)
-                }
-                .frame(maxWidth: 400)
+                }.transition(.move(edge: .trailing))
             }
         }
         .navigationTitle("Beta Requests")

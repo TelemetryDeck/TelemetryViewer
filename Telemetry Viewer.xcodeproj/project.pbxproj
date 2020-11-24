@@ -24,6 +24,8 @@
 		DC25A5AC256C0C2000EE84DA /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */; };
 		DC25A5AD256C0C2000EE84DA /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */; };
 		DC25A5AE256C0C2000EE84DA /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */; };
+		DC25A5E0256D844300EE84DA /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A5DF256D844300EE84DA /* DetailSidebar.swift */; };
+		DC25A5E1256D844300EE84DA /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A5DF256D844300EE84DA /* DetailSidebar.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC39F24E253C469100A7C325 /* CreateOrUpdateInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
@@ -171,6 +173,7 @@
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC25A58C256BF1D800EE84DA /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBottomView.swift; sourceTree = "<group>"; };
+		DC25A5DF256D844300EE84DA /* DetailSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrUpdateInsightForm.swift; sourceTree = "<group>"; };
 		DC415C0D2531F6C300D8D0B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -370,6 +373,7 @@
 				DCB28D7D25517EDD0032B9AD /* Helpers.swift */,
 				DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */,
 				DC4E2F6C25641BF1001AD7B4 /* RoundedCorners.swift */,
+				DC25A5DF256D844300EE84DA /* DetailSidebar.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -700,6 +704,7 @@
 				DCB02B792503897D00304964 /* JoinOrganizationInfoView.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC39F24E253C469100A7C325 /* CreateOrUpdateInsightForm.swift in Sources */,
+				DC25A5E0256D844300EE84DA /* DetailSidebar.swift in Sources */,
 				DC4F7DBD25069C3200B54561 /* NewAppView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,6 +764,7 @@
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC45BAEF24DFF895004E6392 /* Models.swift in Sources */,
 				DCB1A3CC2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
+				DC25A5E1256D844300EE84DA /* DetailSidebar.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC83C85A256A857300FCF2A1 /* RawChartView.swift in Sources */,
