@@ -97,7 +97,7 @@ struct CreateOrUpdateInsightForm: View {
                         ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
                             Text(api.insightGroups[app]?[$0].title ?? "No Title")
                         }
-                    }
+                    }.pickerStyle(WheelPickerStyle())
                 }
                 
                 Section(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
