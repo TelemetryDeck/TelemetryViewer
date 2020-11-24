@@ -78,23 +78,24 @@ struct LineChartView: View {
                         LineChart(data: chartDataSet, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                     }
                     
-      
-                        GeometryReader { reader in
-                            let lastValue = chartDataSet.data.last!.yAxisValue
-                            let percentage = 1 - (lastValue / (chartDataSet.highestValue - chartDataSet.lowestValue))
-                                
-                            ZStack {
-                                
-                                if lastValue != chartDataSet.lowestValue {
-                                    Text(chartDataSet.lowestValue.stringValue)
-                                        .position(x: 10, y: reader.size.height)
-                                }
-                                
-                                if lastValue != chartDataSet.highestValue {
-                                    Text(chartDataSet.highestValue.stringValue)
-                                        .position(x: 10, y: 0)
-                                }
-                                
+
+                    GeometryReader { reader in
+                        let lastValue = chartDataSet.data.last!.yAxisValue
+                        let percentage = 1 - (lastValue / (chartDataSet.highestValue - chartDataSet.lowestValue))
+
+
+                        ZStack {
+                            if lastValue != chartDataSet.lowestValue {
+                                Text(chartDataSet.lowestValue.stringValue)
+                                    .position(x: 10, y: reader.size.height)
+                            }
+
+                            if lastValue != chartDataSet.highestValue {
+                                Text(chartDataSet.highestValue.stringValue)
+                                    .position(x: 10, y: 0)
+                            }
+                            
+                            if !percentage.isNaN {
                                 Text(lastValue.stringValue)
                                     .frame(width: 30)
                                     .multilineTextAlignment(.trailing)
@@ -102,7 +103,8 @@ struct LineChartView: View {
                                     .position(x: 10, y: reader.size.height * CGFloat(percentage))
                             }
                         }
-                        .frame(width: 30)
+                    }
+                    .frame(width: 30)
                 }
                 
                 
