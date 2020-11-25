@@ -9,12 +9,6 @@ import SwiftUI
 
 struct SignalView: View {
     var signal: Signal
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        return formatter
-    }()
     
     @State private var showPayload: Bool = false
     
@@ -36,16 +30,16 @@ struct SignalView: View {
                         .imageScale(.large)
                         .rotationEffect(.init(degrees: showPayload ? 90 : 0))
                         .foregroundColor(.accentColor)
-                    
-                    Text(dateFormatter.string(from: signal.receivedAt))
-                        .frame(width: 150)
-                    
-                    Text(signal.type).bold()
-                    
+
+                    Group {
+                        Text(signal.receivedAt, style: .relative) + Text(" ago")
+                    }
+                    .font(.footnote)
+                    .foregroundColor(.grayColor)
+
                     Spacer()
                     
-                    Text(signal.clientUser.prefix(16))
-                        .foregroundColor(.grayColor)
+                    Text(signal.type).bold()
                 }
                 
                 if showPayload {

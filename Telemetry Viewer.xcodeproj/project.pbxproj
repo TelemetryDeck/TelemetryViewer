@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC07D8F3255466D2007A89D6 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07D8F2255466D2007A89D6 /* AppRootView.swift */; };
-		DC07D8F4255466D2007A89D6 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07D8F2255466D2007A89D6 /* AppRootView.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC25A573256A87D600EE84DA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
@@ -26,6 +24,8 @@
 		DC25A5AE256C0C2000EE84DA /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */; };
 		DC25A5E0256D844300EE84DA /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A5DF256D844300EE84DA /* DetailSidebar.swift */; };
 		DC25A5E1256D844300EE84DA /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A5DF256D844300EE84DA /* DetailSidebar.swift */; };
+		DC25A616256DBC3B00EE84DA /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A615256DBC3B00EE84DA /* AppRootView.swift */; };
+		DC25A617256DBC3B00EE84DA /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A615256DBC3B00EE84DA /* AppRootView.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC39F24E253C469100A7C325 /* CreateOrUpdateInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
@@ -169,11 +169,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DC07D8F2255466D2007A89D6 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		DC07D8F2255466D2007A89D6 /* AppRootView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView2.swift; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC25A58C256BF1D800EE84DA /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBottomView.swift; sourceTree = "<group>"; };
 		DC25A5DF256D844300EE84DA /* DetailSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
+		DC25A615256DBC3B00EE84DA /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrUpdateInsightForm.swift; sourceTree = "<group>"; };
 		DC415C0D2531F6C300D8D0B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -431,7 +432,8 @@
 				DCE239FE24D3687D00053370 /* Assets.xcassets */,
 				DCB02B65250027C700304964 /* Models */,
 				DC45BB1824E1F01F004E6392 /* SidebarView.swift */,
-				DC07D8F2255466D2007A89D6 /* AppRootView.swift */,
+				DC07D8F2255466D2007A89D6 /* AppRootView2.swift */,
+				DC25A615256DBC3B00EE84DA /* AppRootView.swift */,
 				DC4F7DBC25069C3200B54561 /* NewAppView.swift */,
 				DCB02B70250277C300304964 /* Generic Views */,
 				DCB02B692502764200304964 /* Login Register */,
@@ -674,6 +676,7 @@
 				DC25A58D256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC5339372521CE6200D9C889 /* CardView.swift in Sources */,
 				DC98AAB7250A671900FF26FD /* AppSettingsView.swift in Sources */,
+				DC25A617256DBC3B00EE84DA /* AppRootView.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
@@ -683,7 +686,6 @@
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
-				DC07D8F3255466D2007A89D6 /* AppRootView.swift in Sources */,
 				DCC8CB5B2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
@@ -735,6 +737,7 @@
 				DCB02B8025038F5000304964 /* MockData.swift in Sources */,
 				DC25A58E256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC4E2F6E25641BF1001AD7B4 /* RoundedCorners.swift in Sources */,
+				DC25A616256DBC3B00EE84DA /* AppRootView.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
 				DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */,
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
@@ -746,7 +749,6 @@
 				DC98AAB8250A671900FF26FD /* AppSettingsView.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
-				DC07D8F4255466D2007A89D6 /* AppRootView.swift in Sources */,
 				DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,

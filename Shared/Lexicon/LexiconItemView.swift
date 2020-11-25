@@ -33,8 +33,8 @@ struct SignalTypeView: View {
             .foregroundColor(.grayColor)
             .font(.footnote)
             
-            Image(systemName: lexiconItem.isHidden ? "eye.slash" : "eye")
-                .foregroundColor(.grayColor)
+//            Image(systemName: lexiconItem.isHidden ? "eye.slash" : "eye")
+//                .foregroundColor(.grayColor)
         }
     }
 }

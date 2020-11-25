@@ -16,7 +16,7 @@ struct SidebarView: View {
         List(selection: $selectedApp) {
             
             Section(header: Text("Apps")) {
-                ForEach(api.apps) { app in
+                ForEach(api.apps.sorted { $0.name < $1.name }) { app in
                     
                     NavigationLink(
                         destination: AppRootView(appID: app.id),

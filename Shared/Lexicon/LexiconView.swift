@@ -9,9 +9,12 @@ import SwiftUI
 
 struct LexiconView: View {
     @EnvironmentObject var api: APIRepresentative
-    let app: TelemetryApp
+
+    let appID: UUID
+    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
     
     var body: some View {
+        if let app = app {
         let list = List {
             Section(header: Text("Signal Types")) {
                 ForEach(api.lexiconSignalTypes[app] ?? []) { lexiconItem in
@@ -39,21 +42,25 @@ struct LexiconView: View {
         }
         
         list
+            .listRowBackground(Color.clear)
             .navigationTitle("Lexicon")
             .onAppear() {
                 api.getSignalTypes(for: app)
                 api.getPayloadKeys(for: app)
             }
+        } else {
+            Text("No App")
+        }
     }
 }
-
-struct LexiconView_Previews: PreviewProvider {
-    static var previews: some View {
-        let api = APIRepresentative()
-        let app = TelemetryApp(id: UUID(), name: "anyApp", organization: [:])
-        api.lexiconSignalTypes[app] = MockData.lexiconSignalTypes
-        api.lexiconPayloadKeys[app] = MockData.lexiconPayloadKeys
-        
-        return LexiconView(app: app).environmentObject(api)
-    }
-}
+//
+//struct LexiconView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let api = APIRepresentative()
+//        let app = TelemetryApp(id: UUID(), name: "anyApp", organization: [:])
+//        api.lexiconSignalTypes[app] = MockData.lexiconSignalTypes
+//        api.lexiconPayloadKeys[app] = MockData.lexiconPayloadKeys
+//        
+//        return LexiconView(app: app).environmentObject(api)
+//    }
+//}

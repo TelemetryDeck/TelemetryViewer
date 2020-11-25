@@ -24,25 +24,11 @@ struct DetailSidebar<Content>: View where Content: View {
             Divider()
 
             VStack {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        withAnimation { isOpen = false }
-                    }, label: {
-                        Image(systemName: "sidebar.trailing")
-                    })
-                }
-                .padding(.horizontal)
-
-                Divider()
-
                 content
-
-                Spacer()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-
-
         }
+        .background(Color("CardBackgroundColor"))
         .frame(maxWidth: maxWidth)
     }
 }

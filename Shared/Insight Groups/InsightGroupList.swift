@@ -9,7 +9,8 @@ import SwiftUI
 import TelemetryClient
 
 struct InsightGroupList: View {
-    
+
+    @Binding var sidebarElement: SidebarElement?
     @EnvironmentObject var api: APIRepresentative
     var app: TelemetryApp
     var insightGroupID: UUID
@@ -33,7 +34,7 @@ struct InsightGroupList: View {
                         }
                     }
                 } else {
-                    InsightsGrid(app: app, insightGroup: insightGroup)
+                    InsightsGrid(app: app, insightGroup: insightGroup, sidebarElement: $sidebarElement)
                 }
                 
                 Spacer()
