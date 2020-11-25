@@ -20,16 +20,14 @@ struct DetailSidebar<Content>: View where Content: View {
     }
 
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             Divider()
 
-            VStack {
-                content
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .background(Color("CardBackgroundColor"))
-        .frame(maxWidth: maxWidth)
+        .frame(maxWidth: maxWidth, maxHeight: .infinity)
     }
 }
 

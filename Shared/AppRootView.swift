@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-enum SidebarElement: Equatable {
-    case app(id: UUID)
-    case insightGroup(id: UUID)
-    case insight(id: UUID)
+enum AppRootSidebarSection {
+    case InsightEditor
+    case InsightGroupEditor
+    case AppEditor
+    case Lexicon
+    case RawSignals
 }
 
 struct AppRootView: View {
@@ -19,16 +21,17 @@ struct AppRootView: View {
 
     @EnvironmentObject var api: APIRepresentative
 
-    @State private var sidebarElementValue: SidebarElement?
+    @State private var selectedInsightGroupID: UUID = UUID()
+    @State private var selectedInsightIDValue: UUID?
     @State private var sidebarShownValue: Bool = false
-
+    @State private var sidebarSection: AppRootSidebarSection = .InsightEditor
 
     var body: some View {
-        let sidebarElement = Binding<SidebarElement?>(get: {
-            self.sidebarElementValue
+        let selectedInsightID = Binding<UUID?>(get: {
+            self.selectedInsightIDValue
         }, set: {
-            self.sidebarElementValue = $0
-            withAnimation { self.sidebarShownValue = self.sidebarElementValue != nil }
+            self.selectedInsightIDValue = $0
+            withAnimation { self.sidebarShownValue = self.selectedInsightIDValue != nil }
         })
 
         let sidebarShown = Binding<Bool>(get: {
@@ -36,22 +39,23 @@ struct AppRootView: View {
         }, set: {
             self.sidebarShownValue = $0
             if !$0 {
-                self.sidebarElementValue = nil
+                self.selectedInsightIDValue = nil
             }
         })
 
-        HStack {
+        HStack(spacing: 0) {
             Group {
                 if let app = app {
-                    TabView {
+                    TabView(selection: $selectedInsightGroupID) {
                         if (api.insightGroups[app] ?? []).isEmpty {
                             OfferDefaultInsights(app: app)
                                 .tabItem { Label("Start Here", systemImage: "wand.and.stars") }
                         }
 
                         ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                            InsightGroupList(sidebarElement: sidebarElement, app: app, insightGroupID: insightGroup.id)
+                            InsightGroupList(selectedInsightID: selectedInsightID, app: app, insightGroupID: insightGroup.id)
                                 .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
+                                .tag(insightGroup.id)
                         }
                     }
                     .navigationTitle(app.name)
@@ -59,13 +63,20 @@ struct AppRootView: View {
                     Text("Not an App")
                 }
             }
+            .onAppear() {
+                if let app = app {
+                    selectedInsightGroupID = api.insightGroups[app]?.first?.id ?? UUID()
+                }
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
 
             if sidebarShownValue {
                 DetailSidebar(isOpen: sidebarShown , maxWidth: 350) {
-                    AppRootSidebar(sidebarElement: sidebarElement, appID: appID)
-                }.transition(.move(edge: .trailing))
+                    AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
+                }
+                .edgesIgnoringSafeArea(.bottom)
+                .transition(.move(edge: .trailing))
             }
         }
         .toolbar {
@@ -81,38 +92,37 @@ struct AppRootView: View {
 }
 
 struct AppRootSidebar: View {
-    @Binding var sidebarElement: SidebarElement?
-
-    @State var editorMode: Int = 0
+    @Binding var selectedInsightID: UUID?
+    @Binding var selectedInsightGroupID: UUID
+    @Binding var sidebarSection: AppRootSidebarSection
 
     var appID: UUID
 
     var body: some View {
 
         VStack {
-            Picker(selection: $editorMode, label: Text("")) {
-                Image(systemName: "app.fill").tag(0)
-                Image(systemName: "square.grid.2x2.fill").tag(1)
-                Image(systemName: "gear").tag(2)
-                Image(systemName: "book").tag(3)
-                Image(systemName: "waveform").tag(4)
+            Picker(selection: $sidebarSection, label: Text("")) {
+                Image(systemName: "app.fill").tag(AppRootSidebarSection.InsightEditor)
+                Image(systemName: "square.grid.2x2.fill").tag(AppRootSidebarSection.InsightGroupEditor)
+                Image(systemName: "gear").tag(AppRootSidebarSection.AppEditor)
+                Image(systemName: "book").tag(AppRootSidebarSection.Lexicon)
+                Image(systemName: "waveform").tag(AppRootSidebarSection.RawSignals)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.bottom)
+            .padding(.horizontal)
 
-            switch editorMode {
-            case 0:
-                SelectionEditor(sidebarElement: $sidebarElement)
-            case 1:
-                Text("Insight Group Seettings")
-            case 2:
-                AppSettingsView(appID: appID, sidebarElement: $sidebarElement)
-            case 3:
+            switch sidebarSection {
+            case .InsightEditor:
+                InsightEditor(selectedInsightID: $selectedInsightID)
+            case .InsightGroupEditor:
+                InsightGroupEditor(appID: appID, selectedInsightGroupID: $selectedInsightGroupID)
+            case .AppEditor:
+                AppEditor(appID: appID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection)
+            case .Lexicon:
                 LexiconView(appID: appID)
-            case 4:
+            case .RawSignals:
                 SignalList(appID: appID)
-            default:
-                Text("Unknown Selection")
             }
 
             Spacer()
@@ -120,36 +130,47 @@ struct AppRootSidebar: View {
     }
 }
 
-struct SelectionEditor: View {
-    @Binding var sidebarElement: SidebarElement?
-
-    var body: some View {
-        switch sidebarElement {
-        case .app(let id):
-            Text("App \(id)")
-        case .insightGroup(let id):
-            Text("Insight Group \(id)")
-        case .insight(let id):
-            InsightEditor(insightID: id)
-        case .none:
-            Text("Nothing Selected").foregroundColor(.grayColor)
-        }
-    }
-}
-
 struct InsightEditor: View {
-    let insightID: UUID
+    @Binding var selectedInsightID: UUID?
     @EnvironmentObject var api: APIRepresentative
 
     var insightDTO: InsightDataTransferObject? {
-        api.insightData[insightID]
+        selectedInsightID != nil ? api.insightData[selectedInsightID!] : nil
     }
 
     var body: some View {
         if let insightDTO = insightDTO {
             Text("Insight \(insightDTO.title)")
         } else {
-            Text("No Insight Here")
+            Text("No Insight Selected").foregroundColor(.grayColor)
         }
     }
 }
+
+struct InsightGroupEditor: View {
+    let appID: UUID
+    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
+
+    @Binding var selectedInsightGroupID: UUID
+    @EnvironmentObject var api: APIRepresentative
+
+    var insightGroup: InsightGroup? {
+        guard let app = app else { return nil }
+        return api.insightGroups[app]?.first(where: { $0.id == selectedInsightGroupID })
+    }
+
+    var body: some View {
+        if let insightGroup = insightGroup, let app = app {
+            VStack {
+            Text("Insight Group \(insightGroup.title)")
+                Button("Delete this Insight Group") {
+                    api.delete(insightGroup: insightGroup, in: app)
+                }
+            }
+
+        } else {
+            Text("No Insight Group Selected").foregroundColor(.grayColor)
+        }
+    }
+}
+

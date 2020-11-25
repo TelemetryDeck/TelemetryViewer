@@ -46,6 +46,17 @@ struct InsightGroup: Codable, Identifiable {
     var title: String
     var order: Double?
     var insights: [Insight] = []
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let insights = try container.decodeIfPresent([Insight].self, forKey: .insights) {
+            self.insights = insights
+        }
+
+        self.id = try container.decode(UUID.self, forKey: .id)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.order = try container.decodeIfPresent(Double.self, forKey: .order)
+    }
 }
 
 enum InsightDisplayMode: String, Codable {

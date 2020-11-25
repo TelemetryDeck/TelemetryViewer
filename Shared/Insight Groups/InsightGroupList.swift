@@ -10,7 +10,7 @@ import TelemetryClient
 
 struct InsightGroupList: View {
 
-    @Binding var sidebarElement: SidebarElement?
+    @Binding var selectedInsightID: UUID?
     @EnvironmentObject var api: APIRepresentative
     var app: TelemetryApp
     var insightGroupID: UUID
@@ -22,37 +22,31 @@ struct InsightGroupList: View {
     ).autoconnect()
     
     var body: some View {
-        if let insightGroup = (api.insightGroups[app] ?? []).first(where: { $0.id == insightGroupID }) {
-            
-            ScrollView(.vertical) {
-                
-                if insightGroup.insights.isEmpty {
-                    VStack {
-                        Text("This Insight Group is Empty")
-                        Button("Delete it") {
-                            api.delete(insightGroup: insightGroup, in: app)
-                        }
-                    }
-                } else {
-                    InsightsGrid(app: app, insightGroup: insightGroup, sidebarElement: $sidebarElement)
+        Group {
+            if let insightGroup = (api.insightGroups[app] ?? []).first(where: { $0.id == insightGroupID }), !insightGroup.insights.isEmpty {
+
+                ScrollView(.vertical) {
+                    InsightsGrid(app: app, insightGroup: insightGroup, selectedInsightID: $selectedInsightID)
+                    Spacer()
+
+                    Text("Insights will automatically refresh once a minute")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
                 }
-                
-                Spacer()
-                
-                Text("Insights will automatically refresh once a minute")
-                    .font(.footnote)
-                    .foregroundColor(.grayColor)
+                .navigationTitle(insightGroup.title)
+            } else {
+                Text("This Insight Group is Empty").foregroundColor(.grayColor)
             }
-            
-            .onAppear {
-                api.getInsightGroups(for: app)
-                TelemetryManager.shared.send(TelemetrySignal.telemetryAppInsightsShown.rawValue, for: api.user?.email)
-            }
-            .onReceive(refreshTimer) { _ in
-                api.getInsightGroups(for: app)
-                TelemetryManager.shared.send(TelemetrySignal.telemetryAppInsightsRefreshed.rawValue, for: api.user?.email)
-            }
-            .navigationTitle(insightGroup.title)
+        }
+
+
+        .onAppear {
+            api.getInsightGroups(for: app)
+            TelemetryManager.shared.send(TelemetrySignal.telemetryAppInsightsShown.rawValue, for: api.user?.email)
+        }
+        .onReceive(refreshTimer) { _ in
+            api.getInsightGroups(for: app)
+            TelemetryManager.shared.send(TelemetrySignal.telemetryAppInsightsRefreshed.rawValue, for: api.user?.email)
         }
     }
 }

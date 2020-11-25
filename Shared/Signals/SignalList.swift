@@ -34,7 +34,7 @@ struct SignalList: View {
                         }
                     }
                 }
-                .padding(.trailing)
+                .padding(.horizontal)
 
             } else {
                 Text("No App")

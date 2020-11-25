@@ -11,7 +11,7 @@ struct InsightsGrid: View {
     let app: TelemetryApp
     let insightGroup: InsightGroup
 
-    @Binding var sidebarElement: SidebarElement?
+    @Binding var selectedInsightID: UUID?
 
     
     var body: some View {
@@ -21,22 +21,22 @@ struct InsightsGrid: View {
                 let nonExpandedInsights = insightGroup.insights.filter({ !$0.isExpanded }).sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
 
                 ForEach(expandedInsights) { insight in
-                    CardView(selected: sidebarElement == SidebarElement.insight(id: insight.id)) {
+                    CardView(selected: selectedInsightID == insight.id) {
                         InsightView(app: app, insightGroup: insightGroup, insight: insight)
                     }
                     .onTapGesture {
-                        sidebarElement = .insight(id: insight.id)
+                        selectedInsightID = insight.id
                     }
                 }
 
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 300))], alignment: .leading) {
                     ForEach(nonExpandedInsights) { insight in
 
-                        CardView(selected: sidebarElement == SidebarElement.insight(id: insight.id)) {
+                        CardView(selected: selectedInsightID == insight.id) {
                             InsightView(app: app, insightGroup: insightGroup, insight: insight)
                         }
                         .onTapGesture {
-                            sidebarElement = .insight(id: insight.id)
+                            selectedInsightID = insight.id
                         }
                     }
 

@@ -8,19 +8,27 @@
 import SwiftUI
 import TelemetryClient
 
-struct AppSettingsView: View {
+struct AppEditor: View {
     @EnvironmentObject var api: APIRepresentative
 
     let appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
 
-    @State var newName: String = ""
-    @Binding var sidebarElement: SidebarElement?
+    @Binding var selectedInsightGroupID: UUID
+    @Binding var sidebarSection: AppRootSidebarSection
+
+    @State private var newName: String = ""
+
+    var padding: CGFloat? {
+        #if os(macOS)
+        return nil
+        #else
+        return 0
+        #endif
+    }
     
     var body: some View {
         if let app = app {
-
-
             Form {
                 Section(header: Text("App Name")) {
                     TextField("App Name", text: $newName)
@@ -51,9 +59,9 @@ struct AppSettingsView: View {
                 Button("New Insight Group") {
                     api.create(insightGroupNamed: "New Insight Group", for: app) { result in
                         switch result {
-
                         case .success(let insightGroup):
-                            sidebarElement = SidebarElement.insightGroup(id: insightGroup.id)
+                            selectedInsightGroupID = insightGroup.id
+                            sidebarSection = .InsightGroupEditor
                         case .failure(let error):
                             print(error.localizedDescription)
                         }
@@ -62,6 +70,7 @@ struct AppSettingsView: View {
                 }
 
             }
+            .padding(.horizontal, self.padding)
             .onAppear {
                 newName = app.name
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
