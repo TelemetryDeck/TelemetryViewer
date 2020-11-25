@@ -41,6 +41,10 @@ struct InsightGroup: Codable, Identifiable {
     var title: String
     var order: Double?
     var insights: [Insight] = []
+
+    func getDTO() -> InsightGroupDTO {
+        return InsightGroupDTO(id: self.id, title: self.title, order: self.order)
+    }
 }
 
 struct InsightGroupDTO: Codable, Identifiable {

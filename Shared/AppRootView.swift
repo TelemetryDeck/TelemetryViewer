@@ -146,31 +146,3 @@ struct InsightEditor: View {
         }
     }
 }
-
-struct InsightGroupEditor: View {
-    let appID: UUID
-    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
-
-    @Binding var selectedInsightGroupID: UUID
-    @EnvironmentObject var api: APIRepresentative
-
-    var insightGroup: InsightGroup? {
-        guard let app = app else { return nil }
-        return api.insightGroups[app]?.first(where: { $0.id == selectedInsightGroupID })
-    }
-
-    var body: some View {
-        if let insightGroup = insightGroup, let app = app {
-            VStack {
-            Text("Insight Group \(insightGroup.title)")
-                Button("Delete this Insight Group") {
-                    api.delete(insightGroup: insightGroup, in: app)
-                }
-            }
-
-        } else {
-            Text("No Insight Group Selected").foregroundColor(.grayColor)
-        }
-    }
-}
-

@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 final class APIRepresentative: ObservableObject {
-    private static let baseURLString = "https://apptelemetry.io/api/v1/"
-    // private static let baseURLString = "http://localhost:8080/api/v1/"
+    // private static let baseURLString = "https://apptelemetry.io/api/v1/"
+    private static let baseURLString = "http://localhost:8080/api/v1/"
     private static let userTokenStandardsKey = "org.breakthesystem.telemetry.viewer.userToken"
     
     init() {
@@ -261,6 +261,15 @@ extension APIRepresentative {
             self.getInsightGroups(for: app) { _ in
                 callback?(result)
             }
+        }
+    }
+
+    func update(insightGroup: InsightGroupDTO, in app: TelemetryApp, callback: ((Result<InsightGroupDTO, TransferError>) -> ())? = nil) {
+        let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString)
+
+        self.patch(insightGroup, to: url) { (result: Result<InsightGroupDTO, TransferError>) in
+            self.getInsightGroups(for: app)
+            callback?(result)
         }
     }
     

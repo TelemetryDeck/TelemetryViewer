@@ -8,21 +8,6 @@
 import SwiftUI
 import TelemetryClient
 
-extension Binding {
-
-    /// When the `Binding`'s `wrappedValue` changes, the given closure is executed.
-    /// - Parameter closure: Chunk of code to execute whenever the value changes.
-    /// - Returns: New `Binding`.
-    func onUpdate(_ closure: @escaping () -> Void) -> Binding<Value> {
-        Binding(get: {
-            wrappedValue
-        }, set: { newValue in
-            wrappedValue = newValue
-            closure()
-        })
-    }
-}
-
 struct AppEditor: View {
     @EnvironmentObject var api: APIRepresentative
 
@@ -64,30 +49,26 @@ struct AppEditor: View {
                     }
                 }
 
+                Section(header: Text("New Insight Group")) {
+                    Button("New Insight Group") {
+                        api.create(insightGroupNamed: "New Insight Group", for: app) { result in
+                            switch result {
+                            case .success(let insightGroup):
+                                selectedInsightGroupID = insightGroup.id
+                                sidebarSection = .InsightGroupEditor
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            }
+
+                        }
+                    }
+                }
+                
                 Section(header: Text("Delete")) {
                     Button("Delete App \"\(app.name)\"") {
                         api.delete(app: app)
                         TelemetryManager.shared.send(TelemetrySignal.telemetryAppDeleted.rawValue, for: api.user?.email)
                     }.accentColor(.red)
-                }
-
-                Button("Save Changes") {
-                    api.update(app: app, newName: newName)
-                    TelemetryManager.shared.send(TelemetrySignal.telemetryAppUpdated.rawValue, for: api.user?.email)
-                }
-                .keyboardShortcut(.defaultAction)
-
-                Button("New Insight Group") {
-                    api.create(insightGroupNamed: "New Insight Group", for: app) { result in
-                        switch result {
-                        case .success(let insightGroup):
-                            selectedInsightGroupID = insightGroup.id
-                            sidebarSection = .InsightGroupEditor
-                        case .failure(let error):
-                            print(error.localizedDescription)
-                        }
-
-                    }
                 }
 
             }
