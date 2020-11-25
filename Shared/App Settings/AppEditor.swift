@@ -8,6 +8,21 @@
 import SwiftUI
 import TelemetryClient
 
+extension Binding {
+
+    /// When the `Binding`'s `wrappedValue` changes, the given closure is executed.
+    /// - Parameter closure: Chunk of code to execute whenever the value changes.
+    /// - Returns: New `Binding`.
+    func onUpdate(_ closure: @escaping () -> Void) -> Binding<Value> {
+        Binding(get: {
+            wrappedValue
+        }, set: { newValue in
+            wrappedValue = newValue
+            closure()
+        })
+    }
+}
+
 struct AppEditor: View {
     @EnvironmentObject var api: APIRepresentative
 
@@ -18,6 +33,12 @@ struct AppEditor: View {
     @Binding var sidebarSection: AppRootSidebarSection
 
     @State private var newName: String = ""
+
+    func saveToAPI() {
+        if let app = app {
+            api.update(app: app, newName: newName)
+        }
+    }
 
     var padding: CGFloat? {
         #if os(macOS)
@@ -31,7 +52,7 @@ struct AppEditor: View {
         if let app = app {
             Form {
                 Section(header: Text("App Name")) {
-                    TextField("App Name", text: $newName)
+                    TextField("App Name", text: $newName.onUpdate(saveToAPI))
                 }
 
                 Section(header: Text("Unique Identifier")) {

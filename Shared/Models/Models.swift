@@ -26,11 +26,6 @@ struct TelemetryApp: Codable, Hashable, Identifiable {
     var id: UUID
     var name: String
     var organization: [String: String]
-    var isMockData: Bool = false
-    
-    enum CodingKeys: String, CodingKey {
-        case id, name, organization
-    }
 }
 
 struct Signal: Codable, Hashable {
@@ -46,18 +41,14 @@ struct InsightGroup: Codable, Identifiable {
     var title: String
     var order: Double?
     var insights: [Insight] = []
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let insights = try container.decodeIfPresent([Insight].self, forKey: .insights) {
-            self.insights = insights
-        }
-
-        self.id = try container.decode(UUID.self, forKey: .id)
-        self.title = try container.decode(String.self, forKey: .title)
-        self.order = try container.decodeIfPresent(Double.self, forKey: .order)
-    }
 }
+
+struct InsightGroupDTO: Codable, Identifiable {
+    var id: UUID
+    var title: String
+    var order: Double?
+}
+
 
 enum InsightDisplayMode: String, Codable {
     case number // Deprecated, use Raw instead
