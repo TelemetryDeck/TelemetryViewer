@@ -30,6 +30,8 @@
 		DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */; };
 		DC25A640256ED12100EE84DA /* InsightGroupEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */; };
 		DC25A641256ED12100EE84DA /* InsightGroupEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */; };
+		DC25A6492570108E00EE84DA /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A6482570108E00EE84DA /* InsightEditor.swift */; };
+		DC25A64A2570108E00EE84DA /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A6482570108E00EE84DA /* InsightEditor.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC39F24E253C469100A7C325 /* CreateOrUpdateInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
@@ -181,6 +183,7 @@
 		DC25A615256DBC3B00EE84DA /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+OnUpdate.swift"; sourceTree = "<group>"; };
 		DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGroupEditor.swift; sourceTree = "<group>"; };
+		DC25A6482570108E00EE84DA /* InsightEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditor.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrUpdateInsightForm.swift; sourceTree = "<group>"; };
 		DC415C0D2531F6C300D8D0B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 				DC53394425222FC600D9C889 /* NewInsightGroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
 				DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */,
+				DC25A6482570108E00EE84DA /* InsightEditor.swift */,
 			);
 			path = "Insight Groups";
 			sourceTree = "<group>";
@@ -676,6 +680,7 @@
 				DCCD4825253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */,
 				DC45BB1924E1F01F004E6392 /* SidebarView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
+				DC25A6492570108E00EE84DA /* InsightEditor.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
@@ -767,6 +772,7 @@
 				DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
+				DC25A64A2570108E00EE84DA /* InsightEditor.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,

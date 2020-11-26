@@ -114,9 +114,9 @@ struct AppRootSidebar: View {
 
             switch sidebarSection {
             case .InsightEditor:
-                InsightEditor(selectedInsightID: $selectedInsightID)
+                InsightEditor(appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID)
             case .InsightGroupEditor:
-                InsightGroupEditor(appID: appID, selectedInsightGroupID: $selectedInsightGroupID)
+                InsightGroupEditor(appID: appID, selectedInsightID: $selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection)
             case .AppEditor:
                 AppEditor(appID: appID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection)
             case .Lexicon:
@@ -126,23 +126,6 @@ struct AppRootSidebar: View {
             }
 
             Spacer()
-        }
-    }
-}
-
-struct InsightEditor: View {
-    @Binding var selectedInsightID: UUID?
-    @EnvironmentObject var api: APIRepresentative
-
-    var insightDTO: InsightDataTransferObject? {
-        selectedInsightID != nil ? api.insightData[selectedInsightID!] : nil
-    }
-
-    var body: some View {
-        if let insightDTO = insightDTO {
-            Text("Insight \(insightDTO.title)")
-        } else {
-            Text("No Insight Selected").foregroundColor(.grayColor)
         }
     }
 }

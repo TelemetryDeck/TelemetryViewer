@@ -295,19 +295,19 @@ extension APIRepresentative {
         }
     }
     
-    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp, callback: ((Result<String, TransferError>) -> ())? = nil) {
+    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp, callback: ((Result<InsightDataTransferObject, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights")
         
-        self.post(requestBody, to: url) { (result: Result<String, TransferError>) in
+        self.post(requestBody, to: url) { (result: Result<InsightDataTransferObject, TransferError>) in
             self.getInsightGroups(for: app)
             callback?(result)
         }
     }
     
-    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<String, TransferError>) -> ())? = nil) {
+    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<InsightDataTransferObject, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
         
-        self.patch(insightUpdateRequestBody, to: url) { (result: Result<String, TransferError>) in
+        self.patch(insightUpdateRequestBody, to: url) { (result: Result<InsightDataTransferObject, TransferError>) in
             self.getInsightData(for: insight, in: insightGroup, in: app)
             callback?(result)
         }
@@ -459,14 +459,7 @@ extension APIRepresentative {
     ///
     /// In DEBUG configuration, this method will print out the generated URL.
     func urlForPath(_ path: String..., appendTrailingSlash: Bool = false) -> URL {
-        let url = URL(string: APIRepresentative.baseURLString + path.joined(separator: "/") + "/")!
-
-        
-        #if DEBUG
-        print("🌍", url)
-        #endif
-        
-        return url
+        URL(string: APIRepresentative.baseURLString + path.joined(separator: "/") + "/")!
     }
     
     /// Given a URL, generate a URLRequest instance with included authentication headers
@@ -484,23 +477,39 @@ extension APIRepresentative {
     }
     
     func get<Output: Decodable>(_ url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        #if DEBUG
+        print("🌍 GET", url)
+        #endif
+
         let request = self.authenticatedURLRequest(for: url, httpMethod: "GET")
         runTask(with: request, completion: completion)
     }
     
     func post<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        #if DEBUG
+        print("🌍 POST", url)
+        #endif
+
         var request = self.authenticatedURLRequest(for: url, httpMethod: "POST")
         request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
         runTask(with: request, completion: completion)
     }
     
     func patch<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        #if DEBUG
+        print("🌍 PATCH", url)
+        #endif
+
         var request = self.authenticatedURLRequest(for: url, httpMethod: "PATCH")
         request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
         runTask(with: request, completion: completion)
     }
     
     func delete<Output: Decodable>(_ url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+        #if DEBUG
+        print("🌍 DELETE", url)
+        #endif
+
         let request = self.authenticatedURLRequest(for: url, httpMethod: "DELETE")
         runTask(with: request, completion: completion)
     }

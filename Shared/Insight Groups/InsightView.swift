@@ -14,8 +14,7 @@ struct InsightView: View {
     let app: TelemetryApp
     let insightGroup: InsightGroup
     let insight: Insight
-    
-    @State private var isEditViewShowing: Bool = false
+
     @State private var isLoading: Bool = false
     @State private var loadingErrorOccurred: Bool = false
     
@@ -48,13 +47,6 @@ struct InsightView: View {
                 
                 Image(systemName: "square.and.pencil")
                     .foregroundColor(.grayColor)
-                    .onTapGesture {
-                        isEditViewShowing = true
-                    }
-                    .sheet(isPresented: $isEditViewShowing) {
-                        CreateOrUpdateInsightForm(app: app, editMode: true, requestBody: InsightDefinitionRequestBody.from(insight: insight), insight: insight, group: insightGroup)
-                            .environmentObject(api)
-                    }
             }
             
             Group {

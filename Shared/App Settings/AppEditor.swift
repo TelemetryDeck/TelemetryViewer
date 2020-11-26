@@ -37,7 +37,7 @@ struct AppEditor: View {
         if let app = app {
             Form {
                 Section(header: Text("App Name")) {
-                    TextField("App Name", text: $newName.onUpdate(saveToAPI))
+                    TextField("App Name", text: $newName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
                 }
 
                 Section(header: Text("Unique Identifier")) {
@@ -73,6 +73,7 @@ struct AppEditor: View {
 
             }
             .padding(.horizontal, self.padding)
+            .onDisappear { saveToAPI() }
             .onAppear {
                 newName = app.name
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
