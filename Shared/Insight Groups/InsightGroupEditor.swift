@@ -55,6 +55,7 @@ struct InsightGroupEditor: View {
                     Button("Delete this Insight Group") {
                         api.delete(insightGroup: insightGroup, in: app)
                     }
+                    .accentColor(.red)
                 }
 
                 Section(header: Text("New Insight")) {
@@ -66,7 +67,7 @@ struct InsightGroupEditor: View {
                             signalType: nil,
                             uniqueUser: false,
                             filters: [:],
-                            rollingWindowSize: -86000,
+                            rollingWindowSize: -2592000,
                             breakdownKey: nil,
                             displayMode: .lineChart,
                             groupID: insightGroup.id,
@@ -87,12 +88,8 @@ struct InsightGroupEditor: View {
             .padding(.horizontal, self.padding)
             .onDisappear { saveToAPI() }
             .onAppear {
-
-
-                        self.title = insightGroup.title
-                        self.order = insightGroup.order ?? 0
-
-                
+                self.title = insightGroup.title
+                self.order = insightGroup.order ?? 0
             }
 
         } else {
