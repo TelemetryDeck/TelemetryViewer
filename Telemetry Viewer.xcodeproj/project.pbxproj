@@ -32,6 +32,8 @@
 		DC25A641256ED12100EE84DA /* InsightGroupEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */; };
 		DC25A6492570108E00EE84DA /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A6482570108E00EE84DA /* InsightEditor.swift */; };
 		DC25A64A2570108E00EE84DA /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A6482570108E00EE84DA /* InsightEditor.swift */; };
+		DC25A64F2571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
+		DC25A6502571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC39F24E253C469100A7C325 /* CreateOrUpdateInsightForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
@@ -184,6 +186,7 @@
 		DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+OnUpdate.swift"; sourceTree = "<group>"; };
 		DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGroupEditor.swift; sourceTree = "<group>"; };
 		DC25A6482570108E00EE84DA /* InsightEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditor.swift; sourceTree = "<group>"; };
+		DC25A64E2571680900EE84DA /* CustomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSection.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC39F24D253C469100A7C325 /* CreateOrUpdateInsightForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrUpdateInsightForm.swift; sourceTree = "<group>"; };
 		DC415C0D2531F6C300D8D0B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -387,6 +390,7 @@
 				DC4E2F6C25641BF1001AD7B4 /* RoundedCorners.swift */,
 				DC25A5DF256D844300EE84DA /* DetailSidebar.swift */,
 				DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */,
+				DC25A64E2571680900EE84DA /* CustomSection.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -708,6 +712,7 @@
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC53394025222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
+				DC25A64F2571680900EE84DA /* CustomSection.swift in Sources */,
 				DC4E2F642563FA48001AD7B4 /* LineChartView.swift in Sources */,
 				DCB28D6C2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */,
@@ -740,6 +745,7 @@
 				DC53394525222FC600D9C889 /* NewInsightGroupView.swift in Sources */,
 				DC4F7DBB25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
+				DC25A6502571680900EE84DA /* CustomSection.swift in Sources */,
 				DC25A5AD256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
 				DC25A641256ED12100EE84DA /* InsightGroupEditor.swift in Sources */,
 				DCCD4826253DB6840098EC95 /* OfferDefaultInsights.swift in Sources */,

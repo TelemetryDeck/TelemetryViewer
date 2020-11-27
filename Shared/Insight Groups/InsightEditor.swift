@@ -83,11 +83,12 @@ struct InsightEditor: View {
         #endif
     }
 
+
     // Body
     var body: some View {
         if let insightGroup = insightGroup, let insight = insight, let app = app {
             Form {
-                Section(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
+                CustomSection(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
 
                     TextField("Title e.g. 'Daily Active Users'", text: $insightTitle, onEditingChanged: { if !$0 { saveInsight() }}) { saveInsight() }
                     TextField("Optional Subtitle", text: $insightSubtitle, onEditingChanged: { if !$0 { saveInsight() }}) { saveInsight() }
@@ -102,8 +103,8 @@ struct InsightEditor: View {
 //                        }
 //                    }.pickerStyle(WheelPickerStyle())
                 }
-                
-                Section(header: Text("Delete")) {
+
+                CustomSection(header: Text("Delete"), footer: EmptyView()) {
                     Button("Delete this Insight") {
                         api.delete(insight: insight, in: insightGroup, in: app)
                     }

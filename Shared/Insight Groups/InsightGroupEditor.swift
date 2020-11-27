@@ -47,18 +47,11 @@ struct InsightGroupEditor: View {
     var body: some View {
         if let insightGroup = insightGroup, let app = app {
             Form {
-                Section(header: Text("Insight Group Title")) {
+                CustomSection(header: Text("Insight Group Title"), footer: EmptyView()) {
                     TextField("Title", text: $title, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
                 }
 
-                Section(header: Text("Delete")) {
-                    Button("Delete this Insight Group") {
-                        api.delete(insightGroup: insightGroup, in: app)
-                    }
-                    .accentColor(.red)
-                }
-
-                Section(header: Text("New Insight")) {
+                CustomSection(header: Text("New Insight"), footer: Text("Create a new Insight inside this Group")) {
                     Button("New Insight") {
                         let definitionRequestBody = InsightDefinitionRequestBody(
                             order: nil,
@@ -83,6 +76,13 @@ struct InsightGroupEditor: View {
                             }
                         }
                     }
+                }
+
+                CustomSection(header: Text("Delete"), footer: EmptyView(), startCollapsed: true) {
+                    Button("Delete this Insight Group") {
+                        api.delete(insightGroup: insightGroup, in: app)
+                    }
+                    .accentColor(.red)
                 }
             }
             .padding(.horizontal, self.padding)
