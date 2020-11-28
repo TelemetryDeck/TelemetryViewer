@@ -45,6 +45,7 @@ struct AppEditor: View {
                         Button (app.id.uuidString) {
                             saveToClipBoard(app.id.uuidString)
                         }
+                        .buttonStyle(SmallPrimaryButtonStyle())
                         #if os(macOS)
                         Text("Click to copy this UUID into your apps for tracking.").font(.footnote)
                         #else
@@ -66,13 +67,16 @@ struct AppEditor: View {
 
                         }
                     }
+                    .buttonStyle(SmallSecondaryButtonStyle())
                 }
                 
                CustomSection(header: Text("Delete"), footer: EmptyView()) {
                     Button("Delete App \"\(app.name)\"") {
                         api.delete(app: app)
                         TelemetryManager.shared.send(TelemetrySignal.telemetryAppDeleted.rawValue, for: api.user?.email)
-                    }.accentColor(.red)
+                    }
+                    .buttonStyle(SmallSecondaryButtonStyle())
+                    .accentColor(.red)
                 }
 
             }

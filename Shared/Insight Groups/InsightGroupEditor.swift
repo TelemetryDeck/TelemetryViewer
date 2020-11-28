@@ -116,16 +116,14 @@ struct InsightGroupEditor: View {
                 }
 
                 CustomSection(header: Text("New Insight"), footer: Text("Create a new Insight inside this Group")) {
-                    Button("New Insight") {
-                        viewModel.createNewInsight()
-                    }
+                    Button("New Insight", action: viewModel.createNewInsight)
+                        .buttonStyle(SmallSecondaryButtonStyle())
                 }
 
                 CustomSection(header: Text("Delete"), footer: EmptyView(), startCollapsed: true) {
-                    Button("Delete this Insight Group") {
-                        viewModel.delete()
-                    }
-                    .accentColor(.red)
+                    Button("Delete this Insight Group", action: viewModel.delete)
+                        .buttonStyle(SmallSecondaryButtonStyle())
+                        .accentColor(.red)
                 }
             }
             .padding(.horizontal, self.padding)

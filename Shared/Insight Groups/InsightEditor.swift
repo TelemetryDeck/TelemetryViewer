@@ -53,6 +53,12 @@ class InsightEditorViewModel: ObservableObject {
         insightGroup?.insights.first { $0.id == selectedInsightID?.wrappedValue }
     }
 
+    var insightDTO: InsightDataTransferObject? {
+        if let selectedInsightID = selectedInsightID?.wrappedValue {
+            return api.insightData[selectedInsightID]
+        } else { return nil }
+    }
+
     // Updating Functions
     func updateStateWithInsight() {
         self.insightOrder = insight?.order ?? -1
@@ -87,6 +93,12 @@ class InsightEditorViewModel: ObservableObject {
         }
     }
 
+    func updateInsight() {
+        if let insight = insight, let insightGroup = insightGroup, let app = app {
+            api.getInsightData(for: insight, in: insightGroup, in: app)
+        }
+    }
+
     func deleteInsight() {
         if let insight = insight, let insightGroup = insightGroup, let app = app {
             api.delete(insight: insight, in: insightGroup, in: app)
@@ -112,7 +124,7 @@ struct InsightEditor: View {
 
     // Body
     var body: some View {
-        if let insightGroup = viewModel.insightGroup {
+        if viewModel.insight != nil {
             Form {
                 CustomSection(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
 
@@ -130,11 +142,19 @@ struct InsightEditor: View {
 //                    }.pickerStyle(WheelPickerStyle())
                 }
 
-                CustomSection(header: Text("Delete"), footer: EmptyView()) {
-                    Button("Delete this Insight") {
-                        viewModel.deleteInsight()
+                if let dto = viewModel.insightDTO {
+                    CustomSection(header: Text("Last Updated"), footer: EmptyView()) {
+                        Text(dto.calculatedAt, style: .relative) + Text(" ago")
+                        Button("Update Now", action: viewModel.updateInsight)
+                            .buttonStyle(SmallSecondaryButtonStyle())
+
                     }
-                    .accentColor(.red)
+                }
+
+                CustomSection(header: Text("Delete"), footer: EmptyView()) {
+                    Button("Delete this Insight", action: viewModel.deleteInsight)
+                        .buttonStyle(SmallSecondaryButtonStyle())
+                        .accentColor(.red)
                 }
             }
             .padding(.horizontal, padding)
