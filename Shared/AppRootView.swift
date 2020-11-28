@@ -153,7 +153,7 @@ struct AppRootSidebar: View {
             case .InsightEditor:
                 InsightEditor(viewModel: InsightEditorViewModel(api: api, appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID))
             case .InsightGroupEditor:
-                InsightGroupEditor(appID: appID, selectedInsightID: $selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection)
+                InsightGroupEditor(viewModel: InsightGroupEditorViewModel(api: api, appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID, sidebarSection: $sidebarSection))
             case .AppEditor:
                 AppEditor(appID: appID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection)
             case .Lexicon:

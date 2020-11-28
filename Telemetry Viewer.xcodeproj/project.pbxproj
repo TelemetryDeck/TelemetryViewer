@@ -292,12 +292,12 @@
 			isa = PBXGroup;
 			children = (
 				DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */,
+				DC25A6482570108E00EE84DA /* InsightEditor.swift */,
 				DC53393F25222C2F00D9C889 /* InsightGroupList.swift */,
 				DCB28D6B2550AF0B0032B9AD /* InsightsGrid.swift */,
 				DC53394425222FC600D9C889 /* NewInsightGroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
 				DCCD4824253DB6840098EC95 /* OfferDefaultInsights.swift */,
-				DC25A6482570108E00EE84DA /* InsightEditor.swift */,
 			);
 			path = "Insight Groups";
 			sourceTree = "<group>";

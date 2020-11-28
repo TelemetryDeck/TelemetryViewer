@@ -8,7 +8,6 @@
 import SwiftUI
 
 class InsightEditorViewModel: ObservableObject {
-
     let appID: UUID
     @Binding var selectedInsightGroupID: UUID
     var selectedInsightID: Binding<UUID?>? = nil
@@ -113,7 +112,7 @@ struct InsightEditor: View {
 
     // Body
     var body: some View {
-        if let insightGroup = viewModel.insightGroup, let insight = viewModel.insight {
+        if let insightGroup = viewModel.insightGroup {
             Form {
                 CustomSection(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
 

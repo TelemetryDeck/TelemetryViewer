@@ -28,7 +28,7 @@ struct CustomSection<Content, Header, Footer>: View where Content: View, Header:
             HStack {
                 header
                     .font(Font.body.weight(.semibold))
-                    .foregroundColor(.grayColor)
+                    .opacity(0.7)
 
                 Spacer()
 
