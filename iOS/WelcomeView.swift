@@ -36,7 +36,6 @@ struct WelcomeView: View {
                     }
                     .buttonStyle(SmallSecondaryButtonStyle())
                     
-                    
                     Button("Privacy Policy →") {
                         UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/privacy-policy.html")!)
                     }

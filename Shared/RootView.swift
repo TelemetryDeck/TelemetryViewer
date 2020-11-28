@@ -16,7 +16,24 @@ struct RootView: View {
     var body: some View {
         NavigationView {
             SidebarView(selectedApp: $selectedApp)
-            Text(api.apps.count > 0 ? "Please Select an App" : "Welcome to Telemetry! Please create an app by tapping the plus button in the top left.")
+            if api.apps.count > 0 {
+                Text("Please Select an App")
+                    .foregroundColor(.grayColor)
+            } else {
+                VStack(spacing: 20) {
+                    Image("arrow-left-right-up")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 300)
+                        .scaleEffect(x: -1, y: 1, anchor: .center)
+                    Text("Welcome to Telemetry!")
+                        .font(.title)
+                        .foregroundColor(.grayColor)
+                    Text("Please create an app by tapping the plus button in the top left toolbar.")
+                        .foregroundColor(.grayColor)
+                }
+                .frame(maxWidth: 400)
+            }
                 
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())

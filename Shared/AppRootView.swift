@@ -46,21 +46,40 @@ struct AppRootView: View {
         HStack(spacing: 0) {
             Group {
                 if let app = app {
-                    TabView(selection: $selectedInsightGroupID) {
-                        if (api.insightGroups[app] ?? []).isEmpty {
-                            OfferDefaultInsights(app: app)
-                                .tabItem { Label("Start Here", systemImage: "wand.and.stars") }
-                        }
+                    if (api.insightGroups[app] ?? []).isEmpty {
+                        VStack(spacing: 20) {
+                            Image("arrow-left-right-up")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 300)
+                            Text("A new App! Awesome!")
+                                .font(.title)
+                                .foregroundColor(.grayColor)
+                            Text("Now open the side bar 􀏛, and select the app section 􀑋 to copy the app identifier and create a new Insight Group.")
+                                .foregroundColor(.grayColor)
 
-                        ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                            InsightGroupList(selectedInsightID: selectedInsightID, app: app, insightGroupID: insightGroup.id)
-                                .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
-                                .tag(insightGroup.id)
+                                Button("Open Documentation") {
+                                    #if os(macOS)
+                                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                                    #else
+                                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                                    #endif
+                                }
+                                .buttonStyle(SecondaryButtonStyle())
                         }
-                    }
+                        .frame(maxWidth: 400)
+                    } else {
+                        TabView(selection: $selectedInsightGroupID) {
+                            ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                                InsightGroupList(selectedInsightID: selectedInsightID, app: app, insightGroupID: insightGroup.id)
+                                    .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
+                                    .tag(insightGroup.id)
+                            }
+                        }
                     .navigationTitle(app.name)
+                    }
                 } else {
-                    Text("Not an App")
+                    Text("Please select an App").foregroundColor(.grayColor)
                 }
             }
             .onAppear() {
@@ -141,7 +160,7 @@ struct AppRootSidebar: View {
             Picker(selection: $sidebarSection, label: Text("")) {
                 Image(systemName: "app.fill").tag(AppRootSidebarSection.InsightEditor)
                 Image(systemName: "square.grid.2x2.fill").tag(AppRootSidebarSection.InsightGroupEditor)
-                Image(systemName: "gear").tag(AppRootSidebarSection.AppEditor)
+                Image(systemName: "app").tag(AppRootSidebarSection.AppEditor)
                 Image(systemName: "book").tag(AppRootSidebarSection.Lexicon)
                 Image(systemName: "waveform").tag(AppRootSidebarSection.RawSignals)
             }

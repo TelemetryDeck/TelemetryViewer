@@ -117,7 +117,7 @@ struct InsightGroupEditor: View {
 
                 CustomSection(header: Text("New Insight"), footer: Text("Create a new Insight inside this Group")) {
                     Button("New Insight", action: viewModel.createNewInsight)
-                        .buttonStyle(SmallSecondaryButtonStyle())
+                        .buttonStyle(SmallPrimaryButtonStyle())
                 }
 
                 CustomSection(header: Text("Delete"), footer: EmptyView(), startCollapsed: true) {

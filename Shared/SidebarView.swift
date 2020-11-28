@@ -10,7 +10,6 @@ import SwiftUI
 struct SidebarView: View {
     @EnvironmentObject var api: APIRepresentative
     @Binding var selectedApp: TelemetryApp?
-    @State var isCreatingANewApp: Bool = false
     
     var body: some View {
         List(selection: $selectedApp) {
@@ -21,7 +20,7 @@ struct SidebarView: View {
                     NavigationLink(
                         destination: AppRootView(appID: app.id),
                         label: {
-                            Label(app.name, systemImage: "square.dashed.inset.fill")
+                            Label(app.name, systemImage: "app")
                         })
                 }
             }
@@ -64,12 +63,9 @@ struct SidebarView: View {
             ToolbarItem(placement: ToolbarItemPlacement.primaryAction) {
                 HStack {
                     Button(action: {
-                        isCreatingANewApp = true
+                        api.create(appNamed: "New App")
                     }) {
                         Label("New App", systemImage: "plus.app.fill")
-                    }
-                    .sheet(isPresented: $isCreatingANewApp) {
-                        NewAppView(isPresented: $isCreatingANewApp)
                     }
                 }
             }

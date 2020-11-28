@@ -35,7 +35,18 @@ struct InsightGroupList: View {
                 }
                 .navigationTitle(insightGroup.title)
             } else {
-                Text("This Insight Group is Empty").foregroundColor(.grayColor)
+
+                VStack(spacing: 20) {
+
+                    Image("arrow-left-right")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 300)
+                        .rotationEffect(.degrees(-30))
+                    Text("This Insight Group is Empty. You can add Insights to your Insights Group by opening the sidebar 􀏛 and selecting the insight group section 􀚈")
+                        .foregroundColor(.grayColor)
+                }
+                .frame(maxWidth: 400)
             }
         }
 
