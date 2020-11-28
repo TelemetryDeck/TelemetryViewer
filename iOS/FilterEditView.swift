@@ -11,7 +11,7 @@ import SwiftUI
 
 struct FilterEditView: View {
     @Binding var keysAndValues: [String: String]
-    
+    let autocompleteOptions: [String]?
     @State private var newKeyName: String?
     
     var body: some View {
@@ -49,18 +49,18 @@ struct FilterEditView: View {
     }
 }
 
-struct FilterEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterEditView(keysAndValues: .constant([
-            "appVersion" : "1.0",
-            "signalClientUser" : "535be16c0989f9c9e21729ea7a1051caafce47bf8f3d17abeac770c7ae51644e",
-            "isAppStore" : "true",
-            "platform" : "macOS",
-            "isTestFlight" : "false",
-            "buildNumber" : "1",
-            "systemVersion" : "macOS 11.0.0",
-            "isSimulator" : "false",
-            "signalType" : "insightUpdatedAutomatically"
-        ]))
-    }
-}
+//struct FilterEditView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FilterEditView(keysAndValues: .constant([
+//            "appVersion" : "1.0",
+//            "signalClientUser" : "535be16c0989f9c9e21729ea7a1051caafce47bf8f3d17abeac770c7ae51644e",
+//            "isAppStore" : "true",
+//            "platform" : "macOS",
+//            "isTestFlight" : "false",
+//            "buildNumber" : "1",
+//            "systemVersion" : "macOS 11.0.0",
+//            "isSimulator" : "false",
+//            "signalType" : "insightUpdatedAutomatically"
+//        ]))
+//    }
+//}

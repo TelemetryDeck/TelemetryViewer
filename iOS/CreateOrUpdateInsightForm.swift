@@ -117,10 +117,10 @@ struct CreateOrUpdateInsightForm: View {
                         }
                     }
                 }
-                
-                Section(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'")) {
-                    FilterEditView(keysAndValues: $insightDefinitionRequestBody.filters)
-                }
+//                
+//                Section(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'")) {
+//                    FilterEditView(keysAndValues: $insightDefinitionRequestBody.filters)
+//                }
                 
                 Section(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here (e.g. systemVersion), you'll get a breakdown of its values.")) {
                     TextField("No breakdown", text: $insightDefinitionRequestBody.breakdownKey.bound)

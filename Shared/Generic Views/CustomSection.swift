@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomSection<Content, Header, Footer>: View where Content: View, Header: View, Footer: View {
     let header: Header
     let footer: Footer
-    let content: () -> Content
+    let content: Content
 
     @State private var isCollapsed: Bool = false
     @State private var isHovering = false
@@ -18,38 +18,40 @@ struct CustomSection<Content, Header, Footer>: View where Content: View, Header:
     public init(header: Header, footer: Footer, startCollapsed: Bool = false, @ViewBuilder content: @escaping () -> Content) {
         self.header = header
         self.footer = footer
-        self.content = content
-        self.isCollapsed = startCollapsed
+        self.content = content()
+        self._isCollapsed = State(initialValue: startCollapsed)
     }
 
     public var body: some View {
         #if os(macOS)
-        VStack(alignment: .leading) {
-            HStack {
-                header
-                    .font(Font.body.weight(.bold))
-                    .opacity(0.7)
+        Section {
+            VStack(alignment: .leading) {
+                HStack {
+                    header
+                        .font(Font.body.weight(.bold))
+                        .opacity(0.7)
 
-                Spacer()
+                    Spacer()
 
-                Image(systemName: isCollapsed ? "arrowtriangle.backward" : "arrowtriangle.down")
-                    .opacity(isHovering ? 1 : 0)
-            }
-            .onTapGesture {
-                withAnimation {
-                    isCollapsed.toggle()
+                    Image(systemName: isCollapsed ? "arrowtriangle.backward" : "arrowtriangle.down")
+                        .opacity(isHovering ? 1 : 0)
                 }
-            }
+                .onTapGesture {
+                    withAnimation {
+                        isCollapsed.toggle()
+                    }
+                }
 
-            if !isCollapsed {
-                content()
+                if !isCollapsed {
+                    content
 
-                footer
-                    .font(.footnote)
-                    .foregroundColor(.grayColor)
+                    footer
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
+                }
+
+                Divider()
             }
-            
-            Divider()
         }
         .onHover { hover in
             isHovering = hover

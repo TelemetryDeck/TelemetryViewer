@@ -68,6 +68,16 @@ class InsightEditorViewModel: ObservableObject {
         return []
     }
 
+    var filterAutocompletionOptions: [String] {
+        guard let app = app else { return [] }
+        return api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map { $0.payloadKey }
+    }
+
+    var signalTypeAutocompletionOptions: [String] {
+        guard let app = app else { return [] }
+        return api.lexiconSignalTypes[app, default: []].map { $0.type }
+    }
+
     // Updating Functions
     func updateStateWithInsight() {
         self.insightOrder = insight?.order ?? -1
@@ -138,23 +148,15 @@ struct InsightEditor: View {
         #endif
     }
 
-    var pickerStyle: DefaultPickerStyle {
-        #if os(macOS)
-        return DefaultPickerStyle()
-        #else
-        return WheelPickerStyle()
-        #endif
-    }
-
 
     // Body
     var body: some View {
         if viewModel.insight != nil {
             Form {
-                CustomSection(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
-
+                CustomSection(header: Text("Title and Subtitle"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight.")) {
                     TextField("Title e.g. 'Daily Active Users'", text: $viewModel.insightTitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
                     TextField("Optional Subtitle", text: $viewModel.insightSubtitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
+
 
                     Toggle(isOn: $viewModel.insightIsExpanded, label: {
                         Text("Show Expanded")
@@ -162,20 +164,54 @@ struct InsightEditor: View {
                     .onChange(of: viewModel.insightIsExpanded) { newValue in
                         viewModel.saveInsight()
                     }
+                }
 
-                    Picker(selection: $viewModel.selectedInsightGroupIndex, label: Text("Insight Group")) {
-                        ForEach(0 ..< viewModel.allInsightGroups.count) {
-                            Text(viewModel.allInsightGroups[$0].title)
+                CustomSection(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
+                    AutoCompletingTextField(
+                        title: "All Signals",
+                        text: $viewModel.insightSignalType,
+                        autocompletionOptions: viewModel.signalTypeAutocompletionOptions)
+
+                    Toggle(isOn: $viewModel.insightUniqueUser) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Unique by User")
+                                Text("Check to count each user only once")
+                                    .font(.footnote)
+                                    .foregroundColor(.grayColor)
+                            }
+                            Spacer()
                         }
                     }
-                    .pickerStyle(pickerStyle)
-                    .onChange(of: viewModel.selectedInsightGroupIndex) { newValue in
+                    .onChange(of: viewModel.insightUniqueUser) { newValue in
                         viewModel.saveInsight()
                     }
                 }
 
+                CustomSection(header: Text("Insight Group"), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
+                    Picker(selection: $viewModel.selectedInsightGroupIndex, label: EmptyView()) {
+                        ForEach(0 ..< viewModel.allInsightGroups.count) {
+                            Text(viewModel.allInsightGroups[$0].title)
+                        }
+                    }
+                    .pickerStyle(DefaultPickerStyle())
+                    .onChange(of: viewModel.selectedInsightGroupIndex) { _ in viewModel.saveInsight() }
+                }
+
+                CustomSection(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
+                    FilterEditView(keysAndValues: $viewModel.insightFilters, autocompleteOptions: viewModel.filterAutocompletionOptions)
+                }
+
+                CustomSection(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here, you'll get a breakdown of its values."), startCollapsed: true) {
+                        AutoCompletingTextField(
+                            title: "Payload Key",
+                            text: $viewModel.insightBreakdownKey,
+                            autocompletionOptions: viewModel.filterAutocompletionOptions)
+
+                }
+
                 if let dto = viewModel.insightDTO {
-                    CustomSection(header: Text("Last Updated"), footer: EmptyView()) {
+                    CustomSection(header: Text("Last Updated"), footer: EmptyView(), startCollapsed: true) {
                         Text(dto.calculatedAt, style: .relative) + Text(" ago")
                         Button("Update Now", action: viewModel.updateInsight)
                             .buttonStyle(SmallSecondaryButtonStyle())
@@ -183,7 +219,7 @@ struct InsightEditor: View {
                     }
                 }
 
-                CustomSection(header: Text("Delete"), footer: EmptyView()) {
+                CustomSection(header: Text("Delete"), footer: EmptyView(), startCollapsed: true) {
                     Button("Delete this Insight", action: viewModel.deleteInsight)
                         .buttonStyle(SmallSecondaryButtonStyle())
                         .accentColor(.red)

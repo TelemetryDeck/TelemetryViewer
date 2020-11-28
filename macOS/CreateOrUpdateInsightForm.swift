@@ -158,8 +158,6 @@ struct CreateOrUpdateInsightForm: View {
                     title: "If you enter a key for the metadata payload here, you'll get a breakdown of its values.",
                     text: $insightDefinitionRequestBody.breakdownKey.bound,
                     autocompletionOptions: api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map { $0.payloadKey })
-                
-                
             }
             
             separator()
