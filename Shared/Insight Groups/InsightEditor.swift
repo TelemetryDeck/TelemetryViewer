@@ -7,39 +7,52 @@
 
 import SwiftUI
 
-struct InsightEditor: View {
-    // Init Properties
+class InsightEditorViewModel: ObservableObject {
+
     let appID: UUID
     @Binding var selectedInsightGroupID: UUID
-    @Binding var selectedInsightID: UUID?
+    var selectedInsightID: Binding<UUID?>? = nil
+    @ObservedObject var api: APIRepresentative
 
-    // Environment
-    @EnvironmentObject var api: APIRepresentative
+    init(api: APIRepresentative, appID: UUID, selectedInsightGroupID: Binding<UUID>, selectedInsightID: Binding<UUID?>) {
+        self.appID = appID
+        self._selectedInsightGroupID = selectedInsightGroupID
+        self.api = api
+
+        self.selectedInsightID = Binding(get: {
+            selectedInsightID.wrappedValue
+        }, set: { newValue in
+            selectedInsightID.wrappedValue = newValue
+            self.updateStateWithInsight()
+        })
+        self.updateStateWithInsight()
+    }
+
+    @Published var insightOrder: Double = -1
+    @Published var insightTitle: String = ""
+    @Published var insightSubtitle: String = ""
+    @Published var insightSignalType: String = ""
+    @Published var insightUniqueUser: Bool = false
+    @Published var insightFilters: [String: String] = [:]
+    @Published var insightRollingWindowSize: TimeInterval = -2592000
+    @Published var insightBreakdownKey: String = ""
+    @Published var insightDisplayMode: InsightDisplayMode = .lineChart
+    @Published var insightIsExpanded: Bool = false
 
     // Derived Properties
-    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
+    var app: TelemetryApp? {
+        api.apps.first(where: { $0.id == appID })
+    }
 
-    private var insightGroup: InsightGroup? {
+    var insightGroup: InsightGroup? {
         guard let app = app else { return nil }
         let insightGroup = api.insightGroups[app]?.first(where: { $0.id == selectedInsightGroupID })
         return insightGroup
     }
 
-    private var insight: Insight? {
-        insightGroup?.insights.first { $0.id == selectedInsightID }
+    var insight: Insight? {
+        insightGroup?.insights.first { $0.id == selectedInsightID?.wrappedValue }
     }
-
-    // Insight State
-    @State private var insightOrder: Double = -1
-    @State private var insightTitle: String = ""
-    @State private var insightSubtitle: String = ""
-    @State private var insightSignalType: String = ""
-    @State private var insightUniqueUser: Bool = false
-    @State private var insightFilters: [String: String] = [:]
-    @State private var insightRollingWindowSize: TimeInterval = -2592000
-    @State private var insightBreakdownKey: String = ""
-    @State private var insightDisplayMode: InsightDisplayMode = .lineChart
-    @State private var insightIsExpanded: Bool = false
 
     // Updating Functions
     func updateStateWithInsight() {
@@ -67,12 +80,26 @@ struct InsightEditor: View {
             breakdownKey: insightBreakdownKey.isEmpty ? nil : insightBreakdownKey,
             displayMode: insightDisplayMode,
             groupID: selectedInsightGroupID,
-            id: selectedInsightID,
+            id: selectedInsightID?.wrappedValue,
             isExpanded: insightIsExpanded)
 
         if let insight = insight, let insightGroup = insightGroup, let app = app {
             api.update(insight: insight, in: insightGroup, in: app, with: insightDRB)
         }
+    }
+
+    func deleteInsight() {
+        if let insight = insight, let insightGroup = insightGroup, let app = app {
+            api.delete(insight: insight, in: insightGroup, in: app)
+        }
+    }
+}
+
+struct InsightEditor: View {
+    @ObservedObject var viewModel: InsightEditorViewModel
+
+    init(viewModel: InsightEditorViewModel) {
+        self.viewModel = viewModel
     }
 
     var padding: CGFloat? {
@@ -86,14 +113,14 @@ struct InsightEditor: View {
 
     // Body
     var body: some View {
-        if let insightGroup = insightGroup, let insight = insight, let app = app {
+        if let insightGroup = viewModel.insightGroup, let insight = viewModel.insight {
             Form {
                 CustomSection(header: Text("Title, Subtitle and Group"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight. All insights belong to an insight group.")) {
 
-                    TextField("Title e.g. 'Daily Active Users'", text: $insightTitle, onEditingChanged: { if !$0 { saveInsight() }}) { saveInsight() }
-                    TextField("Optional Subtitle", text: $insightSubtitle, onEditingChanged: { if !$0 { saveInsight() }}) { saveInsight() }
+                    TextField("Title e.g. 'Daily Active Users'", text: $viewModel.insightTitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
+                    TextField("Optional Subtitle", text: $viewModel.insightSubtitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
 
-                    Toggle(isOn: $insightIsExpanded.onUpdate(saveInsight), label: {
+                    Toggle(isOn: $viewModel.insightIsExpanded, label: {
                         Text("Show Expanded")
                     })
 //
@@ -106,15 +133,12 @@ struct InsightEditor: View {
 
                 CustomSection(header: Text("Delete"), footer: EmptyView()) {
                     Button("Delete this Insight") {
-                        api.delete(insight: insight, in: insightGroup, in: app)
+                        viewModel.deleteInsight()
                     }
                     .accentColor(.red)
                 }
             }
             .padding(.horizontal, padding)
-            .onAppear {
-                updateStateWithInsight()
-            }
         } else {
             Text("No Insight Selected").foregroundColor(.grayColor)
         }

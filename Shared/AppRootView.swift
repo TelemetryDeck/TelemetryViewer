@@ -81,6 +81,42 @@ struct AppRootView: View {
         }
         .toolbar {
             ToolbarItem {
+                if let app = app, let insightGroup = api.insightGroups[app]?.first(where: { $0.id == selectedInsightGroupID }) {
+                    Button(action: {
+                        let definitionRequestBody = InsightDefinitionRequestBody(
+                            order: nil,
+                            title: "New Insight",
+                            subtitle: nil,
+                            signalType: nil,
+                            uniqueUser: false,
+                            filters: [:],
+                            rollingWindowSize: -2592000,
+                            breakdownKey: nil,
+                            displayMode: .lineChart,
+                            groupID: selectedInsightGroupID,
+                            id: nil,
+                            isExpanded: false)
+
+                        api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in
+                            switch result {
+                            case .success(let insightDTO):
+                                selectedInsightID.wrappedValue = insightDTO.id
+                                sidebarSection = .InsightEditor
+                            case .failure(let error):
+                                print(error)
+                            }
+
+                        }
+                    }) {
+                        Label("New Insight", systemImage: "plus.rectangle")
+                    }
+
+
+
+                }
+            }
+
+            ToolbarItem {
                 Button(action: {
                     withAnimation { sidebarShown.wrappedValue.toggle() }
                 }) {
@@ -95,6 +131,7 @@ struct AppRootSidebar: View {
     @Binding var selectedInsightID: UUID?
     @Binding var selectedInsightGroupID: UUID
     @Binding var sidebarSection: AppRootSidebarSection
+    @EnvironmentObject var api: APIRepresentative
 
     var appID: UUID
 
@@ -114,7 +151,7 @@ struct AppRootSidebar: View {
 
             switch sidebarSection {
             case .InsightEditor:
-                InsightEditor(appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID)
+                InsightEditor(viewModel: InsightEditorViewModel(api: api, appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID))
             case .InsightGroupEditor:
                 InsightGroupEditor(appID: appID, selectedInsightID: $selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection)
             case .AppEditor:

@@ -33,12 +33,12 @@ struct CustomSection<Content, Header, Footer>: View where Content: View, Header:
                 Spacer()
 
                 Image(systemName: isCollapsed ? "arrowtriangle.backward" : "arrowtriangle.down")
-                    .onTapGesture {
-                        withAnimation {
-                            isCollapsed.toggle()
-                        }
-                    }
                     .opacity(isHovering ? 1 : 0)
+            }
+            .onTapGesture {
+                withAnimation {
+                    isCollapsed.toggle()
+                }
             }
 
             if !isCollapsed {
