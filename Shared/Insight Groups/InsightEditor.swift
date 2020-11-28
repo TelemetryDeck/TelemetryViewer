@@ -30,6 +30,7 @@ class InsightEditorViewModel: ObservableObject {
     @Published var insightOrder: Double = -1
     @Published var insightTitle: String = ""
     @Published var insightSubtitle: String = ""
+    @Published var selectedInsightGroupIndex: Int = 0
     @Published var insightSignalType: String = ""
     @Published var insightUniqueUser: Bool = false
     @Published var insightFilters: [String: String] = [:]
@@ -59,6 +60,14 @@ class InsightEditorViewModel: ObservableObject {
         } else { return nil }
     }
 
+    var allInsightGroups: [InsightGroup] {
+        if let app = app {
+            return api.insightGroups[app] ?? []
+        }
+
+        return []
+    }
+
     // Updating Functions
     func updateStateWithInsight() {
         self.insightOrder = insight?.order ?? -1
@@ -71,6 +80,7 @@ class InsightEditorViewModel: ObservableObject {
         self.insightBreakdownKey = insight?.breakdownKey ?? ""
         self.insightDisplayMode = insight?.displayMode ?? .lineChart
         self.insightIsExpanded = insight?.isExpanded ?? false
+        self.selectedInsightGroupIndex = self.allInsightGroups.firstIndex { $0.id == selectedInsightGroupID } ?? 0
     }
 
     func saveInsight() {
@@ -84,12 +94,19 @@ class InsightEditorViewModel: ObservableObject {
             rollingWindowSize: insightRollingWindowSize,
             breakdownKey: insightBreakdownKey.isEmpty ? nil : insightBreakdownKey,
             displayMode: insightDisplayMode,
-            groupID: selectedInsightGroupID,
+            groupID: allInsightGroups[selectedInsightGroupIndex].id,
             id: selectedInsightID?.wrappedValue,
             isExpanded: insightIsExpanded)
 
         if let insight = insight, let insightGroup = insightGroup, let app = app {
-            api.update(insight: insight, in: insightGroup, in: app, with: insightDRB)
+            api.update(insight: insight, in: insightGroup, in: app, with: insightDRB) { result in
+                switch result {
+                case .success(let newInsight):
+                    self.selectedInsightGroupID = self.allInsightGroups[self.selectedInsightGroupIndex].id
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
 
@@ -121,6 +138,14 @@ struct InsightEditor: View {
         #endif
     }
 
+    var pickerStyle: DefaultPickerStyle {
+        #if os(macOS)
+        return DefaultPickerStyle()
+        #else
+        return WheelPickerStyle()
+        #endif
+    }
+
 
     // Body
     var body: some View {
@@ -134,12 +159,19 @@ struct InsightEditor: View {
                     Toggle(isOn: $viewModel.insightIsExpanded, label: {
                         Text("Show Expanded")
                     })
-//
-//                    Picker(selection: $selectedInsightGroupIndex, label: Text("Insight Group")) {
-//                        ForEach(0 ..< (api.insightGroups[app]?.count ?? 0)) {
-//                            Text(api.insightGroups[app]?[$0].title ?? "No Title")
-//                        }
-//                    }.pickerStyle(WheelPickerStyle())
+                    .onChange(of: viewModel.insightIsExpanded) { newValue in
+                        viewModel.saveInsight()
+                    }
+
+                    Picker(selection: $viewModel.selectedInsightGroupIndex, label: Text("Insight Group")) {
+                        ForEach(0 ..< viewModel.allInsightGroups.count) {
+                            Text(viewModel.allInsightGroups[$0].title)
+                        }
+                    }
+                    .pickerStyle(pickerStyle)
+                    .onChange(of: viewModel.selectedInsightGroupIndex) { newValue in
+                        viewModel.saveInsight()
+                    }
                 }
 
                 if let dto = viewModel.insightDTO {
