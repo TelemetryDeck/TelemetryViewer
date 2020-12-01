@@ -7,16 +7,18 @@
 
 import SwiftUI
 
-struct CustomSection<Content, Header, Footer>: View where Content: View, Header: View, Footer: View {
+struct CustomSection<Content, Header, Summary, Footer>: View where Content: View, Header: View, Summary: View, Footer: View {
     let header: Header
+    let summary: Summary
     let footer: Footer
     let content: () -> Content
 
     @State private var isCollapsed: Bool = false
     @State private var isHovering = false
 
-    public init(header: Header, footer: Footer, startCollapsed: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+    public init(header: Header, summary: Summary, footer: Footer, startCollapsed: Bool = false, @ViewBuilder content: @escaping () -> Content) {
         self.header = header
+        self.summary = summary
         self.footer = footer
         self.content = content
         self._isCollapsed = State(initialValue: startCollapsed)
@@ -33,8 +35,13 @@ struct CustomSection<Content, Header, Footer>: View where Content: View, Header:
 
                     Spacer()
 
-                    Image(systemName: isCollapsed ? "arrowtriangle.backward" : "arrowtriangle.down")
-                        .opacity(isHovering ? 1 : 0)
+                    summary
+                        .opacity(0.4)
+
+                    if isHovering {
+                        Image(systemName: isCollapsed ? "arrowtriangle.backward" : "arrowtriangle.down")
+                    }
+
                 }
                 .onTapGesture {
                     withAnimation {

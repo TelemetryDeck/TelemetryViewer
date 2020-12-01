@@ -219,7 +219,7 @@ struct InsightEditor: View {
 
     var body: some View {
         Form {
-            CustomSection(header: Text("Title and Subtitle"), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight.")) {
+            CustomSection(header: Text("Title and Subtitle"), summary: EmptyView(), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight.")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $viewModel.insightTitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
                 TextField("Optional Subtitle", text: $viewModel.insightSubtitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
 
@@ -228,7 +228,22 @@ struct InsightEditor: View {
                 })
             }
 
-            CustomSection(header: Text("Chart Type"), footer: Text(viewModel.chartTypeExplanationText)) {
+            let chartImage: Image = {
+                switch viewModel.insightDisplayMode {
+                case .raw:
+                    return Image(systemName: "number.square.fill")
+                case .barChart:
+                    return Image(systemName: "chart.bar.fill")
+                case .lineChart:
+                    return Image(systemName: "squares.below.rectangle")
+                case .pieChart:
+                    return Image(systemName: "chart.pie.fill")
+                default:
+                    return Image("omsn")
+                }
+            }()
+
+            CustomSection(header: Text("Chart Type"), summary: chartImage, footer: Text(viewModel.chartTypeExplanationText), startCollapsed: true) {
                 Picker(selection: $viewModel.insightDisplayMode, label: Text("")) {
                     Image(systemName: "number.square.fill").tag(InsightDisplayMode.raw)
                     Image(systemName: "chart.bar.fill").tag(InsightDisplayMode.barChart)
@@ -239,7 +254,7 @@ struct InsightEditor: View {
                 .padding(.bottom, 5)
             }
 
-            CustomSection(header: Text("Signal Type"), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"))) {
+            CustomSection(header: Text("Signal Type"), summary: Text(viewModel.insightSignalType.isEmpty ? "All Signals" : viewModel.insightSignalType), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any")), startCollapsed: true) {
                 AutoCompletingTextField(
                     title: "All Signals",
                     text: $viewModel.insightSignalType,
@@ -259,7 +274,7 @@ struct InsightEditor: View {
                 }
             }
 
-            CustomSection(header: Text("Breakdown"), footer: Text("If you enter a key for the metadata payload here, you'll get a breakdown of its values."), startCollapsed: true) {
+            CustomSection(header: Text("Breakdown"), summary: Text(viewModel.insightBreakdownKey.isEmpty ? "No Breakdown" : viewModel.insightBreakdownKey), footer: Text("If you enter a key for the metadata payload here, you'll get a breakdown of its values."), startCollapsed: true) {
                 AutoCompletingTextField(
                     title: "Payload Key",
                     text: $viewModel.insightBreakdownKey,
@@ -268,11 +283,11 @@ struct InsightEditor: View {
 
             }
 
-            CustomSection(header: Text("Filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
+            CustomSection(header: Text("Filters"), summary: Text("\(viewModel.insightFilters.count) filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
                 FilterEditView(keysAndValues: $viewModel.insightFilters, autocompleteOptions: viewModel.filterAutocompletionOptions)
             }
 
-            CustomSection(header: Text("Insight Group"), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
+            CustomSection(header: Text("Insight Group"), summary: Text(viewModel.insightGroup?.title ?? "..."), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
                 Picker(selection: $viewModel.selectedInsightGroupIndex, label: EmptyView()) {
                     ForEach(0 ..< viewModel.allInsightGroups.count) {
                         Text(viewModel.allInsightGroups[$0].title)
@@ -282,15 +297,14 @@ struct InsightEditor: View {
             }
 
             if let dto = viewModel.insightDTO {
-                CustomSection(header: Text("Last Updated"), footer: EmptyView(), startCollapsed: true) {
-                    Text(dto.calculatedAt, style: .relative) + Text(" ago")
+                CustomSection(header: Text("Last Updated"), summary: Text(dto.calculatedAt, style: .relative) + Text(" ago"), footer: EmptyView(), startCollapsed: true) {
                     Button("Update Now", action: viewModel.updateInsight)
                         .buttonStyle(SmallSecondaryButtonStyle())
 
                 }
             }
 
-            CustomSection(header: Text("Delete"), footer: EmptyView(), startCollapsed: true) {
+            CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                 Button("Delete this Insight", action: viewModel.deleteInsight)
                     .buttonStyle(SmallSecondaryButtonStyle())
                     .accentColor(.red)

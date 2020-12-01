@@ -36,11 +36,11 @@ struct AppEditor: View {
     var body: some View {
         if let app = app {
             Form {
-                CustomSection(header: Text("App Name"), footer: EmptyView()) {
+                CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("App Name", text: $newName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
                 }
 
-                CustomSection(header: Text("Unique Identifier"), footer: EmptyView()) {
+                CustomSection(header: Text("Unique Identifier"), summary: EmptyView(), footer: EmptyView()) {
                     VStack(alignment: .leading) {
                         Button (app.id.uuidString) {
                             saveToClipBoard(app.id.uuidString)
@@ -54,7 +54,7 @@ struct AppEditor: View {
                     }
                 }
 
-                CustomSection(header: Text("New Insight Group"), footer: EmptyView()) {
+                CustomSection(header: Text("New Insight Group"), summary: EmptyView(), footer: EmptyView()) {
                     Button("New Insight Group") {
                         api.create(insightGroupNamed: "New Insight Group", for: app) { result in
                             switch result {
@@ -70,7 +70,7 @@ struct AppEditor: View {
                     .buttonStyle(SmallSecondaryButtonStyle())
                 }
                 
-               CustomSection(header: Text("Delete"), footer: EmptyView()) {
+               CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView()) {
                     Button("Delete App \"\(app.name)\"") {
                         api.delete(app: app)
                         TelemetryManager.shared.send(TelemetrySignal.telemetryAppDeleted.rawValue, for: api.user?.email)

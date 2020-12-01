@@ -111,16 +111,16 @@ struct InsightGroupEditor: View {
     var body: some View {
         if viewModel.insightGroup != nil {
             Form {
-                CustomSection(header: Text("Insight Group Title"), footer: EmptyView()) {
+                CustomSection(header: Text("Insight Group Title"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("Title", text: $viewModel.title, onEditingChanged: { if !$0 { viewModel.saveToAPI() }}) { viewModel.saveToAPI() }
                 }
 
-                CustomSection(header: Text("New Insight"), footer: Text("Create a new Insight inside this Group")) {
+                CustomSection(header: Text("New Insight"), summary: EmptyView(), footer: Text("Create a new Insight inside this Group")) {
                     Button("New Insight", action: viewModel.createNewInsight)
                         .buttonStyle(SmallPrimaryButtonStyle())
                 }
 
-                CustomSection(header: Text("Delete"), footer: EmptyView(), startCollapsed: true) {
+                CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                     Button("Delete this Insight Group", action: viewModel.delete)
                         .buttonStyle(SmallSecondaryButtonStyle())
                         .accentColor(.red)
