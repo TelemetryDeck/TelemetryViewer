@@ -113,8 +113,6 @@
 		DCC8CB772563103E0019267A /* Illustrations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC8CB752563103E0019267A /* Illustrations.xcassets */; };
 		DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
 		DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
-		DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */; };
-		DCCD482B253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */; };
 		DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */; };
 		DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD52C492541FFE3003F12C6 /* ColSpan.swift */; };
 		DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD52C492541FFE3003F12C6 /* ColSpan.swift */; };
@@ -223,7 +221,6 @@
 		DCC8CB66256308250019267A /* MacNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
 		DCC8CB752563103E0019267A /* Illustrations.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Illustrations.xcassets; sourceTree = "<group>"; };
 		DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
-		DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInsightsCreator.swift; sourceTree = "<group>"; };
 		DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompletingTextField.swift; sourceTree = "<group>"; };
 		DCD52C492541FFE3003F12C6 /* ColSpan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColSpan.swift; sourceTree = "<group>"; };
 		DCD67BCE252DB40900A00C5B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -340,7 +337,6 @@
 				DCB02B7E25038F5000304964 /* MockData.swift */,
 				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
 				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
-				DCCD4829253DBB490098EC95 /* DefaultInsightsCreator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -685,7 +681,6 @@
 				DC25A617256DBC3B00EE84DA /* AppRootView.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
-				DCCD482A253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
@@ -748,7 +743,6 @@
 				DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */,
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
-				DCCD482B253DBB490098EC95 /* DefaultInsightsCreator.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
