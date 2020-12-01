@@ -192,6 +192,9 @@ struct InsightDefinitionRequestBody: Codable {
     
     /// If set, break down the values in this key
     var breakdownKey: String?
+
+    /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
+    var groupBy: InsightGroupByInterval?
     
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode

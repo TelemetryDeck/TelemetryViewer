@@ -72,6 +72,5 @@ struct BarView: View {
         .onHover { hover in
             isHovering = hover
         }
-        .animation(.easeOut)
     }
 }

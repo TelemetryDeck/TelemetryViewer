@@ -32,6 +32,12 @@ final class APIRepresentative: ObservableObject {
             userNotLoggedIn = userToken == nil
         }
     }
+
+    /// The beginning of the time window. If nil, defaults to current Date minus 30 days
+    @Published var timeWindowBeginning: Date? = nil
+
+    /// The end of the currently displayed time window. If nil, defaults to date()
+    @Published var timeWindowEnd: Date? = nil
     
     @Published var requests = Set<AnyCancellable>()
     
@@ -283,8 +289,15 @@ extension APIRepresentative {
     }
     
     func getInsightData(for insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<InsightDataTransferObject, TransferError>) -> ())? = nil) {
-        let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
+        let timeWindowEndDate = timeWindowEnd ?? Date()
+        let timeWindowBeginDate = timeWindowBeginning ?? timeWindowEndDate.addingTimeInterval(-60 * 60 * 24 * 30)
         
+        let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights",
+                             insight.id.uuidString,
+                             Formatter.iso8601noFS.string(from: timeWindowBeginDate),
+                             Formatter.iso8601noFS.string(from: timeWindowEndDate)
+                             )
+
         self.get(url) { (result: Result<InsightDataTransferObject, TransferError>) in
             if let insightDTO = try? result.get() {
                 DispatchQueue.main.async {

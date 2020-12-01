@@ -78,6 +78,7 @@ class InsightEditorViewModel: ObservableObject {
     @Published var insightFilters: [String: String] = [:]
     @Published var insightRollingWindowSize: TimeInterval = -2592000
     @Published var insightBreakdownKey: String = ""
+    @Published var insightGroupBy: InsightGroupByInterval = .day { didSet { saveInsight() }}
     @Published var insightDisplayMode: InsightDisplayMode = .lineChart { didSet { saveInsight() }}
     @Published var insightIsExpanded: Bool = false { didSet { saveInsight() }}
 
@@ -156,6 +157,7 @@ class InsightEditorViewModel: ObservableObject {
         self.insightFilters = insight?.filters ?? [:]
         self.insightRollingWindowSize = insight?.rollingWindowSize ?? -2592000
         self.insightBreakdownKey = insight?.breakdownKey ?? ""
+        self.insightGroupBy = insight?.groupBy ?? .day
         self.insightDisplayMode = insight?.displayMode ?? .lineChart
         self.insightIsExpanded = insight?.isExpanded ?? false
         self.selectedInsightGroupIndex = self.allInsightGroups.firstIndex { $0.id == selectedInsightGroupID } ?? 0
@@ -175,6 +177,7 @@ class InsightEditorViewModel: ObservableObject {
             filters: insightFilters,
             rollingWindowSize: insightRollingWindowSize,
             breakdownKey: insightBreakdownKey.isEmpty ? nil : insightBreakdownKey,
+            groupBy: insightGroupBy,
             displayMode: insightDisplayMode,
             groupID: allInsightGroups[selectedInsightGroupIndex].id,
             id: selectedInsightID,
@@ -249,6 +252,17 @@ struct InsightEditor: View {
                     Image(systemName: "chart.bar.fill").tag(InsightDisplayMode.barChart)
                     Image(systemName: "squares.below.rectangle").tag(InsightDisplayMode.lineChart)
                     Image(systemName: "chart.pie.fill").tag(InsightDisplayMode.pieChart)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.bottom, 5)
+            }
+
+            CustomSection(header: Text("Group Values by"), summary: Text(viewModel.insightGroupBy.rawValue), footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate valeus you'll receive."), startCollapsed: true) {
+                Picker(selection: $viewModel.insightGroupBy, label: Text("")) {
+                    Text("Hour").tag(InsightGroupByInterval.hour)
+                    Text("Day").tag(InsightGroupByInterval.day)
+                    Text("Week").tag(InsightGroupByInterval.week)
+                    Text("Month").tag(InsightGroupByInterval.month)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.bottom, 5)
