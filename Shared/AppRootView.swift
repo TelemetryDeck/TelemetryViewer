@@ -26,6 +26,10 @@ struct AppRootView: View {
     @State private var sidebarShownValue: Bool = false
     @State private var sidebarSection: AppRootSidebarSection = .InsightEditor
 
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var sizeClass
+    #endif
+
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -49,6 +53,18 @@ struct AppRootView: View {
         }
     }
 
+    var sidebarWidth: CGFloat {
+        #if os(iOS)
+        if sizeClass == .compact {
+            return 800
+        } else {
+            return 350
+        }
+        #else
+        return 280
+        #endif
+    }
+
     func reloadVisibleInsights() {
         guard
             let app = app,
@@ -58,6 +74,20 @@ struct AppRootView: View {
         for insight in insightGroup.insights {
             api.getInsightData(for: insight, in: insightGroup, in: app)
         }
+    }
+
+    var moveTransition: AnyTransition {
+
+        #if os(iOS)
+        if sizeClass == .compact {
+            return .move(edge: .bottom)
+        } else {
+            return .move(edge: .trailing)
+        }
+
+        #else
+        return .move(edge: .trailing)
+        #endif
     }
 
     var body: some View {
@@ -77,7 +107,7 @@ struct AppRootView: View {
             }
         })
 
-        HStack(spacing: 0) {
+        AdaptiveStack(spacing: 0) {
             Group {
                 if let app = app {
                     if (api.insightGroups[app] ?? []).isEmpty {
@@ -125,11 +155,31 @@ struct AppRootView: View {
 
 
             if sidebarShownValue {
-                DetailSidebar(isOpen: sidebarShown , maxWidth: 280) {
+                DetailSidebar(isOpen: sidebarShown , maxWidth: sidebarWidth) {
+
+                    #if os(iOS)
+                    if sizeClass == .compact {
+                        VStack {
+                            Divider()
+                                .padding(.bottom)
+                            Button(action: {
+                                withAnimation { sidebarShown.wrappedValue.toggle() }
+                            }) {
+                                Label("Hide Editor", systemImage: "sidebar.trailing")
+                            }
+                            AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
+                        }
+                    } else {
+                        AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
+                    }
+                    #else
                     AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
+                    #endif
+
+
                 }
                 .edgesIgnoringSafeArea(.bottom)
-                .transition(.move(edge: .trailing))
+                .transition(moveTransition)
             }
         }
         .toolbar {
