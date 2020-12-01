@@ -20,7 +20,12 @@ final class APIRepresentative: ObservableObject {
             getUserInformation()
             getApps()
         }
+
+        timer = Timer.scheduledTimer(timeInterval: 60 * 5, target: self, selector: #selector(timedGetApps), userInfo: nil, repeats: true)
     }
+
+    var timer: Timer? = nil
+
     
     @Published var registrationStatus: RegistrationStatus?
     
@@ -176,6 +181,10 @@ extension APIRepresentative {
             
             callback?(result)
         }
+    }
+
+    @objc func timedGetApps() {
+        getApps()
     }
     
     func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> ())? = nil) {
