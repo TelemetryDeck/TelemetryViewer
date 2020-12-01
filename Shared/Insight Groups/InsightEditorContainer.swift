@@ -221,7 +221,7 @@ struct InsightEditor: View {
     }
 
     var body: some View {
-        Form {
+        let form = Form {
             CustomSection(header: Text("Title and Subtitle"), summary: EmptyView(), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight.")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $viewModel.insightTitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
                 TextField("Optional Subtitle", text: $viewModel.insightSubtitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
@@ -268,7 +268,10 @@ struct InsightEditor: View {
                 .padding(.bottom, 5)
             }
 
-            CustomSection(header: Text("Signal Type"), summary: Text(viewModel.insightSignalType.isEmpty ? "All Signals" : viewModel.insightSignalType), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any")), startCollapsed: true) {
+            let signalText = viewModel.insightSignalType.isEmpty ? "All Signals" : viewModel.insightSignalType
+            let uniqueText = viewModel.insightUniqueUser ? ", unique" : ""
+
+            CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any")), startCollapsed: true) {
                 AutoCompletingTextField(
                     title: "All Signals",
                     text: $viewModel.insightSignalType,
@@ -328,5 +331,13 @@ struct InsightEditor: View {
         .onAppear() {
             viewModel.updatePayloadKeys()
         }
+
+        #if os(macOS)
+        ScrollView {
+            form
+        }
+        #else
+        form
+        #endif
     }
 }

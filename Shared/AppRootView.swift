@@ -119,7 +119,7 @@ struct AppRootView: View {
                             Text("A new App! Awesome!")
                                 .font(.title)
                                 .foregroundColor(.grayColor)
-                            Text("Now open the side bar 􀏛, and select the app section 􀑋 to copy the app identifier and create a new Insight Group.")
+                            Text("Next steps:\n\n1. Now open the side bar 􀏛\n2. select the app section 􀑋\n3. create a new Insight Group.")
                                 .foregroundColor(.grayColor)
 
                                 Button("Open Documentation") {

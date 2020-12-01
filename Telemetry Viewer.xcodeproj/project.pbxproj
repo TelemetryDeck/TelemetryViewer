@@ -142,8 +142,6 @@
 		DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
 		DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 		DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
-		DCFED9762576722C0008A31D /* SidebarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFED9752576722C0008A31D /* SidebarContainer.swift */; };
-		DCFED9772576722C0008A31D /* SidebarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFED9752576722C0008A31D /* SidebarContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,7 +243,6 @@
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
 		DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
-		DCFED9752576722C0008A31D /* SidebarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,7 +375,6 @@
 				DC25A5DF256D844300EE84DA /* DetailSidebar.swift */,
 				DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */,
 				DC25A64E2571680900EE84DA /* CustomSection.swift */,
-				DCFED9752576722C0008A31D /* SidebarContainer.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -664,7 +660,6 @@
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
 				DC25A5AC256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
-				DCFED9762576722C0008A31D /* SidebarContainer.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				DC45BB1924E1F01F004E6392 /* SidebarView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
@@ -747,7 +742,6 @@
 				DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				DC98AAB8250A671900FF26FD /* AppEditor.swift in Sources */,
-				DCFED9772576722C0008A31D /* SidebarContainer.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
