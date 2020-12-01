@@ -242,7 +242,7 @@ extension APIRepresentative {
             switch result {
             case .success(let foundInsightGroups):
                 DispatchQueue.main.async {
-                    self.insightGroups[app] = foundInsightGroups
+                    self.insightGroups[app] = foundInsightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
                 }
                 
             case .failure(let error):

@@ -91,7 +91,7 @@ struct AppRootView: View {
 
 
             if sidebarShownValue {
-                DetailSidebar(isOpen: sidebarShown , maxWidth: 350) {
+                DetailSidebar(isOpen: sidebarShown , maxWidth: 280) {
                     AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
                 }
                 .edgesIgnoringSafeArea(.bottom)
@@ -170,7 +170,7 @@ struct AppRootSidebar: View {
 
             switch sidebarSection {
             case .InsightEditor:
-                InsightEditor(viewModel: InsightEditorViewModel(api: api, appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID))
+                InsightEditorContainer(viewModel: InsightEditorContainerViewModel(api: api, appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID))
             case .InsightGroupEditor:
                 InsightGroupEditor(viewModel: InsightGroupEditorViewModel(api: api, appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID, sidebarSection: $sidebarSection))
             case .AppEditor:
