@@ -31,8 +31,16 @@ struct AutoCompletingTextField: View {
     let title: String
     let text: Binding<String>
     let autocompletionOptions: [String]
-    
+    let onEditingChanged: (() -> ())?
+
     @State private var isShowingAutoCompleteList: Bool = false
+
+    init(title: String, text: Binding<String>, autocompletionOptions: [String], onEditingChanged: (() -> ())? = nil) {
+        self.title = title
+        self.text = text
+        self.autocompletionOptions = autocompletionOptions
+        self.onEditingChanged = onEditingChanged
+    }
     
     var body: some View {
         VStack (spacing: 0){
@@ -41,6 +49,7 @@ struct AutoCompletingTextField: View {
                     isShowingAutoCompleteList = true
                 } else {
                     isShowingAutoCompleteList = false
+                    onEditingChanged?()
                 }
             }
             
@@ -51,6 +60,7 @@ struct AutoCompletingTextField: View {
                             .onTapGesture {
                                 text.wrappedValue = option
                                 isShowingAutoCompleteList = false
+                                onEditingChanged?()
                             }
                     }
                 }

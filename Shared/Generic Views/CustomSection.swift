@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomSection<Content, Header, Footer>: View where Content: View, Header: View, Footer: View {
     let header: Header
     let footer: Footer
-    let content: Content
+    let content: () -> Content
 
     @State private var isCollapsed: Bool = false
     @State private var isHovering = false
@@ -18,7 +18,7 @@ struct CustomSection<Content, Header, Footer>: View where Content: View, Header:
     public init(header: Header, footer: Footer, startCollapsed: Bool = false, @ViewBuilder content: @escaping () -> Content) {
         self.header = header
         self.footer = footer
-        self.content = content()
+        self.content = content
         self._isCollapsed = State(initialValue: startCollapsed)
     }
 
@@ -43,7 +43,7 @@ struct CustomSection<Content, Header, Footer>: View where Content: View, Header:
                 }
 
                 if !isCollapsed {
-                    content
+                    content()
 
                     footer
                         .font(.footnote)

@@ -8,22 +8,26 @@
 import SwiftUI
 
 struct FilterEditView: View {
-    
     @Binding var keysAndValues: [String: String]
     let autocompleteOptions: [String]?
-    
     @State private var newKeyName: String?
+    let onEditingChanged: (() -> ())?
+
+    init(keysAndValues: Binding<[String: String]>, autocompleteOptions: [String]? = nil, onEditingChanged: (() -> ())? = nil) {
+        self._keysAndValues = keysAndValues
+        self.autocompleteOptions = autocompleteOptions
+        self.onEditingChanged = onEditingChanged
+    }
     
     var body: some View {
         let theKeys = Array(keysAndValues.keys).sorted()
         
         VStack {
-            
                 ForEach(theKeys, id: \.self) { key in
                     HStack {
                         Text(key).foregroundColor(.grayColor)
                         
-                        TextField("Value", text: $keysAndValues[key].bound)
+                        TextField("Value", text: $keysAndValues[key].irreversiblyBound)
                             
                         Button(action: {
                             keysAndValues[key] = nil
@@ -44,6 +48,7 @@ struct FilterEditView: View {
                 Button("Add") {
                     self.keysAndValues[newKeyName.bound] = ""
                     newKeyName = nil
+                    onEditingChanged?()
                 }
             }
                 
