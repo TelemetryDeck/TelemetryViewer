@@ -53,7 +53,7 @@ struct DonutChartView: View {
                         
                         selectedSegmentIndex = index
                         
-                    }.animation(Animation.easeOut.speed(1.5))
+                    }
             }
         }
         
@@ -123,13 +123,6 @@ struct PieSegment: Shape, Identifiable, Equatable {
     }
 }
 
-//struct OldDonutChartView: View {
-//
-//    init(dataPoints: [DonutChartDataPoint]) {
-//    }
-//
-////    var body: some View
-//}
 
 //struct DonutChartView_Previews: PreviewProvider {
 //    static var data: [DonutChartDataPoint] {
