@@ -387,3 +387,14 @@ struct ChartDataSet {
         self.lowestValue = 0
     }
 }
+
+struct OrganizationAdminListEntry: Codable, Identifiable {
+    let id: UUID
+    let name: String
+    let foundedAt: Date
+    let sumSignals: Int
+    let isSuperOrg: Bool
+    let firstName: String?
+    let lastName: String?
+    let email: String
+}

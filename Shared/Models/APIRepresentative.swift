@@ -59,6 +59,7 @@ final class APIRepresentative: ObservableObject {
     @Published var lexiconPayloadKeys: [TelemetryApp: [LexiconPayloadKey]] = [:]
     
     @Published var betaRequests: [BetaRequestEmail] = []
+    @Published var organizationAdminListEntries: [OrganizationAdminListEntry] = []
     
     @Published var organizationUsers: [UserDataTransferObject] = []
     @Published var organizationJoinRequests: [OrganizationJoinRequest] = []
@@ -356,6 +357,21 @@ extension APIRepresentative {
                 self.handleError(error)
             }
             
+            callback?(result)
+        }
+    }
+
+    func getOrganizationAdminEntries(callback: ((Result<[OrganizationAdminListEntry], TransferError>) -> ())? = nil) {
+        let url = urlForPath("organizationadmin")
+
+        self.get(url) { (result: Result<[OrganizationAdminListEntry], TransferError>) in
+            switch result {
+            case .success(let orgListEntries):
+                self.organizationAdminListEntries = orgListEntries
+            case .failure(let error):
+                self.handleError(error)
+            }
+
             callback?(result)
         }
     }

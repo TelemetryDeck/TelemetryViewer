@@ -51,6 +51,13 @@ struct SidebarView: View {
                             Label("Beta Requests", systemImage: "app.badge")
                         }
                     )
+
+                    NavigationLink(
+                        destination: OrganizationAdmin(),
+                        label: {
+                            Label("Organizations", systemImage: "app.badge")
+                        }
+                    )
                 }
             }
         }

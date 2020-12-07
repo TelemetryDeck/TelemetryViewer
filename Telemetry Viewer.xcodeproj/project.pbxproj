@@ -69,6 +69,8 @@
 		DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4E2F632563FA47001AD7B4 /* LineChartView.swift */; };
 		DC8FAD5D257E5C360019A186 /* String+CamelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8FAD5C257E5C360019A186 /* String+CamelCase.swift */; };
 		DC8FAD61257E5C910019A186 /* String+CamelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8FAD5C257E5C360019A186 /* String+CamelCase.swift */; };
+		DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */; };
+		DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */; };
 		DC90D08B25063A6B00634B72 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90D08A25063A6B00634B72 /* UserSettingsView.swift */; };
 		DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90D08A25063A6B00634B72 /* UserSettingsView.swift */; };
 		DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AAB6250A671900FF26FD /* AppEditor.swift */; };
@@ -197,6 +199,7 @@
 		DC815F3B24E283640095A047 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
 		DC83C858256A857300FCF2A1 /* RawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
 		DC8FAD5C257E5C360019A186 /* String+CamelCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CamelCase.swift"; sourceTree = "<group>"; };
+		DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationAdmin.swift; sourceTree = "<group>"; };
 		DC90D08A25063A6B00634B72 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		DC98AAB6250A671900FF26FD /* AppEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEditor.swift; sourceTree = "<group>"; };
 		DC98AABB250BC30200FF26FD /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
@@ -386,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */,
+				DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */,
 			);
 			path = Administration;
 			sourceTree = "<group>";
@@ -688,6 +692,7 @@
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				DCC8CB5B2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
+				DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
 				DCB28D892551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
@@ -720,6 +725,7 @@
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
+				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB02B732502781A00304964 /* LoginView.swift in Sources */,
 				DC53394525222FC600D9C889 /* NewInsightGroupView.swift in Sources */,

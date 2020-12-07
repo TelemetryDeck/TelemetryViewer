@@ -15,6 +15,31 @@ enum AppRootSidebarSection {
     case RawSignals
 }
 
+var DefaultSidebarWidth: CGFloat {
+    #if os(iOS)
+    if sizeClass == .compact {
+        return 800
+    } else {
+        return 350
+    }
+    #else
+    return 280
+    #endif
+}
+
+var DefaultMoveTransition: AnyTransition {
+    #if os(iOS)
+    if sizeClass == .compact {
+        return .move(edge: .bottom)
+    } else {
+        return .move(edge: .trailing)
+    }
+
+    #else
+    return .move(edge: .trailing)
+    #endif
+}
+
 struct AppRootView: View {
     let appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
@@ -53,18 +78,6 @@ struct AppRootView: View {
         }
     }
 
-    var sidebarWidth: CGFloat {
-        #if os(iOS)
-        if sizeClass == .compact {
-            return 800
-        } else {
-            return 350
-        }
-        #else
-        return 280
-        #endif
-    }
-
     func reloadVisibleInsights() {
         guard
             let app = app,
@@ -74,20 +87,6 @@ struct AppRootView: View {
         for insight in insightGroup.insights {
             api.getInsightData(for: insight, in: insightGroup, in: app)
         }
-    }
-
-    var moveTransition: AnyTransition {
-
-        #if os(iOS)
-        if sizeClass == .compact {
-            return .move(edge: .bottom)
-        } else {
-            return .move(edge: .trailing)
-        }
-
-        #else
-        return .move(edge: .trailing)
-        #endif
     }
 
     var body: some View {
@@ -155,7 +154,7 @@ struct AppRootView: View {
 
 
             if sidebarShownValue {
-                DetailSidebar(isOpen: sidebarShown , maxWidth: sidebarWidth) {
+                DetailSidebar(isOpen: sidebarShown , maxWidth: DefaultSidebarWidth) {
 
                     #if os(iOS)
                     if sizeClass == .compact {
@@ -179,7 +178,7 @@ struct AppRootView: View {
 
                 }
                 .edgesIgnoringSafeArea(.bottom)
-                .transition(moveTransition)
+                .transition(DefaultMoveTransition)
             }
         }
         .toolbar {
