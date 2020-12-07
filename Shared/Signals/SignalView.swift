@@ -24,24 +24,23 @@ struct SignalView: View {
     var body: some View {
         
         ListItemView {
+
             VStack {
-                HStack(alignment: .top) {
-                    Image(systemName: "arrowtriangle.right.fill")
-                        .imageScale(.large)
-                        .rotationEffect(.init(degrees: showPayload ? 90 : 0))
-                        .foregroundColor(.accentColor)
+            HStack(alignment: .top) {
+                Image(systemName: "arrowtriangle.right.fill")
+                    .imageScale(.large)
+                    .rotationEffect(.init(degrees: showPayload ? 90 : 0))
+                    .foregroundColor(.accentColor)
 
-                    Group {
-                        Text(signal.receivedAt, style: .relative) + Text(" ago")
-                    }
-                    .font(.footnote)
-                    .foregroundColor(.grayColor)
-
-                    Spacer()
-                    
-                    Text(signal.type).bold()
+                VStack(alignment: .leading) {
+                    Text(signal.type.camelCaseToWords).bold()
+                    Group { Text(signal.receivedAt, style: .relative) + Text(" ago") }
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
                 }
-                
+
+                Spacer()
+            }
                 if showPayload {
                     if let payload = signal.payload {
                         KeyValueView(keysAndValues: payload)

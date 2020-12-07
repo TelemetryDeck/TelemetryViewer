@@ -7,22 +7,20 @@
 
 import SwiftUI
 
+
+
 struct KeyValueView: View {
     var keysAndValues: [String: String]
     
     var body: some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading) {
-            let theKeys = Array(keysAndValues.keys).sorted()
-            
+        let theKeys = Array(keysAndValues.keys).sorted()
+        VStack(alignment: .leading) {
             ForEach(theKeys, id: \.self) { key in
-                HStack {
-                    Spacer()
-                    Text(key)
-                        .foregroundColor(.grayColor)
-                }
+                Text(String(key).camelCaseToWords)
+                    .font(Font.body.weight(.bold))
+                    .opacity(0.7)
                 Text(keysAndValues[key] ?? "–")
-                    .lineLimit(1)
-                    .font(.system(.body, design: .monospaced))
+                    .padding(.bottom, 3)
             }
         }
     }

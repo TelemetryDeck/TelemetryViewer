@@ -20,8 +20,8 @@ struct SignalTypeView: View {
     var body: some View {
         ListItemView(background: Color.accentColor.opacity(0.2)) {
             
-            Text(lexiconItem.type)
-                .font(.system(.body, design: .monospaced))
+            Text(lexiconItem.type.camelCaseToWords)
+                .bold()
             
             Spacer()
             
@@ -32,9 +32,6 @@ struct SignalTypeView: View {
             }
             .foregroundColor(.grayColor)
             .font(.footnote)
-            
-//            Image(systemName: lexiconItem.isHidden ? "eye.slash" : "eye")
-//                .foregroundColor(.grayColor)
         }
     }
 }
@@ -52,8 +49,8 @@ struct PayloadKeyView: View {
     var body: some View {
         ListItemView {
             
-            Text(lexiconItem.payloadKey)
-                .font(.system(.body, design: .monospaced))
+            Text(lexiconItem.payloadKey.camelCaseToWords)
+                .bold()
             
             Spacer()
             
@@ -64,9 +61,6 @@ struct PayloadKeyView: View {
             }
             .foregroundColor(.grayColor)
             .font(.footnote)
-            
-            Image(systemName: lexiconItem.isHidden ? "eye.slash" : "eye")
-                .foregroundColor(.grayColor)
         }
     }
 }

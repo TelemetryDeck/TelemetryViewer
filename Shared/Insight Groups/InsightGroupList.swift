@@ -32,6 +32,7 @@ struct InsightGroupList: View {
                     Text("Insights will automatically refresh once a minute")
                         .font(.footnote)
                         .foregroundColor(.grayColor)
+                        .padding(.bottom)
                 }
                 .navigationTitle(insightGroup.title)
             } else {
