@@ -108,30 +108,15 @@ struct AppRootView: View {
 
         AdaptiveStack(spacing: 0) {
             Group {
+                VStack(spacing: 0) {
+                    Divider()
+
                 if let app = app {
                     if (api.insightGroups[app] ?? []).isEmpty {
-                        VStack(spacing: 20) {
-                            Image("arrow-left-right-up")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 300)
-                            Text("A new App! Awesome!")
-                                .font(.title)
-                                .foregroundColor(.grayColor)
-                            Text("Next steps:\n\n1. Now open the side bar 􀏛\n2. select the app section 􀑋\n3. create a new Insight Group.")
-                                .foregroundColor(.grayColor)
-
-                                Button("Open Documentation") {
-                                    #if os(macOS)
-                                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                                    #else
-                                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                                    #endif
-                                }
-                                .buttonStyle(SecondaryButtonStyle())
-                        }
-                        .frame(maxWidth: 400)
+                        EmptyAppView().frame(maxWidth: 400)
                     } else {
+
+                        #if os(iOS)
                         TabView(selection: $selectedInsightGroupID) {
                             ForEach(api.insightGroups[app] ?? []) { insightGroup in
                                 InsightGroupList(selectedInsightID: selectedInsightID, app: app, insightGroupID: insightGroup.id)
@@ -139,11 +124,29 @@ struct AppRootView: View {
                                     .tag(insightGroup.id)
                             }
                         }
-                    .navigationTitle(app.name)
+                        .navigationTitle(app.name)
+                        #else
+                        Group {
+                            InsightGroupList(selectedInsightID: selectedInsightID, app: app, insightGroupID: selectedInsightGroupID)
+
+                            Divider()
+
+                            Picker(selection: $selectedInsightGroupID, label: Text("")) {
+                                ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                                    Text(insightGroup.title).tag(insightGroup.id)
+                                }
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .padding()
+
+                        }
+                        #endif
                     }
                 } else {
                     Text("Please select an App").foregroundColor(.grayColor)
                 }
+                }
+                .background(Color("CardBackgroundColor"))
             }
             .onAppear() {
                 if let app = app {
@@ -281,6 +284,8 @@ struct AppRootSidebar: View {
     var body: some View {
 
         VStack {
+            Divider()
+
             Picker(selection: $sidebarSection, label: Text("")) {
                 Image(systemName: "app.fill").tag(AppRootSidebarSection.InsightEditor)
                 Image(systemName: "square.grid.2x2.fill").tag(AppRootSidebarSection.InsightGroupEditor)
@@ -289,8 +294,9 @@ struct AppRootSidebar: View {
                 Image(systemName: "waveform").tag(AppRootSidebarSection.RawSignals)
             }
             .pickerStyle(SegmentedPickerStyle())
-            .padding(.bottom)
             .padding(.horizontal)
+
+            Divider()
 
             switch sidebarSection {
             case .InsightEditor:
@@ -306,6 +312,31 @@ struct AppRootSidebar: View {
             }
 
             Spacer()
+        }
+    }
+}
+
+struct EmptyAppView: View {
+    var body: some View {
+        VStack(spacing: 20) {
+            Image("arrow-left-right-up")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: 300)
+            Text("A new App! Awesome!")
+                .font(.title)
+                .foregroundColor(.grayColor)
+            Text("Next steps:\n\n1. Now open the side bar 􀏛\n2. select the app section 􀑋\n3. create a new Insight Group.")
+                .foregroundColor(.grayColor)
+
+            Button("Open Documentation") {
+                #if os(macOS)
+                NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                #else
+                UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                #endif
+            }
+            .buttonStyle(SecondaryButtonStyle())
         }
     }
 }

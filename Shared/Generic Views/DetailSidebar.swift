@@ -21,10 +21,7 @@ struct DetailSidebar<Content>: View where Content: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            #if os(macOS)
-            #else
             Divider()
-            #endif
 
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -39,7 +39,7 @@ struct CustomSection<Content, Header, Summary, Footer>: View where Content: View
                         .opacity(0.4)
 
                     if isHovering {
-                        Image(systemName: isCollapsed ? "arrowtriangle.backward" : "arrowtriangle.down")
+                        Image(systemName: isCollapsed ? "chevron.left" : "chevron.down")
                     }
 
                 }
