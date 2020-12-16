@@ -9,8 +9,7 @@ import Foundation
 import Combine
 
 final class APIRepresentative: ObservableObject {
-    private static let baseURLString = "https://apptelemetry.io/api/v1/"
-    // private static let baseURLString = "http://localhost:8080/api/v1/"
+    private static let baseURLString = ProcessInfo.processInfo.environment["API_URL"] == "local" ? "http://localhost:8080/api/v1/" : "https://apptelemetry.io/api/v1/"
     private static let userTokenStandardsKey = "org.breakthesystem.telemetry.viewer.userToken"
     
     init() {
