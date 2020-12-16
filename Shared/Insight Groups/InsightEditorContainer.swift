@@ -254,7 +254,6 @@ struct InsightEditor: View {
                     Image(systemName: "chart.pie.fill").tag(InsightDisplayMode.pieChart)
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .padding(.bottom, 5)
             }
 
             CustomSection(header: Text("Group Values by"), summary: Text(viewModel.insightGroupBy.rawValue), footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate valeus you'll receive."), startCollapsed: true) {
@@ -265,7 +264,6 @@ struct InsightEditor: View {
                     Text("Month").tag(InsightGroupByInterval.month)
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .padding(.bottom, 5)
             }
 
             let signalText = viewModel.insightSignalType.isEmpty ? "All Signals" : viewModel.insightSignalType
