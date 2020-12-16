@@ -33,6 +33,35 @@ struct OrganizationAdmin: View {
         #endif
     }
     
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var sizeClass
+    #endif
+
+    var DefaultSidebarWidth: CGFloat {
+        #if os(iOS)
+        if sizeClass == .compact {
+            return 800
+        } else {
+            return 350
+        }
+        #else
+        return 280
+        #endif
+    }
+
+    var DefaultMoveTransition: AnyTransition {
+        #if os(iOS)
+        if sizeClass == .compact {
+            return .move(edge: .bottom)
+        } else {
+            return .move(edge: .trailing)
+        }
+
+        #else
+        return .move(edge: .trailing)
+        #endif
+    }
+    
     var body: some View {
         AdaptiveStack(spacing: 0) {
             List {

@@ -15,31 +15,6 @@ enum AppRootSidebarSection {
     case RawSignals
 }
 
-var DefaultSidebarWidth: CGFloat {
-    #if os(iOS)
-    if sizeClass == .compact {
-        return 800
-    } else {
-        return 350
-    }
-    #else
-    return 280
-    #endif
-}
-
-var DefaultMoveTransition: AnyTransition {
-    #if os(iOS)
-    if sizeClass == .compact {
-        return .move(edge: .bottom)
-    } else {
-        return .move(edge: .trailing)
-    }
-
-    #else
-    return .move(edge: .trailing)
-    #endif
-}
-
 struct AppRootView: View {
     let appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
@@ -54,6 +29,31 @@ struct AppRootView: View {
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var sizeClass
     #endif
+
+    var DefaultSidebarWidth: CGFloat {
+        #if os(iOS)
+        if sizeClass == .compact {
+            return 800
+        } else {
+            return 350
+        }
+        #else
+        return 280
+        #endif
+    }
+
+    var DefaultMoveTransition: AnyTransition {
+        #if os(iOS)
+        if sizeClass == .compact {
+            return .move(edge: .bottom)
+        } else {
+            return .move(edge: .trailing)
+        }
+
+        #else
+        return .move(edge: .trailing)
+        #endif
+    }
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
