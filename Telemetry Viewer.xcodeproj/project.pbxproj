@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -548,6 +548,7 @@
 				DCE23A0724D3687D00053370 /* Sources */,
 				DCE23A0824D3687D00053370 /* Frameworks */,
 				DCE23A0924D3687D00053370 /* Resources */,
+				DC7DEE8A258A334900BEA712 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -632,6 +633,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DC7DEE8A258A334900BEA712 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\n## Use the last annotated tag as CFBundleShortVersionString\nGIT_TAG=`${GIT} describe --tags --always --dirty`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${GIT_TAG}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\necho \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DCD86AE3254EF0B5008F63CB /* Sources */ = {
