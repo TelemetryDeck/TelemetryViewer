@@ -319,6 +319,7 @@ struct AppRootSidebar: View {
 struct EmptyAppView: View {
     var body: some View {
         VStack(spacing: 20) {
+            Spacer()
             Image("arrow-left-right-up")
                 .resizable()
                 .scaledToFit()
@@ -329,14 +330,26 @@ struct EmptyAppView: View {
             Text("Next steps:\n\n1. Now open the side bar 􀏛\n2. select the app section 􀑋\n3. create a new Insight Group.")
                 .foregroundColor(.grayColor)
 
-            Button("Open Documentation") {
-                #if os(macOS)
-                NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                #else
-                UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                #endif
+            HStack {
+                Button("Telemetry Swift Client") {
+                    #if os(macOS)
+                    NSWorkspace.shared.open(URL(string: "https://github.com/AppTelemetry/SwiftClient")!)
+                    #else
+                    UIApplication.shared.open(URL(string: "https://github.com/AppTelemetry/SwiftClient")!)
+                    #endif
+                }
+                .buttonStyle(SmallSecondaryButtonStyle())
+
+                Button("Documentation: Sending Signals") {
+                    #if os(macOS)
+                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                    #else
+                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                    #endif
+                }
+                .buttonStyle(SmallSecondaryButtonStyle())
             }
-            .buttonStyle(SecondaryButtonStyle())
+            Spacer()
         }
     }
 }
