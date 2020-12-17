@@ -35,12 +35,12 @@
 		DC25A64F2571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
 		DC25A6502571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
+		DC3472EB258A720500BEEDE0 /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEAB258A3B9B00BEA712 /* AppUpdater.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC45BAEE24DFF895004E6392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
 		DC45BAEF24DFF895004E6392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
 		DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
-		DC45BB1924E1F01F004E6392 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1824E1F01F004E6392 /* SidebarView.swift */; };
 		DC45BB1A24E1F01F004E6392 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1824E1F01F004E6392 /* SidebarView.swift */; };
 		DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1B24E27F12004E6392 /* SignalView.swift */; };
 		DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1B24E27F12004E6392 /* SignalView.swift */; };
@@ -62,6 +62,8 @@
 		DC591399252DF975007360A9 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591397252DF975007360A9 /* DonutChartView.swift */; };
 		DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
 		DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
+		DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */; };
+		DC7DEEC0258A453A00BEA712 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1824E1F01F004E6392 /* SidebarView.swift */; };
 		DC815F3C24E283640095A047 /* SignalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC815F3B24E283640095A047 /* SignalList.swift */; };
 		DC815F3D24E283640095A047 /* SignalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC815F3B24E283640095A047 /* SignalList.swift */; };
 		DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC83C858256A857300FCF2A1 /* RawChartView.swift */; };
@@ -197,6 +199,8 @@
 		DC53394425222FC600D9C889 /* NewInsightGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInsightGroupView.swift; sourceTree = "<group>"; };
 		DC591397252DF975007360A9 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
 		DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
+		DC7DEEAB258A3B9B00BEA712 /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdater.swift; sourceTree = "<group>"; };
+		DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateView.swift; sourceTree = "<group>"; };
 		DC815F3B24E283640095A047 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
 		DC83C858256A857300FCF2A1 /* RawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
 		DC8FAD5C257E5C360019A186 /* String+CamelCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CamelCase.swift"; sourceTree = "<group>"; };
@@ -338,6 +342,7 @@
 			children = (
 				DC45BAED24DFF895004E6392 /* Models.swift */,
 				DCB02B7B25038F4600304964 /* APIRepresentative.swift */,
+				DC7DEEAB258A3B9B00BEA712 /* AppUpdater.swift */,
 				DCB02B7E25038F5000304964 /* MockData.swift */,
 				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
 				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
@@ -480,6 +485,7 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */,
 				DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */,
 				DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */,
 				DC340E5D2531C23800514FD6 /* InsightDetailView.swift */,
@@ -639,7 +645,6 @@
 /* Begin PBXShellScriptBuildPhase section */
 		DC7DEE8A258A334900BEA712 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -653,7 +658,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\n## Use the last annotated tag as CFBundleShortVersionString\nGIT_TAG=`${GIT} describe --tags --always --dirty`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${GIT_TAG}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\necho \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
+			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\n## Use the last annotated tag as CFBundleShortVersionString\nGIT_TAG=`${GIT} describe --tags --always --dirty`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${GIT_TAG}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
 		};
 		DC7DEE9D258A355F00BEA712 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -731,8 +736,8 @@
 				DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
 				DC25A5AC256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
-				DC45BB1924E1F01F004E6392 /* SidebarView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
+				DC7DEEC0258A453A00BEA712 /* SidebarView.swift in Sources */,
 				DC25A6492570108E00EE84DA /* InsightEditorContainer.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
@@ -812,6 +817,7 @@
 				DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */,
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
+				DC3472EB258A720500BEEDE0 /* AppUpdater.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
@@ -827,6 +833,7 @@
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC25A64A2570108E00EE84DA /* InsightEditorContainer.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
+				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
 				DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,

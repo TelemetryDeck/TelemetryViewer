@@ -56,17 +56,6 @@ struct UserSettingsView: View {
                         showChangePasswordForm.toggle()
                     }
                 }
-                
-                Divider()
-                
-                let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-                let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-
-                HStack {
-                    Text("Telemetry Viewer Version")
-                    Text(appVersion ?? "–")
-                    Text("(\(buildNumber ?? "–"))")
-                }
             }
             .animation(.easeIn)
             .padding()

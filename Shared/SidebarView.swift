@@ -9,6 +9,10 @@ import SwiftUI
 
 struct SidebarView: View {
     @EnvironmentObject var api: APIRepresentative
+    #if os(macOS)
+    @EnvironmentObject var appUpdater: AppUpdater
+    #endif
+
     @Binding var selectedApp: TelemetryApp?
     
     var body: some View {
@@ -41,6 +45,18 @@ struct SidebarView: View {
                     Label("firstName lastName", systemImage: "person.circle").redacted(reason: .placeholder)
                     Label("organization.name", systemImage: "app.badge").redacted(reason: .placeholder)
                 }
+
+                #if os(macOS)
+                NavigationLink(
+                    destination: AppUpdateView(),
+                    label: {
+                        Label(
+                            appUpdater.isAppUpdateAvailable ? "Update Available!" : "Updates",
+                            systemImage: appUpdater.isAppUpdateAvailable ? "info.circle.fill" : "info.circle"
+                        )
+                    }
+                )
+                #endif
             }
             
             if api.user?.organization?.isSuperOrg == true {
@@ -58,6 +74,7 @@ struct SidebarView: View {
                             Label("Organizations", systemImage: "app.badge")
                         }
                     )
+
                 }
             }
         }
