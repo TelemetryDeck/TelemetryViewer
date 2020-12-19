@@ -75,6 +75,13 @@ struct SidebarView: View {
                         }
                     )
 
+                    NavigationLink(
+                        destination: DebugView(),
+                        label: {
+                            Label("Debug", systemImage: "ladybug")
+                        }
+                    )
+
                 }
             }
         }

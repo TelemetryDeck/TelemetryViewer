@@ -29,7 +29,7 @@ struct InsightGroupList: View {
                     InsightsGrid(app: app, insightGroup: insightGroup, selectedInsightID: $selectedInsightID)
                     Spacer()
 
-                    Text("Insights will automatically refresh once a minute")
+                    Text("Insights will automatically refresh every 5 minutes")
                         .font(.footnote)
                         .foregroundColor(.grayColor)
                         .padding(.bottom)

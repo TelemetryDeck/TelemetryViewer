@@ -36,6 +36,8 @@
 		DC25A6502571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC3472EB258A720500BEEDE0 /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEAB258A3B9B00BEA712 /* AppUpdater.swift */; };
+		DC347302258D026E00BEEDE0 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC347301258D026E00BEEDE0 /* DebugView.swift */; };
+		DC347303258D026E00BEEDE0 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC347301258D026E00BEEDE0 /* DebugView.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC45BAEE24DFF895004E6392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
@@ -185,6 +187,7 @@
 		DC25A6482570108E00EE84DA /* InsightEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditorContainer.swift; sourceTree = "<group>"; };
 		DC25A64E2571680900EE84DA /* CustomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSection.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
+		DC347301258D026E00BEEDE0 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		DC415C0D2531F6C300D8D0B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DC45BAED24DFF895004E6392 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DC45BB1824E1F01F004E6392 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
@@ -396,6 +399,7 @@
 			children = (
 				DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */,
 				DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */,
+				DC347301258D026E00BEEDE0 /* DebugView.swift */,
 			);
 			path = Administration;
 			sourceTree = "<group>";
@@ -748,6 +752,7 @@
 				DC25A58D256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC5339372521CE6200D9C889 /* CardView.swift in Sources */,
 				DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */,
+				DC347302258D026E00BEEDE0 /* DebugView.swift in Sources */,
 				DC25A617256DBC3B00EE84DA /* AppRootView.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
@@ -840,6 +845,7 @@
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,
+				DC347303258D026E00BEEDE0 /* DebugView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC45BAEF24DFF895004E6392 /* Models.swift in Sources */,
