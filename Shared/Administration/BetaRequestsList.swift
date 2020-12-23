@@ -175,9 +175,6 @@ struct BetaRequestsList: View {
             }
         }
         .navigationTitle("Beta Requests")
-        .onAppear() {
-            api.getBetaRequests()
-        }
         .onReceive(refreshTimer) { _ in
             api.getBetaRequests()
         }

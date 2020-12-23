@@ -64,7 +64,20 @@ struct SidebarView: View {
                     NavigationLink(
                         destination: BetaRequestsList(),
                         label: {
-                            Label("Beta Requests", systemImage: "app.badge")
+                            Label {
+                                HStack {
+                                    Text("Beta Requests")
+                                    Spacer()
+                                    Text("\(api.betaRequests.filter({ !$0.isFulfilled && $0.sentAt == nil }).count)")
+                                        .bold()
+                                        .padding(.horizontal, 8)
+                                        .foregroundColor(Color.white.opacity(0.8))
+                                        .background(Color.grayColor)
+                                        .clipShape(Capsule())
+                                }
+                            } icon: {
+                                Image(systemName: "airplane")
+                            }
                         }
                     )
 

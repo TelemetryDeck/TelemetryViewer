@@ -156,6 +156,9 @@ extension APIRepresentative {
             case .success(let userDTO):
                 DispatchQueue.main.async {
                     self.user = userDTO
+                    if self.user?.organization?.isSuperOrg == true {
+                        self.getBetaRequests()
+                    }
                 }
             case .failure(let error):
                 self.handleError(error)

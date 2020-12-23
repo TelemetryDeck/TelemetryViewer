@@ -11,6 +11,7 @@ struct OrganizationAdmin: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var selectedOrganization: OrganizationAdminListEntry?
     @State private var sidebarShown: Bool = false
+    @State private var isLoading: Bool = false
 
     let refreshTimer = Timer.publish(
         every: 1 * 60, // 1 minute
@@ -65,6 +66,10 @@ struct OrganizationAdmin: View {
     var body: some View {
         AdaptiveStack(spacing: 0) {
             List {
+                if isLoading {
+                    ProgressView()
+                }
+
                 ForEach(api.organizationAdminListEntries) { entry in
                     ListItemView(selected: selectedOrganization?.id == entry.id, background: entry.isSuperOrg ? Color("Torange").opacity(0.2) : Color.grayColor.opacity(0.2)) {
                         Text(entry.name)
@@ -119,7 +124,10 @@ struct OrganizationAdmin: View {
         }
         .navigationTitle("Organization Admin")
         .onAppear() {
-            api.getOrganizationAdminEntries()
+            isLoading = true
+            api.getOrganizationAdminEntries() { _ in
+                self.isLoading = false
+            }
         }
         .onReceive(refreshTimer) { _ in
             api.getOrganizationAdminEntries()
