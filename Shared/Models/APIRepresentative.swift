@@ -50,6 +50,8 @@ final class APIRepresentative: ObservableObject {
     
     @Published var user: UserDataTransferObject?
     @Published var userNotLoggedIn: Bool = true
+
+    @Published var numberOfSignals: Int = 0
     
     @Published var apps: [TelemetryApp] = []
     
@@ -183,6 +185,24 @@ extension APIRepresentative {
                 self.handleError(error)
             }
             
+            callback?(result)
+        }
+    }
+
+
+    func getNumberOfSignals(callback: ((Result<Int, TransferError>) -> ())? = nil) {
+        let url = urlForPath("organization", "signalcount")
+
+        self.get(url) { [unowned self] (result: Result<Int, TransferError>) in
+            switch result {
+            case .success(let apps):
+                DispatchQueue.main.async {
+                    self.numberOfSignals = apps
+                }
+            case .failure(let error):
+                self.handleError(error)
+            }
+
             callback?(result)
         }
     }
