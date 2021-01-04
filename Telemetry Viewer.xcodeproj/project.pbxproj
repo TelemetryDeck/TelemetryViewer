@@ -62,6 +62,12 @@
 		DC53394625222FC600D9C889 /* NewInsightGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53394425222FC600D9C889 /* NewInsightGroupView.swift */; };
 		DC591398252DF975007360A9 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591397252DF975007360A9 /* DonutChartView.swift */; };
 		DC591399252DF975007360A9 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591397252DF975007360A9 /* DonutChartView.swift */; };
+		DC5F3A8925A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */; };
+		DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */; };
+		DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */; };
+		DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */; };
+		DC627EF525A35B8500C1DF33 /* AppRootSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC627EF425A35B8500C1DF33 /* AppRootSidebar.swift */; };
+		DC627EF625A35B8500C1DF33 /* AppRootSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC627EF425A35B8500C1DF33 /* AppRootSidebar.swift */; };
 		DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
 		DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
 		DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */; };
@@ -201,6 +207,9 @@
 		DC53393F25222C2F00D9C889 /* InsightGroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGroupList.swift; sourceTree = "<group>"; };
 		DC53394425222FC600D9C889 /* NewInsightGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInsightGroupView.swift; sourceTree = "<group>"; };
 		DC591397252DF975007360A9 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
+		DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyInsightGroupView.swift; sourceTree = "<group>"; };
+		DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAppView.swift; sourceTree = "<group>"; };
+		DC627EF425A35B8500C1DF33 /* AppRootSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootSidebar.swift; sourceTree = "<group>"; };
 		DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		DC7DEEAB258A3B9B00BEA712 /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdater.swift; sourceTree = "<group>"; };
 		DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateView.swift; sourceTree = "<group>"; };
@@ -297,6 +306,7 @@
 				DCB28D6B2550AF0B0032B9AD /* InsightsGrid.swift */,
 				DC53394425222FC600D9C889 /* NewInsightGroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
+				DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */,
 			);
 			path = "Insight Groups";
 			sourceTree = "<group>";
@@ -311,6 +321,16 @@
 				DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */,
 			);
 			path = Charts;
+			sourceTree = "<group>";
+		};
+		DC627EEA25A35B5E00C1DF33 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DC25A615256DBC3B00EE84DA /* AppRootView.swift */,
+				DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */,
+				DC627EF425A35B8500C1DF33 /* AppRootSidebar.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		DC90D08925063A5700634B72 /* Settings */ = {
@@ -451,7 +471,7 @@
 				DCE239FE24D3687D00053370 /* Assets.xcassets */,
 				DCB02B65250027C700304964 /* Models */,
 				DC45BB1824E1F01F004E6392 /* SidebarView.swift */,
-				DC25A615256DBC3B00EE84DA /* AppRootView.swift */,
+				DC627EEA25A35B5E00C1DF33 /* App */,
 				DCB02B70250277C300304964 /* Generic Views */,
 				DCB02B692502764200304964 /* Login Register */,
 				DC98AAB9250A672300FF26FD /* App Settings */,
@@ -756,6 +776,7 @@
 				DC25A617256DBC3B00EE84DA /* AppRootView.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
+				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
@@ -770,6 +791,7 @@
 				DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC53394025222C2F00D9C889 /* InsightGroupList.swift in Sources */,
+				DC5F3A8925A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DC25A64F2571680900EE84DA /* CustomSection.swift in Sources */,
 				DC4E2F642563FA48001AD7B4 /* LineChartView.swift in Sources */,
@@ -781,6 +803,7 @@
 				DC25A63A256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
 				DC8FAD5D257E5C360019A186 /* String+CamelCase.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
+				DC627EF525A35B8500C1DF33 /* AppRootSidebar.swift in Sources */,
 				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
 				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				DCB02B792503897D00304964 /* JoinOrganizationInfoView.swift in Sources */,
@@ -796,6 +819,7 @@
 				DC23286E2522725A00DB6145 /* InsightView.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */,
+				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
 				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */,
@@ -826,6 +850,7 @@
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
+				DC627EF625A35B8500C1DF33 /* AppRootSidebar.swift in Sources */,
 				DC98AAB8250A671900FF26FD /* AppEditor.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
@@ -853,6 +878,7 @@
 				DC25A5E1256D844300EE84DA /* DetailSidebar.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,
+				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				DC83C85A256A857300FCF2A1 /* RawChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

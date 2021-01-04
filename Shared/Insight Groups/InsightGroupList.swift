@@ -9,7 +9,8 @@ import SwiftUI
 import TelemetryClient
 
 struct InsightGroupList: View {
-
+    @Binding var sidebarSection: AppRootSidebarSection
+    @Binding var sidebarShown: Bool
     @Binding var selectedInsightID: UUID?
     @EnvironmentObject var api: APIRepresentative
     var app: TelemetryApp
@@ -36,18 +37,15 @@ struct InsightGroupList: View {
                 }
                 .navigationTitle(insightGroup.title)
             } else {
-
-                VStack(spacing: 20) {
-
-                    Image("arrow-left-right")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 300)
-                        .rotationEffect(.degrees(-30))
-                    Text("This Insight Group is Empty. You can add Insights to your Insights Group by opening the sidebar 􀏛 and selecting the insight group section 􀚈")
-                        .foregroundColor(.grayColor)
-                }
+                EmptyInsightGroupView(
+                    selectedInsightGroupID: insightGroupID,
+                    selectedInsightID: $selectedInsightID,
+                    sidebarSection: $sidebarSection,
+                    sidebarShown: $sidebarShown,
+                    appID: app.id
+                )
                 .frame(maxWidth: 400)
+                .padding()
             }
         }
 

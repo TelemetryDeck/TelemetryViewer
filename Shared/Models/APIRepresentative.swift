@@ -293,10 +293,10 @@ extension APIRepresentative {
         
     }
     
-    func create(insightGroupNamed: String, for app: TelemetryApp, callback: ((Result<InsightGroup, TransferError>) -> ())? = nil) {
+    func create(insightGroupNamed: String, for app: TelemetryApp, callback: ((Result<InsightGroupDTO, TransferError>) -> ())? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
         
-        self.post(["title": insightGroupNamed], to: url) { [unowned self] (result: Result<InsightGroup, TransferError>) in
+        self.post(["title": insightGroupNamed], to: url) { [unowned self] (result: Result<InsightGroupDTO, TransferError>) in
             self.getInsightGroups(for: app) { _ in
                 callback?(result)
             }

@@ -51,28 +51,38 @@ struct InsightView: View {
             
             Group {
                 if let insightData = api.insightData[insight.id] {
-                    switch insightData.displayMode {
-                    case .raw:
-                        RawChartView(insightDataID: insight.id)
-                    case .pieChart:
-                        DonutChartView(insightDataID: insight.id)
-                    case .lineChart:
-                        LineChartView(insightDataID: insight.id)
-                    case .barChart:
-                        BarChartView(insightDataID: insight.id)
-                    default:
+                    if insightData.isEmpty {
                         VStack {
                             Spacer()
-                            
-                            HStack {
+                            Text("This Insight contains no data. This might be because your app has not sent any signals in the selected time range, or no signals that match this Insight's filters.")
+                                .font(.caption)
+                                .foregroundColor(.grayColor)
+                        }
+                    }
+                    else {
+                        switch insightData.displayMode {
+                        case .raw:
+                            RawChartView(insightDataID: insight.id)
+                        case .pieChart:
+                            DonutChartView(insightDataID: insight.id)
+                        case .lineChart:
+                            LineChartView(insightDataID: insight.id)
+                        case .barChart:
+                            BarChartView(insightDataID: insight.id)
+                        default:
+                            VStack {
                                 Spacer()
-                                Text("\(insightData.displayMode.rawValue.capitalized) is not supported in this version.")
-                                    .font(.footnote)
-                                    .foregroundColor(.grayColor)
-                                    .padding(.vertical)
+
+                                HStack {
+                                    Spacer()
+                                    Text("\(insightData.displayMode.rawValue.capitalized) is not supported in this version.")
+                                        .font(.footnote)
+                                        .foregroundColor(.grayColor)
+                                        .padding(.vertical)
+                                    Spacer()
+                                }
                                 Spacer()
                             }
-                            Spacer()
                         }
                     }
                 }

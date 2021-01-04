@@ -171,6 +171,10 @@ struct InsightDataTransferObject: Codable {
     
     /// When was this DTO calculated?
     let calculatedAt: Date
+
+    var isEmpty: Bool {
+        return data.compactMap { $0.yAxisValue }.count == 0
+    }
 }
 
 struct InsightDefinitionRequestBody: Codable {
@@ -224,6 +228,22 @@ struct InsightDefinitionRequestBody: Codable {
             isExpanded: insight.isExpanded)
         
         return requestBody
+    }
+
+    static func new(groupID: UUID) -> InsightDefinitionRequestBody {
+        return InsightDefinitionRequestBody(
+            order: nil,
+            title: "New Insight",
+            subtitle: nil,
+            signalType: nil,
+            uniqueUser: false,
+            filters: [:],
+            rollingWindowSize: -2592000,
+            breakdownKey: nil,
+            displayMode: .lineChart,
+            groupID: groupID,
+            id: nil,
+            isExpanded: false)
     }
 }
 
