@@ -33,6 +33,15 @@ struct Telemetry_ViewerApp: App {
         }
         .commands {
             SidebarCommands()
+            CommandGroup(replacing: CommandGroupPlacement.help) {
+                Button("Online Docs for Telemetry") {
+                    #if os(macOS)
+                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)
+                    #else
+                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)
+                    #endif
+                }
+            }
         }
     }
     
