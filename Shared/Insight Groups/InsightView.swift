@@ -90,6 +90,17 @@ struct InsightView: View {
         .onReceive(refreshTimer) { _ in
             updateIfNecessary()
         }
+        .contextMenu {
+            Button("Refresh Now") {
+                updateNow()
+            }
+
+            Divider()
+
+            Button("Delete") {
+                api.delete(insight: insight, in: insightGroup, in: app)
+            }
+        }
     }
     
     func updateNow() {
