@@ -105,6 +105,8 @@ struct InsightView: View {
     }
     
     func updateIfNecessary() {
+        guard !isLoading else { return }
+
         if let insightData = api.insightData[insight.id] {
             if abs(insightData.calculatedAt.timeIntervalSinceNow) > 60 * 5 { // data is over 5 minutes old
                 updateNow()
