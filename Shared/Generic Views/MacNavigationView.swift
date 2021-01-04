@@ -26,9 +26,12 @@ struct MacNavigationView<Content>: View where Content: View {
     var body : some View {
         VStack(alignment: .leading) {
             if let backButtonAction = backButtonAction {
-                Button("􀯶 " + backButtonTitle) {
-                    backButtonAction()
-                }
+                Button(action: backButtonAction, label: {
+                    HStack(spacing: 1) {
+                        Image(systemName: "chevron.backward")
+                        Text(backButtonTitle)
+                    }
+                })
                 .buttonStyle(BackButtonStyle())
             }
             
