@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct AppUpdateView: View {
     @EnvironmentObject var appUpdater: AppUpdater
@@ -17,53 +18,57 @@ struct AppUpdateView: View {
 
     var body: some View {
         ScrollView {
-        VStack(alignment: .leading) {
-            Text("Current Version").font(.title)
+            VStack(alignment: .leading) {
+                Text("Current Version").font(.title)
 
-            Text("Telemetry Viewer Version: ") +
-                Text(appUpdater.internalVersion).font(.headline)
+                Text("Telemetry Viewer Version: ") +
+                    Text(appUpdater.internalVersion).font(.headline)
 
-            Text("Latest Version on Server: ") +
-                Text("\(appUpdater.latestVersionOnServer?.tag_name ?? "–")").font(.headline)
+                Text("Latest Version on Server: ") +
+                    Text("\(appUpdater.latestVersionOnServer?.tag_name ?? "–")").font(.headline)
 
-            Text("\(appUpdater.isAppUpdateAvailable ? "There is an update available for your version of Telemetry Viewer" : "You're using the latest version")")
-                .padding(.top)
+                Text("\(appUpdater.isAppUpdateAvailable ? "There is an update available for your version of Telemetry Viewer" : "You're using the latest version")")
+                    .padding(.top)
 
-            Divider()
+                Divider()
 
-            if appUpdater.isAppUpdateAvailable, let latestVersion = appUpdater.latestVersionOnServer {
+                if appUpdater.isAppUpdateAvailable, let latestVersion = appUpdater.latestVersionOnServer {
 
-                Text("Latest Version").font(.title)
+                    Text("Latest Version").font(.title)
 
-                CardView {
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .lastTextBaseline) {
-                            Text(latestVersion.name).font(.largeTitle)
-                            Spacer()
-                            Text(latestVersion.tag_name).foregroundColor(.grayColor)
-                        }
-                        Divider().padding(.bottom)
-                        Text(latestVersion.body)
-
-                        if let asset = latestVersion.assets.first {
-                            Button("Download \(byteCountFormatter.string(fromByteCount: Int64(asset.size)))") {
-                                NSWorkspace.shared.open(asset.browser_download_url)
-
+                    CardView {
+                        VStack(alignment: .leading) {
+                            HStack(alignment: .lastTextBaseline) {
+                                Text(latestVersion.name).font(.largeTitle)
+                                Spacer()
+                                Text(latestVersion.tag_name).foregroundColor(.grayColor)
                             }
-                            .buttonStyle(PrimaryButtonStyle())
+                            Divider().padding(.bottom)
+                            Text(latestVersion.body)
+
+                            if let asset = latestVersion.assets.first {
+                                Button("Download \(byteCountFormatter.string(fromByteCount: Int64(asset.size)))") {
+                                    NSWorkspace.shared.open(asset.browser_download_url)
+                                    TelemetryManager.send("UpdateScreenDownloadUpdate")
+                                }
+                                .buttonStyle(PrimaryButtonStyle())
+                            }
                         }
+                        .padding()
                     }
-                    .padding()
+                } else {
+                    Button("Check for Update") {
+                        appUpdater.checkForUpdate()
+                        TelemetryManager.send("UpdateScreenManualCheckForUpdate")
+                    }
+                    .buttonStyle(SmallSecondaryButtonStyle())
                 }
-            } else {
-                Button("Check for Update") {
-                    appUpdater.checkForUpdate()
-                }
-                .buttonStyle(SmallSecondaryButtonStyle())
             }
+            .padding()
         }
-        .padding()
-    }
+        .onAppear() {
+            TelemetryManager.send("UpdateScreenOpened")
+        }
     }
 }
 
