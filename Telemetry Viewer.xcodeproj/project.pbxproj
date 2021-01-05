@@ -921,6 +921,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -945,6 +946,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1082,6 +1084,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = iphoneos;
@@ -1106,6 +1109,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = iphoneos;
@@ -1134,6 +1138,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = macosx;
@@ -1160,6 +1165,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = macosx;

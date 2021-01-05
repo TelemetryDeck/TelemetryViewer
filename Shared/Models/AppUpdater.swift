@@ -11,7 +11,14 @@ class AppUpdater: ObservableObject {
     @Published var isAppUpdateAvailable: Bool = false
     @Published var latestVersionOnServer: GitHubRelease?
 
-    var getBetas: Bool = false
+    var includePrereleases: Bool = true
+    var includeDraftReleases: Bool = false
+
+    var internalVersion: String {
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        return "\(appVersion ?? "–")b\(buildNumber ?? "–")"
+    }
 
     struct GitHubReleaseAssets: Codable {
         let id: Int
@@ -39,24 +46,27 @@ class AppUpdater: ObservableObject {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
 
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { [unowned self] data, response, error in
             if let data = data {
                 #if DEBUG
                 print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
                 #endif
 
                 if let decoded = try? JSONDecoder.telemetryDecoder.decode([GitHubRelease].self, from: data) {
-                    print(decoded)
+                    var releases = decoded.sorted(
+                        by: { $0.tag_name.compare($1.tag_name, options: .numeric) == .orderedDescending })
+
+                    if !includeDraftReleases { releases = releases.filter { !$0.draft } }
+                    if !includePrereleases { releases = releases.filter { !$0.prerelease } }
+
                     DispatchQueue.main.async {
-                        if self.getBetas {
-                            self.latestVersionOnServer = decoded.first(where: { !$0.draft })
+                        latestVersionOnServer = releases.first
+
+                        if let latestVersionOnServer = latestVersionOnServer {
+                            isAppUpdateAvailable = latestVersionOnServer.tag_name.compare(internalVersion, options: .numeric) == .orderedDescending
                         } else {
-                            self.latestVersionOnServer = decoded.first(where: { !$0.prerelease && !$0.draft })
+                            isAppUpdateAvailable = false
                         }
-
-                        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-
-                        self.isAppUpdateAvailable = (self.latestVersionOnServer?.tag_name ?? "") > appVersion ?? ""
                     }
                 } else {
                     print("Failed to decode update data")

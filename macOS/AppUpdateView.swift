@@ -16,17 +16,15 @@ struct AppUpdateView: View {
     }()
 
     var body: some View {
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         ScrollView {
         VStack(alignment: .leading) {
             Text("Current Version").font(.title)
 
             Text("Telemetry Viewer Version: ") +
-            Text(appVersion ?? "–").font(.headline)
+                Text(appUpdater.internalVersion).font(.headline)
 
-            Text("Build Number: ") +
-            Text("\(buildNumber ?? "–")").font(.headline)
+            Text("Latest Version on Server: ") +
+                Text("\(appUpdater.latestVersionOnServer?.tag_name ?? "–")").font(.headline)
 
             Text("\(appUpdater.isAppUpdateAvailable ? "There is an update available for your version of Telemetry Viewer" : "You're using the latest version")")
                 .padding(.top)
