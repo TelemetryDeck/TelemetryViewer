@@ -107,24 +107,6 @@ struct AppRootView: View {
             }
         })
 
-        let newInsightButton = Button(action: {
-            if let app = app, let insightGroup = api.insightGroups[app]?.first(where: { $0.id == selectedInsightGroupID }) {
-                let definitionRequestBody = InsightDefinitionRequestBody.new(groupID: selectedInsightGroupID)
-
-                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in
-                    switch result {
-                    case .success(let insightDTO):
-                        selectedInsightID.wrappedValue = insightDTO.id
-                        sidebarSection = .InsightEditor
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-            }
-        }) {
-            Label("New Insight", systemImage: "plus.rectangle")
-        }
-
         AdaptiveStack(spacing: 0) {
             Group {
                 VStack(spacing: 0) {
@@ -183,20 +165,6 @@ struct AppRootView: View {
                     } else {
                         Text("Please select an App").foregroundColor(.grayColor)
                     }
-
-                    #if os(iOS)
-                    if !sidebarShownValue && sizeClass == .compact {
-                        newInsightButton
-                            .buttonStyle(SmallSecondaryButtonStyle())
-                            .padding(.horizontal)
-
-                        Button("Show Sidebar") {
-                            withAnimation { sidebarShown.wrappedValue.toggle() }
-                        }
-                        .buttonStyle(SmallSecondaryButtonStyle())
-                        .padding()
-                    }
-                    #endif
                 }
                 .background(Color("CardBackgroundColor"))
             }
@@ -210,27 +178,7 @@ struct AppRootView: View {
 
             if sidebarShownValue {
                 DetailSidebar(isOpen: sidebarShown , maxWidth: DefaultSidebarWidth) {
-
-                    #if os(iOS)
-                    if sizeClass == .compact {
-                        VStack {
-                            Divider()
-                                .padding(.bottom)
-                            Button(action: {
-                                withAnimation { sidebarShown.wrappedValue.toggle() }
-                            }) {
-                                Label("Hide Editor", systemImage: "sidebar.trailing")
-                            }
-                            AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
-                        }
-                    } else {
-                        AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
-                    }
-                    #else
                     AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
-                    #endif
-
-
                 }
                 .edgesIgnoringSafeArea(.bottom)
                 .transition(DefaultMoveTransition)
@@ -238,51 +186,57 @@ struct AppRootView: View {
         }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Menu {
-                    Section {
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
-                            api.timeWindowEnd = nil
-                            reloadVisibleInsights()
-                        }) {
-                            Label("Last Year", systemImage: "calendar")
-                        }
+                HStack {
+                    Menu {
+                        Section {
+                            Button(action: {
+                                api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
+                                api.timeWindowEnd = nil
+                                reloadVisibleInsights()
+                            }) {
+                                Label("Last Year", systemImage: "calendar")
+                            }
 
-                        Button(action: {
-                            api.timeWindowBeginning = nil
-                            api.timeWindowEnd = nil
-                            reloadVisibleInsights()
-                        }) {
-                            Label("Last Month", systemImage: "calendar")
-                        }
+                            Button(action: {
+                                api.timeWindowBeginning = nil
+                                api.timeWindowEnd = nil
+                                reloadVisibleInsights()
+                            }) {
+                                Label("Last Month", systemImage: "calendar")
+                            }
 
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
-                            api.timeWindowEnd = nil
-                            reloadVisibleInsights()
-                        }) {
-                            Label("Last Week", systemImage: "calendar")
-                        }
+                            Button(action: {
+                                api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
+                                api.timeWindowEnd = nil
+                                reloadVisibleInsights()
+                            }) {
+                                Label("Last Week", systemImage: "calendar")
+                            }
 
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
-                            api.timeWindowEnd = nil
-                            reloadVisibleInsights()
-                        }) {
-                            Label("Today", systemImage: "calendar")
+                            Button(action: {
+                                api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
+                                api.timeWindowEnd = nil
+                                reloadVisibleInsights()
+                            }) {
+                                Label("Today", systemImage: "calendar")
+                            }
                         }
                     }
-                }
-                label: {
-                    Text(timeIntervalDescription)
+                    label: {
+                        Text(timeIntervalDescription)
+                    }
+
+                    #if os(iOS)
+                    if sizeClass == .compact {
+                        Button(action: {
+                            withAnimation { sidebarShown.wrappedValue.toggle() }
+                        }) {
+                            Label("Toggle Editor", systemImage: "square.bottomhalf.fill")
+                        }
+                    }
+                    #endif
                 }
             }
-
-//            ToolbarItem {
-//                if let _ = app, let _ = api.insightGroups[app]?.first(where: { $0.id == selectedInsightGroupID }) {
-//                    newInsightButton
-//                }
-//            }
 
             ToolbarItem {
                 Button(action: {
