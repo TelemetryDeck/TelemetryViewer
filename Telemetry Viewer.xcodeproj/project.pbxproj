@@ -718,7 +718,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\n## Use the last annotated tag as CFBundleShortVersionString\nGIT_TAG=`${GIT} describe --tags --always --dirty`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${GIT_TAG}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\necho \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
+			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\necho \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
