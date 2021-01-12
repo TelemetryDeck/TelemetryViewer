@@ -107,6 +107,24 @@ struct AppRootView: View {
             }
         })
 
+        let newInsightButton = Button(action: {
+            if let app = app, let insightGroup = api.insightGroups[app]?.first(where: { $0.id == selectedInsightGroupID }) {
+                let definitionRequestBody = InsightDefinitionRequestBody.new(groupID: selectedInsightGroupID)
+
+                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in
+                    switch result {
+                    case .success(let insightDTO):
+                        selectedInsightID.wrappedValue = insightDTO.id
+                        sidebarSection = .InsightEditor
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
+        }) {
+            Label("New Insight", systemImage: "plus.rectangle")
+        }
+
         AdaptiveStack(spacing: 0) {
             Group {
                 VStack(spacing: 0) {
@@ -185,8 +203,7 @@ struct AppRootView: View {
             }
         }
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                HStack {
+            ToolbarItem {
                     Menu {
                         Section {
                             Button(action: {
@@ -221,21 +238,42 @@ struct AppRootView: View {
                                 Label("Today", systemImage: "calendar")
                             }
                         }
+
+                        #if os(iOS)
+                        if sizeClass == .compact {
+                            Divider()
+
+                            newInsightButton
+
+                            Divider()
+
+                            Button(action: {
+                                withAnimation { sidebarShown.wrappedValue.toggle() }
+                            }) {
+                                Label("Toggle Editor", systemImage: "square.bottomhalf.fill")
+                            }
+                        }
+                        #endif
                     }
                     label: {
-                        Text(timeIntervalDescription)
-                    }
-
-                    #if os(iOS)
-                    if sizeClass == .compact {
-                        Button(action: {
-                            withAnimation { sidebarShown.wrappedValue.toggle() }
-                        }) {
-                            Label("Toggle Editor", systemImage: "square.bottomhalf.fill")
+                        #if os(iOS)
+                        if sizeClass == .compact {
+                            HStack {
+                                Text(timeIntervalDescription)
+                                Divider()
+                                Image(systemName: "ellipsis")
+                            }
+                        } else {
+                            Text(timeIntervalDescription)
                         }
+                        #else
+                        Text(timeIntervalDescription)
+                        #endif
                     }
-                    #endif
-                }
+            }
+
+            ToolbarItem {
+                newInsightButton
             }
 
             ToolbarItem {
