@@ -297,18 +297,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DC53393E25222C0900D9C889 /* Insight Groups */ = {
+		DC5098C725AE3B3C00E568F5 /* AppSidebar */ = {
 			isa = PBXGroup;
 			children = (
-				DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */,
 				DC25A6482570108E00EE84DA /* InsightEditorContainer.swift */,
+				DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */,
+				DC98AAB9250A672300FF26FD /* App Settings */,
+				DCB02B67250027E400304964 /* Signals */,
+				DCF7CD3E254A068500BFA23B /* Lexicon */,
+			);
+			path = AppSidebar;
+			sourceTree = "<group>";
+		};
+		DC53393E25222C0900D9C889 /* Insight and Groups */ = {
+			isa = PBXGroup;
+			children = (
 				DC53393F25222C2F00D9C889 /* InsightGroupList.swift */,
 				DCB28D6B2550AF0B0032B9AD /* InsightsGrid.swift */,
 				DC53394425222FC600D9C889 /* NewInsightGroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
 				DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */,
 			);
-			path = "Insight Groups";
+			path = "Insight and Groups";
 			sourceTree = "<group>";
 		};
 		DC591394252DF93F007360A9 /* Charts */ = {
@@ -471,14 +481,12 @@
 				DCE239FE24D3687D00053370 /* Assets.xcassets */,
 				DCB02B65250027C700304964 /* Models */,
 				DC45BB1824E1F01F004E6392 /* SidebarView.swift */,
-				DC627EEA25A35B5E00C1DF33 /* App */,
-				DCB02B70250277C300304964 /* Generic Views */,
 				DCB02B692502764200304964 /* Login Register */,
-				DC98AAB9250A672300FF26FD /* App Settings */,
-				DCF7CD3E254A068500BFA23B /* Lexicon */,
+				DC627EEA25A35B5E00C1DF33 /* App */,
+				DC5098C725AE3B3C00E568F5 /* AppSidebar */,
+				DCB02B70250277C300304964 /* Generic Views */,
 				DC591394252DF93F007360A9 /* Charts */,
-				DC53393E25222C0900D9C889 /* Insight Groups */,
-				DCB02B67250027E400304964 /* Signals */,
+				DC53393E25222C0900D9C889 /* Insight and Groups */,
 				DC90D08925063A5700634B72 /* Settings */,
 				DCB1A3C92549C936000C6575 /* Administration */,
 			);
