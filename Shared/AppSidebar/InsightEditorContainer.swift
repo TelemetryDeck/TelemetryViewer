@@ -69,15 +69,17 @@ class InsightEditorViewModel: ObservableObject {
     let selectedInsightGroupID: UUID
     let selectedInsightID: UUID
 
+    var saveTimer: Timer = Timer()
+
     @Published var insightOrder: Double = -1 { didSet { saveInsight() }}
-    @Published var insightTitle: String = ""
-    @Published var insightSubtitle: String = ""
+    @Published var insightTitle: String = "" { didSet { saveInsight() }}
+    @Published var insightSubtitle: String = "" { didSet { saveInsight() }}
     @Published var selectedInsightGroupIndex: Int = 0 { didSet { saveInsight() }}
-    @Published var insightSignalType: String = ""
+    @Published var insightSignalType: String = "" { didSet { saveInsight() }}
     @Published var insightUniqueUser: Bool = false { didSet { saveInsight() }}
     @Published var insightFilters: [String: String] = [:] { didSet { saveInsight() }}
     @Published var insightRollingWindowSize: TimeInterval = -2592000
-    @Published var insightBreakdownKey: String = ""
+    @Published var insightBreakdownKey: String = "" { didSet { saveInsight() }}
     @Published var insightGroupBy: InsightGroupByInterval = .day { didSet { saveInsight() }}
     @Published var insightDisplayMode: InsightDisplayMode = .lineChart { didSet { saveInsight() }}
     @Published var insightIsExpanded: Bool = false { didSet { saveInsight() }}
@@ -168,6 +170,13 @@ class InsightEditorViewModel: ObservableObject {
     func saveInsight() {
         guard !isSettingUp else { return }
 
+        saveTimer.invalidate()
+        saveTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+            self.delayedSaveInsight()
+        }
+    }
+
+    private func delayedSaveInsight() {
         let insightDRB = InsightDefinitionRequestBody(
             order: insightOrder == -1 ? nil : insightOrder,
             title: insightTitle,
@@ -223,8 +232,8 @@ struct InsightEditor: View {
     var body: some View {
         let form = Form {
             CustomSection(header: Text("Title and Subtitle"), summary: EmptyView(), footer: Text("Give your insight a title, and optionally, add a longer descriptive subtitle for your insight.")) {
-                TextField("Title e.g. 'Daily Active Users'", text: $viewModel.insightTitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
-                TextField("Optional Subtitle", text: $viewModel.insightSubtitle, onEditingChanged: { if !$0 { viewModel.saveInsight() }}) { viewModel.saveInsight() }
+                TextField("Title e.g. 'Daily Active Users'", text: $viewModel.insightTitle)
+                TextField("Optional Subtitle", text: $viewModel.insightSubtitle)
 
                 Toggle(isOn: $viewModel.insightIsExpanded, label: {
                     Text("Show Expanded")
