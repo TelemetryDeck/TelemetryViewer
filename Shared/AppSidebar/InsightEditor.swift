@@ -7,62 +7,6 @@
 
 import SwiftUI
 
-
-
-class InsightEditorContainerViewModel: ObservableObject {
-    let appID: UUID
-    @Binding var selectedInsightGroupID: UUID
-    var selectedInsightID: Binding<UUID?>? = nil
-    @ObservedObject var api: APIRepresentative
-
-    var subModel: InsightEditorViewModel?
-
-    init(api: APIRepresentative, appID: UUID, selectedInsightGroupID: Binding<UUID>, selectedInsightID: Binding<UUID?>) {
-        self.appID = appID
-        self._selectedInsightGroupID = selectedInsightGroupID
-        self.api = api
-
-        self.selectedInsightID = Binding(get: {
-            selectedInsightID.wrappedValue
-        }, set: { newValue in
-            selectedInsightID.wrappedValue = newValue
-            self.updateStateWithInsight()
-        })
-        self.updateStateWithInsight()
-    }
-
-    func updateStateWithInsight() {
-        // The insightID has changed, generate a new sub model
-        if let selectedInsightID = selectedInsightID?.wrappedValue {
-            subModel = InsightEditorViewModel(
-                api: api,
-                appID: appID,
-                selectedInsightGroupID: selectedInsightGroupID,
-                selectedInsightID: selectedInsightID
-            )
-        } else {
-            subModel = nil
-        }
-    }}
-
-struct InsightEditorContainer: View {
-    @ObservedObject var viewModel: InsightEditorContainerViewModel
-
-    init(viewModel: InsightEditorContainerViewModel) {
-        self.viewModel = viewModel
-    }
-
-
-    // Body
-    var body: some View {
-        if viewModel.subModel != nil {
-            InsightEditor(viewModel: viewModel.subModel!)
-        } else {
-            Text("No Insight Selected").foregroundColor(.grayColor)
-        }
-    }
-}
-
 class InsightEditorViewModel: ObservableObject {
     @ObservedObject var api: APIRepresentative
     let appID: UUID
@@ -221,6 +165,7 @@ class InsightEditorViewModel: ObservableObject {
 struct InsightEditor: View {
     @ObservedObject var viewModel: InsightEditorViewModel
 
+    let selectedInsightID: UUID
     var padding: CGFloat? {
         #if os(macOS)
         return nil

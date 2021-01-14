@@ -34,7 +34,9 @@ struct AppRootSidebar: View {
 
             switch sidebarSection {
             case .InsightEditor:
-                InsightEditorContainer(viewModel: InsightEditorContainerViewModel(api: api, appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID))
+                if let selectedInsightID = selectedInsightID {
+                    InsightEditor(viewModel: InsightEditorViewModel(api: api, appID: appID, selectedInsightGroupID: selectedInsightGroupID, selectedInsightID: selectedInsightID), selectedInsightID: selectedInsightID)
+                }
             case .InsightGroupEditor:
                 InsightGroupEditor(viewModel: InsightGroupEditorViewModel(api: api, appID: appID, selectedInsightGroupID: $selectedInsightGroupID, selectedInsightID: $selectedInsightID, sidebarSection: $sidebarSection))
             case .AppEditor:

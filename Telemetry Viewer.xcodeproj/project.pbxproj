@@ -30,8 +30,8 @@
 		DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */; };
 		DC25A640256ED12100EE84DA /* InsightGroupEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */; };
 		DC25A641256ED12100EE84DA /* InsightGroupEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */; };
-		DC25A6492570108E00EE84DA /* InsightEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A6482570108E00EE84DA /* InsightEditorContainer.swift */; };
-		DC25A64A2570108E00EE84DA /* InsightEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A6482570108E00EE84DA /* InsightEditorContainer.swift */; };
+		DC25A6492570108E00EE84DA /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A6482570108E00EE84DA /* InsightEditor.swift */; };
+		DC25A64A2570108E00EE84DA /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A6482570108E00EE84DA /* InsightEditor.swift */; };
 		DC25A64F2571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
 		DC25A6502571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
@@ -190,7 +190,7 @@
 		DC25A615256DBC3B00EE84DA /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+OnUpdate.swift"; sourceTree = "<group>"; };
 		DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGroupEditor.swift; sourceTree = "<group>"; };
-		DC25A6482570108E00EE84DA /* InsightEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditorContainer.swift; sourceTree = "<group>"; };
+		DC25A6482570108E00EE84DA /* InsightEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditor.swift; sourceTree = "<group>"; };
 		DC25A64E2571680900EE84DA /* CustomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSection.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC347301258D026E00BEEDE0 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 		DC5098C725AE3B3C00E568F5 /* AppSidebar */ = {
 			isa = PBXGroup;
 			children = (
-				DC25A6482570108E00EE84DA /* InsightEditorContainer.swift */,
+				DC25A6482570108E00EE84DA /* InsightEditor.swift */,
 				DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */,
 				DC98AAB9250A672300FF26FD /* App Settings */,
 				DCB02B67250027E400304964 /* Signals */,
@@ -770,7 +770,7 @@
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */,
 				DC7DEEC0258A453A00BEA712 /* SidebarView.swift in Sources */,
-				DC25A6492570108E00EE84DA /* InsightEditorContainer.swift in Sources */,
+				DC25A6492570108E00EE84DA /* InsightEditor.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
@@ -869,7 +869,7 @@
 				DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
-				DC25A64A2570108E00EE84DA /* InsightEditorContainer.swift in Sources */,
+				DC25A64A2570108E00EE84DA /* InsightEditor.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
 				DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
