@@ -150,6 +150,8 @@
 		DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
 		DCE23A1324D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
 		DCE23A1424D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
+		DCF5583B25B08BE3007C8F8F /* OrderSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */; };
+		DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */; };
 		DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD3F254A08B900BFA23B /* LexiconView.swift */; };
 		DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD3F254A08B900BFA23B /* LexiconView.swift */; };
 		DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
@@ -263,6 +265,7 @@
 		DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE23A0D24D3687D00053370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE23A0E24D3687D00053370 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSetter.swift; sourceTree = "<group>"; };
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
 		DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
@@ -420,6 +423,7 @@
 				DC25A5DF256D844300EE84DA /* DetailSidebar.swift */,
 				DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */,
 				DC25A64E2571680900EE84DA /* CustomSection.swift */,
+				DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -791,6 +795,7 @@
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
+				DCF5583B25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
 				DCC8CB5B2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
@@ -867,6 +872,7 @@
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DCC8CB6B25630EA80019267A /* JoinOrganizationInfoView.swift in Sources */,
 				DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
+				DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC25A64A2570108E00EE84DA /* InsightEditor.swift in Sources */,

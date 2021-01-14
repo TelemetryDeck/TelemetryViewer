@@ -35,9 +35,7 @@ struct FilterEditView: View {
             }
             
             Section {
-
                 HStack {
-
                     TextField("New Filter Name", text: $newKeyName.bound)
                         .disableAutocorrection(true)
                         .autocapitalization(.none)

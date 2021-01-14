@@ -256,6 +256,10 @@ struct InsightEditor: View {
                 FilterEditView(keysAndValues: $viewModel.insightFilters, autocompleteOptions: viewModel.filterAutocompletionOptions)
             }
 
+            CustomSection(header: Text("Ordering"), summary: Text(String(format: "%.0f", viewModel.insightOrder)), footer: Text("Insights are ordered by this number, ascending"), startCollapsed: true) {
+                OrderSetter(order: $viewModel.insightOrder)
+            }
+
             CustomSection(header: Text("Insight Group"), summary: Text(viewModel.insightGroup?.title ?? "..."), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
                 Picker(selection: $viewModel.selectedInsightGroupIndex, label: EmptyView()) {
                     ForEach(0 ..< viewModel.allInsightGroups.count) {
