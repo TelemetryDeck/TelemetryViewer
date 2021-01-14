@@ -13,8 +13,6 @@ class InsightEditorViewModel: ObservableObject {
     let selectedInsightGroupID: UUID
     let selectedInsightID: UUID
 
-    var saveTimer: Timer = Timer()
-
     @Published var insightOrder: Double = -1 { didSet { saveInsight() }}
     @Published var insightTitle: String = "" { didSet { saveInsight() }}
     @Published var insightSubtitle: String = "" { didSet { saveInsight() }}
@@ -28,6 +26,7 @@ class InsightEditorViewModel: ObservableObject {
     @Published var insightDisplayMode: InsightDisplayMode = .lineChart { didSet { saveInsight() }}
     @Published var insightIsExpanded: Bool = false { didSet { saveInsight() }}
 
+    private var saveTimer: Timer = Timer()
     private var isSettingUp: Bool = false
 
     init(api: APIRepresentative, appID: UUID, selectedInsightGroupID: UUID, selectedInsightID: UUID) {
