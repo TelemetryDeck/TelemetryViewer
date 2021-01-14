@@ -75,7 +75,7 @@ class InsightEditorViewModel: ObservableObject {
     @Published var selectedInsightGroupIndex: Int = 0 { didSet { saveInsight() }}
     @Published var insightSignalType: String = ""
     @Published var insightUniqueUser: Bool = false { didSet { saveInsight() }}
-    @Published var insightFilters: [String: String] = [:]
+    @Published var insightFilters: [String: String] = [:] { didSet { saveInsight() }}
     @Published var insightRollingWindowSize: TimeInterval = -2592000
     @Published var insightBreakdownKey: String = ""
     @Published var insightGroupBy: InsightGroupByInterval = .day { didSet { saveInsight() }}
