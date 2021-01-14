@@ -30,6 +30,29 @@ struct AppRootSidebar: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
 
+            switch sidebarSection {
+            case .InsightEditor:
+                Text("Edit Insight")
+                    .font(Font.body.weight(.bold))
+                    .opacity(0.7)
+            case .InsightGroupEditor:
+                Text("Edit Insight Group")
+                    .font(Font.body.weight(.bold))
+                    .opacity(0.7)
+            case .AppEditor:
+                Text("Edit App")
+                    .font(Font.body.weight(.bold))
+                    .opacity(0.7)
+            case .Lexicon:
+                Text("Lexicon")
+                    .font(Font.body.weight(.bold))
+                    .opacity(0.7)
+            case .RawSignals:
+                Text("Raw Signals")
+                    .font(Font.body.weight(.bold))
+                    .opacity(0.7)
+            }
+
             Divider()
 
             switch sidebarSection {
