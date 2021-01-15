@@ -200,7 +200,6 @@
 		DC45BAED24DFF895004E6392 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DC45BB1824E1F01F004E6392 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
-		DC4882CC258A105B0089C7EC /* Telemetry Viewer (macOS) copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Telemetry Viewer (macOS) copy-Info.plist"; path = "/Users/breakthesystem/Repositories/TelemetryViewer/Telemetry Viewer (macOS) copy-Info.plist"; sourceTree = "<absolute>"; };
 		DC4E2F542563290F001AD7B4 /* SingleKeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleKeyValueView.swift; sourceTree = "<group>"; };
 		DC4E2F632563FA47001AD7B4 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		DC4E2F6C25641BF1001AD7B4 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
@@ -470,7 +469,6 @@
 				DCD86AEC254EF0B5008F63CB /* TelemetryWidget */,
 				DCE23A0424D3687D00053370 /* Products */,
 				DC9C0840252CEAC9001C0F94 /* Frameworks */,
-				DC4882CC258A105B0089C7EC /* Telemetry Viewer (macOS) copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
