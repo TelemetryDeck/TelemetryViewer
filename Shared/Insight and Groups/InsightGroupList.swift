@@ -30,10 +30,16 @@ struct InsightGroupList: View {
                     InsightsGrid(app: app, insightGroup: insightGroup, selectedInsightID: $selectedInsightID)
                     Spacer()
 
-                    Text("Insights will automatically refresh every 5 minutes")
-                        .font(.footnote)
-                        .foregroundColor(.grayColor)
-                        .padding(.bottom)
+                    Button("Documentation: Sending Signals") {
+                        #if os(macOS)
+                        NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                        #else
+                        UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                        #endif
+                    }
+                    .font(.footnote)
+                    .foregroundColor(.grayColor)
+                    .padding(.bottom)
                 }
                 .navigationTitle(insightGroup.title)
             } else {
