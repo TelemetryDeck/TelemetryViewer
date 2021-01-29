@@ -77,10 +77,10 @@ struct LineChartView: View {
                         )
                         LineChart(data: chartDataSet, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                     }
-                    
+
+                    if let lastValue = chartDataSet.data.last?.yAxisValue {
 
                     GeometryReader { reader in
-                        let lastValue = chartDataSet.data.last!.yAxisValue
                         let percentage = 1 - (lastValue / (chartDataSet.highestValue - chartDataSet.lowestValue))
 
 
@@ -105,6 +105,7 @@ struct LineChartView: View {
                         }
                     }
                     .frame(width: 30)
+                    }
                 }
                 
                 

@@ -270,6 +270,26 @@ struct InsightEditor: View {
 
             if let dto = viewModel.insightDTO {
                 CustomSection(header: Text("Last Updated"), summary: Text(dto.calculatedAt, style: .relative) + Text(" ago"), footer: EmptyView(), startCollapsed: true) {
+
+                    Group {
+                    Text("This Insight was last updated ")
+                        + Text(dto.calculatedAt, style: .relative).bold()
+                        + Text(" ago. The server needed ")
+                        + Text("\(dto.calculationDuration)").bold()
+                        + Text(" seconds to calculate it.")
+                    }
+                    .opacity(0.4)
+                    .padding(.vertical, 2)
+
+
+                    Group {
+                    Text("The Insight will automatically be updated once it's ")
+                        + Text("5 Minutes").bold()
+                        + Text(" old.")
+                    }
+                    .opacity(0.4)
+                    .padding(.bottom, 4)
+
                     Button("Update Now", action: viewModel.updateInsight)
                         .buttonStyle(SmallSecondaryButtonStyle())
 

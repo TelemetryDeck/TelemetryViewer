@@ -172,6 +172,9 @@ struct InsightDataTransferObject: Codable {
     /// When was this DTO calculated?
     let calculatedAt: Date
 
+    /// How long did this DTO take to calculate?
+    let calculationDuration: TimeInterval
+
     var isEmpty: Bool {
         return data.compactMap { $0.yAxisValue }.count == 0
     }
