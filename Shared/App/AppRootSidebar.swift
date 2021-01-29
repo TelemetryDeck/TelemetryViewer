@@ -21,9 +21,10 @@ struct AppRootSidebar: View {
             Divider()
 
             Picker(selection: $sidebarSection, label: Text("")) {
-                Image(systemName: "app.fill").tag(AppRootSidebarSection.InsightEditor)
-                Image(systemName: "square.grid.2x2.fill").tag(AppRootSidebarSection.InsightGroupEditor)
                 Image(systemName: "app").tag(AppRootSidebarSection.AppEditor)
+                Image(systemName: "square.grid.2x2.fill").tag(AppRootSidebarSection.InsightGroupEditor)
+                Image(systemName: "app.fill").tag(AppRootSidebarSection.InsightEditor)
+                
                 Image(systemName: "book").tag(AppRootSidebarSection.Lexicon)
                 Image(systemName: "waveform").tag(AppRootSidebarSection.RawSignals)
             }
