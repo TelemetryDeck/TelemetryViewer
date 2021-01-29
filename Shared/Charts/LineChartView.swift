@@ -85,18 +85,18 @@ struct LineChartView: View {
 
 
                         ZStack {
-                            if lastValue != chartDataSet.lowestValue {
-                                Text(chartDataSet.lowestValue.stringValue)
+                            if lastValue != chartDataSet.lowestValue && percentage < 0.9 {
+                                Text(BigNumberFormatter.shortDisplay(for: chartDataSet.lowestValue.stringValue))
                                     .position(x: 10, y: reader.size.height)
                             }
 
-                            if lastValue != chartDataSet.highestValue {
-                                Text(chartDataSet.highestValue.stringValue)
+                            if lastValue != chartDataSet.highestValue && percentage > 0.1 {
+                                Text(BigNumberFormatter.shortDisplay(for: chartDataSet.highestValue.stringValue))
                                     .position(x: 10, y: 0)
                             }
                             
                             if !percentage.isNaN {
-                                Text(lastValue.stringValue)
+                                Text(BigNumberFormatter.shortDisplay(for: lastValue.stringValue))
                                     .frame(width: 30)
                                     .multilineTextAlignment(.trailing)
                                     .foregroundColor(.accentColor)

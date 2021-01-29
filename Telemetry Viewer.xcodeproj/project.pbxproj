@@ -40,6 +40,9 @@
 		DC347303258D026E00BEEDE0 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC347301258D026E00BEEDE0 /* DebugView.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
+		DC4504FA25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4504F925C4940E0031C7FD /* BigNumberFormatter.swift */; };
+		DC4504FB25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4504F925C4940E0031C7FD /* BigNumberFormatter.swift */; };
+		DC4504FC25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4504F925C4940E0031C7FD /* BigNumberFormatter.swift */; };
 		DC45BAEE24DFF895004E6392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
 		DC45BAEF24DFF895004E6392 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BAED24DFF895004E6392 /* Models.swift */; };
 		DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
@@ -197,6 +200,7 @@
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC347301258D026E00BEEDE0 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		DC415C0D2531F6C300D8D0B1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		DC4504F925C4940E0031C7FD /* BigNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNumberFormatter.swift; sourceTree = "<group>"; };
 		DC45BAED24DFF895004E6392 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DC45BB1824E1F01F004E6392 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
@@ -445,6 +449,7 @@
 				DCDC6F12253EECA90012D9A7 /* Numbers+Bound.swift */,
 				DCD52C492541FFE3003F12C6 /* ColSpan.swift */,
 				DC8FAD5C257E5C360019A186 /* String+CamelCase.swift */,
+				DC4504F925C4940E0031C7FD /* BigNumberFormatter.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -738,6 +743,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCD86AFF254EF456008F63CB /* Models.swift in Sources */,
+				DC4504FC25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				DC25A5A7256C0B1B00EE84DA /* Numbers+Bound.swift in Sources */,
 				DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */,
 				DC25A59F256C0AE400EE84DA /* RawChartView.swift in Sources */,
@@ -813,6 +819,7 @@
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
 				DC25A63A256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
 				DC8FAD5D257E5C360019A186 /* String+CamelCase.swift in Sources */,
+				DC4504FA25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC627EF525A35B8500C1DF33 /* AppRootSidebar.swift in Sources */,
 				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
@@ -873,6 +880,7 @@
 				DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
+				DC4504FB25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				DC25A64A2570108E00EE84DA /* InsightEditor.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
