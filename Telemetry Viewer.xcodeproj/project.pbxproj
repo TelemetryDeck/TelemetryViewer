@@ -159,6 +159,8 @@
 		DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD3F254A08B900BFA23B /* LexiconView.swift */; };
 		DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
 		DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
+		DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */; };
+		DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */; };
 		DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 		DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 /* End PBXBuildFile section */
@@ -271,6 +273,7 @@
 		DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSetter.swift; sourceTree = "<group>"; };
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
+		DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightQueryAdmin.swift; sourceTree = "<group>"; };
 		DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -436,6 +439,7 @@
 			children = (
 				DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */,
 				DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */,
+				DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */,
 				DC347301258D026E00BEEDE0 /* DebugView.swift */,
 			);
 			path = Administration;
@@ -771,6 +775,7 @@
 				DC90D08B25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
+				DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				DC53394625222FC600D9C889 /* NewInsightGroupView.swift in Sources */,
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
@@ -888,6 +893,7 @@
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
+				DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,
 				DC347303258D026E00BEEDE0 /* DebugView.swift in Sources */,

@@ -89,6 +89,13 @@ struct SidebarView: View {
                     )
 
                     NavigationLink(
+                        destination: InsightQueryAdmin(),
+                        label: {
+                            Label("Insights", systemImage: "app.badge")
+                        }
+                    )
+
+                    NavigationLink(
                         destination: DebugView(),
                         label: {
                             Label("Debug", systemImage: "ladybug")

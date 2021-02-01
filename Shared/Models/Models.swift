@@ -100,6 +100,15 @@ struct Insight: Codable, Identifiable {
     
     /// If true, the insight will be displayed bigger
     var isExpanded: Bool
+
+    /// The amount of time (in seconds) this query took to calculate last time
+    var lastRunTime: TimeInterval?
+
+    /// The query that was last used to run this query
+    var lastQuery: String?
+
+    /// The date this query was last run
+    var lastRunAt: Date?
 }
 
 struct InsightData: Codable {
