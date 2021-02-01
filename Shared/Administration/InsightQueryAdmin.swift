@@ -86,7 +86,7 @@ struct InsightQueryAdmin: View {
                     }
 
                     ForEach(api.insightQueryAdminListEntries) { entry in
-                        ListItemView(selected: selectedInsight?.id == entry.id) {
+                        ListItemView(selected: selectedInsight?.id == entry.id, background: entry.lastRunTime ?? 0 > 5 ?  Color("Torange").opacity(0.2) : Color.grayColor.opacity(0.2)) {
                             Text(entry.title)
                             Spacer()
                             if let lastRunAt = entry.lastRunAt { Text(lastRunAt, style: .date) } else { Text("never") }
