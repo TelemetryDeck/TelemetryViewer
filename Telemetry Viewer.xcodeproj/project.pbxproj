@@ -161,6 +161,8 @@
 		DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
 		DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */; };
 		DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */; };
+		DCF8978B25C8726600E0BE57 /* ValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueView.swift */; };
+		DCF8978C25C8726600E0BE57 /* ValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueView.swift */; };
 		DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 		DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 /* End PBXBuildFile section */
@@ -274,6 +276,7 @@
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
 		DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightQueryAdmin.swift; sourceTree = "<group>"; };
+		DCF8978A25C8726600E0BE57 /* ValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueView.swift; sourceTree = "<group>"; };
 		DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -430,6 +433,7 @@
 				DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */,
 				DC25A64E2571680900EE84DA /* CustomSection.swift */,
 				DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */,
+				DCF8978A25C8726600E0BE57 /* ValueView.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -809,6 +813,7 @@
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
+				DCF8978B25C8726600E0BE57 /* ValueView.swift in Sources */,
 				DCB28D892551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
@@ -893,6 +898,7 @@
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
+				DCF8978C25C8726600E0BE57 /* ValueView.swift in Sources */,
 				DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,

@@ -65,6 +65,8 @@ final class APIRepresentative: ObservableObject {
     @Published var betaRequests: [BetaRequestEmail] = []
     @Published var organizationAdminListEntries: [OrganizationAdminListEntry] = []
     @Published var insightQueryAdminListEntries: [Insight] = []
+    @Published var insightQueryAdminAggregate: AggregateDTO?
+
     
     @Published var organizationUsers: [UserDataTransferObject] = []
     @Published var organizationJoinRequests: [OrganizationJoinRequest] = []
@@ -390,6 +392,21 @@ extension APIRepresentative {
             switch result {
             case .success(let orgListEntries):
                 self.organizationAdminListEntries = orgListEntries
+            case .failure(let error):
+                self.handleError(error)
+            }
+
+            callback?(result)
+        }
+    }
+
+    func getInsightQueryAdminAggregates(callback: ((Result<AggregateDTO, TransferError>) -> ())? = nil) {
+        let url = urlForPath("insightqueryadmin", "aggregates")
+
+        self.get(url) { [unowned self] (result: Result<AggregateDTO, TransferError>) in
+            switch result {
+            case .success(let insightQueryAdminAggregate):
+                self.insightQueryAdminAggregate = insightQueryAdminAggregate
             case .failure(let error):
                 self.handleError(error)
             }

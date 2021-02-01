@@ -65,26 +65,42 @@ struct InsightQueryAdmin: View {
     
     var body: some View {
         AdaptiveStack(spacing: 0) {
-            List {
-                if isLoading {
-                    ProgressView()
-                }
 
-                ForEach(api.insightQueryAdminListEntries) { entry in
-                    ListItemView(selected: selectedInsight?.id == entry.id) {
-                        Text(entry.title)
-                        Spacer()
-                        if let lastRunAt = entry.lastRunAt { Text(lastRunAt, style: .date) } else { Text("never") }
-                        if let lastRunTime = entry.lastRunTime { Text("\(lastRunTime)s") } else { Text("–") }
+
+                List {
+                    if isLoading {
+                        ProgressView()
                     }
-                    .onTapGesture {
-                        selectedInsight = entry
-                        withAnimation {
-                            sidebarShown = true
+
+                    HStack {
+                        if let aggregate = api.insightQueryAdminAggregate {
+
+                            ValueView(value: aggregate.min, title: "min", unit: "s")
+                            Divider()
+                            ValueView(value: aggregate.avg, title: "avg", unit: "s")
+                            Divider()
+                            ValueView(value: aggregate.max, title: "max", unit: "s")
+                        } else {
+                            Text("...")
+                        }
+                    }
+
+                    ForEach(api.insightQueryAdminListEntries) { entry in
+                        ListItemView(selected: selectedInsight?.id == entry.id) {
+                            Text(entry.title)
+                            Spacer()
+                            if let lastRunAt = entry.lastRunAt { Text(lastRunAt, style: .date) } else { Text("never") }
+                            if let lastRunTime = entry.lastRunTime { Text("\(lastRunTime)s") } else { Text("–") }
+                        }
+                        .onTapGesture {
+                            selectedInsight = entry
+                            withAnimation {
+                                sidebarShown = true
+                            }
                         }
                     }
                 }
-            }
+
 
             if sidebarShown {
                 if let entry = selectedInsight {
@@ -122,12 +138,17 @@ struct InsightQueryAdmin: View {
         .navigationTitle("Insight Query Admin")
         .onAppear() {
             isLoading = true
+            api.getInsightQueryAdminAggregates()
             api.getInsightQueryAdminListEntries() { _ in
                 self.isLoading = false
             }
         }
         .onReceive(refreshTimer) { _ in
-            api.getInsightQueryAdminListEntries()
+            isLoading = true
+            api.getInsightQueryAdminAggregates()
+            api.getInsightQueryAdminListEntries() { _ in
+                self.isLoading = false
+            }
         }
     }
 }

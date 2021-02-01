@@ -275,8 +275,8 @@ struct InsightEditor: View {
                     Text("This Insight was last updated ")
                         + Text(dto.calculatedAt, style: .relative).bold()
                         + Text(" ago. The server needed ")
-                        + Text("\(dto.calculationDuration)").bold()
-                        + Text(" seconds to calculate it.")
+                        + Text("\(dto.calculationDuration) seconds").bold()
+                        + Text(" to calculate it.")
                     }
                     .opacity(0.4)
                     .padding(.vertical, 2)

@@ -430,3 +430,9 @@ struct OrganizationAdminListEntry: Codable, Identifiable {
     let lastName: String?
     let email: String
 }
+
+struct AggregateDTO: Codable {
+    let min: TimeInterval
+    let avg: TimeInterval
+    let max: TimeInterval
+}
