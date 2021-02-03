@@ -12,7 +12,7 @@ struct WelcomeView: View {
         case welcomeView
         case loginView
         case registerView
-        case joinOrganizationInfoView
+        case joinOrganizationView
     }
     
     @State private var displayMode: DisplayMode = .welcomeView
@@ -45,7 +45,7 @@ struct WelcomeView: View {
                 .padding(.horizontal)
                 
                 Button("Join an Organization") {
-                    displayMode = .joinOrganizationInfoView
+                    displayMode = .joinOrganizationView
                 }
                 .buttonStyle(SecondaryButtonStyle())
                 .padding(.horizontal)
@@ -84,8 +84,8 @@ struct WelcomeView: View {
             MacNavigationView(title: "Login to Your Account", backButtonAction: { self.displayMode = .welcomeView }, height: 200) { LoginView() }
         case .registerView:
             MacNavigationView(title: "Register a New Organization", backButtonAction: { self.displayMode = .welcomeView }, height: 550) { RegisterView() }
-        case .joinOrganizationInfoView:
-            MacNavigationView(title: "Joining an Organization", backButtonAction: { self.displayMode = .welcomeView }, height: 200) { Text("Join Org Info View") }
+        case .joinOrganizationView:
+            MacNavigationView(title: "Join an existing Organization", backButtonAction: { self.displayMode = .welcomeView }, height: 200) { JoinOrganizationView() }
         }
     }
 }

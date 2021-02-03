@@ -51,8 +51,8 @@ struct CreateOrganizationJoinRequestView: View {
             }
             .keyboardShortcut(.defaultAction)
             .disabled(!isValidEmail)
-            .animation(.easeOut)
             .saturation(isValidEmail ? 1 : 0)
+            .animation(.easeOut)
             .buttonStyle(PrimaryButtonStyle())
 
             if !isValidEmail {

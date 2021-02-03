@@ -346,6 +346,7 @@ struct OrganizationJoinRequest: Codable, Identifiable, Equatable {
     let id: UUID
     let email: String
     let registrationToken: String
+    let organization: [String: UUID]
 }
 
 /// Sent to the server to create a user belonging to the organization
@@ -355,7 +356,6 @@ struct OrganizationJoinRequestURLObject: Codable {
     var lastName: String
     var password: String
     let organizationID: UUID
-    let organizationName: String
     var registrationToken: String
 }
 

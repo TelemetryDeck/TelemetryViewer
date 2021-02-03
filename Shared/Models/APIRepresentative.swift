@@ -151,6 +151,14 @@ extension APIRepresentative {
             callback?(result)
         }
     }
+
+    func getOrganizationJoinRequest(with registrationCode: String, callback: @escaping (Result<OrganizationJoinRequest, TransferError>) -> ()) {
+        let url = urlForPath("organization", "joinRequests", registrationCode)
+
+        self.get(url) { (result: Result<OrganizationJoinRequest, TransferError>) in
+            callback(result)
+        }
+    }
     
     
     func getUserInformation(callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {

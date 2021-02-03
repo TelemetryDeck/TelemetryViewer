@@ -72,7 +72,6 @@ struct RootView: View {
                     lastName: "",
                     password: "",
                     organizationID: organization,
-                    organizationName: orgName,
                     registrationToken: token)
                 organizationJoinRequest = request
                 
