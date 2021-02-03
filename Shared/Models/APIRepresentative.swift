@@ -521,8 +521,8 @@ extension APIRepresentative {
         }
     }
     
-    func createOrganizationJoinRequest(callback: ((Result<OrganizationJoinRequest, TransferError>) -> ())? = nil) {
-        let url = urlForPath("organization", "joinRequests")
+    func createOrganizationJoinRequest(for email: String, callback: ((Result<OrganizationJoinRequest, TransferError>) -> ())? = nil) {
+        let url = urlForPath("organization", "joinRequests", email)
         
         self.post("hi!", to: url) { [unowned self] (result: Result<OrganizationJoinRequest, TransferError>) in
             callback?(result)

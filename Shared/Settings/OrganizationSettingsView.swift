@@ -34,76 +34,69 @@ struct OrganizationSettingsView: View {
     
     var sizeClass: SizeClassNoop = .notCompact
     #endif
-    
-    @State private var selectedItem: OrganizationJoinRequest?
-    @State private var sidebarShown: Bool = false
+
+    @State private var showingSheet = false
     
     var body: some View {
         HStack {
-            VStack {
-                Text("\(api.numberOfSignals)")
-                Text("Signals")
+            List {
+                Text(api.user?.organization?.name ?? "Organization")
+                    .font(.title)
 
-                List {
-                    Section(header: Text("Organization Users")) {
-                        ForEach(api.organizationUsers) { organizationUser in
-                            NavigationLink(destination: UserInfoView(user: organizationUser)) {
-                                HStack {
-                                    Text(organizationUser.firstName)
-                                    Text(organizationUser.lastName)
-                                    Text(organizationUser.email)
-                                    Spacer()
-                                    Text(organizationUser.isFoundingUser ? "Founding User" : "")
-                                }
-                            }
-                        }
-                    }
+                HStack {
+                    ValueView(
+                        value: Double(api.organizationUsers.count),
+                        title: api.organizationUsers.count == 1 ? "user" : "users",
+                        unit: "")
+                    Divider()
+                    ValueView(
+                        value: Double(api.organizationJoinRequests.count),
+                        title: api.organizationJoinRequests.count == 1 ? "invitation"  : "invitations",
+                        unit: "")
+                    Divider()
+                    ValueView(
+                        value: Double(api.numberOfSignals),
+                        title: "signals this month",
+                        unit: "")
+                }
 
-                    Section(header: Text("Join Requests")) {
-                        ForEach(api.organizationJoinRequests) { joinRequest in
-                            #if os(iOS)
-                            if sizeClass == .compact {
-                                NavigationLink(destination: CreateOrganizationJoinRequestView(organizationJoinRequest: .constant(joinRequest))) {
-                                    Text(joinRequest.registrationToken)
-                                }
-                            } else {
-                                ListItemView(background: joinRequest == selectedItem ? Color.accentColor : Color.grayColor.opacity(0.2)) {
-                                    Text(joinRequest.registrationToken)
-                                    Spacer()
-                                }.onTapGesture {
-                                    selectedItem = joinRequest
-                                    withAnimation {
-                                        sidebarShown = true
-                                    }
-                                }
-                            }
-                            #else
-                            ListItemView(selected: joinRequest == selectedItem && sidebarShown) {
-                                Text(joinRequest.registrationToken)
+                Section(header: Text("Organization Users")) {
+                    ForEach(api.organizationUsers) { organizationUser in
+                        NavigationLink(destination: UserInfoView(user: organizationUser)) {
+                            HStack {
+                                Text(organizationUser.firstName)
+                                Text(organizationUser.lastName)
+                                Text(organizationUser.email)
                                 Spacer()
-                            }.onTapGesture {
-                                selectedItem = joinRequest
-                                withAnimation {
-                                    sidebarShown = true
-                                }
+                                Text(organizationUser.isFoundingUser ? "Founding User" : "")
                             }
-                            #endif
-                        }
-
-                        Button("Create an Invitation to Join \(api.user?.organization?.name ?? "noorg")") {
-                            api.createOrganizationJoinRequest()
                         }
                     }
                 }
+
+                Section(header: Text("Join Requests")) {
+                    ForEach(api.organizationJoinRequests) { joinRequest in
+
+                        ListItemView {
+                            Text(joinRequest.email)
+                            Spacer()
+                            Text(joinRequest.registrationToken)
+
+                            Button(action: {
+                                api.delete(organizationJoinRequest: joinRequest)
+                            }, label: {
+                                Image(systemName: "minus.circle.fill")
+                            })
+                            .buttonStyle(IconButtonStyle())
+                        }
+                    }
+
+                    Button("Create an Invitation to Join \(api.user?.organization?.name ?? "noorg")") {
+                        showingSheet.toggle()
+                    }
+                    .buttonStyle(SmallSecondaryButtonStyle())
+                }
             }
-            .frame(minWidth: sizeClass == .compact ? 0 : 450)
-            
-            if sidebarShown {
-                DetailSidebar(isOpen: $sidebarShown, maxWidth: 400) {
-                    CreateOrganizationJoinRequestView(organizationJoinRequest: $selectedItem)
-                }.transition(.move(edge: .trailing))
-            }
-            
         }
         .onAppear {
             TelemetryManager.shared.send(TelemetrySignal.organizationSettingsShown.rawValue, for: api.user?.email)
@@ -111,7 +104,9 @@ struct OrganizationSettingsView: View {
             api.getOrganizationJoinRequests()
             api.getNumberOfSignals()
         }
-        .navigationTitle("Organization Settings – \(api.user?.organization?.name ?? "noorg")")
+        .sheet(isPresented: $showingSheet) {
+            CreateOrganizationJoinRequestView()
+        }
         
     }
 }

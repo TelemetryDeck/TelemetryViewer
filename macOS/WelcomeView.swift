@@ -85,7 +85,7 @@ struct WelcomeView: View {
         case .registerView:
             MacNavigationView(title: "Register a New Organization", backButtonAction: { self.displayMode = .welcomeView }, height: 550) { RegisterView() }
         case .joinOrganizationInfoView:
-            MacNavigationView(title: "Joining an Organization", backButtonAction: { self.displayMode = .welcomeView }, height: 200) { JoinOrganizationInfoView() }
+            MacNavigationView(title: "Joining an Organization", backButtonAction: { self.displayMode = .welcomeView }, height: 200) { Text("Join Org Info View") }
         }
     }
 }

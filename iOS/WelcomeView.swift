@@ -26,7 +26,7 @@ struct WelcomeView: View {
                 NavigationLink("Create a New Organization", destination: RegisterView())
                     .buttonStyle(SecondaryButtonStyle())
                     .padding(.horizontal)
-                NavigationLink("Join an Organization", destination: JoinOrganizationInfoView())
+                NavigationLink("Join an Organization", destination: JoinOrganizationView())
                     .buttonStyle(SecondaryButtonStyle())
                     .padding(.horizontal)
                 

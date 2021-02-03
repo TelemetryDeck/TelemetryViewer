@@ -72,3 +72,11 @@ struct BackButtonStyle: ButtonStyle {
     }
 }
 
+struct IconButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(configuration.isPressed ? Color.accentColor.opacity(0.5) : Color.accentColor)
+            .padding(2)
+    }
+}
+

@@ -107,7 +107,6 @@
 		DCB02B732502781A00304964 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B712502781A00304964 /* LoginView.swift */; };
 		DCB02B762502809200304964 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B752502809200304964 /* RootView.swift */; };
 		DCB02B772502809200304964 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B752502809200304964 /* RootView.swift */; };
-		DCB02B792503897D00304964 /* JoinOrganizationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B782503897D00304964 /* JoinOrganizationInfoView.swift */; };
 		DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DCB02B7F25038F5000304964 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7E25038F5000304964 /* MockData.swift */; };
@@ -125,7 +124,6 @@
 		DCC8CB5B2562DC8D0019267A /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */; };
 		DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */; };
 		DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB66256308250019267A /* MacNavigationView.swift */; };
-		DCC8CB6B25630EA80019267A /* JoinOrganizationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B782503897D00304964 /* JoinOrganizationInfoView.swift */; };
 		DCC8CB762563103E0019267A /* Illustrations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC8CB752563103E0019267A /* Illustrations.xcassets */; };
 		DCC8CB772563103E0019267A /* Illustrations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC8CB752563103E0019267A /* Illustrations.xcassets */; };
 		DCCD4819253D9E870098EC95 /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */; };
@@ -238,7 +236,6 @@
 		DCB02B6D250277A700304964 /* AdaptiveStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveStack.swift; sourceTree = "<group>"; };
 		DCB02B712502781A00304964 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DCB02B752502809200304964 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		DCB02B782503897D00304964 /* JoinOrganizationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinOrganizationInfoView.swift; sourceTree = "<group>"; };
 		DCB02B7B25038F4600304964 /* APIRepresentative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepresentative.swift; sourceTree = "<group>"; };
 		DCB02B7E25038F5000304964 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaRequestsList.swift; sourceTree = "<group>"; };
@@ -408,7 +405,6 @@
 		DCB02B692502764200304964 /* Login Register */ = {
 			isa = PBXGroup;
 			children = (
-				DCB02B782503897D00304964 /* JoinOrganizationInfoView.swift */,
 				DCA10F7A24DA722700A62C26 /* RegisterView.swift */,
 				DCB02B712502781A00304964 /* LoginView.swift */,
 				DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */,
@@ -834,7 +830,6 @@
 				DC627EF525A35B8500C1DF33 /* AppRootSidebar.swift in Sources */,
 				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
 				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
-				DCB02B792503897D00304964 /* JoinOrganizationInfoView.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC25A5E0256D844300EE84DA /* DetailSidebar.swift in Sources */,
 			);
@@ -885,7 +880,6 @@
 				DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
-				DCC8CB6B25630EA80019267A /* JoinOrganizationInfoView.swift in Sources */,
 				DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
 				DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,

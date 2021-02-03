@@ -344,6 +344,7 @@ struct LexiconPayloadKey: Codable, Identifiable {
 /// Represents a standing invitation to join an organization
 struct OrganizationJoinRequest: Codable, Identifiable, Equatable {
     let id: UUID
+    let email: String
     let registrationToken: String
 }
 
@@ -355,7 +356,7 @@ struct OrganizationJoinRequestURLObject: Codable {
     var password: String
     let organizationID: UUID
     let organizationName: String
-    let registrationToken: String
+    var registrationToken: String
 }
 
 struct RegistrationRequestBody: Codable {

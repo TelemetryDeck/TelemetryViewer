@@ -9,52 +9,72 @@ import SwiftUI
 
 struct CreateOrganizationJoinRequestView: View {
     @EnvironmentObject var api: APIRepresentative
-    @Binding var organizationJoinRequest: OrganizationJoinRequest?
-    
-    var invitationMessage: String {
-        return """
-        Hi!
+    @Environment(\.presentationMode) var presentationMode
 
-        Someone from the \(api.user?.organization?.name ?? "Nonexistant") Organization has invited you to join their Telemetry Account.
+    @State var inviteeEmail: String = ""
 
-        Telemetry is an analytics service with added privacy. Using Telemetry, you'll get accurate, real-time information about how users are using your apps.
+    private var isValidEmail: Bool {
+        if inviteeEmail.count < 3 { return false }
+        if !inviteeEmail.contains("@") { return false}
+        if !inviteeEmail.contains(".") { return false }
 
-        To join the organization, you'll need to install the Telemetry Viewer app first. Get it from the following link and then return to this message:
-
-        iOS:
-        https://testflight.apple.com/join/NsC8gxIt
-
-        macOS 11:
-        https://github.com/AppTelemetry/Viewer/releases
-
-        Once you have Telemetry Viewer installed on your device, tap the following link to create an account and join the organization:
-
-        telemetryviewer://registerUserToOrg/\(api.user?.organization?.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "Nonexistant")/\(api.user?.organization?.id?.uuidString ?? "Nonexistant")/\(organizationJoinRequest!.registrationToken )/
-
-        See you soon!
-        Daniel from Telemetry
-        """
+        return true
     }
-    
+
     var body: some View {
+
         VStack(alignment: .leading) {
-            Text("Here's an organization Join Request. Please copy and send it to the person you want to invite via email or message:")
-                .foregroundColor(.grayColor)
-            TextEditor(text: .constant(invitationMessage))
-            
-            Button("Delete this Join Request") {
-                if let organizationJoinRequest = organizationJoinRequest {
-                    api.delete(organizationJoinRequest: organizationJoinRequest)
+
+            Text("Invite People to join \(api.user?.organization?.name ?? "your organization")")
+                .font(.title)
+
+            Text("Please enter your collaborator's email address here. We'll send them an email with an invitation code and instructions on how to download the app.")
+
+            Spacer()
+
+            #if os(iOS)
+            TextField("Email", text: $inviteeEmail)
+                .textContentType(.emailAddress)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+            #else
+            TextField("Email", text: $inviteeEmail)
+                .padding()
+            #endif
+
+            Spacer()
+
+            Button("Send Email") {
+                api.createOrganizationJoinRequest(for: inviteeEmail) {_ in 
+                    self.presentationMode.wrappedValue.dismiss()
                 }
             }
+            .keyboardShortcut(.defaultAction)
+            .disabled(!isValidEmail)
+            .animation(.easeOut)
+            .saturation(isValidEmail ? 1 : 0)
+            .buttonStyle(PrimaryButtonStyle())
+
+            if !isValidEmail {
+                Text("Please enter a valid email address")
+                    .font(.footnote)
+                    .foregroundColor(.grayColor)
+                    .animation(.easeOut)
+            }
+
+            Button("Cancel") {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            .buttonStyle(SmallSecondaryButtonStyle())
         }
         .padding()
+        .frame(maxWidth: 400, minHeight: 400)
     }
 }
 
-//struct CreateOrganizationJoinRequestView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CreateOrganizationJoinRequestView()
-//            .environmentObject(APIRepresentative())
-//    }
-//}
+struct CreateOrganizationJoinRequestView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreateOrganizationJoinRequestView()
+            .environmentObject(APIRepresentative())
+    }
+}

@@ -23,11 +23,9 @@ struct Telemetry_ViewerApp: App {
             RootView()
                 .environmentObject(api)
                 .environmentObject(appUpdater)
-                .accentColor(Color("Torange"))
             #else
             RootView()
                 .environmentObject(api)
-                .accentColor(Color("Torange"))
             #endif
 
         }
