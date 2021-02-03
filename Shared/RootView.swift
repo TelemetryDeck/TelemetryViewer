@@ -61,7 +61,6 @@ struct RootView: View {
             switch url.urlAction {
             case .registerUserToOrg:
                 guard url.pathComponents.count >= 4 else { return }
-                let orgName = url.pathComponents[1]
                 let orgID = url.pathComponents[2]
                 let token = url.pathComponents[3]
                 

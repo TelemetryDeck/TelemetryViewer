@@ -8,26 +8,47 @@
 import SwiftUI
 
 struct ValueView: View {
+    @State var showFullNumber: Bool = false
+
     let value: Double
     let title: String
     let unit: String
+    let shouldFormatBigNumbers: Bool
 
-    let formatter: NumberFormatter = {
+    init(value: Double, title: String, unit: String = "", shouldFormatBigNumbers: Bool = false) {
+        self.value = value
+        self.title = title
+        self.unit = unit
+        self.shouldFormatBigNumbers = shouldFormatBigNumbers
+    }
+
+    private let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
         return formatter
     }()
 
+    var formattedNumberString: String {
+        if shouldFormatBigNumbers && !showFullNumber {
+            return BigNumberFormatter.shortDisplay(for: value)
+        } else {
+            return formatter.string(from: NSNumber(value: value)) ?? "–"
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text((formatter.string(from: NSNumber(value: value)) ?? "–") + unit)
+            Text(formattedNumberString + unit)
                 .font(.system(size: 28, weight: .light, design: .rounded))
             Text(title)
                 .foregroundColor(.gray)
                 .font(.system(size: 12, weight: .light, design: .default))
         }
         .padding()
+        .onHover { over in
+            self.showFullNumber = over
+        }
     }
 }
 

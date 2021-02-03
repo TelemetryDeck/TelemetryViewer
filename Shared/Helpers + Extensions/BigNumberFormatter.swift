@@ -18,9 +18,8 @@ class BigNumberFormatter {
         return Int(result.rounded() * divisor)
     }
 
-    static func shortDisplay(for numberString: String) -> String {
-        guard let number = Double(numberString) else { return numberString }
-        guard number >= 1000 else { return numberString }
+    static func shortDisplay(for number: Double) -> String {
+        guard number >= 1000 else { return NumberFormatter().string(from: NSNumber(value: number)) ?? "—" }
 
         // Available Units
         let units: [Double] = [
@@ -47,5 +46,10 @@ class BigNumberFormatter {
         // round to the nearest unit and add its prefix
         let unitPrefix = unitPrefixes[unit] ?? ""
         return "\((number * 10 / unit).rounded() / 10)\(unitPrefix)"
+    }
+
+    static func shortDisplay(for numberString: String) -> String {
+        guard let number = Double(numberString) else { return numberString }
+        return shortDisplay(for: number)
     }
 }

@@ -46,18 +46,16 @@ struct OrganizationSettingsView: View {
                 HStack {
                     ValueView(
                         value: Double(api.organizationUsers.count),
-                        title: api.organizationUsers.count == 1 ? "user" : "users",
-                        unit: "")
+                        title: api.organizationUsers.count == 1 ? "user" : "users")
                     Divider()
                     ValueView(
                         value: Double(api.organizationJoinRequests.count),
-                        title: api.organizationJoinRequests.count == 1 ? "invitation"  : "invitations",
-                        unit: "")
+                        title: api.organizationJoinRequests.count == 1 ? "invitation"  : "invitations")
                     Divider()
                     ValueView(
                         value: Double(api.numberOfSignals),
                         title: "signals this month",
-                        unit: "")
+                        shouldFormatBigNumbers: true)
                 }
 
                 Section(header: Text("Organization Users")) {
