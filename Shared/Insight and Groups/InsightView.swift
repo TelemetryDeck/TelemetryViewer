@@ -17,6 +17,8 @@ struct InsightView: View {
 
     @State private var isLoading: Bool = false
     @State private var loadingErrorOccurred: Bool = false
+
+    private let loadingIndicator: LoadingIndicator = LoadingIndicator()
     
     let refreshTimer = Timer.publish(
         every: 1, // second
@@ -37,11 +39,6 @@ struct InsightView: View {
                         updateNow()
                         TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
                     }
-                
-                if loadingErrorOccurred {
-                    Text("Server Error".uppercased())
-                        .foregroundColor(Color("Torange"))
-                }
                 
                 Spacer()
                 
@@ -88,7 +85,23 @@ struct InsightView: View {
                 }
                 
                 else {
-                    Text("Oh yes we are still Loading and it is taking some time so here's a secret: This data was crunched by elves!").redacted(reason: .placeholder)
+                    Group {
+                        if loadingErrorOccurred {
+                            VStack(alignment: .leading) {
+                                Image(systemName: "exclamationmark.triangle")
+                            Text("The server was unable to calculate the results in time. Please try again later.")
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
+                            }
+                        }
+                        else if isLoading {
+                            VStack {
+                                loadingIndicator
+                            }
+                        }
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+
                 }
             }
         }
@@ -116,9 +129,10 @@ struct InsightView: View {
     func updateNow() {
         isLoading = true
         loadingErrorOccurred = false
+
         api.getInsightData(for: insight, in: insightGroup, in: app) { result in
             isLoading = false
-            
+
             if ((try? result.get()) == nil) {
                 loadingErrorOccurred = true
             }
@@ -127,6 +141,7 @@ struct InsightView: View {
     
     func updateIfNecessary() {
         guard !isLoading else { return }
+        guard !loadingErrorOccurred else { return }
 
         if let insightData = api.insightData[insight.id] {
             if abs(insightData.calculatedAt.timeIntervalSinceNow) > 60 * 5 { // data is over 5 minutes old

@@ -151,6 +151,8 @@
 		DCE23A1024D3687D00053370 /* Telemetry_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp.swift */; };
 		DCE23A1324D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
 		DCE23A1424D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
+		DCE950A725CC3F1800EBE3C4 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE950A625CC3F1800EBE3C4 /* LoadingIndicator.swift */; };
+		DCE950A825CC3F1800EBE3C4 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE950A625CC3F1800EBE3C4 /* LoadingIndicator.swift */; };
 		DCF5583B25B08BE3007C8F8F /* OrderSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */; };
 		DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */; };
 		DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD3F254A08B900BFA23B /* LexiconView.swift */; };
@@ -269,6 +271,7 @@
 		DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE23A0D24D3687D00053370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE23A0E24D3687D00053370 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		DCE950A625CC3F1800EBE3C4 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSetter.swift; sourceTree = "<group>"; };
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
@@ -430,6 +433,7 @@
 				DC25A64E2571680900EE84DA /* CustomSection.swift */,
 				DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */,
 				DCF8978A25C8726600E0BE57 /* ValueView.swift */,
+				DCE950A625CC3F1800EBE3C4 /* LoadingIndicator.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -825,6 +829,7 @@
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
 				DC25A63A256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
 				DC8FAD5D257E5C360019A186 /* String+CamelCase.swift in Sources */,
+				DCE950A725CC3F1800EBE3C4 /* LoadingIndicator.swift in Sources */,
 				DC4504FA25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC627EF525A35B8500C1DF33 /* AppRootSidebar.swift in Sources */,
@@ -895,6 +900,7 @@
 				DCF8978C25C8726600E0BE57 /* ValueView.swift in Sources */,
 				DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				DC53394125222C2F00D9C889 /* InsightGroupList.swift in Sources */,
+				DCE950A825CC3F1800EBE3C4 /* LoadingIndicator.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,
 				DC347303258D026E00BEEDE0 /* DebugView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,

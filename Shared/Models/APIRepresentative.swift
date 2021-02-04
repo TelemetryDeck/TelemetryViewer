@@ -345,8 +345,9 @@ extension APIRepresentative {
         get(url) { [unowned self] (result: Result<InsightDataTransferObject, TransferError>) in
             if let insightDTO = try? result.get() {
                 self.insightData[insightDTO.id] = insightDTO
-                callback?(result)
             }
+
+            callback?(result)
         }
     }
     
