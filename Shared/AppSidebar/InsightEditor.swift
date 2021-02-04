@@ -293,6 +293,11 @@ struct InsightEditor: View {
                     Button("Update Now", action: viewModel.updateInsight)
                         .buttonStyle(SmallSecondaryButtonStyle())
 
+                    Button("Copy Insight ID") {
+                        saveToClipBoard(dto.id.uuidString)
+                    }
+                    .buttonStyle(SmallSecondaryButtonStyle())
+
                 }
             }
 
