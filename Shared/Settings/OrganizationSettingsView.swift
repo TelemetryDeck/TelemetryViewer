@@ -36,6 +36,9 @@ struct OrganizationSettingsView: View {
     #endif
 
     @State private var showingSheet = false
+    @State private var isLoadingSignalNumbers: Bool = false
+    @State private var isLoadingOrganizationJoinRequests: Bool = false
+    @State private var isLoadingOrganizationUsers: Bool = false
     
     var body: some View {
         HStack {
@@ -46,15 +49,18 @@ struct OrganizationSettingsView: View {
                 HStack {
                     ValueView(
                         value: Double(api.organizationUsers.count),
-                        title: api.organizationUsers.count == 1 ? "user" : "users")
+                        title: api.organizationUsers.count == 1 ? "user" : "users",
+                        isLoading: isLoadingOrganizationUsers)
                     Divider()
                     ValueView(
                         value: Double(api.organizationJoinRequests.count),
-                        title: api.organizationJoinRequests.count == 1 ? "invitation"  : "invitations")
+                        title: api.organizationJoinRequests.count == 1 ? "invitation"  : "invitations",
+                        isLoading: isLoadingOrganizationJoinRequests)
                     Divider()
                     ValueView(
                         value: Double(api.numberOfSignals),
                         title: "signals this month",
+                        isLoading: isLoadingSignalNumbers,
                         shouldFormatBigNumbers: true)
                 }
 
@@ -98,9 +104,20 @@ struct OrganizationSettingsView: View {
         }
         .onAppear {
             TelemetryManager.shared.send(TelemetrySignal.organizationSettingsShown.rawValue, for: api.user?.email)
-            api.getOrganizationUsers()
-            api.getOrganizationJoinRequests()
-            api.getNumberOfSignals()
+            isLoadingOrganizationUsers = true
+            api.getOrganizationUsers() { _ in
+                isLoadingOrganizationUsers = false
+            }
+
+            isLoadingOrganizationJoinRequests = true
+            api.getOrganizationJoinRequests() { _ in
+                isLoadingOrganizationJoinRequests = false
+            }
+
+            isLoadingSignalNumbers = true
+            api.getNumberOfSignals() {_ in
+                isLoadingSignalNumbers = false
+            }
         }
         .sheet(isPresented: $showingSheet) {
             CreateOrganizationJoinRequestView()

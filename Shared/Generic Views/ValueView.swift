@@ -14,11 +14,13 @@ struct ValueView: View {
     let title: String
     let unit: String
     let shouldFormatBigNumbers: Bool
+    let isLoading: Bool
 
-    init(value: Double, title: String, unit: String = "", shouldFormatBigNumbers: Bool = false) {
+    init(value: Double, title: String, unit: String = "", isLoading: Bool = false, shouldFormatBigNumbers: Bool = false) {
         self.value = value
         self.title = title
         self.unit = unit
+        self.isLoading = isLoading
         self.shouldFormatBigNumbers = shouldFormatBigNumbers
     }
 
@@ -38,9 +40,16 @@ struct ValueView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(formattedNumberString + unit)
-                .font(.system(size: 28, weight: .light, design: .rounded))
+        VStack(alignment: .trailing) {
+            if isLoading {
+                ProgressView()
+                    .transition(.opacity)
+            } else {
+                Text(formattedNumberString + unit)
+                    .font(.system(size: 28, weight: .light, design: .rounded))
+                    .transition(.opacity)
+                    .animation(.easeInOut)
+            }
             Text(title)
                 .foregroundColor(.gray)
                 .font(.system(size: 12, weight: .light, design: .default))
@@ -54,6 +63,6 @@ struct ValueView: View {
 
 struct ValueView_Previews: PreviewProvider {
     static var previews: some View {
-        ValueView(value: 98.833333, title: "Average", unit: "s")
+        ValueView(value: 98.833333, title: "Average", unit: "s", isLoading: true)
     }
 }
