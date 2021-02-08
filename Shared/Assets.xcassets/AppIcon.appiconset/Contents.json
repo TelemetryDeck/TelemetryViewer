@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "Icon-Small-40.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
@@ -12,37 +11,37 @@
       "size" : "20x20"
     },
     {
-      "filename" : "Icon-Small@2x.png",
+      "filename" : "telemetry app 2F3744_iPhoneSettings_29@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "Icon-Small@3x.png",
+      "filename" : "telemetry app 2F3744_iPhoneSettings_29@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "Icon-Small-40@2x-1.png",
+      "filename" : "telemetry app 2F3744_iPhoneSpotlight_40@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-Small-40@3x.png",
+      "filename" : "telemetry app 2F3744_iPhoneSpotlight_40@3x-1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-60@2x.png",
+      "filename" : "telemetry app 2F3744_iPhoneSpotlight_40@3x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "Icon-60@3x.png",
+      "filename" : "telemetry app 2F3744_iPhoneApp_60@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -53,114 +52,112 @@
       "size" : "20x20"
     },
     {
-      "filename" : "Icon-Small-41.png",
+      "filename" : "telemetry app 2F3744_iPadSpotlight_40.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "Icon-Small-1.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "Icon-Small@2x-1.png",
+      "filename" : "telemetry app 2F3744_iPadSettings_29@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "Icon-Small-42.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-Small-40@2x.png",
+      "filename" : "telemetry app 2F3744_iPhoneSpotlight_40@2x-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-76.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "Icon-76@2x.png",
+      "filename" : "telemetry app 2F3744_iPadApp_76@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "Icon-83.5@2x.png",
+      "filename" : "telemetry app 2F3744_iPadProApp_83.5@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "iTunesArtwork@2x.png",
+      "filename" : "telemetry app 2F3744.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
     },
     {
+      "filename" : "slice1_16.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "mac32-1.png",
+      "filename" : "slice1_16@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "mac32.png",
+      "filename" : "slice1_32.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "mac64.png",
+      "filename" : "slice1_32@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "mac128.png",
+      "filename" : "slice1_128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "mac256-1.png",
+      "filename" : "slice1_128@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "mac256.png",
+      "filename" : "slice1_256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "mac512-1.png",
+      "filename" : "slice1_256@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "mac512.png",
+      "filename" : "slice1_512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "iTunesArtwork@2x-1.png",
+      "filename" : "slice1_512@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
