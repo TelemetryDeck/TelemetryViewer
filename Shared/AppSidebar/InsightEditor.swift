@@ -268,38 +268,46 @@ struct InsightEditor: View {
                 .pickerStyle(DefaultPickerStyle())
             }
 
-            if let dto = viewModel.insightDTO {
-                CustomSection(header: Text("Last Updated"), summary: Text(dto.calculatedAt, style: .relative) + Text(" ago"), footer: EmptyView(), startCollapsed: true) {
+            CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
 
+                if let dto = viewModel.insightDTO {
                     Group {
-                    Text("This Insight was last updated ")
-                        + Text(dto.calculatedAt, style: .relative).bold()
-                        + Text(" ago. The server needed ")
-                        + Text("\(dto.calculationDuration) seconds").bold()
-                        + Text(" to calculate it.")
+                        Text("This Insight was last updated ")
+                            + Text(dto.calculatedAt, style: .relative).bold()
+                            + Text(" ago. The server needed ")
+                            + Text("\(dto.calculationDuration) seconds").bold()
+                            + Text(" to calculate it.")
                     }
                     .opacity(0.4)
                     .padding(.vertical, 2)
 
-
                     Group {
-                    Text("The Insight will automatically be updated once it's ")
-                        + Text("5 Minutes").bold()
-                        + Text(" old.")
+                        Text("The Insight will automatically be updated once it's ")
+                            + Text("5 Minutes").bold()
+                            + Text(" old.")
                     }
                     .opacity(0.4)
                     .padding(.bottom, 4)
+                }
 
-                    Button("Update Now", action: viewModel.updateInsight)
-                        .buttonStyle(SmallSecondaryButtonStyle())
+                if viewModel.insight?.shouldUseDruid == true {
+                    Text("This Insight's data is calculated using Druid 🧙‍♂️")
+                        .bold()
+                        .opacity(0.4)
+                        .padding(.bottom, 4)
+                }
 
-                    Button("Copy Insight ID") {
-                        saveToClipBoard(dto.id.uuidString)
-                    }
+
+                Button("Update Now", action: viewModel.updateInsight)
                     .buttonStyle(SmallSecondaryButtonStyle())
 
+                Button("Copy Insight ID") {
+                    saveToClipBoard(viewModel.selectedInsightID.uuidString)
                 }
+                .buttonStyle(SmallSecondaryButtonStyle())
+
             }
+
 
             CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                 Button("Delete this Insight", action: viewModel.deleteInsight)

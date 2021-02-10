@@ -109,6 +109,9 @@ struct Insight: Codable, Identifiable {
 
     /// The date this query was last run
     var lastRunAt: Date?
+
+    /// Should use druid for calculating this insght
+    var shouldUseDruid: Bool
 }
 
 struct InsightData: Codable {
