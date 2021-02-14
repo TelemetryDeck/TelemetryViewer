@@ -54,31 +54,6 @@ struct RootView: View {
         .sheet(isPresented: $api.userNotLoggedIn, onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
             WelcomeView().accentColor(Color("Torange"))
         }
-        .onOpenURL { url in
-            // telemetryviewer://registerUserToOrg/orgName/orgId/token/
-
-            switch url.urlAction {
-            case .registerUserToOrg:
-                guard url.pathComponents.count >= 4 else { return }
-                let orgID = url.pathComponents[2]
-                let token = url.pathComponents[3]
-
-                guard let organization = UUID(uuidString: orgID) else { return }
-                let request = OrganizationJoinRequestURLObject(
-                    email: "",
-                    firstName: "",
-                    lastName: "",
-                    password: "",
-                    organizationID: organization,
-                    registrationToken: token
-                )
-                organizationJoinRequest = request
-
-//                shouldShowJoinOrgScreen = true
-            default:
-                print("Got a URL but don't know what to do with it, ignoring...")
-            }
-        }
     }
 }
 
