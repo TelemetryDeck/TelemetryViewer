@@ -13,7 +13,6 @@ struct DebugView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-
                 Group {
                     CustomSection(header: Text("timeWindowBeginning"), summary: EmptyView(), footer: EmptyView()) {
                         if let timeWindowBeginning = api.timeWindowBeginning {
@@ -44,7 +43,6 @@ struct DebugView: View {
                     }
                 }
 
-
                 Group {
                     CustomSection(header: Text("apps"), summary: Text("\(api.apps.count)"), footer: EmptyView(), startCollapsed: true) {
                         Text("\(api.apps.debugDescription)")
@@ -62,7 +60,6 @@ struct DebugView: View {
                         Text("\(api.insightData.debugDescription)")
                     }
                 }
-
             }
             .padding()
         }

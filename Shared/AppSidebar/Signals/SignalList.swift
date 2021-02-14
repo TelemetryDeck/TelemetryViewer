@@ -13,7 +13,7 @@ struct SignalList: View {
 
     var appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
-    
+
     var body: some View {
         Group {
             if let app = app {
@@ -46,6 +46,5 @@ struct SignalList: View {
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppSignalsShown.rawValue, for: api.user?.email)
             }
         }
-
     }
 }

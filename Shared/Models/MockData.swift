@@ -9,14 +9,14 @@ import Foundation
 
 struct MockData {
     static let exampleOrganization: Organization = .init(name: "breakthesystem", isSuperOrg: true)
-    
-    static let app1: TelemetryApp = .init(id: UUID(), name: "Test App", organization: ["id":"123"])
-    static let app2: TelemetryApp = .init(id: UUID(), name: "Other Test App", organization: ["id":"123"])
-    
+
+    static let app1: TelemetryApp = .init(id: UUID(), name: "Test App", organization: ["id": "123"])
+    static let app2: TelemetryApp = .init(id: UUID(), name: "Other Test App", organization: ["id": "123"])
+
     static let examplePayload: [String: String] = [
         "isTestFlight": "true",
     ]
-    
+
     static let signals: [Signal] = [
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
@@ -25,7 +25,7 @@ struct MockData {
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
     ]
-    
+
     static let lexiconSignalTypes: [LexiconSignalType] = [
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "signalsUpdated"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "testSignal"),
@@ -34,7 +34,7 @@ struct MockData {
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "appFirstLaunchedNormallyAndGotUserInteraction"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "phoneRotated"),
     ]
-    
+
     static let lexiconPayloadKeys: [LexiconPayloadKey] = [
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "browser"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "platform"),
@@ -47,8 +47,8 @@ struct MockData {
         .init(id: UUID(), firstSeenAt: Date(), isHidden: true, payloadKey: "appVersion"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "systemVersion"),
     ]
-    
-    static let exampleInsight1: InsightDataTransferObject = InsightDataTransferObject(
+
+    static let exampleInsight1 = InsightDataTransferObject(
         id: UUID(),
         order: 12,
         title: "Users Today",
@@ -56,14 +56,10 @@ struct MockData {
         signalType: nil,
         uniqueUser: true,
         filters: [:],
-        rollingWindowSize: -24*3600,
+        rollingWindowSize: -24 * 3600,
         breakdownKey: nil,
         displayMode: .raw,
         data: [InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
-        calculatedAt: Date(), calculationDuration: 1)
+        calculatedAt: Date(), calculationDuration: 1
+    )
 }
-
-
-
-
-

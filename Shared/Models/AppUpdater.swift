@@ -46,10 +46,10 @@ class AppUpdater: ObservableObject {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
 
-        URLSession.shared.dataTask(with: request) { [unowned self] data, response, error in
+        URLSession.shared.dataTask(with: request) { [unowned self] data, _, _ in
             if let data = data {
                 #if DEBUG
-                print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
+                    print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
                 #endif
 
                 if let decoded = try? JSONDecoder.telemetryDecoder.decode([GitHubRelease].self, from: data) {

@@ -5,19 +5,20 @@
 //  Created by Daniel Jilg on 05.09.20.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 final class APIRepresentative: ObservableObject {
     private static let baseURLString =
         ProcessInfo.processInfo.environment["API_URL"] == "local"
-        ? "http://localhost:8080/api/v1/"
-        : "https://apptelemetry.io/api/v1/"
+            ? "http://localhost:8080/api/v1/"
+            : "https://apptelemetry.io/api/v1/"
     private static let userTokenStandardsKey = "org.breakthesystem.telemetry.viewer.userToken"
-    
+
     init() {
         if let encodedUserToken = UserDefaults.standard.data(forKey: APIRepresentative.userTokenStandardsKey),
-           let userToken = try? JSONDecoder.telemetryDecoder.decode(UserToken.self, from: encodedUserToken) {
+           let userToken = try? JSONDecoder.telemetryDecoder.decode(UserToken.self, from: encodedUserToken)
+        {
             self.userToken = userToken
             getUserInformation()
             getApps()
@@ -26,16 +27,15 @@ final class APIRepresentative: ObservableObject {
         timer = Timer.scheduledTimer(timeInterval: 60 * 5, target: self, selector: #selector(timedGetApps), userInfo: nil, repeats: true)
     }
 
-    var timer: Timer? = nil
+    var timer: Timer?
 
-    
     @Published var registrationStatus: RegistrationStatus?
-    
+
     @Published var userToken: UserToken? {
         didSet {
             let encodedUserToken = try! JSONEncoder.telemetryEncoder.encode(userToken)
             UserDefaults.standard.setValue(encodedUserToken, forKey: APIRepresentative.userTokenStandardsKey)
-            
+
             userNotLoggedIn = userToken == nil
         }
     }
@@ -45,58 +45,57 @@ final class APIRepresentative: ObservableObject {
 
     /// The end of the currently displayed time window. If nil, defaults to date()
     @Published var timeWindowEnd: Date? = nil
-    
+
     @Published var requests = Set<AnyCancellable>()
-    
+
     @Published var user: UserDataTransferObject?
     @Published var userNotLoggedIn: Bool = true
 
     @Published var numberOfSignals: Int = 0
-    
+
     @Published var apps: [TelemetryApp] = []
-    
+
     @Published var signals: [TelemetryApp: [Signal]] = [:]
     @Published var insightGroups: [TelemetryApp: [InsightGroup]] = [:]
     @Published var insightData: [UUID: InsightDataTransferObject] = [:]
-    
+
     @Published var lexiconSignalTypes: [TelemetryApp: [LexiconSignalType]] = [:]
     @Published var lexiconPayloadKeys: [TelemetryApp: [LexiconPayloadKey]] = [:]
-    
+
     @Published var betaRequests: [BetaRequestEmail] = []
     @Published var organizationAdminListEntries: [OrganizationAdminListEntry] = []
     @Published var insightQueryAdminListEntries: [Insight] = []
     @Published var insightQueryAdminAggregate: AggregateDTO?
 
-    
     @Published var organizationUsers: [UserDataTransferObject] = []
     @Published var organizationJoinRequests: [OrganizationJoinRequest] = []
 }
 
 extension APIRepresentative {
     func app(with id: UUID) -> TelemetryApp? {
-        return apps.first(where: { $0.id == id })
+        apps.first(where: { $0.id == id })
     }
 }
 
 extension APIRepresentative {
-    func login(loginRequestBody: LoginRequestBody, callback: @escaping (Bool) -> ()) {
+    func login(loginRequestBody: LoginRequestBody, callback: @escaping (Bool) -> Void) {
         let url = urlForPath("users", "login")
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue(loginRequestBody.basicHTMLAuthString, forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
+
+        URLSession.shared.dataTask(with: request) { data, _, _ in
             if let data = data {
                 print(String(decoding: data, as: UTF8.self))
-                
+
                 if let decodedResponse = try? JSONDecoder.telemetryDecoder.decode(UserToken.self, from: data) {
                     DispatchQueue.main.async {
                         self.userToken = decodedResponse
-                        
+
                         self.getUserInformation()
                         self.getApps()
-                        
+
                         callback(true)
                     }
                 } else {
@@ -107,110 +106,108 @@ extension APIRepresentative {
             }
         }.resume()
     }
-    
+
     func logout() {
         userToken = nil
         apps = []
         user = nil
     }
-    
-    func getRegistrationStatus(callback: ((Result<[String: RegistrationStatus], TransferError>) -> ())? = nil) {
+
+    func getRegistrationStatus(callback: ((Result<[String: RegistrationStatus], TransferError>) -> Void)? = nil) {
         let url = urlForPath("users", "registrationStatus")
-        
-        self.get(url) { [unowned self] (result: Result<[String: RegistrationStatus], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[String: RegistrationStatus], TransferError>) in
             switch result {
-            case .success(let decodedData):
+            case let .success(decodedData):
                 self.registrationStatus = decodedData["registrationStatus"]
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
-            callback?(result)
-        }
-    }
-    
-    func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping (Result<UserDataTransferObject, TransferError>) -> ()) {
-        let url = urlForPath("users", "register")
-        
-        self.post(registrationRequestBody, to: url) { [unowned self] (result: Result<UserDataTransferObject, TransferError>) in
-            switch result {
-            case .success(_):
-                break
-            case .failure(let error):
-                self.handleError(error)
-            }
-            
-            callback(result)
-        }
-    }
-    
-    func joinOrganization(with organizationJoinRequest: OrganizationJoinRequestURLObject, callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {
-        let url = urlForPath("organization", "joinRequests", "join")
-        
-        self.post(organizationJoinRequest, to: url) { (result: Result<UserDataTransferObject, TransferError>) in
+
             callback?(result)
         }
     }
 
-    func getOrganizationJoinRequest(with registrationCode: String, callback: @escaping (Result<OrganizationJoinRequest, TransferError>) -> ()) {
+    func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping (Result<UserDataTransferObject, TransferError>) -> Void) {
+        let url = urlForPath("users", "register")
+
+        post(registrationRequestBody, to: url) { [unowned self] (result: Result<UserDataTransferObject, TransferError>) in
+            switch result {
+            case .success:
+                break
+            case let .failure(error):
+                self.handleError(error)
+            }
+
+            callback(result)
+        }
+    }
+
+    func joinOrganization(with organizationJoinRequest: OrganizationJoinRequestURLObject, callback: ((Result<UserDataTransferObject, TransferError>) -> Void)? = nil) {
+        let url = urlForPath("organization", "joinRequests", "join")
+
+        post(organizationJoinRequest, to: url) { (result: Result<UserDataTransferObject, TransferError>) in
+            callback?(result)
+        }
+    }
+
+    func getOrganizationJoinRequest(with registrationCode: String, callback: @escaping (Result<OrganizationJoinRequest, TransferError>) -> Void) {
         let url = urlForPath("organization", "joinRequests", registrationCode)
 
-        self.get(url) { (result: Result<OrganizationJoinRequest, TransferError>) in
+        get(url) { (result: Result<OrganizationJoinRequest, TransferError>) in
             callback(result)
         }
     }
-    
-    
-    func getUserInformation(callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {
+
+    func getUserInformation(callback: ((Result<UserDataTransferObject, TransferError>) -> Void)? = nil) {
         let url = urlForPath("users", "me")
-        
-        self.get(url) { [unowned self] (result: Result<UserDataTransferObject, TransferError>) in
+
+        get(url) { [unowned self] (result: Result<UserDataTransferObject, TransferError>) in
             switch result {
-            case .success(let userDTO):
+            case let .success(userDTO):
                 DispatchQueue.main.async {
                     self.user = userDTO
                     if self.user?.organization?.isSuperOrg == true {
                         self.getBetaRequests()
                     }
                 }
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
                 self.logout()
             }
-            
+
             callback?(result)
         }
     }
-    
-    func updatePassword(with passwordChangeRequest: PasswordChangeRequestBody, callback: ((Result<UserDataTransferObject, TransferError>) -> ())? = nil) {
+
+    func updatePassword(with passwordChangeRequest: PasswordChangeRequestBody, callback: ((Result<UserDataTransferObject, TransferError>) -> Void)? = nil) {
         let url = urlForPath("users", "updatePassword")
-        
-        self.post(passwordChangeRequest, to: url) { [unowned self] (result: Result<UserDataTransferObject, TransferError>) in
+
+        post(passwordChangeRequest, to: url) { [unowned self] (result: Result<UserDataTransferObject, TransferError>) in
             switch result {
-            case .success(let userDTO):
+            case let .success(userDTO):
                 DispatchQueue.main.async {
                     self.user = userDTO
                     self.logout()
                 }
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
     }
 
-
-    func getNumberOfSignals(callback: ((Result<Int, TransferError>) -> ())? = nil) {
+    func getNumberOfSignals(callback: ((Result<Int, TransferError>) -> Void)? = nil) {
         let url = urlForPath("organization", "signalcount")
 
-        self.get(url) { [unowned self] (result: Result<Int, TransferError>) in
+        get(url) { [unowned self] (result: Result<Int, TransferError>) in
             switch result {
-            case .success(let apps):
+            case let .success(apps):
                 DispatchQueue.main.async {
                     self.numberOfSignals = apps
                 }
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
 
@@ -221,126 +218,124 @@ extension APIRepresentative {
     @objc func timedGetApps() {
         getApps()
     }
-    
-    func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> ())? = nil) {
+
+    func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps")
-        
-        self.get(url) { [unowned self] (result: Result<[TelemetryApp], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[TelemetryApp], TransferError>) in
             switch result {
-            case .success(let apps):
+            case let .success(apps):
                 DispatchQueue.main.async {
                     self.apps = apps
                 }
-                
+
                 for app in apps {
                     self.getInsightGroups(for: app)
                 }
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
     }
-    
-    func create(appNamed name: String, callback: ((Result<TelemetryApp, TransferError>) -> ())? = nil) {
+
+    func create(appNamed name: String, callback: ((Result<TelemetryApp, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps")
-        
-        self.post(["name": name], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
+
+        post(["name": name], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
             self.getApps()
             callback?(result)
         }
     }
-    
-    func update(app: TelemetryApp, newName: String, callback: ((Result<TelemetryApp, TransferError>) -> ())? = nil) {
+
+    func update(app: TelemetryApp, newName: String, callback: ((Result<TelemetryApp, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString)
-        
-        self.patch(["name": newName], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
+
+        patch(["name": newName], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
             self.getApps()
             callback?(result)
         }
     }
-    
-    func delete(app: TelemetryApp, callback: ((Result<String, TransferError>) -> ())? = nil)  {
+
+    func delete(app: TelemetryApp, callback: ((Result<String, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString)
-        
-        self.delete(url) { [unowned self] (result: Result<String, TransferError>) in
+
+        delete(url) { [unowned self] (result: Result<String, TransferError>) in
             self.getApps()
             callback?(result)
         }
     }
-    
-    func getSignals(for app: TelemetryApp, callback: ((Result<[Signal], TransferError>) -> ())? = nil) {
+
+    func getSignals(for app: TelemetryApp, callback: ((Result<[Signal], TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "signals")
-        
-        self.get(url) { [unowned self] (result: Result<[Signal], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[Signal], TransferError>) in
             switch result {
-            case .success(let signals):
+            case let .success(signals):
                 self.signals[app] = signals
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
     }
-    
-    func getInsightGroups(for app: TelemetryApp, callback: ((Result<[InsightGroup], TransferError>) -> ())? = nil) {
+
+    func getInsightGroups(for app: TelemetryApp, callback: ((Result<[InsightGroup], TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
-        
-        self.get(url) { [unowned self] (result: Result<[InsightGroup], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[InsightGroup], TransferError>) in
             switch result {
-            case .success(let foundInsightGroups):
+            case let .success(foundInsightGroups):
                 DispatchQueue.main.async {
                     self.insightGroups[app] = foundInsightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
                 }
-                
-            case .failure(let error):
+
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
-        
     }
-    
-    func create(insightGroupNamed: String, for app: TelemetryApp, callback: ((Result<InsightGroupDTO, TransferError>) -> ())? = nil) {
+
+    func create(insightGroupNamed: String, for app: TelemetryApp, callback: ((Result<InsightGroupDTO, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
-        
-        self.post(["title": insightGroupNamed], to: url) { [unowned self] (result: Result<InsightGroupDTO, TransferError>) in
+
+        post(["title": insightGroupNamed], to: url) { [unowned self] (result: Result<InsightGroupDTO, TransferError>) in
             self.getInsightGroups(for: app) { _ in
                 callback?(result)
             }
         }
     }
 
-    func update(insightGroup: InsightGroupDTO, in app: TelemetryApp, callback: ((Result<InsightGroupDTO, TransferError>) -> ())? = nil) {
+    func update(insightGroup: InsightGroupDTO, in app: TelemetryApp, callback: ((Result<InsightGroupDTO, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString)
 
-        self.patch(insightGroup, to: url) { [unowned self] (result: Result<InsightGroupDTO, TransferError>) in
+        patch(insightGroup, to: url) { [unowned self] (result: Result<InsightGroupDTO, TransferError>) in
             self.getInsightGroups(for: app)
             callback?(result)
         }
     }
-    
-    func delete(insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<InsightGroup, TransferError>) -> ())? = nil) {
+
+    func delete(insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<InsightGroup, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString)
-        
-        self.delete(url) { [unowned self] (result: Result<InsightGroup, TransferError>) in
+
+        delete(url) { [unowned self] (result: Result<InsightGroup, TransferError>) in
             self.getInsightGroups(for: app)
             callback?(result)
         }
     }
-    
-    func getInsightData(for insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<InsightDataTransferObject, TransferError>) -> ())? = nil) {
+
+    func getInsightData(for insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<InsightDataTransferObject, TransferError>) -> Void)? = nil) {
         let timeWindowEndDate = timeWindowEnd ?? Date()
         let timeWindowBeginDate = timeWindowBeginning ?? timeWindowEndDate.addingTimeInterval(-60 * 60 * 24 * 30)
-        
+
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights",
                              insight.id.uuidString,
                              Formatter.iso8601noFS.string(from: timeWindowBeginDate),
-                             Formatter.iso8601noFS.string(from: timeWindowEndDate)
-                             )
+                             Formatter.iso8601noFS.string(from: timeWindowEndDate))
 
         get(url) { [unowned self] (result: Result<InsightDataTransferObject, TransferError>) in
             if let insightDTO = try? result.get() {
@@ -350,58 +345,58 @@ extension APIRepresentative {
             callback?(result)
         }
     }
-    
-    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp, callback: ((Result<InsightDataTransferObject, TransferError>) -> ())? = nil) {
+
+    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: InsightGroup, for app: TelemetryApp, callback: ((Result<InsightDataTransferObject, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights")
-        
-        self.post(requestBody, to: url) { [unowned self] (result: Result<InsightDataTransferObject, TransferError>) in
+
+        post(requestBody, to: url) { [unowned self] (result: Result<InsightDataTransferObject, TransferError>) in
             self.getInsightGroups(for: app)
             callback?(result)
         }
     }
-    
-    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<InsightDataTransferObject, TransferError>) -> ())? = nil) {
+
+    func update(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<InsightDataTransferObject, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
-        
-        self.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<InsightDataTransferObject, TransferError>) in
+
+        patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<InsightDataTransferObject, TransferError>) in
             self.getInsightGroups(for: app)
             self.getInsightData(for: insight, in: insightGroup, in: app)
             callback?(result)
         }
     }
-    
-    func delete(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<String, TransferError>) -> ())? = nil) {
+
+    func delete(insight: Insight, in insightGroup: InsightGroup, in app: TelemetryApp, callback: ((Result<String, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
-        
-        self.delete(url) { [unowned self] (result: Result<String, TransferError>) in
+
+        delete(url) { [unowned self] (result: Result<String, TransferError>) in
             self.getInsightGroups(for: app)
             callback?(result)
         }
     }
-    
-    func getBetaRequests(callback: ((Result<[BetaRequestEmail], TransferError>) -> ())? = nil) {
+
+    func getBetaRequests(callback: ((Result<[BetaRequestEmail], TransferError>) -> Void)? = nil) {
         let url = urlForPath("betarequests")
-        
-        self.get(url) { [unowned self] (result: Result<[BetaRequestEmail], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[BetaRequestEmail], TransferError>) in
             switch result {
-            case .success(let betaRequests):
+            case let .success(betaRequests):
                 self.betaRequests = betaRequests
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
     }
 
-    func getOrganizationAdminEntries(callback: ((Result<[OrganizationAdminListEntry], TransferError>) -> ())? = nil) {
+    func getOrganizationAdminEntries(callback: ((Result<[OrganizationAdminListEntry], TransferError>) -> Void)? = nil) {
         let url = urlForPath("organizationadmin")
 
-        self.get(url) { [unowned self] (result: Result<[OrganizationAdminListEntry], TransferError>) in
+        get(url) { [unowned self] (result: Result<[OrganizationAdminListEntry], TransferError>) in
             switch result {
-            case .success(let orgListEntries):
+            case let .success(orgListEntries):
                 self.organizationAdminListEntries = orgListEntries
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
 
@@ -409,14 +404,14 @@ extension APIRepresentative {
         }
     }
 
-    func getInsightQueryAdminAggregates(callback: ((Result<AggregateDTO, TransferError>) -> ())? = nil) {
+    func getInsightQueryAdminAggregates(callback: ((Result<AggregateDTO, TransferError>) -> Void)? = nil) {
         let url = urlForPath("insightqueryadmin", "aggregates")
 
-        self.get(url) { [unowned self] (result: Result<AggregateDTO, TransferError>) in
+        get(url) { [unowned self] (result: Result<AggregateDTO, TransferError>) in
             switch result {
-            case .success(let insightQueryAdminAggregate):
+            case let .success(insightQueryAdminAggregate):
                 self.insightQueryAdminAggregate = insightQueryAdminAggregate
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
 
@@ -424,134 +419,134 @@ extension APIRepresentative {
         }
     }
 
-    func getInsightQueryAdminListEntries(callback: ((Result<[Insight], TransferError>) -> ())? = nil) {
+    func getInsightQueryAdminListEntries(callback: ((Result<[Insight], TransferError>) -> Void)? = nil) {
         let url = urlForPath("insightqueryadmin")
 
-        self.get(url) { [unowned self] (result: Result<[Insight], TransferError>) in
+        get(url) { [unowned self] (result: Result<[Insight], TransferError>) in
             switch result {
-            case .success(let insightQueryAdminListEntries):
+            case let .success(insightQueryAdminListEntries):
                 self.insightQueryAdminListEntries = insightQueryAdminListEntries
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
 
             callback?(result)
         }
     }
-    
-    func sendEmail(for betaRequest: BetaRequestEmail, callback: ((Result<String, TransferError>) -> ())? = nil) {
+
+    func sendEmail(for betaRequest: BetaRequestEmail, callback: ((Result<String, TransferError>) -> Void)? = nil) {
         let url = urlForPath("betarequests", betaRequest.id.uuidString, "send_email")
-        
-        self.post("", to: url) { [unowned self] (result: Result<String, TransferError>) in
+
+        post("", to: url) { [unowned self] (result: Result<String, TransferError>) in
             self.getBetaRequests()
             callback?(result)
         }
     }
-    
-    func update(betaRequest: BetaRequestEmail, with betaRequestUpdateBody: BetaRequestUpdateBody, callback: ((Result<String, TransferError>) -> ())? = nil) {
+
+    func update(betaRequest: BetaRequestEmail, with betaRequestUpdateBody: BetaRequestUpdateBody, callback: ((Result<String, TransferError>) -> Void)? = nil) {
         let url = urlForPath("betarequests", betaRequest.id.uuidString)
-        
-        self.patch(betaRequestUpdateBody, to: url) { [unowned self] (result: Result<String, TransferError>) in
+
+        patch(betaRequestUpdateBody, to: url) { [unowned self] (result: Result<String, TransferError>) in
             self.getBetaRequests()
             callback?(result)
         }
     }
-    
-    func delete(betaRequest: BetaRequestEmail, callback: ((Result<String, TransferError>) -> ())? = nil) {
+
+    func delete(betaRequest: BetaRequestEmail, callback: ((Result<String, TransferError>) -> Void)? = nil) {
         let url = urlForPath("betarequests", betaRequest.id.uuidString)
-        
-        self.delete(url) { [unowned self] (result: Result<String, TransferError>) in
+
+        delete(url) { [unowned self] (result: Result<String, TransferError>) in
             self.getBetaRequests()
             callback?(result)
         }
     }
-    
-    func getSignalTypes(for app: TelemetryApp, callback: ((Result<[LexiconSignalType], TransferError>) -> ())? = nil) {
+
+    func getSignalTypes(for app: TelemetryApp, callback: ((Result<[LexiconSignalType], TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "lexicon", "signaltypes")
-        
-        self.get(url) { [unowned self] (result: Result<[LexiconSignalType], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[LexiconSignalType], TransferError>) in
             switch result {
-            case .success(let lexiconItems):
+            case let .success(lexiconItems):
                 self.lexiconSignalTypes[app] = lexiconItems
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
     }
-    
-    func getPayloadKeys(for app: TelemetryApp, callback: ((Result<[LexiconPayloadKey], TransferError>) -> ())? = nil) {
+
+    func getPayloadKeys(for app: TelemetryApp, callback: ((Result<[LexiconPayloadKey], TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "lexicon", "payloadkeys")
-        
-        self.get(url) { [unowned self] (result: Result<[LexiconPayloadKey], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[LexiconPayloadKey], TransferError>) in
             switch result {
-            case .success(let lexiconItems):
+            case let .success(lexiconItems):
                 self.lexiconPayloadKeys[app] = lexiconItems
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
     }
-    
-    func getOrganizationUsers(callback: ((Result<[UserDataTransferObject], TransferError>) -> ())? = nil) {
+
+    func getOrganizationUsers(callback: ((Result<[UserDataTransferObject], TransferError>) -> Void)? = nil) {
         let url = urlForPath("organization", "users")
-        
-        self.get(url) { [unowned self] (result: Result<[UserDataTransferObject], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[UserDataTransferObject], TransferError>) in
             switch result {
-            case .success(let users):
+            case let .success(users):
                 DispatchQueue.main.async {
                     self.organizationUsers = users
                 }
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
     }
-    
-    func getOrganizationJoinRequests(callback: ((Result<[OrganizationJoinRequest], TransferError>) -> ())? = nil) {
+
+    func getOrganizationJoinRequests(callback: ((Result<[OrganizationJoinRequest], TransferError>) -> Void)? = nil) {
         let url = urlForPath("organization", "joinRequests")
-        
-        self.get(url) { [unowned self] (result: Result<[OrganizationJoinRequest], TransferError>) in
+
+        get(url) { [unowned self] (result: Result<[OrganizationJoinRequest], TransferError>) in
             switch result {
-            case .success(let joinRequests):
+            case let .success(joinRequests):
                 DispatchQueue.main.async {
                     self.organizationJoinRequests = joinRequests
                 }
-            case .failure(let error):
+            case let .failure(error):
                 self.handleError(error)
             }
-            
+
             callback?(result)
         }
     }
-    
-    func createOrganizationJoinRequest(for email: String, callback: ((Result<OrganizationJoinRequest, TransferError>) -> ())? = nil) {
+
+    func createOrganizationJoinRequest(for email: String, callback: ((Result<OrganizationJoinRequest, TransferError>) -> Void)? = nil) {
         let url = urlForPath("organization", "joinRequests", email)
-        
-        self.post("hi!", to: url) { [unowned self] (result: Result<OrganizationJoinRequest, TransferError>) in
+
+        post("hi!", to: url) { [unowned self] (result: Result<OrganizationJoinRequest, TransferError>) in
             callback?(result)
-            
+
             self.getOrganizationJoinRequests()
         }
     }
-    
-    func delete(organizationJoinRequest: OrganizationJoinRequest, callback: ((Result<String, TransferError>) -> ())? = nil)  {
+
+    func delete(organizationJoinRequest: OrganizationJoinRequest, callback: ((Result<String, TransferError>) -> Void)? = nil) {
         let url = urlForPath("organization", "joinRequests", organizationJoinRequest.id.uuidString)
-        
-        self.delete(url) { [unowned self] (result: Result<String, TransferError>) in
+
+        delete(url) { [unowned self] (result: Result<String, TransferError>) in
             self.getOrganizationJoinRequests()
             callback?(result)
         }
     }
 }
 
-
 // MARK: - Generic Methods
+
 extension APIRepresentative {
     /// Generate an API URL for the given Path
     ///
@@ -560,76 +555,76 @@ extension APIRepresentative {
     ///     urlForPath("api", "v1", "exhibitors")
     ///
     /// In DEBUG configuration, this method will print out the generated URL.
-    func urlForPath(_ path: String..., appendTrailingSlash: Bool = false) -> URL {
+    func urlForPath(_ path: String..., appendTrailingSlash _: Bool = false) -> URL {
         URL(string: APIRepresentative.baseURLString + path.joined(separator: "/") + "/")!
     }
-    
+
     /// Given a URL, generate a URLRequest instance with included authentication headers
     func authenticatedURLRequest(for url: URL, httpMethod: String, httpBody: Data? = nil, contentType: String = "application/json; charset=utf-8") -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
         request.setValue(contentType, forHTTPHeaderField: "Content-Type")
         request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-        
+
         if let httpBody = httpBody {
             request.httpBody = httpBody
         }
-        
+
         return request
     }
-    
-    func get<Output: Decodable>(_ url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+
+    func get<Output: Decodable>(_ url: URL, defaultValue _: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
-        print("🌍 GET", url)
+            print("🌍 GET", url)
         #endif
 
-        let request = self.authenticatedURLRequest(for: url, httpMethod: "GET")
+        let request = authenticatedURLRequest(for: url, httpMethod: "GET")
         runTask(with: request, completion: completion)
     }
-    
-    func post<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+
+    func post<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue _: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
-        print("🌍 POST", url)
+            print("🌍 POST", url)
         #endif
 
-        var request = self.authenticatedURLRequest(for: url, httpMethod: "POST")
+        var request = authenticatedURLRequest(for: url, httpMethod: "POST")
         request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
         runTask(with: request, completion: completion)
     }
-    
-    func patch<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+
+    func patch<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue _: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
-        print("🌍 PATCH", url)
+            print("🌍 PATCH", url)
         #endif
 
-        var request = self.authenticatedURLRequest(for: url, httpMethod: "PATCH")
+        var request = authenticatedURLRequest(for: url, httpMethod: "PATCH")
         request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
         runTask(with: request, completion: completion)
     }
-    
-    func delete<Output: Decodable>(_ url: URL, defaultValue: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
+
+    func delete<Output: Decodable>(_ url: URL, defaultValue _: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
-        print("🌍 DELETE", url)
+            print("🌍 DELETE", url)
         #endif
 
-        let request = self.authenticatedURLRequest(for: url, httpMethod: "DELETE")
+        let request = authenticatedURLRequest(for: url, httpMethod: "DELETE")
         runTask(with: request, completion: completion)
     }
-    
+
     private func runTask<Output: Decodable>(with request: URLRequest, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
-        if let httpBody = request.httpBody {
-            print("➡️", httpBody.prettyPrintedJSONString ?? String(data: httpBody, encoding: .utf8) ?? "Undecodable")
-        }
+            if let httpBody = request.httpBody {
+                print("➡️", httpBody.prettyPrintedJSONString ?? String(data: httpBody, encoding: .utf8) ?? "Undecodable")
+            }
         #endif
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
+
+        URLSession.shared.dataTask(with: request) { data, _, error in
             DispatchQueue.main.async {
                 if let data = data {
                     #if DEBUG
-                    print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
+                        print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
                     #endif
-                    
+
                     do {
                         let decoded = try JSONDecoder.telemetryDecoder.decode(Output.self, from: data)
                         completion(.success(decoded))
@@ -654,8 +649,6 @@ extension APIRepresentative {
             }
         }.resume()
     }
-    
-    private func handleError(_ error: TransferError) {
-        
-    }
+
+    private func handleError(_: TransferError) {}
 }

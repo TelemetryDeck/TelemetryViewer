@@ -33,7 +33,6 @@ struct AppUpdateView: View {
                 Divider()
 
                 if appUpdater.isAppUpdateAvailable, let latestVersion = appUpdater.latestVersionOnServer {
-
                     Text("Latest Version").font(.title)
 
                     CardView {
@@ -66,7 +65,7 @@ struct AppUpdateView: View {
             }
             .padding()
         }
-        .onAppear() {
+        .onAppear {
             TelemetryManager.send("UpdateScreenOpened")
         }
     }
@@ -76,7 +75,7 @@ struct AppUpdateView_Previews: PreviewProvider {
     static var previews: some View {
         let customAppUpdater = AppUpdater()
         customAppUpdater.isAppUpdateAvailable = false
-        customAppUpdater.latestVersionOnServer = AppUpdater.GitHubRelease(id: 3, name: "1b27", tag_name: "1b27", body: "hello world lorem ipsum", draft: false, prerelease: false, published_at: Date(), assets: [AppUpdater.GitHubReleaseAssets(id: 4, content_type: "application/zip", size: 928158, download_count: 345, browser_download_url: URL(string: "https://github.com/AppTelemetry/Viewer/releases/download/1b14/TelemetryViewer-1b14.zip")!)])
+        customAppUpdater.latestVersionOnServer = AppUpdater.GitHubRelease(id: 3, name: "1b27", tag_name: "1b27", body: "hello world lorem ipsum", draft: false, prerelease: false, published_at: Date(), assets: [AppUpdater.GitHubReleaseAssets(id: 4, content_type: "application/zip", size: 928_158, download_count: 345, browser_download_url: URL(string: "https://github.com/AppTelemetry/Viewer/releases/download/1b14/TelemetryViewer-1b14.zip")!)])
         return AppUpdateView().environmentObject(customAppUpdater)
     }
 }

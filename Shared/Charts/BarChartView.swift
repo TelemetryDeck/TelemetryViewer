@@ -15,7 +15,7 @@ struct BarChartView: View {
         guard let insightData = insightData else { return nil }
         return try? ChartDataSet(data: insightData.data)
     }
-    
+
     var body: some View {
         if let chartDataSet = chartDataSet {
             VStack(spacing: 12) {
@@ -45,12 +45,12 @@ struct BarView: View {
     let data: ChartDataSet
     let dataEntry: ChartDataPoint
     let geometry: GeometryProxy
-    
+
     @State private var isHovering = false
-    
+
     var body: some View {
         let percentage = CGFloat(dataEntry.yAxisValue / data.highestValue)
-        
+
         VStack {
             Text(dataEntry.yAxisValue.stringValue)
                 .font(.footnote)
@@ -61,13 +61,12 @@ struct BarView: View {
                 .fill(isHovering ? Color.accentColor : Color.accentColor.opacity(0.7))
                 .frame(height: percentage.isNaN ? 0 : percentage * geometry.size.height)
                 .overlay(Rectangle()
-                            .foregroundColor(Color.grayColor.opacity(0.5))
-                            .cornerRadius(3.0)
-                            .offset(x: 0, y: 3)
-                            .padding(.horizontal, -2)
-                            .frame(height: 3),
-                         alignment: .bottom)
-            
+                    .foregroundColor(Color.grayColor.opacity(0.5))
+                    .cornerRadius(3.0)
+                    .offset(x: 0, y: 3)
+                    .padding(.horizontal, -2)
+                    .frame(height: 3),
+                    alignment: .bottom)
         }
         .onHover { hover in
             isHovering = hover

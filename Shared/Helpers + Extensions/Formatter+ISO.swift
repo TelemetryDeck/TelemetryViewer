@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Daniel Jilg on 19.10.20.
 //
@@ -13,5 +13,6 @@ extension Formatter {
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         return formatter
     }()
+
     static let iso8601noFS = ISO8601DateFormatter()
 }

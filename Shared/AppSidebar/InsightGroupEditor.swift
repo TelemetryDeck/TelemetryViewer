@@ -14,14 +14,13 @@ class InsightGroupEditorViewModel: ObservableObject {
     @ObservedObject private var api: APIRepresentative
     private let appID: UUID
     @Binding private var selectedInsightID: UUID?
-    private var selectedInsightGroupID: Binding<UUID>? = nil
+    private var selectedInsightGroupID: Binding<UUID>?
     @Binding private var sidebarSection: AppRootSidebarSection
 
-    private var saveTimer: Timer = Timer()
+    private var saveTimer = Timer()
     private var isSettingUp: Bool = false
 
     init(api: APIRepresentative, appID: UUID, selectedInsightGroupID: Binding<UUID>, selectedInsightID: Binding<UUID?>, sidebarSection: Binding<AppRootSidebarSection>) {
-
         self.api = api
         self.appID = appID
         self._selectedInsightID = selectedInsightID
@@ -55,27 +54,27 @@ class InsightGroupEditorViewModel: ObservableObject {
 
     func createNewInsight() {
         if let app = app, let insightGroup = insightGroup {
-
-        let definitionRequestBody = InsightDefinitionRequestBody(
-            order: nil,
-            title: "New Insight",
-            subtitle: nil,
-            signalType: nil,
-            uniqueUser: false,
-            filters: [:],
-            rollingWindowSize: -2592000,
-            breakdownKey: nil,
-            displayMode: .lineChart,
-            groupID: insightGroup.id,
-            id: nil,
-            isExpanded: false)
+            let definitionRequestBody = InsightDefinitionRequestBody(
+                order: nil,
+                title: "New Insight",
+                subtitle: nil,
+                signalType: nil,
+                uniqueUser: false,
+                filters: [:],
+                rollingWindowSize: -2_592_000,
+                breakdownKey: nil,
+                displayMode: .lineChart,
+                groupID: insightGroup.id,
+                id: nil,
+                isExpanded: false
+            )
 
             api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in
                 switch result {
-                case .success(let insightDTO):
+                case let .success(insightDTO):
                     self.selectedInsightID = insightDTO.id
                     self.sidebarSection = .InsightEditor
-                case .failure(let error):
+                case let .failure(error):
                     print(error)
                 }
             }
@@ -86,7 +85,7 @@ class InsightGroupEditorViewModel: ObservableObject {
         guard !isSettingUp else { return }
 
         saveTimer.invalidate()
-        saveTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+        saveTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
             self.delayedSaveInsight()
         }
     }
@@ -117,9 +116,9 @@ struct InsightGroupEditor: View {
 
     var padding: CGFloat? {
         #if os(macOS)
-        return nil
+            return nil
         #else
-        return 0
+            return 0
         #endif
     }
 

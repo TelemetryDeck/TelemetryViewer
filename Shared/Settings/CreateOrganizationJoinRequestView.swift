@@ -15,16 +15,14 @@ struct CreateOrganizationJoinRequestView: View {
 
     private var isValidEmail: Bool {
         if inviteeEmail.count < 3 { return false }
-        if !inviteeEmail.contains("@") { return false}
+        if !inviteeEmail.contains("@") { return false }
         if !inviteeEmail.contains(".") { return false }
 
         return true
     }
 
     var body: some View {
-
         VStack(alignment: .leading) {
-
             Text("Invite People to join \(api.user?.organization?.name ?? "your organization")")
                 .font(.title)
 
@@ -33,19 +31,19 @@ struct CreateOrganizationJoinRequestView: View {
             Spacer()
 
             #if os(iOS)
-            TextField("Email", text: $inviteeEmail)
-                .textContentType(.emailAddress)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
+                TextField("Email", text: $inviteeEmail)
+                    .textContentType(.emailAddress)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
             #else
-            TextField("Email", text: $inviteeEmail)
-                .padding()
+                TextField("Email", text: $inviteeEmail)
+                    .padding()
             #endif
 
             Spacer()
 
             Button("Send Email") {
-                api.createOrganizationJoinRequest(for: inviteeEmail) {_ in 
+                api.createOrganizationJoinRequest(for: inviteeEmail) { _ in
                     self.presentationMode.wrappedValue.dismiss()
                 }
             }

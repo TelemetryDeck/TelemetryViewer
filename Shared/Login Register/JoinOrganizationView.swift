@@ -17,18 +17,19 @@ struct JoinOrganizationView: View {
     @State var organizationJoinRequestPresent: Bool = false
     @State var organizationJoinRequest = OrganizationJoinRequestURLObject(
         email: "", firstName: "", lastName: "", password: "",
-        organizationID: UUID(), registrationToken: "")
+        organizationID: UUID(), registrationToken: ""
+    )
 
     var orgJoinRequestIsValid: Bool {
-        return !organizationJoinRequest.email.isEmpty &&
+        !organizationJoinRequest.email.isEmpty &&
             !organizationJoinRequest.firstName.isEmpty &&
             !organizationJoinRequest.password.isEmpty
     }
 
     var orgJoinRequestErrorHint: String {
-        return "Please fill all the fields"
+        "Please fill all the fields"
     }
-    
+
     var body: some View {
         if isLoading {
             Spacer()
@@ -49,7 +50,6 @@ struct JoinOrganizationView: View {
                     SecureField("Password", text: $organizationJoinRequest.password)
                 }
 
-
                 if isLoading {
                     ProgressView()
                 } else {
@@ -60,15 +60,16 @@ struct JoinOrganizationView: View {
                             isLoading = false
 
                             switch result {
-                            case .success(_):
+                            case .success:
                                 api.login(
                                     loginRequestBody: LoginRequestBody(
                                         userEmail: organizationJoinRequest.email,
-                                        userPassword: organizationJoinRequest.password)
+                                        userPassword: organizationJoinRequest.password
+                                    )
                                 ) { _ in
                                     self.presentationMode.wrappedValue.dismiss()
                                 }
-                            case .failure(let error):
+                            case let .failure(error):
                                 print(error.localizedDescription)
                             }
                         }
@@ -106,16 +107,17 @@ struct JoinOrganizationView: View {
 
                     api.getOrganizationJoinRequest(with: organizationJoinRequestToken) { result in
                         switch result {
-                        case .success(let joinRequest):
+                        case let .success(joinRequest):
                             organizationJoinRequest = OrganizationJoinRequestURLObject(
                                 email: joinRequest.email,
                                 firstName: "",
                                 lastName: "",
                                 password: "",
                                 organizationID: joinRequest.organization["id"]!,
-                                registrationToken: joinRequest.registrationToken)
+                                registrationToken: joinRequest.registrationToken
+                            )
                             organizationJoinRequestPresent = true
-                        case .failure(let error):
+                        case let .failure(error):
                             self.error = error
                         }
 

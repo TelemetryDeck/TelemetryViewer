@@ -16,7 +16,7 @@ struct DetailSidebar<Content>: View where Content: View {
     public init(isOpen: Binding<Bool>, maxWidth: CGFloat, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.maxWidth = maxWidth
-        self._isOpen = isOpen
+        _isOpen = isOpen
     }
 
     var body: some View {
@@ -32,14 +32,11 @@ struct DetailSidebar<Content>: View where Content: View {
 
 struct DetailSidebar_Previews: PreviewProvider {
     static var previews: some View {
-
         HStack {
             Color.blue
             DetailSidebar(isOpen: .constant(true), maxWidth: 500) {
                 Color.green
             }
         }
-
-
     }
 }

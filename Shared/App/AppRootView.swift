@@ -21,37 +21,37 @@ struct AppRootView: View {
 
     @EnvironmentObject var api: APIRepresentative
 
-    @State private var selectedInsightGroupID: UUID = UUID()
+    @State private var selectedInsightGroupID = UUID()
     @State private var selectedInsightIDValue: UUID?
     @State private var sidebarShownValue: Bool = false
     @State private var sidebarSection: AppRootSidebarSection = .InsightEditor
 
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var sizeClass
+        @Environment(\.horizontalSizeClass) var sizeClass
     #endif
 
     var DefaultSidebarWidth: CGFloat {
         #if os(iOS)
-        if sizeClass == .compact {
-            return 800
-        } else {
-            return 350
-        }
+            if sizeClass == .compact {
+                return 800
+            } else {
+                return 350
+            }
         #else
-        return 280
+            return 280
         #endif
     }
 
     var DefaultMoveTransition: AnyTransition {
         #if os(iOS)
-        if sizeClass == .compact {
-            return .move(edge: .bottom)
-        } else {
-            return .move(edge: .trailing)
-        }
+            if sizeClass == .compact {
+                return .move(edge: .bottom)
+            } else {
+                return .move(edge: .trailing)
+            }
 
         #else
-        return .move(edge: .trailing)
+            return .move(edge: .trailing)
         #endif
     }
 
@@ -113,10 +113,10 @@ struct AppRootView: View {
 
                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in
                     switch result {
-                    case .success(let insightDTO):
+                    case let .success(insightDTO):
                         selectedInsightID.wrappedValue = insightDTO.id
                         sidebarSection = .InsightEditor
-                    case .failure(let error):
+                    case let .failure(error):
                         print(error)
                     }
                 }
@@ -141,43 +141,41 @@ struct AppRootView: View {
                             .frame(maxWidth: 400)
                             .padding()
                         } else {
-
                             #if os(iOS)
-                            TabView(selection: $selectedInsightGroupID) {
-                                ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                                TabView(selection: $selectedInsightGroupID) {
+                                    ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                                        InsightGroupList(
+                                            sidebarSection: $sidebarSection,
+                                            sidebarShown: sidebarShown,
+                                            selectedInsightID: selectedInsightID,
+                                            app: app,
+                                            insightGroupID: insightGroup.id
+                                        )
+                                        .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
+                                        .tag(insightGroup.id)
+                                    }
+                                }
+                                .navigationTitle(app.name)
+                            #else
+                                Group {
                                     InsightGroupList(
                                         sidebarSection: $sidebarSection,
                                         sidebarShown: sidebarShown,
                                         selectedInsightID: selectedInsightID,
                                         app: app,
-                                        insightGroupID: insightGroup.id
+                                        insightGroupID: selectedInsightGroupID
                                     )
-                                    .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
-                                    .tag(insightGroup.id)
-                                }
-                            }
-                            .navigationTitle(app.name)
-                            #else
-                            Group {
-                                InsightGroupList(
-                                    sidebarSection: $sidebarSection,
-                                    sidebarShown: sidebarShown,
-                                    selectedInsightID: selectedInsightID,
-                                    app: app,
-                                    insightGroupID: selectedInsightGroupID
-                                )
 
-                                Divider()
+                                    Divider()
 
-                                Picker(selection: $selectedInsightGroupID, label: Text("")) {
-                                    ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                                        Text(insightGroup.title).tag(insightGroup.id)
+                                    Picker(selection: $selectedInsightGroupID, label: Text("")) {
+                                        ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                                            Text(insightGroup.title).tag(insightGroup.id)
+                                        }
                                     }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .padding()
                                 }
-                                .pickerStyle(SegmentedPickerStyle())
-                                .padding()
-
-                            }
                             #endif
                         }
                     } else {
@@ -186,16 +184,15 @@ struct AppRootView: View {
                 }
                 .background(Color("CardBackgroundColor"))
             }
-            .onAppear() {
+            .onAppear {
                 if let app = app {
                     selectedInsightGroupID = api.insightGroups[app]?.first?.id ?? UUID()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-
             if sidebarShownValue {
-                DetailSidebar(isOpen: sidebarShown , maxWidth: DefaultSidebarWidth) {
+                DetailSidebar(isOpen: sidebarShown, maxWidth: DefaultSidebarWidth) {
                     AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
                 }
                 .edgesIgnoringSafeArea(.bottom)
@@ -204,42 +201,42 @@ struct AppRootView: View {
         }
         .toolbar {
             ToolbarItem {
-                    Menu {
-                        Section {
-                            Button(action: {
-                                api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
-                                api.timeWindowEnd = nil
-                                reloadVisibleInsights()
-                            }) {
-                                Label("Last Year", systemImage: "calendar")
-                            }
-
-                            Button(action: {
-                                api.timeWindowBeginning = nil
-                                api.timeWindowEnd = nil
-                                reloadVisibleInsights()
-                            }) {
-                                Label("Last Month", systemImage: "calendar")
-                            }
-
-                            Button(action: {
-                                api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
-                                api.timeWindowEnd = nil
-                                reloadVisibleInsights()
-                            }) {
-                                Label("Last Week", systemImage: "calendar")
-                            }
-
-                            Button(action: {
-                                api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
-                                api.timeWindowEnd = nil
-                                reloadVisibleInsights()
-                            }) {
-                                Label("Today", systemImage: "calendar")
-                            }
+                Menu {
+                    Section {
+                        Button(action: {
+                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
+                            api.timeWindowEnd = nil
+                            reloadVisibleInsights()
+                        }) {
+                            Label("Last Year", systemImage: "calendar")
                         }
 
-                        #if os(iOS)
+                        Button(action: {
+                            api.timeWindowBeginning = nil
+                            api.timeWindowEnd = nil
+                            reloadVisibleInsights()
+                        }) {
+                            Label("Last Month", systemImage: "calendar")
+                        }
+
+                        Button(action: {
+                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
+                            api.timeWindowEnd = nil
+                            reloadVisibleInsights()
+                        }) {
+                            Label("Last Week", systemImage: "calendar")
+                        }
+
+                        Button(action: {
+                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
+                            api.timeWindowEnd = nil
+                            reloadVisibleInsights()
+                        }) {
+                            Label("Today", systemImage: "calendar")
+                        }
+                    }
+
+                    #if os(iOS)
                         if sizeClass == .compact {
                             Divider()
 
@@ -253,10 +250,10 @@ struct AppRootView: View {
                                 Label("Toggle Editor", systemImage: "square.bottomhalf.fill")
                             }
                         }
-                        #endif
-                    }
-                    label: {
-                        #if os(iOS)
+                    #endif
+                }
+                label: {
+                    #if os(iOS)
                         if sizeClass == .compact {
                             HStack {
                                 Text(timeIntervalDescription)
@@ -266,10 +263,10 @@ struct AppRootView: View {
                         } else {
                             Text(timeIntervalDescription)
                         }
-                        #else
+                    #else
                         Text(timeIntervalDescription)
-                        #endif
-                    }
+                    #endif
+                }
             }
 
             ToolbarItem {

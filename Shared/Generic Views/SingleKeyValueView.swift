@@ -16,7 +16,7 @@ struct SingleKeyValueView: View {
         self.value = value
     }
 
-    var body : some View {
+    var body: some View {
         HStack {
             key.foregroundColor(.grayColor)
             value

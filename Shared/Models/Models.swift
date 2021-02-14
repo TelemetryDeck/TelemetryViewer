@@ -33,7 +33,7 @@ struct Signal: Codable, Hashable {
     var receivedAt: Date
     var clientUser: String
     var type: String
-    var payload: Dictionary<String, String>?
+    var payload: [String: String]?
 }
 
 struct InsightGroup: Codable, Identifiable {
@@ -43,7 +43,7 @@ struct InsightGroup: Codable, Identifiable {
     var insights: [Insight] = []
 
     func getDTO() -> InsightGroupDTO {
-        return InsightGroupDTO(id: self.id, title: self.title, order: self.order)
+        InsightGroupDTO(id: id, title: title, order: order)
     }
 }
 
@@ -52,7 +52,6 @@ struct InsightGroupDTO: Codable, Identifiable {
     var title: String
     var order: Double?
 }
-
 
 enum InsightDisplayMode: String, Codable {
     case number // Deprecated, use Raw instead
@@ -72,32 +71,32 @@ enum InsightGroupByInterval: String, Codable {
 struct Insight: Codable, Identifiable {
     var id: UUID
     var group: [String: UUID]
-    
+
     var order: Double?
     var title: String
     var subtitle: String?
-    
+
     /// Which signal types are we interested in? If nil, do not filter by signal type
     var signalType: String?
-    
+
     /// If true, only include at the newest signal from each user
     var uniqueUser: Bool
-    
+
     /// Only include signals that match all of these key-values in the payload
     var filters: [String: String]
-    
+
     /// How far to go back to aggregate signals
     var rollingWindowSize: TimeInterval
-    
+
     /// If set, break down the values in this key
     var breakdownKey: String?
-    
+
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
     var groupBy: InsightGroupByInterval?
 
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
-    
+
     /// If true, the insight will be displayed bigger
     var isExpanded: Bool
 
@@ -117,70 +116,70 @@ struct Insight: Codable, Identifiable {
 struct InsightData: Codable {
     let xAxisValue: String
     let yAxisValue: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case xAxisValue
         case yAxisValue
     }
-    
+
     private let numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.usesGroupingSeparator = true
         return numberFormatter
     }()
-    
+
     var yAxisNumber: NSNumber? {
         guard let yAxisValue = yAxisValue else { return NSNumber(value: 0) }
         return numberFormatter.number(from: yAxisValue)
     }
-    
+
     var yAxisDouble: Double? {
-        return yAxisNumber?.doubleValue
+        yAxisNumber?.doubleValue
     }
-    
+
     var yAxisString: String {
         guard let yAxisValue = yAxisValue else { return "0" }
         guard let yAxisNumber = yAxisNumber else { return yAxisValue }
         return numberFormatter.string(from: yAxisNumber) ?? yAxisValue
     }
-    
+
     var xAxisDate: Date? {
-        return Formatter.iso8601noFS.date(from: xAxisValue)
+        Formatter.iso8601noFS.date(from: xAxisValue)
     }
 }
 
 struct InsightDataTransferObject: Codable {
     let id: UUID
-    
+
     let order: Double?
     let title: String
     let subtitle: String?
-    
+
     /// Which signal types are we interested in? If nil, do not filter by signal type
     let signalType: String?
-    
+
     /// If true, only include at the newest signal from each user
     let uniqueUser: Bool
-    
+
     /// Only include signals that match all of these key-values in the payload
     let filters: [String: String]
-    
+
     /// How far to go back to aggregate signals
     let rollingWindowSize: TimeInterval
-    
+
     /// If set, break down the values in this key
     var breakdownKey: String?
-    
+
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
     var groupBy: InsightGroupByInterval?
-    
+
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
-    
+
     /// Current Live Calculated Data
     let data: [InsightData]
-    
+
     /// When was this DTO calculated?
     let calculatedAt: Date
 
@@ -188,7 +187,7 @@ struct InsightDataTransferObject: Codable {
     let calculationDuration: TimeInterval
 
     var isEmpty: Bool {
-        return data.compactMap { $0.yAxisValue }.count == 0
+        data.compactMap(\.yAxisValue).count == 0
     }
 }
 
@@ -196,37 +195,37 @@ struct InsightDefinitionRequestBody: Codable {
     var order: Double?
     var title: String
     var subtitle: String?
-    
+
     /// Which signal types are we interested in? If nil, do not filter by signal type
     var signalType: String?
-    
+
     /// If true, only include at the newest signal from each user
     var uniqueUser: Bool
-    
+
     /// Only include signals that match all of these key-values in the payload
     var filters: [String: String]
-    
+
     /// How far to go back to aggregate signals
     var rollingWindowSize: TimeInterval
-    
+
     /// If set, break down the values in this key
     var breakdownKey: String?
 
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
     var groupBy: InsightGroupByInterval?
-    
+
     /// How should this insight's data be displayed?
     var displayMode: InsightDisplayMode
-    
+
     /// Which group should the insight belong to? (Only use this in update mode)
     var groupID: UUID?
-    
+
     /// The ID of the insight. Not changeable, only set in update mode
     var id: UUID?
-    
+
     /// If true, the insight will be displayed bigger
     var isExpanded: Bool
-    
+
     static func from(insight: Insight) -> InsightDefinitionRequestBody {
         let requestBody = Self(
             order: insight.order,
@@ -240,37 +239,39 @@ struct InsightDefinitionRequestBody: Codable {
             displayMode: insight.displayMode,
             groupID: insight.group["id"],
             id: insight.id,
-            isExpanded: insight.isExpanded)
-        
+            isExpanded: insight.isExpanded
+        )
+
         return requestBody
     }
 
     static func new(groupID: UUID) -> InsightDefinitionRequestBody {
-        return InsightDefinitionRequestBody(
+        InsightDefinitionRequestBody(
             order: nil,
             title: "New Insight",
             subtitle: nil,
             signalType: nil,
             uniqueUser: false,
             filters: [:],
-            rollingWindowSize: -2592000,
+            rollingWindowSize: -2_592_000,
             breakdownKey: nil,
             displayMode: .lineChart,
             groupID: groupID,
             id: nil,
-            isExpanded: false)
+            isExpanded: false
+        )
     }
 }
 
 struct ChartDataPoint: Hashable, Identifiable {
-    var id: String { return xAxisValue }
-    
+    var id: String { xAxisValue }
+
     let xAxisValue: String
     let yAxisValue: Double
-    
+
     init(insightData: InsightData) throws {
-        self.xAxisValue = insightData.xAxisValue
-        
+        xAxisValue = insightData.xAxisValue
+
         if let yAxisValue = insightData.yAxisDouble {
             self.yAxisValue = yAxisValue
         } else {
@@ -289,15 +290,14 @@ enum TransferError: Error {
     case transferFailed
     case decodeFailed
     case serverError(message: String)
-    
+
     var localizedDescription: String {
         switch self {
-        
         case .transferFailed:
             return "There was a communication error with the server. Please check your internet connection and try again later."
         case .decodeFailed:
             return "The server returned a message that this version of the app could not decode. Please check if there is an update to the app, or contact the developer."
-        case .serverError(message: let message):
+        case let .serverError(message: message):
             return "The server returned this error message: \(message)"
         }
     }
@@ -370,25 +370,25 @@ struct RegistrationRequestBody: Codable {
     var userEmail: String = ""
     var userPassword: String = ""
     var userPasswordConfirm: String = ""
-    
+
     var isValid: Bool {
-        return !organisationName.isEmpty && !userFirstName.isEmpty && !userEmail.isEmpty && !userPassword.isEmpty && !userPasswordConfirm.isEmpty && !userPassword.contains(":")
+        !organisationName.isEmpty && !userFirstName.isEmpty && !userEmail.isEmpty && !userPassword.isEmpty && !userPasswordConfirm.isEmpty && !userPassword.contains(":")
     }
 }
 
 struct LoginRequestBody {
     var userEmail: String = ""
     var userPassword: String = ""
-    
+
     var basicHTMLAuthString: String? {
         let loginString = "\(userEmail):\(userPassword)"
         guard let loginData = loginString.data(using: String.Encoding.utf8) else { return nil }
         let base64LoginString = loginData.base64EncodedString()
         return "Basic \(base64LoginString)"
     }
-    
+
     var isValid: Bool {
-        return !userEmail.isEmpty && !userPassword.isEmpty
+        !userEmail.isEmpty && !userPassword.isEmpty
     }
 }
 
@@ -396,9 +396,9 @@ struct UserToken: Codable {
     var id: UUID?
     var value: String
     var user: [String: String]
-    
+
     var bearerTokenAuthString: String {
-        return "Bearer \(value)"
+        "Bearer \(value)"
     }
 }
 
@@ -411,16 +411,16 @@ struct ChartDataSet {
     enum DataError: Error {
         case insufficientData
     }
-    
+
     let data: [ChartDataPoint]
     let lowestValue: Double
     let highestValue: Double
-    
+
     init(data: [InsightData]) throws {
         self.data = try data.map { try ChartDataPoint(insightData: $0) }
-        
-        self.highestValue = self.data.reduce(0, { max($0, $1.yAxisValue) })
-        self.lowestValue = 0
+
+        highestValue = self.data.reduce(0) { max($0, $1.yAxisValue) }
+        lowestValue = 0
     }
 }
 

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct EmptyInsightGroupView: View {
     @EnvironmentObject var api: APIRepresentative
     var selectedInsightGroupID: UUID
@@ -43,10 +42,10 @@ struct EmptyInsightGroupView: View {
 
                         api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in
                             switch result {
-                            case .success(let insightDTO):
+                            case let .success(insightDTO):
                                 selectedInsightID = insightDTO.id
                                 sidebarSection = .InsightEditor
-                            case .failure(let error):
+                            case let .failure(error):
                                 print(error)
                             }
                         }
@@ -64,12 +63,11 @@ struct EmptyInsightGroupView: View {
                     .font(.footnote)
                     .padding(.vertical)
 
-
                 Button("Documentation: Sending Signals") {
                     #if os(macOS)
-                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                        NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                     #else
-                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                        UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                     #endif
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())

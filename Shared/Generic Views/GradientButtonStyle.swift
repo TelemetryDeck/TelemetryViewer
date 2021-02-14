@@ -42,7 +42,8 @@ struct SmallPrimaryButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(
                         configuration.isPressed ? Color("Torange").opacity(0.5) : Color("Torange"),
-                        lineWidth: 1)
+                        lineWidth: 1
+                    )
             )
     }
 }
@@ -58,7 +59,8 @@ struct SmallSecondaryButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(
                         configuration.isPressed ? Color.grayColor.opacity(0.5) : Color.grayColor,
-                        lineWidth: 1)
+                        lineWidth: 1
+                    )
             )
     }
 }
@@ -79,4 +81,3 @@ struct IconButtonStyle: ButtonStyle {
             .padding(2)
     }
 }
-

@@ -10,34 +10,31 @@ import SwiftUI
 struct SidebarView: View {
     @EnvironmentObject var api: APIRepresentative
     #if os(macOS)
-    @EnvironmentObject var appUpdater: AppUpdater
+        @EnvironmentObject var appUpdater: AppUpdater
     #endif
 
     @Binding var selectedApp: TelemetryApp?
-    
+
     var body: some View {
         List(selection: $selectedApp) {
-            
             Section(header: Text("Apps")) {
                 ForEach(api.apps.sorted { $0.name < $1.name }) { app in
-                    
+
                     NavigationLink(
                         destination: AppRootView(appID: app.id),
                         label: {
                             Label(app.name, systemImage: "app")
-                        })
+                        }
+                    )
                 }
             }
-            
+
             Section(header: Text("You")) {
-                
                 if let apiUser = api.user {
-                    
                     NavigationLink(destination: UserSettingsView(), label: {
                         Label("\(apiUser.firstName) \(apiUser.lastName)", systemImage: "person.circle")
                     })
-                    
-                    
+
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(apiUser.organization?.name ?? "Unknown Org", systemImage: "app.badge")
                     })
@@ -47,18 +44,18 @@ struct SidebarView: View {
                 }
 
                 #if os(macOS)
-                NavigationLink(
-                    destination: AppUpdateView(),
-                    label: {
-                        Label(
-                            appUpdater.isAppUpdateAvailable ? "Update Available!" : "Updates",
-                            systemImage: appUpdater.isAppUpdateAvailable ? "info.circle.fill" : "info.circle"
-                        )
-                    }
-                )
+                    NavigationLink(
+                        destination: AppUpdateView(),
+                        label: {
+                            Label(
+                                appUpdater.isAppUpdateAvailable ? "Update Available!" : "Updates",
+                                systemImage: appUpdater.isAppUpdateAvailable ? "info.circle.fill" : "info.circle"
+                            )
+                        }
+                    )
                 #endif
             }
-            
+
             if api.user?.organization?.isSuperOrg == true {
                 Section(header: Text("Administration")) {
                     NavigationLink(
@@ -68,7 +65,7 @@ struct SidebarView: View {
                                 HStack {
                                     Text("Beta Requests")
                                     Spacer()
-                                    Text("\(api.betaRequests.filter({ !$0.isFulfilled && $0.sentAt == nil }).count)")
+                                    Text("\(api.betaRequests.filter { !$0.isFulfilled && $0.sentAt == nil }.count)")
                                         .bold()
                                         .padding(.horizontal, 8)
                                         .foregroundColor(Color.white.opacity(0.8))
@@ -101,7 +98,6 @@ struct SidebarView: View {
                             Label("Debug", systemImage: "ladybug")
                         }
                     )
-
                 }
             }
         }

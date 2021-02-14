@@ -8,7 +8,6 @@
 import Foundation
 
 extension String {
-
     var camelCaseToWords: String {
         unicodeScalars.reduce("") {
             if CharacterSet.uppercaseLetters.contains($1) {

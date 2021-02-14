@@ -21,50 +21,49 @@ struct CustomSection<Content, Header, Summary, Footer>: View where Content: View
         self.summary = summary
         self.footer = footer
         self.content = content
-        self._isCollapsed = State(initialValue: startCollapsed)
+        _isCollapsed = State(initialValue: startCollapsed)
     }
 
     public var body: some View {
         #if os(macOS)
-        Section {
-            VStack(alignment: .leading) {
-                HStack {
-                    header
-                        .font(Font.body.weight(.bold))
-                        .opacity(0.7)
+            Section {
+                VStack(alignment: .leading) {
+                    HStack {
+                        header
+                            .font(Font.body.weight(.bold))
+                            .opacity(0.7)
 
-                    Spacer()
+                        Spacer()
 
-                    summary
-                        .opacity(0.4)
+                        summary
+                            .opacity(0.4)
 
-                    if isHovering {
-                        Image(systemName: isCollapsed ? "chevron.left" : "chevron.down")
+                        if isHovering {
+                            Image(systemName: isCollapsed ? "chevron.left" : "chevron.down")
+                        }
+                    }
+                    .onTapGesture {
+                        withAnimation {
+                            isCollapsed.toggle()
+                        }
                     }
 
-                }
-                .onTapGesture {
-                    withAnimation {
-                        isCollapsed.toggle()
+                    if !isCollapsed {
+                        content()
+
+                        footer
+                            .font(.footnote)
+                            .foregroundColor(.grayColor)
                     }
+
+                    Divider()
                 }
-
-                if !isCollapsed {
-                    content()
-
-                    footer
-                        .font(.footnote)
-                        .foregroundColor(.grayColor)
-                }
-
-                Divider()
             }
-        }
-        .onHover { hover in
-            isHovering = hover
-        }
+            .onHover { hover in
+                isHovering = hover
+            }
         #else
-        Section(header: header, footer: footer, content: content)
+            Section(header: header, footer: footer, content: content)
         #endif
     }
 }

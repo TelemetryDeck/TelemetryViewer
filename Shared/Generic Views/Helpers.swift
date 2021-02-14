@@ -10,9 +10,9 @@ import SwiftUI
 
 func saveToClipBoard(_ clipString: String) {
     #if os(macOS)
-    NSPasteboard.general.declareTypes([.string], owner: nil)
-    NSPasteboard.general.setString(clipString, forType: .string)
+        NSPasteboard.general.declareTypes([.string], owner: nil)
+        NSPasteboard.general.setString(clipString, forType: .string)
     #else
-    UIPasteboard.general.string = clipString
+        UIPasteboard.general.string = clipString
     #endif
 }

@@ -10,9 +10,9 @@ import Foundation
 extension Double {
     var stringValue: String {
         get {
-            return NumberFormatter().string(from: NSNumber(value: self)) ?? "–"
+            NumberFormatter().string(from: NSNumber(value: self)) ?? "–"
         }
-        
+
         set {
             self = NumberFormatter().number(from: newValue)?.doubleValue ?? -1
         }

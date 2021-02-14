@@ -7,27 +7,28 @@
 
 import Foundation
 
-extension Optional where Wrapped == String {
-    var _bound: String? {
+public extension Optional where Wrapped == String {
+    internal var _bound: String? {
         get {
-            return self
+            self
         }
         set {
             self = newValue
         }
     }
-    public var bound: String {
+
+    var bound: String {
         get {
-            return _bound ?? ""
+            _bound ?? ""
         }
         set {
             _bound = newValue.isEmpty ? nil : newValue
         }
     }
-    
-    public var irreversiblyBound: String {
+
+    var irreversiblyBound: String {
         get {
-            return _bound ?? ""
+            _bound ?? ""
         }
         set {
             _bound = newValue

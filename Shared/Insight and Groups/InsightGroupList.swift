@@ -15,26 +15,25 @@ struct InsightGroupList: View {
     @EnvironmentObject var api: APIRepresentative
     var app: TelemetryApp
     var insightGroupID: UUID
-    
+
     let refreshTimer = Timer.publish(
-        every: 5*60, // 5 minutes
+        every: 5 * 60, // 5 minutes
         on: .main,
         in: .common
     ).autoconnect()
-    
+
     var body: some View {
         Group {
             if let insightGroup = (api.insightGroups[app] ?? []).first(where: { $0.id == insightGroupID }), !insightGroup.insights.isEmpty {
-
                 ScrollView(.vertical) {
                     InsightsGrid(app: app, insightGroup: insightGroup, selectedInsightID: $selectedInsightID)
                     Spacer()
 
                     Button("Documentation: Sending Signals") {
                         #if os(macOS)
-                        NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                            NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                         #else
-                        UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                            UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                         #endif
                     }
                     .font(.footnote)
@@ -54,7 +53,6 @@ struct InsightGroupList: View {
                 .padding()
             }
         }
-
 
         .onAppear {
             api.getInsightGroups(for: app)

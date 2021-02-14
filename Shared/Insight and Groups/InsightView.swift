@@ -10,7 +10,7 @@ import TelemetryClient
 
 struct InsightView: View {
     @EnvironmentObject var api: APIRepresentative
-    
+
     let app: TelemetryApp
     let insightGroup: InsightGroup
     let insight: Insight
@@ -18,16 +18,15 @@ struct InsightView: View {
     @State private var isLoading: Bool = false
     @State private var loadingErrorOccurred: Bool = false
 
-    private let loadingIndicator: LoadingIndicator = LoadingIndicator()
-    
+    private let loadingIndicator = LoadingIndicator()
+
     let refreshTimer = Timer.publish(
         every: 1, // second
         on: .main,
         in: .common
     ).autoconnect()
-    
+
     var body: some View {
-        
         VStack(alignment: .leading) {
             HStack {
                 Text(insight.title.uppercased())
@@ -39,13 +38,13 @@ struct InsightView: View {
                         updateNow()
                         TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
                     }
-                
+
                 Spacer()
-                
+
                 Image(systemName: "square.and.pencil")
                     .foregroundColor(.grayColor)
             }
-            
+
             Group {
                 if let insightData = api.insightData[insight.id] {
                     if insightData.isEmpty {
@@ -55,8 +54,7 @@ struct InsightView: View {
                                 .font(.caption)
                                 .foregroundColor(.grayColor)
                         }
-                    }
-                    else {
+                    } else {
                         switch insightData.displayMode {
                         case .raw:
                             RawChartView(insightDataID: insight.id)
@@ -82,32 +80,28 @@ struct InsightView: View {
                             }
                         }
                     }
-                }
-                
-                else {
+                } else {
                     Group {
                         if loadingErrorOccurred {
                             VStack(alignment: .leading) {
                                 Image(systemName: "exclamationmark.triangle")
-                            Text("The server was unable to calculate the results in time. Please try again later.")
-                                .font(.footnote)
-                                .foregroundColor(.grayColor)
+                                Text("The server was unable to calculate the results in time. Please try again later.")
+                                    .font(.footnote)
+                                    .foregroundColor(.grayColor)
                             }
-                        }
-                        else if isLoading {
+                        } else if isLoading {
                             VStack {
                                 loadingIndicator
                             }
                         }
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-
                 }
             }
         }
         .frame(idealHeight: 200)
         .padding()
-        .onAppear() {
+        .onAppear {
             updateIfNecessary()
         }
         .onReceive(refreshTimer) { _ in
@@ -125,7 +119,7 @@ struct InsightView: View {
             }
         }
     }
-    
+
     func updateNow() {
         isLoading = true
         loadingErrorOccurred = false
@@ -133,12 +127,12 @@ struct InsightView: View {
         api.getInsightData(for: insight, in: insightGroup, in: app) { result in
             isLoading = false
 
-            if ((try? result.get()) == nil) {
+            if (try? result.get()) == nil {
                 loadingErrorOccurred = true
             }
         }
     }
-    
+
     func updateIfNecessary() {
         guard !isLoading else { return }
         guard !loadingErrorOccurred else { return }
@@ -155,7 +149,7 @@ struct InsightView: View {
     }
 }
 
-//struct InsightView_Previews: PreviewProvider {
+// struct InsightView_Previews: PreviewProvider {
 //    static var platform: PreviewPlatform? = nil
 //
 //    static var previews: some View {
@@ -168,4 +162,4 @@ struct InsightView: View {
 //        .environmentObject(APIRepresentative())
 //        .previewLayout(.fixed(width: 400, height: 200))
 //    }
-//}
+// }

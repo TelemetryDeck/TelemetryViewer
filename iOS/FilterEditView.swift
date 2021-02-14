@@ -11,10 +11,10 @@ struct FilterEditView: View {
     @Binding var keysAndValues: [String: String]
     let autocompleteOptions: [String]?
     @State private var newKeyName: String?
-    
+
     var body: some View {
         let theKeys = Array(keysAndValues.keys).sorted()
-        
+
         List {
             Section {
                 ForEach(theKeys, id: \.self) { key in
@@ -24,7 +24,7 @@ struct FilterEditView: View {
                         TextField("Value", text: $keysAndValues[key].irreversiblyBound)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
-                            
+
                         Button(action: {
                             keysAndValues[key] = nil
                         }, label: {
@@ -33,7 +33,7 @@ struct FilterEditView: View {
                     }
                 }
             }
-            
+
             Section {
                 HStack {
                     TextField("New Filter Name", text: $newKeyName.bound)
@@ -46,7 +46,7 @@ struct FilterEditView: View {
                     }, label: {
                         Image(systemName: "plus.circle")
                     })
-                    .disabled(newKeyName?.isEmpty != false)
+                        .disabled(newKeyName?.isEmpty != false)
                 }
             }
         }
@@ -59,6 +59,7 @@ struct FilterEditView_Previews: PreviewProvider {
     static var previews: some View {
         FilterEditView(
             keysAndValues: $keysAndValues,
-            autocompleteOptions: [])
+            autocompleteOptions: []
+        )
     }
 }

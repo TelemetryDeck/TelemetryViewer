@@ -64,14 +64,14 @@ struct LoadingIndicator: View {
             return 1
         case .loadingIndefinitely:
             return 1
-        case .loadingTime(time: let time):
+        case let .loadingTime(time: time):
             return time + 1
         }
     }
 
     private let backgroundBarWidhth: CGFloat = 250
 
-    var body: some View { 
+    var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 3)
                 .stroke(Color.grayColor.opacity(0.3), lineWidth: 3)
@@ -84,7 +84,7 @@ struct LoadingIndicator: View {
                 .animation(Animation.linear(duration: animationDuration).repeatForever(autoreverses: shouldAutoreverse))
         }
         .padding()
-        .onAppear() {
+        .onAppear {
             self.loadingState = .loadingIndefinitely
         }
     }

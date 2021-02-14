@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    #if os (macOS)
-    static let grayColor = Color(NSColor.systemGray)
+    #if os(macOS)
+        static let grayColor = Color(NSColor.systemGray)
     #else
-    static let grayColor = Color(UIColor.systemGray)
+        static let grayColor = Color(UIColor.systemGray)
     #endif
 }

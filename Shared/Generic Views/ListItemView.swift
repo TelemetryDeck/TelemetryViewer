@@ -14,13 +14,13 @@ struct ListItemView<Content>: View where Content: View {
     private var isSelected: Bool
 
     public init(selected: Bool = false, background: Color = Color.grayColor.opacity(0.2), spacing: CGFloat? = nil, @ViewBuilder content: () -> Content) {
-        self.isSelected = selected
-        self.backgroundColor = background
+        isSelected = selected
+        backgroundColor = background
         self.spacing = spacing
         self.content = content()
     }
 
-    var body : some View {
+    var body: some View {
         HStack(spacing: spacing) {
             content
         }

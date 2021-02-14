@@ -12,20 +12,18 @@ struct LoginView: View {
     @State private var loginRequestBody = LoginRequestBody()
     @State private var isLoading = false
     @State private var showLoginErrorMessage = false
-    
+
     var body: some View {
         Form {
-            
             HStack {
                 Spacer()
                 Image("authentication").resizable().scaledToFit().frame(maxHeight: 200)
                 Spacer()
             }
-            
+
             .listRowInsets(EdgeInsets())
             .listRowBackground(Color("Torange").opacity(0.1))
-            
-            
+
             if showLoginErrorMessage {
                 VStack(alignment: .leading) {
                     Text("Login Failed").font(.title2)
@@ -37,20 +35,20 @@ struct LoginView: View {
                 .animation(Animation.easeOut.speed(1.5))
                 .transition(.move(edge: .top))
             }
-            
+
             Section(header: Text("Login")) {
                 #if os(macOS)
                     TextField("Email", text: $loginRequestBody.userEmail)
                 #else
                     TextField("Email", text: $loginRequestBody.userEmail)
-                    .textContentType(.emailAddress)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
+                        .textContentType(.emailAddress)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
                 #endif
-                
+
                 SecureField("Password", text: $loginRequestBody.userPassword)
             }
-            
+
             Section {
                 if isLoading {
                     ProgressView()
@@ -59,7 +57,7 @@ struct LoginView: View {
                         isLoading = true
                         api.login(loginRequestBody: loginRequestBody) { success in
                             isLoading = false
-                            
+
                             showLoginErrorMessage = !success
                         }
                     }
@@ -69,7 +67,7 @@ struct LoginView: View {
                     .disabled(!loginRequestBody.isValid)
                     .saturation(loginRequestBody.isValid ? 1 : 0)
                     .animation(.easeOut)
-                    
+
                     if !loginRequestBody.isValid {
                         Text("Please fill out all the fields")
                             .font(.footnote)

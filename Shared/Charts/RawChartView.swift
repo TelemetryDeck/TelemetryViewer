@@ -11,7 +11,7 @@ struct RawChartView: View {
     var insightDataID: UUID
     @EnvironmentObject var api: APIRepresentative
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
-    
+
     var body: some View {
         if let insightData = insightData, !insightData.data.isEmpty {
             if insightData.data.count > 2 {
@@ -38,10 +38,11 @@ struct RawChartView_Previews: PreviewProvider {
             breakdownKey: nil,
             displayMode: .raw,
             data: [
-                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "102")
+                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "102"),
             ],
-            calculatedAt: Date(), calculationDuration: 1)
-        
+            calculatedAt: Date(), calculationDuration: 1
+        )
+
         let insight2 = InsightDataTransferObject(
             id: UUID(),
             order: nil, title: "2 Numbers",
@@ -54,10 +55,11 @@ struct RawChartView_Previews: PreviewProvider {
             displayMode: .raw,
             data: [
                 InsightData(xAxisValue: "2020-11-20T00:00:00+01:00", yAxisValue: "10650"),
-                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "96")
+                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "96"),
             ],
-            calculatedAt: Date(), calculationDuration: 1)
-        
+            calculatedAt: Date(), calculationDuration: 1
+        )
+
         let insight3 = InsightDataTransferObject(
             id: UUID(),
             order: nil, title: "Maaaany Entries",
@@ -73,18 +75,19 @@ struct RawChartView_Previews: PreviewProvider {
                 InsightData(xAxisValue: "Test2", yAxisValue: "Omsn2"),
                 InsightData(xAxisValue: "Test3", yAxisValue: nil),
                 InsightData(xAxisValue: "Test4", yAxisValue: "Omsn4"),
-                InsightData(xAxisValue: "Test5", yAxisValue: "Omsn5")
+                InsightData(xAxisValue: "Test5", yAxisValue: "Omsn5"),
             ],
-            calculatedAt: Date(), calculationDuration: 1)
-        
+            calculatedAt: Date(), calculationDuration: 1
+        )
+
         let api = APIRepresentative()
         api.insightData[insight1.id] = insight1
         api.insightData[insight2.id] = insight2
         api.insightData[insight3.id] = insight3
-        
+
         return api
     }()
-    
+
     static var previews: some View {
         ForEach(Array(api.insightData.keys), id: \.self) { insightID in
             RawChartView(insightDataID: insightID)
@@ -97,7 +100,7 @@ struct RawChartView_Previews: PreviewProvider {
 
 struct SingleValueView: View {
     var insightData: InsightDataTransferObject
-    
+
     let percentageFormatter: NumberFormatter = {
         let percentageFormatter = NumberFormatter()
         percentageFormatter.numberStyle = .percent
@@ -109,7 +112,7 @@ struct SingleValueView: View {
             VStack(alignment: .leading) {
                 Text(insightData.data.last?.yAxisString ?? "0")
                     .font(.system(size: 28, weight: .light, design: .rounded))
-                
+
                 xAxisDefinition(insightData: insightData.data.last!, style: .date)
                     .foregroundColor(.gray)
                     .font(.system(size: 12, weight: .light, design: .default))
@@ -117,7 +120,7 @@ struct SingleValueView: View {
             .padding(.bottom, insightData.data.count > 1 ? nil : 0)
 
             Spacer()
-            
+
             if insightData.data.count > 1 {
                 secondaryText()
                     .foregroundColor(.gray)
@@ -125,19 +128,19 @@ struct SingleValueView: View {
             }
         }
     }
-    
+
     func xAxisDefinition(insightData: InsightData, style: Text.DateStyle) -> Text {
         if let date = insightData.xAxisDate {
             return Text(date, style: style)
         }
-        
+
         return Text(insightData.xAxisValue)
     }
-    
+
     func percentageString(from percentage: Double) -> String {
         let percentageNumber = NSNumber(value: percentage)
         let percentageChangeSymbol: String
-        
+
         if percentage > 0 {
             percentageChangeSymbol = "▵"
         } else if percentage < 0 {
@@ -145,45 +148,43 @@ struct SingleValueView: View {
         } else {
             percentageChangeSymbol = ""
         }
-        
+
         if percentageNumber.doubleValue.isNaN {
             return "No Change"
         }
-        
+
         return "\(percentageChangeSymbol)\(percentageFormatter.string(from: percentageNumber)!)"
     }
-    
+
     func secondaryText() -> Text {
         guard insightData.data.count > 1 else { return Text("") }
         let previousData = insightData.data[0]
-        
+
         guard let currentValue = insightData.data[1].yAxisNumber, let previousValue = insightData.data[0].yAxisNumber else { return xAxisDefinition(insightData: insightData.data[0], style: .date) }
-        
+
         let percentage: Double = (currentValue.doubleValue - previousValue.doubleValue) / previousValue.doubleValue
-        
-        
-        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, style: .date) + Text(" (\(previousData.yAxisString ))")
+
+        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, style: .date) + Text(" (\(previousData.yAxisString))")
     }
 }
 
 struct RawTableView: View {
     var insightData: InsightDataTransferObject
-    
+
     private let columns = [
         GridItem(.flexible(maximum: 200), spacing: nil, alignment: .leading),
-        GridItem(.flexible(), spacing: nil, alignment: .trailing)
+        GridItem(.flexible(), spacing: nil, alignment: .trailing),
     ]
-    
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(insightData.data, id: \.xAxisValue) { dataRow in
                     Group {
                         if let xAxisDate = dataRow.xAxisDate {
-                            
                             HStack {
                                 Text(xAxisDate, style: .date)
-                                
+
                                 if insightData.groupBy == .hour {
                                     Text(xAxisDate, style: .time)
                                 }
@@ -194,8 +195,8 @@ struct RawTableView: View {
                     }
                     .font(.footnote)
                     .foregroundColor(Color.grayColor)
-                    
-                    Text(dataRow.yAxisString )
+
+                    Text(dataRow.yAxisString)
                         .font(.system(size: 28, weight: .light, design: .rounded))
                 }
             }

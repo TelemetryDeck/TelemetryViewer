@@ -16,7 +16,6 @@ struct AppRootSidebar: View {
     var appID: UUID
 
     var body: some View {
-
         VStack {
             Divider()
 
@@ -24,7 +23,7 @@ struct AppRootSidebar: View {
                 Image(systemName: "app").tag(AppRootSidebarSection.AppEditor)
                 Image(systemName: "square.grid.2x2.fill").tag(AppRootSidebarSection.InsightGroupEditor)
                 Image(systemName: "app.fill").tag(AppRootSidebarSection.InsightEditor)
-                
+
                 Image(systemName: "book").tag(AppRootSidebarSection.Lexicon)
                 Image(systemName: "waveform").tag(AppRootSidebarSection.RawSignals)
             }
@@ -75,5 +74,3 @@ struct AppRootSidebar: View {
         }
     }
 }
-
-

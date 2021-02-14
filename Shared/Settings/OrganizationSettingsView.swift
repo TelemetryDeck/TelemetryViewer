@@ -10,7 +10,7 @@ import TelemetryClient
 
 struct UserInfoView: View {
     var user: UserDataTransferObject
-    
+
     var body: some View {
         VStack {
             Text(user.firstName)
@@ -23,23 +23,23 @@ struct UserInfoView: View {
 
 struct OrganizationSettingsView: View {
     @EnvironmentObject var api: APIRepresentative
-    
+
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var sizeClass
+        @Environment(\.horizontalSizeClass) var sizeClass
     #else
-    enum SizeClassNoop {
-        case compact
-        case notCompact
-    }
-    
-    var sizeClass: SizeClassNoop = .notCompact
+        enum SizeClassNoop {
+            case compact
+            case notCompact
+        }
+
+        var sizeClass: SizeClassNoop = .notCompact
     #endif
 
     @State private var showingSheet = false
     @State private var isLoadingSignalNumbers: Bool = false
     @State private var isLoadingOrganizationJoinRequests: Bool = false
     @State private var isLoadingOrganizationUsers: Bool = false
-    
+
     var body: some View {
         HStack {
             List {
@@ -50,18 +50,21 @@ struct OrganizationSettingsView: View {
                     ValueView(
                         value: Double(api.organizationUsers.count),
                         title: api.organizationUsers.count == 1 ? "user" : "users",
-                        isLoading: isLoadingOrganizationUsers)
+                        isLoading: isLoadingOrganizationUsers
+                    )
                     Divider()
                     ValueView(
                         value: Double(api.organizationJoinRequests.count),
-                        title: api.organizationJoinRequests.count == 1 ? "invitation"  : "invitations",
-                        isLoading: isLoadingOrganizationJoinRequests)
+                        title: api.organizationJoinRequests.count == 1 ? "invitation" : "invitations",
+                        isLoading: isLoadingOrganizationJoinRequests
+                    )
                     Divider()
                     ValueView(
                         value: Double(api.numberOfSignals),
                         title: "signals this month",
                         isLoading: isLoadingSignalNumbers,
-                        shouldFormatBigNumbers: true)
+                        shouldFormatBigNumbers: true
+                    )
                 }
 
                 Section(header: Text("Organization Users")) {
@@ -91,7 +94,7 @@ struct OrganizationSettingsView: View {
                             }, label: {
                                 Image(systemName: "minus.circle.fill")
                             })
-                            .buttonStyle(IconButtonStyle())
+                                .buttonStyle(IconButtonStyle())
                         }
                     }
 
@@ -105,24 +108,23 @@ struct OrganizationSettingsView: View {
         .onAppear {
             TelemetryManager.shared.send(TelemetrySignal.organizationSettingsShown.rawValue, for: api.user?.email)
             isLoadingOrganizationUsers = true
-            api.getOrganizationUsers() { _ in
+            api.getOrganizationUsers { _ in
                 isLoadingOrganizationUsers = false
             }
 
             isLoadingOrganizationJoinRequests = true
-            api.getOrganizationJoinRequests() { _ in
+            api.getOrganizationJoinRequests { _ in
                 isLoadingOrganizationJoinRequests = false
             }
 
             isLoadingSignalNumbers = true
-            api.getNumberOfSignals() {_ in
+            api.getNumberOfSignals { _ in
                 isLoadingSignalNumbers = false
             }
         }
         .sheet(isPresented: $showingSheet) {
             CreateOrganizationJoinRequestView()
         }
-        
     }
 }
 

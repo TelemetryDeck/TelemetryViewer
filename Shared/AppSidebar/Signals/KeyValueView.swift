@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-
-
 struct KeyValueView: View {
     var keysAndValues: [String: String]
-    
+
     var body: some View {
         let theKeys = Array(keysAndValues.keys).sorted()
         VStack(alignment: .leading) {
@@ -29,15 +27,15 @@ struct KeyValueView: View {
 struct KeyValueView_Previews: PreviewProvider {
     static var previews: some View {
         KeyValueView(keysAndValues: [
-            "appVersion" : "1.0",
-            "signalClientUser" : "535be16c0989f9c9e21729ea7a1051caafce47bf8f3d17abeac770c7ae51644e",
-            "isAppStore" : "true",
-            "platform" : "macOS",
-            "isTestFlight" : "false",
-            "buildNumber" : "1",
-            "systemVersion" : "macOS 11.0.0",
-            "isSimulator" : "false",
-            "signalType" : "insightUpdatedAutomatically"
+            "appVersion": "1.0",
+            "signalClientUser": "535be16c0989f9c9e21729ea7a1051caafce47bf8f3d17abeac770c7ae51644e",
+            "isAppStore": "true",
+            "platform": "macOS",
+            "isTestFlight": "false",
+            "buildNumber": "1",
+            "systemVersion": "macOS 11.0.0",
+            "isSimulator": "false",
+            "signalType": "insightUpdatedAutomatically",
         ])
     }
 }

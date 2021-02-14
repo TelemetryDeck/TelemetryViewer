@@ -34,11 +34,11 @@ struct EmptyAppView: View {
                     if let app = app {
                         api.create(insightGroupNamed: "New Insight Group", for: app) { result in
                             switch result {
-                            case .success(let insightGroup):
+                            case let .success(insightGroup):
                                 selectedInsightGroupID = insightGroup.id
                                 sidebarSection = .InsightGroupEditor
                                 withAnimation { sidebarShown = true }
-                            case .failure(let error):
+                            case let .failure(error):
                                 print(error.localizedDescription)
                             }
                         }
@@ -53,9 +53,9 @@ struct EmptyAppView: View {
 
                 Button("Documentation: Sending Signals") {
                     #if os(macOS)
-                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                        NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                     #else
-                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                        UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                     #endif
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())

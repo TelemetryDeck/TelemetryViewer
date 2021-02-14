@@ -11,43 +11,43 @@ struct OrderSetter: View {
     @Binding var order: Double
 
     #if os(macOS)
-    var body: some View {
-        HStack {
-            Button(action: {
-                order -= 1
-            }, label: {
-                Image(systemName: "arrow.left")
-            })
+        var body: some View {
+            HStack {
+                Button(action: {
+                    order -= 1
+                }, label: {
+                    Image(systemName: "arrow.left")
+                })
 
-            Spacer()
+                Spacer()
 
-            Text(String(format: "%.0f", order))
+                Text(String(format: "%.0f", order))
 
-            Spacer()
+                Spacer()
 
+                Button(action: {
+                    order += 1
+                }, label: {
+                    Image(systemName: "arrow.right")
+                })
+            }
+        }
+    #else
+        var body: some View {
             Button(action: {
                 order += 1
             }, label: {
-                Image(systemName: "arrow.right")
+                Image(systemName: "arrow.up")
+            })
+
+            Text(String(format: "%.0f", order))
+
+            Button(action: {
+                order -= 1
+            }, label: {
+                Image(systemName: "arrow.down")
             })
         }
-    }
-    #else
-    var body: some View {
-        Button(action: {
-            order += 1
-        }, label: {
-            Image(systemName: "arrow.up")
-        })
-
-        Text(String(format: "%.0f", order))
-
-        Button(action: {
-            order -= 1
-        }, label: {
-            Image(systemName: "arrow.down")
-        })
-    }
     #endif
 }
 

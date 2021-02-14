@@ -11,15 +11,15 @@ import SwiftUI
 struct ColSpan<Content: View>: View {
     let span: Bool
     let content: () -> Content
-    
+
     init(span: Bool, @ViewBuilder content: @escaping () -> Content) {
         self.span = span
         self.content = content
     }
-    
+
     var body: some View {
         content()
-        
+
         if span { Color.clear }
     }
 }

@@ -5,8 +5,8 @@
 //  Copyright © 2019 breakthesystem. All rights reserved.
 //
 
-import TelemetryClient
 import SwiftUI
+import TelemetryClient
 
 enum TelemetrySignal: String {
     case appLaunchedRegularly

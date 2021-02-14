@@ -9,38 +9,36 @@ import SwiftUI
 
 struct SignalView: View {
     var signal: Signal
-    
+
     @State private var showPayload: Bool = false
-    
+
     var columns = [
         GridItem(.fixed(50)),
         GridItem(.fixed(150)),
         GridItem(.flexible()),
         GridItem(.flexible()),
     ]
-    
+
     var payloadColumns = [GridItem(.flexible())]
-    
+
     var body: some View {
-        
         ListItemView {
-
             VStack {
-            HStack(alignment: .top) {
-                Image(systemName: "arrowtriangle.right.fill")
-                    .imageScale(.large)
-                    .rotationEffect(.init(degrees: showPayload ? 90 : 0))
-                    .foregroundColor(.accentColor)
+                HStack(alignment: .top) {
+                    Image(systemName: "arrowtriangle.right.fill")
+                        .imageScale(.large)
+                        .rotationEffect(.init(degrees: showPayload ? 90 : 0))
+                        .foregroundColor(.accentColor)
 
-                VStack(alignment: .leading) {
-                    Text(signal.type.camelCaseToWords).bold()
-                    Group { Text(signal.receivedAt, style: .relative) + Text(" ago") }
-                        .font(.footnote)
-                        .foregroundColor(.grayColor)
+                    VStack(alignment: .leading) {
+                        Text(signal.type.camelCaseToWords).bold()
+                        Group { Text(signal.receivedAt, style: .relative) + Text(" ago") }
+                            .font(.footnote)
+                            .foregroundColor(.grayColor)
+                    }
+
+                    Spacer()
                 }
-
-                Spacer()
-            }
                 if showPayload {
                     if let payload = signal.payload {
                         KeyValueView(keysAndValues: payload)
@@ -54,7 +52,6 @@ struct SignalView: View {
         .onTapGesture {
             showPayload.toggle()
         }
-        
     }
 }
 
@@ -67,7 +64,7 @@ struct SignalView_Previews: PreviewProvider {
             type: "ExampleSignal",
             payload: [
                 "appVersion": "1.0",
-                "systemVersion": "14.0"
+                "systemVersion": "14.0",
             ]
         )
         SignalView(signal: signal)

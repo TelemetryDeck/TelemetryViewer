@@ -28,41 +28,41 @@ struct OrganizationAdmin: View {
 
     var padding: CGFloat? {
         #if os(macOS)
-        return nil
+            return nil
         #else
-        return 0
+            return 0
         #endif
     }
-    
+
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var sizeClass
+        @Environment(\.horizontalSizeClass) var sizeClass
     #endif
 
     var DefaultSidebarWidth: CGFloat {
         #if os(iOS)
-        if sizeClass == .compact {
-            return 800
-        } else {
-            return 350
-        }
+            if sizeClass == .compact {
+                return 800
+            } else {
+                return 350
+            }
         #else
-        return 280
+            return 280
         #endif
     }
 
     var DefaultMoveTransition: AnyTransition {
         #if os(iOS)
-        if sizeClass == .compact {
-            return .move(edge: .bottom)
-        } else {
-            return .move(edge: .trailing)
-        }
+            if sizeClass == .compact {
+                return .move(edge: .bottom)
+            } else {
+                return .move(edge: .trailing)
+            }
 
         #else
-        return .move(edge: .trailing)
+            return .move(edge: .trailing)
         #endif
     }
-    
+
     var body: some View {
         AdaptiveStack(spacing: 0) {
             List {
@@ -87,11 +87,9 @@ struct OrganizationAdmin: View {
 
             if sidebarShown {
                 if let entry = selectedOrganization {
-                    DetailSidebar(isOpen: $sidebarShown , maxWidth: DefaultSidebarWidth) {
-
+                    DetailSidebar(isOpen: $sidebarShown, maxWidth: DefaultSidebarWidth) {
                         VStack {
                             ScrollView {
-
                                 CustomSection(header: Text("Org"), summary: Text(entry.name), footer: EmptyView()) {
                                     Text(entry.name)
                                     Text(entry.foundedAt, style: .date)
@@ -102,7 +100,6 @@ struct OrganizationAdmin: View {
                                 CustomSection(header: Text("Signals This Month"), summary: EmptyView(), footer: EmptyView()) {
                                     Text(numberOfSignals)
                                 }
-
 
                                 CustomSection(header: Text("Founding User"), summary: EmptyView(), footer: EmptyView()) {
                                     Text("\(entry.firstName ?? "–") \(entry.lastName ?? "–")")
@@ -119,13 +116,12 @@ struct OrganizationAdmin: View {
 
                     .transition(DefaultMoveTransition)
                 }
-
             }
         }
         .navigationTitle("Organization Admin")
-        .onAppear() {
+        .onAppear {
             isLoading = true
-            api.getOrganizationAdminEntries() { _ in
+            api.getOrganizationAdminEntries { _ in
                 self.isLoading = false
             }
         }

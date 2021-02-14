@@ -12,7 +12,7 @@ class BigNumberFormatter {
         guard let number = Double(numberString) else { return nil }
 
         let length = numberString.count
-        let divisor = (pow(10, length-1) as NSDecimalNumber).doubleValue
+        let divisor = (pow(10, length - 1) as NSDecimalNumber).doubleValue
 
         let result = number / divisor
         return Int(result.rounded() * divisor)
@@ -24,15 +24,15 @@ class BigNumberFormatter {
         // Available Units
         let units: [Double] = [
             1000,
-            1000000,
-            1000000000,
-            1000000000000
+            1_000_000,
+            1_000_000_000,
+            1_000_000_000_000,
         ]
         let unitPrefixes: [Double: String] = [
             1000: "K",
-            1000000: "M",
-            1000000000: "B",
-            1000000000000: "T"
+            1_000_000: "M",
+            1_000_000_000: "B",
+            1_000_000_000_000: "T",
         ]
 
         // Find out the unit for the specified number

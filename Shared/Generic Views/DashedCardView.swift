@@ -14,16 +14,14 @@ struct DashedCardView<Content>: View where Content: View {
         self.content = content()
     }
 
-    var body : some View {
+    var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .strokeBorder(style: StrokeStyle(lineWidth: 4, dash: [10]))
                 .opacity(0.4)
-                
-                
-            
+
             content
-            .padding()
+                .padding()
         }
         .padding()
     }

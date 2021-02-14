@@ -10,9 +10,9 @@ import SwiftUI
 struct RootView: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var selectedApp: TelemetryApp?
-     
+
     @State private var organizationJoinRequest: OrganizationJoinRequestURLObject?
-    
+
     var body: some View {
         NavigationView {
             SidebarView(selectedApp: $selectedApp)
@@ -39,9 +39,9 @@ struct RootView: View {
 
                         Button("Documentation: Sending Signals") {
                             #if os(macOS)
-                            NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                                NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                             #else
-                            UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                                UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                             #endif
                         }
                         .buttonStyle(SmallSecondaryButtonStyle())
@@ -49,7 +49,6 @@ struct RootView: View {
                 }
                 .frame(maxWidth: 400)
             }
-                
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .sheet(isPresented: $api.userNotLoggedIn, onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
@@ -57,13 +56,13 @@ struct RootView: View {
         }
         .onOpenURL { url in
             // telemetryviewer://registerUserToOrg/orgName/orgId/token/
-            
+
             switch url.urlAction {
             case .registerUserToOrg:
                 guard url.pathComponents.count >= 4 else { return }
                 let orgID = url.pathComponents[2]
                 let token = url.pathComponents[3]
-                
+
                 guard let organization = UUID(uuidString: orgID) else { return }
                 let request = OrganizationJoinRequestURLObject(
                     email: "",
@@ -71,9 +70,10 @@ struct RootView: View {
                     lastName: "",
                     password: "",
                     organizationID: organization,
-                    registrationToken: token)
+                    registrationToken: token
+                )
                 organizationJoinRequest = request
-                
+
 //                shouldShowJoinOrgScreen = true
             default:
                 print("Got a URL but don't know what to do with it, ignoring...")

@@ -20,20 +20,20 @@ class InsightEditorViewModel: ObservableObject {
     @Published var insightSignalType: String = "" { didSet { saveInsight() }}
     @Published var insightUniqueUser: Bool = false { didSet { saveInsight() }}
     @Published var insightFilters: [String: String] = [:] { didSet { saveInsight() }}
-    @Published var insightRollingWindowSize: TimeInterval = -2592000
+    @Published var insightRollingWindowSize: TimeInterval = -2_592_000
     @Published var insightBreakdownKey: String = "" { didSet { saveInsight() }}
     @Published var insightGroupBy: InsightGroupByInterval = .day { didSet { saveInsight() }}
     @Published var insightDisplayMode: InsightDisplayMode = .lineChart { didSet { saveInsight() }}
     @Published var insightIsExpanded: Bool = false { didSet { saveInsight() }}
 
-    private var saveTimer: Timer = Timer()
+    private var saveTimer = Timer()
     private var isSettingUp: Bool = false
 
     init(api: APIRepresentative, appID: UUID, selectedInsightGroupID: UUID, selectedInsightID: UUID) {
         self.api = api
         self.appID = appID
         self.selectedInsightGroupID = selectedInsightGroupID
-        self.selectedInsightID  = selectedInsightID
+        self.selectedInsightID = selectedInsightID
 
         self.updateStateWithInsight()
     }
@@ -54,7 +54,7 @@ class InsightEditorViewModel: ObservableObject {
     }
 
     var insightDTO: InsightDataTransferObject? {
-        return api.insightData[selectedInsightID]
+        api.insightData[selectedInsightID]
     }
 
     var allInsightGroups: [InsightGroup] {
@@ -67,12 +67,12 @@ class InsightEditorViewModel: ObservableObject {
 
     var filterAutocompletionOptions: [String] {
         guard let app = app else { return [] }
-        return api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map { $0.payloadKey }
+        return api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map(\.payloadKey)
     }
 
     var signalTypeAutocompletionOptions: [String] {
         guard let app = app else { return [] }
-        return api.lexiconSignalTypes[app, default: []].map { $0.type }
+        return api.lexiconSignalTypes[app, default: []].map(\.type)
     }
 
     var chartTypeExplanationText: String {
@@ -100,7 +100,7 @@ class InsightEditorViewModel: ObservableObject {
         self.insightSignalType = insight?.signalType ?? ""
         self.insightUniqueUser = insight?.uniqueUser ?? false
         self.insightFilters = insight?.filters ?? [:]
-        self.insightRollingWindowSize = insight?.rollingWindowSize ?? -2592000
+        self.insightRollingWindowSize = insight?.rollingWindowSize ?? -2_592_000
         self.insightBreakdownKey = insight?.breakdownKey ?? ""
         self.insightGroupBy = insight?.groupBy ?? .day
         self.insightDisplayMode = insight?.displayMode ?? .lineChart
@@ -114,7 +114,7 @@ class InsightEditorViewModel: ObservableObject {
         guard !isSettingUp else { return }
 
         saveTimer.invalidate()
-        saveTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+        saveTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
             self.delayedSaveInsight()
         }
     }
@@ -133,7 +133,8 @@ class InsightEditorViewModel: ObservableObject {
             displayMode: insightDisplayMode,
             groupID: allInsightGroups[selectedInsightGroupIndex].id,
             id: selectedInsightID,
-            isExpanded: insightIsExpanded)
+            isExpanded: insightIsExpanded
+        )
 
         if let insight = insight, let insightGroup = insightGroup, let app = app {
             api.update(insight: insight, in: insightGroup, in: app, with: insightDRB)
@@ -158,7 +159,6 @@ class InsightEditorViewModel: ObservableObject {
             api.getSignalTypes(for: app)
         }
     }
-
 }
 
 struct InsightEditor: View {
@@ -167,9 +167,9 @@ struct InsightEditor: View {
     let selectedInsightID: UUID
     var padding: CGFloat? {
         #if os(macOS)
-        return nil
+            return nil
         #else
-        return 0
+            return 0
         #endif
     }
 
@@ -222,12 +222,13 @@ struct InsightEditor: View {
             let signalText = viewModel.insightSignalType.isEmpty ? "All Signals" : viewModel.insightSignalType
             let uniqueText = viewModel.insightUniqueUser ? ", unique" : ""
 
-            CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text(("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any")), startCollapsed: true) {
+            CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"), startCollapsed: true) {
                 AutoCompletingTextField(
                     title: "All Signals",
                     text: $viewModel.insightSignalType,
                     autocompletionOptions: viewModel.signalTypeAutocompletionOptions,
-                    onEditingChanged: { viewModel.saveInsight() })
+                    onEditingChanged: { viewModel.saveInsight() }
+                )
 
                 Toggle(isOn: $viewModel.insightUniqueUser) {
                     HStack {
@@ -247,8 +248,8 @@ struct InsightEditor: View {
                     title: "Payload Key",
                     text: $viewModel.insightBreakdownKey,
                     autocompletionOptions: viewModel.filterAutocompletionOptions,
-                    onEditingChanged: { viewModel.saveInsight() })
-
+                    onEditingChanged: { viewModel.saveInsight() }
+                )
             }
 
             CustomSection(header: Text("Filters"), summary: Text("\(viewModel.insightFilters.count) filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
@@ -269,7 +270,6 @@ struct InsightEditor: View {
             }
 
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-
                 if let dto = viewModel.insightDTO {
                     Group {
                         Text("This Insight was last updated ")
@@ -297,7 +297,6 @@ struct InsightEditor: View {
                         .padding(.bottom, 4)
                 }
 
-
                 Button("Update Now", action: viewModel.updateInsight)
                     .buttonStyle(SmallSecondaryButtonStyle())
 
@@ -305,9 +304,7 @@ struct InsightEditor: View {
                     saveToClipBoard(viewModel.selectedInsightID.uuidString)
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())
-
             }
-
 
             CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                 Button("Delete this Insight", action: viewModel.deleteInsight)
@@ -316,16 +313,16 @@ struct InsightEditor: View {
             }
         }
         .padding(.horizontal, padding)
-        .onAppear() {
+        .onAppear {
             viewModel.updatePayloadKeys()
         }
 
         #if os(macOS)
-        ScrollView {
-            form
-        }
+            ScrollView {
+                form
+            }
         #else
-        form
+            form
         #endif
     }
 }

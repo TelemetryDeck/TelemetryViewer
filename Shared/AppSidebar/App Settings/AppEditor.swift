@@ -27,12 +27,12 @@ struct AppEditor: View {
 
     var padding: CGFloat? {
         #if os(macOS)
-        return nil
+            return nil
         #else
-        return 0
+            return 0
         #endif
     }
-    
+
     var body: some View {
         if let app = app {
             Form {
@@ -42,14 +42,14 @@ struct AppEditor: View {
 
                 CustomSection(header: Text("Unique Identifier"), summary: EmptyView(), footer: EmptyView()) {
                     VStack(alignment: .leading) {
-                        Button (app.id.uuidString) {
+                        Button(app.id.uuidString) {
                             saveToClipBoard(app.id.uuidString)
                         }
                         .buttonStyle(SmallPrimaryButtonStyle())
                         #if os(macOS)
-                        Text("Click to copy this UUID into your apps for tracking.").font(.footnote)
+                            Text("Click to copy this UUID into your apps for tracking.").font(.footnote)
                         #else
-                        Text("Tap to copy this UUID into your apps for tracking.").font(.footnote)
+                            Text("Tap to copy this UUID into your apps for tracking.").font(.footnote)
                         #endif
                     }
                 }
@@ -58,19 +58,18 @@ struct AppEditor: View {
                     Button("New Insight Group") {
                         api.create(insightGroupNamed: "New Insight Group", for: app) { result in
                             switch result {
-                            case .success(let insightGroup):
+                            case let .success(insightGroup):
                                 selectedInsightGroupID = insightGroup.id
                                 sidebarSection = .InsightGroupEditor
-                            case .failure(let error):
+                            case let .failure(error):
                                 print(error.localizedDescription)
                             }
-
                         }
                     }
                     .buttonStyle(SmallSecondaryButtonStyle())
                 }
-                
-               CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView()) {
+
+                CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView()) {
                     Button("Delete App \"\(app.name)\"") {
                         api.delete(app: app)
                         TelemetryManager.shared.send(TelemetrySignal.telemetryAppDeleted.rawValue, for: api.user?.email)
@@ -78,14 +77,13 @@ struct AppEditor: View {
                     .buttonStyle(SmallSecondaryButtonStyle())
                     .accentColor(.red)
                 }
-
             }
             .padding(.horizontal, self.padding)
             .onDisappear { saveToAPI() }
             .onAppear {
                 newName = app.name
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
-                
+
                 // UITableView.appearance().backgroundColor = .clear
             }
         } else {

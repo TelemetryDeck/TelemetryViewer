@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdaptiveStack<Content: View>: View {
     #if os(iOS)
-    @Environment(\.horizontalSizeClass) var sizeClass
+        @Environment(\.horizontalSizeClass) var sizeClass
     #endif
     let horizontalAlignment: HorizontalAlignment
     let verticalAlignment: VerticalAlignment
@@ -26,13 +26,13 @@ struct AdaptiveStack<Content: View>: View {
     var body: some View {
         Group {
             #if os(iOS)
-            if sizeClass == .compact {
-                VStack(alignment: horizontalAlignment, spacing: spacing, content: content)
-            } else {
-                HStack(alignment: verticalAlignment, spacing: spacing, content: content)
-            }
+                if sizeClass == .compact {
+                    VStack(alignment: horizontalAlignment, spacing: spacing, content: content)
+                } else {
+                    HStack(alignment: verticalAlignment, spacing: spacing, content: content)
+                }
             #else
-            HStack(alignment: verticalAlignment, spacing: spacing, content: content)
+                HStack(alignment: verticalAlignment, spacing: spacing, content: content)
             #endif
         }
     }

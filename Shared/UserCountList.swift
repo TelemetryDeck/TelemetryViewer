@@ -9,12 +9,12 @@ import SwiftUI
 
 struct UserCountGroupView: View {
     let userCounts: [UserCount]
-    
+
     let columns = [
         GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.flexible()),
     ]
-    
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
