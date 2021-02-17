@@ -78,6 +78,7 @@ struct DonutChartView: View {
             }
             .frame(width: reader.size.width, height: reader.size.height)
         }
+        .padding(.bottom)
     }
 }
 

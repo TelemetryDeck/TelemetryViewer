@@ -15,7 +15,7 @@ enum AppRootSidebarSection {
     case RawSignals
 }
 
-struct AppRootView: View {
+struct OldAppRootView: View {
     let appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
 
@@ -125,93 +125,69 @@ struct AppRootView: View {
             Label("New Insight", systemImage: "plus.rectangle")
         }
 
-        AdaptiveStack(spacing: 0) {
-            ZStack {
-                VStack(spacing: 0) {
-                    Divider()
+        Group {
+            VStack(spacing: 0) {
+                Divider()
 
-                    if let app = app {
-                        if (api.insightGroups[app] ?? []).isEmpty {
-                            EmptyAppView(
-                                selectedInsightGroupID: $selectedInsightGroupID,
-                                sidebarSection: $sidebarSection,
-                                sidebarShown: sidebarShown,
-                                appID: app.id
-                            )
-                            .frame(maxWidth: 400)
-                            .padding()
-                        } else {
-                            #if os(iOS)
-                                TabView(selection: $selectedInsightGroupID) {
-                                    ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                                        InsightGroupList(
-                                            sidebarSection: $sidebarSection,
-                                            sidebarShown: sidebarShown,
-                                            selectedInsightID: selectedInsightID,
-                                            app: app,
-                                            insightGroupID: insightGroup.id
-                                        )
-                                        .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
-                                        .tag(insightGroup.id)
-                                    }
-                                }
-                                .navigationTitle(app.name)
-                            #else
-                                Group {
+                if let app = app {
+                    if (api.insightGroups[app] ?? []).isEmpty {
+                        EmptyAppView(
+                            selectedInsightGroupID: $selectedInsightGroupID,
+                            sidebarSection: $sidebarSection,
+                            sidebarShown: sidebarShown,
+                            appID: app.id
+                        )
+                        .frame(maxWidth: 400)
+                        .padding()
+                    } else {
+                        #if os(iOS)
+                            TabView(selection: $selectedInsightGroupID) {
+                                ForEach(api.insightGroups[app] ?? []) { insightGroup in
                                     InsightGroupList(
                                         sidebarSection: $sidebarSection,
                                         sidebarShown: sidebarShown,
                                         selectedInsightID: selectedInsightID,
                                         app: app,
-                                        insightGroupID: selectedInsightGroupID
+                                        insightGroupID: insightGroup.id
                                     )
-
-                                    Divider()
-
-                                    Picker(selection: $selectedInsightGroupID, label: Text("")) {
-                                        ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                                            Text(insightGroup.title).tag(insightGroup.id)
-                                        }
-                                    }
-                                    .pickerStyle(SegmentedPickerStyle())
-                                    .padding()
-                                }
-                            #endif
-                        }
-                    } else {
-                        Text("Please select an App").foregroundColor(.grayColor)
-                    }
-                }
-                .background(Color("CardBackgroundColor"))
-                
-                #if os(iOS)
-                    if sizeClass == .compact && sidebarShownValue {
-                        Rectangle()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .opacity(0.2)
-                            .onTapGesture {
-                                withAnimation {
-                                    selectedInsightIDValue = nil
-                                    sidebarShownValue = false
+                                    .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
+                                    .tag(insightGroup.id)
                                 }
                             }
+                            .navigationTitle(app.name)
+                        #else
+                            Group {
+                                InsightGroupList(
+                                    sidebarSection: $sidebarSection,
+                                    sidebarShown: sidebarShown,
+                                    selectedInsightID: selectedInsightID,
+                                    app: app,
+                                    insightGroupID: selectedInsightGroupID
+                                )
+
+                                Divider()
+
+                                Picker(selection: $selectedInsightGroupID, label: Text("")) {
+                                    ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                                        Text(insightGroup.title).tag(insightGroup.id)
+                                    }
+                                }
+                                .pickerStyle(SegmentedPickerStyle())
+                                .padding()
+                            }
+                        #endif
                     }
-                #endif
+                } else {
+                    Text("Please select an App").foregroundColor(.grayColor)
+                }
             }
+            .background(Color("CardBackgroundColor"))
             .onAppear {
                 if let app = app {
                     selectedInsightGroupID = api.insightGroups[app]?.first?.id ?? UUID()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-            if sidebarShownValue {
-                DetailSidebar(isOpen: sidebarShown, maxWidth: DefaultSidebarWidth) {
-                    AppRootSidebar(selectedInsightID: selectedInsightID, selectedInsightGroupID: $selectedInsightGroupID, sidebarSection: $sidebarSection, appID: appID)
-                }
-                .edgesIgnoringSafeArea(.bottom)
-                .transition(DefaultMoveTransition)
-            }
         }
         .toolbar {
             ToolbarItem {

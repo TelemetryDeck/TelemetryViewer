@@ -81,3 +81,20 @@ struct IconButtonStyle: ButtonStyle {
             .padding(2)
     }
 }
+
+struct CardButtonStyle: ButtonStyle {
+    let isSelected: Bool
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                configuration.label
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(configuration.isPressed ? Color("Torange").opacity(0.2) : (isSelected ? Color("Torange").opacity(0.7) : Color("CardBackgroundColor")))
+                    .accentColor(isSelected ? Color("CardBackgroundColor") : Color("Torange"))
+                Divider()
+            }
+            Divider()
+        }
+    }
+}

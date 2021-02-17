@@ -92,55 +92,6 @@ struct BetaRequestsList: View {
         in: .common
     ).autoconnect()
 
-    #if os(iOS)
-        @Environment(\.horizontalSizeClass) var sizeClass
-    #else
-        enum SizeClassNoop {
-            case compact
-            case notCompact
-        }
-
-        var sizeClass: SizeClassNoop = .notCompact
-    #endif
-
-    func listItemView(for betaRequest: BetaRequestEmail) -> some View {
-        Group {
-            #if os(iOS)
-                if sizeClass == .compact {
-                    NavigationLink(destination: BetaRequestDetailView(betaRequestID: betaRequest.id)) {
-                        Text(betaRequest.email)
-                    }
-                } else {
-                    ListItemView(selected: betaRequest == selectedItem && sidebarShown == true) {
-                        Text(betaRequest.email)
-                        Spacer()
-                        Text(betaRequest.requestedAt, style: .date)
-                        Text(betaRequest.requestedAt, style: .time)
-                    }.onTapGesture {
-                        selectedItem = betaRequest
-
-                        withAnimation {
-                            sidebarShown = true
-                        }
-                    }
-                }
-            #else
-                ListItemView(selected: betaRequest == selectedItem && sidebarShown == true) {
-                    Text(betaRequest.email)
-                    Spacer()
-                    Text(betaRequest.requestedAt, style: .date)
-                    Text(betaRequest.requestedAt, style: .time)
-                }.onTapGesture {
-                    selectedItem = betaRequest
-
-                    withAnimation {
-                        sidebarShown = true
-                    }
-                }
-            #endif
-        }
-    }
-
     var body: some View {
         HStack {
             List {
@@ -164,26 +115,26 @@ struct BetaRequestsList: View {
 
                 Section(header: Text("Unfulfilled (\(unfulfilled.count))")) {
                     ForEach(unfulfilled) { betaRequest in
-                        listItemView(for: betaRequest)
+                        NavigationLink(destination: BetaRequestDetailView(betaRequestID: betaRequest.id)) {
+                            Text(betaRequest.email)
+                        }
                     }
                 }
                 Section(header: Text("Email Sent (\(emailSent.count))")) {
                     ForEach(emailSent) { betaRequest in
-                        listItemView(for: betaRequest)
+                        NavigationLink(destination: BetaRequestDetailView(betaRequestID: betaRequest.id)) {
+                            Text(betaRequest.email)
+                        }
                     }
                 }
 
                 Section(header: Text("Fulfilled (\(fulfilled.count))")) {
                     ForEach(fulfilled) { betaRequest in
-                        listItemView(for: betaRequest)
+                        NavigationLink(destination: BetaRequestDetailView(betaRequestID: betaRequest.id)) {
+                            Text(betaRequest.email)
+                        }
                     }
                 }
-            }
-
-            if sidebarShown {
-                DetailSidebar(isOpen: $sidebarShown, maxWidth: 300) {
-                    BetaRequestDetailView(betaRequestID: selectedItem?.id)
-                }.transition(.move(edge: .trailing))
             }
         }
         .navigationTitle("Beta Requests")

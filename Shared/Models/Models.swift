@@ -36,7 +36,7 @@ struct Signal: Codable, Hashable {
     var payload: [String: String]?
 }
 
-struct InsightGroup: Codable, Identifiable {
+struct InsightGroup: Codable, Identifiable, Hashable {
     var id: UUID
     var title: String
     var order: Double?
@@ -44,6 +44,14 @@ struct InsightGroup: Codable, Identifiable {
 
     func getDTO() -> InsightGroupDTO {
         InsightGroupDTO(id: id, title: title, order: order)
+    }
+
+    static func == (lhs: InsightGroup, rhs: InsightGroup) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 
@@ -439,4 +447,11 @@ struct AggregateDTO: Codable {
     let min: TimeInterval
     let avg: TimeInterval
     let max: TimeInterval
+}
+
+enum AppRootViewSelection: Hashable {
+    case insightGroup(group: InsightGroup)
+    case lexicon
+    case rawSignals
+    case noSelection
 }

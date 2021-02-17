@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SidebarView: View {
+struct OldSidebarView: View {
     @EnvironmentObject var api: APIRepresentative
     #if os(macOS)
         @EnvironmentObject var appUpdater: AppUpdater
@@ -21,7 +21,7 @@ struct SidebarView: View {
                 ForEach(api.apps.sorted { $0.name < $1.name }) { app in
 
                     NavigationLink(
-                        destination: AppRootView(appID: app.id),
+                        destination: AppRootView(app: app),
                         label: {
                             Label(app.name, systemImage: "app")
                         }

@@ -29,6 +29,8 @@ struct BarChartView: View {
                 .padding(.bottom)
                 ChartBottomView(insightData: insightData)
             }
+            .padding(.horizontal)
+            .padding(.bottom)
         } else {
             Text("Cannot display this as a Chart")
         }

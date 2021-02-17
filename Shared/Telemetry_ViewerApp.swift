@@ -27,6 +27,8 @@ struct Telemetry_ViewerApp: App {
                     .environmentObject(api)
             #endif
         }
+        .windowToolbarStyle(UnifiedCompactWindowToolbarStyle())
+        .windowStyle(HiddenTitleBarWindowStyle())
         .commands {
             SidebarCommands()
             CommandGroup(replacing: CommandGroupPlacement.help) {

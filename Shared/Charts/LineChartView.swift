@@ -108,9 +108,11 @@ struct LineChartView: View {
 
                 ChartBottomView(insightData: insightData)
                     .padding(.trailing, 35)
+                    .padding(.leading)
             }
             .font(.footnote)
             .foregroundColor(Color.grayColor)
+            .padding(.bottom)
         } else {
             Text("Cannot display this as a Chart")
         }

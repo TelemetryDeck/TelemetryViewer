@@ -18,8 +18,6 @@ struct InsightView: View {
     @State private var isLoading: Bool = false
     @State private var loadingErrorOccurred: Bool = false
 
-    private let loadingIndicator = LoadingIndicator()
-
     let refreshTimer = Timer.publish(
         every: 1, // second
         on: .main,
@@ -32,18 +30,23 @@ struct InsightView: View {
                 Text(insight.title.uppercased())
                     .font(.footnote)
                     .foregroundColor(.grayColor)
-                Image(systemName: isLoading ? "arrow.up.arrow.down.circle" : "arrow.counterclockwise.circle")
-                    .foregroundColor(.grayColor)
-                    .onTapGesture {
-                        updateNow()
-                        TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
+                ZStack {
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .frame(width: 10, height: 10)
+                            .scaleEffect(0.25, anchor: .center)
                     }
 
-                Spacer()
-
-                Image(systemName: "square.and.pencil")
-                    .foregroundColor(.grayColor)
+                    Image(systemName: isLoading ? "circle" : "arrow.counterclockwise.circle")
+                        .foregroundColor(.grayColor)
+                        .onTapGesture {
+                            updateNow()
+                            TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
+                        }
+                }
             }
+            .padding(.leading)
 
             Group {
                 if let insightData = api.insightData[insight.id] {
@@ -53,6 +56,8 @@ struct InsightView: View {
                             Text("This Insight contains no data. This might be because your app has not sent any signals in the selected time range, or no signals that match this Insight's filters.")
                                 .font(.caption)
                                 .foregroundColor(.grayColor)
+                                .padding(.bottom)
+                                .padding(.horizontal)
                         }
                     } else {
                         switch insightData.displayMode {
@@ -91,7 +96,7 @@ struct InsightView: View {
                             }
                         } else if isLoading {
                             VStack {
-                                loadingIndicator
+                                ProgressView()
                             }
                         }
                     }
@@ -100,7 +105,7 @@ struct InsightView: View {
             }
         }
         .frame(idealHeight: 200)
-        .padding()
+        .padding(.top)
         .onAppear {
             updateIfNecessary()
         }

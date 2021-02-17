@@ -18,6 +18,14 @@ struct RawChartView: View {
                 RawTableView(insightData: insightData)
             } else {
                 SingleValueView(insightData: insightData)
+                    .frame(minWidth: 0,
+                           maxWidth: .infinity,
+                           minHeight: 0,
+                           maxHeight: .infinity,
+                           alignment: .topLeading
+                            )
+                    .padding(.bottom)
+                    .padding(.horizontal)
             }
         } else {
             Text("No Data").foregroundColor(.grayColor)
@@ -181,24 +189,27 @@ struct RawTableView: View {
             LazyVGrid(columns: columns) {
                 ForEach(insightData.data, id: \.xAxisValue) { dataRow in
                     Group {
-                        if let xAxisDate = dataRow.xAxisDate {
-                            HStack {
-                                Text(xAxisDate, style: .date)
+                        Group {
+                            if let xAxisDate = dataRow.xAxisDate {
+                                HStack {
+                                    Text(xAxisDate, style: .date)
 
-                                if insightData.groupBy == .hour {
-                                    Text(xAxisDate, style: .time)
+                                    if insightData.groupBy == .hour {
+                                        Text(xAxisDate, style: .time)
+                                    }
                                 }
+                            } else {
+                                Text(dataRow.xAxisValue)
                             }
-                        } else {
-                            Text(dataRow.xAxisValue)
                         }
-                    }
-                    .font(.footnote)
-                    .foregroundColor(Color.grayColor)
+                        .font(.footnote)
+                        .foregroundColor(Color.grayColor)
 
-                    Text(dataRow.yAxisString)
-                        .font(.system(size: 28, weight: .light, design: .rounded))
+                        Text(dataRow.yAxisString)
+                            .font(.system(size: 28, weight: .light, design: .rounded))
+                    }
                 }
+                .padding(.horizontal)
             }
         }
     }
