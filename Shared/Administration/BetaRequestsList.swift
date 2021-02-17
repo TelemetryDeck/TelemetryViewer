@@ -11,6 +11,8 @@ struct BetaRequestDetailView: View {
     var betaRequestID: UUID?
     @EnvironmentObject var api: APIRepresentative
 
+    @State var showDestructiveActions: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
             if let betaRequest = api.betaRequests.first { $0.id == betaRequestID } {
@@ -50,18 +52,22 @@ struct BetaRequestDetailView: View {
                     .buttonStyle(PrimaryButtonStyle())
                 }
 
-                Divider()
+                Toggle("Show destructive actions", isOn: $showDestructiveActions)
 
-                Button("Mark as \(betaRequest.isFulfilled ? "Not Fulfilled" : "Fulfilled")") {
-                    let updateBody = BetaRequestUpdateBody(sentAt: betaRequest.sentAt, isFulfilled: !betaRequest.isFulfilled)
-                    api.update(betaRequest: betaRequest, with: updateBody)
-                }
-                .buttonStyle(SecondaryButtonStyle())
+                if showDestructiveActions {
+                    Divider()
 
-                Button("Delete this Request") {
-                    api.delete(betaRequest: betaRequest)
+                    Button("Mark as \(betaRequest.isFulfilled ? "Not Fulfilled" : "Fulfilled")") {
+                        let updateBody = BetaRequestUpdateBody(sentAt: betaRequest.sentAt, isFulfilled: !betaRequest.isFulfilled)
+                        api.update(betaRequest: betaRequest, with: updateBody)
+                    }
+                    .buttonStyle(SecondaryButtonStyle())
+
+                    Button("Delete this Request") {
+                        api.delete(betaRequest: betaRequest)
+                    }
+                    .buttonStyle(SecondaryButtonStyle())
                 }
-                .buttonStyle(SecondaryButtonStyle())
 
                 Spacer()
 
@@ -141,6 +147,20 @@ struct BetaRequestsList: View {
                 let unfulfilled = api.betaRequests.filter { !$0.isFulfilled && $0.sentAt == nil }
                 let emailSent = api.betaRequests.filter { !$0.isFulfilled && $0.sentAt != nil }
                 let fulfilled = api.betaRequests.filter { $0.isFulfilled }
+
+                HStack {
+                    ValueView(value: Double(unfulfilled.count), title: "Unfulfilled", unit: "")
+                    Divider()
+                    ValueView(value: Double(emailSent.count), title: "Email Sent", unit: "")
+                    Divider()
+                    ValueView(value: Double(fulfilled.count), title: "Fulfilled", unit: "")
+                    Divider()
+                    Button(action: {
+                        api.getBetaRequests()
+                    }, label: {
+                        Image(systemName: "arrow.counterclockwise.circle")
+                    })
+                }
 
                 Section(header: Text("Unfulfilled (\(unfulfilled.count))")) {
                     ForEach(unfulfilled) { betaRequest in
