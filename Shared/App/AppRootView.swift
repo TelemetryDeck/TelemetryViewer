@@ -126,7 +126,7 @@ struct AppRootView: View {
         }
 
         AdaptiveStack(spacing: 0) {
-            Group {
+            ZStack {
                 VStack(spacing: 0) {
                     Divider()
 
@@ -183,6 +183,20 @@ struct AppRootView: View {
                     }
                 }
                 .background(Color("CardBackgroundColor"))
+                
+                #if os(iOS)
+                    if sizeClass == .compact && sidebarShownValue {
+                        Rectangle()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .opacity(0.2)
+                            .onTapGesture {
+                                withAnimation {
+                                    selectedInsightIDValue = nil
+                                    sidebarShownValue = false
+                                }
+                            }
+                    }
+                #endif
             }
             .onAppear {
                 if let app = app {
