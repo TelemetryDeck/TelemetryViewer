@@ -13,7 +13,7 @@ struct WelcomeView: View {
             VStack(spacing: 15) {
                 HStack {
                     Spacer()
-                    Image("analyzing_process")
+                    Image("appIcon")
                         .resizable()
                         .scaledToFit()
                     Spacer()
