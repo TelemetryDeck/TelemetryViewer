@@ -146,7 +146,7 @@ struct OldAppRootView: View {
                                     InsightGroupList(
                                         sidebarSection: $sidebarSection,
                                         sidebarShown: sidebarShown,
-                                        selectedInsightID: selectedInsightID,
+                                        topSelectedInsightID: topSelectedInsightID,
                                         app: app,
                                         insightGroupID: insightGroup.id
                                     )

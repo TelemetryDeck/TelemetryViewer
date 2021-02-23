@@ -10,6 +10,12 @@ import SwiftUI
 struct DonutChartView: View {
     var insightDataID: UUID
     @EnvironmentObject var api: APIRepresentative
+
+    @Binding var topSelectedInsightID: UUID?
+    private var isSelected: Bool {
+        return topSelectedInsightID == insightDataID
+    }
+
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
     private var chartDataSet: ChartDataSet? {
         guard let insightData = insightData else { return nil }
@@ -58,14 +64,16 @@ struct DonutChartView: View {
         let legend = VStack(alignment: .center, spacing: -5) {
             if pieSegments.count > 0 {
                 Text(pieSegments[selectedSegmentIndex].data.id)
+                    .foregroundColor(isSelected ? .cardBackground : .none)
                 Text("\(numberFormatter.string(from: NSNumber(value: pieSegments[selectedSegmentIndex].data.yAxisValue)) ?? "–")")
-                    .font(.system(size: 48, weight: .black, design: .monospaced))
+                    .font(.system(size: 28, weight: .light, design: .rounded))
+                    .foregroundColor(isSelected ? .cardBackground : .none)
             } else {
                 HStack {
                     Spacer()
                     Text("No Data Recorded Yet")
                         .font(.footnote)
-                        .foregroundColor(.grayColor)
+                        .foregroundColor(isSelected ? .cardBackground : .grayColor)
                     Spacer()
                 }
             }

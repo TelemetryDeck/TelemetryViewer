@@ -61,6 +61,13 @@ struct LineChart: Shape {
 struct LineChartView: View {
     var insightDataID: UUID
     @EnvironmentObject var api: APIRepresentative
+
+
+    @Binding var topSelectedInsightID: UUID?
+    private var isSelected: Bool {
+        return topSelectedInsightID == insightDataID
+    }
+
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
     private var chartDataSet: ChartDataSet? {
         guard let insightData = insightData else { return nil }
@@ -86,11 +93,13 @@ struct LineChartView: View {
                                 if lastValue != chartDataSet.lowestValue && percentage < 0.9 {
                                     Text(BigNumberFormatter.shortDisplay(for: chartDataSet.lowestValue.stringValue))
                                         .position(x: 10, y: reader.size.height)
+                                        .foregroundColor(isSelected ? .cardBackground : .none)
                                 }
 
                                 if lastValue != chartDataSet.highestValue && percentage > 0.1 {
                                     Text(BigNumberFormatter.shortDisplay(for: chartDataSet.highestValue.stringValue))
                                         .position(x: 10, y: 0)
+                                        .foregroundColor(isSelected ? .cardBackground : .none)
                                 }
 
                                 if !percentage.isNaN {
@@ -106,7 +115,7 @@ struct LineChartView: View {
                     }
                 }
 
-                ChartBottomView(insightData: insightData)
+                ChartBottomView(insightData: insightData, isSelected: isSelected)
                     .padding(.trailing, 35)
                     .padding(.leading)
             }

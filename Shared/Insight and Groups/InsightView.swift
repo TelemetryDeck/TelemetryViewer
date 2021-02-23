@@ -11,6 +11,11 @@ import TelemetryClient
 struct InsightView: View {
     @EnvironmentObject var api: APIRepresentative
 
+    @Binding var topSelectedInsightID: UUID?
+    private var isSelected: Bool {
+        return topSelectedInsightID == insight.id
+    }
+
     let app: TelemetryApp
     let insightGroup: InsightGroup
     let insight: Insight
@@ -29,7 +34,7 @@ struct InsightView: View {
             HStack {
                 Text(insight.title.uppercased())
                     .font(.footnote)
-                    .foregroundColor(.grayColor)
+                    .foregroundColor(isSelected ? .cardBackground : .grayColor)
                 ZStack {
                     if isLoading {
                         ProgressView()
@@ -39,7 +44,7 @@ struct InsightView: View {
                     }
 
                     Image(systemName: isLoading ? "circle" : "arrow.counterclockwise.circle")
-                        .foregroundColor(.grayColor)
+                        .foregroundColor(isSelected ? .cardBackground : .grayColor)
                         .onTapGesture {
                             updateNow()
                             TelemetryManager.shared.send(TelemetrySignal.insightUpdatedManually.rawValue, for: api.user?.email, with: ["insightDisplayMode": insight.displayMode.rawValue])
@@ -62,13 +67,13 @@ struct InsightView: View {
                     } else {
                         switch insightData.displayMode {
                         case .raw:
-                            RawChartView(insightDataID: insight.id)
+                            RawChartView(insightDataID: insight.id, topSelectedInsightID: $topSelectedInsightID)
                         case .pieChart:
-                            DonutChartView(insightDataID: insight.id)
+                            DonutChartView(insightDataID: insight.id, topSelectedInsightID: $topSelectedInsightID)
                         case .lineChart:
-                            LineChartView(insightDataID: insight.id)
+                            LineChartView(insightDataID: insight.id, topSelectedInsightID: $topSelectedInsightID)
                         case .barChart:
-                            BarChartView(insightDataID: insight.id)
+                            BarChartView(insightDataID: insight.id, topSelectedInsightID: $topSelectedInsightID)
                         default:
                             VStack {
                                 Spacer()

@@ -14,4 +14,7 @@ extension Color {
     #else
         static let grayColor = Color(UIColor.systemGray)
     #endif
+
+    static let telemetryOrange = Color("Torange")
+    static let cardBackground = Color("CardBackgroundColor")
 }

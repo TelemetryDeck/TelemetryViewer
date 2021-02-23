@@ -10,14 +10,20 @@ import SwiftUI
 struct RawChartView: View {
     var insightDataID: UUID
     @EnvironmentObject var api: APIRepresentative
+
+    @Binding var topSelectedInsightID: UUID?
+    private var isSelected: Bool {
+        return topSelectedInsightID == insightDataID
+    }
+
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
 
     var body: some View {
         if let insightData = insightData, !insightData.data.isEmpty {
             if insightData.data.count > 2 {
-                RawTableView(insightData: insightData)
+                RawTableView(insightData: insightData, isSelected: isSelected)
             } else {
-                SingleValueView(insightData: insightData)
+                SingleValueView(insightData: insightData, isSelected: isSelected)
                     .frame(minWidth: 0,
                            maxWidth: .infinity,
                            minHeight: 0,
@@ -98,7 +104,7 @@ struct RawChartView_Previews: PreviewProvider {
 
     static var previews: some View {
         ForEach(Array(api.insightData.keys), id: \.self) { insightID in
-            RawChartView(insightDataID: insightID)
+            RawChartView(insightDataID: insightID, topSelectedInsightID: .constant(nil))
                 .environmentObject(api)
                 .padding()
                 .previewLayout(.fixed(width: 400, height: 200))
@@ -108,6 +114,8 @@ struct RawChartView_Previews: PreviewProvider {
 
 struct SingleValueView: View {
     var insightData: InsightDataTransferObject
+
+    let isSelected: Bool
 
     let percentageFormatter: NumberFormatter = {
         let percentageFormatter = NumberFormatter()
@@ -120,9 +128,10 @@ struct SingleValueView: View {
             VStack(alignment: .leading) {
                 Text(insightData.data.last?.yAxisString ?? "0")
                     .font(.system(size: 28, weight: .light, design: .rounded))
+                    .foregroundColor(isSelected ? .cardBackground : .none)
 
                 xAxisDefinition(insightData: insightData.data.last!, style: .date)
-                    .foregroundColor(.gray)
+                    .foregroundColor(isSelected ? .cardBackground : .grayColor)
                     .font(.system(size: 12, weight: .light, design: .default))
             }
             .padding(.bottom, insightData.data.count > 1 ? nil : 0)
@@ -131,7 +140,7 @@ struct SingleValueView: View {
 
             if insightData.data.count > 1 {
                 secondaryText()
-                    .foregroundColor(.gray)
+                    .foregroundColor(isSelected ? .cardBackground : .grayColor)
                     .font(.system(size: 12, weight: .light, design: .default))
             }
         }
@@ -179,6 +188,8 @@ struct SingleValueView: View {
 struct RawTableView: View {
     var insightData: InsightDataTransferObject
 
+    let isSelected: Bool
+
     private let columns = [
         GridItem(.flexible(maximum: 200), spacing: nil, alignment: .leading),
         GridItem(.flexible(), spacing: nil, alignment: .trailing),
@@ -193,20 +204,24 @@ struct RawTableView: View {
                             if let xAxisDate = dataRow.xAxisDate {
                                 HStack {
                                     Text(xAxisDate, style: .date)
+                                        .foregroundColor(isSelected ? .cardBackground : .none)
 
                                     if insightData.groupBy == .hour {
                                         Text(xAxisDate, style: .time)
+                                            .foregroundColor(isSelected ? .cardBackground : .none)
                                     }
                                 }
                             } else {
                                 Text(dataRow.xAxisValue)
+                                    .foregroundColor(isSelected ? .cardBackground : .none)
                             }
                         }
                         .font(.footnote)
-                        .foregroundColor(Color.grayColor)
+                        .foregroundColor(isSelected ? .cardBackground : .grayColor)
 
                         Text(dataRow.yAxisString)
                             .font(.system(size: 28, weight: .light, design: .rounded))
+                            .foregroundColor(isSelected ? .cardBackground : .none)
                     }
                 }
                 .padding(.horizontal)

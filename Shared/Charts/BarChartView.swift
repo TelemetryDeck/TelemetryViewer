@@ -10,6 +10,12 @@ import SwiftUI
 struct BarChartView: View {
     var insightDataID: UUID
     @EnvironmentObject var api: APIRepresentative
+
+    @Binding var topSelectedInsightID: UUID?
+    private var isSelected: Bool {
+        return topSelectedInsightID == insightDataID
+    }
+
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
     private var chartDataSet: ChartDataSet? {
         guard let insightData = insightData else { return nil }
@@ -27,7 +33,7 @@ struct BarChartView: View {
                     }
                 }
                 .padding(.bottom)
-                ChartBottomView(insightData: insightData)
+                ChartBottomView(insightData: insightData, isSelected: isSelected)
             }
             .padding(.horizontal)
             .padding(.bottom)
@@ -39,7 +45,7 @@ struct BarChartView: View {
 
 struct BarChartView_Previews: PreviewProvider {
     static var previews: some View {
-        BarChartView(insightDataID: UUID())
+        BarChartView(insightDataID: UUID(), topSelectedInsightID: .constant(nil))
     }
 }
 

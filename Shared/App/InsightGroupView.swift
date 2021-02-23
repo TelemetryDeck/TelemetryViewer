@@ -29,7 +29,7 @@ struct InsightGroupView: View {
                     #endif
 
                     NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
-                        InsightView(app: app, insightGroup: insightGroup, insight: insight)
+                        InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
                     }
                     .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
                 }
@@ -44,7 +44,7 @@ struct InsightGroupView: View {
                         #endif
 
                         NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
-                            InsightView(app: app, insightGroup: insightGroup, insight: insight)
+                            InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
                         }
                         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
                     }
@@ -52,5 +52,8 @@ struct InsightGroupView: View {
             }
         }
         .background(Color("CardBackgroundColor"))
+        .onTapGesture {
+            selectedInsightID = nil
+        }
     }
 }

@@ -21,7 +21,7 @@ struct InsightsGrid: View {
             ForEach(expandedInsights) { insight in
                 
                 CardView(selected: selectedInsightID == insight.id) {
-                    InsightView(app: app, insightGroup: insightGroup, insight: insight)
+                    InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
                 }
             }
 
@@ -29,7 +29,7 @@ struct InsightsGrid: View {
                 ForEach(nonExpandedInsights) { insight in
 
                     CardView(selected: selectedInsightID == insight.id) {
-                        InsightView(app: app, insightGroup: insightGroup, insight: insight)
+                        InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
                     }
                     .onTapGesture {
                         selectedInsightID = insight.id

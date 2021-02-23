@@ -10,6 +10,8 @@ import SwiftUI
 struct ChartBottomView: View {
     var insightData: InsightDataTransferObject?
 
+    let isSelected: Bool
+
     private let widthPerLabel: CGFloat = 160
 
     var body: some View {
@@ -48,6 +50,6 @@ struct ChartBottomView: View {
         }
         .frame(maxHeight: 12)
         .font(.footnote)
-        .foregroundColor(Color.grayColor)
+        .foregroundColor(isSelected ? .cardBackground : .grayColor)
     }
 }
