@@ -153,7 +153,7 @@ struct InsightData: Codable {
     }
 
     var xAxisDate: Date? {
-        Formatter.iso8601noFS.date(from: xAxisValue)
+        Formatter.iso8601noFS.date(from: xAxisValue) ?? Formatter.iso8601.date(from: xAxisValue)
     }
 }
 
