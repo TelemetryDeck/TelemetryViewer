@@ -51,7 +51,7 @@ struct TelemetryWidgetEntryView: View {
                 Text(entry.insight.title.uppercased())
                     .font(.system(size: 12, weight: .medium, design: .default))
                     .foregroundColor(Color("Torange"))
-                RawChartView(insightDataID: entry.insight.id)
+                RawChartView(insightDataID: entry.insight.id, topSelectedInsightID: .constant(nil))
                 Spacer()
             }
             Spacer()
