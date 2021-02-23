@@ -65,7 +65,7 @@ struct DonutChartView: View {
             if pieSegments.count > 0 {
                 Text(pieSegments[selectedSegmentIndex].data.id)
                     .foregroundColor(isSelected ? .cardBackground : .none)
-                Text("\(numberFormatter.string(from: NSNumber(value: pieSegments[selectedSegmentIndex].data.yAxisValue)) ?? "–")")
+                Text("\(BigNumberFormatter.shortDisplay(for: pieSegments[selectedSegmentIndex].data.yAxisValue) )")
                     .font(.system(size: 28, weight: .light, design: .rounded))
                     .foregroundColor(isSelected ? .cardBackground : .none)
             } else {
