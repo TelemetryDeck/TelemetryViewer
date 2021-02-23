@@ -71,7 +71,7 @@ struct OrganizationAdmin: View {
                 }
 
                 ForEach(api.organizationAdminListEntries) { entry in
-                    ListItemView(selected: selectedOrganization?.id == entry.id, background: entry.isSuperOrg ? Color("Torange").opacity(0.2) : Color.grayColor.opacity(0.2)) {
+                    ListItemView(selected: selectedOrganization?.id == entry.id, background: entry.isSuperOrg ?Color.telemetryOrange.opacity(0.2) : Color.grayColor.opacity(0.2)) {
                         Text(entry.name)
                         Spacer()
                         Text(numberFormatter.string(from: NSNumber(value: entry.sumSignals))!)

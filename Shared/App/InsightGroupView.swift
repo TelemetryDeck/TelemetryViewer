@@ -51,7 +51,7 @@ struct InsightGroupView: View {
                 }
             }
         }
-        .background(Color("CardBackgroundColor"))
+        .background(Color.cardBackground)
         .onTapGesture {
             selectedInsightID = nil
         }

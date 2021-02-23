@@ -28,7 +28,7 @@ struct RootView: View {
             #endif
         }
         .sheet(isPresented: $api.userNotLoggedIn, onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
-            WelcomeView().accentColor(Color("Torange"))
+            WelcomeView().accentColor(.telemetryOrange)
         }
     }
 }

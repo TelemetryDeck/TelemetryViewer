@@ -59,7 +59,7 @@ struct AutoCompletingTextField: View {
 
             if isShowingAutoCompleteList {
                 ZStack {
-                    Color("CardBackgroundColor")
+                    Color.cardBackground
                     ScrollView {
                         VStack {
                             ForEach(autocompletionOptions.filter { $0.lowercased().contains(text.wrappedValue.lowercased()) }, id: \.self) { option in

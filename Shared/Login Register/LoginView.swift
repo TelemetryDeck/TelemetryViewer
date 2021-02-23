@@ -22,7 +22,7 @@ struct LoginView: View {
             }
 
             .listRowInsets(EdgeInsets())
-            .listRowBackground(Color("Torange").opacity(0.1))
+            .listRowBackground(Color.telemetryOrange.opacity(0.1))
 
             if showLoginErrorMessage {
                 VStack(alignment: .leading) {
