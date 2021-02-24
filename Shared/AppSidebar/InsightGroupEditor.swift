@@ -63,6 +63,7 @@ class InsightGroupEditorViewModel: ObservableObject {
                 filters: [:],
                 rollingWindowSize: -2_592_000,
                 breakdownKey: nil,
+                groupBy: .day,
                 displayMode: .lineChart,
                 groupID: insightGroup.id,
                 id: nil,

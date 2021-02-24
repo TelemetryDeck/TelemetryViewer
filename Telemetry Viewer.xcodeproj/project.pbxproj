@@ -98,8 +98,8 @@
 		DC92395825E5B2DE00D1729C /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC92395625E5B2DE00D1729C /* ChartRangeView.swift */; };
 		DC92395925E5B2DE00D1729C /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC92395625E5B2DE00D1729C /* ChartRangeView.swift */; };
 		DC92395B25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */; };
-		DC92395D25E5B67500D1729C /* OldAppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A615256DBC3B00EE84DA /* OldAppRootView.swift */; };
-		DC92395E25E5B67500D1729C /* OldAppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A615256DBC3B00EE84DA /* OldAppRootView.swift */; };
+		DC92395D25E5B67500D1729C /* AppRootSidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A615256DBC3B00EE84DA /* AppRootSidebarSection.swift */; };
+		DC92395E25E5B67500D1729C /* AppRootSidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A615256DBC3B00EE84DA /* AppRootSidebarSection.swift */; };
 		DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AAB6250A671900FF26FD /* AppEditor.swift */; };
 		DC98AAB8250A671900FF26FD /* AppEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AAB6250A671900FF26FD /* AppEditor.swift */; };
 		DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
@@ -215,7 +215,7 @@
 		DC25A58C256BF1D800EE84DA /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBottomView.swift; sourceTree = "<group>"; };
 		DC25A5DF256D844300EE84DA /* DetailSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
-		DC25A615256DBC3B00EE84DA /* OldAppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAppRootView.swift; sourceTree = "<group>"; };
+		DC25A615256DBC3B00EE84DA /* AppRootSidebarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootSidebarSection.swift; sourceTree = "<group>"; };
 		DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+OnUpdate.swift"; sourceTree = "<group>"; };
 		DC25A63F256ED12100EE84DA /* InsightGroupEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGroupEditor.swift; sourceTree = "<group>"; };
 		DC25A6482570108E00EE84DA /* InsightEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditor.swift; sourceTree = "<group>"; };
@@ -383,7 +383,7 @@
 				DC24DF6525DD73990003ADCB /* AppRootViewIOS.swift */,
 				DC24DF4D25DD58A80003ADCB /* InsightGroupView.swift */,
 				DC24DF5625DD602D0003ADCB /* InsightSidebarView.swift */,
-				DC25A615256DBC3B00EE84DA /* OldAppRootView.swift */,
+				DC25A615256DBC3B00EE84DA /* AppRootSidebarSection.swift */,
 				DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */,
 				DC627EF425A35B8500C1DF33 /* AppRootSidebar.swift */,
 				DCFCDCBD25DD82BF00ACC529 /* NewInsightEditor.swift */,
@@ -874,7 +874,7 @@
 				DC25A63A256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
 				DC8FAD5D257E5C360019A186 /* String+CamelCase.swift in Sources */,
 				DC4504FA25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
-				DC92395E25E5B67500D1729C /* OldAppRootView.swift in Sources */,
+				DC92395E25E5B67500D1729C /* AppRootSidebarSection.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC627EF525A35B8500C1DF33 /* AppRootSidebar.swift in Sources */,
 				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
@@ -912,7 +912,7 @@
 				DCB02B8025038F5000304964 /* MockData.swift in Sources */,
 				DC25A58E256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC4E2F6E25641BF1001AD7B4 /* RoundedCorners.swift in Sources */,
-				DC92395D25E5B67500D1729C /* OldAppRootView.swift in Sources */,
+				DC92395D25E5B67500D1729C /* AppRootSidebarSection.swift in Sources */,
 				DC8FAD61257E5C910019A186 /* String+CamelCase.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
 				DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */,
