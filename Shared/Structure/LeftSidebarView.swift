@@ -80,6 +80,14 @@ struct LeftSidebarView: View {
         .listStyle(SidebarListStyle())
         .navigationTitle("Telemetry")
         .toolbar {
+
+            #if os(macOS)
+            Button(action: toggleSidebar) {
+                Image(systemName: "sidebar.left")
+                    .help("Toggle Sidebar")
+            }
+
+            #endif
             Spacer()
             Button(action: {
                 api.create(appNamed: "New App")
@@ -88,4 +96,11 @@ struct LeftSidebarView: View {
             }
         }
     }
+
+    #if os(macOS)
+    private func toggleSidebar() {
+        NSApp.keyWindow?.firstResponder?
+            .tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+    }
+    #endif
 }
