@@ -46,12 +46,14 @@ struct AppRootView: View {
         }
         .toolbar {
             ToolbarItem {
-                Menu("Manu") {
+                Menu {
                     Section {
                         NavigationLink("Edit App", destination: Text("Editor APp"))
 
                         if let insightGroup = insightGroup {
                             NavigationLink("Edit Group", destination: Text("Editor Group"))
+
+                            Divider()
 
                             Button(action: {
                                 let definitionRequestBody = InsightDefinitionRequestBody.new(groupID: insightGroup.id)
@@ -61,6 +63,8 @@ struct AppRootView: View {
                             }
                         }
                     }
+                } label: {
+                    Label("Menu", systemImage: "ellipsis.circle")
                 }
             }
         }
