@@ -11,7 +11,7 @@ struct LeftSidebarView: View {
     @EnvironmentObject var api: APIRepresentative
 
     #if os(macOS)
-    @EnvironmentObject var appUpdater: AppUpdater
+        @EnvironmentObject var appUpdater: AppUpdater
     #endif
 
     @State private var isDefaultItemActive = true
@@ -46,17 +46,17 @@ struct LeftSidebarView: View {
             }
 
             #if os(macOS)
-            Section(header: Text("App Updates")) {
-                NavigationLink(
-                    destination: AppUpdateView(),
-                    label: {
-                        Label(
-                            appUpdater.isAppUpdateAvailable ? "Update Available!" : "Updates",
-                            systemImage: appUpdater.isAppUpdateAvailable ? "info.circle.fill" : "info.circle"
-                        )
-                    }
-                )
-            }
+                Section(header: Text("App Updates")) {
+                    NavigationLink(
+                        destination: AppUpdateView(),
+                        label: {
+                            Label(
+                                appUpdater.isAppUpdateAvailable ? "Update Available!" : "Updates",
+                                systemImage: appUpdater.isAppUpdateAvailable ? "info.circle.fill" : "info.circle"
+                            )
+                        }
+                    )
+                }
             #endif
 
             if api.user?.organization?.isSuperOrg == true {
@@ -80,29 +80,30 @@ struct LeftSidebarView: View {
         .listStyle(SidebarListStyle())
         .navigationTitle("Telemetry")
         .toolbar {
+            ToolbarItemGroup {
+                #if os(macOS)
+                    Button(action: toggleSidebar) {
+                        Image(systemName: "sidebar.left")
+                            .help("Toggle Sidebar")
+                    }
+                    .help("Toggle the left sidebar")
+                #endif
 
-            #if os(macOS)
-            Button(action: toggleSidebar) {
-                Image(systemName: "sidebar.left")
-                    .help("Toggle Sidebar")
+                Spacer()
+                Button(action: {
+                    api.create(appNamed: "New App")
+                }) {
+                    Label("New App", systemImage: "plus.app.fill")
+                }
+                .help("Create a New App")
             }
-            .help("Toggle the left sidebar")
-
-            #endif
-            Spacer()
-            Button(action: {
-                api.create(appNamed: "New App")
-            }) {
-                Label("New App", systemImage: "plus.app.fill")
-            }
-            .help("Create a New App")
         }
     }
 
     #if os(macOS)
-    private func toggleSidebar() {
-        NSApp.keyWindow?.firstResponder?
-            .tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-    }
+        private func toggleSidebar() {
+            NSApp.keyWindow?.firstResponder?
+                .tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+        }
     #endif
 }

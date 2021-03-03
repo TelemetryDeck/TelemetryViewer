@@ -47,7 +47,7 @@ struct InsightGroup: Codable, Identifiable, Hashable {
     }
 
     static func == (lhs: InsightGroup, rhs: InsightGroup) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id
     }
 
     func hash(into hasher: inout Hasher) {

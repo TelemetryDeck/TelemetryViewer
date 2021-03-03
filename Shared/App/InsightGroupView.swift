@@ -10,6 +10,7 @@ import SwiftUI
 struct InsightGroupView: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var selectedInsightID: UUID?
+    @State private var isTapped = false
 
     let app: TelemetryApp
     let insightGroup: InsightGroup
@@ -23,14 +24,19 @@ struct InsightGroupView: View {
                 ForEach(expandedInsights) { insight in
 
                     #if os(iOS)
-                    let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
+                        let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
                     #else
-                    let destination = InsightSidebarView(app: app, insightGroup: insightGroup, insight: insight)
+                        let destination = InsightSidebarView(app: app, insightGroup: insightGroup, insight: insight)
                     #endif
 
                     NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
                         InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
                     }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        #if os(macOS)
+                            openRightSidebar()
+                        #endif
+                    })
                     .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
                 }
 
@@ -38,14 +44,19 @@ struct InsightGroupView: View {
                     ForEach(nonExpandedInsights) { insight in
 
                         #if os(iOS)
-                        let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
+                            let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
                         #else
-                        let destination = InsightSidebarView(app: app, insightGroup: insightGroup, insight: insight)
+                            let destination = InsightSidebarView(app: app, insightGroup: insightGroup, insight: insight)
                         #endif
 
                         NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
                             InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
                         }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            #if os(macOS)
+                                openRightSidebar()
+                            #endif
+                        })
                         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
                     }
                 }

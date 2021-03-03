@@ -13,7 +13,7 @@ struct InsightView: View {
 
     @Binding var topSelectedInsightID: UUID?
     private var isSelected: Bool {
-        return topSelectedInsightID == insight.id
+        topSelectedInsightID == insight.id
     }
 
     let app: TelemetryApp

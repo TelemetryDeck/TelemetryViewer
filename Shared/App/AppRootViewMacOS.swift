@@ -15,7 +15,7 @@ struct AppRootView: View {
 
     private var insightGroup: InsightGroup? {
         switch selection {
-        case .insightGroup(let group):
+        case let .insightGroup(group):
             return group
         default:
             return nil
@@ -46,7 +46,6 @@ struct AppRootView: View {
         }
     }
 
-
     func reloadVisibleInsights() {
         guard let insightGroup = insightGroup else { return }
 
@@ -55,7 +54,6 @@ struct AppRootView: View {
         }
     }
 
-
     var body: some View {
         Group {
             switch selection {
@@ -63,7 +61,7 @@ struct AppRootView: View {
                 LexiconView(appID: app.id)
             case .rawSignals:
                 SignalList(appID: app.id)
-            case .insightGroup(let group):
+            case let .insightGroup(group):
                 InsightGroupView(app: app, insightGroup: group)
             case .noSelection:
                 Text("Hi!")
@@ -74,6 +72,10 @@ struct AppRootView: View {
             if let firstInsightGroup = api.insightGroups[app]?.first, selection == .noSelection {
                 selection = .insightGroup(group: firstInsightGroup)
             }
+
+            #if os(macOS)
+                setupSidebars()
+            #endif
         }
         .toolbar {
             Spacer()
@@ -92,45 +94,44 @@ struct AppRootView: View {
             }.pickerStyle(SegmentedPickerStyle())
 
             Spacer()
-                Menu {
-                    Section {
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
-                            api.timeWindowEnd = nil
-                            reloadVisibleInsights()
-                        }) {
-                            Label("Last Year", systemImage: "calendar")
-                        }
+            Menu {
+                Section {
+                    Button(action: {
+                        api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
+                        api.timeWindowEnd = nil
+                        reloadVisibleInsights()
+                    }) {
+                        Label("Last Year", systemImage: "calendar")
+                    }
 
-                        Button(action: {
-                            api.timeWindowBeginning = nil
-                            api.timeWindowEnd = nil
-                            reloadVisibleInsights()
-                        }) {
-                            Label("Last Month", systemImage: "calendar")
-                        }
+                    Button(action: {
+                        api.timeWindowBeginning = nil
+                        api.timeWindowEnd = nil
+                        reloadVisibleInsights()
+                    }) {
+                        Label("Last Month", systemImage: "calendar")
+                    }
 
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
-                            api.timeWindowEnd = nil
-                            reloadVisibleInsights()
-                        }) {
-                            Label("Last Week", systemImage: "calendar")
-                        }
+                    Button(action: {
+                        api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
+                        api.timeWindowEnd = nil
+                        reloadVisibleInsights()
+                    }) {
+                        Label("Last Week", systemImage: "calendar")
+                    }
 
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
-                            api.timeWindowEnd = nil
-                            reloadVisibleInsights()
-                        }) {
-                            Label("Today", systemImage: "calendar")
-                        }
+                    Button(action: {
+                        api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
+                        api.timeWindowEnd = nil
+                        reloadVisibleInsights()
+                    }) {
+                        Label("Today", systemImage: "calendar")
                     }
                 }
-                label: {
-                    Text(timeIntervalDescription)
-                }
-
+            }
+            label: {
+                Text(timeIntervalDescription)
+            }
 
             Spacer()
 

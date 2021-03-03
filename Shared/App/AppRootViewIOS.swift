@@ -15,7 +15,7 @@ struct AppRootView: View {
 
     private var insightGroup: InsightGroup? {
         switch selection {
-        case .insightGroup(let group):
+        case let .insightGroup(group):
             return group
         default:
             return nil

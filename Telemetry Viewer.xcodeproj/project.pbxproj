@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */; };
+		DC0CCF7D25F0306A008EB297 /* View+toggleSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* AppInfoView.swift */; };
@@ -205,6 +207,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
+		DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+toggleSidebar.swift"; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -493,6 +497,8 @@
 				DCD52C492541FFE3003F12C6 /* ColSpan.swift */,
 				DC8FAD5C257E5C360019A186 /* String+CamelCase.swift */,
 				DC4504F925C4940E0031C7FD /* BigNumberFormatter.swift */,
+				DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */,
+				DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -925,6 +931,7 @@
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				DC627EF625A35B8500C1DF33 /* AppRootSidebar.swift in Sources */,
 				DC98AAB8250A671900FF26FD /* AppEditor.swift in Sources */,
+				DC0CCF7D25F0306A008EB297 /* View+toggleSidebar.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
@@ -934,6 +941,7 @@
 				DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
 				DC24DF5825DD602D0003ADCB /* InsightSidebarView.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
+				DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC4504FB25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				DC25A64A2570108E00EE84DA /* InsightEditor.swift in Sources */,

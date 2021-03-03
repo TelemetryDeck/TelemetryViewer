@@ -34,19 +34,30 @@ struct InsightSidebarView: View {
             }
         }
         .toolbar {
-            Spacer()
-            Picker(selection: $sidebarSection, label: Text("")) {
-                Image(systemName: "app").tag(InsightSidebarSection.AppEditor)
+            ToolbarItemGroup {
+                Picker(selection: $sidebarSection, label: Text("")) {
+                    Image(systemName: "app").tag(InsightSidebarSection.AppEditor)
 
-                if insightGroup != nil {
-                    Image(systemName: "square.grid.2x2.fill").tag(InsightSidebarSection.InsightGroupEditor)
-                }
+                    if insightGroup != nil {
+                        Image(systemName: "square.grid.2x2.fill").tag(InsightSidebarSection.InsightGroupEditor)
+                    }
 
-                if insight != nil {
-                    Image(systemName: "app.fill").tag(InsightSidebarSection.InsightEditor)
+                    if insight != nil {
+                        Image(systemName: "app.fill").tag(InsightSidebarSection.InsightEditor)
+                    }
                 }
+                .pickerStyle(SegmentedPickerStyle())
             }
-            .pickerStyle(SegmentedPickerStyle())
+
+            ToolbarItemGroup {
+                #if os(macOS)
+                    Button(action: toggleRightSidebar) {
+                        Image(systemName: "sidebar.right")
+                            .help("Toggle Sidebar")
+                    }
+                    .help("Toggle the right sidebar")
+                #endif
+            }
         }
     }
 }

@@ -42,7 +42,6 @@ struct InsightQueryDetailView: View {
     }
 }
 
-
 struct InsightQueryAdmin: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var selectedInsight: Insight?

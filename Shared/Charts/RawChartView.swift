@@ -13,7 +13,7 @@ struct RawChartView: View {
 
     @Binding var topSelectedInsightID: UUID?
     private var isSelected: Bool {
-        return topSelectedInsightID == insightDataID
+        topSelectedInsightID == insightDataID
     }
 
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
@@ -28,8 +28,7 @@ struct RawChartView: View {
                            maxWidth: .infinity,
                            minHeight: 0,
                            maxHeight: .infinity,
-                           alignment: .topLeading
-                            )
+                           alignment: .topLeading)
                     .padding(.bottom)
                     .padding(.horizontal)
             }

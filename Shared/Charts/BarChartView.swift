@@ -13,7 +13,7 @@ struct BarChartView: View {
 
     @Binding var topSelectedInsightID: UUID?
     private var isSelected: Bool {
-        return topSelectedInsightID == insightDataID
+        topSelectedInsightID == insightDataID
     }
 
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
@@ -24,7 +24,6 @@ struct BarChartView: View {
 
     var body: some View {
         if let chartDataSet = chartDataSet {
-
             VStack {
                 HStack {
                     GeometryReader { geometry in

@@ -19,7 +19,7 @@ struct InsightsGrid: View {
             let nonExpandedInsights = insightGroup.insights.filter { !$0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
 
             ForEach(expandedInsights) { insight in
-                
+
                 CardView(selected: selectedInsightID == insight.id) {
                     InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
                 }

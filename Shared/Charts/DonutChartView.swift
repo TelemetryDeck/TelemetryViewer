@@ -13,7 +13,7 @@ struct DonutChartView: View {
 
     @Binding var topSelectedInsightID: UUID?
     private var isSelected: Bool {
-        return topSelectedInsightID == insightDataID
+        topSelectedInsightID == insightDataID
     }
 
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
@@ -65,7 +65,7 @@ struct DonutChartView: View {
             if pieSegments.count > 0 {
                 Text(pieSegments[selectedSegmentIndex].data.id)
                     .foregroundColor(isSelected ? .cardBackground : .none)
-                Text("\(BigNumberFormatter.shortDisplay(for: pieSegments[selectedSegmentIndex].data.yAxisValue) )")
+                Text("\(BigNumberFormatter.shortDisplay(for: pieSegments[selectedSegmentIndex].data.yAxisValue))")
                     .font(.system(size: 28, weight: .light, design: .rounded))
                     .foregroundColor(isSelected ? .cardBackground : .none)
             } else {

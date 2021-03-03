@@ -61,17 +61,17 @@ struct NewInsightEditorContent {
     }
 
     func insightDefinitionRequestBody() -> InsightDefinitionRequestBody {
-        return InsightDefinitionRequestBody(
-            order: self.order, title: self.title,
+        InsightDefinitionRequestBody(
+            order: order, title: title,
             subtitle: nil,
-            signalType: self.signalType.isEmpty ? nil : self.signalType,
-            uniqueUser: self.uniqueUser,
-            filters: self.filters,
-            rollingWindowSize: self.rollingWindowSize,
-            breakdownKey: self.breakdownKey.isEmpty ? nil : self.breakdownKey,
-            groupBy: self.breakdownKey.isEmpty ? self.groupBy : nil,
-            displayMode: self.displayMode,
-            groupID: self.groupID, id: self.id, isExpanded: self.isExpanded
+            signalType: signalType.isEmpty ? nil : signalType,
+            uniqueUser: uniqueUser,
+            filters: filters,
+            rollingWindowSize: rollingWindowSize,
+            breakdownKey: breakdownKey.isEmpty ? nil : breakdownKey,
+            groupBy: breakdownKey.isEmpty ? groupBy : nil,
+            displayMode: displayMode,
+            groupID: groupID, id: id, isExpanded: isExpanded
         )
     }
 }
@@ -89,20 +89,20 @@ struct NewInsightEditor: View {
         self.app = app
         self.insightGroup = insightGroup
         self.insight = insight
-        self._insightDRB = State(initialValue: NewInsightEditorContent.from(insight: insight))
+        _insightDRB = State(initialValue: NewInsightEditorContent.from(insight: insight))
     }
 
     func save() {
-        self.api.update(insight: self.insight, in: self.insightGroup, in: self.app, with: self.insightDRB.insightDefinitionRequestBody())
+        api.update(insight: insight, in: insightGroup, in: app, with: insightDRB.insightDefinitionRequestBody())
     }
 
     func updatePayloadKeys() {
-        self.api.getPayloadKeys(for: self.app)
-        self.api.getSignalTypes(for: self.app)
+        api.getPayloadKeys(for: app)
+        api.getSignalTypes(for: app)
     }
 
     var chartTypeExplanationText: String {
-        switch self.insightDRB.displayMode {
+        switch insightDRB.displayMode {
         case .number:
             return "Currently, 'Number' is the selected Chart Type. This chart type is no longer supported, and you should choose the 'Raw' instead."
         case .raw:
@@ -117,7 +117,7 @@ struct NewInsightEditor: View {
     }
 
     var chartImage: Image {
-        switch self.insightDRB.displayMode {
+        switch insightDRB.displayMode {
         case .raw:
             return Image(systemName: "number.square.fill")
         case .barChart:
@@ -132,11 +132,11 @@ struct NewInsightEditor: View {
     }
 
     var filterAutocompletionOptions: [String] {
-        return self.api.lexiconPayloadKeys[self.app, default: []].filter { !$0.isHidden }.map(\.payloadKey)
+        api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map(\.payloadKey)
     }
 
     var signalTypeAutocompletionOptions: [String] {
-        return self.api.lexiconSignalTypes[self.app, default: []].map(\.type)
+        api.lexiconSignalTypes[app, default: []].map(\.type)
     }
 
     var body: some View {
@@ -147,7 +147,7 @@ struct NewInsightEditor: View {
                 Toggle(isOn: $insightDRB.isExpanded, label: {
                     Text("Show Expanded")
                 })
-                .onChange(of: insightDRB.isExpanded) { _ in save() }
+                    .onChange(of: insightDRB.isExpanded) { _ in save() }
             }
 
             CustomSection(header: Text("Chart Type"), summary: chartImage, footer: Text(chartTypeExplanationText), startCollapsed: true) {
@@ -268,11 +268,11 @@ struct NewInsightEditor: View {
         .onAppear { updatePayloadKeys() }
 
         #if os(macOS)
-        ScrollView {
-            form.padding()
-        }
+            ScrollView {
+                form.padding()
+            }
         #else
-        form
+            form
         #endif
     }
 }

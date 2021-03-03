@@ -62,10 +62,9 @@ struct LineChartView: View {
     var insightDataID: UUID
     @EnvironmentObject var api: APIRepresentative
 
-
     @Binding var topSelectedInsightID: UUID?
     private var isSelected: Bool {
-        return topSelectedInsightID == insightDataID
+        topSelectedInsightID == insightDataID
     }
 
     private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
