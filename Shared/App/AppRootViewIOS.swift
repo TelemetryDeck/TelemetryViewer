@@ -22,6 +22,38 @@ struct AppRootView: View {
         }
     }
 
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
+    var timeIntervalDescription: String {
+        let displayTimeWindowEnd = api.timeWindowEnd ?? Date()
+        let displayTimeWindowBegin = api.timeWindowBeginning ??
+            displayTimeWindowEnd.addingTimeInterval(-60 * 60 * 24 * 30)
+
+        if api.timeWindowEnd == nil {
+            if api.timeWindowBeginning == nil {
+                return "Showing Last 30 Days"
+            } else {
+                let components = Calendar.current.dateComponents([.day], from: displayTimeWindowBegin, to: displayTimeWindowEnd)
+                return "Showing Last \(components.day ?? 0) Days"
+            }
+        } else {
+            return "\(dateFormatter.string(from: displayTimeWindowBegin)) – \(dateFormatter.string(from: displayTimeWindowEnd))"
+        }
+    }
+
+    func reloadVisibleInsights() {
+        guard let insightGroup = insightGroup else { return }
+
+        for insight in insightGroup.insights {
+            api.getInsightData(for: insight, in: insightGroup, in: app)
+        }
+    }
+
     var body: some View {
         TabView(selection: $selection) {
             ForEach(api.insightGroups[app] ?? []) { insightGroup in
@@ -61,6 +93,48 @@ struct AppRootView: View {
                             }) {
                                 Label("New Insight", systemImage: "plus.rectangle")
                             }
+                        }
+                    }
+
+                    Section {
+
+                        Menu {
+                            Section {
+                                Button(action: {
+                                    api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
+                                    api.timeWindowEnd = nil
+                                    reloadVisibleInsights()
+                                }) {
+                                    Label("Last Year", systemImage: "calendar")
+                                }
+
+                                Button(action: {
+                                    api.timeWindowBeginning = nil
+                                    api.timeWindowEnd = nil
+                                    reloadVisibleInsights()
+                                }) {
+                                    Label("Last Month", systemImage: "calendar")
+                                }
+
+                                Button(action: {
+                                    api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
+                                    api.timeWindowEnd = nil
+                                    reloadVisibleInsights()
+                                }) {
+                                    Label("Last Week", systemImage: "calendar")
+                                }
+
+                                Button(action: {
+                                    api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
+                                    api.timeWindowEnd = nil
+                                    reloadVisibleInsights()
+                                }) {
+                                    Label("Today", systemImage: "calendar")
+                                }
+                            }
+                        }
+                        label: {
+                            Text(timeIntervalDescription)
                         }
                     }
                 } label: {

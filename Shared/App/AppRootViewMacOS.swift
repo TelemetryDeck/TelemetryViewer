@@ -78,8 +78,6 @@ struct AppRootView: View {
             #endif
         }
         .toolbar {
-            Spacer()
-
             Picker("View Mode", selection: $selection) {
                 ForEach(api.insightGroups[app] ?? []) { insightGroup in
                     Text(insightGroup.title).tag(AppRootViewSelection.insightGroup(group: insightGroup))

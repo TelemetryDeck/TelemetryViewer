@@ -137,8 +137,8 @@
 		DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D7D25517EDD0032B9AD /* Helpers.swift */; };
 		DCB28D892551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D8C2551C3330032B9AD /* TelemetryWidget.intentdefinition */; };
 		DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D8C2551C3330032B9AD /* TelemetryWidget.intentdefinition */; };
-		DCC8CB5B2562DC8D0019267A /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */; };
-		DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */; };
+		DCC8CB5B2562DC8D0019267A /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* Buttonstyles.swift */; };
+		DCC8CB5C2562DC8D0019267A /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* Buttonstyles.swift */; };
 		DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB66256308250019267A /* MacNavigationView.swift */; };
 		DCC8CB762563103E0019267A /* Illustrations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC8CB752563103E0019267A /* Illustrations.xcassets */; };
 		DCC8CB772563103E0019267A /* Illustrations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC8CB752563103E0019267A /* Illustrations.xcassets */; };
@@ -271,7 +271,7 @@
 		DCB28D7D25517EDD0032B9AD /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		DCB28D8B2551C3330032B9AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/TelemetryWidget.intentdefinition; sourceTree = "<group>"; };
 		DCB28D912551C3420032B9AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TelemetryWidget.strings; sourceTree = "<group>"; };
-		DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
+		DCC8CB5A2562DC8D0019267A /* Buttonstyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttonstyles.swift; sourceTree = "<group>"; };
 		DCC8CB66256308250019267A /* MacNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
 		DCC8CB752563103E0019267A /* Illustrations.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Illustrations.xcassets; sourceTree = "<group>"; };
 		DCCD4818253D9E870098EC95 /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
@@ -466,7 +466,7 @@
 				DCB02B6D250277A700304964 /* AdaptiveStack.swift */,
 				DC415C0D2531F6C300D8D0B1 /* Color.swift */,
 				DCB28D7D25517EDD0032B9AD /* Helpers.swift */,
-				DCC8CB5A2562DC8D0019267A /* GradientButtonStyle.swift */,
+				DCC8CB5A2562DC8D0019267A /* Buttonstyles.swift */,
 				DC4E2F6C25641BF1001AD7B4 /* RoundedCorners.swift */,
 				DC25A5DF256D844300EE84DA /* DetailSidebar.swift */,
 				DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */,
@@ -857,7 +857,7 @@
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				DCF5583B25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
-				DCC8CB5B2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
+				DCC8CB5B2562DC8D0019267A /* Buttonstyles.swift in Sources */,
 				DCFCDCBE25DD82BF00ACC529 /* NewInsightEditor.swift in Sources */,
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
@@ -934,7 +934,7 @@
 				DC0CCF7D25F0306A008EB297 /* View+toggleSidebar.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
-				DCC8CB5C2562DC8D0019267A /* GradientButtonStyle.swift in Sources */,
+				DCC8CB5C2562DC8D0019267A /* Buttonstyles.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DCCD481A253D9E870098EC95 /* Formatter+ISO.swift in Sources */,
