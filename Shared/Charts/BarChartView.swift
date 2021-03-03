@@ -61,23 +61,21 @@ struct BarView: View {
     let dataEntry: ChartDataPoint
     let geometry: GeometryProxy
 
-    @State private var isHovering = false
-
     var body: some View {
         let percentage = CGFloat(dataEntry.yAxisValue / data.highestValue)
 
         VStack {
-            RoundedCorners(tl: 5, tr: 5, bl: 0, br: 0)
-                .fill(isHovering ? Color.accentColor : Color.accentColor.opacity(0.7))
-                .frame(height: percentage.isNaN ? 0 : percentage * geometry.size.height)
-                .overlay(Rectangle()
+            ZStack(alignment: .bottom) {
+                RoundedCorners(tl: 5, tr: 5, bl: 0, br: 0)
+                    .fill(Color.accentColor)
+                    .frame(height: percentage.isNaN ? 0 : percentage * geometry.size.height)
+
+                Rectangle()
                     .foregroundColor(Color.accentColor.opacity(0.3))
                     .cornerRadius(3.0)
                     .offset(x: 0, y: 3)
-                    .frame(height: 3), alignment: .bottom)
-        }
-        .onHover { hover in
-            isHovering = hover
+                    .frame(height: 3)
+            }
         }
     }
 }

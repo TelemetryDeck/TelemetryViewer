@@ -97,7 +97,6 @@ struct AppRootView: View {
                     }
 
                     Section {
-
                         Menu {
                             Section {
                                 Button(action: {
