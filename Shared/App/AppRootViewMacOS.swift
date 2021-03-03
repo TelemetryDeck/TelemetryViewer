@@ -85,8 +85,10 @@ struct AppRootView: View {
 
                 Image(systemName: "book")
                     .tag(AppRootViewSelection.lexicon)
+                    .help("Lexicon")
                 Image(systemName: "waveform")
                     .tag(AppRootViewSelection.rawSignals)
+                    .help("Raw Signals")
             }.pickerStyle(SegmentedPickerStyle())
 
             Spacer()
@@ -139,6 +141,7 @@ struct AppRootView: View {
                 }) {
                     Label("New Insight", systemImage: "plus.rectangle")
                 }
+                .help("New Insight")
             }
         }
     }

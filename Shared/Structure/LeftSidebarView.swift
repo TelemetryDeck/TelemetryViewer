@@ -86,6 +86,7 @@ struct LeftSidebarView: View {
                 Image(systemName: "sidebar.left")
                     .help("Toggle Sidebar")
             }
+            .help("Toggle the left sidebar")
 
             #endif
             Spacer()
@@ -94,6 +95,7 @@ struct LeftSidebarView: View {
             }) {
                 Label("New App", systemImage: "plus.app.fill")
             }
+            .help("Create a New App")
         }
     }
 
