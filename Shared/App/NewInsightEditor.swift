@@ -151,7 +151,7 @@ struct NewInsightEditor: View {
             group.id == insightDRB.groupID
         })
         else { return "..." }
-        
+
         return insightGroup.title
     }
 
@@ -177,15 +177,17 @@ struct NewInsightEditor: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
 
-            CustomSection(header: Text("Group Values by"), summary: Text(insightDRB.groupBy.rawValue), footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive."), startCollapsed: true) {
-                Picker(selection: $insightDRB.groupBy, label: Text("")) {
-                    Text("Hour").tag(InsightGroupByInterval.hour)
-                    Text("Day").tag(InsightGroupByInterval.day)
-                    Text("Week").tag(InsightGroupByInterval.week)
-                    Text("Month").tag(InsightGroupByInterval.month)
+            if insightDRB.breakdownKey.isEmpty {
+                CustomSection(header: Text("Group Values by"), summary: Text(insightDRB.groupBy.rawValue), footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive."), startCollapsed: true) {
+                    Picker(selection: $insightDRB.groupBy, label: Text("")) {
+                        Text("Hour").tag(InsightGroupByInterval.hour)
+                        Text("Day").tag(InsightGroupByInterval.day)
+                        Text("Week").tag(InsightGroupByInterval.week)
+                        Text("Month").tag(InsightGroupByInterval.month)
+                    }
+                    .onChange(of: insightDRB.groupBy) { _ in save() }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
-                .onChange(of: insightDRB.groupBy) { _ in save() }
-                .pickerStyle(SegmentedPickerStyle())
             }
 
             let signalText = insightDRB.signalType.isEmpty ? "All Signals" : insightDRB.signalType
