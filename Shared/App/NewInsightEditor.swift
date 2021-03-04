@@ -146,6 +146,15 @@ struct NewInsightEditor: View {
         api.lexiconSignalTypes[app, default: []].map(\.type)
     }
 
+    var insightGroupTitle: String {
+        guard let insightGroup = api.insightGroups[app]?.first(where: { (group) -> Bool in
+            group.id == insightDRB.groupID
+        })
+        else { return "..." }
+        
+        return insightGroup.title
+    }
+
     var body: some View {
         let form = Form {
             CustomSection(header: Text("Name"), summary: Text(insight.title), footer: Text("The Title of This Insight")) {
@@ -218,14 +227,15 @@ struct NewInsightEditor: View {
                     .onChange(of: insightDRB.order) { _ in save() }
             }
 
-//            CustomSection(header: Text("Insight Group"), summary: Text(insightDRB.insightGroup?.title ?? "..."), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
-//                Picker(selection: $.selectedInsightGroupIndex, label: EmptyView()) {
-//                    ForEach(0 ..< viewModel.allInsightGroups.count) {
-//                        Text(viewModel.allInsightGroups[$0].title)
-//                    }
-//                }
-//                .pickerStyle(DefaultPickerStyle())
-//            }
+            CustomSection(header: Text("Insight Group"), summary: Text(insightGroupTitle), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
+                Picker(selection: $insightDRB.groupID, label: EmptyView()) {
+                    ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                        Text(insightGroup.title).tag(insightGroup.id)
+                    }
+                }
+                .onChange(of: insightDRB.groupID) { _ in save() }
+                .pickerStyle(DefaultPickerStyle())
+            }
 
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                 Toggle(isOn: $insightDRB.shouldUseDruid) {
