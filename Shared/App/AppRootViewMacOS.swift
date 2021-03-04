@@ -62,7 +62,7 @@ struct AppRootView: View {
             case .rawSignals:
                 SignalList(appID: app.id)
             case let .insightGroup(group):
-                InsightGroupView(app: app, insightGroup: group)
+                InsightGroupView(app: app, insightGroupID: group.id)
             case .noSelection:
                 Text("Hi!")
             }

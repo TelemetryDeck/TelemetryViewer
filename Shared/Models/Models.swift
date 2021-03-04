@@ -195,7 +195,7 @@ struct InsightDataTransferObject: Codable {
     let calculationDuration: TimeInterval
 
     /// Should use druid for calculating this insght
-    let shouldUseDruid: Bool
+    let shouldUseDruid: Bool?
 
     var isEmpty: Bool {
         data.compactMap(\.yAxisValue).count == 0
