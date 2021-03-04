@@ -88,7 +88,7 @@ struct AppRootView: View {
                             Divider()
 
                             Button(action: {
-                                let definitionRequestBody = InsightDefinitionRequestBody.new(groupID: insightGroup.id)
+                                let definitionRequestBody = InsightDefinitionRequestBody.newTimeSeriesInsight(groupID: insightGroup.id)
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }) {
                                 Label("New Insight", systemImage: "plus.rectangle")

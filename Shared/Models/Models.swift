@@ -261,10 +261,105 @@ struct InsightDefinitionRequestBody: Codable {
         return requestBody
     }
 
-    static func new(groupID: UUID) -> InsightDefinitionRequestBody {
+    static func newTimeSeriesInsight(groupID: UUID) -> InsightDefinitionRequestBody {
         InsightDefinitionRequestBody(
             order: nil,
-            title: "New Insight",
+            title: "New Time Series Insight",
+            subtitle: nil,
+            signalType: nil,
+            uniqueUser: false,
+            filters: [:],
+            rollingWindowSize: -2_592_000,
+            breakdownKey: nil,
+            groupBy: .day,
+            displayMode: .lineChart,
+            groupID: groupID,
+            id: nil,
+            isExpanded: false,
+            shouldUseDruid: false
+        )
+    }
+
+    static func newBreakdownInsight(groupID: UUID, title: String? = nil, breakdownKey: String? = nil) -> InsightDefinitionRequestBody {
+        InsightDefinitionRequestBody(
+            order: nil,
+            title: title ?? "New Breakdown Insight",
+            subtitle: nil,
+            signalType: nil,
+            uniqueUser: false,
+            filters: [:],
+            rollingWindowSize: -2_592_000,
+            breakdownKey: breakdownKey ?? "systemVersion",
+            groupBy: .day,
+            displayMode: .pieChart,
+            groupID: groupID,
+            id: nil,
+            isExpanded: false,
+            shouldUseDruid: false
+        )
+    }
+
+    static func newDailyUserCountInsight(groupID: UUID) -> InsightDefinitionRequestBody {
+        InsightDefinitionRequestBody(
+            order: nil,
+            title: "Daily Active Users",
+            subtitle: nil,
+            signalType: nil,
+            uniqueUser: true,
+            filters: [:],
+            rollingWindowSize: -2_592_000,
+            breakdownKey: nil,
+            groupBy: .day,
+            displayMode: .lineChart,
+            groupID: groupID,
+            id: nil,
+            isExpanded: false,
+            shouldUseDruid: false
+        )
+    }
+
+    static func newWeeklyUserCountInsight(groupID: UUID) -> InsightDefinitionRequestBody {
+        InsightDefinitionRequestBody(
+            order: nil,
+            title: "Weekly Active Users",
+            subtitle: nil,
+            signalType: nil,
+            uniqueUser: true,
+            filters: [:],
+            rollingWindowSize: -2_592_000,
+            breakdownKey: nil,
+            groupBy: .week,
+            displayMode: .barChart,
+            groupID: groupID,
+            id: nil,
+            isExpanded: false,
+            shouldUseDruid: false
+        )
+    }
+
+    static func newMonthlyUserCountInsight(groupID: UUID) -> InsightDefinitionRequestBody {
+        InsightDefinitionRequestBody(
+            order: nil,
+            title: "Active Users this Month",
+            subtitle: nil,
+            signalType: nil,
+            uniqueUser: true,
+            filters: [:],
+            rollingWindowSize: -2_592_000,
+            breakdownKey: nil,
+            groupBy: .month,
+            displayMode: .raw,
+            groupID: groupID,
+            id: nil,
+            isExpanded: false,
+            shouldUseDruid: false
+        )
+    }
+
+    static func newSignalInsight(groupID: UUID) -> InsightDefinitionRequestBody {
+        InsightDefinitionRequestBody(
+            order: nil,
+            title: "Signals by Day",
             subtitle: nil,
             signalType: nil,
             uniqueUser: false,

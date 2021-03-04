@@ -36,8 +36,8 @@ struct InsightView: View {
                     Text(api.insightData[insight.id]?.title.uppercased() ?? insight.title.uppercased())
                         + Text(api.insightData[insight.id]?.shouldUseDruid == true ? " 🝖" : "")
                 }
-                    .font(.footnote)
-                    .foregroundColor(isSelected ? .cardBackground : .grayColor)
+                .font(.footnote)
+                .foregroundColor(isSelected ? .cardBackground : .grayColor)
                 ZStack {
                     if isLoading {
                         ProgressView()

@@ -38,7 +38,7 @@ struct EmptyInsightGroupView: View {
             VStack {
                 Button("Create First Insight") {
                     if let app = app, let insightGroup = insightGroup {
-                        let definitionRequestBody = InsightDefinitionRequestBody.new(groupID: selectedInsightGroupID)
+                        let definitionRequestBody = InsightDefinitionRequestBody.newTimeSeriesInsight(groupID: selectedInsightGroupID)
 
                         api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in
                             switch result {
