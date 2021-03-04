@@ -32,7 +32,10 @@ struct InsightView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(api.insightData[insight.id]?.title.uppercased() ?? insight.title.uppercased())
+                Group {
+                    Text(api.insightData[insight.id]?.title.uppercased() ?? insight.title.uppercased())
+                        + Text(api.insightData[insight.id]?.shouldUseDruid == true ? " 🝖" : "")
+                }
                     .font(.footnote)
                     .foregroundColor(isSelected ? .cardBackground : .grayColor)
                 ZStack {

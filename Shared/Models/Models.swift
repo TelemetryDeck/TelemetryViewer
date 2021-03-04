@@ -194,6 +194,9 @@ struct InsightDataTransferObject: Codable {
     /// How long did this DTO take to calculate?
     let calculationDuration: TimeInterval
 
+    /// Should use druid for calculating this insght
+    let shouldUseDruid: Bool
+
     var isEmpty: Bool {
         data.compactMap(\.yAxisValue).count == 0
     }
@@ -234,6 +237,9 @@ struct InsightDefinitionRequestBody: Codable {
     /// If true, the insight will be displayed bigger
     var isExpanded: Bool
 
+    /// Should use druid for calculating this insght
+    var shouldUseDruid: Bool
+
     static func from(insight: Insight) -> InsightDefinitionRequestBody {
         let requestBody = Self(
             order: insight.order,
@@ -248,7 +254,8 @@ struct InsightDefinitionRequestBody: Codable {
             displayMode: insight.displayMode,
             groupID: insight.group["id"],
             id: insight.id,
-            isExpanded: insight.isExpanded
+            isExpanded: insight.isExpanded,
+            shouldUseDruid: insight.shouldUseDruid
         )
 
         return requestBody
@@ -268,7 +275,8 @@ struct InsightDefinitionRequestBody: Codable {
             displayMode: .lineChart,
             groupID: groupID,
             id: nil,
-            isExpanded: false
+            isExpanded: false,
+            shouldUseDruid: false
         )
     }
 }

@@ -133,7 +133,8 @@ class InsightEditorViewModel: ObservableObject {
             displayMode: insightDisplayMode,
             groupID: allInsightGroups[selectedInsightGroupIndex].id,
             id: selectedInsightID,
-            isExpanded: insightIsExpanded
+            isExpanded: insightIsExpanded,
+            shouldUseDruid: false
         )
 
         if let insight = insight, let insightGroup = insightGroup, let app = app {

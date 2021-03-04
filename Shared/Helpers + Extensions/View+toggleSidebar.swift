@@ -31,7 +31,7 @@ extension View {
         getRightSidebarSplitViewItem()?.animator().isCollapsed.toggle()
     }
 
-    func openRightSidebar() {
+    func expandRightSidebar() {
         getRightSidebarSplitViewItem()?.animator().isCollapsed = false
     }
 

@@ -67,7 +67,8 @@ class InsightGroupEditorViewModel: ObservableObject {
                 displayMode: .lineChart,
                 groupID: insightGroup.id,
                 id: nil,
-                isExpanded: false
+                isExpanded: false,
+                shouldUseDruid: false
             )
 
             api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in

@@ -60,6 +60,6 @@ struct MockData {
         breakdownKey: nil,
         displayMode: .raw,
         data: [InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
-        calculatedAt: Date(), calculationDuration: 1
+        calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
     )
 }

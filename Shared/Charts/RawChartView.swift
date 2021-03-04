@@ -53,7 +53,7 @@ struct RawChartView_Previews: PreviewProvider {
             data: [
                 InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "102"),
             ],
-            calculatedAt: Date(), calculationDuration: 1
+            calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
         let insight2 = InsightDataTransferObject(
@@ -70,7 +70,7 @@ struct RawChartView_Previews: PreviewProvider {
                 InsightData(xAxisValue: "2020-11-20T00:00:00+01:00", yAxisValue: "10650"),
                 InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "96"),
             ],
-            calculatedAt: Date(), calculationDuration: 1
+            calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
         let insight3 = InsightDataTransferObject(
@@ -90,7 +90,7 @@ struct RawChartView_Previews: PreviewProvider {
                 InsightData(xAxisValue: "Test4", yAxisValue: "Omsn4"),
                 InsightData(xAxisValue: "Test5", yAxisValue: "Omsn5"),
             ],
-            calculatedAt: Date(), calculationDuration: 1
+            calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
         let api = APIRepresentative()

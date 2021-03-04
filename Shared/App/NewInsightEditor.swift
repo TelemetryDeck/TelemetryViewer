@@ -41,6 +41,9 @@ struct NewInsightEditorContent {
     /// If true, the insight will be displayed bigger
     var isExpanded: Bool
 
+    /// Should use druid for calculating this insght
+    var shouldUseDruid: Bool
+
     static func from(insight: Insight) -> NewInsightEditorContent {
         let requestBody = Self(
             order: insight.order ?? -1,
@@ -54,7 +57,8 @@ struct NewInsightEditorContent {
             displayMode: insight.displayMode,
             groupID: insight.group["id"]!,
             id: insight.id,
-            isExpanded: insight.isExpanded
+            isExpanded: insight.isExpanded,
+            shouldUseDruid: insight.shouldUseDruid
         )
 
         return requestBody
@@ -71,7 +75,10 @@ struct NewInsightEditorContent {
             breakdownKey: breakdownKey.isEmpty ? nil : breakdownKey,
             groupBy: breakdownKey.isEmpty ? groupBy : nil,
             displayMode: displayMode,
-            groupID: groupID, id: id, isExpanded: isExpanded
+            groupID: groupID,
+            id: id,
+            isExpanded: isExpanded,
+            shouldUseDruid: shouldUseDruid
         )
     }
 }
@@ -221,6 +228,19 @@ struct NewInsightEditor: View {
 //            }
 
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
+                Toggle(isOn: $insightDRB.shouldUseDruid) {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Use Druid for Calculation")
+                            Text("This will speed up calculation a lot, but is still in alpha state. Please report bugs. Also, this will estimate counts, so they'll be off by a small percentage.")
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
+                        }
+                        Spacer()
+                    }
+                }
+                .onChange(of: insightDRB.shouldUseDruid) { _ in save() }
+
                 if let dto = api.insightData[insight.id] {
                     Group {
                         Text("This Insight was last updated ")
@@ -239,13 +259,6 @@ struct NewInsightEditor: View {
                     }
                     .opacity(0.4)
                     .padding(.bottom, 4)
-                }
-
-                if insight.shouldUseDruid {
-                    Text("This Insight's data is calculated using Druid 🧙‍♂️")
-                        .bold()
-                        .opacity(0.4)
-                        .padding(.bottom, 4)
                 }
 
                 Button("Copy Insight ID") {

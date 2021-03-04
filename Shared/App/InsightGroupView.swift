@@ -34,7 +34,7 @@ struct InsightGroupView: View {
                     }
                     .simultaneousGesture(TapGesture().onEnded {
                         #if os(macOS)
-                            openRightSidebar()
+                            expandRightSidebar()
                         #endif
                     })
                     .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
@@ -54,7 +54,7 @@ struct InsightGroupView: View {
                         }
                         .simultaneousGesture(TapGesture().onEnded {
                             #if os(macOS)
-                                openRightSidebar()
+                                expandRightSidebar()
                             #endif
                         })
                         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
