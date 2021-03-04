@@ -82,7 +82,9 @@ struct AppRootView: View {
                 ForEach(api.insightGroups[app] ?? []) { insightGroup in
                     Text(insightGroup.title).tag(AppRootViewSelection.insightGroup(group: insightGroup))
                 }
+            }.pickerStyle(SegmentedPickerStyle())
 
+            Picker("View Mode", selection: $selection) {
                 Image(systemName: "book")
                     .tag(AppRootViewSelection.lexicon)
                     .help("Lexicon")
@@ -91,7 +93,6 @@ struct AppRootView: View {
                     .help("Raw Signals")
             }.pickerStyle(SegmentedPickerStyle())
 
-            Spacer()
             Menu {
                 Section {
                     Button(action: {
@@ -130,9 +131,7 @@ struct AppRootView: View {
             label: {
                 Text(timeIntervalDescription)
             }
-
-            Spacer()
-
+            
             if let insightGroup = insightGroup {
                 Button(action: {
                     let definitionRequestBody = InsightDefinitionRequestBody.new(groupID: insightGroup.id)
