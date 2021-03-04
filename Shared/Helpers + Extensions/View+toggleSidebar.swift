@@ -28,11 +28,11 @@ extension View {
     }
 
     func toggleRightSidebar() {
-        getRightSidebarSplitViewItem()?.isCollapsed.toggle()
+        getRightSidebarSplitViewItem()?.animator().isCollapsed.toggle()
     }
 
     func openRightSidebar() {
-        getRightSidebarSplitViewItem()?.isCollapsed = false
+        getRightSidebarSplitViewItem()?.animator().isCollapsed = false
     }
 
     func setupSidebars() {
