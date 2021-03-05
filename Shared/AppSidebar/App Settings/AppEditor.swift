@@ -32,7 +32,6 @@ struct AppEditor: View {
 
     var body: some View {
         if let app = app {
-            ScrollView {
                 Form {
                     CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
                         TextField("App Name", text: $newName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
@@ -62,12 +61,13 @@ struct AppEditor: View {
                     }
                 }
                 .padding(.horizontal, self.padding)
+                .navigationTitle("App Settings")
                 .onDisappear { saveToAPI() }
                 .onAppear {
                     newName = app.name
                     TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
                 }
-            }
+
         } else {
             Text("No App")
         }

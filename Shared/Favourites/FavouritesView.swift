@@ -9,14 +9,21 @@ import SwiftUI
 
 struct FavouritesView: View {
     var body: some View {
-        Text("Welcome to Telemetry")
-            .font(.title)
-            .foregroundColor(.grayColor)
-            .onAppear {
-                #if os(macOS)
-                    setupSidebars()
-                #endif
-            }
+        VStack {
+            Text("Welcome to Telemetry")
+                .font(.title)
+                .foregroundColor(.grayColor)
+                .onAppear {
+                    #if os(macOS)
+                        setupSidebars()
+                    #else
+                        print("hi")
+                    #endif
+                }
+
+            Text("This is where your favourites appear.")
+                .foregroundColor(.grayColor)
+        }
     }
 }
 

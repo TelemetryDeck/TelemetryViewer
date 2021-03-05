@@ -40,6 +40,7 @@ struct SignalList: View {
                 Text("No App")
             }
         }
+        .navigationTitle("Recent Signals")
         .onAppear {
             if let app = app {
                 api.getSignals(for: app)

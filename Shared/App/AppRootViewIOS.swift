@@ -72,10 +72,14 @@ struct AppRootView: View {
             ToolbarItem {
                 Menu {
                     Section {
-                        NavigationLink("Edit App", destination: Text("Editor APp"))
+                        NavigationLink("Edit App", destination: AppEditor(appID: app.id))
+
+                        Button("New Group") {
+                            api.create(insightGroupNamed: "New Group", for: app)
+                        }
 
                         if let insightGroup = insightGroup {
-                            NavigationLink("Edit Group", destination: Text("Editor Group"))
+                            NavigationLink("Edit Group", destination: NewInsightGroupEditor(app: app, insightGroup: insightGroup))
 
                             Divider()
 
