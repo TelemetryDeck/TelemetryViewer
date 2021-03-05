@@ -67,7 +67,7 @@ struct BarView: View {
         VStack {
             ZStack(alignment: .bottom) {
                 RoundedCorners(tl: 5, tr: 5, bl: 0, br: 0)
-                    .fill(Color.accentColor)
+                    .fill(Color.accentColor.opacity(0.7))
                     .frame(height: percentage.isNaN ? 0 : percentage * geometry.size.height)
 
                 Rectangle()
