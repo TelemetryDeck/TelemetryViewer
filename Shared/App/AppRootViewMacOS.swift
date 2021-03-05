@@ -78,12 +78,16 @@ struct AppRootView: View {
             #endif
         }
         .toolbar {
-            ToolbarItem(placement: .navigation) {
+            ToolbarItemGroup(placement: .navigation) {
                 Picker("View Mode", selection: $selection) {
                     ForEach(api.insightGroups[app] ?? []) { insightGroup in
                         Text(insightGroup.title).tag(AppRootViewSelection.insightGroup(group: insightGroup))
                     }
                 }.pickerStyle(SegmentedPickerStyle())
+
+                Button("New Group") {
+                    api.create(insightGroupNamed: "New Group", for: app)
+                }
             }
 
             ToolbarItem {
