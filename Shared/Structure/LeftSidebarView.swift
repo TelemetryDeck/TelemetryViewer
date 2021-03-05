@@ -22,7 +22,7 @@ struct LeftSidebarView: View {
 
 
                 NavigationLink(
-                    destination: Text("Fav"),
+                    destination: FavouritesView(),
                     isActive: $isDefaultItemActive,
                     label: {
                         Label("Favorites", systemImage: "star.fill")

@@ -137,6 +137,8 @@
 		DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D7D25517EDD0032B9AD /* Helpers.swift */; };
 		DCB28D892551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D8C2551C3330032B9AD /* TelemetryWidget.intentdefinition */; };
 		DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D8C2551C3330032B9AD /* TelemetryWidget.intentdefinition */; };
+		DCB5F9F225F294C6004C4922 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB5F9F125F294C6004C4922 /* FavouritesView.swift */; };
+		DCB5F9F325F294C6004C4922 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB5F9F125F294C6004C4922 /* FavouritesView.swift */; };
 		DCC8CB5B2562DC8D0019267A /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* Buttonstyles.swift */; };
 		DCC8CB5C2562DC8D0019267A /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB5A2562DC8D0019267A /* Buttonstyles.swift */; };
 		DCC8CB67256308330019267A /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB66256308250019267A /* MacNavigationView.swift */; };
@@ -271,6 +273,7 @@
 		DCB28D7D25517EDD0032B9AD /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		DCB28D8B2551C3330032B9AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/TelemetryWidget.intentdefinition; sourceTree = "<group>"; };
 		DCB28D912551C3420032B9AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TelemetryWidget.strings; sourceTree = "<group>"; };
+		DCB5F9F125F294C6004C4922 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		DCC8CB5A2562DC8D0019267A /* Buttonstyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttonstyles.swift; sourceTree = "<group>"; };
 		DCC8CB66256308250019267A /* MacNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
 		DCC8CB752563103E0019267A /* Illustrations.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Illustrations.xcassets; sourceTree = "<group>"; };
@@ -488,6 +491,14 @@
 			path = Administration;
 			sourceTree = "<group>";
 		};
+		DCB5F9F425F294C9004C4922 /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				DCB5F9F125F294C6004C4922 /* FavouritesView.swift */,
+			);
+			path = Favourites;
+			sourceTree = "<group>";
+		};
 		DCD52C4E2541FFF0003F12C6 /* Helpers + Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,6 +555,7 @@
 				DCB02B70250277C300304964 /* Generic Views */,
 				DC591394252DF93F007360A9 /* Charts */,
 				DC53393E25222C0900D9C889 /* Insight and Groups */,
+				DCB5F9F425F294C9004C4922 /* Favourites */,
 				DC90D08925063A5700634B72 /* Settings */,
 				DCB1A3C92549C936000C6575 /* Administration */,
 				DC24DF3225DD54090003ADCB /* AppInfoView.swift */,
@@ -826,6 +838,7 @@
 				DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
+				DCB5F9F225F294C6004C4922 /* FavouritesView.swift in Sources */,
 				DC53394625222FC600D9C889 /* NewInsightGroupView.swift in Sources */,
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
@@ -899,6 +912,7 @@
 				DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
+				DCB5F9F325F294C6004C4922 /* FavouritesView.swift in Sources */,
 				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB02B732502781A00304964 /* LoginView.swift in Sources */,
