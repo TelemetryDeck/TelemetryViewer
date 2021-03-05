@@ -87,17 +87,6 @@ struct AppRootView: View {
             }
 
             ToolbarItem {
-                Picker("View Mode", selection: $selection) {
-                    Image(systemName: "book")
-                        .tag(AppRootViewSelection.lexicon)
-                        .help("Lexicon")
-                    Image(systemName: "waveform")
-                        .tag(AppRootViewSelection.rawSignals)
-                        .help("Raw Signals")
-                }.pickerStyle(SegmentedPickerStyle())
-            }
-
-            ToolbarItem {
                 if let insightGroup = insightGroup {
                     Menu {
                         Section {

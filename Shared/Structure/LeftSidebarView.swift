@@ -18,16 +18,51 @@ struct LeftSidebarView: View {
 
     var body: some View {
         List {
-            Section(header: Text("Apps")) {
-                ForEach(api.apps.sorted { $0.name < $1.name }) { app in
+            Section(header: Text("Favorites")) {
 
+
+                NavigationLink(
+                    destination: Text("Fav"),
+                    isActive: $isDefaultItemActive,
+                    label: {
+                        Label("Favorites", systemImage: "star.fill")
+                    }
+                )
+            }
+
+            Section(header: Text("Apps")) {
+            ForEach(api.apps.sorted { $0.name < $1.name }) { app in
+                DisclosureGroup(content: {
+                    NavigationLink(
+                        destination: LexiconView(appID: app.id),
+                        label: {
+                            Label("Lexicon", systemImage: "book")
+                        }
+                    )
+                    NavigationLink(
+                        destination: SignalList(appID: app.id),
+                        label: {
+                            Label("Recent Signals", systemImage: "waveform")
+                        }
+                    )
+
+                    NavigationLink(
+                        destination: Text("App Editor"),
+                        label: {
+                            Label("App Settings", systemImage: "gear")
+                        }
+                    )
+                },
+                label: {
                     NavigationLink(
                         destination: AppRootView(app: app),
                         label: {
                             Label(app.name, systemImage: "app")
                         }
                     )
-                }
+                })
+            }
+
             }
 
             Section(header: Text("You")) {

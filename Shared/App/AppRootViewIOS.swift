@@ -61,14 +61,6 @@ struct AppRootView: View {
                     .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
                     .tag(AppRootViewSelection.insightGroup(group: insightGroup))
             }
-
-            LexiconView(appID: app.id)
-                .tabItem { Label("Lexicon", systemImage: "book") }
-                .tag(AppRootViewSelection.lexicon)
-
-            SignalList(appID: app.id)
-                .tabItem { Label("Raw Signals", systemImage: "waveform") }
-                .tag(AppRootViewSelection.rawSignals)
         }
         .navigationTitle(app.name)
         .onAppear {
