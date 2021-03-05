@@ -46,7 +46,7 @@ struct LeftSidebarView: View {
                             )
 
                             NavigationLink(
-                                destination: Text("App Editor"),
+                                destination: AppEditor(appID: app.id),
                                 label: {
                                     Label("App Settings", systemImage: "gear")
                                 }
