@@ -19,8 +19,6 @@ struct LeftSidebarView: View {
     var body: some View {
         List {
             Section(header: Text("Favorites")) {
-
-
                 NavigationLink(
                     destination: FavouritesView(),
                     isActive: $isDefaultItemActive,
@@ -31,38 +29,39 @@ struct LeftSidebarView: View {
             }
 
             Section(header: Text("Apps")) {
-            ForEach(api.apps.sorted { $0.name < $1.name }) { app in
-                DisclosureGroup(content: {
-                    NavigationLink(
-                        destination: LexiconView(appID: app.id),
-                        label: {
-                            Label("Lexicon", systemImage: "book")
-                        }
-                    )
-                    NavigationLink(
-                        destination: SignalList(appID: app.id),
-                        label: {
-                            Label("Recent Signals", systemImage: "waveform")
-                        }
-                    )
+                ForEach(api.apps.sorted { $0.name < $1.name }) { app in
+                    DisclosureGroup(
+                        content: {
+                            NavigationLink(
+                                destination: LexiconView(appID: app.id),
+                                label: {
+                                    Label("Lexicon", systemImage: "book")
+                                }
+                            )
+                            NavigationLink(
+                                destination: SignalList(appID: app.id),
+                                label: {
+                                    Label("Recent Signals", systemImage: "waveform")
+                                }
+                            )
 
-                    NavigationLink(
-                        destination: Text("App Editor"),
+                            NavigationLink(
+                                destination: Text("App Editor"),
+                                label: {
+                                    Label("App Settings", systemImage: "gear")
+                                }
+                            )
+                        },
                         label: {
-                            Label("App Settings", systemImage: "gear")
+                            NavigationLink(
+                                destination: AppRootView(app: app),
+                                label: {
+                                    Label(app.name, systemImage: "app")
+                                }
+                            )
                         }
                     )
-                },
-                label: {
-                    NavigationLink(
-                        destination: AppRootView(app: app),
-                        label: {
-                            Label(app.name, systemImage: "app")
-                        }
-                    )
-                })
-            }
-
+                }
             }
 
             Section(header: Text("You")) {

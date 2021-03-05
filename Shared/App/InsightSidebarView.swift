@@ -10,7 +10,6 @@ import SwiftUI
 enum InsightSidebarSection {
     case InsightEditor
     case InsightGroupEditor
-    case AppEditor
 }
 
 struct InsightSidebarView: View {
@@ -26,18 +25,27 @@ struct InsightSidebarView: View {
         Group {
             switch sidebarSection {
             case .InsightEditor:
-                NewInsightEditor(app: app, insightGroup: insightGroup!, insight: insight!)
+                if let insightGroup = insightGroup, let insight = insight {
+                    NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
+                } else {
+                    Text("Please select an Insight")
+                }
             case .InsightGroupEditor:
-                Text("InsightGroupEditor")
-            case .AppEditor:
-                Text("App Editor")
+                if let insightGroup = insightGroup {
+                    NewInsightGroupEditor(app: app, insightGroup: insightGroup)
+                } else {
+                    Text("Please select an Insight Group")
+                }
+            }
+        }
+        .onAppear {
+            if insight == nil {
+                sidebarSection = .InsightGroupEditor
             }
         }
         .toolbar {
             ToolbarItemGroup {
                 Picker(selection: $sidebarSection, label: Text("")) {
-                    Image(systemName: "app").tag(InsightSidebarSection.AppEditor)
-
                     if insightGroup != nil {
                         Image(systemName: "square.grid.2x2.fill").tag(InsightSidebarSection.InsightGroupEditor)
                     }
@@ -50,13 +58,13 @@ struct InsightSidebarView: View {
             }
 
             ToolbarItemGroup {
-                #if os(macOS)
-                    Button(action: toggleRightSidebar) {
-                        Image(systemName: "sidebar.right")
-                            .help("Toggle Sidebar")
-                    }
-                    .help("Toggle the right sidebar")
-                #endif
+                Spacer()
+
+                Button(action: toggleRightSidebar) {
+                    Image(systemName: "sidebar.right")
+                        .help("Toggle Sidebar")
+                }
+                .help("Toggle the right sidebar")
             }
         }
     }

@@ -12,8 +12,10 @@ struct FavouritesView: View {
         Text("Welcome to Telemetry")
             .font(.title)
             .foregroundColor(.grayColor)
-            .onAppear() {
-                setupSidebars()
+            .onAppear {
+                #if os(macOS)
+                    setupSidebars()
+                #endif
             }
     }
 }

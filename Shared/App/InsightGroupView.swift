@@ -10,7 +10,7 @@ import SwiftUI
 struct InsightGroupView: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var selectedInsightID: UUID?
-    @State private var isTapped = false
+    @State private var isDefaultItemActive = true
 
     let app: TelemetryApp
     let insightGroupID: UUID
@@ -69,10 +69,21 @@ struct InsightGroupView: View {
             } else {
                 Text("Loading InsightGroup...")
             }
+
+            #if os(macOS)
+                NavigationLink(
+                    destination: InsightSidebarView(app: app, insightGroup: insightGroup, insight: nil),
+                    isActive: $isDefaultItemActive,
+                    label: {
+                        EmptyView()
+                    }
+                ).opacity(0)
+            #endif
         }
         .background(Color.cardBackground)
         .onTapGesture {
             selectedInsightID = nil
+            isDefaultItemActive = true
         }
     }
 }
