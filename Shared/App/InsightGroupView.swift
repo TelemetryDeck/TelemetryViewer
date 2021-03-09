@@ -70,6 +70,17 @@ struct InsightGroupView: View {
                 Text("Loading InsightGroup...")
             }
 
+            Button("Documentation: Sending Signals") {
+                #if os(macOS)
+                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                #else
+                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                #endif
+            }
+            .font(.footnote)
+            .foregroundColor(.grayColor)
+            .padding(.bottom)
+
             #if os(macOS)
                 NavigationLink(
                     destination: InsightSidebarView(app: app, insightGroup: insightGroup, insight: nil),

@@ -64,23 +64,24 @@ struct LeftSidebarView: View {
                 }
             }
 
-            Section(header: Text("You")) {
+            Section(header: Text("Organization")) {
                 if let apiUser = api.user {
-                    NavigationLink(destination: UserSettingsView(), label: {
-                        Label("\(apiUser.firstName) \(apiUser.lastName)", systemImage: "person.circle")
-                    })
-
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(apiUser.organization?.name ?? "Unknown Org", systemImage: "app.badge")
                     })
+
+                    NavigationLink(
+                        destination: UserSettingsView(),
+                        label: {
+                            Label("Settings", systemImage: "gear")
+                        }
+                    )
                 } else {
                     Label("firstName lastName", systemImage: "person.circle").redacted(reason: .placeholder)
                     Label("organization.name", systemImage: "app.badge").redacted(reason: .placeholder)
                 }
-            }
 
-            #if os(macOS)
-                Section(header: Text("App Updates")) {
+                #if os(macOS)
                     NavigationLink(
                         destination: AppUpdateView(),
                         label: {
@@ -90,8 +91,8 @@ struct LeftSidebarView: View {
                             )
                         }
                     )
-                }
-            #endif
+                #endif
+            }
 
             if api.user?.organization?.isSuperOrg == true {
                 Section(header: Text("Administration")) {

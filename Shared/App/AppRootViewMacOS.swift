@@ -85,8 +85,13 @@ struct AppRootView: View {
                     }
                 }.pickerStyle(SegmentedPickerStyle())
 
-                Button("New Group") {
+                Button(action: {
                     api.create(insightGroupNamed: "New Group", for: app)
+                }) {
+                    HStack {
+                        Image(systemName: "plus")
+                        Text("New Group")
+                    }
                 }
             }
 
