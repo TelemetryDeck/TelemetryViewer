@@ -42,15 +42,17 @@ struct InsightGroupList: View {
                 }
                 .navigationTitle(insightGroup.title)
             } else {
-                EmptyInsightGroupView(
-                    selectedInsightGroupID: insightGroupID,
-                    selectedInsightID: $selectedInsightID,
-                    sidebarSection: $sidebarSection,
-                    sidebarShown: $sidebarShown,
-                    appID: app.id
-                )
-                .frame(maxWidth: 400)
-                .padding()
+//                EmptyInsightGroupView(
+//                    selectedInsightGroupID: insightGroupID,
+//                    selectedInsightID: $selectedInsightID,
+//                    sidebarSection: $sidebarSection,
+//                    sidebarShown: $sidebarShown,
+//                    appID: app.id
+//                )
+//                .frame(maxWidth: 400)
+//                .padding()
+
+                EmptyView()
             }
         }
 

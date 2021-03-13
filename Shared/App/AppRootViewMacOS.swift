@@ -64,7 +64,9 @@ struct AppRootView: View {
             case let .insightGroup(group):
                 InsightGroupView(app: app, insightGroupID: group.id)
             case .noSelection:
-                Text("Hi!")
+                EmptyAppView(appID: app.id)
+                    .frame(maxWidth: 400)
+                    .padding()
             }
         }
         .navigationTitle(app.name)

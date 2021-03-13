@@ -18,12 +18,12 @@ struct LeftSidebarView: View {
 
     var body: some View {
         List {
-            Section(header: Text("Favorites")) {
+            Section(header: Text("Hi")) {
                 NavigationLink(
                     destination: FavouritesView(),
                     isActive: $isDefaultItemActive,
                     label: {
-                        Label("Favorites", systemImage: "star.fill")
+                        Label("Hi", systemImage: "star.fill")
                     }
                 )
             }

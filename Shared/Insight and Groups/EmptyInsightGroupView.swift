@@ -9,10 +9,7 @@ import SwiftUI
 
 struct EmptyInsightGroupView: View {
     @EnvironmentObject var api: APIRepresentative
-    var selectedInsightGroupID: UUID
-    @Binding var selectedInsightID: UUID?
-    @Binding var sidebarSection: AppRootSidebarSection
-    @Binding var sidebarShown: Bool
+    let selectedInsightGroupID: UUID
 
     var appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
@@ -35,44 +32,13 @@ struct EmptyInsightGroupView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.grayColor)
 
-            VStack {
-                Button("Create First Insight") {
-                    if let app = app, let insightGroup = insightGroup {
-                        let definitionRequestBody = InsightDefinitionRequestBody.newTimeSeriesInsight(groupID: selectedInsightGroupID)
+            Text("Create your first insight by tapping to + button in the toolbar and selecting an Insight template to create. After creating the insight, you can tap to edit it.")
+                .foregroundColor(.grayColor)
 
-                        api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { result in
-                            switch result {
-                            case let .success(insightDTO):
-                                selectedInsightID = insightDTO.id
-                                sidebarSection = .InsightEditor
-                            case let .failure(error):
-                                print(error)
-                            }
-                        }
-                    }
-                }
-                .buttonStyle(SmallPrimaryButtonStyle())
-
-                Button("Open Editor Sidebar") {
-                    withAnimation { sidebarShown = true }
-                }
-                .buttonStyle(SmallSecondaryButtonStyle())
-
-                Text("To read more about how to send signals from your app, read the documentation on setting up your app.")
-                    .foregroundColor(.grayColor)
-                    .font(.footnote)
-                    .padding(.vertical)
-
-                Button("Documentation: Sending Signals") {
-                    #if os(macOS)
-                        NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                    #else
-                        UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                    #endif
-                }
-                .buttonStyle(SmallSecondaryButtonStyle())
-            }
-            Spacer()
+            Text("To read more about how to send signals from your app, read the documentation on setting up your app.")
+                .foregroundColor(.grayColor)
+                .font(.footnote)
+                .padding(.vertical)
         }
     }
 }

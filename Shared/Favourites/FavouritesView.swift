@@ -21,7 +21,7 @@ struct FavouritesView: View {
                     #endif
                 }
 
-            Text("This is where your favourites appear.")
+//            Text("This is where your favourites appear.")
                 .foregroundColor(.grayColor)
         }
     }

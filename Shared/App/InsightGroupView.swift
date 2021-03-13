@@ -22,31 +22,16 @@ struct InsightGroupView: View {
     var body: some View {
         ScrollView(.vertical) {
             if let insightGroup = insightGroup {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: 0)], alignment: .leading, spacing: 0) {
-                    let expandedInsights = insightGroup.insights.filter { $0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
-                    let nonExpandedInsights = insightGroup.insights.filter { !$0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
+                if insightGroup.insights.count == 0 {
+                    EmptyInsightGroupView(selectedInsightGroupID: insightGroup.id, appID: app.id)
+                        .frame(maxWidth: 400)
+                        .padding(.horizontal)
+                } else {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: 0)], alignment: .leading, spacing: 0) {
+                        let expandedInsights = insightGroup.insights.filter { $0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
+                        let nonExpandedInsights = insightGroup.insights.filter { !$0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
 
-                    ForEach(expandedInsights) { insight in
-
-                        #if os(iOS)
-                            let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
-                        #else
-                            let destination = InsightSidebarView(app: app, insightGroup: insightGroup, insight: insight)
-                        #endif
-
-                        NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
-                            InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
-                        }
-                        .simultaneousGesture(TapGesture().onEnded {
-                            #if os(macOS)
-                                expandRightSidebar()
-                            #endif
-                        })
-                        .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
-                    }
-
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 0)], alignment: .leading, spacing: 0) {
-                        ForEach(nonExpandedInsights) { insight in
+                        ForEach(expandedInsights) { insight in
 
                             #if os(iOS)
                                 let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
@@ -64,6 +49,27 @@ struct InsightGroupView: View {
                             })
                             .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
                         }
+
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 0)], alignment: .leading, spacing: 0) {
+                            ForEach(nonExpandedInsights) { insight in
+
+                                #if os(iOS)
+                                    let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
+                                #else
+                                    let destination = InsightSidebarView(app: app, insightGroup: insightGroup, insight: insight)
+                                #endif
+
+                                NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
+                                    InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
+                                }
+                                .simultaneousGesture(TapGesture().onEnded {
+                                    #if os(macOS)
+                                        expandRightSidebar()
+                                    #endif
+                                })
+                                .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
+                            }
+                        }
                     }
                 }
             } else {
@@ -77,9 +83,9 @@ struct InsightGroupView: View {
                     UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
                 #endif
             }
-            .font(.footnote)
-            .foregroundColor(.grayColor)
-            .padding(.bottom)
+            .buttonStyle(SmallSecondaryButtonStyle())
+            .frame(maxWidth: 400)
+            .padding()
 
             #if os(macOS)
                 NavigationLink(
