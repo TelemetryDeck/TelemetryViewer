@@ -32,12 +32,7 @@ struct InsightGroupView: View {
                         let nonExpandedInsights = insightGroup.insights.filter { !$0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
 
                         ForEach(expandedInsights) { insight in
-
-                            #if os(iOS)
-                                let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
-                            #else
-                                let destination = InsightSidebarView(app: app, insightGroup: insightGroup, insight: insight)
-                            #endif
+                            let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
 
                             NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
                                 InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
@@ -52,12 +47,7 @@ struct InsightGroupView: View {
 
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 0)], alignment: .leading, spacing: 0) {
                             ForEach(nonExpandedInsights) { insight in
-
-                                #if os(iOS)
-                                    let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
-                                #else
-                                    let destination = InsightSidebarView(app: app, insightGroup: insightGroup, insight: insight)
-                                #endif
+                                let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
 
                                 NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
                                     InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
@@ -76,26 +66,30 @@ struct InsightGroupView: View {
                 Text("Loading InsightGroup...")
             }
 
-            Button("Documentation: Sending Signals") {
-                #if os(macOS)
-                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                #else
-                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                #endif
-            }
-            .buttonStyle(SmallSecondaryButtonStyle())
-            .frame(maxWidth: 400)
-            .padding()
+            AdaptiveStack {
+                if let insightGroup = insightGroup {
+                    NavigationLink("Edit Group", destination: NewInsightGroupEditor(app: app, insightGroup: insightGroup))
+                        .buttonStyle(SmallSecondaryButtonStyle())
+                        .frame(maxWidth: 400)
+                        .padding()
+                        .simultaneousGesture(TapGesture().onEnded {
+                            #if os(macOS)
+                                expandRightSidebar()
+                            #endif
+                        })
+                }
 
-            #if os(macOS)
-                NavigationLink(
-                    destination: InsightSidebarView(app: app, insightGroup: insightGroup, insight: nil),
-                    isActive: $isDefaultItemActive,
-                    label: {
-                        EmptyView()
-                    }
-                ).opacity(0)
-            #endif
+                Button("Documentation: Sending Signals") {
+                    #if os(macOS)
+                        NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                    #else
+                        UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                    #endif
+                }
+                .buttonStyle(SmallSecondaryButtonStyle())
+                .frame(maxWidth: 400)
+                .padding()
+            }
         }
         .background(Color.cardBackground)
         .onTapGesture {

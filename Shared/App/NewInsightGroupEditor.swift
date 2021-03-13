@@ -63,6 +63,17 @@ struct NewInsightGroupEditor: View {
                     .accentColor(.red)
             }
         }
+        .toolbar {
+            ToolbarItemGroup {
+                Spacer()
+
+                Button(action: toggleRightSidebar) {
+                    Image(systemName: "sidebar.right")
+                        .help("Toggle Sidebar")
+                }
+                .help("Toggle the right sidebar")
+            }
+        }
 
         #if os(macOS)
             ScrollView {
