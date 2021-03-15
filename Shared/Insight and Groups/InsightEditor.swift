@@ -1,5 +1,5 @@
 //
-//  NewInsightEditor.swift
+//  InsightEditor.swift
 //  Telemetry Viewer
 //
 //  Created by Daniel Jilg on 17.02.21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewInsightEditorContent {
+struct InsightEditorContent {
     var order: Double
     var title: String
 
@@ -44,7 +44,7 @@ struct NewInsightEditorContent {
     /// Should use druid for calculating this insght
     var shouldUseDruid: Bool
 
-    static func from(insight: Insight) -> NewInsightEditorContent {
+    static func from(insight: Insight) -> InsightEditorContent {
         let requestBody = Self(
             order: insight.order ?? -1,
             title: insight.title,
@@ -83,20 +83,20 @@ struct NewInsightEditorContent {
     }
 }
 
-struct NewInsightEditor: View {
+struct InsightEditor: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var api: APIRepresentative
     let app: TelemetryApp
     let insightGroup: InsightGroup
     let insight: Insight
 
-    @State var insightDRB: NewInsightEditorContent
+    @State var insightDRB: InsightEditorContent
 
     init(app: TelemetryApp, insightGroup: InsightGroup, insight: Insight) {
         self.app = app
         self.insightGroup = insightGroup
         self.insight = insight
-        _insightDRB = State(initialValue: NewInsightEditorContent.from(insight: insight))
+        _insightDRB = State(initialValue: InsightEditorContent.from(insight: insight))
     }
 
     func save() {

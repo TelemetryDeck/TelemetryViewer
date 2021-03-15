@@ -1,5 +1,5 @@
 //
-//  NewInsightGroupEditor.swift
+//  InsightGroupEditor.swift
 //  Telemetry Viewer
 //
 //  Created by Daniel Jilg on 05.03.21.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct NewInsightGroupEditorContent {
+struct InsightGroupEditorContent {
     var id: UUID
     var title: String
     var order: Double
 
-    static func from(insightGroup: InsightGroup) -> NewInsightGroupEditorContent {
-        NewInsightGroupEditorContent(
+    static func from(insightGroup: InsightGroup) -> InsightGroupEditorContent {
+        InsightGroupEditorContent(
             id: insightGroup.id,
             title: insightGroup.title,
             order: insightGroup.order ?? -1
@@ -25,9 +25,9 @@ struct NewInsightGroupEditorContent {
     }
 }
 
-struct NewInsightGroupEditor: View {
+struct InsightGroupEditor: View {
     @EnvironmentObject var api: APIRepresentative
-    @State var insightGroupDTO: NewInsightGroupEditorContent
+    @State var insightGroupDTO: InsightGroupEditorContent
 
     let app: TelemetryApp
     let insightGroup: InsightGroup
@@ -35,7 +35,7 @@ struct NewInsightGroupEditor: View {
     init(app: TelemetryApp, insightGroup: InsightGroup) {
         self.app = app
         self.insightGroup = insightGroup
-        _insightGroupDTO = State(initialValue: NewInsightGroupEditorContent.from(insightGroup: insightGroup))
+        _insightGroupDTO = State(initialValue: InsightGroupEditorContent.from(insightGroup: insightGroup))
     }
 
     func save() {

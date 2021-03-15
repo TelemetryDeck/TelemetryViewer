@@ -38,7 +38,7 @@ struct InsightGroupView: View {
                         let nonExpandedInsights = insightGroup.insights.filter { !$0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
 
                         ForEach(expandedInsights) { insight in
-                            let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
+                            let destination = InsightEditor(app: app, insightGroup: insightGroup, insight: insight)
 
                             NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
                                 InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
@@ -53,7 +53,7 @@ struct InsightGroupView: View {
 
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
                             ForEach(nonExpandedInsights) { insight in
-                                let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
+                                let destination = InsightEditor(app: app, insightGroup: insightGroup, insight: insight)
 
                                 NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
                                     InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
@@ -76,7 +76,7 @@ struct InsightGroupView: View {
 
             AdaptiveStack {
                 if let insightGroup = insightGroup {
-                    NavigationLink("Edit Group", destination: NewInsightGroupEditor(app: app, insightGroup: insightGroup))
+                    NavigationLink("Edit Group", destination: InsightGroupEditor(app: app, insightGroup: insightGroup))
                         .buttonStyle(SmallSecondaryButtonStyle())
                         .frame(maxWidth: 400)
                         .padding()
