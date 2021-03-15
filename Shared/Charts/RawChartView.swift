@@ -20,7 +20,7 @@ struct RawChartView: View {
 
     var body: some View {
         if let insightData = insightData, !insightData.data.isEmpty {
-            if insightData.data.count > 2 {
+            if insightData.data.count > 2 || insightData.data.first?.xAxisDate == nil {
                 RawTableView(insightData: insightData, isSelected: isSelected)
             } else {
                 SingleValueView(insightData: insightData, isSelected: isSelected)
@@ -93,10 +93,28 @@ struct RawChartView_Previews: PreviewProvider {
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
+        let insight4 = InsightDataTransferObject(
+            id: UUID(),
+            order: nil, title: "2 Numbers, no dates",
+            subtitle: nil,
+            signalType: nil,
+            uniqueUser: false,
+            filters: [:],
+            rollingWindowSize: -86000,
+            breakdownKey: nil,
+            displayMode: .raw,
+            data: [
+                InsightData(xAxisValue: "iOS", yAxisValue: "10650"),
+                InsightData(xAxisValue: "macOS", yAxisValue: "96"),
+            ],
+            calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
+        )
+
         let api = APIRepresentative()
         api.insightData[insight1.id] = insight1
         api.insightData[insight2.id] = insight2
         api.insightData[insight3.id] = insight3
+        api.insightData[insight4.id] = insight4
 
         return api
     }()
