@@ -66,7 +66,8 @@ struct InsightEditorContent {
 
     func insightDefinitionRequestBody() -> InsightDefinitionRequestBody {
         InsightDefinitionRequestBody(
-            order: order, title: title,
+            order: order,
+            title: title,
             subtitle: nil,
             signalType: signalType.isEmpty ? nil : signalType,
             uniqueUser: uniqueUser,
@@ -100,7 +101,7 @@ struct InsightEditor: View {
     }
 
     func save() {
-//        api.update(insight: insight, in: insightGroup, in: app, with: insightDRB.insightDefinitionRequestBody())
+        api.update(insight: insight, in: insightGroup, in: app, with: insightDRB.insightDefinitionRequestBody())
     }
 
     func updatePayloadKeys() {
@@ -222,6 +223,11 @@ struct InsightEditor: View {
                     autocompletionOptions: filterAutocompletionOptions,
                     onEditingChanged: { save() }
                 )
+            }
+
+            CustomSection(header: Text("Filters"), summary: Text("\(insightDRB.filters.count) filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
+                FilterEditView(keysAndValues: $insightDRB.filters, autocompleteOptions: filterAutocompletionOptions)
+                    .onChange(of: insightDRB.filters) { _ in save() }
             }
 
             CustomSection(header: Text("Ordering"), summary: Text(String(format: "%.0f", insightDRB.order)), footer: Text("Insights are ordered by this number, ascending"), startCollapsed: true) {

@@ -20,9 +20,9 @@ struct InsightGroupView: View {
     }
 
     #if os(iOS)
-    let spacing: CGFloat = 0.5
+        let spacing: CGFloat = 0.5
     #else
-    let spacing: CGFloat = 1
+        let spacing: CGFloat = 1
     #endif
 
     var body: some View {
