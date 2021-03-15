@@ -100,7 +100,7 @@ struct NewInsightEditor: View {
     }
 
     func save() {
-        api.update(insight: insight, in: insightGroup, in: app, with: insightDRB.insightDefinitionRequestBody())
+//        api.update(insight: insight, in: insightGroup, in: app, with: insightDRB.insightDefinitionRequestBody())
     }
 
     func updatePayloadKeys() {
@@ -289,23 +289,25 @@ struct NewInsightEditor: View {
                     .accentColor(.red)
             }
         }
-        .toolbar {
-            ToolbarItemGroup {
-                Spacer()
-
-                Button(action: toggleRightSidebar) {
-                    Image(systemName: "sidebar.right")
-                        .help("Toggle Sidebar")
-                }
-                .help("Toggle the right sidebar")
-            }
-        }
         .navigationTitle("Edit Insight")
         .onAppear { updatePayloadKeys() }
 
         #if os(macOS)
             ScrollView {
-                form.padding()
+                form
+                    .padding()
+
+                    .toolbar {
+                        ToolbarItemGroup {
+                            Spacer()
+
+                            Button(action: toggleRightSidebar) {
+                                Image(systemName: "sidebar.right")
+                                    .help("Toggle Sidebar")
+                            }
+                            .help("Toggle the right sidebar")
+                        }
+                    }
             }
         #else
             form
