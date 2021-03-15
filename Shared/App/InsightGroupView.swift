@@ -19,6 +19,12 @@ struct InsightGroupView: View {
         api.insightGroups[app]?.first { $0.id == insightGroupID }
     }
 
+    #if os(iOS)
+    let spacing: CGFloat = 0.5
+    #else
+    let spacing: CGFloat = 1
+    #endif
+
     var body: some View {
         ScrollView(.vertical) {
             if let insightGroup = insightGroup {
@@ -27,7 +33,7 @@ struct InsightGroupView: View {
                         .frame(maxWidth: 400)
                         .padding(.horizontal)
                 } else {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: 0)], alignment: .leading, spacing: 0) {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: spacing)], alignment: .leading, spacing: spacing) {
                         let expandedInsights = insightGroup.insights.filter { $0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
                         let nonExpandedInsights = insightGroup.insights.filter { !$0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
 
@@ -45,7 +51,7 @@ struct InsightGroupView: View {
                             .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
                         }
 
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 0)], alignment: .leading, spacing: 0) {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
                             ForEach(nonExpandedInsights) { insight in
                                 let destination = NewInsightEditor(app: app, insightGroup: insightGroup, insight: insight)
 
@@ -61,6 +67,8 @@ struct InsightGroupView: View {
                             }
                         }
                     }
+                    .padding(.vertical, spacing)
+                    .background(Color.separatorColor)
                 }
             } else {
                 Text("Loading InsightGroup...")
