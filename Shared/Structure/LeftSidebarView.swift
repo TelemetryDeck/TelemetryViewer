@@ -18,7 +18,7 @@ struct LeftSidebarView: View {
 
     var body: some View {
         List {
-            Section(header: Text("Hi")) {
+            Section(header: Text("Favorites")) {
                 NavigationLink(
                     destination: FavouritesView(),
                     isActive: $isDefaultItemActive,
