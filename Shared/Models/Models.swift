@@ -505,6 +505,20 @@ struct LoginRequestBody {
     }
 }
 
+struct RequestPasswordResetRequestBody: Codable {
+    var email: String = ""
+    var code: String = ""
+    var newPassword: String = ""
+
+    var isValidEmailAddress: Bool {
+        !email.isEmpty
+    }
+
+    var isValid: Bool {
+        !email.isEmpty && !code.isEmpty && !newPassword.isEmpty
+    }
+}
+
 struct UserToken: Codable {
     var id: UUID?
     var value: String

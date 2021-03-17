@@ -13,6 +13,7 @@ struct WelcomeView: View {
         case loginView
         case registerView
         case joinOrganizationView
+        case resetPasswordView
     }
 
     @State private var displayMode: DisplayMode = .welcomeView
@@ -50,13 +51,14 @@ struct WelcomeView: View {
             .padding(.horizontal)
 
             AdaptiveStack(spacing: 15) {
+
+                Button("Forgot Password?") {
+                    displayMode = .resetPasswordView
+                }
+                    .buttonStyle(SmallSecondaryButtonStyle())
+
                 Button("Docs: Getting Started →") {
                     NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)
-                }
-                .buttonStyle(SmallSecondaryButtonStyle())
-
-                Button("Privacy Policy →") {
-                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/privacy-policy.html")!)
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())
 
@@ -83,6 +85,8 @@ struct WelcomeView: View {
             MacNavigationView(title: "Register a New Organization", backButtonAction: { self.displayMode = .welcomeView }, height: 550) { RegisterView() }
         case .joinOrganizationView:
             MacNavigationView(title: "Join an existing Organization", backButtonAction: { self.displayMode = .welcomeView }, height: 200) { JoinOrganizationView() }
+        case .resetPasswordView:
+            MacNavigationView(title: "Password Reset", backButtonAction: { self.displayMode = .welcomeView }, height: 350) { PasswordResetView() }
         }
     }
 }

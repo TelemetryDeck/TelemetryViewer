@@ -14,7 +14,7 @@ struct LeftSidebarView: View {
         @EnvironmentObject var appUpdater: AppUpdater
     #endif
 
-    @State private var isDefaultItemActive = true
+    @State private var isDefaultItemActive = false
 
     var body: some View {
         List {

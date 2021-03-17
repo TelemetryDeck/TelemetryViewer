@@ -159,6 +159,20 @@ extension APIRepresentative {
         }
     }
 
+    func requestPasswordReset(with email: String, callback: @escaping (Result<[String: String], TransferError>) -> Void) {
+        let url = urlForPath("users", "resetPassword", "request")
+        post(["email": email], to: url) { (result: Result<[String: String], TransferError>) in
+            callback(result)
+        }
+    }
+
+    func confirmPasswordReset(with request: RequestPasswordResetRequestBody, callback: @escaping (Result<[String: String], TransferError>) -> Void) {
+        let url = urlForPath("users", "resetPassword", "confirm")
+        post(request, to: url) { (result: Result<[String: String], TransferError>) in
+            callback(result)
+        }
+    }
+
     func getUserInformation(callback: ((Result<UserDataTransferObject, TransferError>) -> Void)? = nil) {
         let url = urlForPath("users", "me")
 

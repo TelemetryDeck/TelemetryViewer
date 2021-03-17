@@ -154,6 +154,8 @@
 		DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */; };
 		DCE23A1324D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
 		DCE23A1424D3687D00053370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
+		DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC64AF26025AAF00BEF69C /* PasswordResetView.swift */; };
+		DCEC64B126025AAF00BEF69C /* PasswordResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC64AF26025AAF00BEF69C /* PasswordResetView.swift */; };
 		DCF5583B25B08BE3007C8F8F /* OrderSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */; };
 		DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */; };
 		DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD3F254A08B900BFA23B /* LexiconView.swift */; };
@@ -278,6 +280,7 @@
 		DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE23A0D24D3687D00053370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE23A0E24D3687D00053370 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		DCEC64AF26025AAF00BEF69C /* PasswordResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetView.swift; sourceTree = "<group>"; };
 		DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSetter.swift; sourceTree = "<group>"; };
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
@@ -412,6 +415,7 @@
 				DCA10F7A24DA722700A62C26 /* RegisterView.swift */,
 				DCB02B712502781A00304964 /* LoginView.swift */,
 				DC9A92BA255C3E8E00E92C89 /* JoinOrganizationView.swift */,
+				DCEC64AF26025AAF00BEF69C /* PasswordResetView.swift */,
 			);
 			path = "Login Register";
 			sourceTree = "<group>";
@@ -805,6 +809,7 @@
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				DCB02B7F25038F5000304964 /* MockData.swift in Sources */,
 				DCB02B762502809200304964 /* RootView.swift in Sources */,
+				DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				DCB28D7525517A4B0032B9AD /* ListItemView.swift in Sources */,
 				DC25A58D256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC5339372521CE6200D9C889 /* CardView.swift in Sources */,
@@ -903,6 +908,7 @@
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC4504FB25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
+				DCEC64B126025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				DC24DF3425DD54090003ADCB /* AppInfoView.swift in Sources */,
 				DC92395825E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
