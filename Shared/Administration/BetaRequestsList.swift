@@ -56,6 +56,12 @@ struct BetaRequestDetailView: View {
 
                 if showDestructiveActions {
                     Divider()
+                    Button("Send Email Again") {
+                        api.sendEmail(for: betaRequest)
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
+
+                    Divider()
 
                     Button("Mark as \(betaRequest.isFulfilled ? "Not Fulfilled" : "Fulfilled")") {
                         let updateBody = BetaRequestUpdateBody(sentAt: betaRequest.sentAt, isFulfilled: !betaRequest.isFulfilled)

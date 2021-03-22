@@ -32,7 +32,7 @@ struct WelcomeView: View {
                 AdaptiveStack(spacing: 15) {
                     NavigationLink("Forgot Password?", destination: PasswordResetView())
                         .buttonStyle(SmallSecondaryButtonStyle())
-                    
+
                     Button("Docs: Getting Started →") {
                         UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)
                     }

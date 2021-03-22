@@ -23,7 +23,6 @@ struct PasswordResetView: View {
 
     var body: some View {
         Form {
-
             if !message.isEmpty {
                 Text(message)
                 Divider()
@@ -36,12 +35,12 @@ struct PasswordResetView: View {
             case .request:
                 CustomSection(header: Text("Email Address"), summary: EmptyView(), footer: Text("Please enter the email address you used to register with AppTelemetry. You'll receive an email with a reset code.")) {
                     #if os(macOS)
-                    TextField("Email", text: $requestPasswordResetRequestBody.email)
+                        TextField("Email", text: $requestPasswordResetRequestBody.email)
                     #else
-                    TextField("Email", text: $requestPasswordResetRequestBody.email)
-                        .textContentType(.emailAddress)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
+                        TextField("Email", text: $requestPasswordResetRequestBody.email)
+                            .textContentType(.emailAddress)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
                     #endif
 
                     Button("Request Code") {
@@ -49,7 +48,7 @@ struct PasswordResetView: View {
                         api.requestPasswordReset(with: requestPasswordResetRequestBody.email) { result in
                             switch result {
                             case let .success(message):
-                                self.message = message["message"] ?? message ["error"] ?? ""
+                                self.message = message["message"] ?? message["error"] ?? ""
                                 self.progressStatus = .confirm
                             case let .failure(error):
                                 self.message = error.localizedDescription
@@ -75,7 +74,7 @@ struct PasswordResetView: View {
                     api.confirmPasswordReset(with: requestPasswordResetRequestBody) { result in
                         switch result {
                         case let .success(message):
-                            self.message = message["message"] ?? message ["error"] ?? ""
+                            self.message = message["message"] ?? message["error"] ?? ""
                             self.progressStatus = .success
                         case let .failure(error):
                             self.message = error.localizedDescription

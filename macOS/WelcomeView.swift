@@ -51,11 +51,10 @@ struct WelcomeView: View {
             .padding(.horizontal)
 
             AdaptiveStack(spacing: 15) {
-
                 Button("Forgot Password?") {
                     displayMode = .resetPasswordView
                 }
-                    .buttonStyle(SmallSecondaryButtonStyle())
+                .buttonStyle(SmallSecondaryButtonStyle())
 
                 Button("Docs: Getting Started →") {
                     NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)

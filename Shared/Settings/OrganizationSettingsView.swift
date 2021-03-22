@@ -36,7 +36,8 @@ struct OrganizationSettingsView: View {
     #endif
 
     @State private var showingSheet = false
-    @State private var isLoadingSignalNumbers: Bool = false
+    @State private var isLoadingMonthlySignalNumbers: Bool = false
+    @State private var isLoadingTotalSignalNumbers: Bool = false
     @State private var isLoadingOrganizationJoinRequests: Bool = false
     @State private var isLoadingOrganizationUsers: Bool = false
 
@@ -60,9 +61,16 @@ struct OrganizationSettingsView: View {
                     )
                     Divider()
                     ValueView(
-                        value: Double(api.numberOfSignals),
+                        value: Double(api.numberOfSignalsThisMonth),
                         title: "signals this month",
-                        isLoading: isLoadingSignalNumbers,
+                        isLoading: isLoadingMonthlySignalNumbers,
+                        shouldFormatBigNumbers: true
+                    )
+                    Divider()
+                    ValueView(
+                        value: Double(api.totalNumberOfSignals),
+                        title: "signals total",
+                        isLoading: isLoadingTotalSignalNumbers,
                         shouldFormatBigNumbers: true
                     )
                 }
@@ -117,9 +125,14 @@ struct OrganizationSettingsView: View {
                 isLoadingOrganizationJoinRequests = false
             }
 
-            isLoadingSignalNumbers = true
-            api.getNumberOfSignals { _ in
-                isLoadingSignalNumbers = false
+            isLoadingMonthlySignalNumbers = true
+            api.getNumberOfSignalsThisMonth { _ in
+                isLoadingMonthlySignalNumbers = false
+            }
+
+            isLoadingTotalSignalNumbers = true
+            api.getTotalNumberOfSignals() { _ in
+                isLoadingTotalSignalNumbers = false
             }
         }
         .sheet(isPresented: $showingSheet) {
