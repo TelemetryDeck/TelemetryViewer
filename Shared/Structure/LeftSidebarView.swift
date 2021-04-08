@@ -14,20 +14,9 @@ struct LeftSidebarView: View {
         @EnvironmentObject var appUpdater: AppUpdater
     #endif
 
-    @State private var isDefaultItemActive = false
 
     var body: some View {
         List {
-            Section(header: Text("Favorites")) {
-                NavigationLink(
-                    destination: FavouritesView(),
-                    isActive: $isDefaultItemActive,
-                    label: {
-                        Label("Hi", systemImage: "star.fill")
-                    }
-                )
-            }
-
             Section(header: Text("Apps")) {
                 ForEach(api.apps.sorted { $0.name < $1.name }) { app in
                     DisclosureGroup(
