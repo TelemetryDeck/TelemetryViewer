@@ -70,7 +70,7 @@ struct AppRootView: View {
                 }
             }
         }
-        .navigationTitle(app.name)
+        .navigationBarTitle(app.name, displayMode: .inline)
         .onAppear {
             if let firstInsightGroup = api.insightGroups[app]?.first {
                 selection = .insightGroup(group: firstInsightGroup)
