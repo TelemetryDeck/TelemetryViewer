@@ -44,22 +44,7 @@ struct OrganizationSettingsView: View {
     var body: some View {
         HStack {
             List {
-                Text(api.user?.organization?.name ?? "Organization")
-                    .font(.title)
-
                 HStack {
-                    ValueView(
-                        value: Double(api.organizationUsers.count),
-                        title: api.organizationUsers.count == 1 ? "user" : "users",
-                        isLoading: isLoadingOrganizationUsers
-                    )
-                    Divider()
-                    ValueView(
-                        value: Double(api.organizationJoinRequests.count),
-                        title: api.organizationJoinRequests.count == 1 ? "invitation" : "invitations",
-                        isLoading: isLoadingOrganizationJoinRequests
-                    )
-                    Divider()
                     ValueView(
                         value: Double(api.numberOfSignalsThisMonth),
                         title: "signals this month",
@@ -113,6 +98,7 @@ struct OrganizationSettingsView: View {
                 }
             }
         }
+        .navigationTitle(api.user?.organization?.name ?? "Organization")
         .onAppear {
             TelemetryManager.shared.send(TelemetrySignal.organizationSettingsShown.rawValue, for: api.user?.email)
             isLoadingOrganizationUsers = true
