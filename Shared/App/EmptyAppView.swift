@@ -27,8 +27,13 @@ struct EmptyAppView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.grayColor)
 
-            Text("Create your first Insight Group now by tapping the New Group button in the top left.")
+            #if os(macOS)
+            Text("Create your first Insight Group now by clicking the New Group button in the top left.")
                 .foregroundColor(.grayColor)
+            #else
+            Text("Create your first Insight Group now by tapping the Menu button in the top right corner, then tapping 'New Group'.")
+                .foregroundColor(.grayColor)
+            #endif
 
             Button("Documentation: Sending Signals") {
                 #if os(macOS)

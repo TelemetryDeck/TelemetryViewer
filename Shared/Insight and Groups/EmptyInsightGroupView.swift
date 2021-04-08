@@ -32,8 +32,13 @@ struct EmptyInsightGroupView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.grayColor)
 
-            Text("Create your first insight by tapping to + button in the toolbar and selecting an Insight template to create. After creating the insight, you can tap to edit it.")
+            #if os(macOS)
+            Text("Create your first insight by clicking the + button in the toolbar and selecting an Insight template to create. After creating the insight, you can click to edit it.")
                 .foregroundColor(.grayColor)
+            #else
+            Text("Create your first insight by tapping the Menu Button in the top right corner, tapping 'New Insight', and selecting an Insight template to create. After creating the insight, you can tap to edit it.")
+                .foregroundColor(.grayColor)
+            #endif
 
             Text("To read more about how to send signals from your app, read the documentation on setting up your app.")
                 .foregroundColor(.grayColor)

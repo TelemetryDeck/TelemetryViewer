@@ -75,9 +75,7 @@ struct AppRootView: View {
                 selection = .insightGroup(group: firstInsightGroup)
             }
 
-            #if os(macOS)
-                setupSidebars()
-            #endif
+            setupSidebars()
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {

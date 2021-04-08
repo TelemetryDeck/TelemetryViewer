@@ -55,11 +55,19 @@ struct AppRootView: View {
     }
 
     var body: some View {
-        TabView(selection: $selection) {
-            ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                InsightGroupView(app: app, insightGroupID: insightGroup.id)
-                    .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
-                    .tag(AppRootViewSelection.insightGroup(group: insightGroup))
+        Group {
+            if self.insightGroup == nil {
+                EmptyAppView(appID: app.id)
+                    .frame(maxWidth: 400)
+                    .padding()
+            } else {
+                TabView(selection: $selection) {
+                    ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                        InsightGroupView(app: app, insightGroupID: insightGroup.id)
+                            .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
+                            .tag(AppRootViewSelection.insightGroup(group: insightGroup))
+                    }
+                }
             }
         }
         .navigationTitle(app.name)
