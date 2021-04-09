@@ -24,10 +24,14 @@ final class APIRepresentative: ObservableObject {
             getApps()
         }
 
-        timer = Timer.scheduledTimer(timeInterval: 60 * 5, target: self, selector: #selector(timedGetApps), userInfo: nil, repeats: true)
+        let timerRepeatInterval: TimeInterval = 60 * 5 // 5 minutes
+        timer = Timer.scheduledTimer(timeInterval: timerRepeatInterval, target: self, selector: #selector(updateWorker), userInfo: nil, repeats: true)
     }
 
     var timer: Timer?
+    
+    /// The last time all data in the APIClient was purged for memory reasons
+    private var lastCleanUpAt: Date = Date()
 
     @Published var registrationStatus: RegistrationStatus?
 
@@ -45,8 +49,6 @@ final class APIRepresentative: ObservableObject {
 
     /// The end of the currently displayed time window. If nil, defaults to date()
     @Published var timeWindowEnd: Date? = nil
-
-    @Published var requests = Set<AnyCancellable>()
 
     @Published var user: UserDataTransferObject?
     @Published var userNotLoggedIn: Bool = true
@@ -188,7 +190,6 @@ extension APIRepresentative {
                 }
             case let .failure(error):
                 self.handleError(error)
-                self.logout()
             }
 
             callback?(result)
@@ -247,8 +248,33 @@ extension APIRepresentative {
         }
     }
 
-    @objc func timedGetApps() {
+    /// Called every 5 minutes
+    @objc func updateWorker() {
         getApps()
+        cleanup()
+    }
+    
+    /// Remove all API data, in the attempt to prevent a memory leak
+    func cleanup() {
+        let cleanUpInterval: TimeInterval = 60 * 60 * 6 // 6 Hours
+        guard -lastCleanUpAt.timeIntervalSinceNow > cleanUpInterval else { return }
+        
+        print("Cleaning up data in an attempt to work around a combine memory leak...")
+        
+        totalNumberOfSignals = 0
+        numberOfSignalsThisMonth = 0
+        apps = []
+        signals = [:]
+        insightGroups = [:]
+        insightData = [:]
+        lexiconSignalTypes = [:]
+        lexiconPayloadKeys = [:]
+        betaRequests = []
+        organizationAdminListEntries = []
+        insightQueryAdminListEntries = []
+        insightQueryAdminAggregate = nil
+        organizationUsers = []
+        organizationJoinRequests = []
     }
 
     func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> Void)? = nil) {
