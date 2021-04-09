@@ -72,6 +72,18 @@ final class APIRepresentative: ObservableObject {
 
     @Published var organizationUsers: [UserDataTransferObject] = []
     @Published var organizationJoinRequests: [OrganizationJoinRequest] = []
+    
+    // MARK: Selections
+    @Published var selectedAppID: UUID?
+    var selectedApp: TelemetryApp? { apps.first { $0.id == selectedAppID } }
+    
+    @Published var selectedInsightGroupID: UUID?
+    var selectedInsightGroup: InsightGroup? {
+        guard let app = selectedApp else { return nil }
+        return insightGroups[app]?.first { $0.id == selectedInsightGroupID }
+    }
+    
+    @Published var selectedInsightID: UUID?
 }
 
 extension APIRepresentative {

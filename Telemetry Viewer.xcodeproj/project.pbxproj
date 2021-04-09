@@ -383,7 +383,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DCB02B65250027C700304964 /* Models */ = {
+		DCB02B65250027C700304964 /* Models and Data */ = {
 			isa = PBXGroup;
 			children = (
 				DC45BAED24DFF895004E6392 /* Models.swift */,
@@ -393,7 +393,7 @@
 				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
 				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
 			);
-			path = Models;
+			path = "Models and Data";
 			sourceTree = "<group>";
 		};
 		DCB02B67250027E400304964 /* Signals */ = {
@@ -505,7 +505,7 @@
 				DC98AABB250BC30200FF26FD /* Telemetry.swift */,
 				DCC8CB752563103E0019267A /* Illustrations.xcassets */,
 				DCE239FE24D3687D00053370 /* Assets.xcassets */,
-				DCB02B65250027C700304964 /* Models */,
+				DCB02B65250027C700304964 /* Models and Data */,
 				DCB02B692502764200304964 /* Login Register */,
 				DC627EEA25A35B5E00C1DF33 /* App */,
 				DCB02B70250277C300304964 /* Generic Views */,
