@@ -51,6 +51,7 @@ struct RawChartView_Previews: PreviewProvider {
             rollingWindowSize: -86000,
             breakdownKey: nil,
             displayMode: .raw,
+            isExpanded: false,
             data: [
                 InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "102"),
             ],
@@ -67,6 +68,7 @@ struct RawChartView_Previews: PreviewProvider {
             rollingWindowSize: -86000,
             breakdownKey: nil,
             displayMode: .raw,
+            isExpanded: false,
             data: [
                 InsightData(xAxisValue: "2020-11-20T00:00:00+01:00", yAxisValue: "10650"),
                 InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "96"),
@@ -84,6 +86,7 @@ struct RawChartView_Previews: PreviewProvider {
             rollingWindowSize: -86000,
             breakdownKey: nil,
             displayMode: .raw,
+            isExpanded: false,
             data: [
                 InsightData(xAxisValue: "Test", yAxisValue: "Omsn"),
                 InsightData(xAxisValue: "Test2", yAxisValue: "Omsn2"),
@@ -104,6 +107,7 @@ struct RawChartView_Previews: PreviewProvider {
             rollingWindowSize: -86000,
             breakdownKey: nil,
             displayMode: .raw,
+            isExpanded: false,
             data: [
                 InsightData(xAxisValue: "iOS", yAxisValue: "10650"),
                 InsightData(xAxisValue: "macOS", yAxisValue: "96"),

@@ -9,7 +9,7 @@ import Foundation
 import TelemetryModels
 
 struct MockData {
-    static let exampleOrganization: Organization = .init(name: "breakthesystem", isSuperOrg: true)
+    static let exampleOrganization: OrganizationDTO = .init(id: UUID(), name: "breakthesystem", isSuperOrg: true)
 
     static let app1: TelemetryApp = .init(id: UUID(), name: "Test App", organization: ["id": "123"])
     static let app2: TelemetryApp = .init(id: UUID(), name: "Other Test App", organization: ["id": "123"])
@@ -60,6 +60,7 @@ struct MockData {
         rollingWindowSize: -24 * 3600,
         breakdownKey: nil,
         displayMode: .raw,
+        isExpanded: false,
         data: [InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
         calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
     )

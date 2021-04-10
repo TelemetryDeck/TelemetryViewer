@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "TelemetryModels",
+        "repositoryURL": "git@github.com:AppTelemetry/models.git",
+        "state": {
+          "branch": "main",
+          "revision": "682ec50f4f38a366a5ecc09fbdef6964dee61431",
+          "version": null
+        }
+      },
+      {
         "package": "TelemetryClient",
         "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
         "state": {
