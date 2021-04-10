@@ -43,7 +43,7 @@ struct LeftSidebarView: View {
                         },
                         label: {
                             NavigationLink(
-                                destination: AppRootView(app: app),
+                                destination: AppRootView(appID: app.id),
                                 label: {
                                     Label(app.name, systemImage: "app")
                                 }

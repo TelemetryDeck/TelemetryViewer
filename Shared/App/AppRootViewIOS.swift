@@ -10,7 +10,9 @@ import TelemetryModels
 
 struct AppRootView: View {
     @EnvironmentObject var api: APIRepresentative
-    let app: TelemetryApp
+    let appID: UUID
+    
+    var app: TelemetryApp? { api.app(with: appID) }
 
     @State var selection: AppRootViewSelection = .rawSignals
 
@@ -48,7 +50,7 @@ struct AppRootView: View {
     }
 
     func reloadVisibleInsights() {
-        guard let insightGroup = insightGroup else { return }
+        guard let insightGroup = insightGroup, let app = app else { return }
 
         for insight in insightGroup.insights {
             api.getInsightData(for: insight, in: insightGroup, in: app)
@@ -57,8 +59,9 @@ struct AppRootView: View {
 
     var body: some View {
         Group {
+            if let app = app {
             if self.insightGroup == nil {
-                EmptyAppView(appID: app.id)
+                EmptyAppView(appID: appID)
                     .frame(maxWidth: 400)
                     .padding()
             } else {
@@ -70,10 +73,11 @@ struct AppRootView: View {
                     }
                 }
             }
+            }
         }
-        .navigationBarTitle(app.name, displayMode: .inline)
+        .navigationBarTitle(app?.name ?? "No app selected", displayMode: .inline)
         .onAppear {
-            if let firstInsightGroup = api.insightGroups[app]?.first {
+            if let app = app, let firstInsightGroup = api.insightGroups[app]?.first {
                 selection = .insightGroup(group: firstInsightGroup)
             }
         }
@@ -82,10 +86,11 @@ struct AppRootView: View {
                 Menu {
                     Section {
                         Button("New Group") {
+                            guard let app = app else { return }
                             api.create(insightGroupNamed: "New Group", for: app)
                         }
 
-                        if let insightGroup = insightGroup {
+                        if let insightGroup = insightGroup, let app = app {
                             Menu {
                                 Section {
                                     Button("Generic Timeseries Insight") {
