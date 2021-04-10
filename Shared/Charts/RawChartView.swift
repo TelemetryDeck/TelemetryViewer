@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryModels
 
 struct RawChartView: View {
     var insightDataID: UUID
@@ -16,7 +17,7 @@ struct RawChartView: View {
         topSelectedInsightID == insightDataID
     }
 
-    private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
+    private var insightData: InsightDTO? { api.insightData[insightDataID] }
 
     var body: some View {
         if let insightData = insightData, !insightData.data.isEmpty {
@@ -40,7 +41,7 @@ struct RawChartView: View {
 
 struct RawChartView_Previews: PreviewProvider {
     static var api: APIRepresentative = {
-        let insight1 = InsightDataTransferObject(
+        let insight1 = InsightDTO(
             id: UUID(),
             order: nil, title: "A single Number",
             subtitle: nil,
@@ -56,7 +57,7 @@ struct RawChartView_Previews: PreviewProvider {
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight2 = InsightDataTransferObject(
+        let insight2 = InsightDTO(
             id: UUID(),
             order: nil, title: "2 Numbers",
             subtitle: nil,
@@ -73,7 +74,7 @@ struct RawChartView_Previews: PreviewProvider {
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight3 = InsightDataTransferObject(
+        let insight3 = InsightDTO(
             id: UUID(),
             order: nil, title: "Maaaany Entries",
             subtitle: nil,
@@ -93,7 +94,7 @@ struct RawChartView_Previews: PreviewProvider {
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight4 = InsightDataTransferObject(
+        let insight4 = InsightDTO(
             id: UUID(),
             order: nil, title: "2 Numbers, no dates",
             subtitle: nil,
@@ -130,7 +131,7 @@ struct RawChartView_Previews: PreviewProvider {
 }
 
 struct SingleValueView: View {
-    var insightData: InsightDataTransferObject
+    var insightData: InsightDTO
 
     let isSelected: Bool
 
@@ -203,7 +204,7 @@ struct SingleValueView: View {
 }
 
 struct RawTableView: View {
-    var insightData: InsightDataTransferObject
+    var insightData: InsightDTO
 
     let isSelected: Bool
 

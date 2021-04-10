@@ -7,9 +7,10 @@
 
 import SwiftUI
 import TelemetryClient
+import TelemetryModels
 
 struct UserInfoView: View {
-    var user: UserDataTransferObject
+    var user: UserDTO
 
     var body: some View {
         VStack {

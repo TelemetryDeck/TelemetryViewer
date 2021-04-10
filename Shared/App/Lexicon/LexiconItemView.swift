@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryModels
 
 struct SignalTypeView: View {
     let lexiconItem: LexiconSignalType

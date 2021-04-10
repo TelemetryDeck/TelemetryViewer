@@ -8,6 +8,7 @@
 import Intents
 import SwiftUI
 import WidgetKit
+import TelemetryModels
 
 struct Provider: IntentTimelineProvider {
     func placeholder(in _: Context) -> SimpleEntry {
@@ -38,7 +39,7 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
-    let insight: InsightDataTransferObject
+    let insight: InsightDTO
 }
 
 struct TelemetryWidgetEntryView: View {

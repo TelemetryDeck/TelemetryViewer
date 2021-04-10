@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryModels
 
 struct DonutChartView: View {
     var insightDataID: UUID
@@ -16,7 +17,7 @@ struct DonutChartView: View {
         topSelectedInsightID == insightDataID
     }
 
-    private var insightData: InsightDataTransferObject? { api.insightData[insightDataID] }
+    private var insightData: InsightDTO? { api.insightData[insightDataID] }
     private var chartDataSet: ChartDataSet? {
         guard let insightData = insightData else { return nil }
         return try? ChartDataSet(data: insightData.data)

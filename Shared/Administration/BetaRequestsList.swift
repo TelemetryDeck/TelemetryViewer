@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryModels
 
 struct BetaRequestDetailView: View {
     var betaRequestID: UUID?

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryModels
 
 struct OrganizationAdmin: View {
     @EnvironmentObject var api: APIRepresentative

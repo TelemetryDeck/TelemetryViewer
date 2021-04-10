@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import TelemetryModels
 
 struct ChartBottomView: View {
-    var insightData: InsightDataTransferObject?
+    var insightData: InsightDTO?
 
     let isSelected: Bool
 

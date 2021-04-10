@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import TelemetryModels
 
 struct MockData {
     static let exampleOrganization: Organization = .init(name: "breakthesystem", isSuperOrg: true)
@@ -48,7 +49,7 @@ struct MockData {
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "systemVersion"),
     ]
 
-    static let exampleInsight1 = InsightDataTransferObject(
+    static let exampleInsight1 = InsightDTO(
         id: UUID(),
         order: 12,
         title: "Users Today",

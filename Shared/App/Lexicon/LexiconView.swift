@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryModels
 
 struct LexiconView: View {
     @EnvironmentObject var api: APIRepresentative

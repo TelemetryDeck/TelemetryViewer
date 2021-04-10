@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryModels
 
 struct InsightQueryDetailView: View {
     let entry: Insight
