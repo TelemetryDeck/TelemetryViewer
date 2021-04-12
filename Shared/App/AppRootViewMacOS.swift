@@ -13,6 +13,7 @@ struct AppRootView: View {
     let appID: UUID
     
     var app: TelemetryApp? { api.app(with: appID) }
+    @State var selectedInsightGroupID = UUID()
     
     @State var selection: AppRootViewSelection = .noSelection
     

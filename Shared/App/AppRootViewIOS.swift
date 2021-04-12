@@ -14,15 +14,11 @@ struct AppRootView: View {
     
     var app: TelemetryApp? { api.app(with: appID) }
 
-    @State var selection: AppRootViewSelection = .rawSignals
+    @State var selectedInsightGroupID: UUID = UUID()
 
     private var insightGroup: InsightGroup? {
-        switch selection {
-        case let .insightGroup(group):
-            return group
-        default:
-            return nil
-        }
+        guard let app = app else { return nil }
+        return api.insightGroups[app]?.first { $0.id == selectedInsightGroupID }
     }
 
     private let dateFormatter: DateFormatter = {
@@ -60,7 +56,7 @@ struct AppRootView: View {
     var body: some View {
         Group {
             if let app = app, (api.insightGroups[app] ?? []).isEmpty == false {
-                TabView(selection: $selection) {
+                TabView(selection: $selectedInsightGroupID) {
                     ForEach(api.insightGroups[app] ?? []) { insightGroup in
                         InsightGroupView(appID: appID, insightGroupID: insightGroup.id)
                             .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
@@ -78,7 +74,7 @@ struct AppRootView: View {
         .navigationBarTitle(app?.name ?? "No App Selected", displayMode: .inline)
         .onAppear {
             if let app = app, let firstInsightGroup = api.insightGroups[app]?.first {
-                selection = .insightGroup(group: firstInsightGroup)
+                selectedInsightGroupID = firstInsightGroup.id
             }
         }
         .toolbar {
