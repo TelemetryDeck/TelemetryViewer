@@ -56,26 +56,26 @@ struct AppRootView: View {
             api.getInsightData(for: insight, in: insightGroup, in: app)
         }
     }
-
+    
     var body: some View {
         Group {
-            if let app = app {
-            if self.insightGroup == nil {
-                EmptyAppView(appID: appID)
-                    .frame(maxWidth: 400)
-                    .padding()
-            } else {
+            if let app = app, (api.insightGroups[app] ?? []).isEmpty == false {
                 TabView(selection: $selection) {
                     ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                        InsightGroupView(app: app, insightGroupID: insightGroup.id)
+                        InsightGroupView(appID: appID, insightGroupID: insightGroup.id)
                             .tabItem { Label(insightGroup.title, systemImage: "square.grid.2x2") }
                             .tag(AppRootViewSelection.insightGroup(group: insightGroup))
                     }
                 }
-            }
+            } else if app != nil {
+                EmptyAppView(appID: appID)
+                    .frame(maxWidth: 400)
+                    .padding()
+            } else {
+                Text("No App Selected")
             }
         }
-        .navigationBarTitle(app?.name ?? "No app selected", displayMode: .inline)
+        .navigationBarTitle(app?.name ?? "No App Selected", displayMode: .inline)
         .onAppear {
             if let app = app, let firstInsightGroup = api.insightGroups[app]?.first {
                 selection = .insightGroup(group: firstInsightGroup)

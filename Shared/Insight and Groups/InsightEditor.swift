@@ -45,6 +45,23 @@ struct InsightEditorContent {
     /// Should use druid for calculating this insght
     var shouldUseDruid: Bool
 
+    static func empty() -> InsightEditorContent {
+        return Self(
+            order: -1,
+            title: "...",
+            signalType: "",
+            uniqueUser: false,
+            filters: [:],
+            rollingWindowSize: 0,
+            breakdownKey: "",
+            groupBy: .day,
+            displayMode: .number,
+            groupID: UUID(),
+            id: UUID(),
+            isExpanded: false,
+            shouldUseDruid: true)
+    }
+    
     static func from(insight: Insight) -> InsightEditorContent {
         let requestBody = Self(
             order: insight.order ?? -1,
@@ -88,24 +105,37 @@ struct InsightEditorContent {
 struct InsightEditor: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var api: APIRepresentative
-    let app: TelemetryApp
-    let insightGroup: InsightGroup
-    let insight: Insight
+    
+    let appID: UUID
+    let insightGroupID: UUID
+    let insightID: UUID
+    
+    var app: TelemetryApp? { api.app(with: appID) }
+    var insightGroup: InsightGroup? {
+        guard let app = app else { return nil }
+        return api.insightGroups[app]?.first { $0.id == insightGroupID }
+    }
+    var insight: Insight? {
+        guard let insightGroup = insightGroup else { return nil }
+        return insightGroup.insights.first { $0.id == insightID }
+    }
 
     @State var insightDRB: InsightEditorContent
 
-    init(app: TelemetryApp, insightGroup: InsightGroup, insight: Insight) {
-        self.app = app
-        self.insightGroup = insightGroup
-        self.insight = insight
-        _insightDRB = State(initialValue: InsightEditorContent.from(insight: insight))
+    init(appID: UUID, insightGroupID: UUID, insightID: UUID) {
+        self.appID = appID
+        self.insightGroupID = insightGroupID
+        self.insightID = insightID
+        _insightDRB = State(initialValue: InsightEditorContent.empty())
     }
 
     func save() {
+        guard let app = app, let insightGroup = insightGroup, let insight = insight else { return }
         api.update(insight: insight, in: insightGroup, in: app, with: insightDRB.insightDefinitionRequestBody())
     }
 
     func updatePayloadKeys() {
+        guard let app = app else { return }
         api.getPayloadKeys(for: app)
         api.getSignalTypes(for: app)
     }
@@ -141,15 +171,17 @@ struct InsightEditor: View {
     }
 
     var filterAutocompletionOptions: [String] {
-        api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map(\.payloadKey)
+        guard let app = app else { return [] }
+        return api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map(\.payloadKey)
     }
 
     var signalTypeAutocompletionOptions: [String] {
-        api.lexiconSignalTypes[app, default: []].map(\.type)
+        guard let app = app else { return [] }
+        return api.lexiconSignalTypes[app, default: []].map(\.type)
     }
 
     var insightGroupTitle: String {
-        guard let insightGroup = api.insightGroups[app]?.first(where: { (group) -> Bool in
+        guard let app = app, let insightGroup = api.insightGroups[app]?.first(where: { (group) -> Bool in
             group.id == insightDRB.groupID
         })
         else { return "..." }
@@ -159,7 +191,7 @@ struct InsightEditor: View {
 
     var body: some View {
         let form = Form {
-            CustomSection(header: Text("Name"), summary: Text(insight.title), footer: Text("The Title of This Insight")) {
+            CustomSection(header: Text("Name"), summary: Text(insight?.title ?? "..."), footer: Text("The Title of This Insight")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $insightDRB.title, onEditingChanged: { _ in save() }, onCommit: { save() })
 
                 Toggle(isOn: $insightDRB.isExpanded, label: {
@@ -238,8 +270,10 @@ struct InsightEditor: View {
 
             CustomSection(header: Text("Insight Group"), summary: Text(insightGroupTitle), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
                 Picker(selection: $insightDRB.groupID, label: EmptyView()) {
-                    ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                        Text(insightGroup.title).tag(insightGroup.id)
+                    if let app = app {
+                        ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                            Text(insightGroup.title).tag(insightGroup.id)
+                        }
                     }
                 }
                 .onChange(of: insightDRB.groupID) { _ in save() }
@@ -260,7 +294,7 @@ struct InsightEditor: View {
                 }
                 .onChange(of: insightDRB.shouldUseDruid) { _ in save() }
 
-                if let dto = api.insightData[insight.id] {
+                if let dto = api.insightData[insightID] {
                     Group {
                         Text("This Insight was last updated ")
                             + Text(dto.calculatedAt, style: .relative).bold()
@@ -281,13 +315,14 @@ struct InsightEditor: View {
                 }
 
                 Button("Copy Insight ID") {
-                    saveToClipBoard(insight.id.uuidString)
+                    saveToClipBoard(insightID.uuidString)
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())
             }
 
             CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                 Button("Delete this Insight", action: {
+                    guard let app = app, let insight = insight, let insightGroup = insightGroup else { return }
                     api.delete(insight: insight, in: insightGroup, in: app) { _ in
                         self.presentation.wrappedValue.dismiss()
                     }
@@ -297,8 +332,15 @@ struct InsightEditor: View {
             }
         }
         .navigationTitle("Edit Insight")
-        .onAppear { updatePayloadKeys() }
+        .onAppear {
+            if let insight = insight {
+                insightDRB = InsightEditorContent.from(insight: insight)
+            }
+            
+            updatePayloadKeys()
+        }
 
+        if insight != nil {
         #if os(macOS)
             ScrollView {
                 form
@@ -319,5 +361,6 @@ struct InsightEditor: View {
         #else
             form
         #endif
+        }
     }
 }

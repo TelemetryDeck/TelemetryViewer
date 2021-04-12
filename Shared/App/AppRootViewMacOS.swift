@@ -10,10 +10,12 @@ import TelemetryModels
 
 struct AppRootView: View {
     @EnvironmentObject var api: APIRepresentative
-    let app: TelemetryApp
-
+    let appID: UUID
+    
+    var app: TelemetryApp? { api.app(with: appID) }
+    
     @State var selection: AppRootViewSelection = .noSelection
-
+    
     private var insightGroup: InsightGroup? {
         switch selection {
         case let .insightGroup(group):
@@ -22,19 +24,19 @@ struct AppRootView: View {
             return nil
         }
     }
-
+    
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         return formatter
     }()
-
+    
     var timeIntervalDescription: String {
         let displayTimeWindowEnd = api.timeWindowEnd ?? Date()
         let displayTimeWindowBegin = api.timeWindowBeginning ??
             displayTimeWindowEnd.addingTimeInterval(-60 * 60 * 24 * 30)
-
+        
         if api.timeWindowEnd == nil {
             if api.timeWindowBeginning == nil {
                 return "Showing Last 30 Days"
@@ -46,93 +48,97 @@ struct AppRootView: View {
             return "\(dateFormatter.string(from: displayTimeWindowBegin)) – \(dateFormatter.string(from: displayTimeWindowEnd))"
         }
     }
-
+    
     func reloadVisibleInsights() {
         guard let insightGroup = insightGroup else { return }
-
+        
         for insight in insightGroup.insights {
+            guard let app = app else { return }
             api.getInsightData(for: insight, in: insightGroup, in: app)
         }
     }
-
+    
     var body: some View {
         Group {
             switch selection {
             case .lexicon:
-                LexiconView(appID: app.id)
+                LexiconView(appID: appID)
             case .rawSignals:
-                SignalList(appID: app.id)
+                SignalList(appID: appID)
             case let .insightGroup(group):
-                InsightGroupView(app: app, insightGroupID: group.id)
+                InsightGroupView(appID: appID, insightGroupID: group.id)
             case .noSelection:
-                EmptyAppView(appID: app.id)
+                EmptyAppView(appID: appID)
                     .frame(maxWidth: 400)
                     .padding()
             }
         }
-        .navigationTitle(app.name)
+        .navigationTitle(app?.name ?? "No App Selected")
         .onAppear {
-            if let firstInsightGroup = api.insightGroups[app]?.first, selection == .noSelection {
+            if let app = app, let firstInsightGroup = api.insightGroups[app]?.first, selection == .noSelection {
                 selection = .insightGroup(group: firstInsightGroup)
             }
-
+            
             setupSidebars()
         }
         .toolbar {
+            
             ToolbarItemGroup(placement: .navigation) {
-                Picker("View Mode", selection: $selection) {
-                    ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                        Text(insightGroup.title).tag(AppRootViewSelection.insightGroup(group: insightGroup))
-                    }
-                }.pickerStyle(SegmentedPickerStyle())
-
-                Button(action: {
-                    api.create(insightGroupNamed: "New Group", for: app)
-                }) {
-                    HStack {
-                        Image(systemName: "plus")
-                        Text("New Group")
+                if let app = app {
+                    Picker("View Mode", selection: $selection) {
+                        ForEach(api.insightGroups[app] ?? []) { insightGroup in
+                            Text(insightGroup.title).tag(AppRootViewSelection.insightGroup(group: insightGroup))
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
+                    
+                    Button(action: {
+                        api.create(insightGroupNamed: "New Group", for: app)
+                    }) {
+                        HStack {
+                            Image(systemName: "plus")
+                            Text("New Group")
+                        }
                     }
                 }
             }
-
+            
             ToolbarItem {
-                if let insightGroup = insightGroup {
+                if let insightGroup = insightGroup, let app = app {
                     Menu {
                         Section {
                             Button("Generic Timeseries Insight") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newTimeSeriesInsight(groupID: insightGroup.id)
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
-
+                            
                             Button("Generic Breakdown Insight") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(groupID: insightGroup.id)
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
                         }
-
+                        
                         Section {
                             Button("Daily Active Users") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newDailyUserCountInsight(groupID: insightGroup.id)
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
-
+                            
                             Button("Weekly Active Users") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newWeeklyUserCountInsight(groupID: insightGroup.id)
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
-
+                            
                             Button("Monthly Active Users") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newMonthlyUserCountInsight(groupID: insightGroup.id)
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
-
+                            
                             Button("Daily Signals") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newSignalInsight(groupID: insightGroup.id)
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
                         }
-
+                        
                         Section {
                             Button("App Versions Breakdown") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(
@@ -142,7 +148,7 @@ struct AppRootView: View {
                                 )
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
-
+                            
                             Button("Build Number Breakdown") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(
                                     groupID: insightGroup.id,
@@ -151,7 +157,7 @@ struct AppRootView: View {
                                 )
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
-
+                            
                             Button("Device Type Breakdown") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(
                                     groupID: insightGroup.id,
@@ -160,7 +166,7 @@ struct AppRootView: View {
                                 )
                                 api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
                             }
-
+                            
                             Button("OS Breakdown") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(
                                     groupID: insightGroup.id,
@@ -176,7 +182,7 @@ struct AppRootView: View {
                     }
                 }
             }
-
+            
             ToolbarItem {
                 Menu {
                     Section {
@@ -187,7 +193,7 @@ struct AppRootView: View {
                         }) {
                             Label("Last Year", systemImage: "calendar")
                         }
-
+                        
                         Button(action: {
                             api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 90)
                             api.timeWindowEnd = nil
@@ -195,7 +201,7 @@ struct AppRootView: View {
                         }) {
                             Label("Last 3 Months", systemImage: "calendar")
                         }
-
+                        
                         Button(action: {
                             api.timeWindowBeginning = nil
                             api.timeWindowEnd = nil
@@ -203,7 +209,7 @@ struct AppRootView: View {
                         }) {
                             Label("Last Month", systemImage: "calendar")
                         }
-
+                        
                         Button(action: {
                             api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
                             api.timeWindowEnd = nil
@@ -211,7 +217,7 @@ struct AppRootView: View {
                         }) {
                             Label("Last Week", systemImage: "calendar")
                         }
-
+                        
                         Button(action: {
                             api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
                             api.timeWindowEnd = nil
@@ -226,5 +232,6 @@ struct AppRootView: View {
                 }
             }
         }
+        
     }
 }
