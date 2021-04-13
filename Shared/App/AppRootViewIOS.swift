@@ -15,6 +15,7 @@ struct AppRootView: View {
     var app: TelemetryApp? { api.app(with: appID) }
 
     @State var selectedInsightGroupID: UUID = UUID()
+    @State private var showingSheet = false
 
     private var insightGroup: InsightGroup? {
         guard let app = app else { return nil }
@@ -75,6 +76,11 @@ struct AppRootView: View {
         .onAppear {
             if let app = app, let firstInsightGroup = api.insightGroups[app]?.first {
                 selectedInsightGroupID = firstInsightGroup.id
+            }
+        }
+        .sheet(isPresented: $showingSheet) {
+            NavigationView {
+                AppEditor(appID: appID)
             }
         }
         .toolbar {
@@ -212,6 +218,10 @@ struct AppRootView: View {
                         label: {
                             Text(timeIntervalDescription)
                         }
+                    }
+                    
+                    Button("App Settings") {
+                        showingSheet = true
                     }
                 } label: {
                     Label("Menu", systemImage: "ellipsis.circle")

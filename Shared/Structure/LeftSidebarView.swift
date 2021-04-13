@@ -20,6 +20,8 @@ struct LeftSidebarView: View {
         List {
             Section(header: Text("Apps")) {
                 ForEach(api.apps.sorted { $0.name < $1.name }) { app in
+                    
+                    #if os(macOS)
                     DisclosureGroup(
                         content: {
                             NavigationLink(
@@ -52,6 +54,15 @@ struct LeftSidebarView: View {
                             )
                         }
                     )
+                    #else
+                    NavigationLink(
+                        destination: AppRootView(appID: app.id), tag: app.id,
+                        selection: $selectedAppID,
+                        label: {
+                            Label(app.name, systemImage: "app")
+                        }
+                    )
+                    #endif
                 }
             }
 

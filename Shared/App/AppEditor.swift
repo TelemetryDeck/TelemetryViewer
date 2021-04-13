@@ -11,6 +11,7 @@ import TelemetryModels
 
 struct AppEditor: View {
     @EnvironmentObject var api: APIRepresentative
+    @Environment(\.presentationMode) var presentationMode
     
     let appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
@@ -67,6 +68,14 @@ struct AppEditor: View {
             .onAppear {
                 newName = app.name
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
+            }
+            .toolbar {
+                #if os(macOS)
+                #else
+                Button("Done") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                #endif
             }
             .alert(isPresented: $showingAlert) {
                 Alert(
