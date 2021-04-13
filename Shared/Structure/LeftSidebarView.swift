@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LeftSidebarView: View {
     @EnvironmentObject var api: APIRepresentative
+    @State var selectedAppID: UUID?
 
     #if os(macOS)
         @EnvironmentObject var appUpdater: AppUpdater
@@ -43,7 +44,8 @@ struct LeftSidebarView: View {
                         },
                         label: {
                             NavigationLink(
-                                destination: AppRootView(appID: app.id),
+                                destination: AppRootView(appID: app.id), tag: app.id,
+                                selection: $selectedAppID,
                                 label: {
                                     Label(app.name, systemImage: "app")
                                 }
@@ -116,7 +118,14 @@ struct LeftSidebarView: View {
                 #endif
 
                 Button(action: {
-                    api.create(appNamed: "New App")
+                    api.create(appNamed: "New App") { result in
+                        switch result {
+                        case .failure(let error):
+                            print(error)
+                        case .success(let newApp):
+                            selectedAppID = newApp.id
+                        }
+                    }
                 }) {
                     Label("New App", systemImage: "plus.app.fill")
                 }

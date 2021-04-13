@@ -166,7 +166,7 @@ struct InsightEditor: View {
         case .pieChart:
             return Image(systemName: "chart.pie.fill")
         default:
-            return Image("omsn")
+            return Image(systemName: "number.square")
         }
     }
 
