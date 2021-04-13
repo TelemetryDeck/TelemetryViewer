@@ -67,8 +67,16 @@ struct LeftSidebarView: View {
                             Label("Settings", systemImage: "gear")
                         }
                     )
+                    
+                    NavigationLink(
+                        destination: FeedbackView(),
+                        label: {
+                            Label("Help & Feedback", systemImage: "ladybug.fill")
+                        }
+                    )
                 } else {
                     Label("firstName lastName", systemImage: "person.circle").redacted(reason: .placeholder)
+                    Label("organization.name", systemImage: "app.badge").redacted(reason: .placeholder)
                     Label("organization.name", systemImage: "app.badge").redacted(reason: .placeholder)
                 }
 
