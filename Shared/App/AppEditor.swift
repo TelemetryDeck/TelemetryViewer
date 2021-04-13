@@ -68,7 +68,7 @@ struct AppEditor: View {
                 newName = app.name
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
             }
-            .alert(isPresented:$showingAlert) {
+            .alert(isPresented: $showingAlert) {
                 Alert(
                     title: Text("Are you sure you want to delete \(app.name)?"),
                     message: Text("This will delete the app, all insights, and all received Signals for this app. There is no undo."),

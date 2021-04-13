@@ -29,6 +29,7 @@ struct InsightGroupEditorContent {
 struct InsightGroupEditor: View {
     @EnvironmentObject var api: APIRepresentative
     @State var insightGroupDTO: InsightGroupEditorContent
+    @State private var showingAlert = false
 
     let app: TelemetryApp
     let insightGroup: InsightGroup
@@ -59,10 +60,20 @@ struct InsightGroupEditor: View {
             }
 
             CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-                Button("Delete this Insight Group", action: delete)
+                Button("Delete this Insight Group", action: { showingAlert = true })
                     .buttonStyle(SmallSecondaryButtonStyle())
                     .accentColor(.red)
             }
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(
+                title: Text("Are you sure you want to delete the group \(insightGroup.title)?"),
+                message: Text("This will delete the Insight Group and all its Insights. Your signals are not affected."),
+                primaryButton: .destructive(Text("Delete")) {
+                    delete()
+                },
+                secondaryButton: .cancel()
+            )
         }
 
         #if os(macOS)

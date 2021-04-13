@@ -78,7 +78,7 @@ struct InsightGroupView: View {
                     .background(Color.separatorColor)
                 }
             } else {
-                Text("Loading InsightGroup...")
+                Text("No Insight Group Selected")
             }
 
             AdaptiveStack {
