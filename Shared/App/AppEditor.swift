@@ -83,6 +83,7 @@ struct AppEditor: View {
                     message: Text("This will delete the app, all insights, and all received Signals for this app. There is no undo."),
                     primaryButton: .destructive(Text("Delete")) {
                         api.delete(app: app)
+                        presentationMode.wrappedValue.dismiss()
                         TelemetryManager.shared.send(TelemetrySignal.telemetryAppDeleted.rawValue, for: api.user?.email)
                     },
                     secondaryButton: .cancel()

@@ -51,6 +51,13 @@ struct FeedbackView: View {
             )
             
             FeedbackViewEntry(
+                title: "Swift Client",
+                subtitle: "The AppTelemetry Swift Client for inclusion in your apps",
+                link: "https://github.com/AppTelemetry/SwiftClient",
+                systemImage: "cloud"
+            )
+            
+            FeedbackViewEntry(
                 title: "GitHub Issues",
                 subtitle: "Create new tickets for features you'd like or bugs you found, or discuss existing tickets.",
                 link: "https://github.com/AppTelemetry/Viewer/issues",
