@@ -105,6 +105,7 @@ struct InsightEditorContent {
 struct InsightEditor: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var api: APIRepresentative
+    @State private var showingAlert = false
     
     let appID: UUID
     let insightGroupID: UUID
@@ -322,14 +323,24 @@ struct InsightEditor: View {
 
             CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                 Button("Delete this Insight", action: {
-                    guard let app = app, let insight = insight, let insightGroup = insightGroup else { return }
-                    api.delete(insight: insight, in: insightGroup, in: app) { _ in
-                        self.presentation.wrappedValue.dismiss()
-                    }
+                    showingAlert = true
                 })
                     .buttonStyle(SmallSecondaryButtonStyle())
                     .accentColor(.red)
             }
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(
+                title: Text("Are you sure you want to delete the Insight \(insight?.title ?? "–")?"),
+                message: Text("This will delete the Insight. Your signals are not affected."),
+                primaryButton: .destructive(Text("Delete")) {
+                    guard let app = app, let insight = insight, let insightGroup = insightGroup else { return }
+                    api.delete(insight: insight, in: insightGroup, in: app) { _ in
+                        self.presentation.wrappedValue.dismiss()
+                    }
+                },
+                secondaryButton: .cancel()
+            )
         }
         .navigationTitle("Edit Insight")
         .onAppear {
