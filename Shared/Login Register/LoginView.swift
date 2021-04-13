@@ -40,14 +40,17 @@ struct LoginView: View {
             Section(header: Text("Login")) {
                 #if os(macOS)
                     TextField("Email", text: $loginRequestBody.userEmail)
+                        .textContentType(.username)
                 #else
                     TextField("Email", text: $loginRequestBody.userEmail)
-                        .textContentType(.emailAddress)
+                        .textContentType(.username)
+                        .keyboardType(.emailAddress)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                 #endif
 
                 SecureField("Password", text: $loginRequestBody.userPassword)
+                    .textContentType(.password)
             }
 
             Section {
