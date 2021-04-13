@@ -111,9 +111,10 @@ struct LeftSidebarView: View {
                             .help("Toggle Sidebar")
                     }
                     .help("Toggle the left sidebar")
+                
+                    Spacer()
                 #endif
 
-                Spacer()
                 Button(action: {
                     api.create(appNamed: "New App")
                 }) {
