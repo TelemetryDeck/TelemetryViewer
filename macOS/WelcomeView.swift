@@ -29,6 +29,7 @@ struct WelcomeView: View {
                 Image("appIcon")
                     .resizable()
                     .scaledToFit()
+                    .frame(maxHeight: 400)
                 Spacer()
             }
 

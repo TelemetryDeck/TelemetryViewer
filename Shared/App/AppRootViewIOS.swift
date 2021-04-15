@@ -73,11 +73,6 @@ struct AppRootView: View {
             }
         }
         .navigationBarTitle(app?.name ?? "No App Selected", displayMode: .inline)
-        .onAppear {
-            if let app = app, let firstInsightGroup = api.insightGroups[app]?.first {
-                selectedInsightGroupID = firstInsightGroup.id
-            }
-        }
         .sheet(isPresented: $showingSheet) {
             NavigationView {
                 AppEditor(appID: appID)
