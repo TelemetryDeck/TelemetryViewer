@@ -39,6 +39,15 @@ struct RootView: View {
         .sheet(isPresented: $api.userNotLoggedIn, onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
             WelcomeView().accentColor(.telemetryOrange)
         }
+        .alert(isPresented: $api.userLoginFailed, content: {
+            Alert(
+                title: Text("Login Failed"),
+                message: Text("AppTelemetry could not connect to the server. Please check your internet connection."),
+                dismissButton: .default(Text("Reload"), action: {
+                    api.getUserInformation()
+                })
+            )
+        })
         .onAppear {
             #if os(macOS)
                 setupSidebars()

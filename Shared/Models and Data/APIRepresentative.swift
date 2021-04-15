@@ -53,6 +53,7 @@ final class APIRepresentative: ObservableObject {
 
     @Published var user: UserDTO?
     @Published var userNotLoggedIn: Bool = true
+    @Published var userLoginFailed: Bool = false
 
     @Published var totalNumberOfSignals: Int = 0
     @Published var numberOfSignalsThisMonth: Int = 0
@@ -178,6 +179,8 @@ extension APIRepresentative {
     }
 
     func getUserInformation(callback: ((Result<UserDTO, TransferError>) -> Void)? = nil) {
+        userLoginFailed = false
+        
         let url = urlForPath("users", "me")
 
         get(url) { [unowned self] (result: Result<UserDTO, TransferError>) in
@@ -185,11 +188,13 @@ extension APIRepresentative {
             case let .success(userDTO):
                 DispatchQueue.main.async {
                     self.user = userDTO
+                    self.getApps()
                     if self.user?.organization?.isSuperOrg == true {
                         self.getBetaRequests()
                     }
                 }
             case let .failure(error):
+                userLoginFailed = true
                 self.handleError(error)
             }
 
