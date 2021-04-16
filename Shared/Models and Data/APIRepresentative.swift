@@ -71,6 +71,7 @@ final class APIRepresentative: ObservableObject {
     @Published var organizationAdminListEntries: [OrganizationAdminListEntry] = []
     @Published var insightQueryAdminListEntries: [Insight] = []
     @Published var insightQueryAdminAggregate: AggregateDTO?
+    @Published var appAdminSignalCounts: [AppSignalCountDTO] = []
 
     @Published var organizationUsers: [UserDTO] = []
     @Published var organizationJoinRequests: [OrganizationJoinRequest] = []
@@ -279,6 +280,7 @@ extension APIRepresentative {
         organizationAdminListEntries = []
         insightQueryAdminListEntries = []
         insightQueryAdminAggregate = nil
+        appAdminSignalCounts = []
         organizationUsers = []
         organizationJoinRequests = []
     }
@@ -476,6 +478,21 @@ extension APIRepresentative {
             switch result {
             case let .success(insightQueryAdminAggregate):
                 self.insightQueryAdminAggregate = insightQueryAdminAggregate
+            case let .failure(error):
+                self.handleError(error)
+            }
+
+            callback?(result)
+        }
+    }
+
+    func getAppSignalCounts(callback: ((Result<[AppSignalCountDTO], TransferError>) -> Void)? = nil) {
+        let url = urlForPath("insightqueryadmin", "appSignalCounts")
+
+        get(url) { [unowned self] (result: Result<[AppSignalCountDTO], TransferError>) in
+            switch result {
+            case let .success(appSignalCounts):
+                self.appAdminSignalCounts = appSignalCounts
             case let .failure(error):
                 self.handleError(error)
             }

@@ -10,6 +10,8 @@
 		2B0F9ECE2621C9C90007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ECD2621C9C90007B9EC /* TelemetryModels */; };
 		2B0F9ED02621C9D90007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ECF2621C9D90007B9EC /* TelemetryModels */; };
 		2B0F9ED22621C9EE0007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ED12621C9EE0007B9EC /* TelemetryModels */; };
+		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
+		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
 		2BC2720326207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
 		2BC2720A262086020045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
@@ -194,6 +196,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2BBE475A2629A9FA0028DABB /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = ../models; sourceTree = "<group>"; };
+		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2BC522E52625FC3400E643AC /* URL+Open.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Open.swift"; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
@@ -443,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */,
+				2BBE475B2629ABC80028DABB /* AppAdminView.swift */,
 				DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */,
 				DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */,
 			);
@@ -485,6 +490,7 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
+				2BBE475A2629A9FA0028DABB /* models */,
 				DCE239FB24D3687C00053370 /* Shared */,
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
@@ -820,6 +826,7 @@
 				DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
+				2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
@@ -916,6 +923,7 @@
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
 				DCF8978C25C8726600E0BE57 /* ValueView.swift in Sources */,
 				DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
+				2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */,
 				DC24DF4625DD54D90003ADCB /* AppRootViewMacOS.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,

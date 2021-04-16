@@ -112,6 +112,13 @@ struct LeftSidebarView: View {
                             Label("Beta Requests", systemImage: "airplane")
                         }
                     )
+                    
+                    NavigationLink(
+                        destination: AppAdminView(),
+                        label: {
+                            Label("Apps", systemImage: "app.badge")
+                        }
+                    )
 
                     NavigationLink(
                         destination: InsightQueryAdmin(),
