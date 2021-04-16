@@ -83,7 +83,7 @@ struct AppAdminDetailView: View {
             
             Divider()
             
-            CustomSection(header: Text(entry.appName ?? "App"), summary: EmptyView(), footer: EmptyView()) {
+            CustomSection(header: Text(entry.appName ?? "App"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                 Text(entry.id.uuidString)
                 Button("Copy to Clipboard") {
                     saveToClipBoard(entry.id.uuidString)
@@ -91,7 +91,7 @@ struct AppAdminDetailView: View {
                 .buttonStyle(SmallSecondaryButtonStyle())
             }
             
-            CustomSection(header: Text(entry.organisationName ?? "Organisation"), summary: EmptyView(), footer: EmptyView()) {
+            CustomSection(header: Text(entry.organisationName ?? "Organisation"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
                 Text(entry.organisationID?.uuidString ?? "-")
                 Button("Copy to Clipboard") {
                     saveToClipBoard(entry.organisationID?.uuidString ?? "–")
