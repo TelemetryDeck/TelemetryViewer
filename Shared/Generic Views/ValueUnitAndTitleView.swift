@@ -12,9 +12,18 @@ struct ValueView: View {
     let shouldFormatBigNumbers: Bool
     
     var body: some View {
+        SmallValueView(value: value, shouldFormatBigNumbers: shouldFormatBigNumbers)
+            .valueStyle()
+    }
+}
+
+struct SmallValueView: View {
+    var value: Double
+    let shouldFormatBigNumbers: Bool
+    
+    var body: some View {
         Text(String(value))
             .animatableNumber(value: value,  shouldFormatBigNumbers: shouldFormatBigNumbers)
-            .valueStyle()
             .animation(.easeOut)
     }
 }

@@ -13,6 +13,12 @@ struct ValueStyleModifier: ViewModifier {
     }
 }
 
+struct SmallValueStyleModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.font(.system(size: 12, weight: .light, design: .rounded))
+    }
+}
+
 struct UnitStyleModifier: ViewModifier {
     func body(content: Content) -> some View {
         content.font(.system(size: 28, weight: .thin, design: .rounded))
@@ -72,6 +78,10 @@ struct AnimatableNumberModifier: AnimatableModifier {
 extension View {
     func valueStyle() -> some View {
         modifier(ValueStyleModifier())
+    }
+    
+    func smallValueStyle() -> some View {
+        modifier(SmallValueStyleModifier())
     }
     
     func unitStyle() -> some View {
