@@ -19,6 +19,24 @@ struct UnitStyleModifier: ViewModifier {
     }
 }
 
+struct SubtitleStyleModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.font(.system(size: 12, weight: .light, design: .default))
+    }
+}
+
+struct SelectedForegroundColorModiffier: ViewModifier {
+    let isSelected: Bool
+    
+    func body(content: Content) -> some View {
+        if isSelected {
+            content
+        } else {
+            content.foregroundColor(.cardBackground)
+        }
+    }
+}
+
 struct AnimatableNumberModifier: AnimatableModifier {
     var value: Double
     let shouldFormatBigNumbers: Bool
@@ -58,6 +76,14 @@ extension View {
     
     func unitStyle() -> some View {
         modifier(UnitStyleModifier())
+    }
+    
+    func subtitleStyle() -> some View {
+        modifier(SubtitleStyleModifier())
+    }
+    
+    func togglesForeground(isSelected: Bool) -> some View {
+        modifier(SelectedForegroundColorModiffier(isSelected: isSelected))
     }
 }
 

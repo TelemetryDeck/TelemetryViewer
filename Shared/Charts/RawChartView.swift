@@ -147,23 +147,28 @@ struct SingleValueView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            VStack(alignment: .leading) {
+            if let lastData = insightData.data.last,
+               let doubleValue = Double(lastData.yAxisString),
+               let dateValue = xAxisDefinition(insightData: lastData, style: .date)
+             {
+                VStack(alignment: .leading) {
+                    ValueAndUnitView(value: doubleValue, unit: "", shouldFormatBigNumbers: false)
+                    
+                    dateValue
+                        .subtitleStyle()
+                        .foregroundColor(isSelected ? .cardBackground : .grayColor)
+                }
+            } else {
                 Text(insightData.data.last?.yAxisString ?? "0")
-                    .font(.system(size: 28, weight: .light, design: .rounded))
-                    .foregroundColor(isSelected ? .cardBackground : .none)
-
-                xAxisDefinition(insightData: insightData.data.last!, style: .date)
-                    .foregroundColor(isSelected ? .cardBackground : .grayColor)
-                    .font(.system(size: 12, weight: .light, design: .default))
+                    .valueStyle()
             }
-            .padding(.bottom, insightData.data.count > 1 ? nil : 0)
 
             Spacer()
 
             if insightData.data.count > 1 {
                 secondaryText()
                     .foregroundColor(isSelected ? .cardBackground : .grayColor)
-                    .font(.system(size: 12, weight: .light, design: .default))
+                    .subtitleStyle()
             }
         }
     }
@@ -226,24 +231,28 @@ struct RawTableView: View {
                             if let xAxisDate = dataRow.xAxisDate {
                                 HStack {
                                     Text(xAxisDate, style: .date)
-                                        .foregroundColor(isSelected ? .cardBackground : .none)
 
                                     if insightData.groupBy == .hour {
                                         Text(xAxisDate, style: .time)
-                                            .foregroundColor(isSelected ? .cardBackground : .none)
                                     }
                                 }
                             } else {
                                 Text(dataRow.xAxisValue)
-                                    .foregroundColor(isSelected ? .cardBackground : .none)
                             }
                         }
                         .font(.footnote)
                         .foregroundColor(isSelected ? .cardBackground : .grayColor)
 
-                        Text(dataRow.yAxisString)
-                            .font(.system(size: 28, weight: .light, design: .rounded))
-                            .foregroundColor(isSelected ? .cardBackground : .none)
+                        Group {
+                            if let doubleValue = Double(dataRow.yAxisString) {
+                                ValueView(value: doubleValue, shouldFormatBigNumbers: false)
+                                    .foregroundColor(isSelected ? .cardBackground : .none)
+                            } else {
+                                Text(dataRow.yAxisString)
+                                    .valueStyle()
+                            }
+                        }
+                        .foregroundColor(isSelected ? .cardBackground : .none)
                     }
                 }
                 .padding(.horizontal)

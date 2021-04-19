@@ -13,6 +13,7 @@
 		2B3CC0D3262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2B3CC0D4262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2B3CC0D5262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
+		2B3CC0D6262DC3690038B528 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
@@ -787,6 +788,7 @@
 				DC4504FC25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				DC25A5A7256C0B1B00EE84DA /* Numbers+Bound.swift in Sources */,
 				DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */,
+				2B3CC0D6262DC3690038B528 /* ValueUnitAndTitleView.swift in Sources */,
 				DC25A59F256C0AE400EE84DA /* RawChartView.swift in Sources */,
 				DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */,
 				2BC2720A262086020045A2FE /* MockData.swift in Sources */,

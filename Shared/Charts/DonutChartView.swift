@@ -60,14 +60,17 @@ struct DonutChartView: View {
                         selectedSegmentIndex = index
                     }
             }
+            .animation(.easeOut)
         }
 
         let legend = VStack(alignment: .center, spacing: -5) {
             if pieSegments.count > 0 {
                 Text(pieSegments[selectedSegmentIndex].data.id)
                     .foregroundColor(isSelected ? .cardBackground : .none)
-                Text("\(BigNumberFormatter.shortDisplay(for: pieSegments[selectedSegmentIndex].data.yAxisValue))")
-                    .font(.system(size: 28, weight: .light, design: .rounded))
+                ValueView(
+                    value: Double(pieSegments[selectedSegmentIndex].data.yAxisValue),
+                    shouldFormatBigNumbers: true
+                )
                     .foregroundColor(isSelected ? .cardBackground : .none)
             } else {
                 HStack {
@@ -110,6 +113,7 @@ struct PieSegment: Shape, Identifiable, Equatable {
     var id: String { data.id }
     var startAngle: Double
     var amount: Double
+    
     var animatableData: AnimatablePair<Double, Double> {
         get { AnimatablePair(startAngle, amount) }
         set {

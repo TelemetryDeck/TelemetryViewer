@@ -56,7 +56,7 @@ struct ValueUnitAndTitleView: View {
             
             Text(title)
                 .foregroundColor(.gray)
-                .font(.system(size: 12, weight: .light, design: .default))
+                .subtitleStyle()
         }
     }
 }
