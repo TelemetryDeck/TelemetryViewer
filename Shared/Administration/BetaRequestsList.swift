@@ -107,11 +107,11 @@ struct BetaRequestsList: View {
                 let fulfilled = api.betaRequests.filter { $0.isFulfilled }
 
                 HStack {
-                    ValueView(value: Double(unfulfilled.count), title: "Unfulfilled", unit: "")
+                    ValueUnitAndTitleView(value: Double(unfulfilled.count), title: "Unfulfilled", unit: "")
                     Divider()
-                    ValueView(value: Double(emailSent.count), title: "Email Sent", unit: "")
+                    ValueUnitAndTitleView(value: Double(emailSent.count), title: "Email Sent", unit: "")
                     Divider()
-                    ValueView(value: Double(fulfilled.count), title: "Fulfilled", unit: "")
+                    ValueUnitAndTitleView(value: Double(fulfilled.count), title: "Fulfilled", unit: "")
                     Divider()
                     Button(action: {
                         api.getBetaRequests()

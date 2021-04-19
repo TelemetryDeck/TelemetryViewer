@@ -79,7 +79,7 @@ struct AppAdminDetailView: View {
 
     var body: some View {
         ScrollView {
-            ValueView(value: Double(entry.signalCount), title: "Signals", shouldFormatBigNumbers: true)
+            ValueUnitAndTitleView(value: Double(entry.signalCount), title: "Signals", shouldFormatBigNumbers: true)
             
             Divider()
             

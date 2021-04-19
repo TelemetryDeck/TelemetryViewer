@@ -83,11 +83,11 @@ struct InsightQueryAdmin: View {
 
                 HStack {
                     if let aggregate = api.insightQueryAdminAggregate {
-                        ValueView(value: aggregate.min, title: "min", unit: "s")
+                        ValueUnitAndTitleView(value: aggregate.min, title: "min", unit: "s")
                         Divider()
-                        ValueView(value: aggregate.avg, title: "avg", unit: "s")
+                        ValueUnitAndTitleView(value: aggregate.avg, title: "avg", unit: "s")
                         Divider()
-                        ValueView(value: aggregate.max, title: "max", unit: "s")
+                        ValueUnitAndTitleView(value: aggregate.max, title: "max", unit: "s")
                     } else {
                         Text("...")
                     }

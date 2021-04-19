@@ -46,14 +46,14 @@ struct OrganizationSettingsView: View {
         HStack {
             List {
                 HStack {
-                    ValueView(
+                    ValueUnitAndTitleView(
                         value: Double(api.numberOfSignalsThisMonth),
                         title: "signals this month",
                         isLoading: isLoadingMonthlySignalNumbers,
                         shouldFormatBigNumbers: true
                     )
                     Divider()
-                    ValueView(
+                    ValueUnitAndTitleView(
                         value: Double(api.totalNumberOfSignals),
                         title: "signals total",
                         isLoading: isLoadingTotalSignalNumbers,

@@ -10,6 +10,9 @@
 		2B0F9ECE2621C9C90007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ECD2621C9C90007B9EC /* TelemetryModels */; };
 		2B0F9ED02621C9D90007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ECF2621C9D90007B9EC /* TelemetryModels */; };
 		2B0F9ED22621C9EE0007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ED12621C9EE0007B9EC /* TelemetryModels */; };
+		2B3CC0D3262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
+		2B3CC0D4262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
+		2B3CC0D5262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
@@ -163,8 +166,8 @@
 		DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
 		DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */; };
 		DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */; };
-		DCF8978B25C8726600E0BE57 /* ValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueView.swift */; };
-		DCF8978C25C8726600E0BE57 /* ValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueView.swift */; };
+		DCF8978B25C8726600E0BE57 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */; };
+		DCF8978C25C8726600E0BE57 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */; };
 		DCFCDCBE25DD82BF00ACC529 /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCDCBD25DD82BF00ACC529 /* InsightEditor.swift */; };
 		DCFCDCBF25DD82BF00ACC529 /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCDCBD25DD82BF00ACC529 /* InsightEditor.swift */; };
 		DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
@@ -196,6 +199,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2BC522E52625FC3400E643AC /* URL+Open.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Open.swift"; sourceTree = "<group>"; };
@@ -283,7 +287,7 @@
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
 		DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightQueryAdmin.swift; sourceTree = "<group>"; };
-		DCF8978A25C8726600E0BE57 /* ValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueView.swift; sourceTree = "<group>"; };
+		DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueUnitAndTitleView.swift; sourceTree = "<group>"; };
 		DCFCDCBD25DD82BF00ACC529 /* InsightEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditor.swift; sourceTree = "<group>"; };
 		DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -320,6 +324,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B3CC0D1262D8EDC0038B528 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		DC24DF3125DD53E50003ADCB /* Structure */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,7 +449,7 @@
 				DC25A639256ED03500EE84DA /* Binding+OnUpdate.swift */,
 				DC25A64E2571680900EE84DA /* CustomSection.swift */,
 				DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */,
-				DCF8978A25C8726600E0BE57 /* ValueView.swift */,
+				DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -504,6 +516,7 @@
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
 				DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */,
 				DC24DF3125DD53E50003ADCB /* Structure */,
+				2B3CC0D1262D8EDC0038B528 /* Modifiers */,
 				DCD52C4E2541FFF0003F12C6 /* Helpers + Extensions */,
 				DC98AABB250BC30200FF26FD /* Telemetry.swift */,
 				DCC8CB752563103E0019267A /* Illustrations.xcassets */,
@@ -781,6 +794,7 @@
 				DC25A573256A87D600EE84DA /* Color.swift in Sources */,
 				DC92395925E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
+				2B3CC0D5262D8EF10038B528 /* TextModifiers.swift in Sources */,
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
 				DC25A5AE256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
 				DC25A58F256BF1D800EE84DA /* BarChartView.swift in Sources */,
@@ -811,6 +825,7 @@
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
+				2B3CC0D3262D8EF10038B528 /* TextModifiers.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				DCB02B762502809200304964 /* RootView.swift in Sources */,
@@ -837,7 +852,7 @@
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
-				DCF8978B25C8726600E0BE57 /* ValueView.swift in Sources */,
+				DCF8978B25C8726600E0BE57 /* ValueUnitAndTitleView.swift in Sources */,
 				DCB28D892551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				2BC2720226207D710045A2FE /* MockData.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
@@ -870,6 +885,7 @@
 				DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
+				2B3CC0D4262D8EF10038B528 /* TextModifiers.swift in Sources */,
 				DCB5F9F325F294C6004C4922 /* FavouritesView.swift in Sources */,
 				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */,
@@ -919,7 +935,7 @@
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
-				DCF8978C25C8726600E0BE57 /* ValueView.swift in Sources */,
+				DCF8978C25C8726600E0BE57 /* ValueUnitAndTitleView.swift in Sources */,
 				DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */,
 				DC24DF4625DD54D90003ADCB /* AppRootViewMacOS.swift in Sources */,
