@@ -10,12 +10,18 @@ import TelemetryClient
 
 @main
 struct Telemetry_ViewerApp: App {
+    @Environment(\.scenePhase) var scenePhase
     let api = APIRepresentative()
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environmentObject(api)
+        }
+        .onChange(of: scenePhase) { newScenePhase in
+            if newScenePhase == .active {
+                TelemetryManager.generateNewSession()
+            }
         }
     }
 
