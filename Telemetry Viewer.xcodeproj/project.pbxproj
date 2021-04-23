@@ -208,6 +208,7 @@
 /* Begin PBXFileReference section */
 		2B318E842633590B00870EE9 /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
 		2B318E882633596100870EE9 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
+		2B318E9026335F8C00870EE9 /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = ../models; sourceTree = "<group>"; };
 		2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -520,6 +521,7 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
+				2B318E9026335F8C00870EE9 /* models */,
 				DCE239FB24D3687C00053370 /* Shared */,
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,

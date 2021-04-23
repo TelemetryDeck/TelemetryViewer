@@ -25,7 +25,7 @@ struct DonutChartView: View {
     
     var body: some View {
         if let chartDataSet = chartDataSet {
-            DonutChartContainer(chartDataSet: chartDataSet)
+            DonutChartContainer(chartDataset: chartDataSet)
                 .padding(.bottom)
                 .padding(.horizontal)
         } else {
@@ -35,15 +35,29 @@ struct DonutChartView: View {
 }
 
 struct DonutChartContainer: View {
-    @State private var selectedSegmentIndex: Int?
-    let chartDataSet: ChartDataSet
+    @State var selectedSegmentIndex: Int?
+    let chartDataset: ChartDataSet
+    let maxEntries: Int = 4
     
-    let maxEntries: Int = 5
+    
+    private var chartDataPoints: [ChartDataPoint] {
+        var chartDataPoints: [ChartDataPoint] = Array(chartDataset.data.prefix(maxEntries))
+        
+        if chartDataset.data.count > maxEntries {
+            let missingEntriesCount = chartDataset.data.count - maxEntries
+            let missingEntries = Array(chartDataset.data.suffix(missingEntriesCount))
+            let otherSum = missingEntries.map { $0.yAxisValue }.reduce(Double(0), +)
+            
+            chartDataPoints.append(ChartDataPoint(xAxisValue: "Other", yAxisValue: otherSum))
+        }
+                
+        return chartDataPoints
+    }
     
     var body: some View {
         HStack {
-            DonutLegend(selectedSegmentIndex: $selectedSegmentIndex, chartDataSet: chartDataSet, maxEntries: maxEntries)
-            DonutChart(selectedSegmentIndex: $selectedSegmentIndex, chartDataSet: chartDataSet, maxEntries: maxEntries)
+            DonutLegend(selectedSegmentIndex: $selectedSegmentIndex, chartDataPoints: chartDataPoints)
+            DonutChart(selectedSegmentIndex: $selectedSegmentIndex, chartDataPoints: chartDataPoints)
         }
     }
 }
@@ -65,7 +79,7 @@ struct DonutChartView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        DonutChartContainer(chartDataSet: data)
+        DonutChartContainer(chartDataset: data)
             .padding()
             .previewLayout(.fixed(width: 285, height: 165))
     }

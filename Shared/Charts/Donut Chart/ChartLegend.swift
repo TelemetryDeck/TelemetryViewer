@@ -39,21 +39,13 @@ struct DonutLegendEntryValue: Identifiable {
 
 struct DonutLegend: View {
     @Binding var selectedSegmentIndex: Int?
-    let chartDataSet: ChartDataSet
-    let maxEntries: Int
+    let chartDataPoints: [ChartDataPoint]
     
-    private var otherSum: Double {
-        guard chartDataSet.data.count > maxEntries else { return 0 }
-        
-        let missingEntriesCount = chartDataSet.data.count - maxEntries
-        let missingEntries = Array(chartDataSet.data.suffix(missingEntriesCount))
-        return missingEntries.map { $0.yAxisValue }.reduce(Double(0), +)
-    }
     
     private var donutLegendEntryValues: [DonutLegendEntryValue] {
         var values: [DonutLegendEntryValue] = []
         
-        for (index, data) in chartDataSet.data.prefix(maxEntries).enumerated() {
+        for (index, data) in chartDataPoints.enumerated() {
             let value = DonutLegendEntryValue(id: index, xAxisValue: data.xAxisValue, yAxisValue: data.yAxisValue)
             values.append(value)
         }
@@ -76,14 +68,6 @@ struct DonutLegend: View {
                     .onTapGesture {
                         selectedSegmentIndex = value.id
                     }
-            }
-            
-            if chartDataSet.data.count > maxEntries {
-                DonutLegendEntry(value: DonutLegendEntryValue(id: -1, xAxisValue: "Other", yAxisValue: otherSum), color: .grayColor, isSelected: selectedSegmentIndex ?? -1 > maxEntries)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 4)
-                    .background(selectedSegmentIndex ?? -1 > maxEntries ? Color.grayColor.opacity(0.7) : .clear)
-                    .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous))
             }
         }
     }

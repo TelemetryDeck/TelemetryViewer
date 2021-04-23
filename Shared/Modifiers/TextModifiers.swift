@@ -15,7 +15,8 @@ struct ValueStyleModifier: ViewModifier {
 
 struct SmallValueStyleModifier: ViewModifier {
     func body(content: Content) -> some View {
-        content.font(.system(size: 12, weight: .light, design: .rounded))
+        content
+            .font(.footnote.weight(.light))
     }
 }
 

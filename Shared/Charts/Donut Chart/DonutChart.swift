@@ -10,15 +10,14 @@ import TelemetryModels
 
 struct DonutChart: View {
     @Binding var selectedSegmentIndex: Int?
-    let chartDataSet: ChartDataSet
-    let maxEntries: Int
+    let chartDataPoints: [ChartDataPoint]
     
     private var pieSegments: [PieSegment] {
         var segments = [PieSegment]()
-        let total = chartDataSet.data.reduce(0) { $0 + $1.yAxisValue }
+        let total = chartDataPoints.reduce(0) { $0 + $1.yAxisValue }
         var startAngle = -Double.pi / 2
         
-        for (index, data) in chartDataSet.data.enumerated() {
+        for (index, data) in chartDataPoints.enumerated() {
             let amount = .pi * 2 * (data.yAxisValue / total)
             let segment = PieSegment(data: data, id: index, startAngle: startAngle, amount: amount)
             segments.append(segment)
@@ -36,13 +35,15 @@ struct DonutChart: View {
         ZStack {
             ForEach(pieSegments) { segment in
                 let selected = selectedSegmentIndex != nil ? pieSegments[selectedSegmentIndex!] == segment : false
+                let somethingElseSelected = selectedSegmentIndex != nil && !selected
                 let segmentCount = Double(pieSegments.count)
                 let index = segment.id
                 let opacity = opacity(segmentCount: segmentCount, index: index)
                 
                 segment
-                    .stroke(style: StrokeStyle(lineWidth: selected ? 40 : 25))
-                    .fill(selected ? Color.accentColor : Color.accentColor.opacity(opacity))
+                    .stroke(style: StrokeStyle(lineWidth: 40))
+                    .fill(somethingElseSelected ? Color.grayColor : Color.accentColor)
+                    .opacity(selected ? 1 : opacity)
                     .onTapGesture {
                         selectedSegmentIndex = index
                     }
