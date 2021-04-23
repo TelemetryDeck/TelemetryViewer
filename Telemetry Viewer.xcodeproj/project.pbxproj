@@ -10,6 +10,12 @@
 		2B0F9ECE2621C9C90007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ECD2621C9C90007B9EC /* TelemetryModels */; };
 		2B0F9ED02621C9D90007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ECF2621C9D90007B9EC /* TelemetryModels */; };
 		2B0F9ED22621C9EE0007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ED12621C9EE0007B9EC /* TelemetryModels */; };
+		2B318E852633590B00870EE9 /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E842633590B00870EE9 /* ChartLegend.swift */; };
+		2B318E862633590B00870EE9 /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E842633590B00870EE9 /* ChartLegend.swift */; };
+		2B318E872633590B00870EE9 /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E842633590B00870EE9 /* ChartLegend.swift */; };
+		2B318E892633596100870EE9 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E882633596100870EE9 /* DonutChart.swift */; };
+		2B318E8A2633596100870EE9 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E882633596100870EE9 /* DonutChart.swift */; };
+		2B318E8B2633596100870EE9 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E882633596100870EE9 /* DonutChart.swift */; };
 		2B3CC0D3262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2B3CC0D4262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2B3CC0D5262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
@@ -200,6 +206,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B318E842633590B00870EE9 /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
+		2B318E882633596100870EE9 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -325,6 +333,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B318E82263358F000870EE9 /* Donut Chart */ = {
+			isa = PBXGroup;
+			children = (
+				DC591397252DF975007360A9 /* DonutChartView.swift */,
+				2B318E842633590B00870EE9 /* ChartLegend.swift */,
+				2B318E882633596100870EE9 /* DonutChart.swift */,
+			);
+			path = "Donut Chart";
+			sourceTree = "<group>";
+		};
 		2B3CC0D1262D8EDC0038B528 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,7 +379,7 @@
 				DC83C858256A857300FCF2A1 /* RawChartView.swift */,
 				DC25A58C256BF1D800EE84DA /* BarChartView.swift */,
 				DC4E2F632563FA47001AD7B4 /* LineChartView.swift */,
-				DC591397252DF975007360A9 /* DonutChartView.swift */,
+				2B318E82263358F000870EE9 /* Donut Chart */,
 				DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */,
 				DC92395625E5B2DE00D1729C /* ChartRangeView.swift */,
 			);
@@ -793,6 +811,8 @@
 				DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */,
 				2BC2720A262086020045A2FE /* MockData.swift in Sources */,
 				DC25A5A3256C0AFE00EE84DA /* RoundedCorners.swift in Sources */,
+				2B318E872633590B00870EE9 /* ChartLegend.swift in Sources */,
+				2B318E8B2633596100870EE9 /* DonutChart.swift in Sources */,
 				DC25A573256A87D600EE84DA /* Color.swift in Sources */,
 				DC92395925E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
@@ -827,6 +847,8 @@
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
+				2B318E892633596100870EE9 /* DonutChart.swift in Sources */,
+				2B318E852633590B00870EE9 /* ChartLegend.swift in Sources */,
 				2B3CC0D3262D8EF10038B528 /* TextModifiers.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
@@ -911,6 +933,7 @@
 				2BC2720326207D710045A2FE /* MockData.swift in Sources */,
 				DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */,
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
+				2B318E8A2633596100870EE9 /* DonutChart.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
 				DC3472EB258A720500BEEDE0 /* AppUpdater.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
@@ -934,6 +957,7 @@
 				DC92395825E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
 				DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
+				2B318E862633590B00870EE9 /* ChartLegend.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
