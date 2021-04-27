@@ -12,6 +12,7 @@ import TelemetryModels
 struct DonutLegendEntry: View {
     let value: DonutLegendEntryValue
     let color: Color
+    let isSelected: Bool
     
     var body: some View {
         HStack {
@@ -19,9 +20,10 @@ struct DonutLegendEntry: View {
                 .fill(color)
                 .frame(maxWidth: 10, maxHeight: 10)
             Text(value.xAxisValue)
+                .foregroundColor(isSelected ? .cardBackground : .primary)
             Spacer()
             SmallValueView(value: value.yAxisValue, shouldFormatBigNumbers: true)
-                .foregroundColor(.primary)
+                .foregroundColor(isSelected ? .cardBackground : .primary)
                 .smallValueStyle()
             
         }
@@ -37,7 +39,7 @@ struct DonutLegendEntryValue: Identifiable {
 
 struct DonutLegend: View {
     let chartDataPoints: [ChartDataPoint]
-    
+    let isSelected: Bool
     
     private var donutLegendEntryValues: [DonutLegendEntryValue] {
         var values: [DonutLegendEntryValue] = []
@@ -57,7 +59,7 @@ struct DonutLegend: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(donutLegendEntryValues) { value in
-                DonutLegendEntry(value: value, color: Color.telemetryOrange.opacity(opacity(segmentCount: Double(donutLegendEntryValues.count), index: value.id)))
+                DonutLegendEntry(value: value, color: .accentColor.opacity(opacity(segmentCount: Double(donutLegendEntryValues.count), index: value.id)), isSelected: isSelected)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 4)
             }

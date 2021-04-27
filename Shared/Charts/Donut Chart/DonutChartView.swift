@@ -25,7 +25,7 @@ struct DonutChartView: View {
     
     var body: some View {
         if let chartDataSet = chartDataSet {
-            DonutChartContainer(chartDataset: chartDataSet)
+            DonutChartContainer(chartDataset: chartDataSet, isSelected: isSelected)
                 .padding(.bottom)
                 .padding(.horizontal)
         } else {
@@ -37,7 +37,7 @@ struct DonutChartView: View {
 struct DonutChartContainer: View {
     let chartDataset: ChartDataSet
     let maxEntries: Int = 4
-    
+    let isSelected: Bool
     
     private var chartDataPoints: [ChartDataPoint] {
         var chartDataPoints: [ChartDataPoint] = Array(chartDataset.data.prefix(maxEntries))
@@ -55,7 +55,7 @@ struct DonutChartContainer: View {
     
     var body: some View {
         HStack {
-            DonutLegend(chartDataPoints: chartDataPoints)
+            DonutLegend(chartDataPoints: chartDataPoints, isSelected: isSelected)
             DonutChart(chartDataPoints: chartDataPoints)
                 .transition(.opacity)
         }
@@ -79,7 +79,7 @@ struct DonutChartView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        DonutChartContainer(chartDataset: data)
+        DonutChartContainer(chartDataset: data, isSelected: false)
             .padding()
             .previewLayout(.fixed(width: 285, height: 165))
     }

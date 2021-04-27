@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import TelemetryModels
+import SwiftUI
 
 final class APIRepresentative: ObservableObject {
     private static let baseURLString =
@@ -427,7 +428,9 @@ extension APIRepresentative {
 
         get(url) { [unowned self] (result: Result<InsightDTO, TransferError>) in
             if let insightDTO = try? result.get() {
-                self.insightData[insightDTO.id] = insightDTO
+                withAnimation {
+                    self.insightData[insightDTO.id] = insightDTO
+                }
             }
 
             callback?(result)

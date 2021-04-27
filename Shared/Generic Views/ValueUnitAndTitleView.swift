@@ -24,7 +24,6 @@ struct SmallValueView: View {
     var body: some View {
         Text(String(value))
             .animatableNumber(value: value,  shouldFormatBigNumbers: shouldFormatBigNumbers)
-            .animation(.easeOut)
     }
 }
 

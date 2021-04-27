@@ -42,7 +42,6 @@ struct DonutChart: View {
                     .fill(Color.accentColor)
                     .opacity(opacity)
             }
-            .animation(.easeOut)
         }
     }
 }
