@@ -53,7 +53,7 @@ struct RawChartView_Previews: PreviewProvider {
             displayMode: .raw,
             isExpanded: false,
             data: [
-                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "102"),
+                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "7762"),
             ],
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
@@ -148,19 +148,21 @@ struct SingleValueView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if let lastData = insightData.data.last,
-               let doubleValue = Double(lastData.yAxisString),
+               let doubleValue = lastData.yAxisDouble,
                let dateValue = xAxisDefinition(insightData: lastData, style: .date)
              {
                 VStack(alignment: .leading) {
-                    ValueAndUnitView(value: doubleValue, unit: "", shouldFormatBigNumbers: false)
+                    ValueAndUnitView(value: doubleValue, unit: "", shouldFormatBigNumbers: true)
+                        .foregroundColor(isSelected ? .cardBackground : .primary)
                     
                     dateValue
                         .subtitleStyle()
                         .foregroundColor(isSelected ? .cardBackground : .grayColor)
                 }
             } else {
-                Text(insightData.data.last?.yAxisString ?? "0")
+                Text(insightData.data.last?.yAxisValue ?? "0")
                     .valueStyle()
+                    .foregroundColor(isSelected ? .cardBackground : .primary)
             }
 
             Spacer()
@@ -208,7 +210,7 @@ struct SingleValueView: View {
 
         let percentage: Double = (currentValue.doubleValue - previousValue.doubleValue) / previousValue.doubleValue
 
-        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, style: .date) + Text(" (\(previousData.yAxisString))")
+        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, style: .date) + Text(" (\(previousData.yAxisValue ?? ""))")
     }
 }
 
@@ -244,11 +246,11 @@ struct RawTableView: View {
                         .foregroundColor(isSelected ? .cardBackground : .grayColor)
 
                         Group {
-                            if let doubleValue = Double(dataRow.yAxisString) {
-                                ValueView(value: doubleValue, shouldFormatBigNumbers: false)
+                            if let doubleValue = dataRow.yAxisDouble {
+                                ValueView(value: doubleValue, shouldFormatBigNumbers: true)
                                     .foregroundColor(isSelected ? .cardBackground : .none)
                             } else {
-                                Text(dataRow.yAxisString)
+                                Text(dataRow.yAxisValue ?? "–")
                                     .valueStyle()
                             }
                         }

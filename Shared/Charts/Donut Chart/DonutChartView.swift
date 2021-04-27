@@ -57,6 +57,7 @@ struct DonutChartContainer: View {
         HStack {
             DonutLegend(chartDataPoints: chartDataPoints)
             DonutChart(chartDataPoints: chartDataPoints)
+                .transition(.opacity)
         }
     }
 }
