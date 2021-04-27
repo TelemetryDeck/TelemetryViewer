@@ -192,6 +192,7 @@ struct InsightEditor: View {
 
     var body: some View {
         let form = Form {
+            
             CustomSection(header: Text("Name"), summary: Text(insight?.title ?? "..."), footer: Text("The Title of This Insight")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $insightDRB.title, onEditingChanged: { _ in save() }, onCommit: { save() })
 
@@ -370,7 +371,16 @@ struct InsightEditor: View {
                     }
             }
         #else
+        VStack {
+            
+                
+            if let app = app, let insightGroup = insightGroup, let insight = insight {
+                InsightView(topSelectedInsightID: .constant(nil), app: app, insightGroup: insightGroup, insight: insight)
+                    .frame(maxHeight: 200)
+            }
+                
             form
+        }
         #endif
         }
     }
