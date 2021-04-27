@@ -20,6 +20,12 @@ struct InsightView: View {
     let app: TelemetryApp
     let insightGroup: InsightGroup
     let insight: Insight
+    
+    #if os(iOS)
+    let progressViewScale: CGFloat = 0.5
+    #else
+    let progressViewScale: CGFloat = 0.25
+    #endif
 
     @State private var isLoading: Bool = false
     @State private var loadingErrorOccurred: Bool = false
@@ -44,7 +50,7 @@ struct InsightView: View {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
                             .frame(width: 10, height: 10)
-                            .scaleEffect(0.25, anchor: .center)
+                            .scaleEffect(progressViewScale, anchor: .center)
                     }
 
                     Image(systemName: isLoading ? "circle" : "arrow.counterclockwise.circle")

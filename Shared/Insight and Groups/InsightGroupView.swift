@@ -104,6 +104,15 @@ struct InsightGroupView: View {
                 .buttonStyle(SmallSecondaryButtonStyle())
                 .frame(maxWidth: 400)
                 .padding()
+                
+                #if os(iOS)
+                NavigationLink("Recent Signals", destination: SignalList(appID: appID))
+                    .buttonStyle(SmallSecondaryButtonStyle())
+                    .padding()
+                NavigationLink("Lexicon", destination: LexiconView(appID: appID))
+                    .buttonStyle(SmallSecondaryButtonStyle())
+                    .padding()
+                #endif
             }
         }
         .background(Color.cardBackground)
