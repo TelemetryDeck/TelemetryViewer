@@ -56,6 +56,16 @@ struct AppRootView: View {
                             .tag(AppRootViewSelection.insightGroup(group: insightGroup))
                     }
                 }
+            } else if app != nil && api.loadingIDs.contains(appID) {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    }
+                    Spacer()
+                }
             } else if app != nil {
                 EmptyAppView(appID: appID)
                     .frame(maxWidth: 400)

@@ -19,6 +19,14 @@ struct LeftSidebarView: View {
     var body: some View {
         List {
             Section(header: Text("Apps")) {
+                if api.isLoadingApps {
+                    HStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    }
+                }
+                
                 ForEach(api.apps.sorted { $0.name < $1.name }) { app in
                     
                     #if os(macOS)
@@ -36,7 +44,7 @@ struct LeftSidebarView: View {
                                     Label("Recent Signals", systemImage: "waveform")
                                 }
                             )
-
+                            
                             NavigationLink(
                                 destination: AppEditor(appID: app.id),
                                 label: {

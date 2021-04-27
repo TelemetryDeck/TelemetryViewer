@@ -75,6 +75,10 @@ final class APIRepresentative: ObservableObject {
 
     @Published var organizationUsers: [UserDTO] = []
     @Published var organizationJoinRequests: [OrganizationJoinRequest] = []
+    
+    // MARK: Loading stuff
+    @Published var isLoadingApps: Bool = false
+    @Published var loadingIDs: [UUID] = []
 }
 
 extension APIRepresentative {
@@ -300,6 +304,7 @@ extension APIRepresentative {
     }
 
     func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> Void)? = nil) {
+        isLoadingApps = true
         let url = urlForPath("apps")
 
         get(url) { [unowned self] (result: Result<[TelemetryApp], TransferError>) in
@@ -316,6 +321,7 @@ extension APIRepresentative {
                 self.handleError(error)
             }
 
+            self.isLoadingApps = false
             callback?(result)
         }
     }
@@ -363,6 +369,7 @@ extension APIRepresentative {
     }
 
     func getInsightGroups(for app: TelemetryApp, callback: ((Result<[InsightGroup], TransferError>) -> Void)? = nil) {
+        loadingIDs.append(app.id)
         let url = urlForPath("apps", app.id.uuidString, "insightgroups")
 
         get(url) { [unowned self] (result: Result<[InsightGroup], TransferError>) in
@@ -376,6 +383,7 @@ extension APIRepresentative {
                 self.handleError(error)
             }
 
+            self.loadingIDs.removeAll { $0 == app.id}
             callback?(result)
         }
     }
