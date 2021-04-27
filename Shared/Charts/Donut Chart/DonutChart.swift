@@ -9,7 +9,6 @@ import SwiftUI
 import TelemetryModels
 
 struct DonutChart: View {
-    @Binding var selectedSegmentIndex: Int?
     let chartDataPoints: [ChartDataPoint]
     
     private var pieSegments: [PieSegment] {
@@ -34,19 +33,14 @@ struct DonutChart: View {
     var body: some View {
         ZStack {
             ForEach(pieSegments) { segment in
-                let selected = selectedSegmentIndex != nil ? pieSegments[selectedSegmentIndex!] == segment : false
-                let somethingElseSelected = selectedSegmentIndex != nil && !selected
                 let segmentCount = Double(pieSegments.count)
                 let index = segment.id
                 let opacity = opacity(segmentCount: segmentCount, index: index)
                 
                 segment
                     .stroke(style: StrokeStyle(lineWidth: 40))
-                    .fill(somethingElseSelected ? Color.grayColor : Color.accentColor)
-                    .opacity(selected ? 1 : opacity)
-                    .onTapGesture {
-                        selectedSegmentIndex = index
-                    }
+                    .fill(Color.accentColor)
+                    .opacity(opacity)
             }
             .animation(.easeOut)
         }

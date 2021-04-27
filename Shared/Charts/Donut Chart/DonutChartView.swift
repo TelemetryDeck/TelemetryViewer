@@ -35,7 +35,6 @@ struct DonutChartView: View {
 }
 
 struct DonutChartContainer: View {
-    @State var selectedSegmentIndex: Int?
     let chartDataset: ChartDataSet
     let maxEntries: Int = 4
     
@@ -56,8 +55,8 @@ struct DonutChartContainer: View {
     
     var body: some View {
         HStack {
-            DonutLegend(selectedSegmentIndex: $selectedSegmentIndex, chartDataPoints: chartDataPoints)
-            DonutChart(selectedSegmentIndex: $selectedSegmentIndex, chartDataPoints: chartDataPoints)
+            DonutLegend(chartDataPoints: chartDataPoints)
+            DonutChart(chartDataPoints: chartDataPoints)
         }
     }
 }
