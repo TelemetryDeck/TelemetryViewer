@@ -84,6 +84,20 @@ extension APIRepresentative {
 }
 
 extension APIRepresentative {
+    func reloadVisibleInsights() {
+        // Expensive function, poor server
+        for app in insightGroups.keys {
+            let insightGroupsList = insightGroups[app] ?? []
+            for insightGroup in insightGroupsList {
+                for insight in insightGroup.insights {
+                    getInsightData(for: insight, in: insightGroup, in: app)
+                }
+            }
+        }
+    }
+}
+
+extension APIRepresentative {
     func login(loginRequestBody: LoginRequestBody, callback: @escaping (Bool) -> Void) {
         let url = urlForPath("users", "login")
 

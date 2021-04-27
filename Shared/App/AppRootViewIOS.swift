@@ -45,14 +45,6 @@ struct AppRootView: View {
             return "\(dateFormatter.string(from: displayTimeWindowBegin)) – \(dateFormatter.string(from: displayTimeWindowEnd))"
         }
     }
-
-    func reloadVisibleInsights() {
-        guard let insightGroup = insightGroup, let app = app else { return }
-
-        for insight in insightGroup.insights {
-            api.getInsightData(for: insight, in: insightGroup, in: app)
-        }
-    }
     
     var body: some View {
         Group {
@@ -173,14 +165,14 @@ struct AppRootView: View {
                                 Button(action: {
                                     api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
                                     api.timeWindowEnd = nil
-                                    reloadVisibleInsights()
+                                    api.reloadVisibleInsights()
                                 }) {
                                     Label("Last Year", systemImage: "calendar")
                                 }
                                 Button(action: {
                                     api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 90)
                                     api.timeWindowEnd = nil
-                                    reloadVisibleInsights()
+                                    api.reloadVisibleInsights()
                                 }) {
                                     Label("Last 3 Months", systemImage: "calendar")
                                 }
@@ -188,7 +180,7 @@ struct AppRootView: View {
                                 Button(action: {
                                     api.timeWindowBeginning = nil
                                     api.timeWindowEnd = nil
-                                    reloadVisibleInsights()
+                                    api.reloadVisibleInsights()
                                 }) {
                                     Label("Last Month", systemImage: "calendar")
                                 }
@@ -196,7 +188,7 @@ struct AppRootView: View {
                                 Button(action: {
                                     api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
                                     api.timeWindowEnd = nil
-                                    reloadVisibleInsights()
+                                    api.reloadVisibleInsights()
                                 }) {
                                     Label("Last Week", systemImage: "calendar")
                                 }
@@ -204,7 +196,7 @@ struct AppRootView: View {
                                 Button(action: {
                                     api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
                                     api.timeWindowEnd = nil
-                                    reloadVisibleInsights()
+                                    api.reloadVisibleInsights()
                                 }) {
                                     Label("Today", systemImage: "calendar")
                                 }
