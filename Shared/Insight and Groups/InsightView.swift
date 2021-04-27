@@ -41,7 +41,6 @@ struct InsightView: View {
             HStack {
                 Group {
                     Text(api.insightData[insight.id]?.title.uppercased() ?? insight.title.uppercased())
-                        + Text(api.insightData[insight.id]?.shouldUseDruid == true ? "" : " (SQL)")
                 }
                 .font(.footnote)
                 .foregroundColor(isSelected ? .cardBackground : .grayColor)

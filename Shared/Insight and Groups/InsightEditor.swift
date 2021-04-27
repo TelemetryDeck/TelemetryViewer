@@ -285,19 +285,6 @@ struct InsightEditor: View {
             }
 
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-                Toggle(isOn: $insightDRB.shouldUseDruid) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Use Druid for Calculation")
-                            Text("This will speed up calculation a lot, but is still in alpha state. Please report bugs. Also, this will estimate counts, so they'll be off by a small percentage.")
-                                .font(.footnote)
-                                .foregroundColor(.grayColor)
-                        }
-                        Spacer()
-                    }
-                }
-                .onChange(of: insightDRB.shouldUseDruid) { _ in save() }
-
                 if let dto = api.insightData[insightID] {
                     Group {
                         Text("This Insight was last updated ")
