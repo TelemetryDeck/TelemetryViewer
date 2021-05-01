@@ -453,7 +453,6 @@ extension APIRepresentative {
             self.getInsightGroups(for: app)
             self.getInsightData(for: insight, in: insightGroup, in: app)
             callback?(result)
-            getInsightData(for: insight, in: insightGroup, in: app)
         }
     }
 
