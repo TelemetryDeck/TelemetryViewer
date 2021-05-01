@@ -18,6 +18,38 @@ struct LeftSidebarView: View {
 
     var body: some View {
         List {
+            ForEach(api.apps.sorted { $0.name < $1.name }) { app in
+                Section(header: Text(app.name)) {
+                    NavigationLink(
+                        destination: AppRootView(appID: app.id), tag: app.id,
+                        selection: $selectedAppID,
+                        label: {
+                            Label("Insights", systemImage: "app")
+                        }
+                    )
+                    
+                    NavigationLink(
+                        destination: LexiconView(appID: app.id),
+                        label: {
+                            Label("Lexicon", systemImage: "book")
+                        }
+                    )
+                    NavigationLink(
+                        destination: SignalList(appID: app.id),
+                        label: {
+                            Label("Recent Signals", systemImage: "waveform")
+                        }
+                    )
+                    
+                    NavigationLink(
+                        destination: AppEditor(appID: app.id),
+                        label: {
+                            Label("App Settings", systemImage: "gear")
+                        }
+                    )
+                }
+            }
+            
             Section(header: Text("Apps")) {
                 if api.isLoadingApps {
                     HStack {

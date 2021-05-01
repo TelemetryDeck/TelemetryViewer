@@ -15,7 +15,6 @@ struct AppRootView: View {
     var app: TelemetryApp? { api.app(with: appID) }
 
     @State var selectedInsightGroupID: UUID = UUID()
-    @State private var showingAppEditor = false
     @State private var newInsightGroupID: UUID?
 
     private var insightGroup: InsightGroup? {
@@ -96,13 +95,7 @@ struct AppRootView: View {
                 }
             }
             .navigationBarTitle(app.name)
-            .sheet(isPresented: $showingAppEditor) {
-                NavigationView {
-                    AppEditor(appID: appID)
-                }
-            }
-
-            .modifier(AddAppRootViewModifier(showingAppEditor: $showingAppEditor, appID: appID))
+            .modifier(AddAppRootViewModifier(appID: appID))
             
         } else {
             Text("No App Selected")
@@ -113,7 +106,6 @@ struct AppRootView: View {
 
 struct AddAppRootViewModifier: ViewModifier {
     @EnvironmentObject var api: APIRepresentative
-    @Binding var showingAppEditor: Bool
     let appID: UUID
     
     var app: TelemetryApp? { api.app(with: appID) }
@@ -203,11 +195,6 @@ struct AddAppRootViewModifier: ViewModifier {
                             label: {
                                 Text(timeIntervalDescription)
                             }
-                        }
-                        
-                        
-                        Button("App Settings") {
-                            showingAppEditor = true
                         }
                     } label: {
                         Label("Menu", systemImage: "ellipsis.circle")

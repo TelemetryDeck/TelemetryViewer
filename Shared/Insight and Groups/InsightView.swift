@@ -20,12 +20,6 @@ struct InsightView: View {
     let app: TelemetryApp
     let insightGroup: InsightGroup
     let insight: Insight
-    
-    #if os(iOS)
-    let progressViewScale: CGFloat = 0.5
-    #else
-    let progressViewScale: CGFloat = 0.25
-    #endif
 
     @State private var isLoading: Bool = false
     @State private var loadingErrorOccurred: Bool = false

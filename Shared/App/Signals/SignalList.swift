@@ -11,6 +11,7 @@ import TelemetryModels
 
 struct SignalList: View {
     @EnvironmentObject var api: APIRepresentative
+    @State private var isLoading: Bool = false
 
     var appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
@@ -42,9 +43,29 @@ struct SignalList: View {
             }
         }
         .navigationTitle("Recent Signals")
+        .toolbar {
+            if isLoading {
+                ProgressView()
+                    .scaleEffect(progressViewScaleLarge, anchor: .center)
+            } else {
+                Button(action: {
+                    guard let app = app else { return }
+                    isLoading = true
+                    api.getSignals(for: app) { _ in
+                        isLoading = false
+                    }
+                }, label: {
+                    Image(systemName: "arrow.counterclockwise.circle")
+                })
+            }
+        }
         .onAppear {
             if let app = app {
-                api.getSignals(for: app)
+                isLoading = true
+                api.getSignals(for: app) { _ in
+                    isLoading = false
+                }
+                
                 TelemetryManager.shared.send(TelemetrySignal.telemetryAppSignalsShown.rawValue, for: api.user?.email)
             }
         }

@@ -28,6 +28,9 @@
 		2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */; };
 		2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */; };
 		2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */; };
+		2BC29ABE263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29ABD263DFAE100CE6CEC /* ProgressView+Scale.swift */; };
+		2BC29ABF263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29ABD263DFAE100CE6CEC /* ProgressView+Scale.swift */; };
+		2BC29AC0263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29ABD263DFAE100CE6CEC /* ProgressView+Scale.swift */; };
 		2BC522E62625FC3400E643AC /* URL+Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E52625FC3400E643AC /* URL+Open.swift */; };
 		2BC522E72625FC3400E643AC /* URL+Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E52625FC3400E643AC /* URL+Open.swift */; };
 		2BC522EA2625FCEF00E643AC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* FeedbackView.swift */; };
@@ -216,6 +219,7 @@
 		2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
 		2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
+		2BC29ABD263DFAE100CE6CEC /* ProgressView+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressView+Scale.swift"; sourceTree = "<group>"; };
 		2BC522E52625FC3400E643AC /* URL+Open.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Open.swift"; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
@@ -506,6 +510,7 @@
 				DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */,
 				DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */,
 				2BC522E52625FC3400E643AC /* URL+Open.swift */,
+				2BC29ABD263DFAE100CE6CEC /* ProgressView+Scale.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -813,6 +818,7 @@
 				DC4504FC25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				DC25A5A7256C0B1B00EE84DA /* Numbers+Bound.swift in Sources */,
 				DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */,
+				2BC29AC0263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,
 				2B3CC0D6262DC3690038B528 /* ValueUnitAndTitleView.swift in Sources */,
 				DC25A59F256C0AE400EE84DA /* RawChartView.swift in Sources */,
 				DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */,
@@ -898,6 +904,7 @@
 				DCB02B5D25001A2600304964 /* DashedCardView.swift in Sources */,
 				DC25A63A256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
 				DC4504FA25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
+				2BC29ABE263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
 				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
@@ -958,6 +965,7 @@
 				DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC4504FB25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
+				2BC29ABF263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DCEC64B126025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				DC24DF3425DD54090003ADCB /* AppInfoView.swift in Sources */,
