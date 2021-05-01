@@ -478,7 +478,9 @@ extension APIRepresentative {
         get(url) { [unowned self] (result: Result<[AppSignalCountDTO], TransferError>) in
             switch result {
             case let .success(appSignalCounts):
-                self.appAdminSignalCounts = appSignalCounts
+                withAnimation {
+                    self.appAdminSignalCounts = appSignalCounts
+                }
             case let .failure(error):
                 self.handleError(error)
             }
