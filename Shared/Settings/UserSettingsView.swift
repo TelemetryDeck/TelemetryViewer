@@ -46,6 +46,10 @@ struct UserSettingsView: View {
                         SecureField("New Password", text: $passwordChangeRequest.newPassword)
                         SecureField("Confirm New Password", text: $passwordChangeRequest.newPasswordConfirm)
 
+                        Button("Cancel") {
+                            showChangePasswordForm = false
+                        }
+                        
                         Button("Save New Password") {
                             api.updatePassword(with: passwordChangeRequest)
                         }
