@@ -47,11 +47,7 @@ struct DonutChart: View {
 }
 
 
-struct PieSegment: Shape, Identifiable, Equatable {
-    static func == (lhs: PieSegment, rhs: PieSegment) -> Bool {
-        lhs.id == rhs.id
-    }
-    
+struct PieSegment: Shape, Identifiable {
     let data: ChartDataPoint
     var id: Int
     var startAngle: Double
