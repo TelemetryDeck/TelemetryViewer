@@ -89,7 +89,7 @@ struct CardButtonStyle: ButtonStyle {
         VStack(spacing: 0) {
             configuration.label
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(configuration.isPressed ? Color.telemetryOrange.opacity(0.2) : (isSelected ? Color.telemetryOrange.opacity(0.8) : Color.cardBackground))
+                .background(isSelected ? Color.telemetryOrange.opacity(0.8) : Color.cardBackground)
                 .accentColor(isSelected ? Color.cardBackground : Color.telemetryOrange)
         }
     }
