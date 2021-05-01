@@ -44,6 +44,7 @@ struct AppUpdateView: View {
                             }
                             Divider().padding(.bottom)
                             Text(latestVersion.body)
+                                .fixedSize(horizontal: false, vertical: true)
 
                             if let asset = latestVersion.assets.first {
                                 Button("Download \(byteCountFormatter.string(fromByteCount: Int64(asset.size)))") {
