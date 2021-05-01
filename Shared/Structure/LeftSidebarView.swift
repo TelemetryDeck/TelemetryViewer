@@ -138,7 +138,7 @@ struct LeftSidebarView: View {
             }
         }
         .listStyle(SidebarListStyle())
-        .navigationTitle("Telemetry")
+        .navigationTitle("AppTelemetry")
         .toolbar {
             ToolbarItemGroup {
                 #if os(macOS)

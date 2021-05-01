@@ -195,12 +195,12 @@ struct InsightEditor: View {
             
             CustomSection(header: Text("Name"), summary: Text(insight?.title ?? "..."), footer: Text("The Title of This Insight")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $insightDRB.title, onEditingChanged: { _ in save() }, onCommit: { save() })
-
+                
                 #if os(macOS)
                 Toggle(isOn: $insightDRB.isExpanded, label: {
                     Text("Show Expanded")
                 })
-                    .onChange(of: insightDRB.isExpanded) { _ in save() }
+                .onChange(of: insightDRB.isExpanded) { _ in save() }
                 #endif
             }
 
