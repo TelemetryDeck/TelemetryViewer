@@ -49,62 +49,6 @@ struct LeftSidebarView: View {
                     )
                 }
             }
-            
-            Section(header: Text("Apps")) {
-                if api.isLoadingApps {
-                    HStack {
-                        Spacer()
-                        ProgressView()
-                        Spacer()
-                    }
-                }
-                
-                ForEach(api.apps.sorted { $0.name < $1.name }) { app in
-                    
-                    #if os(macOS)
-                    DisclosureGroup(
-                        content: {
-                            NavigationLink(
-                                destination: LexiconView(appID: app.id),
-                                label: {
-                                    Label("Lexicon", systemImage: "book")
-                                }
-                            )
-                            NavigationLink(
-                                destination: SignalList(appID: app.id),
-                                label: {
-                                    Label("Recent Signals", systemImage: "waveform")
-                                }
-                            )
-                            
-                            NavigationLink(
-                                destination: AppEditor(appID: app.id),
-                                label: {
-                                    Label("App Settings", systemImage: "gear")
-                                }
-                            )
-                        },
-                        label: {
-                            NavigationLink(
-                                destination: AppRootView(appID: app.id), tag: app.id,
-                                selection: $selectedAppID,
-                                label: {
-                                    Label(app.name, systemImage: "app")
-                                }
-                            )
-                        }
-                    )
-                    #else
-                    NavigationLink(
-                        destination: AppRootView(appID: app.id), tag: app.id,
-                        selection: $selectedAppID,
-                        label: {
-                            Label(app.name, systemImage: "app")
-                        }
-                    )
-                    #endif
-                }
-            }
 
             Section(header: Text("Meta")) {
                 if let apiUser = api.user {
