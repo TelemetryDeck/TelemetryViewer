@@ -74,8 +74,9 @@ struct LeftSidebarView: View {
                 }
             }
 
-            Section(header: Text("Organization")) {
+            Section(header: Text("Meta")) {
                 if let apiUser = api.user {
+                    #if os(iOS)
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(apiUser.organization?.name ?? "Unknown Org", systemImage: "app.badge")
                     })
@@ -86,6 +87,7 @@ struct LeftSidebarView: View {
                             Label("Settings", systemImage: "gear")
                         }
                     )
+                    #endif
                     
                     NavigationLink(
                         destination: FeedbackView(),

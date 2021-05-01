@@ -25,6 +25,9 @@
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
 		2BC2720326207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
 		2BC2720A262086020045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
+		2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */; };
+		2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */; };
+		2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */; };
 		2BC522E62625FC3400E643AC /* URL+Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E52625FC3400E643AC /* URL+Open.swift */; };
 		2BC522E72625FC3400E643AC /* URL+Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E52625FC3400E643AC /* URL+Open.swift */; };
 		2BC522EA2625FCEF00E643AC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* FeedbackView.swift */; };
@@ -95,8 +98,6 @@
 		DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4E2F632563FA47001AD7B4 /* LineChartView.swift */; };
 		DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */; };
 		DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */; };
-		DC90D08B25063A6B00634B72 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90D08A25063A6B00634B72 /* UserSettingsView.swift */; };
-		DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90D08A25063A6B00634B72 /* UserSettingsView.swift */; };
 		DC92395725E5B2DE00D1729C /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC92395625E5B2DE00D1729C /* ChartRangeView.swift */; };
 		DC92395825E5B2DE00D1729C /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC92395625E5B2DE00D1729C /* ChartRangeView.swift */; };
 		DC92395925E5B2DE00D1729C /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC92395625E5B2DE00D1729C /* ChartRangeView.swift */; };
@@ -212,6 +213,9 @@
 		2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
+		2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
+		2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC522E52625FC3400E643AC /* URL+Open.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Open.swift"; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
@@ -245,7 +249,6 @@
 		DC815F3B24E283640095A047 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
 		DC83C858256A857300FCF2A1 /* RawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
 		DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationAdmin.swift; sourceTree = "<group>"; };
-		DC90D08A25063A6B00634B72 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		DC92395625E5B2DE00D1729C /* ChartRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRangeView.swift; sourceTree = "<group>"; };
 		DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_ViewerApp_macOS.swift; sourceTree = "<group>"; };
 		DC98AAB6250A671900FF26FD /* AppEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEditor.swift; sourceTree = "<group>"; };
@@ -403,9 +406,9 @@
 		DC90D08925063A5700634B72 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				DC90D08A25063A6B00634B72 /* UserSettingsView.swift */,
 				DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */,
 				DC9A92C0255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift */,
+				2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 		DCE23A0524D3687D00053370 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */,
 				DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */,
 				DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
@@ -581,6 +585,7 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */,
 				DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */,
 				DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */,
 				DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */,
@@ -834,7 +839,6 @@
 				DC92395725E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DC23286D2522725A00DB6145 /* InsightView.swift in Sources */,
 				DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */,
-				DC90D08B25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC24DF6625DD73990003ADCB /* AppRootViewIOS.swift in Sources */,
 				2BC522E62625FC3400E643AC /* URL+Open.swift in Sources */,
 				DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */,
@@ -870,6 +874,7 @@
 				DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
+				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				DCF5583B25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
@@ -908,13 +913,13 @@
 				DC23286E2522725A00DB6145 /* InsightView.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BC522EB2625FCEF00E643AC /* FeedbackView.swift in Sources */,
-				DC90D08C25063A6B00634B72 /* UserSettingsView.swift in Sources */,
 				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
 				2B3CC0D4262D8EF10038B528 /* TextModifiers.swift in Sources */,
 				DCB5F9F325F294C6004C4922 /* FavouritesView.swift in Sources */,
 				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */,
+				2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */,
 				DCB5F9F725F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
 				DCB02B732502781A00304964 /* LoginView.swift in Sources */,
 				DC4F7DBB25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
@@ -968,6 +973,7 @@
 				2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */,
 				DC24DF4625DD54D90003ADCB /* AppRootViewMacOS.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,
+				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DCFCDCBF25DD82BF00ACC529 /* InsightEditor.swift in Sources */,

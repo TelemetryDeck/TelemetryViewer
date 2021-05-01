@@ -25,15 +25,7 @@ final class APIRepresentative: ObservableObject {
             getUserInformation()
             getApps()
         }
-
-        let timerRepeatInterval: TimeInterval = 60 * 5 // 5 minutes
-        timer = Timer.scheduledTimer(timeInterval: timerRepeatInterval, target: self, selector: #selector(updateWorker), userInfo: nil, repeats: true)
     }
-
-    var timer: Timer?
-    
-    /// The last time all data in the APIClient was purged for memory reasons
-    private var lastCleanUpAt: Date = Date()
 
     @Published var registrationStatus: RegistrationStatus?
 
@@ -272,36 +264,6 @@ extension APIRepresentative {
 
             callback?(result)
         }
-    }
-
-    /// Called every 5 minutes
-    @objc func updateWorker() {
-        getApps()
-        cleanup()
-    }
-    
-    /// Remove all API data, in the attempt to prevent a memory leak
-    func cleanup() {
-        let cleanUpInterval: TimeInterval = 60 * 60 * 6 // 6 Hours
-        guard -lastCleanUpAt.timeIntervalSinceNow > cleanUpInterval else { return }
-        
-        print("Cleaning up data in an attempt to work around a combine memory leak...")
-        
-        totalNumberOfSignals = 0
-        numberOfSignalsThisMonth = 0
-        apps = []
-        signals = [:]
-        insightGroups = [:]
-        insightData = [:]
-        lexiconSignalTypes = [:]
-        lexiconPayloadKeys = [:]
-        betaRequests = []
-        organizationAdminListEntries = []
-        insightQueryAdminListEntries = []
-        insightQueryAdminAggregate = nil
-        appAdminSignalCounts = []
-        organizationUsers = []
-        organizationJoinRequests = []
     }
 
     func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> Void)? = nil) {

@@ -28,6 +28,11 @@ struct Telemetry_ViewerApp: App {
                 }
             }
         }
+        
+        
+        Settings {
+            MacSettingsView().environmentObject(api)
+        }
     }
 
     init() {
