@@ -1,0 +1,3 @@
+[submodule "Models"]
+	path = Models
+	url = git@github.com:AppTelemetry/models.git

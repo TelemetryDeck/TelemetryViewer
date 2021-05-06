@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct BarChartView: View {
     var insightDataID: UUID

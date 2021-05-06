@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct DonutChart: View {
     let chartDataPoints: [ChartDataPoint]

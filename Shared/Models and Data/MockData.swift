@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import TelemetryModels
 
 struct MockData {
     static let exampleOrganization: OrganizationDTO = .init(id: UUID(), name: "breakthesystem", isSuperOrg: true)

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct PasswordResetView: View {
     enum ProgressStatus {

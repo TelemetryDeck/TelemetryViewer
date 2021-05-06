@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct InsightGroupEditorContent {
     var id: UUID

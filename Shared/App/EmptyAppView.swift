@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct EmptyAppView: View {
     @EnvironmentObject var api: APIRepresentative

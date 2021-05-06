@@ -7,7 +7,6 @@
 
 import Combine
 import Foundation
-import TelemetryModels
 import SwiftUI
 
 final class APIRepresentative: ObservableObject {

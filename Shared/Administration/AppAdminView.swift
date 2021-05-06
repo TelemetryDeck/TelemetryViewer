@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 fileprivate enum DisplayMode: Hashable {
     case users, signals

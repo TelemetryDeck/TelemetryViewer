@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct InsightGroupView: View {
     @EnvironmentObject var api: APIRepresentative

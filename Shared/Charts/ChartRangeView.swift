@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct ChartRangeView: View {
     let lastValue: Double

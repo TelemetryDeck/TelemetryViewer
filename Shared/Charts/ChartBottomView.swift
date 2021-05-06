@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct ChartBottomView: View {
     var insightData: InsightDTO?

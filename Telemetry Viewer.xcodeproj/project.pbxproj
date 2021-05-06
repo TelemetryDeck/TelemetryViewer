@@ -7,9 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B0F9ECE2621C9C90007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ECD2621C9C90007B9EC /* TelemetryModels */; };
-		2B0F9ED02621C9D90007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ECF2621C9D90007B9EC /* TelemetryModels */; };
-		2B0F9ED22621C9EE0007B9EC /* TelemetryModels in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0F9ED12621C9EE0007B9EC /* TelemetryModels */; };
+		2B19DEA026444B0C0086F70E /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
+		2B19DEA126444B0C0086F70E /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
+		2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
+		2B19DEA326444B0C0086F70E /* String+CamelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9626444B0C0086F70E /* String+CamelCase.swift */; };
+		2B19DEA426444B0C0086F70E /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
+		2B19DEA526444B0C0086F70E /* AppSignalCountDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9926444B0C0086F70E /* AppSignalCountDTO.swift */; };
+		2B19DEA626444B0C0086F70E /* AggregateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9A26444B0C0086F70E /* AggregateDTO.swift */; };
+		2B19DEA726444B0C0086F70E /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
+		2B19DEA826444B0C0086F70E /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
+		2B19DEA926444B0C0086F70E /* InsightDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightDTO.swift */; };
+		2B19DEAB26444B0C0086F70E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
+		2B19DEAC26444B2B0086F70E /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
+		2B19DEAD26444B2B0086F70E /* InsightDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightDTO.swift */; };
+		2B19DEAE26444B2B0086F70E /* AppSignalCountDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9926444B0C0086F70E /* AppSignalCountDTO.swift */; };
+		2B19DEAF26444B2B0086F70E /* String+CamelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9626444B0C0086F70E /* String+CamelCase.swift */; };
+		2B19DEB026444B2B0086F70E /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
+		2B19DEB126444B2B0086F70E /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
+		2B19DEB226444B2B0086F70E /* AggregateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9A26444B0C0086F70E /* AggregateDTO.swift */; };
+		2B19DEB326444B2B0086F70E /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
+		2B19DEB426444B2B0086F70E /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
+		2B19DEB526444B2B0086F70E /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
+		2B19DEB626444B2B0086F70E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
+		2B19DEB726444B2B0086F70E /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
+		2B19DEB826444B2B0086F70E /* InsightDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightDTO.swift */; };
+		2B19DEB926444B2B0086F70E /* AppSignalCountDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9926444B0C0086F70E /* AppSignalCountDTO.swift */; };
+		2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9626444B0C0086F70E /* String+CamelCase.swift */; };
+		2B19DEBB26444B2B0086F70E /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
+		2B19DEBC26444B2B0086F70E /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
+		2B19DEBD26444B2B0086F70E /* AggregateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9A26444B0C0086F70E /* AggregateDTO.swift */; };
+		2B19DEBE26444B2B0086F70E /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
+		2B19DEBF26444B2B0086F70E /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
+		2B19DEC026444B2B0086F70E /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
+		2B19DEC126444B2B0086F70E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
 		2B318E852633590B00870EE9 /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E842633590B00870EE9 /* ChartLegend.swift */; };
 		2B318E862633590B00870EE9 /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E842633590B00870EE9 /* ChartLegend.swift */; };
 		2B318E872633590B00870EE9 /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B318E842633590B00870EE9 /* ChartLegend.swift */; };
@@ -210,9 +240,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataPoint.swift; sourceTree = "<group>"; };
+		2B19DE9326444B0C0086F70E /* ChartDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataSet.swift; sourceTree = "<group>"; };
+		2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
+		2B19DE9626444B0C0086F70E /* String+CamelCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CamelCase.swift"; sourceTree = "<group>"; };
+		2B19DE9826444B0C0086F70E /* InsightData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightData.swift; sourceTree = "<group>"; };
+		2B19DE9926444B0C0086F70E /* AppSignalCountDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSignalCountDTO.swift; sourceTree = "<group>"; };
+		2B19DE9A26444B0C0086F70E /* AggregateDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AggregateDTO.swift; sourceTree = "<group>"; };
+		2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDTO.swift; sourceTree = "<group>"; };
+		2B19DE9C26444B0C0086F70E /* UserDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		2B19DE9D26444B0C0086F70E /* InsightDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightDTO.swift; sourceTree = "<group>"; };
+		2B19DE9F26444B0C0086F70E /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		2B318E842633590B00870EE9 /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
 		2B318E882633596100870EE9 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
-		2B318E9026335F8C00870EE9 /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = ../models; sourceTree = "<group>"; };
 		2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -315,7 +355,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCD86AEB254EF0B5008F63CB /* SwiftUI.framework in Frameworks */,
-				2B0F9ED22621C9EE0007B9EC /* TelemetryModels in Frameworks */,
 				DCD86AE9254EF0B5008F63CB /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,7 +363,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B0F9ECE2621C9C90007B9EC /* TelemetryModels in Frameworks */,
 				DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,7 +371,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B0F9ED02621C9D90007B9EC /* TelemetryModels in Frameworks */,
 				DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +378,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B19DE9026444B0C0086F70E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2B19DE9126444B0C0086F70E /* Derived Structs */,
+				2B19DE9426444B0C0086F70E /* Extensions */,
+				2B19DE9726444B0C0086F70E /* DTOs */,
+				2B19DE9F26444B0C0086F70E /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2B19DE9126444B0C0086F70E /* Derived Structs */ = {
+			isa = PBXGroup;
+			children = (
+				2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */,
+				2B19DE9326444B0C0086F70E /* ChartDataSet.swift */,
+			);
+			path = "Derived Structs";
+			sourceTree = "<group>";
+		};
+		2B19DE9426444B0C0086F70E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */,
+				2B19DE9626444B0C0086F70E /* String+CamelCase.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2B19DE9726444B0C0086F70E /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				2B19DE9826444B0C0086F70E /* InsightData.swift */,
+				2B19DE9926444B0C0086F70E /* AppSignalCountDTO.swift */,
+				2B19DE9A26444B0C0086F70E /* AggregateDTO.swift */,
+				2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */,
+				2B19DE9C26444B0C0086F70E /* UserDTO.swift */,
+				2B19DE9D26444B0C0086F70E /* InsightDTO.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
 		2B318E82263358F000870EE9 /* Donut Chart */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,7 +608,7 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
-				2B318E9026335F8C00870EE9 /* models */,
+				2B19DE9026444B0C0086F70E /* Models */,
 				DCE239FB24D3687C00053370 /* Shared */,
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
@@ -629,7 +708,6 @@
 			);
 			name = TelemetryWidgetExtension;
 			packageProductDependencies = (
-				2B0F9ED12621C9EE0007B9EC /* TelemetryModels */,
 			);
 			productName = TelemetryWidgetExtension;
 			productReference = DCD86AE7254EF0B5008F63CB /* TelemetryWidgetExtension.appex */;
@@ -653,7 +731,6 @@
 			name = "Telemetry Viewer (iOS)";
 			packageProductDependencies = (
 				DC9C0830252CD622001C0F94 /* TelemetryClient */,
-				2B0F9ECD2621C9C90007B9EC /* TelemetryModels */,
 			);
 			productName = "Telemetry Viewer (iOS)";
 			productReference = DCE23A0324D3687D00053370 /* Telemetry Viewer.app */;
@@ -675,7 +752,6 @@
 			name = "Telemetry Viewer (macOS)";
 			packageProductDependencies = (
 				DC9C0841252CEAC9001C0F94 /* TelemetryClient */,
-				2B0F9ECF2621C9D90007B9EC /* TelemetryModels */,
 			);
 			productName = "Telemetry Viewer (macOS)";
 			productReference = DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */;
@@ -712,7 +788,6 @@
 			mainGroup = DCE239F624D3687C00053370;
 			packageReferences = (
 				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
-				2B0F9ECC2621C9C90007B9EC /* XCRemoteSwiftPackageReference "models" */,
 			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
 			projectDirPath = "";
@@ -816,22 +891,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC4504FC25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
+				2B19DEAC26444B2B0086F70E /* ChartDataSet.swift in Sources */,
+				2B19DEB526444B2B0086F70E /* OrganizationDTO.swift in Sources */,
 				DC25A5A7256C0B1B00EE84DA /* Numbers+Bound.swift in Sources */,
 				DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */,
 				2BC29AC0263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,
+				2B19DEAF26444B2B0086F70E /* String+CamelCase.swift in Sources */,
+				2B19DEB026444B2B0086F70E /* UserDTO.swift in Sources */,
 				2B3CC0D6262DC3690038B528 /* ValueUnitAndTitleView.swift in Sources */,
+				2B19DEB626444B2B0086F70E /* Models.swift in Sources */,
+				2B19DEAD26444B2B0086F70E /* InsightDTO.swift in Sources */,
 				DC25A59F256C0AE400EE84DA /* RawChartView.swift in Sources */,
 				DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */,
 				2BC2720A262086020045A2FE /* MockData.swift in Sources */,
 				DC25A5A3256C0AFE00EE84DA /* RoundedCorners.swift in Sources */,
 				2B318E872633590B00870EE9 /* ChartLegend.swift in Sources */,
 				2B318E8B2633596100870EE9 /* DonutChart.swift in Sources */,
+				2B19DEAE26444B2B0086F70E /* AppSignalCountDTO.swift in Sources */,
 				DC25A573256A87D600EE84DA /* Color.swift in Sources */,
+				2B19DEB226444B2B0086F70E /* AggregateDTO.swift in Sources */,
 				DC92395925E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				2B3CC0D5262D8EF10038B528 /* TextModifiers.swift in Sources */,
+				2B19DEB426444B2B0086F70E /* ChartDataPoint.swift in Sources */,
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
+				2B19DEB326444B2B0086F70E /* Formatter+ISO.swift in Sources */,
 				DC25A5AE256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
+				2B19DEB126444B2B0086F70E /* InsightData.swift in Sources */,
 				DC25A58F256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC25A577256BBCF700EE84DA /* APIRepresentative.swift in Sources */,
 			);
@@ -848,6 +934,7 @@
 				DC24DF6625DD73990003ADCB /* AppRootViewIOS.swift in Sources */,
 				2BC522E62625FC3400E643AC /* URL+Open.swift in Sources */,
 				DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */,
+				2B19DEA626444B0C0086F70E /* AggregateDTO.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				DCB5F9F225F294C6004C4922 /* FavouritesView.swift in Sources */,
@@ -855,7 +942,10 @@
 				DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
 				2BC522EA2625FCEF00E643AC /* FeedbackView.swift in Sources */,
 				DCB5F9F625F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
+				2B19DEA426444B0C0086F70E /* InsightData.swift in Sources */,
+				2B19DEA726444B0C0086F70E /* OrganizationDTO.swift in Sources */,
 				DC25A5AC256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
+				2B19DEA826444B0C0086F70E /* UserDTO.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
@@ -867,6 +957,7 @@
 				DCB02B762502809200304964 /* RootView.swift in Sources */,
 				DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				DCB28D7525517A4B0032B9AD /* ListItemView.swift in Sources */,
+				2B19DEA526444B0C0086F70E /* AppSignalCountDTO.swift in Sources */,
 				DC25A58D256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC5339372521CE6200D9C889 /* CardView.swift in Sources */,
 				DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */,
@@ -876,10 +967,12 @@
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */,
+				2B19DEA026444B0C0086F70E /* ChartDataPoint.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
+				2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */,
 				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
@@ -893,6 +986,7 @@
 				DCB28D892551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				2BC2720226207D710045A2FE /* MockData.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
+				2B19DEAB26444B0C0086F70E /* Models.swift in Sources */,
 				DC5F3A8925A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DC25A64F2571680900EE84DA /* CustomSection.swift in Sources */,
@@ -908,8 +1002,11 @@
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
 				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
+				2B19DEA126444B0C0086F70E /* ChartDataSet.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC25A5E0256D844300EE84DA /* DetailSidebar.swift in Sources */,
+				2B19DEA926444B0C0086F70E /* InsightDTO.swift in Sources */,
+				2B19DEA326444B0C0086F70E /* String+CamelCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,6 +1025,7 @@
 				DC4E2F592563292D001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */,
 				DCB5F9F725F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
+				2B19DEBD26444B2B0086F70E /* AggregateDTO.swift in Sources */,
 				DCB02B732502781A00304964 /* LoginView.swift in Sources */,
 				DC4F7DBB25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				DC92395B25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift in Sources */,
@@ -937,6 +1035,7 @@
 				DC25A5AD256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
 				DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */,
+				2B19DEBE26444B2B0086F70E /* Formatter+ISO.swift in Sources */,
 				DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F14253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				DCB28D7625517A4B0032B9AD /* ListItemView.swift in Sources */,
@@ -951,6 +1050,7 @@
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
 				DC3472EB258A720500BEEDE0 /* AppUpdater.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
+				2B19DEB826444B2B0086F70E /* InsightDTO.swift in Sources */,
 				DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				DC98AAB8250A671900FF26FD /* AppEditor.swift in Sources */,
@@ -963,6 +1063,7 @@
 				DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */,
+				2B19DEBF26444B2B0086F70E /* ChartDataPoint.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC4504FB25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				2BC29ABF263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,
@@ -971,26 +1072,33 @@
 				DC24DF3425DD54090003ADCB /* AppInfoView.swift in Sources */,
 				DC92395825E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
+				2B19DEBC26444B2B0086F70E /* InsightData.swift in Sources */,
 				DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
 				2B318E862633590B00870EE9 /* ChartLegend.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
+				2B19DEB726444B2B0086F70E /* ChartDataSet.swift in Sources */,
 				DCB28D6D2550AF0B0032B9AD /* InsightsGrid.swift in Sources */,
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
 				DCF8978C25C8726600E0BE57 /* ValueUnitAndTitleView.swift in Sources */,
 				DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
+				2B19DEC026444B2B0086F70E /* OrganizationDTO.swift in Sources */,
 				2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */,
 				DC24DF4625DD54D90003ADCB /* AppRootViewMacOS.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,
+				2B19DEC126444B2B0086F70E /* Models.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
+				2B19DEB926444B2B0086F70E /* AppSignalCountDTO.swift in Sources */,
 				DCFCDCBF25DD82BF00ACC529 /* InsightEditor.swift in Sources */,
+				2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */,
 				DCB1A3CC2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				DC25A5E1256D844300EE84DA /* DetailSidebar.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				DC83C85A256A857300FCF2A1 /* RawChartView.swift in Sources */,
+				2B19DEBB26444B2B0086F70E /* UserDTO.swift in Sources */,
 				DC24DF4F25DD58A80003ADCB /* InsightGroupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1327,40 +1435,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2B0F9ECC2621C9C90007B9EC /* XCRemoteSwiftPackageReference "models" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:AppTelemetry/models.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.8;
+				minimumVersion = 1.0.12;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2B0F9ECD2621C9C90007B9EC /* TelemetryModels */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B0F9ECC2621C9C90007B9EC /* XCRemoteSwiftPackageReference "models" */;
-			productName = TelemetryModels;
-		};
-		2B0F9ECF2621C9D90007B9EC /* TelemetryModels */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B0F9ECC2621C9C90007B9EC /* XCRemoteSwiftPackageReference "models" */;
-			productName = TelemetryModels;
-		};
-		2B0F9ED12621C9EE0007B9EC /* TelemetryModels */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B0F9ECC2621C9C90007B9EC /* XCRemoteSwiftPackageReference "models" */;
-			productName = TelemetryModels;
-		};
 		DC9C0830252CD622001C0F94 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;

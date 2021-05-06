@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct InsightsGrid: View {
     let app: TelemetryApp

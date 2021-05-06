@@ -7,7 +7,6 @@
 
 import SwiftUI
 import TelemetryClient
-import TelemetryModels
 
 struct UserInfoView: View {
     var user: UserDTO

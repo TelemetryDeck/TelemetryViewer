@@ -7,7 +7,6 @@
 
 import SwiftUI
 import TelemetryClient
-import TelemetryModels
 
 struct AppEditor: View {
     @EnvironmentObject var api: APIRepresentative
