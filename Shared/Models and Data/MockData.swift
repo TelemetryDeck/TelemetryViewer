@@ -8,7 +8,7 @@
 import Foundation
 
 struct MockData {
-    static let exampleOrganization: OrganizationDTO = .init(id: UUID(), name: "breakthesystem", isSuperOrg: true)
+    static let exampleOrganization: DTO.Organization = .init(id: UUID(), name: "breakthesystem", isSuperOrg: true)
 
     static let app1: TelemetryApp = .init(id: UUID(), name: "Test App", organization: ["id": "123"])
     static let app2: TelemetryApp = .init(id: UUID(), name: "Other Test App", organization: ["id": "123"])
@@ -17,7 +17,7 @@ struct MockData {
         "isTestFlight": "true",
     ]
 
-    static let signals: [Signal] = [
+    static let signals: [DTO.Signal] = [
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
@@ -26,7 +26,7 @@ struct MockData {
         .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
     ]
 
-    static let lexiconSignalTypes: [LexiconSignalType] = [
+    static let lexiconSignalTypes: [LexiconSignalTypeDTO] = [
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "signalsUpdated"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "testSignal"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "pizzaModeActivated"),
@@ -35,7 +35,7 @@ struct MockData {
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "phoneRotated"),
     ]
 
-    static let lexiconPayloadKeys: [LexiconPayloadKey] = [
+    static let lexiconPayloadKeys: [DTO.LexiconPayloadKey] = [
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "browser"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "platform"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "operatingSystem"),
@@ -48,7 +48,7 @@ struct MockData {
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "systemVersion"),
     ]
 
-    static let exampleInsight1 = InsightDTO(
+    static let exampleInsight1 = InsightCalculationResult(
         id: UUID(),
         order: 12,
         title: "Users Today",

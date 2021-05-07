@@ -16,7 +16,7 @@ struct RawChartView: View {
         topSelectedInsightID == insightDataID
     }
 
-    private var insightData: InsightDTO? { api.insightData[insightDataID] }
+    private var insightData: InsightCalculationResult? { api.insightData[insightDataID] }
 
     var body: some View {
         if let insightData = insightData, !insightData.data.isEmpty {
@@ -40,7 +40,7 @@ struct RawChartView: View {
 
 struct RawChartView_Previews: PreviewProvider {
     static var api: APIRepresentative = {
-        let insight1 = InsightDTO(
+        let insight1 = InsightCalculationResult(
             id: UUID(),
             order: nil, title: "A single Number",
             subtitle: nil,
@@ -57,7 +57,7 @@ struct RawChartView_Previews: PreviewProvider {
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight2 = InsightDTO(
+        let insight2 = InsightCalculationResult(
             id: UUID(),
             order: nil, title: "2 Numbers",
             subtitle: nil,
@@ -75,7 +75,7 @@ struct RawChartView_Previews: PreviewProvider {
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight3 = InsightDTO(
+        let insight3 = InsightCalculationResult(
             id: UUID(),
             order: nil, title: "Maaaany Entries",
             subtitle: nil,
@@ -96,7 +96,7 @@ struct RawChartView_Previews: PreviewProvider {
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight4 = InsightDTO(
+        let insight4 = InsightCalculationResult(
             id: UUID(),
             order: nil, title: "2 Numbers, no dates",
             subtitle: nil,
@@ -134,7 +134,7 @@ struct RawChartView_Previews: PreviewProvider {
 }
 
 struct SingleValueView: View {
-    var insightData: InsightDTO
+    var insightData: InsightCalculationResult
 
     let isSelected: Bool
 
@@ -149,11 +149,11 @@ struct SingleValueView: View {
             if let lastData = insightData.data.last,
                let doubleValue = lastData.yAxisDouble,
                let dateValue = xAxisDefinition(insightData: lastData, style: .date)
-             {
+            {
                 VStack(alignment: .leading) {
                     ValueAndUnitView(value: doubleValue, unit: "", shouldFormatBigNumbers: true)
                         .foregroundColor(isSelected ? .cardBackground : .primary)
-                    
+
                     dateValue
                         .subtitleStyle()
                         .foregroundColor(isSelected ? .cardBackground : .grayColor)
@@ -205,7 +205,7 @@ struct SingleValueView: View {
         guard insightData.data.count > 1 else { return Text("") }
         let previousData = insightData.data[0]
 
-        guard let currentValue = insightData.data[1].yAxisNumber, let previousValue = insightData.data[0].yAxisNumber else { return xAxisDefinition(insightData: insightData.data[0], style: .date) }
+        guard let currentValue = insightData.data[1].yAxisNumber, let previousValue = insightData.data[0].yAxisNumber else { return xAxisDefinition(insightData: previousData, style: .date) }
 
         let percentage: Double = (currentValue.doubleValue - previousValue.doubleValue) / previousValue.doubleValue
 
@@ -214,7 +214,7 @@ struct SingleValueView: View {
 }
 
 struct RawTableView: View {
-    var insightData: InsightDTO
+    var insightData: InsightCalculationResult
 
     let isSelected: Bool
 
@@ -226,37 +226,39 @@ struct RawTableView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(insightData.data, id: \.xAxisValue) { dataRow in
-                    Group {
+                if let data = insightData.data {
+                    ForEach(data, id: \.xAxisValue) { dataRow in
                         Group {
-                            if let xAxisDate = dataRow.xAxisDate {
-                                HStack {
-                                    Text(xAxisDate, style: .date)
+                            Group {
+                                if let xAxisDate = dataRow.xAxisDate {
+                                    HStack {
+                                        Text(xAxisDate, style: .date)
 
-                                    if insightData.groupBy == .hour {
-                                        Text(xAxisDate, style: .time)
+                                        if insightData.groupBy == .hour {
+                                            Text(xAxisDate, style: .time)
+                                        }
                                     }
+                                } else {
+                                    Text(dataRow.xAxisValue)
                                 }
-                            } else {
-                                Text(dataRow.xAxisValue)
                             }
-                        }
-                        .font(.footnote)
-                        .foregroundColor(isSelected ? .cardBackground : .grayColor)
+                            .font(.footnote)
+                            .foregroundColor(isSelected ? .cardBackground : .grayColor)
 
-                        Group {
-                            if let doubleValue = dataRow.yAxisDouble {
-                                ValueView(value: doubleValue, shouldFormatBigNumbers: true)
-                                    .foregroundColor(isSelected ? .cardBackground : .none)
-                            } else {
-                                Text(dataRow.yAxisValue ?? "–")
-                                    .valueStyle()
+                            Group {
+                                if let doubleValue = dataRow.yAxisDouble {
+                                    ValueView(value: doubleValue, shouldFormatBigNumbers: true)
+                                        .foregroundColor(isSelected ? .cardBackground : .none)
+                                } else {
+                                    Text(dataRow.yAxisValue ?? "–")
+                                        .valueStyle()
+                                }
                             }
+                            .foregroundColor(isSelected ? .cardBackground : .none)
                         }
-                        .foregroundColor(isSelected ? .cardBackground : .none)
+                        .padding(.horizontal)
                     }
                 }
-                .padding(.horizontal)
             }
         }
     }

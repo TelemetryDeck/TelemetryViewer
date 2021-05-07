@@ -11,8 +11,8 @@ struct InsightDetailView: View {
     @EnvironmentObject var api: APIRepresentative
 
     @Binding var isPresented: Bool
-    let insight: Insight
-    let insightGroup: InsightGroup
+    let insight: InsightCalculationResult
+    let insightGroup: DTO.InsightGroup
     let app: TelemetryApp
 
     private var encoder: JSONEncoder {

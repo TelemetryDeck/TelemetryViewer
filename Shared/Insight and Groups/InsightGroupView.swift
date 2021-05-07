@@ -16,7 +16,7 @@ struct InsightGroupView: View {
     let insightGroupID: UUID
     
     var app: TelemetryApp? { api.app(with: appID) }
-    var insightGroup: InsightGroup? {
+    var insightGroup: DTO.InsightGroup? {
         guard let app = app else { return nil }
         return api.insightGroups[app]?.first { $0.id == insightGroupID }
     }
@@ -103,7 +103,7 @@ struct InsightGroupView: View {
                 .buttonStyle(SmallSecondaryButtonStyle())
                 .frame(maxWidth: 400)
                 .padding()
-                
+
                 #if os(iOS)
                 NavigationLink("Recent Signals", destination: SignalList(appID: appID))
                     .buttonStyle(SmallSecondaryButtonStyle())

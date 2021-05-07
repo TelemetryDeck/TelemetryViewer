@@ -149,7 +149,7 @@ struct AppAdminView: View {
 
 
 fileprivate struct AddAdminViewListEntry: View {
-    let appSignalCountDTO: AppSignalCountDTO
+    let appSignalCountDTO: DTO.AppSignalCount
     let displayMode: DisplayMode
     
     var body: some View {
@@ -175,7 +175,7 @@ fileprivate struct AddAdminViewListEntry: View {
 }
 
 struct AppAdminDetailView: View {
-    let entry: AppSignalCountDTO
+    let entry: DTO.AppSignalCount
 
     var body: some View {
         ScrollView {

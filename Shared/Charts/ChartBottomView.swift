@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChartBottomView: View {
-    var insightData: InsightDTO?
+    var insightData: InsightCalculationResult?
 
     let isSelected: Bool
 

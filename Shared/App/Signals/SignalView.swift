@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignalView: View {
-    var signal: Signal
+    var signal: DTO.Signal
 
     @State private var showPayload: Bool = false
 
@@ -57,7 +57,7 @@ struct SignalView: View {
 
 struct SignalView_Previews: PreviewProvider {
     static var previews: some View {
-        let signal: Signal = .init(
+        let signal: DTO.Signal = .init(
             id: UUID(),
             receivedAt: Date(),
             clientUser: UUID().uuidString,

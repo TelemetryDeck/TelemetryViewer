@@ -14,7 +14,7 @@ struct EmptyInsightGroupView: View {
     var appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
 
-    private var insightGroup: InsightGroup? {
+    private var insightGroup: DTO.InsightGroup? {
         guard let app = app else { return nil }
         return (api.insightGroups[app] ?? []).first(where: { $0.id == selectedInsightGroupID })
     }

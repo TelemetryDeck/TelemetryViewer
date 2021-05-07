@@ -61,7 +61,7 @@ struct InsightEditorContent {
             shouldUseDruid: true)
     }
     
-    static func from(insight: Insight) -> InsightEditorContent {
+    static func from(insight: InsightDTO) -> InsightEditorContent {
         let requestBody = Self(
             order: insight.order ?? -1,
             title: insight.title,
@@ -75,7 +75,7 @@ struct InsightEditorContent {
             groupID: insight.group["id"]!,
             id: insight.id,
             isExpanded: insight.isExpanded,
-            shouldUseDruid: insight.shouldUseDruid
+            shouldUseDruid: insight.shouldUseDruid 
         )
 
         return requestBody
@@ -111,11 +111,11 @@ struct InsightEditor: View {
     let insightID: UUID
     
     var app: TelemetryApp? { api.app(with: appID) }
-    var insightGroup: InsightGroup? {
+    var insightGroup: DTO.InsightGroup? {
         guard let app = app else { return nil }
         return api.insightGroups[app]?.first { $0.id == insightGroupID }
     }
-    var insight: Insight? {
+    var insight: InsightDTO? {
         guard let insightGroup = insightGroup else { return nil }
         return insightGroup.insights.first { $0.id == insightID }
     }
@@ -284,12 +284,12 @@ struct InsightEditor: View {
             }
 
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-                if let dto = api.insightData[insightID] {
+                if let dto = api.insightData[insightID], let calculatedAt = dto.calculatedAt, let calculationDuration = dto.calculationDuration {
                     Group {
                         Text("This Insight was last updated ")
-                            + Text(dto.calculatedAt, style: .relative).bold()
+                            + Text(calculatedAt, style: .relative).bold()
                             + Text(" ago. The server needed ")
-                            + Text("\(dto.calculationDuration) seconds").bold()
+                            + Text("\(calculationDuration) seconds").bold()
                             + Text(" to calculate it.")
                     }
                     .opacity(0.4)

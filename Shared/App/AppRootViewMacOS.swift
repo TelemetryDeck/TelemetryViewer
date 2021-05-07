@@ -16,7 +16,7 @@ struct AppRootView: View {
     
     @State var selection: AppRootViewSelection = .noSelection
     
-    private var insightGroup: InsightGroup? {
+    private var insightGroup: DTO.InsightGroup? {
         switch selection {
         case let .insightGroup(group):
             return group

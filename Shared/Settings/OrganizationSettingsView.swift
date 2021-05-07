@@ -9,7 +9,7 @@ import SwiftUI
 import TelemetryClient
 
 struct UserInfoView: View {
-    var user: UserDTO
+    var user: DTO.UserDTO
 
     var body: some View {
         VStack {

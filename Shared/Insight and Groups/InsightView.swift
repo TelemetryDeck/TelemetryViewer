@@ -17,8 +17,8 @@ struct InsightView: View {
     }
 
     let app: TelemetryApp
-    let insightGroup: InsightGroup
-    let insight: Insight
+    let insightGroup: DTO.InsightGroup
+    let insight: InsightDTO
 
     @State private var isLoading: Bool = false
     @State private var loadingErrorOccurred: Bool = false

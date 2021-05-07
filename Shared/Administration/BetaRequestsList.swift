@@ -89,7 +89,7 @@ struct BetaRequestDetailView: View {
 
 struct BetaRequestsList: View {
     @EnvironmentObject var api: APIRepresentative
-    @State private var selectedItem: BetaRequestEmail?
+    @State private var selectedItem: BetaRequestEmailDTO?
     @State private var sidebarShown: Bool = false
 
     let refreshTimer = Timer.publish(

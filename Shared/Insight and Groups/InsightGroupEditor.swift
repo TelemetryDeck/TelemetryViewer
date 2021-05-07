@@ -12,7 +12,7 @@ struct InsightGroupEditorContent {
     var title: String
     var order: Double
 
-    static func from(insightGroup: InsightGroup) -> InsightGroupEditorContent {
+    static func from(insightGroup: DTO.InsightGroup) -> InsightGroupEditorContent {
         InsightGroupEditorContent(
             id: insightGroup.id,
             title: insightGroup.title,
@@ -20,8 +20,8 @@ struct InsightGroupEditorContent {
         )
     }
 
-    func getInsightGroupDTO() -> InsightGroupDTO {
-        InsightGroupDTO(id: id, title: title, order: order != -1 ? order : nil)
+    func getInsightGroupDTO() -> DTO.InsightGroup {
+        DTO.InsightGroup(id: id, title: title, order: order != -1 ? order : nil)
     }
 }
 
@@ -31,9 +31,9 @@ struct InsightGroupEditor: View {
     @State private var showingAlert = false
 
     let app: TelemetryApp
-    let insightGroup: InsightGroup
+    let insightGroup: DTO.InsightGroup
 
-    init(app: TelemetryApp, insightGroup: InsightGroup) {
+    init(app: TelemetryApp, insightGroup: DTO.InsightGroup) {
         self.app = app
         self.insightGroup = insightGroup
         _insightGroupDTO = State(initialValue: InsightGroupEditorContent.from(insightGroup: insightGroup))
