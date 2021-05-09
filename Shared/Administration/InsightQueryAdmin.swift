@@ -8,35 +8,35 @@
 import SwiftUI
 
 struct InsightQueryDetailView: View {
-    let entry: InsightCalculationResult
+    let entry: InsightDTO
 
     var body: some View {
         ScrollView {
-//            CustomSection(header: Text("Insight"), summary: EmptyView(), footer: EmptyView()) {
-//                Text(entry.title)
-//                if let lastRunAt = entry.lastRunAt { Text(lastRunAt, style: .date) } else { Text("never") }
-//                if let lastRunTime = entry.lastRunTime { Text("\(lastRunTime)s") } else { Text("–") }
-//            }
-//
-//            CustomSection(header: Text("ID"), summary: EmptyView(), footer: EmptyView()) {
-//                Text(entry.id.uuidString)
-//
-//                Button("Copy to Clipboard") {
-//                    saveToClipBoard(entry.id.uuidString)
-//                }
-//                .buttonStyle(SmallSecondaryButtonStyle())
-//            }
-//
-//            if let lastQuery = entry.lastQuery {
-//                CustomSection(header: Text("Query"), summary: EmptyView(), footer: EmptyView()) {
-//                    Text(lastQuery).font(.system(size: 10, design: .monospaced))
-//
-//                    Button("Copy to Clipboard") {
-//                        saveToClipBoard(lastQuery)
-//                    }
-//                    .buttonStyle(SmallSecondaryButtonStyle())
-//                }
-//            }
+            CustomSection(header: Text("Insight"), summary: EmptyView(), footer: EmptyView()) {
+                Text(entry.title)
+                if let lastRunAt = entry.lastRunAt { Text(lastRunAt, style: .date) } else { Text("never") }
+                if let lastRunTime = entry.lastRunTime { Text("\(lastRunTime)s") } else { Text("–") }
+            }
+
+            CustomSection(header: Text("ID"), summary: EmptyView(), footer: EmptyView()) {
+                Text(entry.id.uuidString)
+
+                Button("Copy to Clipboard") {
+                    saveToClipBoard(entry.id.uuidString)
+                }
+                .buttonStyle(SmallSecondaryButtonStyle())
+            }
+
+            if let lastQuery = entry.lastQuery {
+                CustomSection(header: Text("Query"), summary: EmptyView(), footer: EmptyView()) {
+                    Text(lastQuery).font(.system(size: 10, design: .monospaced))
+
+                    Button("Copy to Clipboard") {
+                        saveToClipBoard(lastQuery)
+                    }
+                    .buttonStyle(SmallSecondaryButtonStyle())
+                }
+            }
         }
         .padding()
     }
@@ -92,16 +92,16 @@ struct InsightQueryAdmin: View {
                     }
                 }
 
-//                ForEach(api.insightQueryAdminListEntries) { entry in
-//                    NavigationLink(destination: InsightQueryDetailView(entry: entry)) {
-//                        HStack {
-//                            Text(entry.title)
-//                            Spacer()
-//                            if let lastRunAt = entry.lastRunAt { Text(lastRunAt, style: .date) } else { Text("never") }
-//                            if let lastRunTime = entry.lastRunTime { Text("\(lastRunTime)s") } else { Text("–") }
-//                        }
-//                    }
-//                }
+                ForEach(api.insightQueryAdminListEntries) { entry in
+                    NavigationLink(destination: InsightQueryDetailView(entry: entry)) {
+                        HStack {
+                            Text(entry.title)
+                            Spacer()
+                            if let lastRunAt = entry.lastRunAt { Text(lastRunAt, style: .date) } else { Text("never") }
+                            if let lastRunTime = entry.lastRunTime { Text("\(lastRunTime)s") } else { Text("–") }
+                        }
+                    }
+                }
             }
         }
         .navigationTitle("Insight Query Admin")

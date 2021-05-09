@@ -258,7 +258,6 @@
 		2BC29ABD263DFAE100CE6CEC /* ProgressView+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressView+Scale.swift"; sourceTree = "<group>"; };
 		2BC522E52625FC3400E643AC /* URL+Open.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Open.swift"; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
-		2BC76EC42645895D00D18010 /* InsightGroup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = InsightGroup.json; sourceTree = "<group>"; };
 		2BDBB75C264551890013FC39 /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
 		2BDBB75D264551890013FC39 /* AppSignalCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSignalCount.swift; sourceTree = "<group>"; };
 		DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
@@ -414,7 +413,6 @@
 				2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */,
 				2B19DE9C26444B0C0086F70E /* UserDTO.swift */,
 				2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */,
-				2BC76EC42645895D00D18010 /* InsightGroup.json */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
