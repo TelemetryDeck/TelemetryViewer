@@ -183,7 +183,6 @@
 		DCD86AEB254EF0B5008F63CB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */; };
 		DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD86AED254EF0B5008F63CB /* TelemetryWidget.swift */; };
 		DCD86AF1254EF0B6008F63CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD86AF0254EF0B6008F63CB /* Assets.xcassets */; };
-		DCD86AF7254EF0B6008F63CB /* TelemetryWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCD86AE7254EF0B5008F63CB /* TelemetryWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
 		DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */; };
 		DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */; };
@@ -212,30 +211,6 @@
 		DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 		DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DCD86AF5254EF0B6008F63CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DCE239F724D3687C00053370 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DCD86AE6254EF0B5008F63CB;
-			remoteInfo = TelemetryWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		DCD86AF8254EF0B6008F63CB /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				DCD86AF7254EF0B6008F63CB /* TelemetryWidgetExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataPoint.swift; sourceTree = "<group>"; };
@@ -716,13 +691,11 @@
 				DCE239FF24D3687D00053370 /* Sources */,
 				DCE23A0024D3687D00053370 /* Frameworks */,
 				DCE23A0124D3687D00053370 /* Resources */,
-				DCD86AF8254EF0B6008F63CB /* Embed App Extensions */,
 				DC7DEE9D258A355F00BEA712 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DCD86AF6254EF0B6008F63CB /* PBXTargetDependency */,
 			);
 			name = "Telemetry Viewer (iOS)";
 			packageProductDependencies = (
@@ -1099,14 +1072,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		DCD86AF6254EF0B6008F63CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DCD86AE6254EF0B5008F63CB /* TelemetryWidgetExtension */;
-			targetProxy = DCD86AF5254EF0B6008F63CB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		DCB28D8C2551C3330032B9AD /* TelemetryWidget.intentdefinition */ = {
 			isa = PBXVariantGroup;
@@ -1285,7 +1250,6 @@
 		DCE23A1824D3687D00053370 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1310,7 +1274,6 @@
 		DCE23A1924D3687D00053370 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
