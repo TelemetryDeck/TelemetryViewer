@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryModels
 
 struct AppRootView: View {
     @EnvironmentObject var api: APIRepresentative
@@ -17,7 +16,7 @@ struct AppRootView: View {
     @State var selectedInsightGroupID: UUID = UUID()
     @State private var newInsightGroupID: UUID?
 
-    private var insightGroup: InsightGroup? {
+    private var insightGroup: DTO.InsightGroup? {
         guard let app = app else { return nil }
         return api.insightGroups[app]?.first { $0.id == selectedInsightGroupID }
     }
