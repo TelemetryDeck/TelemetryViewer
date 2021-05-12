@@ -719,5 +719,5 @@ extension APIRepresentative {
         }.resume()
     }
 
-    private func handleError(_: TransferError) {}
+    func handleError(_: TransferError) {}
 }

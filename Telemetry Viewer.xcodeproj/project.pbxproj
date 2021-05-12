@@ -44,6 +44,9 @@
 		2B3CC0D4262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2B3CC0D5262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2B3CC0D6262DC3690038B528 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */; };
+		2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
+		2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
+		2B61B950264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
@@ -225,6 +228,7 @@
 		2B318E842633590B00870EE9 /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
 		2B318E882633596100870EE9 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
+		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
@@ -484,6 +488,7 @@
 				2BC2720126207D710045A2FE /* MockData.swift */,
 				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
 				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
+				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
 			);
 			path = "API Client";
 			sourceTree = "<group>";
@@ -886,6 +891,7 @@
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
 				2B19DEB326444B2B0086F70E /* Formatter+ISO.swift in Sources */,
 				DC25A5AE256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
+				2B61B950264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2B19DEB126444B2B0086F70E /* InsightData.swift in Sources */,
 				DC25A58F256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC25A577256BBCF700EE84DA /* APIRepresentative.swift in Sources */,
@@ -913,6 +919,7 @@
 				2B19DEA426444B0C0086F70E /* InsightData.swift in Sources */,
 				2B19DEA726444B0C0086F70E /* OrganizationDTO.swift in Sources */,
 				DC25A5AC256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
+				2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2B19DEA826444B0C0086F70E /* UserDTO.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
@@ -1063,6 +1070,7 @@
 				DC25A5E1256D844300EE84DA /* DetailSidebar.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,
+				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				DC83C85A256A857300FCF2A1 /* RawChartView.swift in Sources */,
 				2B19DEBB26444B2B0086F70E /* UserDTO.swift in Sources */,
