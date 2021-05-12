@@ -12,15 +12,6 @@ struct SignalView: View {
 
     @State private var showPayload: Bool = false
 
-    var columns = [
-        GridItem(.fixed(50)),
-        GridItem(.fixed(150)),
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-    ]
-
-    var payloadColumns = [GridItem(.flexible())]
-
     var body: some View {
         let keys = signal.payload != nil ? Array(signal.payload!.keys) : []
 
@@ -37,7 +28,7 @@ struct SignalView: View {
                 KVView(key: "User", value: signal.clientUser)
                 
                 signal.sessionID.map {
-                    KVView(key: "Session", value: $0)
+                    KVView(key: "Session", value: String($0))
                 }
                 
                 signal.count.map {
@@ -53,7 +44,7 @@ struct SignalView: View {
                 }
             }
         }
-        .navigationTitle("\(signal.type) \(signal.receivedAt)")
+        .navigationTitle("\(signal.type)")
     }
 }
 
