@@ -9,64 +9,54 @@ import SwiftUI
 import TelemetryClient
 
 struct SignalList: View {
-    @EnvironmentObject var api: APIRepresentative
-    @State private var isLoading: Bool = false
+    @EnvironmentObject var signalsService: SignalsService
 
-    var appID: UUID
-    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
+    let appID: UUID
 
     var body: some View {
-        Group {
-            if let app = app {
-                ScrollView {
-                    if api.signals[app] == nil {
-                        ForEach(MockData.signals, id: \.self) { signal in
-                            SignalView(signal: signal).redacted(reason: .placeholder)
-                        }
-                    } else {
-                        ForEach(api.signals[app]!, id: \.self) { signal in
-                            SignalView(signal: signal)
-                        }
+        List {
+            if signalsService.signals(for: appID).isEmpty && !signalsService.isLoading(appID: appID) {
+                Text("You haven't received any Signals yet. Once your app is sending out signals, you'll find here a list of the latest ones.\n\nHint: Usually, apps using the Telemetry Swift Client will only send out Signals if they are compiled in the Release build configuration. If your schema is in Debug mode, no signals will be sent.")
+                    .font(.footnote)
+                    .foregroundColor(.grayColor)
+            }
+            
+            let signals = signalsService.signals(for: appID).map { $0.toIdentifiableSignal() }
 
-                        if api.signals[app]?.isEmpty != false {
-                            Text("You haven't received any Signals yet. Once your app is sending out signals, you'll find here a list of the latest ones.\n\nHint: Usually, apps using the Telemetry Swift Client will only send out Signals if they are compiled in the Release build configuration. If your schema is in Debug mode, no signals will be sent.")
-                                .font(.footnote)
-                                .foregroundColor(.grayColor)
-                        }
-                    }
-                }
-                .padding(.horizontal)
-
-            } else {
-                Text("No App")
+            ForEach(signals) { signal in
+                    NavigationLink(
+                        destination: SignalView(signal: signal.signal),
+                        label: { SignalListCell(signal: signal.signal) }
+                    )
             }
         }
         .navigationTitle("Recent Signals")
+        .onAppear {
+            signalsService.getSignals(for: appID)
+        }
         .toolbar {
-            if isLoading {
-                ProgressView()
-                    .scaleEffect(progressViewScaleLarge, anchor: .center)
+            if signalsService.isLoading(appID: appID) {
+                ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
             } else {
                 Button(action: {
-                    guard let app = app else { return }
-                    isLoading = true
-                    api.getSignals(for: app) { _ in
-                        isLoading = false
-                    }
+                    signalsService.getSignals(for: appID)
                 }, label: {
                     Image(systemName: "arrow.counterclockwise.circle")
                 })
             }
         }
-        .onAppear {
-            if let app = app {
-                isLoading = true
-                api.getSignals(for: app) { _ in
-                    isLoading = false
-                }
-                
-                TelemetryManager.shared.send(TelemetrySignal.telemetryAppSignalsShown.rawValue, for: api.user?.email)
-            }
+    }
+}
+
+struct SignalListCell: View {
+    let signal: DTO.Signal
+
+    var body: some View {
+        HStack {
+            Text(signal.type).bold()
+            Spacer()
+            Text(signal.receivedAt, style: .date).opacity(0.6)
+            Text(signal.receivedAt, style: .time).opacity(0.6)
         }
     }
 }

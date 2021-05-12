@@ -18,12 +18,12 @@ struct MockData {
     ]
 
     static let signals: [DTO.Signal] = [
-        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(id: nil, receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
     ]
 
     static let lexiconSignalTypes: [LexiconSignalTypeDTO] = [

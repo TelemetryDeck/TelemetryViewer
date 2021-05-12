@@ -10,7 +10,7 @@ import SwiftUI
 
 class SignalsService: ObservableObject {
     @Published var signalsForAppID: [UUID: [DTO.Signal]] = [:]
-    @Published var loadingAppIDs: [UUID] = []
+    @Published var loadingAppIDs: Set<UUID> = Set<UUID>()
     
     let api: APIRepresentative
     
@@ -28,6 +28,8 @@ class SignalsService: ObservableObject {
     
     func getSignals(for appID: UUID, callback: ((Result<[DTO.Signal], TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "signals")
+        
+        loadingAppIDs.insert(appID)
 
         api.get(url) { [unowned self] (result: Result<[DTO.Signal], TransferError>) in
             switch result {
@@ -37,6 +39,7 @@ class SignalsService: ObservableObject {
                 api.handleError(error)
             }
 
+            loadingAppIDs.remove(appID)
             callback?(result)
         }
     }

@@ -22,43 +22,44 @@ struct SignalView: View {
     var payloadColumns = [GridItem(.flexible())]
 
     var body: some View {
-        ListItemView {
-            VStack {
-                HStack(alignment: .top) {
-                    Image(systemName: "arrowtriangle.right.fill")
-                        .imageScale(.large)
-                        .rotationEffect(.init(degrees: showPayload ? 90 : 0))
-                        .foregroundColor(.accentColor)
+        let keys = signal.payload != nil ? Array(signal.payload!.keys) : []
 
-                    VStack(alignment: .leading) {
-                        Text(signal.type.camelCaseToWords).bold()
-                        Group { Text(signal.receivedAt, style: .relative) + Text(" ago") }
-                            .font(.footnote)
-                            .foregroundColor(.grayColor)
+        return List {
+            Section(header: Text("Signal Data")) {
+                VStack(alignment: .leading) {
+                    Text("Received at").bold()
+                    HStack {
+                        Text(signal.receivedAt, style: .date)
+                        Text(signal.receivedAt, style: .time)
                     }
-
-                    Spacer()
                 }
-                if showPayload {
-                    if let payload = signal.payload {
-                        KeyValueView(keysAndValues: payload)
-                    } else {
-                        Text("No Payload")
+                
+                KVView(key: "User", value: signal.clientUser)
+                
+                signal.sessionID.map {
+                    KVView(key: "Session", value: $0)
+                }
+                
+                signal.count.map {
+                    KVView(key: "Count", value: String($0))
+                }
+            }
+
+            Section(header: Text("Payload")) {
+                ForEach(keys.sorted(), id: \.self) { payloadKey in
+                    signal.payload?[payloadKey].map {
+                        KVView(key: payloadKey, value: $0)
                     }
                 }
             }
         }
-        .animation(.easeOut)
-        .onTapGesture {
-            showPayload.toggle()
-        }
+        .navigationTitle("\(signal.type) \(signal.receivedAt)")
     }
 }
 
 struct SignalView_Previews: PreviewProvider {
     static var previews: some View {
         let signal: DTO.Signal = .init(
-            id: UUID(),
             receivedAt: Date(),
             clientUser: UUID().uuidString,
             type: "ExampleSignal",
@@ -68,5 +69,17 @@ struct SignalView_Previews: PreviewProvider {
             ]
         )
         SignalView(signal: signal)
+    }
+}
+
+struct KVView: View {
+    let key: String
+    let value: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(key).bold()
+            Text(value)
+        }
     }
 }
