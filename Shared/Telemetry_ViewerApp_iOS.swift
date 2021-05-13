@@ -13,12 +13,14 @@ struct Telemetry_ViewerApp: App {
     @Environment(\.scenePhase) var scenePhase
     let api: APIRepresentative
     let signalsService: SignalsService
+    let lexiconService: LexiconService
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environmentObject(api)
                 .environmentObject(signalsService)
+                .environmentObject(lexiconService)
         }
         .onChange(of: scenePhase) { newScenePhase in
             if newScenePhase == .active {
@@ -30,6 +32,7 @@ struct Telemetry_ViewerApp: App {
     init() {
         self.api = APIRepresentative()
         self.signalsService = SignalsService(api: api)
+        self.lexiconService = LexiconService(api: api)
         
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)

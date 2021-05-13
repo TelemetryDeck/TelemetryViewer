@@ -13,6 +13,7 @@ struct Telemetry_ViewerApp: App {
     let api: APIRepresentative
     let appUpdater: AppUpdater
     let signalsService: SignalsService
+    let lexiconService: LexiconService
 
     var body: some Scene {
         WindowGroup {
@@ -20,6 +21,7 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(api)
                 .environmentObject(appUpdater)
                 .environmentObject(signalsService)
+                .environmentObject(lexiconService)
         }
         .windowToolbarStyle(UnifiedCompactWindowToolbarStyle())
         .commands {
@@ -40,6 +42,7 @@ struct Telemetry_ViewerApp: App {
         self.api = APIRepresentative()
         self.appUpdater = AppUpdater()
         self.signalsService = SignalsService(api: api)
+        self.lexiconService = LexiconService(api: api)
 
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)

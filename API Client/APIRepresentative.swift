@@ -56,9 +56,6 @@ final class APIRepresentative: ObservableObject {
     @Published var insightGroups: [TelemetryApp: [DTO.InsightGroup]] = [:]
     @Published var insightData: [UUID: InsightCalculationResult] = [:]
 
-    @Published var lexiconSignalTypes: [TelemetryApp: [LexiconSignalTypeDTO]] = [:]
-    @Published var lexiconPayloadKeys: [TelemetryApp: [DTO.LexiconPayloadKey]] = [:]
-
     @Published var betaRequests: [BetaRequestEmailDTO] = []
     @Published var organizationAdminListEntries: [OrganizationAdminListEntry] = []
     @Published var insightQueryAdminListEntries: [InsightDTO] = []
@@ -526,36 +523,6 @@ extension APIRepresentative {
 
         delete(url) { [unowned self] (result: Result<String, TransferError>) in
             self.getBetaRequests()
-            callback?(result)
-        }
-    }
-
-    func getSignalTypes(for app: TelemetryApp, callback: ((Result<[LexiconSignalTypeDTO], TransferError>) -> Void)? = nil) {
-        let url = urlForPath("apps", app.id.uuidString, "lexicon", "signaltypes")
-
-        get(url) { [unowned self] (result: Result<[LexiconSignalTypeDTO], TransferError>) in
-            switch result {
-            case let .success(lexiconItems):
-                self.lexiconSignalTypes[app] = lexiconItems
-            case let .failure(error):
-                self.handleError(error)
-            }
-
-            callback?(result)
-        }
-    }
-
-    func getPayloadKeys(for app: TelemetryApp, callback: ((Result<[DTO.LexiconPayloadKey], TransferError>) -> Void)? = nil) {
-        let url = urlForPath("apps", app.id.uuidString, "lexicon", "payloadkeys")
-
-        get(url) { [unowned self] (result: Result<[DTO.LexiconPayloadKey], TransferError>) in
-            switch result {
-            case let .success(lexiconItems):
-                self.lexiconPayloadKeys[app] = lexiconItems
-            case let .failure(error):
-                self.handleError(error)
-            }
-
             callback?(result)
         }
     }

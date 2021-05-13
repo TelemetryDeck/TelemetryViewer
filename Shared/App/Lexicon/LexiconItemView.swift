@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignalTypeView: View {
-    let lexiconItem: LexiconSignalTypeDTO
+    let lexiconItem: DTO.LexiconSignalDTO
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -24,12 +24,8 @@ struct SignalTypeView: View {
 
             Spacer()
 
-            VStack(alignment: .trailing) {
-                Text("First seen")
-                Text("\(dateFormatter.string(from: lexiconItem.firstSeenAt))")
-            }
-            .foregroundColor(.grayColor)
-            .font(.footnote)
+            ValueAndUnitView(value: Double(lexiconItem.signalCount), unit: "Signals", shouldFormatBigNumbers: true)
+            ValueAndUnitView(value: Double(lexiconItem.userCount), unit: "Users", shouldFormatBigNumbers: true)
         }
     }
 }

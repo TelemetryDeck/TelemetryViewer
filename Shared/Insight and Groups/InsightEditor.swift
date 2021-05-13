@@ -104,6 +104,7 @@ struct InsightEditorContent {
 struct InsightEditor: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var lexiconService: LexiconService
     @State private var showingAlert = false
     
     let appID: UUID
@@ -136,8 +137,8 @@ struct InsightEditor: View {
 
     func updatePayloadKeys() {
         guard let app = app else { return }
-        api.getPayloadKeys(for: app)
-        api.getSignalTypes(for: app)
+        lexiconService.getSignalTypes(for: app.id)
+        lexiconService.getPayloadKeys(for: app.id)
     }
 
     var chartTypeExplanationText: String {
@@ -172,12 +173,12 @@ struct InsightEditor: View {
 
     var filterAutocompletionOptions: [String] {
         guard let app = app else { return [] }
-        return api.lexiconPayloadKeys[app, default: []].filter { !$0.isHidden }.map(\.payloadKey)
+        return lexiconService.payloadKeys(for: app.id).filter { !$0.isHidden }.map(\.payloadKey)
     }
 
     var signalTypeAutocompletionOptions: [String] {
         guard let app = app else { return [] }
-        return api.lexiconSignalTypes[app, default: []].map(\.type)
+        return lexiconService.signalTypes(for: app.id).map(\.type)
     }
 
     var insightGroupTitle: String {

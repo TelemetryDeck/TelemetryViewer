@@ -44,6 +44,12 @@
 		2B3CC0D4262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2B3CC0D5262D8EF10038B528 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */; };
 		2B3CC0D6262DC3690038B528 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */; };
+		2B3CC0D9264D4A570038B528 /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
+		2B3CC0DA264D4A570038B528 /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
+		2B3CC0DB264D4A570038B528 /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
+		2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
+		2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
+		2B3CC0DE264D4AFF0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
 		2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B61B950264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
@@ -231,6 +237,8 @@
 		2B318E842633590B00870EE9 /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
 		2B318E882633596100870EE9 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
+		2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconService.swift; sourceTree = "<group>"; };
+		2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexiconSignalDTO.swift; sourceTree = "<group>"; };
 		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
 		2B61B951264C3061003F62C4 /* SignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalDTO.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
@@ -394,6 +402,7 @@
 				2BDBB75D264551890013FC39 /* AppSignalCount.swift */,
 				2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */,
 				2B19DE9826444B0C0086F70E /* InsightData.swift */,
+				2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */,
 				2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */,
 				2B61B951264C3061003F62C4 /* SignalDTO.swift */,
 				2B19DE9C26444B0C0086F70E /* UserDTO.swift */,
@@ -493,6 +502,7 @@
 				2BC2720126207D710045A2FE /* MockData.swift */,
 				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
 				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
+				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
 				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
 			);
 			path = "API Client";
@@ -869,6 +879,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3CC0DB264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
 				DC4504FC25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				2B19DEAC26444B2B0086F70E /* ChartDataSet.swift in Sources */,
 				2B19DEB526444B2B0086F70E /* OrganizationDTO.swift in Sources */,
@@ -878,6 +889,7 @@
 				2BC29AC0263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,
 				2B19DEAF26444B2B0086F70E /* String+CamelCase.swift in Sources */,
 				2B19DEB026444B2B0086F70E /* UserDTO.swift in Sources */,
+				2B3CC0DE264D4AFF0038B528 /* LexiconService.swift in Sources */,
 				2B3CC0D6262DC3690038B528 /* ValueUnitAndTitleView.swift in Sources */,
 				2B19DEB626444B2B0086F70E /* Models.swift in Sources */,
 				2B19DEAD26444B2B0086F70E /* InsightCalculationResult.swift in Sources */,
@@ -932,6 +944,7 @@
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
 				2B318E892633596100870EE9 /* DonutChart.swift in Sources */,
+				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				2B318E852633590B00870EE9 /* ChartLegend.swift in Sources */,
 				2BDBB761264551890013FC39 /* AppSignalCount.swift in Sources */,
 				2B3CC0D3262D8EF10038B528 /* TextModifiers.swift in Sources */,
@@ -970,6 +983,7 @@
 				2BC2720226207D710045A2FE /* MockData.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				2B19DEAB26444B0C0086F70E /* Models.swift in Sources */,
+				2B3CC0D9264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
 				DC5F3A8925A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				DC25A64F2571680900EE84DA /* CustomSection.swift in Sources */,
@@ -996,6 +1010,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3CC0DA264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
 				DC23286E2522725A00DB6145 /* InsightView.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BC522EB2625FCEF00E643AC /* FeedbackView.swift in Sources */,
@@ -1068,6 +1083,7 @@
 				2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */,
 				DC24DF4625DD54D90003ADCB /* AppRootViewMacOS.swift in Sources */,
 				DC4E2F652563FA48001AD7B4 /* LineChartView.swift in Sources */,
+				2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */,
 				2B19DEC126444B2B0086F70E /* Models.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,

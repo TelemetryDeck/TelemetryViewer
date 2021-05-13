@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LexiconView: View {
     @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var lexiconService: LexiconService
 
     let appID: UUID
     private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
@@ -17,11 +18,11 @@ struct LexiconView: View {
         if let app = app {
             let list = List {
                 Section(header: Text("Signal Types")) {
-                    ForEach(api.lexiconSignalTypes[app] ?? []) { lexiconItem in
+                    ForEach(lexiconService.signalTypes(for: app.id)) { lexiconItem in
                         SignalTypeView(lexiconItem: lexiconItem)
                     }
 
-                    if api.lexiconSignalTypes[app]?.isEmpty != false {
+                    if lexiconService.signalTypes(for: app.id).isEmpty {
                         Text("Once you've received a few Signals, this list will contain all Signal Types known to Telemetry.")
                             .font(.footnote)
                             .foregroundColor(.grayColor)
@@ -29,11 +30,11 @@ struct LexiconView: View {
                 }
 
                 Section(header: Text("Payload Keys")) {
-                    ForEach(api.lexiconPayloadKeys[app] ?? []) { lexiconItem in
+                    ForEach(lexiconService.payloadKeys(for: app.id)) { lexiconItem in
                         PayloadKeyView(lexiconItem: lexiconItem)
                     }
 
-                    if api.lexiconPayloadKeys[app]?.isEmpty != false {
+                    if lexiconService.payloadKeys(for: app.id).isEmpty {
                         Text("Once you've received a few Signals with payload metadata, this list will contain all available payload keys known to Telemetry.")
                             .font(.footnote)
                             .foregroundColor(.grayColor)
@@ -45,8 +46,8 @@ struct LexiconView: View {
                 .listRowBackground(Color.clear)
                 .navigationTitle("Lexicon")
                 .onAppear {
-                    api.getSignalTypes(for: app)
-                    api.getPayloadKeys(for: app)
+                    lexiconService.getPayloadKeys(for: app.id)
+                    lexiconService.getSignalTypes(for: app.id)
                 }
         } else {
             Text("No App")
