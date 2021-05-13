@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import SwiftUI
+import TelemetryClient
 
 final class APIRepresentative: ObservableObject {
     private static let baseURLString =
@@ -64,8 +65,9 @@ final class APIRepresentative: ObservableObject {
 
     @Published var organizationUsers: [DTO.UserDTO] = []
     @Published var organizationJoinRequests: [DTO.OrganizationJoinRequest] = []
-    
+
     // MARK: Loading stuff
+
     @Published var isLoadingApps: Bool = false
     @Published var loadingIDs: [UUID] = []
 }
@@ -121,6 +123,8 @@ extension APIRepresentative {
     }
 
     func logout() {
+        TelemetryManager.shared.send(TelemetrySignal.userLogout.rawValue, for: user?.email)
+
         userToken = nil
         apps = []
         user = nil
@@ -188,12 +192,14 @@ extension APIRepresentative {
 
     func getUserInformation(callback: ((Result<DTO.UserDTO, TransferError>) -> Void)? = nil) {
         userLoginFailed = false
-        
+
         let url = urlForPath("users", "me")
 
         get(url) { [unowned self] (result: Result<DTO.UserDTO, TransferError>) in
             switch result {
             case let .success(userDTO):
+                TelemetryManager.shared.send(TelemetrySignal.userLogin.rawValue, for: self.user?.email)
+                
                 DispatchQueue.main.async {
                     self.user = userDTO
                     self.getApps()
@@ -342,7 +348,7 @@ extension APIRepresentative {
                 self.handleError(error)
             }
 
-            self.loadingIDs.removeAll { $0 == app.id}
+            self.loadingIDs.removeAll { $0 == app.id }
             callback?(result)
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct LexiconView: View {
     @EnvironmentObject var lexiconService: LexiconService

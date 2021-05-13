@@ -23,4 +23,6 @@ enum TelemetrySignal: String {
     case insightUpdatedAutomatically
     case insightUpdatedManually
     case insightUpdatedFirstTime
+    case userLogin
+    case userLogout
 }

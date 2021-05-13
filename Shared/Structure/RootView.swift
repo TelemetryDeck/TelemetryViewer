@@ -43,9 +43,12 @@ struct RootView: View {
             Alert(
                 title: Text("Login Failed"),
                 message: Text("AppTelemetry could not connect to the server. Please check your internet connection."),
-                dismissButton: .default(Text("Reload"), action: {
+                primaryButton: .default(Text("Reload")) {
                     api.getUserInformation()
-                })
+                },
+                secondaryButton: .destructive(Text("Log Out")) {
+                    api.logout()
+                }
             )
         })
         .onAppear {
