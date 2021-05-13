@@ -9,6 +9,14 @@ import Foundation
 import SwiftUI
 
 class LexiconService: ObservableObject {
+    enum LexiconSortKey {
+        case type
+        case signalCount
+        case userCount
+        case sessionCount
+    }
+
+    
     @Published var lexiconSignals: [UUID: [DTO.LexiconSignalDTO]] = [:]
     @Published var lexiconPayloadKeys: [UUID: [DTO.LexiconPayloadKey]] = [:]
     @Published var loadingAppIDs: Set<UUID> = Set<UUID>()
@@ -19,8 +27,19 @@ class LexiconService: ObservableObject {
         self.api = api
     }
     
-    func signalTypes(for appID: UUID) -> [DTO.LexiconSignalDTO] {
-        lexiconSignals[appID] ?? []
+    func signalTypes(for appID: UUID, sortedBy: LexiconSortKey = .type) -> [DTO.LexiconSignalDTO] {
+        (lexiconSignals[appID] ?? []).sorted { left, right in
+            switch sortedBy {
+            case .type:
+                return left.type.lowercased() < right.type.lowercased()
+            case .signalCount:
+                return left.signalCount > right.signalCount
+            case .userCount:
+                return left.userCount > right.userCount
+            case .sessionCount:
+                return left.sessionCount > right.sessionCount
+            }
+        }
     }
     
     func payloadKeys(for appID: UUID) -> [DTO.LexiconPayloadKey] {

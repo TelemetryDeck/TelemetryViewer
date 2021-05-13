@@ -10,22 +10,21 @@ import SwiftUI
 struct SignalTypeView: View {
     let lexiconItem: DTO.LexiconSignalDTO
 
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        return formatter
-    }()
-
     var body: some View {
-        ListItemView(background: Color.accentColor.opacity(0.2)) {
-            Text(lexiconItem.type.camelCaseToWords)
+        HStack {
+            Text(lexiconItem.type)
                 .bold()
 
             Spacer()
 
-            ValueAndUnitView(value: Double(lexiconItem.signalCount), unit: "Signals", shouldFormatBigNumbers: true)
-            ValueAndUnitView(value: Double(lexiconItem.userCount), unit: "Users", shouldFormatBigNumbers: true)
+            Text("–").animatableNumber(value: Double(lexiconItem.signalCount), unit: "Signals", shouldFormatBigNumbers: true)
+                .foregroundColor(.grayColor)
+            
+            Text("–").animatableNumber(value: Double(lexiconItem.userCount), unit: "Users", shouldFormatBigNumbers: true)
+                .foregroundColor(.grayColor)
+            
+            Text("–").animatableNumber(value: Double(lexiconItem.sessionCount), unit: "Sessions", shouldFormatBigNumbers: true)
+                .foregroundColor(.grayColor)
         }
     }
 }
@@ -41,18 +40,18 @@ struct PayloadKeyView: View {
     }()
 
     var body: some View {
-        ListItemView {
-            Text(lexiconItem.payloadKey.camelCaseToWords)
+        HStack {
+            Text(lexiconItem.payloadKey)
                 .bold()
 
             Spacer()
 
-            VStack(alignment: .trailing) {
-                Text("First seen")
-                Text("\(dateFormatter.string(from: lexiconItem.firstSeenAt))")
-            }
-            .foregroundColor(.grayColor)
-            .font(.footnote)
+            Text("First seen ")
+                .foregroundColor(.grayColor)
+            +
+            
+            Text(lexiconItem.firstSeenAt, style: .date)
+                .foregroundColor(.grayColor)
         }
     }
 }

@@ -48,6 +48,7 @@ struct AnimatableNumberModifier: AnimatableModifier {
     var value: Double
     let shouldFormatBigNumbers: Bool
     let showFullNumber: Bool = false
+    let unit: String?
 
     var animatableData: CGFloat {
         get { CGFloat(value) }
@@ -63,7 +64,11 @@ struct AnimatableNumberModifier: AnimatableModifier {
     
     var formattedNumberString: String {
         if shouldFormatBigNumbers && !showFullNumber {
-            return BigNumberFormatter.shortDisplay(for: value)
+            if let unit = unit {
+                return BigNumberFormatter.shortDisplay(for: value) + " \(unit)"
+            } else {
+                return BigNumberFormatter.shortDisplay(for: value)
+            }
         } else {
             return formatter.string(from: NSNumber(value: value)) ?? "–"
         }
@@ -99,7 +104,7 @@ extension View {
 }
 
 extension Text {
-    func animatableNumber(value: Double, shouldFormatBigNumbers: Bool = false) -> some View {
-        modifier(AnimatableNumberModifier(value: value, shouldFormatBigNumbers: shouldFormatBigNumbers))
+    func animatableNumber(value: Double, unit: String? = nil, shouldFormatBigNumbers: Bool = false) -> some View {
+        modifier(AnimatableNumberModifier(value: value, shouldFormatBigNumbers: shouldFormatBigNumbers, unit: unit))
     }
 }

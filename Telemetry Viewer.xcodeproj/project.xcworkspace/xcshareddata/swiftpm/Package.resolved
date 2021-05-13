@@ -2,21 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "TelemetryModels",
-        "repositoryURL": "git@github.com:AppTelemetry/models.git",
-        "state": {
-          "branch": "main",
-          "revision": "6df8e0c61f4f3d75b9606b6c12fe8563ad60f778",
-          "version": null
-        }
-      },
-      {
         "package": "TelemetryClient",
         "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
         "state": {
           "branch": null,
-          "revision": "f3cfa64313d578e37c69afd88b6ff553b42dde90",
-          "version": "1.0.12"
+          "revision": "0d980cf3e320fb760d041b8682c833dc7e9bdba2",
+          "version": "1.0.13"
         }
       }
     ]

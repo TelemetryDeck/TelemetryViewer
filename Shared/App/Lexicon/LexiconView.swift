@@ -8,50 +8,76 @@
 import SwiftUI
 
 struct LexiconView: View {
-    @EnvironmentObject var api: APIRepresentative
     @EnvironmentObject var lexiconService: LexiconService
 
+    @State private var sortKey: LexiconService.LexiconSortKey = .signalCount
+
     let appID: UUID
-    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
 
     var body: some View {
-        if let app = app {
-            let list = List {
-                Section(header: Text("Signal Types")) {
-                    ForEach(lexiconService.signalTypes(for: app.id)) { lexiconItem in
-                        SignalTypeView(lexiconItem: lexiconItem)
+        let list = List {
+            Section(header: HStack {
+                Button {
+                    withAnimation {
+                        sortKey = .type
                     }
-
-                    if lexiconService.signalTypes(for: app.id).isEmpty {
-                        Text("Once you've received a few Signals, this list will contain all Signal Types known to Telemetry.")
-                            .font(.footnote)
-                            .foregroundColor(.grayColor)
-                    }
+                } label: {
+                    Label("Signal Type", systemImage: sortKey == .type ? "arrowtriangle.down.fill" : "circle")
                 }
 
-                Section(header: Text("Payload Keys")) {
-                    ForEach(lexiconService.payloadKeys(for: app.id)) { lexiconItem in
-                        PayloadKeyView(lexiconItem: lexiconItem)
+                Spacer()
+                
+                Button {
+                    withAnimation {
+                        sortKey = .signalCount
                     }
-
-                    if lexiconService.payloadKeys(for: app.id).isEmpty {
-                        Text("Once you've received a few Signals with payload metadata, this list will contain all available payload keys known to Telemetry.")
-                            .font(.footnote)
-                            .foregroundColor(.grayColor)
+                } label: {
+                    Label("Signals", systemImage: sortKey == .signalCount ? "arrowtriangle.down.fill" : "circle")
+                }
+                
+                Button {
+                    withAnimation {
+                        sortKey = .userCount
                     }
+                } label: {
+                    Label("Users", systemImage: sortKey == .userCount ? "arrowtriangle.down.fill" : "circle")
+                }
+                
+                Button {
+                    withAnimation {
+                        sortKey = .sessionCount
+                    }
+                } label: {
+                    Label("Sessions", systemImage: sortKey == .sessionCount ? "arrowtriangle.down.fill" : "circle")
+                }
+            }, footer:
+            Text("This list contains all Signal Types seen by to AppTelemetry in the last month.")
+                .font(.footnote)
+                .foregroundColor(.grayColor)
+                .multilineTextAlignment(.center)) {
+                ForEach(lexiconService.signalTypes(for: appID, sortedBy: sortKey)) { lexiconItem in
+                    SignalTypeView(lexiconItem: lexiconItem)
                 }
             }
 
-            list
-                .listRowBackground(Color.clear)
-                .navigationTitle("Lexicon")
-                .onAppear {
-                    lexiconService.getPayloadKeys(for: app.id)
-                    lexiconService.getSignalTypes(for: app.id)
+            Section(header: Text("Payload Keys"), footer:
+                Text("This list contains all available payload keys known to AppTelemetry.")
+                    .font(.footnote)
+                    .foregroundColor(.grayColor)
+                    .multilineTextAlignment(.center)) {
+                ForEach(lexiconService.payloadKeys(for: appID)) { lexiconItem in
+                    PayloadKeyView(lexiconItem: lexiconItem)
                 }
-        } else {
-            Text("No App")
+            }
         }
+
+        list
+            .listRowBackground(Color.clear)
+            .navigationTitle("Lexicon")
+            .onAppear {
+                lexiconService.getPayloadKeys(for: appID)
+                lexiconService.getSignalTypes(for: appID)
+            }
     }
 }
 

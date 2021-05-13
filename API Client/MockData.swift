@@ -26,15 +26,6 @@ struct MockData {
         .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
     ]
 
-    static let lexiconSignalTypes: [LexiconSignalTypeDTO] = [
-        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "signalsUpdated"),
-        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "testSignal"),
-        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "pizzaModeActivated"),
-        .init(id: UUID(), firstSeenAt: Date(), isHidden: true, type: "catTypeFeline"),
-        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "appFirstLaunchedNormallyAndGotUserInteraction"),
-        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, type: "phoneRotated"),
-    ]
-
     static let lexiconPayloadKeys: [DTO.LexiconPayloadKey] = [
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "browser"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "platform"),
