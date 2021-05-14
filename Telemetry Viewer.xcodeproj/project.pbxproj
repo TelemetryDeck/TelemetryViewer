@@ -56,6 +56,12 @@
 		2B61B952264C3061003F62C4 /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
 		2B61B953264C3061003F62C4 /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
 		2B61B954264C3061003F62C4 /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
+		2B69B53D264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
+		2B69B53E264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
+		2B69B53F264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
+		2B69B541264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
+		2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
+		2B69B543264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
@@ -241,6 +247,8 @@
 		2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexiconSignalDTO.swift; sourceTree = "<group>"; };
 		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
 		2B61B951264C3061003F62C4 /* SignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalDTO.swift; sourceTree = "<group>"; };
+		2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequestBody.swift; sourceTree = "<group>"; };
+		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
@@ -404,8 +412,10 @@
 				2B19DE9826444B0C0086F70E /* InsightData.swift */,
 				2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */,
 				2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */,
+				2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */,
 				2B61B951264C3061003F62C4 /* SignalDTO.swift */,
 				2B19DE9C26444B0C0086F70E /* UserDTO.swift */,
+				2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -890,10 +900,12 @@
 				2B19DEAF26444B2B0086F70E /* String+CamelCase.swift in Sources */,
 				2B19DEB026444B2B0086F70E /* UserDTO.swift in Sources */,
 				2B3CC0DE264D4AFF0038B528 /* LexiconService.swift in Sources */,
+				2B69B543264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				2B3CC0D6262DC3690038B528 /* ValueUnitAndTitleView.swift in Sources */,
 				2B19DEB626444B2B0086F70E /* Models.swift in Sources */,
 				2B19DEAD26444B2B0086F70E /* InsightCalculationResult.swift in Sources */,
 				DC25A59F256C0AE400EE84DA /* RawChartView.swift in Sources */,
+				2B69B53F264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
 				DC83C862256A85BD00FCF2A1 /* LineChartView.swift in Sources */,
 				2BC2720A262086020045A2FE /* MockData.swift in Sources */,
 				2B61B954264C3061003F62C4 /* SignalDTO.swift in Sources */,
@@ -966,6 +978,7 @@
 				2B19DEA026444B0C0086F70E /* ChartDataPoint.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */,
+				2B69B541264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */,
@@ -998,6 +1011,7 @@
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
 				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
+				2B69B53D264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
 				2B19DEA126444B0C0086F70E /* ChartDataSet.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
 				DC25A5E0256D844300EE84DA /* DetailSidebar.swift in Sources */,
@@ -1010,6 +1024,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B69B53E264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
 				2B3CC0DA264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
 				DC23286E2522725A00DB6145 /* InsightView.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
@@ -1047,6 +1062,7 @@
 				2B318E8A2633596100870EE9 /* DonutChart.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
 				DC3472EB258A720500BEEDE0 /* AppUpdater.swift in Sources */,
+				2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				2B19DEB826444B2B0086F70E /* InsightCalculationResult.swift in Sources */,
 				DCB28D7F25517EDD0032B9AD /* Helpers.swift in Sources */,

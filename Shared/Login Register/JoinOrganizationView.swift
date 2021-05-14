@@ -15,8 +15,8 @@ struct JoinOrganizationView: View {
     @State var isLoading: Bool = false
     @State var organizationJoinRequestToken: String = ""
     @State var organizationJoinRequestPresent: Bool = false
-    @State var organizationJoinRequest = OrganizationJoinRequestURLObject(
-        email: "", firstName: "", lastName: "", password: "",
+    @State var organizationJoinRequest = DTO.OrganizationJoinRequestDTO(
+        email: "", receiveMarketingEmails: false, firstName: "", lastName: "", password: "",
         organizationID: UUID(), registrationToken: ""
     )
 
@@ -37,8 +37,13 @@ struct JoinOrganizationView: View {
             Spacer()
         } else if organizationJoinRequestPresent {
             Group {
-                CustomSection(header: Text("Email"), summary: EmptyView(), footer: Text("What's your email address?")) {
+                CustomSection(header: Text("Email"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("Email", text: $organizationJoinRequest.email)
+                    Text("In addition to fun emails like password reset requests and security alerts, we might inform you every now and then about news regarding AppTelemetry. Can we also send you our low volume newsletter please?")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
+                    
+                    Toggle("Send me the newsletter", isOn: $organizationJoinRequest.receiveMarketingEmails)
                 }
 
                 CustomSection(header: Text("Name"), summary: EmptyView(), footer: Text("What should we call you?")) {
@@ -108,8 +113,9 @@ struct JoinOrganizationView: View {
                     api.getOrganizationJoinRequest(with: organizationJoinRequestToken) { result in
                         switch result {
                         case let .success(joinRequest):
-                            organizationJoinRequest = OrganizationJoinRequestURLObject(
+                            organizationJoinRequest = DTO.OrganizationJoinRequestDTO(
                                 email: joinRequest.email,
+                                receiveMarketingEmails: false,
                                 firstName: "",
                                 lastName: "",
                                 password: "",

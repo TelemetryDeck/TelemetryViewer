@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-fileprivate enum DisplayMode: Hashable {
+private enum DisplayMode: Hashable {
     case users, signals
 }
 
@@ -16,10 +16,13 @@ struct AppAdminView: View {
     @State private var isLoading: Bool = false
     @State private var displayMode: DisplayMode = .signals
     
-    @State var section1LowerUsers = 100_000.0
-    @State var section2LowerUsers = 5000.0
-    @State var section1LowerSignals = 10_000_000.0
-    @State var section2LowerSignals = 100_000.0
+    let section1LowerUsers = 100_000.0
+    let section2LowerUsers = 5000.0
+    let section3LowerUsers = 10.0
+    
+    let section1LowerSignals = 10_000_000.0
+    let section2LowerSignals = 100_000.0
+    let section3LowerSignals = 100.0
 
     let refreshTimer = Timer.publish(
         every: 1 * 60, // 1 minute
@@ -33,13 +36,6 @@ struct AppAdminView: View {
             self.isLoading = false
         }
     }
-
-    private let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = " "
-        return formatter
-    }()
 
     var body: some View {
         let section1 = api.appAdminSignalCounts.filter {
@@ -58,15 +54,23 @@ struct AppAdminView: View {
             case .signals:
                 return section2LowerSignals < Double($0.signalCount) && Double($0.signalCount) <= section1LowerSignals
             }
-            
         }
         
         let section3 = api.appAdminSignalCounts.filter {
             switch displayMode {
             case .users:
-                return Double($0.userCount) <= section2LowerUsers
+                return section3LowerUsers < Double($0.userCount) && Double($0.userCount) <= section2LowerUsers
             case .signals:
-                return Double($0.signalCount) <= section2LowerSignals
+                return section3LowerSignals < Double($0.signalCount) && Double($0.signalCount) <= section2LowerSignals
+            }
+        }
+        
+        let section4 = api.appAdminSignalCounts.filter {
+            switch displayMode {
+            case .users:
+                return Double($0.userCount) <= section3LowerUsers
+            case .signals:
+                return Double($0.signalCount) <= section3LowerSignals
             }
         }
         
@@ -74,22 +78,13 @@ struct AppAdminView: View {
             HStack {
                 ValueUnitAndTitleView(value: Double(api.appAdminSignalCounts.count), title: "Active Apps")
                 Divider()
-                ValueUnitAndTitleView(value: Double(section1.count), title: "Tier 2")
+                ValueUnitAndTitleView(value: Double(section4.count), title: "Explorers")
+                Divider()
+                ValueUnitAndTitleView(value: Double(section3.count), title: "Free Tier")
                 Divider()
                 ValueUnitAndTitleView(value: Double(section2.count), title: "Tier 1")
                 Divider()
-                ValueUnitAndTitleView(value: Double(section3.count), title: "Free Tier")
-            }
-            
-            Section(header: Text("Variables")) {
-                switch displayMode {
-                case .users:
-                    Slider(value: $section1LowerUsers, in: 0...100_000_000, step: 1000000)
-                    Slider(value: $section2LowerUsers, in: 0...10_000, step: 100)
-                case .signals:
-                    Slider(value: $section1LowerSignals, in: 0...100_000_000, step: 1000000)
-                    Slider(value: $section2LowerSignals, in: 0...1_000_000, step: 10000)
-                }
+                ValueUnitAndTitleView(value: Double(section1.count), title: "Tier 2")
             }
             
             Section(header: Text(displayMode == .users ? "> \(Int(section1LowerUsers)) users" : "> \(Int(section1LowerSignals)) signals")) {
@@ -110,6 +105,11 @@ struct AppAdminView: View {
                 }
             }
             
+            Section(header: Text(displayMode == .users ? "<= \(Int(section3LowerUsers)) users" : "<= \(Int(section3LowerSignals)) signals")) {
+                ForEach(section4) { a in
+                    AddAdminViewListEntry(appSignalCountDTO: a, displayMode: displayMode)
+                }
+            }
         }
         .toolbar {
             if isLoading {
@@ -147,8 +147,7 @@ struct AppAdminView: View {
     }
 }
 
-
-fileprivate struct AddAdminViewListEntry: View {
+private struct AddAdminViewListEntry: View {
     let appSignalCountDTO: DTO.AppSignalCount
     let displayMode: DisplayMode
     

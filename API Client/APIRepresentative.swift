@@ -145,7 +145,7 @@ extension APIRepresentative {
         }
     }
 
-    func register(registrationRequestBody: RegistrationRequestBody, callback: @escaping (Result<DTO.UserDTO, TransferError>) -> Void) {
+    func register(registrationRequestBody: DTO.RegistrationRequestBody, callback: @escaping (Result<DTO.UserDTO, TransferError>) -> Void) {
         let url = urlForPath("users", "register")
 
         post(registrationRequestBody, to: url) { [unowned self] (result: Result<DTO.UserDTO, TransferError>) in
@@ -160,7 +160,7 @@ extension APIRepresentative {
         }
     }
 
-    func joinOrganization(with organizationJoinRequest: OrganizationJoinRequestURLObject, callback: ((Result<DTO.UserDTO, TransferError>) -> Void)? = nil) {
+    func joinOrganization(with organizationJoinRequest: DTO.OrganizationJoinRequestDTO, callback: ((Result<DTO.UserDTO, TransferError>) -> Void)? = nil) {
         let url = urlForPath("organization", "joinRequests", "join")
 
         post(organizationJoinRequest, to: url) { (result: Result<DTO.UserDTO, TransferError>) in

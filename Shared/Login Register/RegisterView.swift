@@ -10,7 +10,7 @@ import SwiftUI
 struct RegisterView: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var isLoading = false
-    @State private var registrationRequestBody = RegistrationRequestBody()
+    @State private var registrationRequestBody = DTO.RegistrationRequestBody()
     @State private var showingSuccessAlert = false
     @State private var error: TransferError?
 
@@ -36,7 +36,7 @@ struct RegisterView: View {
                             .foregroundColor(.grayColor)
                     } else {
                         if registrationStatus == .tokenOnly {
-                            Section(header: Text("Registration Token"), footer: Text("Registration is currently only available for people with a registration token. Please enter your registration token above.")) {
+                            CustomSection(header: Text("Registration Token"), summary: EmptyView(), footer: Text("Registration is currently only available for people with a registration token. Please enter your registration token above.")) {
                                 TextField("Registration Token", text: $registrationRequestBody.registrationToken)
                                     .disableAutocorrection(true)
                             }
@@ -46,12 +46,12 @@ struct RegisterView: View {
                             #endif
                         }
 
-                        Section(header: Text("Your Organization")) {
+                        CustomSection(header: Text("Your Organization"), summary: EmptyView(), footer: EmptyView()) {
                             TextField("Organization Name", text: $registrationRequestBody.organisationName)
                                 .disableAutocorrection(true)
                         }
 
-                        Section(header: Text("You")) {
+                        CustomSection(header: Text("You"), summary: EmptyView(), footer: EmptyView()) {
                             TextField("First Name (or Display Name)", text: $registrationRequestBody.userFirstName)
                             TextField("Last Name", text: $registrationRequestBody.userLastName)
 
@@ -63,9 +63,15 @@ struct RegisterView: View {
                                     .autocapitalization(.none)
                                     .disableAutocorrection(true)
                             #endif
+                            
+                            Text("In addition to fun emails like password reset requests and security alerts, we might inform you every now and then about news regarding AppTelemetry. Can we also send you our low volume newsletter please?")
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
+                            
+                            Toggle("Send me the newsletter", isOn: $registrationRequestBody.receiveMarketingEmails)
                         }
 
-                        Section(header: Text("Your Password")) {
+                        CustomSection(header: Text("Your Password"), summary: EmptyView(), footer: EmptyView()) {
                             SecureField("Password", text: $registrationRequestBody.userPassword)
                             SecureField("Confirm Password", text: $registrationRequestBody.userPasswordConfirm)
                         }
@@ -78,14 +84,29 @@ struct RegisterView: View {
                                 .buttonStyle(PrimaryButtonStyle())
                                 .listRowInsets(EdgeInsets())
                                 .keyboardShortcut(.defaultAction)
-                                .disabled(!registrationRequestBody.isValid || isLoading)
-                                .saturation(registrationRequestBody.isValid ? 1 : 0)
+                                .disabled(registrationRequestBody.isValid != .valid || isLoading)
+                                .saturation(registrationRequestBody.isValid == .valid ? 1 : 0)
                                 .animation(.easeOut)
 
-                            if !registrationRequestBody.isValid {
-                                Text(registrationRequestBody.userPassword.contains(":") ? "Your password cannot contain a colon (:) character because we use it to represent cute lil' piglets." : "Please fill out all the fields.")
-                                    .font(.footnote)
-                                    .foregroundColor(.grayColor)
+                            if registrationRequestBody.isValid != .valid {
+                                Group {
+                                    switch registrationRequestBody.isValid {
+                                    case .valid:
+                                        EmptyView()
+                                    case .fieldsMissing:
+                                        Text("Please fill out all the fields.")
+                                    case .passwordsNotEqual:
+                                        Text("Your passwords don't match. Please check that they're the same.")
+                                    case .passwordTooShort:
+                                        Text("Your passwords needs at least 8 characters.")
+                                    case .passwordContainsColon:
+                                        Text("Your password cannot contain a colon (:) character because we use it to represent cute lil' piglets.")
+                                    case .noAtInEmail:
+                                        Text("Email parsing is hard, but shouldn't there be an @ sign in your email address?")
+                                    }
+                                }
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
                             }
                         }
                         .alert(isPresented: errorBinding) {
