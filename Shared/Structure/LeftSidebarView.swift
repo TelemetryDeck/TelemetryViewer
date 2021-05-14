@@ -21,6 +21,10 @@ struct LeftSidebarView: View {
             if api.apps.isEmpty {
                 Text("Hint: Click the + Button")
                     .font(.footnote)
+                
+                NavigationLink(destination: AppInfoView()) {
+                    Label("Get Started", systemImage: "mustache.fill")
+                }
             }
             
             ForEach(api.apps.sorted { $0.name < $1.name }) { app in
