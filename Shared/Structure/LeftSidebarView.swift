@@ -18,6 +18,11 @@ struct LeftSidebarView: View {
 
     var body: some View {
         List {
+            if api.apps.isEmpty {
+                Text("Hint: Click the + Button")
+                    .font(.footnote)
+            }
+            
             ForEach(api.apps.sorted { $0.name < $1.name }) { app in
                 Section(header: Text(app.name)) {
                     NavigationLink(

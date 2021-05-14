@@ -52,9 +52,7 @@ struct RootView: View {
             )
         })
         .onAppear {
-            #if os(macOS)
-                setupSidebars()
-            #endif
+            setupSidebars()
         }
     }
 }

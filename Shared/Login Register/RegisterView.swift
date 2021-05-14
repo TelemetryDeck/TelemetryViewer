@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     @EnvironmentObject var api: APIRepresentative
+    @Environment(\.presentationMode) var presentationMode
     @State private var isLoading = false
     @State private var registrationRequestBody = DTO.RegistrationRequestBody()
     @State private var showingSuccessAlert = false
@@ -139,6 +140,15 @@ struct RegisterView: View {
             switch result {
             case .success:
                 showingSuccessAlert = true
+                
+                api.login(
+                    loginRequestBody: LoginRequestBody(
+                        userEmail: registrationRequestBody.userEmail,
+                        userPassword: registrationRequestBody.userPassword
+                    )
+                ) { _ in
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             case let .failure(error):
                 self.error = error
             }
