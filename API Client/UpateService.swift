@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-class AppUpdater: ObservableObject {
-    @Published var isAppUpdateAvailable: Bool = false
+class UpateService: ObservableObject {
+    @Published var shouldShowUpdateNowScreen: Bool = false
     @Published var latestVersionOnServer: GitHubRelease?
 
     var includePrereleases: Bool = true
@@ -38,6 +38,18 @@ class AppUpdater: ObservableObject {
         let published_at: Date
         let assets: [GitHubReleaseAssets]
     }
+    
+    func isUpdateAvailable() -> Bool {
+        if let latestVersionOnServer = latestVersionOnServer {
+            return latestVersionOnServer.tag_name.compare(internalVersion, options: .numeric) == .orderedDescending
+        } else {
+            return false
+        }
+    }
+    
+    func deferUpdate() {
+        shouldShowUpdateNowScreen = false
+    }
 
     func checkForUpdate() {
         let url = URL(string: "https://api.github.com/repos/AppTelemetry/Viewer/releases")!
@@ -63,9 +75,9 @@ class AppUpdater: ObservableObject {
                         latestVersionOnServer = releases.first
 
                         if let latestVersionOnServer = latestVersionOnServer {
-                            isAppUpdateAvailable = latestVersionOnServer.tag_name.compare(internalVersion, options: .numeric) == .orderedDescending
+                            shouldShowUpdateNowScreen = latestVersionOnServer.tag_name.compare(internalVersion, options: .numeric) == .orderedDescending
                         } else {
-                            isAppUpdateAvailable = false
+                            shouldShowUpdateNowScreen = false
                         }
                     }
                 } else {

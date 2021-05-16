@@ -29,6 +29,5 @@ struct CardView<Content>: View where Content: View {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.accentColor, lineWidth: isSelected ? 5 : 0)
         )
-        .padding()
     }
 }

@@ -39,7 +39,7 @@ struct JoinOrganizationView: View {
             Group {
                 CustomSection(header: Text("Email"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("Email", text: $organizationJoinRequest.email)
-                    Text("In addition to fun emails like password reset requests and security alerts, we might inform you every now and then about news regarding AppTelemetry. Can we also send you our low volume newsletter please?")
+                    Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding AppTelemetry. Can we also send you our low volume newsletter please?")
                         .font(.footnote)
                         .foregroundColor(.grayColor)
                     

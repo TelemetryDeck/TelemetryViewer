@@ -36,11 +36,9 @@ extension View {
     }
 
     func setupSidebars() {
-        #if os(macOS)
         guard let splitViewItems = getSplitViewItems() else { return }
 
         splitViewItems.forEach { $0.minimumThickness = 250 }
         splitViewItems.last?.maximumThickness = 250
-        #endif
     }
 }

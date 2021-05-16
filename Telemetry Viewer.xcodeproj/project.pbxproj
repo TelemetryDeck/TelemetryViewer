@@ -62,6 +62,10 @@
 		2B69B541264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
 		2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
 		2B69B543264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
+		2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43D26512414003D3965 /* UpdateSettingsView.swift */; };
+		2B77A440265134AB003D3965 /* if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43F265134AB003D3965 /* if.swift */; };
+		2B77A441265134E4003D3965 /* if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43F265134AB003D3965 /* if.swift */; };
+		2B77A442265134E5003D3965 /* if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43F265134AB003D3965 /* if.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
@@ -114,7 +118,7 @@
 		DC25A64F2571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
 		DC25A6502571680900EE84DA /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A64E2571680900EE84DA /* CustomSection.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
-		DC3472EB258A720500BEEDE0 /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEAB258A3B9B00BEA712 /* AppUpdater.swift */; };
+		DC3472EB258A720500BEEDE0 /* UpateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */; };
 		DC415C0E2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415C0D2531F6C300D8D0B1 /* Color.swift */; };
 		DC4504FA25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4504F925C4940E0031C7FD /* BigNumberFormatter.swift */; };
@@ -176,8 +180,6 @@
 		DCB02B772502809200304964 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B752502809200304964 /* RootView.swift */; };
 		DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
 		DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB02B7B25038F4600304964 /* APIRepresentative.swift */; };
-		DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */; };
-		DCB1A3CC2549C94D000C6575 /* BetaRequestsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */; };
 		DCB28D7525517A4B0032B9AD /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D7425517A4B0032B9AD /* ListItemView.swift */; };
 		DCB28D7625517A4B0032B9AD /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D7425517A4B0032B9AD /* ListItemView.swift */; };
 		DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28D7D25517EDD0032B9AD /* Helpers.swift */; };
@@ -249,6 +251,8 @@
 		2B61B951264C3061003F62C4 /* SignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalDTO.swift; sourceTree = "<group>"; };
 		2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequestBody.swift; sourceTree = "<group>"; };
 		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
+		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
+		2B77A43F265134AB003D3965 /* if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = if.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
@@ -285,7 +289,7 @@
 		DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyInsightGroupView.swift; sourceTree = "<group>"; };
 		DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAppView.swift; sourceTree = "<group>"; };
 		DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
-		DC7DEEAB258A3B9B00BEA712 /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdater.swift; sourceTree = "<group>"; };
+		DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpateService.swift; sourceTree = "<group>"; };
 		DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateView.swift; sourceTree = "<group>"; };
 		DC815F3B24E283640095A047 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
 		DC83C858256A857300FCF2A1 /* RawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
@@ -304,7 +308,6 @@
 		DCB02B712502781A00304964 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DCB02B752502809200304964 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		DCB02B7B25038F4600304964 /* APIRepresentative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepresentative.swift; sourceTree = "<group>"; };
-		DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaRequestsList.swift; sourceTree = "<group>"; };
 		DCB28D7425517A4B0032B9AD /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		DCB28D7D25517EDD0032B9AD /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		DCB28D8B2551C3330032B9AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/TelemetryWidget.intentdefinition; sourceTree = "<group>"; };
@@ -434,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */,
+				2B77A43F265134AB003D3965 /* if.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -490,7 +494,6 @@
 			children = (
 				DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */,
 				DC9A92C0255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift */,
-				2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -508,12 +511,12 @@
 			isa = PBXGroup;
 			children = (
 				DCB02B7B25038F4600304964 /* APIRepresentative.swift */,
-				DC7DEEAB258A3B9B00BEA712 /* AppUpdater.swift */,
 				2BC2720126207D710045A2FE /* MockData.swift */,
 				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
 				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
 				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
 				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
+				DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */,
 			);
 			path = "API Client";
 			sourceTree = "<group>";
@@ -564,7 +567,6 @@
 		DCB1A3C92549C936000C6575 /* Administration */ = {
 			isa = PBXGroup;
 			children = (
-				DCB1A3CA2549C94D000C6575 /* BetaRequestsList.swift */,
 				2BBE475B2629ABC80028DABB /* AppAdminView.swift */,
 				DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */,
 				DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */,
@@ -670,6 +672,8 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */,
+				2B77A43D26512414003D3965 /* UpdateSettingsView.swift */,
 				2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */,
 				DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */,
 				DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */,
@@ -919,6 +923,7 @@
 				2B19DEB426444B2B0086F70E /* ChartDataPoint.swift in Sources */,
 				2BDBB763264551890013FC39 /* AppSignalCount.swift in Sources */,
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
+				2B77A442265134E5003D3965 /* if.swift in Sources */,
 				2B19DEB326444B2B0086F70E /* Formatter+ISO.swift in Sources */,
 				DC25A5AE256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
 				2B61B950264C08D4003F62C4 /* SignalsService.swift in Sources */,
@@ -986,6 +991,7 @@
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				DCF5583B25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
+				2B77A441265134E4003D3965 /* if.swift in Sources */,
 				DCC8CB5B2562DC8D0019267A /* Buttonstyles.swift in Sources */,
 				DCFCDCBE25DD82BF00ACC529 /* InsightEditor.swift in Sources */,
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
@@ -1010,7 +1016,6 @@
 				2BC29ABE263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DC83C859256A857300FCF2A1 /* RawChartView.swift in Sources */,
-				DCB1A3CB2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				2B69B53D264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
 				2B19DEA126444B0C0086F70E /* ChartDataSet.swift in Sources */,
 				DCB02B7C25038F4600304964 /* APIRepresentative.swift in Sources */,
@@ -1061,7 +1066,8 @@
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
 				2B318E8A2633596100870EE9 /* DonutChart.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
-				DC3472EB258A720500BEEDE0 /* AppUpdater.swift in Sources */,
+				2B77A440265134AB003D3965 /* if.swift in Sources */,
+				DC3472EB258A720500BEEDE0 /* UpateService.swift in Sources */,
 				2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				2B19DEB826444B2B0086F70E /* InsightCalculationResult.swift in Sources */,
@@ -1074,6 +1080,7 @@
 				DCC8CB5C2562DC8D0019267A /* Buttonstyles.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
+				2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */,
 				DCF5583C25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */,
@@ -1106,7 +1113,6 @@
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				DCFCDCBF25DD82BF00ACC529 /* InsightEditor.swift in Sources */,
 				2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */,
-				DCB1A3CC2549C94D000C6575 /* BetaRequestsList.swift in Sources */,
 				DC25A5E1256D844300EE84DA /* DetailSidebar.swift in Sources */,
 				DCB02B5E25001A2600304964 /* DashedCardView.swift in Sources */,
 				DCB02B7D25038F4600304964 /* APIRepresentative.swift in Sources */,

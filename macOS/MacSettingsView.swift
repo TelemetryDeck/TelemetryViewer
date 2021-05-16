@@ -9,21 +9,26 @@ import SwiftUI
 
 struct MacSettingsView: View {
     private enum Tabs: Hashable {
-        case user, organization
+        case user, organization, updates
     }
     
     var body: some View {
         TabView {
             OrganizationSettingsView()
                 .tabItem {
-                    Label("Organization Settings", systemImage: "star")
+                    Label("Organization", systemImage: "star")
                 }
                 .tag(Tabs.organization)
             UserSettingsView()
                 .tabItem {
-                    Label("User Settings", systemImage: "gear")
+                    Label("User", systemImage: "person.fill")
                 }
                 .tag(Tabs.user)
+            UpdateSettingsView()
+                .tabItem {
+                    Label("Updates", systemImage: "arrow.down.app.fill")
+                }
+                .tag(Tabs.updates)
         }
         .frame(width: 375, height: 350)
     }

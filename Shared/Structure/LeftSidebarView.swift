@@ -12,21 +12,20 @@ struct LeftSidebarView: View {
     @State var selectedAppID: UUID?
 
     #if os(macOS)
-        @EnvironmentObject var appUpdater: AppUpdater
+        @EnvironmentObject var updateService: UpateService
     #endif
-
 
     var body: some View {
         List {
             if api.apps.isEmpty {
                 Text("Hint: Click the + Button")
                     .font(.footnote)
-                
+
                 NavigationLink(destination: AppInfoView()) {
                     Label("Get Started", systemImage: "mustache.fill")
                 }
             }
-            
+
             ForEach(api.apps.sorted { $0.name < $1.name }) { app in
                 Section(header: Text(app.name)) {
                     NavigationLink(
@@ -36,7 +35,7 @@ struct LeftSidebarView: View {
                             Label("Insights", systemImage: "app")
                         }
                     )
-                    
+
                     NavigationLink(
                         destination: LexiconView(appID: app.id),
                         label: {
@@ -49,7 +48,7 @@ struct LeftSidebarView: View {
                             Label("Recent Signals", systemImage: "waveform")
                         }
                     )
-                    
+
                     NavigationLink(
                         destination: AppEditor(appID: app.id),
                         label: {
@@ -60,8 +59,7 @@ struct LeftSidebarView: View {
             }
 
             Section(header: Text("Meta")) {
-                if let apiUser = api.user {
-                    #if os(iOS)
+                #if os(iOS)
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(apiUser.organization?.name ?? "Unknown Org", systemImage: "app.badge")
                     })
@@ -72,42 +70,18 @@ struct LeftSidebarView: View {
                             Label("Settings", systemImage: "gear")
                         }
                     )
-                    #endif
-                    
-                    NavigationLink(
-                        destination: FeedbackView(),
-                        label: {
-                            Label("Help & Feedback", systemImage: "ladybug.fill")
-                        }
-                    )
-                } else {
-                    Label("firstName lastName", systemImage: "person.circle").redacted(reason: .placeholder)
-                    Label("organization.name", systemImage: "app.badge").redacted(reason: .placeholder)
-                    Label("organization.name", systemImage: "app.badge").redacted(reason: .placeholder)
-                }
-
-                #if os(macOS)
-                    NavigationLink(
-                        destination: AppUpdateView(),
-                        label: {
-                            Label(
-                                appUpdater.isAppUpdateAvailable ? "Update Available!" : "Updates",
-                                systemImage: appUpdater.isAppUpdateAvailable ? "info.circle.fill" : "info.circle"
-                            )
-                        }
-                    )
                 #endif
+                
+                NavigationLink(
+                    destination: FeedbackView(),
+                    label: {
+                        Label("Help & Feedback", systemImage: "ladybug.fill")
+                    }
+                )
             }
 
             if api.user?.organization?.isSuperOrg == true {
                 Section(header: Text("Administration")) {
-                    NavigationLink(
-                        destination: BetaRequestsList(),
-                        label: {
-                            Label("Beta Requests", systemImage: "airplane")
-                        }
-                    )
-                    
                     NavigationLink(
                         destination: AppAdminView(),
                         label: {
@@ -125,6 +99,15 @@ struct LeftSidebarView: View {
             }
         }
         .listStyle(SidebarListStyle())
+        .modify {
+            #if os(macOS)
+                $0.sheet(isPresented: $updateService.shouldShowUpdateNowScreen) {
+                    AppUpdateView()
+                }
+            #else
+                $0
+            #endif
+        }
         .navigationTitle("AppTelemetry")
         .toolbar {
             ToolbarItemGroup {
@@ -134,7 +117,7 @@ struct LeftSidebarView: View {
                             .help("Toggle Sidebar")
                     }
                     .help("Toggle the left sidebar")
-                
+
                     Spacer()
                 #endif
 
