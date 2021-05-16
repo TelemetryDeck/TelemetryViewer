@@ -87,6 +87,8 @@
 		2BDBB761264551890013FC39 /* AppSignalCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75D264551890013FC39 /* AppSignalCount.swift */; };
 		2BDBB762264551890013FC39 /* AppSignalCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75D264551890013FC39 /* AppSignalCount.swift */; };
 		2BDBB763264551890013FC39 /* AppSignalCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75D264551890013FC39 /* AppSignalCount.swift */; };
+		2BDD8E6C2651A9BD00C6E51D /* OptionalToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6B2651A9BD00C6E51D /* OptionalToggle.swift */; };
+		2BDD8E6D2651A9BD00C6E51D /* OptionalToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6B2651A9BD00C6E51D /* OptionalToggle.swift */; };
 		DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */; };
 		DC0CCF7D25F0306A008EB297 /* View+toggleSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
@@ -263,6 +265,7 @@
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		2BDBB75C264551890013FC39 /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
 		2BDBB75D264551890013FC39 /* AppSignalCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSignalCount.swift; sourceTree = "<group>"; };
+		2BDD8E6B2651A9BD00C6E51D /* OptionalToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalToggle.swift; sourceTree = "<group>"; };
 		DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
 		DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+toggleSidebar.swift"; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
@@ -560,6 +563,7 @@
 				DC25A64E2571680900EE84DA /* CustomSection.swift */,
 				DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */,
 				DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */,
+				2BDD8E6B2651A9BD00C6E51D /* OptionalToggle.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -998,6 +1002,7 @@
 				DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
 				DCF8978B25C8726600E0BE57 /* ValueUnitAndTitleView.swift in Sources */,
+				2BDD8E6C2651A9BD00C6E51D /* OptionalToggle.swift in Sources */,
 				DCB28D892551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				2BC2720226207D710045A2FE /* MockData.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
@@ -1077,6 +1082,7 @@
 				DC0CCF7D25F0306A008EB297 /* View+toggleSidebar.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
+				2BDD8E6D2651A9BD00C6E51D /* OptionalToggle.swift in Sources */,
 				DCC8CB5C2562DC8D0019267A /* Buttonstyles.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,

@@ -233,6 +233,23 @@ extension APIRepresentative {
             callback?(result)
         }
     }
+    
+    func updateUser(with dto: DTO.UserDTO, callback: ((Result<DTO.UserDTO, TransferError>) -> Void)? = nil) {
+        let url = urlForPath("users", "updateUser")
+
+        post(dto, to: url) { [unowned self] (result: Result<DTO.UserDTO, TransferError>) in
+            switch result {
+            case let .success(userDTO):
+                DispatchQueue.main.async {
+                    self.user = userDTO
+                }
+            case let .failure(error):
+                self.handleError(error)
+            }
+
+            callback?(result)
+        }
+    }
 
     func getNumberOfSignalsThisMonth(callback: ((Result<Int, TransferError>) -> Void)? = nil) {
         let url = urlForPath("organization", "signalcount")

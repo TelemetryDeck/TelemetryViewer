@@ -39,7 +39,8 @@ struct CustomSection<Content, Header, Summary, Footer>: View where Content: View
                             .opacity(0.4)
 
                         if isHovering {
-                            Image(systemName: isCollapsed ? "chevron.left" : "chevron.down")
+                            Image(systemName: "chevron.left")
+                                .rotationEffect(Angle(degrees: isCollapsed ? 0 : -90))
                         }
                     }
                     .onTapGesture {
@@ -52,6 +53,7 @@ struct CustomSection<Content, Header, Summary, Footer>: View where Content: View
                         content()
 
                         footer
+                            .fixedSize(horizontal: false, vertical: true)
                             .font(.footnote)
                             .foregroundColor(.grayColor)
                     }
