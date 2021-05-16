@@ -14,20 +14,18 @@ struct UpdateSettingsView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Current Version").font(.title)
 
-            VStack(alignment: .leading) {
-                Text("Telemetry Viewer Version: ") +
-                    Text(updateService.internalVersion).font(.headline)
+            Group {
+                SettingsKeyView(key: "Your Version", value: updateService.internalVersion)
+                
+                SettingsKeyView(key: "Latest Version", value: "\(updateService.latestVersionOnServer?.tag_name ?? "–")")
             
-                Text("Latest Version on Server: ") +
-                    Text("\(updateService.latestVersionOnServer?.tag_name ?? "–")").font(.headline)
-            }
-            
-            if updateService.isUpdateAvailable() {
-                Text("There is an update available. You should download it now.")
-                    .foregroundColor(.grayColor)
-            } else {
-                Text("You're already on the newest available version of this app. Thank you <3")
-                    .foregroundColor(.grayColor)
+                if updateService.isUpdateAvailable() {
+                    Text("There is an update available. You should download it now.")
+                        .foregroundColor(.grayColor)
+                } else {
+                    Text("You're already on the newest available version of this app. Thank you <3")
+                        .foregroundColor(.grayColor)
+                }
             }
             
             Divider()

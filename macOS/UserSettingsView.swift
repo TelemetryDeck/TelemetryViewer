@@ -14,94 +14,99 @@ struct UserSettingsView: View {
     @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")
     @State private var showingAlert = false
     
+    func boolToString(value: Bool?) -> String {
+        if let value = value {
+            return value ? "Yes" : "No"
+        } else {
+            return "Not decided yet"
+        }
+    }
+    
     var body: some View {
         if let user = api.user {
-            
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("User Settings").font(.title)
-                    
-                        VStack(alignment: .leading) {
-                            Text("First Name").font(.footnote)
-                            Text(user.firstName).bold()
-                        }
-                    
-                    VStack(alignment: .leading) {
-                            Text("Last Name").font(.footnote)
-                            Text(user.lastName).bold()
-                    }
-                     
-                    VStack(alignment: .leading) {
-                            Text("Email").font(.footnote)
-                            Text(user.email).bold()
-                    }
-                        }
+            VStack(alignment: .leading, spacing: 8) {
+                Text("User Settings").font(.title)
                 
-            
-//            VStack {
-//                HStack(alignment: .top) {
-//
-//                    Divider()
-//
-//                    VStack(alignment: .leading) {
-//                        Button("Log Out") {
-//                            showingAlert = true
-//                        }
-//                        .alert(isPresented: $showingAlert) {
-//                            Alert(
-//                                title: Text("Really Log Out?"),
-//                                message: Text("You can log back in again later"),
-//                                primaryButton: .destructive(Text("Log Out")) {
-//                                    api.logout()
-//                                },
-//                                secondaryButton: .cancel()
-//                            )
-//                        }
-//
-//                        if !showChangePasswordForm {
-//                            Button("Change Password") {
-//                                withAnimation {
-//                                    showChangePasswordForm.toggle()
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                if showChangePasswordForm {
-//                    Divider()
-//
-//                    Form {
-//                        SecureField("Old Password", text: $passwordChangeRequest.oldPassword)
-//                        SecureField("New Password", text: $passwordChangeRequest.newPassword)
-//                        SecureField("Confirm New Password", text: $passwordChangeRequest.newPasswordConfirm)
-//
-//                        HStack {
-//                            Button("Cancel") {
-//                                withAnimation {
-//                                    showChangePasswordForm = false
-//                                }
-//                            }
-//
-//                            Spacer()
-//
-//                            Button("Save New Password") {
-//                                api.updatePassword(with: passwordChangeRequest) { _ in
-//                                    withAnimation {
-//                                        showChangePasswordForm = false
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+                Group {
+                    SettingsKeyView(key: "First Name", value: user.firstName)
+                    SettingsKeyView(key: "Last Name", value: user.lastName)
+                    SettingsKeyView(key: "Email", value: user.email)
+                    SettingsKeyView(key: "Receive the Newsletter?", value: boolToString(value: user.receiveMarketingEmails))
+                    SettingsKeyView(key: "Email is verified?", value: boolToString(value: user.emailIsVerified))
+                }
+                
+                Divider()
+                
+                Button("Log Out") {
+                    showingAlert = true
+                }
+                .alert(isPresented: $showingAlert) {
+                    Alert(
+                        title: Text("Really Log Out?"),
+                        message: Text("You can log back in again later"),
+                        primaryButton: .destructive(Text("Log Out")) {
+                            api.logout()
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
+                
+                if !showChangePasswordForm {
+                    Button("Change Password") {
+                        withAnimation {
+                            showChangePasswordForm.toggle()
+                        }
+                    }
+                }
+                
+                if showChangePasswordForm {
+                    Divider()
+                
+                    Form {
+                        SecureField("Old Password", text: $passwordChangeRequest.oldPassword)
+                        SecureField("New Password", text: $passwordChangeRequest.newPassword)
+                        SecureField("Confirm New Password", text: $passwordChangeRequest.newPasswordConfirm)
+                
+                        HStack {
+                            Button("Cancel") {
+                                withAnimation {
+                                    showChangePasswordForm = false
+                                }
+                            }
+                
+                            Spacer()
+                
+                            Button("Save New Password") {
+                                api.updatePassword(with: passwordChangeRequest) { _ in
+                                    withAnimation {
+                                        showChangePasswordForm = false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                Spacer()
+            }
             .padding()
-            .navigationTitle("User Settings")
             .onAppear {
                 TelemetryManager.shared.send(TelemetrySignal.userSettingsShown.rawValue, for: api.user?.email)
             }
         } else {
             Text("You are not logged in")
+        }
+    }
+}
+
+struct SettingsKeyView: View {
+    let key: String
+    let value: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(key).font(.footnote)
+            Text(value).bold()
         }
     }
 }
