@@ -70,6 +70,8 @@ final class APIRepresentative: ObservableObject {
 
     @Published var isLoadingApps: Bool = false
     @Published var loadingIDs: [UUID] = []
+    
+    @Published var needsDecisionForMarketingEmails: Bool = false
 }
 
 extension APIRepresentative {
@@ -205,6 +207,9 @@ extension APIRepresentative {
                     self.getApps()
                     if self.user?.organization?.isSuperOrg == true {
                         self.getBetaRequests()
+                    }
+                    if self.user?.receiveMarketingEmails == nil {
+                        needsDecisionForMarketingEmails = true
                     }
                 }
             case let .failure(error):

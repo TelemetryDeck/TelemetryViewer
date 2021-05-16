@@ -61,13 +61,13 @@ struct LeftSidebarView: View {
             Section(header: Text("Meta")) {
                 #if os(iOS)
                     NavigationLink(destination: OrganizationSettingsView(), label: {
-                        Label(api.user?.organization?.name ?? "Unknown Org", systemImage: "app.badge")
+                        Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
                     })
 
                     NavigationLink(
                         destination: UserSettingsView(),
                         label: {
-                            Label("Settings", systemImage: "gear")
+                            Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
                         }
                     )
                 #endif
@@ -98,6 +98,9 @@ struct LeftSidebarView: View {
                 }
             }
         }
+        .sheet(isPresented: $api.needsDecisionForMarketingEmails, content: {
+            AskForMarketingEmailsView()
+        })
         .listStyle(SidebarListStyle())
         .modify {
             #if os(macOS)

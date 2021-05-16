@@ -31,6 +31,7 @@ struct UserSettingsView: View {
                     TextField("Email", text: $userDTO.email)
                     
                     OptionalToggle(description: "Receive the newsletter?", isOn: $userDTO.receiveMarketingEmails)
+                        .onChange(of: userDTO.receiveMarketingEmails) { _ in save() }
                 }
                 
                 Section {
