@@ -11,52 +11,62 @@ import TelemetryClient
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIRepresentative
     @State private var showChangePasswordForm: Bool = false
+    @State private var showingAlert = false
     @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")
+    @State private var userDTO = DTO.UserDTO(id: UUID(), organization: nil, firstName: "", lastName: "", email: "", emailIsVerified: false, receiveMarketingEmails: nil, isFoundingUser: false)
+    
+    func save() {
+        api.updateUser(with: userDTO)
+    }
 
     var body: some View {
-        if let user = api.user {
-            
+        if api.user != nil {
             Form {
+                Section(header: Text("Name"), footer: Text("Your first and last name. If you only have one name, please use the First Name field.")) {
+                    TextField("First Name", text: $userDTO.firstName)
+                    TextField("Last Name", text: $userDTO.lastName)
+                }
+                
+                Section(header: Text("Email"), footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding AppTelemetry. Can we also send you our low volume newsletter please?")) {
+                    TextField("Email", text: $userDTO.email)
+                    
+                    OptionalToggle(description: "Receive the newsletter?", isOn: $userDTO.receiveMarketingEmails)
+                }
+                
                 Section {
-                    VStack(alignment: .leading) {
-                        Text("First Name").font(.footnote)
-                        Text(user.firstName).bold()
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text("Last Name").font(.footnote)
-                        Text(user.lastName).bold()
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text("Email").font(.footnote)
-                        Text(user.email).bold()
-                    }
-                    
                     Button("Log Out") {
-                        api.logout()
+                        showingAlert = true
+                    }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(
+                            title: Text("Really Log Out?"),
+                            message: Text("You can log back in again later"),
+                            primaryButton: .destructive(Text("Log Out")) {
+                                api.logout()
+                            },
+                            secondaryButton: .cancel()
+                        )
                     }
                 }
                 
-
                 if showChangePasswordForm {
-                        SecureField("Old Password", text: $passwordChangeRequest.oldPassword)
-                        SecureField("New Password", text: $passwordChangeRequest.newPassword)
-                        SecureField("Confirm New Password", text: $passwordChangeRequest.newPasswordConfirm)
+                    SecureField("Old Password", text: $passwordChangeRequest.oldPassword)
+                    SecureField("New Password", text: $passwordChangeRequest.newPassword)
+                    SecureField("Confirm New Password", text: $passwordChangeRequest.newPasswordConfirm)
 
-                        Button("Cancel") {
+                    Button("Cancel") {
+                        withAnimation {
+                            showChangePasswordForm = false
+                        }
+                    }
+                        
+                    Button("Save New Password") {
+                        api.updatePassword(with: passwordChangeRequest) { _ in
                             withAnimation {
                                 showChangePasswordForm = false
                             }
                         }
-                        
-                        Button("Save New Password") {
-                            api.updatePassword(with: passwordChangeRequest) { _ in
-                                    withAnimation {
-                                        showChangePasswordForm = false
-                                    }
-                            }
-                        }
+                    }
                 } else {
                     Button("Change Password") {
                         withAnimation {
@@ -67,7 +77,15 @@ struct UserSettingsView: View {
             }
             .navigationTitle("User Settings")
             .onAppear {
+                if let user = api.user {
+                    userDTO = user
+                }
                 TelemetryManager.shared.send(TelemetrySignal.userSettingsShown.rawValue, for: api.user?.email)
+            }
+            .toolbar {
+                Button("Save") {
+                    save()
+                }
             }
         } else {
             Text("You are not logged in")

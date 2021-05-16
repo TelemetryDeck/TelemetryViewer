@@ -10,23 +10,23 @@ import SwiftUI
 struct OptionalToggle: View {
     let description: String
     let isOn: Binding<Bool?>
-    
+
     var body: some View {
         if isOn.wrappedValue != nil {
             Toggle(description, isOn: isOn ?? false)
         } else {
             VStack {
-            Text(description)
+                Text(description)
                 HStack {
-                    Button("Yes") { isOn.wrappedValue = true }
-                    Button("No") { isOn.wrappedValue = false }
+                    Button("Yes") { isOn.wrappedValue = true }.buttonStyle(SecondaryButtonStyle())
+                    Button("No") { isOn.wrappedValue = false }.buttonStyle(SecondaryButtonStyle())
                 }
             }
         }
     }
 }
 
-fileprivate func ??<T>(lhs: Binding<Optional<T>>, rhs: T) -> Binding<T> {
+private func ?? <T>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
     Binding(
         get: { lhs.wrappedValue ?? rhs },
         set: { lhs.wrappedValue = $0 }

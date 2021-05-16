@@ -61,7 +61,7 @@ struct LeftSidebarView: View {
             Section(header: Text("Meta")) {
                 #if os(iOS)
                     NavigationLink(destination: OrganizationSettingsView(), label: {
-                        Label(apiUser.organization?.name ?? "Unknown Org", systemImage: "app.badge")
+                        Label(api.user?.organization?.name ?? "Unknown Org", systemImage: "app.badge")
                     })
 
                     NavigationLink(
