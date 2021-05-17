@@ -23,6 +23,10 @@ struct SignalList: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
             #endif
+            
+            Text("These are the latest signals AppTelemetry has received from your app. Signals receive time have a granularity of one hour, and identical signals get grouped into one entry. Tap a signal for more information.")
+                .font(.footnote)
+                .foregroundColor(.grayColor)
 
             if signalsService.signals(for: appID).isEmpty && !signalsService.isLoading(appID: appID) {
                 Text("You haven't received any Signals yet. Once your app is sending out signals, you'll find here a list of the latest ones.\n\nHint: Usually, apps using the Telemetry Swift Client will only send out Signals if they are compiled in the Release build configuration. If your schema is in Debug mode, no signals will be sent.")
