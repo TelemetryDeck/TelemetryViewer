@@ -23,7 +23,7 @@ struct LexiconView: View {
                         sortKey = .type
                     }
                 } label: {
-                    Label("Signal Type", systemImage: sortKey == .type ? "arrowtriangle.down.fill" : "circle")
+                    Label("Signal", systemImage: sortKey == .type ? "arrowtriangle.down.fill" : "circle")
                 }
 
                 Spacer()
@@ -82,14 +82,12 @@ struct LexiconView: View {
     }
 }
 
-//
-// struct LexiconView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let api = APIRepresentative()
-//        let app = TelemetryApp(id: UUID(), name: "anyApp", organization: [:])
-//        api.lexiconSignalTypes[app] = MockData.lexiconSignalTypes
-//        api.lexiconPayloadKeys[app] = MockData.lexiconPayloadKeys
-//
-//        return LexiconView(app: app).environmentObject(api)
-//    }
-// }
+
+ struct LexiconView_Previews: PreviewProvider {
+    static var previews: some View {
+        let lexiconService = MockLexiconService(api: APIRepresentative())
+        return NavigationView {
+            LexiconView(appID: UUID()).environmentObject(lexiconService as LexiconService)
+        }
+    }
+ }

@@ -19,10 +19,10 @@ struct SignalTypeView: View {
 
             Text("–").animatableNumber(value: Double(lexiconItem.signalCount), unit: "Signals", shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
-            
+
             Text("–").animatableNumber(value: Double(lexiconItem.userCount), unit: "Users", shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
-            
+
             Text("–").animatableNumber(value: Double(lexiconItem.sessionCount), unit: "Sessions", shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
         }
@@ -48,9 +48,9 @@ struct PayloadKeyView: View {
 
             Text("First seen ")
                 .foregroundColor(.grayColor)
-            +
-            
-            Text(lexiconItem.firstSeenAt, style: .date)
+                +
+
+                Text(lexiconItem.firstSeenAt, style: .date)
                 .foregroundColor(.grayColor)
         }
     }

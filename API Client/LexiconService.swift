@@ -15,7 +15,6 @@ class LexiconService: ObservableObject {
         case userCount
         case sessionCount
     }
-
     
     @Published var lexiconSignals: [UUID: [DTO.LexiconSignalDTO]] = [:]
     @Published var lexiconPayloadKeys: [UUID: [DTO.LexiconPayloadKey]] = [:]
@@ -83,6 +82,33 @@ class LexiconService: ObservableObject {
 
             loadingAppIDs.insert(appID)
             callback?(result)
+        }
+    }
+}
+
+class MockLexiconService: LexiconService {
+    private lazy var signalTypes: [DTO.LexiconSignalDTO] = [
+        .init(type: "testSignal", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
+        .init(type: "testSignal2", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
+        .init(type: "testSignal3", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
+        .init(type: "testSignal4", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
+        .init(type: "testSignal5", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
+        .init(type: "testSignal6", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
+        .init(type: "testSignal7", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
+    ]
+    
+    override func signalTypes(for appID: UUID, sortedBy: LexiconService.LexiconSortKey = .type) -> [DTO.LexiconSignalDTO] {
+        signalTypes.sorted { left, right in
+            switch sortedBy {
+            case .type:
+                return left.type.lowercased() < right.type.lowercased()
+            case .signalCount:
+                return left.signalCount > right.signalCount
+            case .userCount:
+                return left.userCount > right.userCount
+            case .sessionCount:
+                return left.sessionCount > right.sessionCount
+            }
         }
     }
 }
