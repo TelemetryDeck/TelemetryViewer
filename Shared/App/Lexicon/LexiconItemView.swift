@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignalTypeView: View {
     let lexiconItem: DTO.LexiconSignalDTO
+    let compressed: Bool
 
     var body: some View {
         HStack {
@@ -17,14 +18,38 @@ struct SignalTypeView: View {
 
             Spacer()
 
-            Text("–").animatableNumber(value: Double(lexiconItem.signalCount), unit: "Signals", shouldFormatBigNumbers: true)
+            Text("–").animatableNumber(value: Double(lexiconItem.signalCount), shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
+                .modify {
+                    if compressed {
+                        $0.frame(minWidth: 10, alignment: .trailing)
+                    } else {
+                        $0.frame(minWidth: 40, alignment: .trailing)
+                    }
+                }
+                .padding(.horizontal)
 
-            Text("–").animatableNumber(value: Double(lexiconItem.userCount), unit: "Users", shouldFormatBigNumbers: true)
+            Text("–").animatableNumber(value: Double(lexiconItem.userCount), shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
+                .modify {
+                    if compressed {
+                        $0.frame(minWidth: 10, alignment: .trailing)
+                    } else {
+                        $0.frame(minWidth: 40, alignment: .trailing)
+                    }
+                }
+                .padding(.horizontal)
 
-            Text("–").animatableNumber(value: Double(lexiconItem.sessionCount), unit: "Sessions", shouldFormatBigNumbers: true)
+            Text("–").animatableNumber(value: Double(lexiconItem.sessionCount), shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
+                .modify {
+                    if compressed {
+                        $0.frame(minWidth: 10, alignment: .trailing)
+                    } else {
+                        $0.frame(minWidth: 40, alignment: .trailing)
+                    }
+                }
+                .padding(.horizontal)
         }
     }
 }

@@ -13,6 +13,18 @@ struct LexiconView: View {
 
     @State private var sortKey: LexiconService.LexiconSortKey = .signalCount
 
+    #if os(iOS)
+        @Environment(\.horizontalSizeClass) var sizeClass
+    #endif
+
+    private var shouldCompressTitles: Bool {
+        #if os(iOS)
+            return sizeClass == .compact
+        #else
+            return false
+        #endif
+    }
+
     let appID: UUID
 
     var body: some View {
@@ -23,33 +35,48 @@ struct LexiconView: View {
                         sortKey = .type
                     }
                 } label: {
-                    Label("Signal", systemImage: sortKey == .type ? "arrowtriangle.down.fill" : "circle")
+                    Label("Signal Types", systemImage: sortKey == .type ? "arrowtriangle.down.circle.fill" : "circle")
                 }
 
                 Spacer()
-                
+
                 Button {
                     withAnimation {
                         sortKey = .signalCount
                     }
                 } label: {
-                    Label("Signals", systemImage: sortKey == .signalCount ? "arrowtriangle.down.fill" : "circle")
+                    if shouldCompressTitles {
+                        Image(systemName: sortKey == .signalCount ? "number.circle.fill" : "number.circle")
+                            .padding()
+                    } else {
+                        Label("Signals", systemImage: sortKey == .signalCount ? "arrowtriangle.down.circle.fill" : "circle")
+                    }
                 }
-                
+
                 Button {
                     withAnimation {
                         sortKey = .userCount
                     }
                 } label: {
-                    Label("Users", systemImage: sortKey == .userCount ? "arrowtriangle.down.fill" : "circle")
+                    if shouldCompressTitles {
+                        Image(systemName: sortKey == .userCount ? "person.circle.fill" : "person.circle")
+                            .padding()
+                    } else {
+                        Label("Users", systemImage: sortKey == .userCount ? "arrowtriangle.down.circle.fill" : "circle")
+                    }
                 }
-                
+
                 Button {
                     withAnimation {
                         sortKey = .sessionCount
                     }
                 } label: {
-                    Label("Sessions", systemImage: sortKey == .sessionCount ? "arrowtriangle.down.fill" : "circle")
+                    if shouldCompressTitles {
+                        Image(systemName: sortKey == .sessionCount ? "link.circle.fill" : "link.circle")
+                            .padding()
+                    } else {
+                        Label("Sessions", systemImage: sortKey == .sessionCount ? "arrowtriangle.down.circle.fill" : "circle")
+                    }
                 }
             }, footer:
             Text("This list contains all Signal Types seen by to AppTelemetry in the last month.")
@@ -57,7 +84,7 @@ struct LexiconView: View {
                 .foregroundColor(.grayColor)
                 .multilineTextAlignment(.center)) {
                 ForEach(lexiconService.signalTypes(for: appID, sortedBy: sortKey)) { lexiconItem in
-                    SignalTypeView(lexiconItem: lexiconItem)
+                    SignalTypeView(lexiconItem: lexiconItem, compressed: shouldCompressTitles)
                 }
             }
 
@@ -82,12 +109,11 @@ struct LexiconView: View {
     }
 }
 
-
- struct LexiconView_Previews: PreviewProvider {
+struct LexiconView_Previews: PreviewProvider {
     static var previews: some View {
         let lexiconService = MockLexiconService(api: APIRepresentative())
         return NavigationView {
             LexiconView(appID: UUID()).environmentObject(lexiconService as LexiconService)
         }
     }
- }
+}
