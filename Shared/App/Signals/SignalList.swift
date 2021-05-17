@@ -24,7 +24,7 @@ struct SignalList: View {
                 .cornerRadius(8)
             #endif
             
-            Text("These are the latest signals AppTelemetry has received from your app. Signals receive time have a granularity of one hour, and identical signals get grouped into one entry. Tap a signal for more information.")
+            Text("These are the latest signals AppTelemetry has received from your app. Signals receive time have a granularity of one hour, and identical signals get grouped into one entry. Select a signal for more information.")
                 .font(.footnote)
                 .foregroundColor(.grayColor)
 
