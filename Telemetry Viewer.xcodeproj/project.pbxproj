@@ -91,6 +91,10 @@
 		2BDD8E6D2651A9BD00C6E51D /* OptionalToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6B2651A9BD00C6E51D /* OptionalToggle.swift */; };
 		2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
+		2BDD8E722653C14C00C6E51D /* InsightCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */; };
+		2BDD8E732653C14C00C6E51D /* InsightCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */; };
+		2BDD8E752653C76000C6E51D /* InsightDataTimeIntervalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPicker.swift */; };
+		2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPicker.swift */; };
 		DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */; };
 		DC0CCF7D25F0306A008EB297 /* View+toggleSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
@@ -269,6 +273,8 @@
 		2BDBB75D264551890013FC39 /* AppSignalCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSignalCount.swift; sourceTree = "<group>"; };
 		2BDD8E6B2651A9BD00C6E51D /* OptionalToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalToggle.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
+		2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCalculationService.swift; sourceTree = "<group>"; };
+		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPicker.swift; sourceTree = "<group>"; };
 		DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
 		DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+toggleSidebar.swift"; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
@@ -489,6 +495,7 @@
 				DC24DF6525DD73990003ADCB /* AppRootViewIOS.swift */,
 				DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */,
 				DC98AAB6250A671900FF26FD /* AppEditor.swift */,
+				2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPicker.swift */,
 				DCB02B67250027E400304964 /* Signals */,
 				DCF7CD3E254A068500BFA23B /* Lexicon */,
 			);
@@ -523,6 +530,7 @@
 				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
 				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
 				DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */,
+				2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */,
 			);
 			path = "API Client";
 			sourceTree = "<group>";
@@ -945,6 +953,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BDD8E722653C14C00C6E51D /* InsightCalculationService.swift in Sources */,
 				DC4E2F6D25641BF1001AD7B4 /* RoundedCorners.swift in Sources */,
 				DC92395725E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DC23286D2522725A00DB6145 /* InsightView.swift in Sources */,
@@ -971,6 +980,7 @@
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
 				2B318E892633596100870EE9 /* DonutChart.swift in Sources */,
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
+				2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPicker.swift in Sources */,
 				2B318E852633590B00870EE9 /* ChartLegend.swift in Sources */,
 				2BDBB761264551890013FC39 /* AppSignalCount.swift in Sources */,
 				2B3CC0D3262D8EF10038B528 /* TextModifiers.swift in Sources */,
@@ -1089,6 +1099,7 @@
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DCB02B6F250277A700304964 /* AdaptiveStack.swift in Sources */,
 				2BDD8E6D2651A9BD00C6E51D /* OptionalToggle.swift in Sources */,
+				2BDD8E752653C76000C6E51D /* InsightDataTimeIntervalPicker.swift in Sources */,
 				DCC8CB5C2562DC8D0019267A /* Buttonstyles.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				DC591399252DF975007360A9 /* DonutChartView.swift in Sources */,
@@ -1105,6 +1116,7 @@
 				DC24DF3425DD54090003ADCB /* AppInfoView.swift in Sources */,
 				DC92395825E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
+				2BDD8E732653C14C00C6E51D /* InsightCalculationService.swift in Sources */,
 				2B61B953264C3061003F62C4 /* SignalDTO.swift in Sources */,
 				2B19DEBC26444B2B0086F70E /* InsightData.swift in Sources */,
 				DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,

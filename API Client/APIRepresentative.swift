@@ -55,11 +55,11 @@ final class APIRepresentative: ObservableObject {
 
     @Published var signals: [TelemetryApp: [DTO.Signal]] = [:]
     @Published var insightGroups: [TelemetryApp: [DTO.InsightGroup]] = [:]
-    @Published var insightData: [UUID: InsightCalculationResult] = [:]
+    @Published var insightData: [UUID: DTO.InsightCalculationResult] = [:]
 
     @Published var betaRequests: [BetaRequestEmailDTO] = []
     @Published var organizationAdminListEntries: [OrganizationAdminListEntry] = []
-    @Published var insightQueryAdminListEntries: [InsightDTO] = []
+    @Published var insightQueryAdminListEntries: [DTO.InsightDTO] = []
     @Published var insightQueryAdminAggregate: DTO.Aggregate?
     @Published var appAdminSignalCounts: [DTO.AppSignalCount] = []
 
@@ -83,6 +83,7 @@ extension APIRepresentative {
 extension APIRepresentative {
     func reloadVisibleInsights() {
         // Expensive function, poor server
+        // TODO: Just remove all insightData and make InsightViews request an update instead
         for app in insightGroups.keys {
             let insightGroupsList = insightGroups[app] ?? []
             for insightGroup in insightGroupsList {
@@ -403,7 +404,7 @@ extension APIRepresentative {
         }
     }
 
-    func getInsightData(for insight: InsightDTO, in insightGroup: DTO.InsightGroup, in app: TelemetryApp, callback: ((Result<InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func getInsightData(for insight: DTO.InsightDTO, in insightGroup: DTO.InsightGroup, in app: TelemetryApp, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let timeWindowEndDate = timeWindowEnd ?? Date()
         let timeWindowBeginDate = timeWindowBeginning ?? timeWindowEndDate.addingTimeInterval(-60 * 60 * 24 * 30)
 
@@ -412,7 +413,7 @@ extension APIRepresentative {
                              Formatter.iso8601noFS.string(from: timeWindowBeginDate),
                              Formatter.iso8601noFS.string(from: timeWindowEndDate))
 
-        get(url) { [unowned self] (result: Result<InsightCalculationResult, TransferError>) in
+        get(url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
             if let insightDTO = try? result.get() {
                 withAnimation {
                     self.insightData[insightDTO.id] = insightDTO
@@ -423,26 +424,26 @@ extension APIRepresentative {
         }
     }
 
-    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: DTO.InsightGroup, for app: TelemetryApp, callback: ((Result<InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroup: DTO.InsightGroup, for app: TelemetryApp, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights")
 
-        post(requestBody, to: url) { [unowned self] (result: Result<InsightCalculationResult, TransferError>) in
+        post(requestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
             self.getInsightGroups(for: app)
             callback?(result)
         }
     }
 
-    func update(insight: InsightDTO, in insightGroup: DTO.InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func update(insight: DTO.InsightDTO, in insightGroup: DTO.InsightGroup, in app: TelemetryApp, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
 
-        patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<InsightCalculationResult, TransferError>) in
+        patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
             self.getInsightGroups(for: app)
             self.getInsightData(for: insight, in: insightGroup, in: app)
             callback?(result)
         }
     }
 
-    func delete(insight: InsightDTO, in insightGroup: DTO.InsightGroup, in app: TelemetryApp, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+    func delete(insight: DTO.InsightDTO, in insightGroup: DTO.InsightGroup, in app: TelemetryApp, callback: ((Result<String, TransferError>) -> Void)? = nil) {
         let url = urlForPath("apps", app.id.uuidString, "insightgroups", insightGroup.id.uuidString, "insights", insight.id.uuidString)
 
         delete(url) { [unowned self] (result: Result<String, TransferError>) in
@@ -513,10 +514,10 @@ extension APIRepresentative {
         }
     }
 
-    func getInsightQueryAdminListEntries(callback: ((Result<[InsightDTO], TransferError>) -> Void)? = nil) {
+    func getInsightQueryAdminListEntries(callback: ((Result<[DTO.InsightDTO], TransferError>) -> Void)? = nil) {
         let url = urlForPath("insightqueryadmin")
 
-        get(url) { [unowned self] (result: Result<[InsightDTO], TransferError>) in
+        get(url) { [unowned self] (result: Result<[DTO.InsightDTO], TransferError>) in
             switch result {
             case let .success(insightQueryAdminListEntries):
                 self.insightQueryAdminListEntries = insightQueryAdminListEntries

@@ -39,7 +39,7 @@ struct MockData {
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "systemVersion"),
     ]
 
-    static let exampleInsight1 = InsightCalculationResult(
+    static let exampleInsight1 = DTO.InsightCalculationResult(
         id: UUID(),
         order: 12,
         title: "Users Today",
@@ -51,7 +51,7 @@ struct MockData {
         breakdownKey: nil,
         displayMode: .raw,
         isExpanded: false,
-        data: [InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
+        data: [DTO.InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
         calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
     )
 }

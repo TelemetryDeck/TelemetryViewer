@@ -16,7 +16,7 @@ struct DonutChartView: View {
         topSelectedInsightID == insightDataID
     }
     
-    private var insightData: InsightCalculationResult? { api.insightData[insightDataID] }
+    private var insightData: DTO.InsightCalculationResult? { api.insightData[insightDataID] }
     private var chartDataSet: ChartDataSet? {
         guard let data = insightData?.data else { return nil }
         return try? ChartDataSet(data: data)
@@ -66,14 +66,14 @@ struct DonutChartContainer: View {
 struct DonutChartView_Previews: PreviewProvider {
     static var data: ChartDataSet = try! ChartDataSet(
         data: [
-            InsightData(xAxisValue: "Cool Users", yAxisValue: "859"),
-            InsightData(xAxisValue: "Enthusiastic Users", yAxisValue: "515"),
-            InsightData(xAxisValue: "Happy Users", yAxisValue: "321"),
-            InsightData(xAxisValue: "Interested Users", yAxisValue: "214"),
-            InsightData(xAxisValue: "Encouraged Users", yAxisValue: "145"),
-            InsightData(xAxisValue: "Disinterested Users", yAxisValue: "13"),
-            InsightData(xAxisValue: "Unhappy Users", yAxisValue: "4"),
-            InsightData(xAxisValue: "Angry Users", yAxisValue: "2")
+            DTO.InsightData(xAxisValue: "Cool Users", yAxisValue: "859"),
+            DTO.InsightData(xAxisValue: "Enthusiastic Users", yAxisValue: "515"),
+            DTO.InsightData(xAxisValue: "Happy Users", yAxisValue: "321"),
+            DTO.InsightData(xAxisValue: "Interested Users", yAxisValue: "214"),
+            DTO.InsightData(xAxisValue: "Encouraged Users", yAxisValue: "145"),
+            DTO.InsightData(xAxisValue: "Disinterested Users", yAxisValue: "13"),
+            DTO.InsightData(xAxisValue: "Unhappy Users", yAxisValue: "4"),
+            DTO.InsightData(xAxisValue: "Angry Users", yAxisValue: "2")
         ])
     
     static var previews: some View {

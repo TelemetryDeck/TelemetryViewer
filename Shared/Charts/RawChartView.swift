@@ -16,7 +16,7 @@ struct RawChartView: View {
         topSelectedInsightID == insightDataID
     }
 
-    private var insightData: InsightCalculationResult? { api.insightData[insightDataID] }
+    private var insightData: DTO.InsightCalculationResult? { api.insightData[insightDataID] }
 
     var body: some View {
         if let insightData = insightData, !insightData.data.isEmpty {
@@ -40,7 +40,7 @@ struct RawChartView: View {
 
 struct RawChartView_Previews: PreviewProvider {
     static var api: APIRepresentative = {
-        let insight1 = InsightCalculationResult(
+        let insight1 = DTO.InsightCalculationResult(
             id: UUID(),
             order: nil, title: "A single Number",
             subtitle: nil,
@@ -52,12 +52,12 @@ struct RawChartView_Previews: PreviewProvider {
             displayMode: .raw,
             isExpanded: false,
             data: [
-                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "7762"),
+                DTO.InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "7762"),
             ],
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight2 = InsightCalculationResult(
+        let insight2 = DTO.InsightCalculationResult(
             id: UUID(),
             order: nil, title: "2 Numbers",
             subtitle: nil,
@@ -69,13 +69,13 @@ struct RawChartView_Previews: PreviewProvider {
             displayMode: .raw,
             isExpanded: false,
             data: [
-                InsightData(xAxisValue: "2020-11-20T00:00:00+01:00", yAxisValue: "10650"),
-                InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "96"),
+                DTO.InsightData(xAxisValue: "2020-11-20T00:00:00+01:00", yAxisValue: "10650"),
+                DTO.InsightData(xAxisValue: "2020-11-21T00:00:00+01:00", yAxisValue: "96"),
             ],
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight3 = InsightCalculationResult(
+        let insight3 = DTO.InsightCalculationResult(
             id: UUID(),
             order: nil, title: "Maaaany Entries",
             subtitle: nil,
@@ -87,16 +87,16 @@ struct RawChartView_Previews: PreviewProvider {
             displayMode: .raw,
             isExpanded: false,
             data: [
-                InsightData(xAxisValue: "Test", yAxisValue: "Omsn"),
-                InsightData(xAxisValue: "Test2", yAxisValue: "Omsn2"),
-                InsightData(xAxisValue: "Test3", yAxisValue: nil),
-                InsightData(xAxisValue: "Test4", yAxisValue: "Omsn4"),
-                InsightData(xAxisValue: "Test5", yAxisValue: "Omsn5"),
+                DTO.InsightData(xAxisValue: "Test", yAxisValue: "Omsn"),
+                DTO.InsightData(xAxisValue: "Test2", yAxisValue: "Omsn2"),
+                DTO.InsightData(xAxisValue: "Test3", yAxisValue: nil),
+                DTO.InsightData(xAxisValue: "Test4", yAxisValue: "Omsn4"),
+                DTO.InsightData(xAxisValue: "Test5", yAxisValue: "Omsn5"),
             ],
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
 
-        let insight4 = InsightCalculationResult(
+        let insight4 = DTO.InsightCalculationResult(
             id: UUID(),
             order: nil, title: "2 Numbers, no dates",
             subtitle: nil,
@@ -108,8 +108,8 @@ struct RawChartView_Previews: PreviewProvider {
             displayMode: .raw,
             isExpanded: false,
             data: [
-                InsightData(xAxisValue: "iOS", yAxisValue: "10650"),
-                InsightData(xAxisValue: "macOS", yAxisValue: "96"),
+                DTO.InsightData(xAxisValue: "iOS", yAxisValue: "10650"),
+                DTO.InsightData(xAxisValue: "macOS", yAxisValue: "96"),
             ],
             calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
         )
@@ -134,7 +134,7 @@ struct RawChartView_Previews: PreviewProvider {
 }
 
 struct SingleValueView: View {
-    var insightData: InsightCalculationResult
+    var insightData: DTO.InsightCalculationResult
 
     let isSelected: Bool
 
@@ -174,7 +174,7 @@ struct SingleValueView: View {
         }
     }
 
-    func xAxisDefinition(insightData: InsightData, style: Text.DateStyle) -> Text {
+    func xAxisDefinition(insightData: DTO.InsightData, style: Text.DateStyle) -> Text {
         if let date = insightData.xAxisDate {
             return Text(date, style: style)
         }
@@ -214,7 +214,7 @@ struct SingleValueView: View {
 }
 
 struct RawTableView: View {
-    var insightData: InsightCalculationResult
+    var insightData: DTO.InsightCalculationResult
 
     let isSelected: Bool
 

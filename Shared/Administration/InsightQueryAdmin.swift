@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InsightQueryDetailView: View {
-    let entry: InsightDTO
+    let entry: DTO.InsightDTO
 
     var body: some View {
         ScrollView {
@@ -44,7 +44,7 @@ struct InsightQueryDetailView: View {
 
 struct InsightQueryAdmin: View {
     @EnvironmentObject var api: APIRepresentative
-    @State private var selectedInsight: InsightCalculationResult?
+    @State private var selectedInsight: DTO.InsightCalculationResult?
     @State private var sidebarShown: Bool = false
     @State private var isLoading: Bool = false
 

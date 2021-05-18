@@ -16,6 +16,9 @@ struct AppRootView: View {
     
     @State var selection: AppRootViewSelection = .noSelection
     
+    @State var timeWindowBeginning = Date()
+    @State var timeWindowEnd = Date() - 30 * 24 * 3600
+    
     private var insightGroup: DTO.InsightGroup? {
         switch selection {
         case let .insightGroup(group):
@@ -70,10 +73,12 @@ struct AppRootView: View {
                 selection = .insightGroup(group: firstInsightGroup)
             }
             
+            timeWindowEnd = api.timeWindowEnd ?? Date()
+            timeWindowBeginning = api.timeWindowBeginning ?? Date() - 30 * 24 * 3600
+            
             setupSidebars()
         }
         .toolbar {
-            
             ToolbarItemGroup(placement: .navigation) {
                 if let app = app {
                     Picker("View Mode", selection: $selection) {
@@ -91,6 +96,10 @@ struct AppRootView: View {
                         }
                     }
                 }
+            }
+            
+            ToolbarItem {
+                InsightDataTimeIntervalPicker()
             }
             
             ToolbarItem {
@@ -173,56 +182,6 @@ struct AppRootView: View {
                     }
                 }
             }
-            
-            ToolbarItem {
-                Menu {
-                    Section {
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 365)
-                            api.timeWindowEnd = nil
-                            api.reloadVisibleInsights()
-                        }) {
-                            Label("Last Year", systemImage: "calendar")
-                        }
-                        
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 90)
-                            api.timeWindowEnd = nil
-                            api.reloadVisibleInsights()
-                        }) {
-                            Label("Last 3 Months", systemImage: "calendar")
-                        }
-                        
-                        Button(action: {
-                            api.timeWindowBeginning = nil
-                            api.timeWindowEnd = nil
-                            api.reloadVisibleInsights()
-                        }) {
-                            Label("Last Month", systemImage: "calendar")
-                        }
-                        
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24 * 7)
-                            api.timeWindowEnd = nil
-                            api.reloadVisibleInsights()
-                        }) {
-                            Label("Last Week", systemImage: "calendar")
-                        }
-                        
-                        Button(action: {
-                            api.timeWindowBeginning = Date().addingTimeInterval(-60 * 60 * 24)
-                            api.timeWindowEnd = nil
-                            api.reloadVisibleInsights()
-                        }) {
-                            Label("Today", systemImage: "calendar")
-                        }
-                    }
-                }
-                label: {
-                    Text(timeIntervalDescription)
-                }
-            }
         }
-        
     }
 }

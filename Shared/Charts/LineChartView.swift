@@ -67,7 +67,7 @@ struct LineChartView: View {
         topSelectedInsightID == insightDataID
     }
 
-    private var insightData: InsightCalculationResult? { api.insightData[insightDataID] }
+    private var insightData: DTO.InsightCalculationResult? { api.insightData[insightDataID] }
     private var chartDataSet: ChartDataSet? {
         guard let data = insightData?.data else { return nil }
         return try? ChartDataSet(data: data)

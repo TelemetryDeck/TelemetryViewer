@@ -61,7 +61,7 @@ struct InsightEditorContent {
             shouldUseDruid: true)
     }
     
-    static func from(insight: InsightDTO) -> InsightEditorContent {
+    static func from(insight: DTO.InsightDTO) -> InsightEditorContent {
         let requestBody = Self(
             order: insight.order ?? -1,
             title: insight.title,
@@ -116,7 +116,7 @@ struct InsightEditor: View {
         guard let app = app else { return nil }
         return api.insightGroups[app]?.first { $0.id == insightGroupID }
     }
-    var insight: InsightDTO? {
+    var insight: DTO.InsightDTO? {
         guard let insightGroup = insightGroup else { return nil }
         return insightGroup.insights.first { $0.id == insightID }
     }
