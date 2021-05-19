@@ -95,6 +95,12 @@
 		2BDD8E732653C14C00C6E51D /* InsightCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */; };
 		2BDD8E752653C76000C6E51D /* InsightDataTimeIntervalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPicker.swift */; };
 		2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPicker.swift */; };
+		2BDD8E782655049700C6E51D /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E772655049700C6E51D /* InsightService.swift */; };
+		2BDD8E792655049700C6E51D /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E772655049700C6E51D /* InsightService.swift */; };
+		2BDD8E7A2655049700C6E51D /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E772655049700C6E51D /* InsightService.swift */; };
+		2BDD8E7C26550C9300C6E51D /* InsightReloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E7B26550C9300C6E51D /* InsightReloadButtonView.swift */; };
+		2BDD8E7D26550C9300C6E51D /* InsightReloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E7B26550C9300C6E51D /* InsightReloadButtonView.swift */; };
+		2BDD8E7E26550C9300C6E51D /* InsightReloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E7B26550C9300C6E51D /* InsightReloadButtonView.swift */; };
 		DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */; };
 		DC0CCF7D25F0306A008EB297 /* View+toggleSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
@@ -275,6 +281,8 @@
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
 		2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCalculationService.swift; sourceTree = "<group>"; };
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPicker.swift; sourceTree = "<group>"; };
+		2BDD8E772655049700C6E51D /* InsightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightService.swift; sourceTree = "<group>"; };
+		2BDD8E7B26550C9300C6E51D /* InsightReloadButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightReloadButtonView.swift; sourceTree = "<group>"; };
 		DC0CCF6925F02F91008EB297 /* NSView+FindViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
 		DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+toggleSidebar.swift"; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
@@ -530,6 +538,7 @@
 				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
 				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
 				DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */,
+				2BDD8E772655049700C6E51D /* InsightService.swift */,
 				2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */,
 			);
 			path = "API Client";
@@ -576,6 +585,7 @@
 				DCF5583A25B08BE3007C8F8F /* OrderSetter.swift */,
 				DCF8978A25C8726600E0BE57 /* ValueUnitAndTitleView.swift */,
 				2BDD8E6B2651A9BD00C6E51D /* OptionalToggle.swift */,
+				2BDD8E7B26550C9300C6E51D /* InsightReloadButtonView.swift */,
 			);
 			path = "Generic Views";
 			sourceTree = "<group>";
@@ -934,9 +944,11 @@
 				2B318E8B2633596100870EE9 /* DonutChart.swift in Sources */,
 				DC25A573256A87D600EE84DA /* Color.swift in Sources */,
 				DC92395925E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
+				2BDD8E7E26550C9300C6E51D /* InsightReloadButtonView.swift in Sources */,
 				DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				2B3CC0D5262D8EF10038B528 /* TextModifiers.swift in Sources */,
 				2B19DEB426444B2B0086F70E /* ChartDataPoint.swift in Sources */,
+				2BDD8E7A2655049700C6E51D /* InsightService.swift in Sources */,
 				2BDBB763264551890013FC39 /* AppSignalCount.swift in Sources */,
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
 				2B77A442265134E5003D3965 /* if.swift in Sources */,
@@ -1004,9 +1016,11 @@
 				DC4E2F552563292C001AD7B4 /* SingleKeyValueView.swift in Sources */,
 				2B69B541264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				DCB28D7E25517EDD0032B9AD /* Helpers.swift in Sources */,
+				2BDD8E7C26550C9300C6E51D /* InsightReloadButtonView.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */,
 				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
+				2BDD8E782655049700C6E51D /* InsightService.swift in Sources */,
 				DCB02B6E250277A700304964 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				DCF5583B25B08BE3007C8F8F /* OrderSetter.swift in Sources */,
@@ -1058,6 +1072,7 @@
 				DC415C0F2531F6C300D8D0B1 /* Color.swift in Sources */,
 				2B3CC0D4262D8EF10038B528 /* TextModifiers.swift in Sources */,
 				DCB5F9F325F294C6004C4922 /* FavouritesView.swift in Sources */,
+				2BDD8E7D26550C9300C6E51D /* InsightReloadButtonView.swift in Sources */,
 				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				2BDBB75F264551890013FC39 /* Aggregate.swift in Sources */,
 				2BDBB762264551890013FC39 /* AppSignalCount.swift in Sources */,
@@ -1084,6 +1099,7 @@
 				2BC2720326207D710045A2FE /* MockData.swift in Sources */,
 				DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */,
 				DC5339362521CE6200D9C889 /* CardView.swift in Sources */,
+				2BDD8E792655049700C6E51D /* InsightService.swift in Sources */,
 				2B318E8A2633596100870EE9 /* DonutChart.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
 				2B77A440265134AB003D3965 /* if.swift in Sources */,

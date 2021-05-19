@@ -44,7 +44,7 @@ struct InsightGroupView: View {
                                 let destination = InsightEditor(appID: appID, insightGroupID: insightGroupID, insightID: insight.id)
 
                                 NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
-                                    InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
+                                    InsightView(topSelectedInsightID: $selectedInsightID, appID: app.id, insightGroupID: insightGroup.id, insightID: insight.id)
                                 }
                                 .simultaneousGesture(TapGesture().onEnded {
                                     #if os(macOS)
@@ -61,7 +61,7 @@ struct InsightGroupView: View {
                                     let destination = InsightEditor(appID: appID, insightGroupID: insightGroupID, insightID: insight.id)
 
                                     NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
-                                        InsightView(topSelectedInsightID: $selectedInsightID, app: app, insightGroup: insightGroup, insight: insight)
+                                        InsightView(topSelectedInsightID: $selectedInsightID, appID: app.id, insightGroupID: insightGroup.id, insightID: insight.id)
                                     }
                                     .simultaneousGesture(TapGesture().onEnded {
                                         #if os(macOS)

@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct DonutChartView: View {
-    var insightDataID: UUID
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var insightCalculationService: InsightCalculationService
     
+    let insightID: UUID
+    let insightGroupID: UUID
+    let appID: UUID
+
     @Binding var topSelectedInsightID: UUID?
     private var isSelected: Bool {
-        topSelectedInsightID == insightDataID
-    }
-    
-    private var insightData: DTO.InsightCalculationResult? { api.insightData[insightDataID] }
-    private var chartDataSet: ChartDataSet? {
-        guard let data = insightData?.data else { return nil }
-        return try? ChartDataSet(data: data)
+        topSelectedInsightID == insightID
     }
     
     var body: some View {
-        if let chartDataSet = chartDataSet {
+        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), let chartDataSet = try? ChartDataSet(data: insightData.data) {
             DonutChartContainer(chartDataset: chartDataSet, isSelected: isSelected)
                 .padding(.bottom)
                 .padding(.horizontal)
@@ -63,23 +60,23 @@ struct DonutChartContainer: View {
 
 
 // MARK: - Preview
-struct DonutChartView_Previews: PreviewProvider {
-    static var data: ChartDataSet = try! ChartDataSet(
-        data: [
-            DTO.InsightData(xAxisValue: "Cool Users", yAxisValue: "859"),
-            DTO.InsightData(xAxisValue: "Enthusiastic Users", yAxisValue: "515"),
-            DTO.InsightData(xAxisValue: "Happy Users", yAxisValue: "321"),
-            DTO.InsightData(xAxisValue: "Interested Users", yAxisValue: "214"),
-            DTO.InsightData(xAxisValue: "Encouraged Users", yAxisValue: "145"),
-            DTO.InsightData(xAxisValue: "Disinterested Users", yAxisValue: "13"),
-            DTO.InsightData(xAxisValue: "Unhappy Users", yAxisValue: "4"),
-            DTO.InsightData(xAxisValue: "Angry Users", yAxisValue: "2")
-        ])
-    
-    static var previews: some View {
-        
-        DonutChartContainer(chartDataset: data, isSelected: false)
-            .padding()
-            .previewLayout(.fixed(width: 285, height: 165))
-    }
-}
+//struct DonutChartView_Previews: PreviewProvider {
+//    static var data: ChartDataSet = try! ChartDataSet(
+//        data: [
+//            DTO.InsightData(xAxisValue: "Cool Users", yAxisValue: "859"),
+//            DTO.InsightData(xAxisValue: "Enthusiastic Users", yAxisValue: "515"),
+//            DTO.InsightData(xAxisValue: "Happy Users", yAxisValue: "321"),
+//            DTO.InsightData(xAxisValue: "Interested Users", yAxisValue: "214"),
+//            DTO.InsightData(xAxisValue: "Encouraged Users", yAxisValue: "145"),
+//            DTO.InsightData(xAxisValue: "Disinterested Users", yAxisValue: "13"),
+//            DTO.InsightData(xAxisValue: "Unhappy Users", yAxisValue: "4"),
+//            DTO.InsightData(xAxisValue: "Angry Users", yAxisValue: "2")
+//        ])
+//
+//    static var previews: some View {
+//
+//        DonutChartContainer(chartDataset: data, isSelected: false)
+//            .padding()
+//            .previewLayout(.fixed(width: 285, height: 165))
+//    }
+//}

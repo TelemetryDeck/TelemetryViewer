@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct BarChartView: View {
-    var insightDataID: UUID
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var insightCalculationService: InsightCalculationService
+    
+    let insightID: UUID
+    let insightGroupID: UUID
+    let appID: UUID
 
     @Binding var topSelectedInsightID: UUID?
     private var isSelected: Bool {
-        topSelectedInsightID == insightDataID
-    }
-
-    private var insightData: DTO.InsightCalculationResult? { api.insightData[insightDataID] }
-    private var chartDataSet: ChartDataSet? {
-        guard let data = insightData?.data else { return nil }
-        return try? ChartDataSet(data: data)
+        topSelectedInsightID == insightID
     }
 
     var body: some View {
-        if let chartDataSet = chartDataSet {
+        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), let chartDataSet = try? ChartDataSet(data: insightData.data) {
             VStack {
                 HStack {
                     GeometryReader { geometry in
@@ -47,12 +44,6 @@ struct BarChartView: View {
         } else {
             Text("Cannot display this as a Chart")
         }
-    }
-}
-
-struct BarChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        BarChartView(insightDataID: UUID(), topSelectedInsightID: .constant(nil))
     }
 }
 
