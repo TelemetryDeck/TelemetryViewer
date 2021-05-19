@@ -9,24 +9,12 @@ import SwiftUI
 
 struct AppRootView: View {
     @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var insightService: InsightService
+    
     let appID: UUID
+    @State var selectedInsightGroupID: UUID?
     
     var app: TelemetryApp? { api.app(with: appID) }
-    @State var selectedInsightGroupID = UUID()
-    
-    @State var selection: AppRootViewSelection = .noSelection
-    
-    @State var timeWindowBeginning = Date()
-    @State var timeWindowEnd = Date() - 30 * 24 * 3600
-    
-    private var insightGroup: DTO.InsightGroup? {
-        switch selection {
-        case let .insightGroup(group):
-            return group
-        default:
-            return nil
-        }
-    }
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -54,39 +42,26 @@ struct AppRootView: View {
     
     var body: some View {
         Group {
-            switch selection {
-            case .lexicon:
-                LexiconView(appID: appID)
-            case .rawSignals:
-                SignalList(appID: appID)
-            case let .insightGroup(group):
-                InsightGroupView(appID: appID, insightGroupID: group.id)
-            case .noSelection:
-                EmptyAppView(appID: appID)
-                    .frame(maxWidth: 400)
-                    .padding()
+            if let selectedInsightGroupID = selectedInsightGroupID {
+                InsightGroupView(appID: appID, insightGroupID: selectedInsightGroupID)
+            } else {
+                Text("...")
             }
         }
         .navigationTitle(app?.name ?? "No App Selected")
         .onAppear {
-            if let app = app, let firstInsightGroup = api.insightGroups[app]?.first, selection == .noSelection {
-                selection = .insightGroup(group: firstInsightGroup)
-            }
-            
-            timeWindowEnd = api.timeWindowEnd ?? Date()
-            timeWindowBeginning = api.timeWindowBeginning ?? Date() - 30 * 24 * 3600
-            
             setupSidebars()
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
-                if let app = app {
-                    Picker("View Mode", selection: $selection) {
-                        ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                            Text(insightGroup.title).tag(AppRootViewSelection.insightGroup(group: insightGroup))
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
+                Picker("View Mode", selection: $selectedInsightGroupID) {
+                    ForEach(insightService.insightGroups(for: appID) ?? []) { insightGroup in
+                        Text(insightGroup.title).tag(insightGroup.id as UUID?)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
                     
+                if let app = app {
                     Button(action: {
                         api.create(insightGroupNamed: "New Group", for: app)
                     }) {
@@ -103,7 +78,7 @@ struct AppRootView: View {
             }
             
             ToolbarItem {
-                if let insightGroup = insightGroup, let app = app {
+                if let selectedInsightGroupID = selectedInsightGroupID, let insightGroup = insightService.insightGroup(id: selectedInsightGroupID, in: appID), let app = app {
                     Menu {
                         Section {
                             Button("Generic Timeseries Insight") {

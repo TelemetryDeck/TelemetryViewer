@@ -26,11 +26,16 @@ struct LeftSidebarView: View {
                 }
             }
 
-            ForEach(api.apps.sorted { $0.name < $1.name }) { app in
+            Picker(selection: $selectedAppID, label: EmptyView()) {
+                ForEach(api.apps.sorted { $0.name < $1.name }) { app in
+                    Text(app.name).tag(app.id as UUID?)
+                }
+            }
+
+            if let app = api.apps.first(where: { $0.id == selectedAppID }) {
                 Section(header: Text(app.name)) {
                     NavigationLink(
-                        destination: AppRootView(appID: app.id), tag: app.id,
-                        selection: $selectedAppID,
+                        destination: AppRootView(appID: app.id),
                         label: {
                             Label("Insights", systemImage: "app")
                         }
@@ -71,7 +76,7 @@ struct LeftSidebarView: View {
                         }
                     )
                 #endif
-                
+
                 NavigationLink(
                     destination: FeedbackView(),
                     label: {
@@ -96,6 +101,11 @@ struct LeftSidebarView: View {
                         }
                     )
                 }
+            }
+        }
+        .onAppear {
+            if selectedAppID == nil {
+                selectedAppID = api.apps.first?.id
             }
         }
         .sheet(isPresented: $api.needsDecisionForMarketingEmails, content: {

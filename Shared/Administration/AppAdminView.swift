@@ -16,11 +16,11 @@ struct AppAdminView: View {
     @State private var isLoading: Bool = false
     @State private var displayMode: DisplayMode = .signals
     
-    let section1LowerUsers = 100_000.0
+    let section1LowerUsers = 25_000.0
     let section2LowerUsers = 5000.0
     let section3LowerUsers = 10.0
     
-    let section1LowerSignals = 10_000_000.0
+    let section1LowerSignals = 5_000_000.0
     let section2LowerSignals = 100_000.0
     let section3LowerSignals = 100.0
 
