@@ -13,7 +13,18 @@ class AppService: ObservableObject {
 
     @Published var apps: [TelemetryApp]?
     @Published var isLoading: Bool = false
-    @Published var selectedAppID: UUID?
+    @AppStorage("selectedAppID") var selectedAppIDString: String = ""
+    
+    var selectedAppID: UUID? {
+        get {
+            return UUID(uuidString: selectedAppIDString)
+        }
+        
+        set {
+            selectedAppIDString = newValue?.uuidString ?? ""
+        }
+    }
+    
     
     private var lastLoadTime: Date? = nil
 
