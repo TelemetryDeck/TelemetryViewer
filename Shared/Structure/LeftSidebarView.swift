@@ -7,9 +7,19 @@
 
 import SwiftUI
 
+enum LeftSidebarViewSelection {
+    case gettingStarted
+    case insights
+    case lexicon
+    case recentSignals
+    case appSettings
+    case helpAndFeedback
+}
+
 struct LeftSidebarView: View {
     @EnvironmentObject var api: APIRepresentative
-    @State var selectedAppID: UUID?
+    @EnvironmentObject var appService: AppService
+    @State var selection: LeftSidebarViewSelection? = .insights
 
     #if os(macOS)
         @EnvironmentObject var updateService: UpateService
@@ -17,7 +27,7 @@ struct LeftSidebarView: View {
 
     var body: some View {
         List {
-            if api.apps.isEmpty {
+            if appService.getTelemetryApps().isEmpty {
                 Text("Hint: Click the + Button")
                     .font(.footnote)
 
@@ -26,16 +36,18 @@ struct LeftSidebarView: View {
                 }
             }
 
-            Picker(selection: $selectedAppID, label: EmptyView()) {
-                ForEach(api.apps.sorted { $0.name < $1.name }) { app in
+            Picker(selection: $appService.selectedAppID, label: EmptyView()) {
+                ForEach(appService.getTelemetryApps()) { app in
                     Text(app.name).tag(app.id as UUID?)
                 }
             }
 
-            if let app = api.apps.first(where: { $0.id == selectedAppID }) {
+            if let app = appService.getSelectedApp() {
                 Section(header: Text(app.name)) {
+                    
+                    
                     NavigationLink(
-                        destination: AppRootView(appID: app.id),
+                        destination: AppRootView(appID: app.id), tag: LeftSidebarViewSelection.insights, selection: $selection,
                         label: {
                             Label("Insights", systemImage: "app")
                         }
@@ -105,10 +117,6 @@ struct LeftSidebarView: View {
         }
         .onAppear {
             setupSidebars()
-            
-            if selectedAppID == nil {
-                selectedAppID = api.apps.first?.id
-            }
         }
         .sheet(isPresented: $api.needsDecisionForMarketingEmails, content: {
             AskForMarketingEmailsView()
@@ -137,12 +145,12 @@ struct LeftSidebarView: View {
                 #endif
 
                 Button(action: {
-                    api.create(appNamed: "New App") { result in
+                    appService.create(appNamed: "New App") { result in
                         switch result {
                         case .failure(let error):
                             print(error)
                         case .success(let newApp):
-                            selectedAppID = newApp.id
+                            appService.selectedAppID = newApp.id
                         }
                     }
                 }) {

@@ -66,6 +66,9 @@
 		2B77A440265134AB003D3965 /* if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43F265134AB003D3965 /* if.swift */; };
 		2B77A441265134E4003D3965 /* if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43F265134AB003D3965 /* if.swift */; };
 		2B77A442265134E5003D3965 /* if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43F265134AB003D3965 /* if.swift */; };
+		2BB23B2C26567222003DDE5E /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* AppService.swift */; };
+		2BB23B2D26567222003DDE5E /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* AppService.swift */; };
+		2BB23B2E26567222003DDE5E /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* AppService.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
@@ -267,6 +270,7 @@
 		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
 		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		2B77A43F265134AB003D3965 /* if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = if.swift; sourceTree = "<group>"; };
+		2BB23B2B26567222003DDE5E /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
@@ -538,6 +542,7 @@
 				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
 				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
 				DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */,
+				2BB23B2B26567222003DDE5E /* AppService.swift */,
 				2BDD8E772655049700C6E51D /* InsightService.swift */,
 				2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */,
 			);
@@ -924,6 +929,7 @@
 				2B19DEAC26444B2B0086F70E /* ChartDataSet.swift in Sources */,
 				2B19DEB526444B2B0086F70E /* OrganizationDTO.swift in Sources */,
 				DC25A5A7256C0B1B00EE84DA /* Numbers+Bound.swift in Sources */,
+				2BB23B2E26567222003DDE5E /* AppService.swift in Sources */,
 				2BDBB760264551890013FC39 /* Aggregate.swift in Sources */,
 				DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */,
 				2BC29AC0263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,
@@ -994,6 +1000,7 @@
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPicker.swift in Sources */,
 				2B318E852633590B00870EE9 /* ChartLegend.swift in Sources */,
+				2BB23B2C26567222003DDE5E /* AppService.swift in Sources */,
 				2BDBB761264551890013FC39 /* AppSignalCount.swift in Sources */,
 				2B3CC0D3262D8EF10038B528 /* TextModifiers.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
@@ -1136,6 +1143,7 @@
 				2B61B953264C3061003F62C4 /* SignalDTO.swift in Sources */,
 				2B19DEBC26444B2B0086F70E /* InsightData.swift in Sources */,
 				DC25A63B256ED03500EE84DA /* Binding+OnUpdate.swift in Sources */,
+				2BB23B2D26567222003DDE5E /* AppService.swift in Sources */,
 				2B318E862633590B00870EE9 /* ChartLegend.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
 				2B19DEB726444B2B0086F70E /* ChartDataSet.swift in Sources */,

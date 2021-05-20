@@ -14,6 +14,7 @@ struct Telemetry_ViewerApp: App {
     let updateService: UpateService
     let signalsService: SignalsService
     let lexiconService: LexiconService
+    let appService: AppService
     let insightService: InsightService
     let insightCalculationService: InsightCalculationService
 
@@ -24,6 +25,7 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(updateService)
                 .environmentObject(signalsService)
                 .environmentObject(lexiconService)
+                .environmentObject(appService)
                 .environmentObject(insightService)
                 .environmentObject(insightCalculationService)
         }
@@ -56,6 +58,7 @@ struct Telemetry_ViewerApp: App {
         self.updateService = UpateService()
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
+        self.appService = AppService(api: api)
         self.insightService = InsightService(api: api)
         self.insightCalculationService = InsightCalculationService(api: api)
 

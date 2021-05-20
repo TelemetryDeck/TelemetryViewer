@@ -37,7 +37,7 @@ class InsightService: ObservableObject {
             getInsightGroups(for: appID)
         }
         
-        if selectedInsightGroupID == nil, let firstInsightGroupID = insightGroups?.first?.id {
+        if (selectedInsightGroupID == nil || insightGroups?.filter { $0.id == selectedInsightGroupID }.isEmpty == true), let firstInsightGroupID = insightGroups?.first?.id {
             selectedInsightGroupID = firstInsightGroupID
         }
         
