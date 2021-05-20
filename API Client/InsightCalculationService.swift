@@ -64,11 +64,13 @@ class InsightCalculationService: ObservableObject {
         guard !loadingInsightIDs.contains(insightID) else { return }
         errorInsightIDs.remove(insightID)
         loadingInsightIDs.insert(insightID)
+        
+        let timeWindowEndIsToday = Calendar.current.isDateInToday(timeWindowEnd)
 
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights",
                                  insightID.uuidString,
                                  Formatter.iso8601noFS.string(from: timeWindowBeginning),
-                                 Formatter.iso8601noFS.string(from: timeWindowEnd))
+                                 Formatter.iso8601noFS.string(from: timeWindowEndIsToday ? Date() : timeWindowEnd))
 
         api.get(url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
             if let insightDTO = try? result.get() {

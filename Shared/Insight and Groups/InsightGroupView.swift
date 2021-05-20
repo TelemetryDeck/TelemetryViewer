@@ -32,8 +32,7 @@ struct InsightGroupView: View {
             if let insightGroup = insightGroup {
                 if insightGroup.insights.count == 0 {
                     EmptyInsightGroupView(selectedInsightGroupID: insightGroup.id, appID: appID)
-                        .frame(maxWidth: 400)
-                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 } else {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: spacing)], alignment: .leading, spacing: spacing) {
                         let expandedInsights = insightGroup.insights.filter { $0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
@@ -77,7 +76,8 @@ struct InsightGroupView: View {
                     .background(Color.separatorColor)
                 }
             } else {
-                Text("No Insight Group Selected")
+                ProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
 
             AdaptiveStack {

@@ -45,5 +45,6 @@ struct EmptyInsightGroupView: View {
                 .font(.footnote)
                 .padding(.vertical)
         }
+        .frame(maxWidth: 400)
     }
 }
