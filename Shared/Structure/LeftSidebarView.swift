@@ -104,6 +104,8 @@ struct LeftSidebarView: View {
             }
         }
         .onAppear {
+            setupSidebars()
+            
             if selectedAppID == nil {
                 selectedAppID = api.apps.first?.id
             }
