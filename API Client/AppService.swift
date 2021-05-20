@@ -22,7 +22,7 @@ class AppService: ObservableObject {
     }
     
     func getTelemetryApps() -> [TelemetryApp] {
-        if apps == nil {
+        if apps == nil && api.userNotLoggedIn == false {
             getApps()
         }
         
@@ -30,7 +30,7 @@ class AppService: ObservableObject {
     }
     
     func getSelectedApp() -> TelemetryApp? {
-        if apps == nil {
+        if apps == nil && api.userNotLoggedIn == false {
             getApps()
         }
         
