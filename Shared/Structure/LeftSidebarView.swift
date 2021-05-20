@@ -36,18 +36,20 @@ struct LeftSidebarView: View {
                 }
             }
 
-            Picker(selection: $appService.selectedAppID, label: EmptyView()) {
-                ForEach(appService.getTelemetryApps()) { app in
-                    Text(app.name).tag(app.id as UUID?)
-                }
-            }
-
             if let app = appService.getSelectedApp() {
+                Section(header: Text("App")) {
+                    Picker(selection: $appService.selectedAppID, label: EmptyView()) {
+                        ForEach(appService.getTelemetryApps()) { app in
+                            Text(app.name).tag(app.id as UUID?)
+                        }
+                    }
+                }
+
                 Section(header: Text(app.name)) {
-                    
-                    
                     NavigationLink(
-                        destination: AppRootView(appID: app.id), tag: LeftSidebarViewSelection.insights, selection: $selection,
+                        destination: AppRootView(appID: app.id),
+                        tag: LeftSidebarViewSelection.insights,
+                        selection: $selection,
                         label: {
                             Label("Insights", systemImage: "app")
                         }
@@ -55,12 +57,16 @@ struct LeftSidebarView: View {
 
                     NavigationLink(
                         destination: LexiconView(appID: app.id),
+                        tag: LeftSidebarViewSelection.lexicon,
+                        selection: $selection,
                         label: {
                             Label("Lexicon", systemImage: "book")
                         }
                     )
                     NavigationLink(
                         destination: SignalList(appID: app.id),
+                        tag: LeftSidebarViewSelection.recentSignals,
+                        selection: $selection,
                         label: {
                             Label("Recent Signals", systemImage: "waveform")
                         }
@@ -68,6 +74,8 @@ struct LeftSidebarView: View {
 
                     NavigationLink(
                         destination: AppEditor(appID: app.id),
+                        tag: LeftSidebarViewSelection.appSettings,
+                        selection: $selection,
                         label: {
                             Label("App Settings", systemImage: "gear")
                         }
@@ -116,7 +124,9 @@ struct LeftSidebarView: View {
             }
         }
         .onAppear {
-            setupSidebars()
+            #if os(macOS)
+                setupSidebars()
+            #endif
         }
         .sheet(isPresented: $api.needsDecisionForMarketingEmails, content: {
             AskForMarketingEmailsView()
@@ -151,6 +161,7 @@ struct LeftSidebarView: View {
                             print(error)
                         case .success(let newApp):
                             appService.selectedAppID = newApp.id
+                            selection = .appSettings
                         }
                     }
                 }) {

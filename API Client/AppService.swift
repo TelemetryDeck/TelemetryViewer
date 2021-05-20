@@ -71,8 +71,8 @@ class AppService: ObservableObject {
         }
     }
 
-    func update(app: TelemetryApp, newName: String, callback: ((Result<TelemetryApp, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", app.id.uuidString)
+    func update(appID: UUID, newName: String, callback: ((Result<TelemetryApp, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString)
 
         api.patch(["name": newName], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
             self.getApps()
@@ -80,12 +80,13 @@ class AppService: ObservableObject {
         }
     }
 
-    func delete(app: TelemetryApp, callback: ((Result<String, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", app.id.uuidString)
+    func delete(appID: UUID, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString)
 
         api.delete(url) { [unowned self] (result: Result<String, TransferError>) in
             self.getApps()
             callback?(result)
+            self.selectedAppID = nil
         }
     }
 }

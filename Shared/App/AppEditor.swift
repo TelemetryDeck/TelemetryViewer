@@ -9,19 +9,16 @@ import SwiftUI
 import TelemetryClient
 
 struct AppEditor: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var appService: AppService
     @Environment(\.presentationMode) var presentationMode
     
     let appID: UUID
-    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
     
     @State private var newName: String = ""
     @State private var showingAlert = false
     
     func saveToAPI() {
-        if let app = app {
-            api.update(app: app, newName: newName)
-        }
+        appService.update(appID: appID, newName: newName)
     }
     
     var padding: CGFloat? {
@@ -33,7 +30,7 @@ struct AppEditor: View {
     }
     
     var body: some View {
-        if let app = app {
+        if let app = appService.getSelectedApp() {
             Form {
                 CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("App Name", text: $newName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
@@ -60,13 +57,15 @@ struct AppEditor: View {
                     .buttonStyle(SmallSecondaryButtonStyle())
                     .accentColor(.red)
                 }
+                
+                Spacer()
             }
             .padding(.horizontal, self.padding)
+            .padding(.vertical, self.padding)
             .navigationTitle("App Settings")
             .onDisappear { saveToAPI() }
             .onAppear {
                 newName = app.name
-                TelemetryManager.shared.send(TelemetrySignal.telemetryAppSettingsShown.rawValue, for: api.user?.email)
             }
             .toolbar {
                 #if os(macOS)
@@ -81,9 +80,8 @@ struct AppEditor: View {
                     title: Text("Are you sure you want to delete \(app.name)?"),
                     message: Text("This will delete the app, all insights, and all received Signals for this app. There is no undo."),
                     primaryButton: .destructive(Text("Delete")) {
-                        api.delete(app: app)
+                        appService.delete(appID: appID)
                         presentationMode.wrappedValue.dismiss()
-                        TelemetryManager.shared.send(TelemetrySignal.telemetryAppDeleted.rawValue, for: api.user?.email)
                     },
                     secondaryButton: .cancel()
                 )
