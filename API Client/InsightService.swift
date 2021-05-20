@@ -13,6 +13,7 @@ class InsightService: ObservableObject {
 
     @Published var insightGroupsByAppID: [UUID: [DTO.InsightGroup]] = [:]
     @Published var loadingAppIDs = Set<UUID>()
+    @Published var selectedInsightGroupID: UUID?
     
     private var lastLoadTimeByAppID: [UUID: Date] = [:]
 
@@ -36,10 +37,16 @@ class InsightService: ObservableObject {
             getInsightGroups(for: appID)
         }
         
+        if selectedInsightGroupID == nil, let firstInsightGroupID = insightGroups?.first?.id {
+            selectedInsightGroupID = firstInsightGroupID
+        }
+        
         return insightGroups
     }
     
     func insightGroup(id insightGroupID: UUID, in appID: UUID) -> DTO.InsightGroup? {
+        guard !loadingAppIDs.contains(appID) else { return nil }
+        
         guard let insightGroups = insightGroups(for: appID) else { return nil }
         
         guard let insightGroup = insightGroups.first(where: { $0.id == insightGroupID }) else {

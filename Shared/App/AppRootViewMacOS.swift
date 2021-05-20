@@ -12,7 +12,6 @@ struct AppRootView: View {
     @EnvironmentObject var insightService: InsightService
     
     let appID: UUID
-    @State var selectedInsightGroupID: UUID?
     
     var app: TelemetryApp? { api.app(with: appID) }
     
@@ -42,7 +41,7 @@ struct AppRootView: View {
     
     var body: some View {
         Group {
-            if let selectedInsightGroupID = selectedInsightGroupID {
+            if let selectedInsightGroupID = insightService.selectedInsightGroupID {
                 InsightGroupView(appID: appID, insightGroupID: selectedInsightGroupID)
             } else {
                 Text("...")
@@ -50,11 +49,12 @@ struct AppRootView: View {
         }
         .navigationTitle(app?.name ?? "No App Selected")
         .onAppear {
+            insightService.selectedInsightGroupID = nil
             setupSidebars()
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
-                Picker("View Mode", selection: $selectedInsightGroupID) {
+                Picker("View Mode", selection: $insightService.selectedInsightGroupID) {
                     ForEach(insightService.insightGroups(for: appID) ?? []) { insightGroup in
                         Text(insightGroup.title).tag(insightGroup.id as UUID?)
                     }
@@ -78,7 +78,7 @@ struct AppRootView: View {
             }
             
             ToolbarItem {
-                if let selectedInsightGroupID = selectedInsightGroupID, let insightGroup = insightService.insightGroup(id: selectedInsightGroupID, in: appID), let app = app {
+                if let selectedInsightGroupID = insightService.selectedInsightGroupID, let insightGroup = insightService.insightGroup(id: selectedInsightGroupID, in: appID), let app = app {
                     Menu {
                         Section {
                             Button("Generic Timeseries Insight") {
