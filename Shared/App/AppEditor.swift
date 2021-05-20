@@ -65,7 +65,7 @@ struct AppEditor: View {
             .navigationTitle("App Settings")
             .onDisappear { saveToAPI() }
             .onAppear {
-                newName = app.name
+                newName = appService.getSelectedApp()?.name ?? "----"
             }
             .toolbar {
                 #if os(macOS)

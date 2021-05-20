@@ -10,34 +10,13 @@ import SwiftUI
 struct AppRootView: View {
     @EnvironmentObject var api: APIRepresentative
     @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightCalculationService: InsightCalculationService
+    @State private var showDatePicker: Bool = false
     
     let appID: UUID
     
     var app: TelemetryApp? { api.app(with: appID) }
     
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        return formatter
-    }()
-    
-    var timeIntervalDescription: String {
-        let displayTimeWindowEnd = api.timeWindowEnd ?? Date()
-        let displayTimeWindowBegin = api.timeWindowBeginning ??
-            displayTimeWindowEnd.addingTimeInterval(-60 * 60 * 24 * 30)
-        
-        if api.timeWindowEnd == nil {
-            if api.timeWindowBeginning == nil {
-                return "Showing Last 30 Days"
-            } else {
-                let components = Calendar.current.dateComponents([.day], from: displayTimeWindowBegin, to: displayTimeWindowEnd)
-                return "Showing Last \(components.day ?? 0) Days"
-            }
-        } else {
-            return "\(dateFormatter.string(from: displayTimeWindowBegin)) – \(dateFormatter.string(from: displayTimeWindowEnd))"
-        }
-    }
     
     var body: some View {
         Group {
@@ -74,7 +53,12 @@ struct AppRootView: View {
             }
             
             ToolbarItem {
-                InsightDataTimeIntervalPicker()
+                Button(insightCalculationService.timeIntervalDescription) {
+                    self.showDatePicker = true
+                }.popover(
+                    isPresented: self.$showDatePicker,
+                    arrowEdge: .bottom
+                ) { InsightDataTimeIntervalPicker().padding() }
             }
             
             ToolbarItem {

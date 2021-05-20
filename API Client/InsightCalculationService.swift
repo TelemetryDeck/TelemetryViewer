@@ -35,10 +35,100 @@ class InsightCalculationService: ObservableObject {
         self.api = api
     }
 
+    enum CurrentOrPrevious {
+        case current
+        case previous
+    }
+    
+    func setTimeIntervalTo(days: Int) {
+        timeWindowEnd = Date()
+        timeWindowBeginning = Date() - TimeInterval(days) * 24 * 3600
+    }
+
+    func setTimeIntervalTo(month currentOrPrevious: CurrentOrPrevious) {
+        let calendar = Calendar.current
+        
+        let calendarComponents: Set<Calendar.Component> = [.year, .month]
+
+        switch currentOrPrevious {
+        case .current:
+            // current month
+            timeWindowEnd = Date()
+            let components = calendar.dateComponents(calendarComponents, from: timeWindowEnd)
+            timeWindowBeginning = calendar.date(from: components)!
+        case .previous:
+            // previous month
+            let beginningOfThisMonth = calendar.date(from: calendar.dateComponents(calendarComponents, from: Date()))!
+            let endOfPreviousMonth = calendar.date(byAdding: (DateComponents(minute: -1)), to: beginningOfThisMonth)!
+            let beginningOfPreviousMonth = calendar.date(from: calendar.dateComponents(calendarComponents, from: endOfPreviousMonth))!
+            
+            timeWindowBeginning = beginningOfPreviousMonth
+            timeWindowEnd = endOfPreviousMonth
+        }
+    }
+    
+    func setTimeIntervalTo(week currentOrPrevious: CurrentOrPrevious) {
+        let calendar = Calendar.current
+        let beginningOfCurrentWeek = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: Date()).date!
+
+        switch currentOrPrevious {
+        case .current:
+            // current week
+            timeWindowEnd = Date()
+            timeWindowBeginning = beginningOfCurrentWeek
+        case .previous:
+            // previous week
+            let endOfPreviousWeek = calendar.date(byAdding: (DateComponents(minute: -1)), to: beginningOfCurrentWeek)!
+            let beginningOfPreviousWeek = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: endOfPreviousWeek).date!
+            timeWindowBeginning = beginningOfPreviousWeek
+            timeWindowEnd = endOfPreviousWeek
+        }
+    }
+    
+    func setTimeIntervalTo(quarter currentOrPrevious: CurrentOrPrevious) {
+        let calendar = Calendar.current
+
+        let month = Double(calendar.component(.month, from: Date()))
+        let numberOfMonths = Double(calendar.monthSymbols.count)
+        let numberOfMonthsInQuarter = numberOfMonths / 4
+        let currentQuarterNumber = Int(ceil(month / numberOfMonthsInQuarter))
+        let firstMonthInQuarterNumber = ((currentQuarterNumber - 1) * Int(numberOfMonthsInQuarter)) + 1
+        
+        var components = DateComponents()
+        components.month = firstMonthInQuarterNumber
+        components.year = calendar.component(.year, from: Date())
+        let beginningOfCurrentQuarter = calendar.date(from: components)!
+        
+        switch currentOrPrevious {
+        case .current:
+            // current week
+            timeWindowEnd = Date()
+            timeWindowBeginning = beginningOfCurrentQuarter
+        case .previous:
+            // previous week
+            let endOfPreviousQuarter = calendar.date(byAdding: DateComponents(minute: -1), to: beginningOfCurrentQuarter)!
+            let beginningOfPreviousQuarter = calendar.date(byAdding: DateComponents(month: -3), to: beginningOfCurrentQuarter)!
+            
+            timeWindowBeginning = beginningOfPreviousQuarter
+            timeWindowEnd = endOfPreviousQuarter
+        }
+    }
+
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
+    var timeIntervalDescription: String {
+        return "\(dateFormatter.string(from: timeWindowBeginning)) – \(dateFormatter.string(from: timeWindowEnd))"
+    }
+
     func isInsightCalculating(id insightID: UUID) -> Bool {
         return loadingInsightIDs.contains(insightID)
     }
-    
+
     func isInsightCalculationFailed(id insightID: UUID) -> Bool {
         return errorInsightIDs.contains(insightID)
     }
@@ -64,7 +154,7 @@ class InsightCalculationService: ObservableObject {
         guard !loadingInsightIDs.contains(insightID) else { return }
         errorInsightIDs.remove(insightID)
         loadingInsightIDs.insert(insightID)
-        
+
         let timeWindowEndIsToday = Calendar.current.isDateInToday(timeWindowEnd)
 
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights",
