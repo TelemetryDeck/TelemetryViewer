@@ -48,6 +48,12 @@ struct DonutLegend: View {
             values.append(value)
         }
         
+        let totalSum: Double = chartDataPoints.reduce(0.0) { result, chartDataPoint in
+            result + chartDataPoint.yAxisValue
+        }
+        
+        values.append(.init(id: -1, xAxisValue: "Total", yAxisValue: totalSum))
+        
         return values
     }
     
@@ -55,12 +61,18 @@ struct DonutLegend: View {
         (Double(1) / segmentCount) * (segmentCount - Double(index))
     }
     
+    func color(for index: Int) -> Color {
+        guard index >= 0 else { return Color.clear }
+        return Color.accentColor.opacity(opacity(segmentCount: Double(donutLegendEntryValues.count), index: index))
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(donutLegendEntryValues) { value in
-                DonutLegendEntry(value: value, color: .accentColor.opacity(opacity(segmentCount: Double(donutLegendEntryValues.count), index: value.id)), isSelected: isSelected)
+                DonutLegendEntry(value: value, color: color(for: value.id), isSelected: isSelected)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 4)
+                    .opacity(value.id < 0 ? 0.5 : 1.0)
             }
         }
     }
