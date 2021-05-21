@@ -79,9 +79,9 @@ struct InsightDataTimeIntervalPicker: View {
                 Divider()
                 DatePicker("Until", selection: pickerTimeWindowEndBinding, in: ...Date(), displayedComponents: .date)
             }
-            
-            Spacer()
         }
+        .buttonStyle(SmallSecondaryButtonStyle())
+        
     }
 }
 
@@ -89,5 +89,6 @@ struct InsightDataTimeIntervalPicker_Previews: PreviewProvider {
     static var previews: some View {
         InsightDataTimeIntervalPicker()
             .environmentObject(InsightCalculationService(api: APIRepresentative()))
+            .previewLayout(PreviewLayout.fixed(width: 400, height: 300))
     }
 }

@@ -19,4 +19,5 @@ extension Color {
 
     static let telemetryOrange = Color("Torange")
     static let cardBackground = Color("CardBackgroundColor")
+    static let customTextColor = Color("CustomTextColor")
 }

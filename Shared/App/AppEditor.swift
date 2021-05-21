@@ -10,7 +10,6 @@ import TelemetryClient
 
 struct AppEditor: View {
     @EnvironmentObject var appService: AppService
-    @Environment(\.presentationMode) var presentationMode
     
     let appID: UUID
     
@@ -67,21 +66,12 @@ struct AppEditor: View {
             .onAppear {
                 newName = appService.getSelectedApp()?.name ?? "----"
             }
-            .toolbar {
-                #if os(macOS)
-                #else
-                Button("Done") {
-                    presentationMode.wrappedValue.dismiss()
-                }
-                #endif
-            }
             .alert(isPresented: $showingAlert) {
                 Alert(
                     title: Text("Are you sure you want to delete \(app.name)?"),
                     message: Text("This will delete the app, all insights, and all received Signals for this app. There is no undo."),
                     primaryButton: .destructive(Text("Delete")) {
                         appService.delete(appID: appID)
-                        presentationMode.wrappedValue.dismiss()
                     },
                     secondaryButton: .cancel()
                 )

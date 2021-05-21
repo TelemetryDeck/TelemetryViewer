@@ -40,7 +40,9 @@ struct LeftSidebarView: View {
                 Section(header: Text("App")) {
                     Picker(selection: $appService.selectedAppID, label: EmptyView()) {
                         ForEach(appService.getTelemetryApps()) { app in
-                            Text(app.name).tag(app.id as UUID?)
+                            Text(app.name)
+                                .foregroundColor(.customTextColor)
+                                .tag(app.id as UUID?)
                         }
                     }
                 }
