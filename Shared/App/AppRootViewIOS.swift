@@ -97,9 +97,10 @@ struct AppRootView: View {
                 Rectangle()
                     .fill(Color.grayColor.opacity(0.4))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation {
-                            showDatePicker = false
+                            showDatePicker.toggle()
                         }
                     }
 

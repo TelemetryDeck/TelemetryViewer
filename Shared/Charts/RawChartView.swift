@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RawChartView: View {
     @EnvironmentObject var insightCalculationService: InsightCalculationService
-    
+
     let insightID: UUID
     let insightGroupID: UUID
     let appID: UUID
@@ -18,7 +18,7 @@ struct RawChartView: View {
     private var isSelected: Bool {
         topSelectedInsightID == insightID
     }
-    
+
     var body: some View {
         if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), !insightData.data.isEmpty {
             if insightData.data.count > 2 || insightData.data.first?.xAxisDate == nil {
@@ -39,7 +39,7 @@ struct RawChartView: View {
     }
 }
 
-//struct RawChartView_Previews: PreviewProvider {
+// struct RawChartView_Previews: PreviewProvider {
 //    static var api: APIRepresentative = {
 //        let insight1 = DTO.InsightCalculationResult(
 //            id: UUID(),
@@ -132,7 +132,7 @@ struct RawChartView: View {
 //                .previewLayout(.fixed(width: 400, height: 200))
 //        }
 //    }
-//}
+// }
 
 struct SingleValueView: View {
     var insightData: DTO.InsightCalculationResult
@@ -149,7 +149,7 @@ struct SingleValueView: View {
         VStack(alignment: .leading) {
             if let lastData = insightData.data.last,
                let doubleValue = lastData.yAxisDouble,
-               let dateValue = xAxisDefinition(insightData: lastData, style: .date)
+               let dateValue = xAxisDefinition(insightData: lastData, groupBy: insightData.groupBy)
             {
                 VStack(alignment: .leading) {
                     ValueAndUnitView(value: doubleValue, unit: "", shouldFormatBigNumbers: true)
@@ -175,9 +175,9 @@ struct SingleValueView: View {
         }
     }
 
-    func xAxisDefinition(insightData: DTO.InsightData, style: Text.DateStyle) -> Text {
+    func xAxisDefinition(insightData: DTO.InsightData, groupBy: InsightGroupByInterval? = .day) -> Text {
         if let date = insightData.xAxisDate {
-            return Text(date, style: style)
+            return Text(dateString(from: date, groupedBy: groupBy))
         }
 
         return Text(insightData.xAxisValue)
@@ -206,11 +206,11 @@ struct SingleValueView: View {
         guard insightData.data.count > 1 else { return Text("") }
         let previousData = insightData.data[0]
 
-        guard let currentValue = insightData.data[1].yAxisNumber, let previousValue = insightData.data[0].yAxisNumber else { return xAxisDefinition(insightData: previousData, style: .date) }
+        guard let currentValue = insightData.data[1].yAxisNumber, let previousValue = insightData.data[0].yAxisNumber else { return xAxisDefinition(insightData: previousData, groupBy: insightData.groupBy) }
 
         let percentage: Double = (currentValue.doubleValue - previousValue.doubleValue) / previousValue.doubleValue
 
-        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, style: .date) + Text(" (\(previousData.yAxisValue ?? ""))")
+        return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, groupBy: insightData.groupBy) + Text(" (\(previousData.yAxisValue ?? ""))")
     }
 }
 
@@ -232,13 +232,7 @@ struct RawTableView: View {
                         Group {
                             Group {
                                 if let xAxisDate = dataRow.xAxisDate {
-                                    HStack {
-                                        Text(xAxisDate, style: .date)
-
-                                        if insightData.groupBy == .hour {
-                                            Text(xAxisDate, style: .time)
-                                        }
-                                    }
+                                    Text(dateString(from: xAxisDate, groupedBy: insightData.groupBy))
                                 } else {
                                     Text(dataRow.xAxisValue)
                                 }
@@ -263,4 +257,28 @@ struct RawTableView: View {
             }
         }
     }
+}
+
+fileprivate func dateString(from date: Date, groupedBy groupByInterval: InsightGroupByInterval?) -> String {
+    let formatter = DateFormatter()
+
+    if let groupByInterval = groupByInterval {
+        switch groupByInterval {
+        case .hour:
+            formatter.dateStyle = .short
+            formatter.timeStyle = .medium
+            return formatter.string(from: date)
+        case .day:
+            formatter.dateStyle = .long
+            return formatter.string(from: date)
+        case .week:
+            formatter.dateStyle = .long
+            return "Week of \(formatter.string(from: date))"
+        case .month:
+            formatter.setLocalizedDateFormatFromTemplate("MMMM yyyy")
+            return formatter.string(from: date)
+        }
+    }
+
+    return "\(date)"
 }
