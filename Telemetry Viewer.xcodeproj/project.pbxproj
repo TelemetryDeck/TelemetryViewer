@@ -50,6 +50,9 @@
 		2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
 		2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
 		2B3CC0DE264D4AFF0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
+		2B4B9F892657B0FF002953B9 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B9F882657B0FF002953B9 /* DateExtensions.swift */; };
+		2B4B9F8A2657B0FF002953B9 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B9F882657B0FF002953B9 /* DateExtensions.swift */; };
+		2B4B9F8B2657B0FF002953B9 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B9F882657B0FF002953B9 /* DateExtensions.swift */; };
 		2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B61B950264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
@@ -264,6 +267,7 @@
 		2B3CC0D2262D8EF10038B528 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconService.swift; sourceTree = "<group>"; };
 		2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexiconSignalDTO.swift; sourceTree = "<group>"; };
+		2B4B9F882657B0FF002953B9 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
 		2B61B951264C3061003F62C4 /* SignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalDTO.swift; sourceTree = "<group>"; };
 		2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequestBody.swift; sourceTree = "<group>"; };
@@ -624,6 +628,7 @@
 				DC0CCF7525F03052008EB297 /* View+toggleSidebar.swift */,
 				2BC522E52625FC3400E643AC /* URL+Open.swift */,
 				2BC29ABD263DFAE100CE6CEC /* ProgressView+Scale.swift */,
+				2B4B9F882657B0FF002953B9 /* DateExtensions.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -948,6 +953,7 @@
 				DC25A5A3256C0AFE00EE84DA /* RoundedCorners.swift in Sources */,
 				2B318E872633590B00870EE9 /* ChartLegend.swift in Sources */,
 				2B318E8B2633596100870EE9 /* DonutChart.swift in Sources */,
+				2B4B9F8B2657B0FF002953B9 /* DateExtensions.swift in Sources */,
 				DC25A573256A87D600EE84DA /* Color.swift in Sources */,
 				DC92395925E5B2DE00D1729C /* ChartRangeView.swift in Sources */,
 				2BDD8E7E26550C9300C6E51D /* InsightReloadButtonView.swift in Sources */,
@@ -1036,6 +1042,7 @@
 				DCFCDCBE25DD82BF00ACC529 /* InsightEditor.swift in Sources */,
 				DC591398252DF975007360A9 /* DonutChartView.swift in Sources */,
 				DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
+				2B4B9F892657B0FF002953B9 /* DateExtensions.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
 				DCF8978B25C8726600E0BE57 /* ValueUnitAndTitleView.swift in Sources */,
 				2BDD8E6C2651A9BD00C6E51D /* OptionalToggle.swift in Sources */,
@@ -1131,6 +1138,7 @@
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC0CCF6E25F02FA9008EB297 /* NSView+FindViews.swift in Sources */,
 				2B19DEBF26444B2B0086F70E /* ChartDataPoint.swift in Sources */,
+				2B4B9F8A2657B0FF002953B9 /* DateExtensions.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				DC4504FB25C4940E0031C7FD /* BigNumberFormatter.swift in Sources */,
 				2BC29ABF263DFAE100CE6CEC /* ProgressView+Scale.swift in Sources */,

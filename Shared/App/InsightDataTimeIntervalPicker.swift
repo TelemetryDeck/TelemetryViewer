@@ -13,34 +13,67 @@ struct InsightDataTimeIntervalPicker: View {
     var body: some View {
         VStack {
             HStack {
-                Button("7 Days") { insightCalculationService.setTimeIntervalTo(days: 7) }
-                Button("30 Days") { insightCalculationService.setTimeIntervalTo(days: 30) }
-                Button("90 Days") { insightCalculationService.setTimeIntervalTo(days: 90) }
-                Button("365 Days") { insightCalculationService.setTimeIntervalTo(days: 365) }
+                Button("7 Days") {
+                    insightCalculationService.timeWindowEnd = .end(of: .current(.day))
+                    insightCalculationService.timeWindowBeginning = .goBack(days: 7)
+                }
+                Button("30 Days") {
+                    insightCalculationService.timeWindowEnd = .end(of: .current(.day))
+                    insightCalculationService.timeWindowBeginning = .goBack(days: 30)
+                }
+                Button("90 Days") {
+                    insightCalculationService.timeWindowEnd = .end(of: .current(.day))
+                    insightCalculationService.timeWindowBeginning = .goBack(days: 90)
+                }
+                Button("365 Days") {
+                    insightCalculationService.timeWindowEnd = .end(of: .current(.day))
+                    insightCalculationService.timeWindowBeginning = .goBack(days: 365)
+                }
             }
 
             Divider()
 
             HStack {
-                Button("Previous Week") { insightCalculationService.setTimeIntervalTo(week: .previous) }
-                Button("Current Week") { insightCalculationService.setTimeIntervalTo(week: .current) }
+                Button("Previous Week") { insightCalculationService.timeWindowEnd = .end(of: .previous(.weekOfYear))
+                    insightCalculationService.timeWindowBeginning = .beginning(of: .previous(.weekOfYear))
+                }
+                Button("Current Week") { insightCalculationService.timeWindowEnd = .end(of: .current(.weekOfYear))
+                    insightCalculationService.timeWindowBeginning = .beginning(of: .current(.weekOfYear))
+                }
+            }
+            HStack {
+                Button("Previous Month") { insightCalculationService.timeWindowEnd = .end(of: .previous(.month))
+                    insightCalculationService.timeWindowBeginning = .beginning(of: .previous(.month))
+                }
+                Button("Current Month") { insightCalculationService.timeWindowEnd = .end(of: .current(.month))
+                    insightCalculationService.timeWindowBeginning = .beginning(of: .current(.month))
+                }
             }
 
             HStack {
-                Button("Previous Month") { insightCalculationService.setTimeIntervalTo(month: .previous) }
-                Button("Current Month") { insightCalculationService.setTimeIntervalTo(month: .current) }
+                Button("Previous Year") { insightCalculationService.timeWindowEnd = .end(of: .previous(.year))
+                    insightCalculationService.timeWindowBeginning = .beginning(of: .previous(.year))
+                }
+                Button("Current Year") { insightCalculationService.timeWindowEnd = .end(of: .current(.year))
+                    insightCalculationService.timeWindowBeginning = .beginning(of: .current(.year))
+                }
             }
 
-            HStack {
-                Button("Previous Quarter") { insightCalculationService.setTimeIntervalTo(quarter: .previous) }
-                Button("Current Quarter") { insightCalculationService.setTimeIntervalTo(quarter: .current) }
-            }
+            let pickerTimeWindowBeginningBinding = Binding(
+                get: { self.insightCalculationService.timeWindowBeginningDate },
+                set: { self.insightCalculationService.timeWindowBeginning = .absolute(date: $0) }
+            )
+
+            let pickerTimeWindowEndBinding = Binding(
+                get: { self.insightCalculationService.timeWindowEndDate },
+                set: { self.insightCalculationService.timeWindowEnd = .absolute(date: $0) }
+            )
 
             Divider()
             HStack {
-                DatePicker("From", selection: $insightCalculationService.timeWindowBeginning, in: ...insightCalculationService.timeWindowEnd, displayedComponents: .date)
+                DatePicker("From", selection: pickerTimeWindowBeginningBinding, in: ...insightCalculationService.timeWindowEndDate, displayedComponents: .date)
                 Divider()
-                DatePicker("Until", selection: $insightCalculationService.timeWindowEnd, in: ...Date(), displayedComponents: .date)
+                DatePicker("Until", selection: pickerTimeWindowEndBinding, in: ...Date(), displayedComponents: .date)
             }
         }
     }

@@ -15,19 +15,37 @@ class InsightCalculationService: ObservableObject {
     @Published var loadingInsightIDs = Set<UUID>()
     @Published var errorInsightIDs = Set<UUID>()
 
-    /// The beginning of the time window. If nil, defaults to current Date minus 30 days
-    @Published var timeWindowBeginning = Date() - 30 * 24 * 3600 {
-        didSet {
-            print("new beginning: \(timeWindowBeginning)")
-            invalidateAllCalculationResults()
-        }
-    }
+    @Published var timeWindowBeginning: RelativeDateDescription = .beginning(of: .previous(.month)) { didSet { invalidateAllCalculationResults() }}
+    @Published var timeWindowEnd: RelativeDateDescription = .end(of: .current(.month)) { didSet { invalidateAllCalculationResults() }}
 
-    /// The end of the currently displayed time window. If nil, defaults to date()
-    @Published var timeWindowEnd = Date() {
-        didSet {
-            print("new end: \(timeWindowEnd)")
-            invalidateAllCalculationResults()
+    var timeWindowBeginningDate: Date { resolvedDate(from: timeWindowBeginning, defaultDate: Date() - 30 * 24 * 3600) }
+    var timeWindowEndDate: Date { resolvedDate(from: timeWindowEnd, defaultDate: Date()) }
+
+    func resolvedDate(from date: RelativeDateDescription, defaultDate: Date) -> Date {
+        let currentDate = Date()
+
+        switch date {
+        case .end(of: let of):
+            switch of {
+            case .current(let calendarComponent):
+                return currentDate.end(of: calendarComponent) ?? defaultDate
+            case .previous(let calendarComponent):
+                return currentDate.beginning(of: calendarComponent)?.adding(calendarComponent, value: -1).end(of: calendarComponent) ?? defaultDate
+            }
+
+        case .beginning(of: let of):
+            switch of {
+            case .current(let calendarComponent):
+                return currentDate.beginning(of: calendarComponent) ?? defaultDate
+            case .previous(let calendarComponent):
+                return currentDate.beginning(of: calendarComponent)?.adding(calendarComponent, value: -1).beginning(of: calendarComponent) ?? defaultDate
+            }
+
+        case .goBack(days: let days):
+            return currentDate.adding(.day, value: -days).beginning(of: .day) ?? defaultDate
+
+        case .absolute(date: let date):
+            return date
         }
     }
 
@@ -35,83 +53,21 @@ class InsightCalculationService: ObservableObject {
         self.api = api
     }
 
+    enum RelativeDateDescription {
+        case end(of: CurrentOrPrevious)
+        case beginning(of: CurrentOrPrevious)
+        case goBack(days: Int)
+        case absolute(date: Date)
+    }
+
     enum CurrentOrPrevious {
-        case current
-        case previous
+        case current(_ value: Calendar.Component)
+        case previous(_ value: Calendar.Component)
     }
-    
+
     func setTimeIntervalTo(days: Int) {
-        timeWindowEnd = Date()
-        timeWindowBeginning = Date() - TimeInterval(days) * 24 * 3600
-    }
-
-    func setTimeIntervalTo(month currentOrPrevious: CurrentOrPrevious) {
-        let calendar = Calendar.current
-        
-        let calendarComponents: Set<Calendar.Component> = [.year, .month]
-
-        switch currentOrPrevious {
-        case .current:
-            // current month
-            timeWindowEnd = Date()
-            let components = calendar.dateComponents(calendarComponents, from: timeWindowEnd)
-            timeWindowBeginning = calendar.date(from: components)!
-        case .previous:
-            // previous month
-            let beginningOfThisMonth = calendar.date(from: calendar.dateComponents(calendarComponents, from: Date()))!
-            let endOfPreviousMonth = calendar.date(byAdding: (DateComponents(minute: -1)), to: beginningOfThisMonth)!
-            let beginningOfPreviousMonth = calendar.date(from: calendar.dateComponents(calendarComponents, from: endOfPreviousMonth))!
-            
-            timeWindowBeginning = beginningOfPreviousMonth
-            timeWindowEnd = endOfPreviousMonth
-        }
-    }
-    
-    func setTimeIntervalTo(week currentOrPrevious: CurrentOrPrevious) {
-        let calendar = Calendar.current
-        let beginningOfCurrentWeek = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: Date()).date!
-
-        switch currentOrPrevious {
-        case .current:
-            // current week
-            timeWindowEnd = Date()
-            timeWindowBeginning = beginningOfCurrentWeek
-        case .previous:
-            // previous week
-            let endOfPreviousWeek = calendar.date(byAdding: (DateComponents(minute: -1)), to: beginningOfCurrentWeek)!
-            let beginningOfPreviousWeek = calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: endOfPreviousWeek).date!
-            timeWindowBeginning = beginningOfPreviousWeek
-            timeWindowEnd = endOfPreviousWeek
-        }
-    }
-    
-    func setTimeIntervalTo(quarter currentOrPrevious: CurrentOrPrevious) {
-        let calendar = Calendar.current
-
-        let month = Double(calendar.component(.month, from: Date()))
-        let numberOfMonths = Double(calendar.monthSymbols.count)
-        let numberOfMonthsInQuarter = numberOfMonths / 4
-        let currentQuarterNumber = Int(ceil(month / numberOfMonthsInQuarter))
-        let firstMonthInQuarterNumber = ((currentQuarterNumber - 1) * Int(numberOfMonthsInQuarter)) + 1
-        
-        var components = DateComponents()
-        components.month = firstMonthInQuarterNumber
-        components.year = calendar.component(.year, from: Date())
-        let beginningOfCurrentQuarter = calendar.date(from: components)!
-        
-        switch currentOrPrevious {
-        case .current:
-            // current week
-            timeWindowEnd = Date()
-            timeWindowBeginning = beginningOfCurrentQuarter
-        case .previous:
-            // previous week
-            let endOfPreviousQuarter = calendar.date(byAdding: DateComponents(minute: -1), to: beginningOfCurrentQuarter)!
-            let beginningOfPreviousQuarter = calendar.date(byAdding: DateComponents(month: -3), to: beginningOfCurrentQuarter)!
-            
-            timeWindowBeginning = beginningOfPreviousQuarter
-            timeWindowEnd = endOfPreviousQuarter
-        }
+        timeWindowEnd = .end(of: .current(.day))
+        timeWindowBeginning = .goBack(days: days)
     }
 
     private let dateFormatter: DateFormatter = {
@@ -122,7 +78,7 @@ class InsightCalculationService: ObservableObject {
     }()
 
     var timeIntervalDescription: String {
-        return "\(dateFormatter.string(from: timeWindowBeginning)) – \(dateFormatter.string(from: timeWindowEnd))"
+        return "\(dateFormatter.string(from: timeWindowBeginningDate)) – \(dateFormatter.string(from: timeWindowEndDate))"
     }
 
     func isInsightCalculating(id insightID: UUID) -> Bool {
@@ -155,12 +111,12 @@ class InsightCalculationService: ObservableObject {
         errorInsightIDs.remove(insightID)
         loadingInsightIDs.insert(insightID)
 
-        let timeWindowEndIsToday = Calendar.current.isDateInToday(timeWindowEnd)
+        let timeWindowEndIsToday = Calendar.current.isDateInToday(timeWindowEndDate)
 
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights",
                                  insightID.uuidString,
-                                 Formatter.iso8601noFS.string(from: timeWindowBeginning),
-                                 Formatter.iso8601noFS.string(from: timeWindowEndIsToday ? Date() : timeWindowEnd))
+                                 Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
+                                 Formatter.iso8601noFS.string(from: timeWindowEndIsToday ? Date() : timeWindowEndDate))
 
         api.get(url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
             if let insightDTO = try? result.get() {
