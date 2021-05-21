@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct AppInfoView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var appService: AppService
 
     var body: some View {
         Group {
-            if api.apps.count > 0 {
+            if appService.getTelemetryApps().count > 0 {
                 Text("Please Select an App")
                     .foregroundColor(.grayColor)
             } else {
@@ -22,7 +22,7 @@ struct AppInfoView: View {
                         .foregroundColor(.grayColor)
                     VStack {
                         Button("Create First App") {
-                            api.create(appNamed: "New App")
+                            appService.create(appNamed: "New App")
                         }
                         .buttonStyle(SmallPrimaryButtonStyle())
 

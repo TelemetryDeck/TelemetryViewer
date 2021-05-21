@@ -27,24 +27,25 @@ struct InsightGroupEditorContent {
 
 struct InsightGroupEditor: View {
     @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var insightService: InsightService
     @State var insightGroupDTO: InsightGroupEditorContent
     @State private var showingAlert = false
 
-    let app: TelemetryApp
+    let appID: UUID
     let insightGroup: DTO.InsightGroup
 
-    init(app: TelemetryApp, insightGroup: DTO.InsightGroup) {
-        self.app = app
+    init(appID: UUID, insightGroup: DTO.InsightGroup) {
+        self.appID = appID
         self.insightGroup = insightGroup
         _insightGroupDTO = State(initialValue: InsightGroupEditorContent.from(insightGroup: insightGroup))
     }
 
     func save() {
-        api.update(insightGroup: insightGroupDTO.getInsightGroupDTO(), in: app)
+        insightService.update(insightGroup: insightGroup, in: appID)
     }
 
     func delete() {
-        api.delete(insightGroup: insightGroup, in: app)
+        insightService.delete(insightGroupID: insightGroup.id, in: appID)
     }
 
     var body: some View {

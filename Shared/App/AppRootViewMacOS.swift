@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct AppRootView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var appService: AppService
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
     @State private var showDatePicker: Bool = false
     
     let appID: UUID
-    
-    var app: TelemetryApp? { api.app(with: appID) }
-    
     
     var body: some View {
         Group {
@@ -26,7 +23,7 @@ struct AppRootView: View {
                 Text("...")
             }
         }
-        .navigationTitle(app?.name ?? "No App Selected")
+        .navigationTitle(appService.getSelectedApp()?.name ?? "No App Selected")
         .onAppear {
             insightService.selectedInsightGroupID = nil
             setupSidebars()
@@ -40,9 +37,9 @@ struct AppRootView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                     
-                if let app = app {
+                if appService.getSelectedApp() != nil {
                     Button(action: {
-                        api.create(insightGroupNamed: "New Group", for: app)
+                        insightService.create(insightGroupNamed: "New Group", for: appID)
                     }) {
                         HStack {
                             Image(systemName: "plus")
@@ -62,39 +59,39 @@ struct AppRootView: View {
             }
             
             ToolbarItem {
-                if let selectedInsightGroupID = insightService.selectedInsightGroupID, let insightGroup = insightService.insightGroup(id: selectedInsightGroupID, in: appID), let app = app {
+                if let selectedInsightGroupID = insightService.selectedInsightGroupID, let insightGroup = insightService.insightGroup(id: selectedInsightGroupID, in: appID), appService.getSelectedApp() != nil {
                     Menu {
                         Section {
                             Button("Generic Timeseries Insight") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newTimeSeriesInsight(groupID: insightGroup.id)
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                             
                             Button("Generic Breakdown Insight") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(groupID: insightGroup.id)
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                         }
                         
                         Section {
                             Button("Daily Active Users") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newDailyUserCountInsight(groupID: insightGroup.id)
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                             
                             Button("Weekly Active Users") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newWeeklyUserCountInsight(groupID: insightGroup.id)
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                             
                             Button("Monthly Active Users") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newMonthlyUserCountInsight(groupID: insightGroup.id)
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                             
                             Button("Daily Signals") {
                                 let definitionRequestBody = InsightDefinitionRequestBody.newSignalInsight(groupID: insightGroup.id)
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                         }
                         
@@ -105,7 +102,7 @@ struct AppRootView: View {
                                     title: "App Versions Breakdown",
                                     breakdownKey: "appVersion"
                                 )
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                             
                             Button("Build Number Breakdown") {
@@ -114,7 +111,7 @@ struct AppRootView: View {
                                     title: "Build Number Breakdown",
                                     breakdownKey: "buildNumber"
                                 )
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                             
                             Button("Device Type Breakdown") {
@@ -123,7 +120,7 @@ struct AppRootView: View {
                                     title: "Device Type Breakdown",
                                     breakdownKey: "modelName"
                                 )
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                             
                             Button("OS Breakdown") {
@@ -132,7 +129,7 @@ struct AppRootView: View {
                                     title: "OS Breakdown",
                                     breakdownKey: "systemVersion"
                                 )
-                                api.create(insightWith: definitionRequestBody, in: insightGroup, for: app) { _ in api.getInsightGroups(for: app) }
+                                insightService.create(insightWith: definitionRequestBody, in: insightGroup.id, for: appID)
                             }
                         }
                     }
