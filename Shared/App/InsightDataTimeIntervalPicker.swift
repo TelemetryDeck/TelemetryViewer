@@ -79,6 +79,8 @@ struct InsightDataTimeIntervalPicker: View {
                 Divider()
                 DatePicker("Until", selection: pickerTimeWindowEndBinding, in: ...Date(), displayedComponents: .date)
             }
+            
+            Spacer()
         }
     }
 }

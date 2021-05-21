@@ -329,7 +329,6 @@ struct InsightEditor: View {
                 ScrollView {
                     form
                         .padding()
-
                         .toolbar {
                             ToolbarItemGroup {
                                 Spacer()
@@ -344,10 +343,8 @@ struct InsightEditor: View {
                 }
             #else
                 VStack {
-                    if let app = app, let insightGroup = insightGroup, let insight = insight {
-                        InsightView(topSelectedInsightID: .constant(nil), app: app, insightGroup: insightGroup, insight: insight)
-                            .frame(maxHeight: 200)
-                    }
+                    InsightView(topSelectedInsightID: .constant(nil), appID: appID, insightGroupID: insightGroupID, insightID: insightID)
+                        .frame(maxHeight: 200)
 
                     form
                 }
