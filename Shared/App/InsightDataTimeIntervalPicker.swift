@@ -34,27 +34,31 @@ struct InsightDataTimeIntervalPicker: View {
             Divider()
 
             HStack {
-                Button("Previous Week") { insightCalculationService.timeWindowEnd = .end(of: .previous(.weekOfYear))
+                Button("Last Week") { insightCalculationService.timeWindowEnd = .end(of: .previous(.weekOfYear))
                     insightCalculationService.timeWindowBeginning = .beginning(of: .previous(.weekOfYear))
                 }
-                Button("Current Week") { insightCalculationService.timeWindowEnd = .end(of: .current(.weekOfYear))
+                Button("This Week") { insightCalculationService.timeWindowEnd = .end(of: .current(.weekOfYear))
                     insightCalculationService.timeWindowBeginning = .beginning(of: .current(.weekOfYear))
                 }
             }
             HStack {
-                Button("Previous Month") { insightCalculationService.timeWindowEnd = .end(of: .previous(.month))
+                Button("Last Month") { insightCalculationService.timeWindowEnd = .end(of: .previous(.month))
                     insightCalculationService.timeWindowBeginning = .beginning(of: .previous(.month))
                 }
-                Button("Current Month") { insightCalculationService.timeWindowEnd = .end(of: .current(.month))
+                Button("This Month") { insightCalculationService.timeWindowEnd = .end(of: .current(.month))
                     insightCalculationService.timeWindowBeginning = .beginning(of: .current(.month))
+                }
+                Button("2 Months") {
+                    insightCalculationService.timeWindowEnd = .end(of: .current(.month))
+                    insightCalculationService.timeWindowBeginning = .beginning(of: .previous(.month))
                 }
             }
 
             HStack {
-                Button("Previous Year") { insightCalculationService.timeWindowEnd = .end(of: .previous(.year))
+                Button("Last Year") { insightCalculationService.timeWindowEnd = .end(of: .previous(.year))
                     insightCalculationService.timeWindowBeginning = .beginning(of: .previous(.year))
                 }
-                Button("Current Year") { insightCalculationService.timeWindowEnd = .end(of: .current(.year))
+                Button("This Year") { insightCalculationService.timeWindowEnd = .end(of: .current(.year))
                     insightCalculationService.timeWindowBeginning = .beginning(of: .current(.year))
                 }
             }

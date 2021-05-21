@@ -24,7 +24,7 @@ struct InsightReloadButtonView: View {
         ZStack {
             if isLoading {
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
+                    .progressViewStyle(CircularProgressViewStyle(tint: isSelected ? .cardBackground : .grayColor))
                     .frame(width: 10, height: 10)
                     .scaleEffect(progressViewScale, anchor: .center)
             }

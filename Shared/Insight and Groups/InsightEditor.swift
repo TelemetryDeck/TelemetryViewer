@@ -58,9 +58,10 @@ struct InsightEditorContent {
             groupID: UUID(),
             id: UUID(),
             isExpanded: false,
-            shouldUseDruid: true)
+            shouldUseDruid: true
+        )
     }
-    
+
     static func from(insight: DTO.InsightDTO) -> InsightEditorContent {
         let requestBody = Self(
             order: insight.order ?? -1,
@@ -75,7 +76,7 @@ struct InsightEditorContent {
             groupID: insight.group["id"]!,
             id: insight.id,
             isExpanded: insight.isExpanded,
-            shouldUseDruid: insight.shouldUseDruid 
+            shouldUseDruid: insight.shouldUseDruid
         )
 
         return requestBody
@@ -103,23 +104,14 @@ struct InsightEditorContent {
 
 struct InsightEditor: View {
     @Environment(\.presentationMode) var presentation
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightCalculationService: InsightCalculationService
     @EnvironmentObject var lexiconService: LexiconService
     @State private var showingAlert = false
-    
+
     let appID: UUID
     let insightGroupID: UUID
     let insightID: UUID
-    
-    var app: TelemetryApp? { api.app(with: appID) }
-    var insightGroup: DTO.InsightGroup? {
-        guard let app = app else { return nil }
-        return api.insightGroups[app]?.first { $0.id == insightGroupID }
-    }
-    var insight: DTO.InsightDTO? {
-        guard let insightGroup = insightGroup else { return nil }
-        return insightGroup.insights.first { $0.id == insightID }
-    }
 
     @State var insightDRB: InsightEditorContent
 
@@ -131,14 +123,14 @@ struct InsightEditor: View {
     }
 
     func save() {
-        guard let app = app, let insightGroup = insightGroup, let insight = insight else { return }
-        api.update(insight: insight, in: insightGroup, in: app, with: insightDRB.insightDefinitionRequestBody())
+        insightService.update(insightID: insightID, in: insightGroupID, in: appID, with: insightDRB.insightDefinitionRequestBody()) { _ in
+            insightCalculationService.getInsightData(for: insightID, in: insightGroupID, in: appID)
+        }
     }
 
     func updatePayloadKeys() {
-        guard let app = app else { return }
-        lexiconService.getSignalTypes(for: app.id)
-        lexiconService.getPayloadKeys(for: app.id)
+        lexiconService.getSignalTypes(for: appID)
+        lexiconService.getPayloadKeys(for: appID)
     }
 
     var chartTypeExplanationText: String {
@@ -172,35 +164,27 @@ struct InsightEditor: View {
     }
 
     var filterAutocompletionOptions: [String] {
-        guard let app = app else { return [] }
-        return lexiconService.payloadKeys(for: app.id).filter { !$0.isHidden }.map(\.payloadKey)
+        return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey)
     }
 
     var signalTypeAutocompletionOptions: [String] {
-        guard let app = app else { return [] }
-        return lexiconService.signalTypes(for: app.id).map(\.type)
+        return lexiconService.signalTypes(for: appID).map(\.type)
     }
 
     var insightGroupTitle: String {
-        guard let app = app, let insightGroup = api.insightGroups[app]?.first(where: { (group) -> Bool in
-            group.id == insightDRB.groupID
-        })
-        else { return "..." }
-
-        return insightGroup.title
+        return insightService.insightGroup(id: insightGroupID, in: appID)?.title ?? "–"
     }
 
     var body: some View {
         let form = Form {
-            
-            CustomSection(header: Text("Name"), summary: Text(insight?.title ?? "..."), footer: Text("The Title of This Insight")) {
+            CustomSection(header: Text("Name"), summary: Text(insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID)?.title ?? "..."), footer: Text("The Title of This Insight")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $insightDRB.title, onEditingChanged: { _ in save() }, onCommit: { save() })
-                
+
                 #if os(macOS)
-                Toggle(isOn: $insightDRB.isExpanded, label: {
-                    Text("Show Expanded")
-                })
-                .onChange(of: insightDRB.isExpanded) { _ in save() }
+                    Toggle(isOn: $insightDRB.isExpanded, label: {
+                        Text("Show Expanded")
+                    })
+                        .onChange(of: insightDRB.isExpanded) { _ in save() }
                 #endif
             }
 
@@ -274,10 +258,8 @@ struct InsightEditor: View {
 
             CustomSection(header: Text("Insight Group"), summary: Text(insightGroupTitle), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
                 Picker(selection: $insightDRB.groupID, label: EmptyView()) {
-                    if let app = app {
-                        ForEach(api.insightGroups[app] ?? []) { insightGroup in
-                            Text(insightGroup.title).tag(insightGroup.id)
-                        }
+                    ForEach(insightService.insightGroups(for: appID) ?? []) { insightGroup in
+                        Text(insightGroup.title).tag(insightGroup.id)
                     }
                 }
                 .onChange(of: insightDRB.groupID) { _ in save() }
@@ -285,7 +267,9 @@ struct InsightEditor: View {
             }
 
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-                if let dto = api.insightData[insightID], let calculatedAt = dto.calculatedAt, let calculationDuration = dto.calculationDuration {
+                if let dto = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID),
+                   let calculatedAt = dto.calculatedAt, let calculationDuration = dto.calculationDuration
+                {
                     Group {
                         Text("This Insight was last updated ")
                             + Text(calculatedAt, style: .relative).bold()
@@ -321,11 +305,10 @@ struct InsightEditor: View {
         }
         .alert(isPresented: $showingAlert) {
             Alert(
-                title: Text("Are you sure you want to delete the Insight \(insight?.title ?? "–")?"),
+                title: Text("Are you sure you want to delete the Insight \(insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID)?.title ?? "–")?"),
                 message: Text("This will delete the Insight. Your signals are not affected."),
                 primaryButton: .destructive(Text("Delete")) {
-                    guard let app = app, let insight = insight, let insightGroup = insightGroup else { return }
-                    api.delete(insight: insight, in: insightGroup, in: app) { _ in
+                    insightService.delete(insightID: insightID, in: insightGroupID, in: appID) { _ in
                         self.presentation.wrappedValue.dismiss()
                     }
                 },
@@ -334,43 +317,41 @@ struct InsightEditor: View {
         }
         .navigationTitle("Edit Insight")
         .onAppear {
-            if let insight = insight {
-                insightDRB = InsightEditorContent.from(insight: insight)
+            if let insightDTO = insightService.insight(id: insightID, in: insightGroupID, in: appID) {
+                insightDRB = InsightEditorContent.from(insight: insightDTO)
             }
-            
+
             updatePayloadKeys()
         }
 
-        if insight != nil {
-        #if os(macOS)
-            ScrollView {
-                form
-                    .padding()
+        if insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) != nil {
+            #if os(macOS)
+                ScrollView {
+                    form
+                        .padding()
 
-                    .toolbar {
-                        ToolbarItemGroup {
-                            Spacer()
+                        .toolbar {
+                            ToolbarItemGroup {
+                                Spacer()
 
-                            Button(action: toggleRightSidebar) {
-                                Image(systemName: "sidebar.right")
-                                    .help("Toggle Sidebar")
+                                Button(action: toggleRightSidebar) {
+                                    Image(systemName: "sidebar.right")
+                                        .help("Toggle Sidebar")
+                                }
+                                .help("Toggle the right sidebar")
                             }
-                            .help("Toggle the right sidebar")
                         }
+                }
+            #else
+                VStack {
+                    if let app = app, let insightGroup = insightGroup, let insight = insight {
+                        InsightView(topSelectedInsightID: .constant(nil), app: app, insightGroup: insightGroup, insight: insight)
+                            .frame(maxHeight: 200)
                     }
-            }
-        #else
-        VStack {
-            
-                
-            if let app = app, let insightGroup = insightGroup, let insight = insight {
-                InsightView(topSelectedInsightID: .constant(nil), app: app, insightGroup: insightGroup, insight: insight)
-                    .frame(maxHeight: 200)
-            }
-                
-            form
-        }
-        #endif
+
+                    form
+                }
+            #endif
         }
     }
 }
