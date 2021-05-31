@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct EmptyInsightGroupView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var insightService: InsightService
+    
     let selectedInsightGroupID: UUID
 
     var appID: UUID
-    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
 
     private var insightGroup: DTO.InsightGroup? {
-        guard let app = app else { return nil }
-        return (api.insightGroups[app] ?? []).first(where: { $0.id == selectedInsightGroupID })
+        return insightService.insightGroups(for: appID)?.first
     }
 
     var body: some View {

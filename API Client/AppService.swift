@@ -45,7 +45,9 @@ class AppService: ObservableObject {
             getApps()
         }
         
-        return apps?.first { $0.id == selectedAppID }
+        let selectedApp = apps?.first { $0.id == selectedAppID }
+        
+        return selectedApp ?? apps?.first
     }
     
     private func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> Void)? = nil) {
@@ -99,5 +101,10 @@ class AppService: ObservableObject {
             callback?(result)
             self.selectedAppID = nil
         }
+    }
+    
+    func logout() {
+        apps = nil
+        selectedAppID = nil
     }
 }

@@ -10,6 +10,7 @@ import TelemetryClient
 
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var appService: AppService
     @State private var showChangePasswordForm: Bool = false
     @State private var showingAlert = false
     @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")
@@ -44,6 +45,7 @@ struct UserSettingsView: View {
                             message: Text("You can log back in again later"),
                             primaryButton: .destructive(Text("Log Out")) {
                                 api.logout()
+                                appService.logout()
                             },
                             secondaryButton: .cancel()
                         )

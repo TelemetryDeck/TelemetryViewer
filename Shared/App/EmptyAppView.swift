@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct EmptyAppView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var appService: AppService
 
     let appID: UUID
-    private var app: TelemetryApp? { api.apps.first(where: { $0.id == appID }) }
+    private var app: TelemetryApp? { appService.getSelectedApp() }
 
     var body: some View {
         VStack(spacing: 20) {

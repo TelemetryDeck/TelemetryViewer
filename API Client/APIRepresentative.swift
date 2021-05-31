@@ -50,12 +50,6 @@ final class APIRepresentative: ObservableObject {
     @Published var totalNumberOfSignals: Int = 0
     @Published var numberOfSignalsThisMonth: Int = 0
 
-    @Published var apps: [TelemetryApp] = []
-
-    @Published var signals: [TelemetryApp: [DTO.Signal]] = [:]
-    @Published var insightGroups: [TelemetryApp: [DTO.InsightGroup]] = [:]
-    @Published var insightData: [UUID: DTO.InsightCalculationResult] = [:]
-
     @Published var betaRequests: [BetaRequestEmailDTO] = []
     @Published var organizationAdminListEntries: [OrganizationAdminListEntry] = []
     @Published var insightQueryAdminListEntries: [DTO.InsightDTO] = []
@@ -65,18 +59,7 @@ final class APIRepresentative: ObservableObject {
     @Published var organizationUsers: [DTO.UserDTO] = []
     @Published var organizationJoinRequests: [DTO.OrganizationJoinRequest] = []
 
-    // MARK: Loading stuff
-
-    @Published var isLoadingApps: Bool = false
-    @Published var loadingIDs: [UUID] = []
-
     @Published var needsDecisionForMarketingEmails: Bool = false
-}
-
-extension APIRepresentative {
-    func app(with id: UUID) -> TelemetryApp? {
-        apps.first(where: { $0.id == id })
-    }
 }
 
 extension APIRepresentative {
@@ -112,7 +95,6 @@ extension APIRepresentative {
         TelemetryManager.shared.send(TelemetrySignal.userLogout.rawValue, for: user?.email)
 
         userToken = nil
-        apps = []
         user = nil
     }
 
@@ -265,21 +247,6 @@ extension APIRepresentative {
                 DispatchQueue.main.async {
                     self.totalNumberOfSignals = signalCount
                 }
-            case let .failure(error):
-                self.handleError(error)
-            }
-
-            callback?(result)
-        }
-    }
-
-    func getSignals(for app: TelemetryApp, callback: ((Result<[DTO.Signal], TransferError>) -> Void)? = nil) {
-        let url = urlForPath("apps", app.id.uuidString, "signals")
-
-        get(url) { [unowned self] (result: Result<[DTO.Signal], TransferError>) in
-            switch result {
-            case let .success(signals):
-                self.signals[app] = signals
             case let .failure(error):
                 self.handleError(error)
             }
