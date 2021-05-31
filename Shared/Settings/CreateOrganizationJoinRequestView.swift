@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateOrganizationJoinRequestView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @Environment(\.presentationMode) var presentationMode
 
     @State var inviteeEmail: String = ""
@@ -73,6 +73,6 @@ struct CreateOrganizationJoinRequestView: View {
 struct CreateOrganizationJoinRequestView_Previews: PreviewProvider {
     static var previews: some View {
         CreateOrganizationJoinRequestView()
-            .environmentObject(APIRepresentative())
+            .environmentObject(APIClient())
     }
 }

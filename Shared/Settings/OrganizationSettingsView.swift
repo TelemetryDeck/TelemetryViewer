@@ -22,7 +22,7 @@ struct UserInfoView: View {
 }
 
 struct OrganizationSettingsView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
 
     #if os(iOS)
         @Environment(\.horizontalSizeClass) var sizeClass
@@ -129,6 +129,6 @@ struct OrganizationSettingsView: View {
 
 struct OrganizationSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        OrganizationSettingsView().environmentObject(APIRepresentative())
+        OrganizationSettingsView().environmentObject(APIClient())
     }
 }

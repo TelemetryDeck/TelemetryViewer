@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AskForMarketingEmailsView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     
     var body: some View {
         ScrollView {

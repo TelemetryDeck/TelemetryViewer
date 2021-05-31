@@ -16,7 +16,7 @@ struct PasswordResetView: View {
         case success
     }
 
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @State var requestPasswordResetRequestBody = RequestPasswordResetRequestBody()
     @State var progressStatus: ProgressStatus = .request
     @State var message: String = ""

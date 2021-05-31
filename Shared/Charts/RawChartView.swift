@@ -40,7 +40,7 @@ struct RawChartView: View {
 }
 
 // struct RawChartView_Previews: PreviewProvider {
-//    static var api: APIRepresentative = {
+//    static var api: APIClient = {
 //        let insight1 = DTO.InsightCalculationResult(
 //            id: UUID(),
 //            order: nil, title: "A single Number",
@@ -115,7 +115,7 @@ struct RawChartView: View {
 //            calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
 //        )
 //
-//        let api = APIRepresentative()
+//        let api = APIClient()
 //        api.insightData[insight1.id] = insight1
 //        api.insightData[insight2.id] = insight2
 //        api.insightData[insight3.id] = insight3

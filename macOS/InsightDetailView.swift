@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InsightDetailView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
 
     @Binding var isPresented: Bool
     let insight: DTO.InsightCalculationResult

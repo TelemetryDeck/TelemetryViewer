@@ -12,7 +12,7 @@ private enum DisplayMode: Hashable {
 }
 
 struct AppAdminView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @State private var isLoading: Bool = false
     @State private var displayMode: DisplayMode = .signals
     
@@ -30,9 +30,9 @@ struct AppAdminView: View {
         in: .common
     ).autoconnect()
     
-    func refreshAppSignalCounts() {
+    func refreshAppAdminEntrys() {
         isLoading = true
-        api.getAppSignalCounts { _ in
+        api.getAppAdminEntrys { _ in
             self.isLoading = false
         }
     }
@@ -135,20 +135,20 @@ struct AppAdminView: View {
                 })
                 
                 #if os(macOS)
-                Button(action: refreshAppSignalCounts, label: {
+                Button(action: refreshAppAdminEntrys, label: {
                     Image(systemName: "arrow.counterclockwise.circle")
                 })
                 #endif
             }
         }
         .navigationTitle("App Admin")
-        .onAppear { refreshAppSignalCounts() }
-        .onReceive(refreshTimer) { _ in refreshAppSignalCounts() }
+        .onAppear { refreshAppAdminEntrys() }
+        .onReceive(refreshTimer) { _ in refreshAppAdminEntrys() }
     }
 }
 
 private struct AddAdminViewListEntry: View {
-    let appSignalCountDTO: DTO.AppSignalCount
+    let appSignalCountDTO: DTO.AppAdminEntry
     let displayMode: DisplayMode
     
     var body: some View {
@@ -174,7 +174,7 @@ private struct AddAdminViewListEntry: View {
 }
 
 struct AppAdminDetailView: View {
-    let entry: DTO.AppSignalCount
+    let entry: DTO.AppAdminEntry
 
     var body: some View {
         ScrollView {

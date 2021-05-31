@@ -9,7 +9,7 @@ import SwiftUI
 import TelemetryClient
 
 struct UserSettingsView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     
     @State private var showChangePasswordForm: Bool = false
     @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")

@@ -11,7 +11,7 @@ import TelemetryClient
 @main
 struct Telemetry_ViewerApp: App {
     @Environment(\.scenePhase) var scenePhase
-    let api: APIRepresentative
+    let api: APIClient
     let signalsService: SignalsService
     let lexiconService: LexiconService
     let appService: AppService
@@ -36,7 +36,7 @@ struct Telemetry_ViewerApp: App {
     }
 
     init() {
-        self.api = APIRepresentative()
+        self.api = APIClient()
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
         self.appService = AppService(api: api)

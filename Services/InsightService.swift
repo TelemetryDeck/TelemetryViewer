@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class InsightService: ObservableObject {
-    let api: APIRepresentative
+    let api: APIClient
 
     @Published var insightGroupsByAppID: [UUID: [DTO.InsightGroup]] = [:]
     @Published var loadingAppIDs = Set<UUID>()
@@ -17,7 +17,7 @@ class InsightService: ObservableObject {
 
     private var lastLoadTimeByAppID: [UUID: Date] = [:]
 
-    init(api: APIRepresentative) {
+    init(api: APIClient) {
         self.api = api
     }
 

@@ -10,7 +10,7 @@ import TelemetryClient
 
 @main
 struct Telemetry_ViewerApp: App {
-    let api: APIRepresentative
+    let api: APIClient
     let updateService: UpateService
     let signalsService: SignalsService
     let lexiconService: LexiconService
@@ -54,7 +54,7 @@ struct Telemetry_ViewerApp: App {
     }
 
     init() {
-        self.api = APIRepresentative()
+        self.api = APIClient()
         self.updateService = UpateService()
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)

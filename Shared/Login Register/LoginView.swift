@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @State private var loginRequestBody = LoginRequestBody()
     @State private var isLoading = false
     @State private var showLoginErrorMessage = false

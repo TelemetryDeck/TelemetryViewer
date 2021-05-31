@@ -88,7 +88,7 @@ struct InsightDataTimeIntervalPicker: View {
 struct InsightDataTimeIntervalPicker_Previews: PreviewProvider {
     static var previews: some View {
         InsightDataTimeIntervalPicker()
-            .environmentObject(InsightCalculationService(api: APIRepresentative()))
+            .environmentObject(InsightCalculationService(api: APIClient()))
             .previewLayout(PreviewLayout.fixed(width: 400, height: 300))
     }
 }

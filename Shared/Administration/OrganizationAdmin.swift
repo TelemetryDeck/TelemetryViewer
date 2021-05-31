@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OrganizationAdmin: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @State private var selectedOrganization: OrganizationAdminListEntry?
     @State private var sidebarShown: Bool = false
     @State private var isLoading: Bool = false

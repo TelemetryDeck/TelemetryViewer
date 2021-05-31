@@ -43,7 +43,7 @@ struct InsightQueryDetailView: View {
 }
 
 struct InsightQueryAdmin: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @State private var selectedInsight: DTO.InsightCalculationResult?
     @State private var sidebarShown: Bool = false
     @State private var isLoading: Bool = false

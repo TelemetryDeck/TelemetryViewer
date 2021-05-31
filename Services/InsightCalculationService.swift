@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class InsightCalculationService: ObservableObject {
-    let api: APIRepresentative
+    let api: APIClient
 
     @Published var calculationResultsByInsightID: [UUID: DTO.InsightCalculationResult] = [:]
     @Published var loadingInsightIDs = Set<UUID>()
@@ -49,7 +49,7 @@ class InsightCalculationService: ObservableObject {
         }
     }
 
-    init(api: APIRepresentative) {
+    init(api: APIClient) {
         self.api = api
     }
 

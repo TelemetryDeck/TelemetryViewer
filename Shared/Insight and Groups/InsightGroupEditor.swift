@@ -26,7 +26,7 @@ struct InsightGroupEditorContent {
 }
 
 struct InsightGroupEditor: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @EnvironmentObject var insightService: InsightService
     @State var insightGroupDTO: InsightGroupEditorContent
     @State private var showingAlert = false

@@ -111,7 +111,7 @@ struct LexiconView: View {
 
 struct LexiconView_Previews: PreviewProvider {
     static var previews: some View {
-        let lexiconService = MockLexiconService(api: APIRepresentative())
+        let lexiconService = MockLexiconService(api: APIClient())
         return NavigationView {
             LexiconView(appID: UUID()).environmentObject(lexiconService as LexiconService)
         }

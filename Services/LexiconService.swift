@@ -20,9 +20,9 @@ class LexiconService: ObservableObject {
     @Published var lexiconPayloadKeys: [UUID: [DTO.LexiconPayloadKey]] = [:]
     @Published var loadingAppIDs: Set<UUID> = Set<UUID>()
     
-    let api: APIRepresentative
+    let api: APIClient
     
-    init(api: APIRepresentative) {
+    init(api: APIClient) {
         self.api = api
     }
     

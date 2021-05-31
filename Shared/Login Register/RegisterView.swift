@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @Environment(\.presentationMode) var presentationMode
     @State private var isLoading = false
     @State private var registrationRequestBody = DTO.RegistrationRequestBody()

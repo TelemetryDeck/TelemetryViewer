@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class AppService: ObservableObject {
-    let api: APIRepresentative
+    let api: APIClient
 
     @Published var apps: [TelemetryApp]?
     @Published var isLoading: Bool = false
@@ -28,7 +28,7 @@ class AppService: ObservableObject {
     
     private var lastLoadTime: Date? = nil
 
-    init(api: APIRepresentative) {
+    init(api: APIClient) {
         self.api = api
     }
     

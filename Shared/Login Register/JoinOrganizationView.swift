@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct JoinOrganizationView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @Environment(\.presentationMode) var presentationMode
 
     @State var error: TransferError?
@@ -154,6 +154,6 @@ struct JoinOrganizationView_Previews: PreviewProvider {
             JoinOrganizationView()
         }
         .previewLayout(.fixed(width: 600, height: 800))
-        .environmentObject(APIRepresentative())
+        .environmentObject(APIClient())
     }
 }

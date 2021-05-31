@@ -17,7 +17,7 @@ enum LeftSidebarViewSelection {
 }
 
 struct LeftSidebarView: View {
-    @EnvironmentObject var api: APIRepresentative
+    @EnvironmentObject var api: APIClient
     @EnvironmentObject var appService: AppService
     @State var selection: LeftSidebarViewSelection? = .insights
 
