@@ -28,35 +28,33 @@ struct InsightGroupEditorContent {
 struct InsightGroupEditor: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var insightService: InsightService
-    @State var insightGroupDTO: InsightGroupEditorContent
+    @State var editorContent: InsightGroupEditorContent
     @State private var showingAlert = false
 
     let appID: UUID
-    let insightGroup: DTO.InsightGroup
 
     init(appID: UUID, insightGroup: DTO.InsightGroup) {
         self.appID = appID
-        self.insightGroup = insightGroup
-        _insightGroupDTO = State(initialValue: InsightGroupEditorContent.from(insightGroup: insightGroup))
+        _editorContent = State(initialValue: InsightGroupEditorContent.from(insightGroup: insightGroup))
     }
 
     func save() {
-        insightService.update(insightGroup: insightGroup, in: appID)
+        insightService.update(insightGroup: editorContent.getInsightGroupDTO(), in: appID)
     }
 
     func delete() {
-        insightService.delete(insightGroupID: insightGroup.id, in: appID)
+        insightService.delete(insightGroupID: editorContent.id, in: appID)
     }
 
     var body: some View {
         let form = Form {
             CustomSection(header: Text("Insight Group Title"), summary: EmptyView(), footer: EmptyView()) {
-                TextField("Title", text: $insightGroupDTO.title, onEditingChanged: { _ in save() }, onCommit: { save() })
+                TextField("Title", text: $editorContent.title, onEditingChanged: { isEditing in if !isEditing { save() } }, onCommit: { })
             }
 
-            CustomSection(header: Text("Ordering"), summary: Text(String(format: "%.0f", insightGroupDTO.order)), footer: Text("Insights are ordered by this number, ascending"), startCollapsed: true) {
-                OrderSetter(order: $insightGroupDTO.order)
-                    .onChange(of: insightGroupDTO.order) { _ in save() }
+            CustomSection(header: Text("Ordering"), summary: Text(String(format: "%.0f", editorContent.order)), footer: Text("Insights are ordered by this number, ascending"), startCollapsed: true) {
+                OrderSetter(order: $editorContent.order)
+                    .onChange(of: editorContent.order) { _ in save() }
             }
 
             CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
@@ -67,7 +65,7 @@ struct InsightGroupEditor: View {
         }
         .alert(isPresented: $showingAlert) {
             Alert(
-                title: Text("Are you sure you want to delete the group \(insightGroup.title)?"),
+                title: Text("Are you sure you want to delete the group \(editorContent.title)?"),
                 message: Text("This will delete the Insight Group and all its Insights. Your signals are not affected."),
                 primaryButton: .destructive(Text("Delete")) {
                     delete()
