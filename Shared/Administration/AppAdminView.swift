@@ -175,6 +175,15 @@ private struct AddAdminViewListEntry: View {
 
 struct AppAdminDetailView: View {
     let entry: DTO.AppAdminEntry
+    
+    @EnvironmentObject var api: APIClient
+    @State var signalCountHistory: [DTO.InsightData]?
+    
+    func getSignalCountHistory() {
+        api.getAppSignalCountHistory(forAppID: entry.id) {
+            signalCountHistory = try? $0.get()
+        }
+    }
 
     var body: some View {
         ScrollView {
@@ -200,6 +209,16 @@ struct AppAdminDetailView: View {
                     saveToClipBoard(entry.organisationID?.uuidString ?? "–")
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())
+            }
+            
+            Button("Get History") {
+                getSignalCountHistory()
+            }
+            
+            if let signalCountHistory = signalCountHistory, let chartData = try? ChartDataSet(data: signalCountHistory) {
+                LineChart(data: chartData, shouldCloseShape: false)
+                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                    .frame(maxWidth: .infinity, maxHeight: 300)
             }
         }
         .padding()

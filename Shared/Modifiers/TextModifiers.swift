@@ -32,7 +32,7 @@ struct SubtitleStyleModifier: ViewModifier {
     }
 }
 
-struct SelectedForegroundColorModiffier: ViewModifier {
+struct SelectedForegroundColorModifier: ViewModifier {
     let isSelected: Bool
     
     func body(content: Content) -> some View {
@@ -99,7 +99,7 @@ extension View {
     }
     
     func togglesForeground(isSelected: Bool) -> some View {
-        modifier(SelectedForegroundColorModiffier(isSelected: isSelected))
+        modifier(SelectedForegroundColorModifier(isSelected: isSelected))
     }
 }
 

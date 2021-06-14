@@ -91,6 +91,15 @@ struct AppRootView: View {
                         }
                     }
                 }
+                
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Button {
+                        insightService.create(insightGroupNamed: "New Insight Group", for: appID)
+                    } label: {
+                        Text("New Insight Group") //, systemImage: "plus")
+                    }
+
+                }
             }
 
             if showDatePicker {
@@ -113,6 +122,7 @@ struct AppRootView: View {
                 .transition(.move(edge: .bottom))
             }
         }
+        
     }
 }
 
