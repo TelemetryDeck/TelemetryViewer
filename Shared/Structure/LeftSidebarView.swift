@@ -134,44 +134,40 @@ struct LeftSidebarView: View {
             AskForMarketingEmailsView()
         })
         .listStyle(SidebarListStyle())
-        .modify {
-            #if os(macOS)
-                $0.sheet(isPresented: $updateService.shouldShowUpdateNowScreen) {
-                    AppUpdateView()
-                }
-            #else
-                $0
-            #endif
-        }
-        .navigationTitle("AppTelemetry")
-        .toolbar {
-            ToolbarItemGroup {
-                #if os(macOS)
-                    Button(action: toggleSidebar) {
-                        Image(systemName: "sidebar.left")
-                            .help("Toggle Sidebar")
-                    }
-                    .help("Toggle the left sidebar")
-
-                    Spacer()
-                #endif
-
-                Button(action: {
-                    appService.create(appNamed: "New App") { result in
-                        switch result {
-                        case .failure(let error):
-                            print(error)
-                        case .success(let newApp):
-                            appService.selectedAppID = newApp.id
-                            selection = .appSettings
-                        }
-                    }
-                }) {
-                    Label("New App", systemImage: "plus.app.fill")
-                }
-                .help("Create a New App")
+        #if os(macOS)
+            .sheet(isPresented: $updateService.shouldShowUpdateNowScreen) {
+                AppUpdateView()
             }
-        }
+        #endif
+        .navigationTitle("AppTelemetry")
+            .toolbar {
+                ToolbarItemGroup {
+                    #if os(macOS)
+                        Button(action: toggleSidebar) {
+                            Image(systemName: "sidebar.left")
+                                .help("Toggle Sidebar")
+                        }
+                        .help("Toggle the left sidebar")
+
+                        Spacer()
+                    #endif
+
+                    Button(action: {
+                        appService.create(appNamed: "New App") { result in
+                            switch result {
+                            case .failure(let error):
+                                print(error)
+                            case .success(let newApp):
+                                appService.selectedAppID = newApp.id
+                                selection = .appSettings
+                            }
+                        }
+                    }) {
+                        Label("New App", systemImage: "plus.app.fill")
+                    }
+                    .help("Create a New App")
+                }
+            }
     }
 
     #if os(macOS)

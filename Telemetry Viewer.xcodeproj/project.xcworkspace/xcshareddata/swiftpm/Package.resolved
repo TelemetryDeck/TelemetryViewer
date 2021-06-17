@@ -2,7 +2,7 @@
   "object": {
     "pins": [
       {
-        "package": "TelemetryClient",
+        "package": "SwiftClient",
         "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
         "state": {
           "branch": null,

@@ -20,35 +20,17 @@ struct SignalTypeView: View {
 
             Text("–").animatableNumber(value: Double(lexiconItem.signalCount), shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
-                .modify {
-                    if compressed {
-                        $0.frame(minWidth: 10, alignment: .trailing)
-                    } else {
-                        $0.frame(minWidth: 40, alignment: .trailing)
-                    }
-                }
+                .frame(minWidth: compressed ? 10 : 40, alignment: .trailing)
                 .padding(.horizontal)
 
             Text("–").animatableNumber(value: Double(lexiconItem.userCount), shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
-                .modify {
-                    if compressed {
-                        $0.frame(minWidth: 10, alignment: .trailing)
-                    } else {
-                        $0.frame(minWidth: 40, alignment: .trailing)
-                    }
-                }
+                .frame(minWidth: compressed ? 10 : 40, alignment: .trailing)
                 .padding(.horizontal)
 
             Text("–").animatableNumber(value: Double(lexiconItem.sessionCount), shouldFormatBigNumbers: true)
                 .foregroundColor(.grayColor)
-                .modify {
-                    if compressed {
-                        $0.frame(minWidth: 10, alignment: .trailing)
-                    } else {
-                        $0.frame(minWidth: 40, alignment: .trailing)
-                    }
-                }
+                .frame(minWidth: compressed ? 10 : 40, alignment: .trailing)
                 .padding(.horizontal)
         }
     }
