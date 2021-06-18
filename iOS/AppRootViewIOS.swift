@@ -161,15 +161,14 @@ struct InsightList: View {
                                     .fill(Color.grayColor.opacity(0.3))
                                     .frame(width: 60, height: 10)
                                     .padding()
-                                
+
                                 NavigationView {
-                                    InsightEditor(appID: appID, insightGroupID: insightGroupID, insightID: item)
+                                    InsightEditor(editorContent: InsightEditorContent.from(insight: insightService.insight(id: item, in: insightGroupID, in: appID)!), appID: appID, insightGroupID: insightGroupID)
                                         .navigationBarTitleDisplayMode(.inline)
                                 }
                                 .padding(.top, -20)
                             }
                         }
-
                 }
             }
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))

@@ -107,24 +107,16 @@ struct InsightEditor: View {
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
     @EnvironmentObject var lexiconService: LexiconService
+
     @State private var showingAlert = false
+    @State var editorContent: InsightEditorContent
 
     let appID: UUID
     let insightGroupID: UUID
-    let insightID: UUID
-
-    @State var insightDRB: InsightEditorContent
-
-    init(appID: UUID, insightGroupID: UUID, insightID: UUID) {
-        self.appID = appID
-        self.insightGroupID = insightGroupID
-        self.insightID = insightID
-        _insightDRB = State(initialValue: InsightEditorContent.empty())
-    }
 
     func save() {
-        insightService.update(insightID: insightID, in: insightGroupID, in: appID, with: insightDRB.insightDefinitionRequestBody()) { _ in
-            insightCalculationService.getInsightData(for: insightID, in: insightGroupID, in: appID)
+        insightService.update(insightID: editorContent.id, in: insightGroupID, in: appID, with: editorContent.insightDefinitionRequestBody()) { _ in
+            insightCalculationService.getInsightData(for: editorContent.id, in: insightGroupID, in: appID)
         }
     }
 
@@ -134,7 +126,7 @@ struct InsightEditor: View {
     }
 
     var chartTypeExplanationText: String {
-        switch insightDRB.displayMode {
+        switch editorContent.displayMode {
         case .number:
             return "Currently, 'Number' is the selected Chart Type. This chart type is no longer supported, and you should choose the 'Raw' instead."
         case .raw:
@@ -149,7 +141,7 @@ struct InsightEditor: View {
     }
 
     var chartImage: Image {
-        switch insightDRB.displayMode {
+        switch editorContent.displayMode {
         case .raw:
             return Image(systemName: "number.square.fill")
         case .barChart:
@@ -177,53 +169,53 @@ struct InsightEditor: View {
 
     var body: some View {
         let form = Form {
-            CustomSection(header: Text("Name"), summary: Text(insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID)?.title ?? "..."), footer: Text("The Title of This Insight")) {
-                TextField("Title e.g. 'Daily Active Users'", text: $insightDRB.title, onEditingChanged: { _ in save() }, onCommit: { save() })
+            CustomSection(header: Text("Name"), summary: Text(insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID)?.title ?? "..."), footer: Text("The Title of This Insight")) {
+                TextField("Title e.g. 'Daily Active Users'", text: $editorContent.title, onEditingChanged: { _ in save() }, onCommit: { save() })
 
                 #if os(macOS)
-                    Toggle(isOn: $insightDRB.isExpanded, label: {
+                    Toggle(isOn: $editorContent.isExpanded, label: {
                         Text("Show Expanded")
                     })
-                        .onChange(of: insightDRB.isExpanded) { _ in save() }
+                        .onChange(of: editorContent.isExpanded) { _ in save() }
                 #endif
             }
 
             CustomSection(header: Text("Chart Type"), summary: chartImage, footer: Text(chartTypeExplanationText), startCollapsed: true) {
-                Picker(selection: $insightDRB.displayMode, label: Text("")) {
+                Picker(selection: $editorContent.displayMode, label: Text("")) {
                     Image(systemName: "number.square.fill").tag(InsightDisplayMode.raw)
                     Image(systemName: "chart.bar.fill").tag(InsightDisplayMode.barChart)
                     Image(systemName: "squares.below.rectangle").tag(InsightDisplayMode.lineChart)
                     Image(systemName: "chart.pie.fill").tag(InsightDisplayMode.pieChart)
                 }
-                .onChange(of: insightDRB.displayMode) { _ in save() }
+                .onChange(of: editorContent.displayMode) { _ in save() }
                 .pickerStyle(SegmentedPickerStyle())
             }
 
-            if insightDRB.breakdownKey.isEmpty {
-                CustomSection(header: Text("Group Values by"), summary: Text(insightDRB.groupBy.rawValue), footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive."), startCollapsed: true) {
-                    Picker(selection: $insightDRB.groupBy, label: Text("")) {
+            if editorContent.breakdownKey.isEmpty {
+                CustomSection(header: Text("Group Values by"), summary: Text(editorContent.groupBy.rawValue), footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive."), startCollapsed: true) {
+                    Picker(selection: $editorContent.groupBy, label: Text("")) {
                         Text("Hour").tag(InsightGroupByInterval.hour)
                         Text("Day").tag(InsightGroupByInterval.day)
                         Text("Week").tag(InsightGroupByInterval.week)
                         Text("Month").tag(InsightGroupByInterval.month)
                     }
-                    .onChange(of: insightDRB.groupBy) { _ in save() }
+                    .onChange(of: editorContent.groupBy) { _ in save() }
                     .pickerStyle(SegmentedPickerStyle())
                 }
             }
 
-            let signalText = insightDRB.signalType.isEmpty ? "All Signals" : insightDRB.signalType
-            let uniqueText = insightDRB.uniqueUser ? ", unique" : ""
+            let signalText = editorContent.signalType.isEmpty ? "All Signals" : editorContent.signalType
+            let uniqueText = editorContent.uniqueUser ? ", unique" : ""
 
             CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"), startCollapsed: true) {
                 AutoCompletingTextField(
                     title: "All Signals",
-                    text: $insightDRB.signalType,
+                    text: $editorContent.signalType,
                     autocompletionOptions: signalTypeAutocompletionOptions,
                     onEditingChanged: { save() }
                 )
 
-                Toggle(isOn: $insightDRB.uniqueUser) {
+                Toggle(isOn: $editorContent.uniqueUser) {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("Unique by User")
@@ -234,40 +226,35 @@ struct InsightEditor: View {
                         Spacer()
                     }
                 }
-                .onChange(of: insightDRB.uniqueUser) { _ in save() }
+                .onChange(of: editorContent.uniqueUser) { _ in save() }
             }
 
-            CustomSection(header: Text("Breakdown"), summary: Text(insightDRB.breakdownKey.isEmpty ? "No Breakdown" : insightDRB.breakdownKey), footer: Text("If you enter a key for the metadata payload here, you'll get a breakdown of its values."), startCollapsed: true) {
+            CustomSection(header: Text("Breakdown"), summary: Text(editorContent.breakdownKey.isEmpty ? "No Breakdown" : editorContent.breakdownKey), footer: Text("If you enter a key for the metadata payload here, you'll get a breakdown of its values."), startCollapsed: true) {
                 AutoCompletingTextField(
                     title: "Payload Key",
-                    text: $insightDRB.breakdownKey,
+                    text: $editorContent.breakdownKey,
                     autocompletionOptions: filterAutocompletionOptions,
                     onEditingChanged: { save() }
                 )
             }
 
-            CustomSection(header: Text("Filters"), summary: Text("\(insightDRB.filters.count) filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
-                FilterEditView(keysAndValues: $insightDRB.filters, autocompleteOptions: filterAutocompletionOptions)
-                    .onChange(of: insightDRB.filters) { _ in save() }
-            }
-
-            CustomSection(header: Text("Ordering"), summary: Text(String(format: "%.0f", insightDRB.order)), footer: Text("Insights are ordered by this number, ascending"), startCollapsed: true) {
-                OrderSetter(order: $insightDRB.order)
-                    .onChange(of: insightDRB.order) { _ in save() }
+            CustomSection(header: Text("Filters"), summary: Text("\(editorContent.filters.count) filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
+                FilterEditView(keysAndValues: $editorContent.filters, autocompleteOptions: filterAutocompletionOptions)
+                    .onChange(of: editorContent.filters) { _ in save() }
             }
 
             CustomSection(header: Text("Insight Group"), summary: Text(insightGroupTitle), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
-                Picker(selection: $insightDRB.groupID, label: EmptyView()) {
+                Picker(selection: $editorContent.groupID, label: EmptyView()) {
                     ForEach(insightService.insightGroups(for: appID) ?? []) { insightGroup in
                         Text(insightGroup.title).tag(insightGroup.id)
                     }
                 }
-                .onChange(of: insightDRB.groupID) { _ in save() }
+                .onChange(of: editorContent.groupID) { _ in save() }
                 .pickerStyle(DefaultPickerStyle())
             }
 
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-                if let dto = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID),
+                if let dto = insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID),
                    let calculatedAt = dto.calculatedAt, let calculationDuration = dto.calculationDuration
                 {
                     Group {
@@ -290,7 +277,7 @@ struct InsightEditor: View {
                 }
 
                 Button("Copy Insight ID") {
-                    saveToClipBoard(insightID.uuidString)
+                    saveToClipBoard(editorContent.id.uuidString)
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())
             }
@@ -305,10 +292,10 @@ struct InsightEditor: View {
         }
         .alert(isPresented: $showingAlert) {
             Alert(
-                title: Text("Are you sure you want to delete the Insight \(insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID)?.title ?? "–")?"),
+                title: Text("Are you sure you want to delete the Insight \(insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID)?.title ?? "–")?"),
                 message: Text("This will delete the Insight. Your signals are not affected."),
                 primaryButton: .destructive(Text("Delete")) {
-                    insightService.delete(insightID: insightID, in: insightGroupID, in: appID) { _ in
+                    insightService.delete(insightID: editorContent.id, in: insightGroupID, in: appID) { _ in
                         self.presentation.wrappedValue.dismiss()
                     }
                 },
@@ -317,14 +304,10 @@ struct InsightEditor: View {
         }
         .navigationTitle("Edit Insight")
         .onAppear {
-            if let insightDTO = insightService.insight(id: insightID, in: insightGroupID, in: appID) {
-                insightDRB = InsightEditorContent.from(insight: insightDTO)
-            }
-
             updatePayloadKeys()
         }
 
-        if insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) != nil {
+        if insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID) != nil {
             #if os(macOS)
                 ScrollView {
                     form
@@ -343,7 +326,7 @@ struct InsightEditor: View {
                 }
             #else
                 VStack {
-                    InsightView(topSelectedInsightID: .constant(nil), appID: appID, insightGroupID: insightGroupID, insightID: insightID)
+                    InsightView(topSelectedInsightID: .constant(nil), appID: appID, insightGroupID: insightGroupID, insightID: editorContent.id)
                         .frame(maxHeight: 200)
 
                     form
