@@ -244,7 +244,7 @@ struct InsightEditor: View {
             }
 
             CustomSection(header: Text("Insight Group"), summary: Text(insightGroupTitle), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
-                Picker(selection: $editorContent.groupID, label: EmptyView()) {
+                Picker(selection: $editorContent.groupID, label: Text("Group")) {
                     ForEach(insightService.insightGroups(for: appID) ?? []) { insightGroup in
                         Text(insightGroup.title).tag(insightGroup.id)
                     }

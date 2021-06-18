@@ -163,8 +163,11 @@ struct InsightList: View {
                                     .padding()
 
                                 NavigationView {
-                                    InsightEditor(editorContent: InsightEditorContent.from(insight: insightService.insight(id: item, in: insightGroupID, in: appID)!), appID: appID, insightGroupID: insightGroupID)
-                                        .navigationBarTitleDisplayMode(.inline)
+                                    insightService.insight(id: item, in: insightGroupID, in: appID).map {
+                                        InsightEditor(editorContent: InsightEditorContent.from(insight: $0), appID: appID, insightGroupID: insightGroupID)
+                                            .navigationBarTitleDisplayMode(.inline)
+                                    }
+                                    
                                 }
                                 .padding(.top, -20)
                             }
@@ -180,7 +183,7 @@ struct InsightList: View {
     private func delete(at offsets: IndexSet) {
         for offset in offsets {
             let data = insights[offset]
-            print("\(data.title)")
+            insights.remove(atOffsets: offsets)
 
             insightService.delete(insightID: data.id, in: insightGroupID, in: appID)
         }
