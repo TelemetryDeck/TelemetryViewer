@@ -90,13 +90,11 @@
 		2BBFCA14267D05E40013DC74 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E7267D05E30013DC74 /* ListItemView.swift */; };
 		2BBFCA19267D05E40013DC74 /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EA267D05E30013DC74 /* Buttonstyles.swift */; };
 		2BBFCA1A267D05E40013DC74 /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EA267D05E30013DC74 /* Buttonstyles.swift */; };
-		2BBFCA1B267D05E40013DC74 /* NSView+FindViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EC267D05E30013DC74 /* NSView+FindViews.swift */; };
 		2BBFCA1C267D05E40013DC74 /* NSView+FindViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EC267D05E30013DC74 /* NSView+FindViews.swift */; };
 		2BBFCA1D267D05E40013DC74 /* URL+Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9ED267D05E30013DC74 /* URL+Open.swift */; };
 		2BBFCA1E267D05E40013DC74 /* URL+Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9ED267D05E30013DC74 /* URL+Open.swift */; };
 		2BBFCA1F267D05E40013DC74 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EE267D05E30013DC74 /* BigNumberFormatter.swift */; };
 		2BBFCA20267D05E40013DC74 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EE267D05E30013DC74 /* BigNumberFormatter.swift */; };
-		2BBFCA21267D05E40013DC74 /* View+toggleSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EF267D05E30013DC74 /* View+toggleSidebar.swift */; };
 		2BBFCA22267D05E40013DC74 /* View+toggleSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EF267D05E30013DC74 /* View+toggleSidebar.swift */; };
 		2BBFCA23267D05E40013DC74 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */; };
 		2BBFCA24267D05E40013DC74 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */; };
@@ -278,7 +276,6 @@
 		2BBFC9E5267D05E30013DC74 /* TextModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		2BBFC9E6267D05E30013DC74 /* DetailSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
 		2BBFC9E7267D05E30013DC74 /* ListItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
-		2BBFC9E9267D05E30013DC74 /* NSView+FindViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+FindViews.swift"; path = "Helpers+Extensions/NSView+FindViews.swift"; sourceTree = "<group>"; };
 		2BBFC9EA267D05E30013DC74 /* Buttonstyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttonstyles.swift; sourceTree = "<group>"; };
 		2BBFC9EC267D05E30013DC74 /* NSView+FindViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
 		2BBFC9ED267D05E30013DC74 /* URL+Open.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Open.swift"; sourceTree = "<group>"; };
@@ -291,7 +288,6 @@
 		2BBFC9F5267D05E30013DC74 /* InsightReloadButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightReloadButtonView.swift; sourceTree = "<group>"; };
 		2BBFC9F6267D05E30013DC74 /* ValueUnitAndTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueUnitAndTitleView.swift; sourceTree = "<group>"; };
 		2BBFC9F8267D05E30013DC74 /* AdaptiveStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveStack.swift; sourceTree = "<group>"; };
-		2BBFC9F9267D05E40013DC74 /* View+toggleSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "View+toggleSidebar.swift"; path = "Helpers+Extensions/View+toggleSidebar.swift"; sourceTree = "<group>"; };
 		2BBFC9FA267D05E40013DC74 /* SingleKeyValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleKeyValueView.swift; sourceTree = "<group>"; };
 		2BC1427426656DEF009BCB3B /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -503,13 +499,11 @@
 				2BBFC9F5267D05E30013DC74 /* InsightReloadButtonView.swift */,
 				2BBFC9E7267D05E30013DC74 /* ListItemView.swift */,
 				2BBFC9F4267D05E30013DC74 /* MacNavigationView.swift */,
-				2BBFC9E9267D05E30013DC74 /* NSView+FindViews.swift */,
 				2BBFC9E0267D05E30013DC74 /* OptionalToggle.swift */,
 				2BBFC9DC267D05E30013DC74 /* OrderSetter.swift */,
 				2BBFC9DB267D05E30013DC74 /* RoundedCorners.swift */,
 				2BBFC9FA267D05E40013DC74 /* SingleKeyValueView.swift */,
 				2BBFC9F6267D05E30013DC74 /* ValueUnitAndTitleView.swift */,
-				2BBFC9F9267D05E40013DC74 /* View+toggleSidebar.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -993,7 +987,6 @@
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				2BBFC9FF267D05E40013DC74 /* OrderSetter.swift in Sources */,
 				DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
-				2BBFCA1B267D05E40013DC74 /* NSView+FindViews.swift in Sources */,
 				DCB5F9F225F294C6004C4922 /* FavouritesView.swift in Sources */,
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				2B61B952264C3061003F62C4 /* SignalDTO.swift in Sources */,
@@ -1024,7 +1017,6 @@
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				DCB02B762502809200304964 /* RootView.swift in Sources */,
 				DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */,
-				2BBFCA21267D05E40013DC74 /* View+toggleSidebar.swift in Sources */,
 				2BBFCA23267D05E40013DC74 /* DateExtensions.swift in Sources */,
 				DC25A58D256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */,

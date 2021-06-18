@@ -58,7 +58,6 @@ struct AppRootView: View {
                 }
             }
         }
-
     }
 
     func newInsight(_ definitionRequestBody: InsightDefinitionRequestBody, appID: UUID) {
