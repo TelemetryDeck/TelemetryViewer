@@ -127,6 +127,9 @@ struct InsightList: View {
     @Environment(\.editMode) var isEditMode
     @EnvironmentObject var insightService: InsightService
 
+    @State var showEditorSheet: Bool = false
+    @State var editedInsightID: UUID?
+
     let appID: UUID
     let insightGroupID: UUID
 
@@ -140,9 +143,36 @@ struct InsightList: View {
         }
 
         ForEach(insights) { data in
-            InsightView(topSelectedInsightID: .constant(nil), appID: appID, insightGroupID: insightGroupID, insightID: data.id)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-                .buttonStyle(CardButtonStyle(isSelected: false))
+            HStack {
+                InsightView(topSelectedInsightID: .constant(nil), appID: appID, insightGroupID: insightGroupID, insightID: data.id)
+                    .buttonStyle(CardButtonStyle(isSelected: false))
+
+                if isEditMode?.wrappedValue == .active {
+                    Image(systemName: "square.and.pencil")
+                        .foregroundColor(.accentColor)
+                        .onTapGesture {
+                            editedInsightID = data.id
+                        }
+                        .sheet(item: $editedInsightID) {
+                            editedInsightID = nil
+                        } content: { item in
+                            VStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(Color.grayColor.opacity(0.3))
+                                    .frame(width: 60, height: 10)
+                                    .padding()
+                                
+                                NavigationView {
+                                    InsightEditor(appID: appID, insightGroupID: insightGroupID, insightID: item)
+                                        .navigationBarTitleDisplayMode(.inline)
+                                }
+                                .padding(.top, -20)
+                            }
+                        }
+
+                }
+            }
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
         }
         .onMove(perform: move)
         .onDelete(perform: delete)
