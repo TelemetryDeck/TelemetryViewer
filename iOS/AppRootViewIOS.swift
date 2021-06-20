@@ -126,6 +126,7 @@ struct AppRootView: View {
 struct InsightList: View {
     @Environment(\.editMode) var isEditMode
     @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightCalculationService: InsightCalculationService
 
     @State var showEditorSheet: Bool = false
     @State var editedInsightID: UUID?
@@ -171,6 +172,9 @@ struct InsightList: View {
                                 }
                                 .padding(.top, -20)
                             }
+                            // in iOS 14, sheets do not get passed the environment by default. Passing them manually here
+                            .environmentObject(insightService)
+                            .environmentObject(insightCalculationService)
                         }
                 }
             }
