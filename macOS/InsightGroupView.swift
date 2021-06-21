@@ -37,33 +37,12 @@ struct InsightGroupView: View {
                         let nonExpandedInsights = insightGroup.insights.filter { !$0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
 
                         ForEach(expandedInsights) { insight in
-                            let destination = InsightEditor(appID: appID, insightGroupID: insightGroupID, insightID: insight.id)
-
-                            NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
-                                InsightView(topSelectedInsightID: $selectedInsightID, appID: appID, insightGroupID: insightGroup.id, insightID: insight.id)
-                            }
-                            .simultaneousGesture(TapGesture().onEnded {
-                                #if os(macOS)
-                                expandRightSidebar()
-                                #endif
-                            })
-                            .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
+                            card(for: insight, insightGroup: insightGroup)
                         }
 
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
                             ForEach(nonExpandedInsights) { insight in
-
-                                let destination = InsightEditor(appID: appID, insightGroupID: insightGroupID, insightID: insight.id)
-
-                                NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
-                                    InsightView(topSelectedInsightID: $selectedInsightID, appID: appID, insightGroupID: insightGroup.id, insightID: insight.id)
-                                }
-                                .simultaneousGesture(TapGesture().onEnded {
-                                    #if os(macOS)
-                                    expandRightSidebar()
-                                    #endif
-                                })
-                                .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
+                                card(for: insight, insightGroup: insightGroup)
                             }
                         }
                     }
@@ -114,5 +93,20 @@ struct InsightGroupView: View {
             selectedInsightID = nil
             isDefaultItemActive = true
         }
+    }
+    
+    func card(for insight: DTO.InsightDTO, insightGroup: DTO.InsightGroup) -> some View {
+        let editorContent = InsightEditorContent.from(insight: insight)
+        let destination = InsightEditor(editorContent: editorContent, appID: appID, insightGroupID: insightGroupID)
+
+        return NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
+            InsightView(topSelectedInsightID: $selectedInsightID, appID: appID, insightGroupID: insightGroup.id, insightID: insight.id)
+        }
+        .simultaneousGesture(TapGesture().onEnded {
+            #if os(macOS)
+            expandRightSidebar()
+            #endif
+        })
+        .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
     }
 }
