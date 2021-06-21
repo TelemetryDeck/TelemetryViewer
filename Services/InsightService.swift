@@ -12,7 +12,12 @@ class InsightService: ObservableObject {
     let api: APIClient
 
     @Published var insightGroupsByAppID: [UUID: [DTO.InsightGroup]] = [:]
-    @Published var loadingAppIDs = Set<UUID>()
+    
+    /// A set of App IDs that are currently loading for an insight group
+    ///
+    /// Do not manually change this set. If an app's ID is in there, it means the service is currently
+    /// loading insight groups for this app.
+    @Published var appIDsLoadingInsightGroups = Set<UUID>()
     @Published var selectedInsightGroupID: UUID?
 
     private var lastLoadTimeByAppID: [UUID: Date] = [:]
@@ -21,8 +26,14 @@ class InsightService: ObservableObject {
         self.api = api
     }
 
-    func isAppLoading(id appID: UUID) -> Bool {
-        return loadingAppIDs.contains(appID)
+    func isAppLoadingInsightGroups(id appID: UUID) -> Bool {
+        return appIDsLoadingInsightGroups.contains(appID)
+    }
+    
+    /// Removes the insight group from the cache, causing it to be reloaded from the server
+    private func invalidateInsightGroups(forAppID appID: UUID) {
+        insightGroupsByAppID.removeValue(forKey: appID)
+        lastLoadTimeByAppID.removeValue(forKey: appID)
     }
 
     /// Retrieve insight groups for the specified app. Will automatically load groups if none is present, or the data is outdated
@@ -64,9 +75,9 @@ class InsightService: ObservableObject {
     }
 
     private func getInsightGroups(for appID: UUID, callback: ((Result<[DTO.InsightGroup], TransferError>) -> Void)? = nil) {
-        guard !loadingAppIDs.contains(appID) else { return }
+        guard !appIDsLoadingInsightGroups.contains(appID) else { return }
 
-        loadingAppIDs.insert(appID)
+        appIDsLoadingInsightGroups.insert(appID)
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups")
 
         api.get(url) { [unowned self] (result: Result<[DTO.InsightGroup], TransferError>) in
@@ -80,7 +91,7 @@ class InsightService: ObservableObject {
                 api.handleError(error)
             }
 
-            self.loadingAppIDs.remove(appID)
+            self.appIDsLoadingInsightGroups.remove(appID)
             self.lastLoadTimeByAppID[appID] = Date()
             callback?(result)
         }
@@ -100,6 +111,7 @@ class InsightService: ObservableObject {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroup.id.uuidString)
 
         api.patch(insightGroup, to: url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+            self.invalidateInsightGroups(forAppID: appID)
             self.getInsightGroups(for: appID)
             callback?(result)
         }
@@ -127,6 +139,7 @@ class InsightService: ObservableObject {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
 
         api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+            self.invalidateInsightGroups(forAppID: appID)
             self.getInsightGroups(for: appID)
             callback?(result)
         }

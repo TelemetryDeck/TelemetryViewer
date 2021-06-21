@@ -87,6 +87,11 @@ class LexiconService: ObservableObject {
 }
 
 class MockLexiconService: LexiconService {
+    
+    convenience init() {
+        self.init(api: APIClient())
+    }
+    
     private lazy var signalTypes: [DTO.LexiconSignalDTO] = [
         .init(type: "testSignal", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
         .init(type: "testSignal2", signalCount: Int.random(in: 0...100000), userCount: Int.random(in: 0...10000), sessionCount: Int.random(in: 0...100000)),
