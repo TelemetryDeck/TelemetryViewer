@@ -21,12 +21,12 @@ struct MacSettingsView: View {
                 .tag(Tabs.organization)
             UserSettingsView()
                 .tabItem {
-                    Label("User", systemImage: "person.fill")
+                    Label("User", systemImage: "person")
                 }
                 .tag(Tabs.user)
             UpdateSettingsView()
                 .tabItem {
-                    Label("Updates", systemImage: "arrow.down.app.fill")
+                    Label("Updates", systemImage: "arrow.down.app")
                 }
                 .tag(Tabs.updates)
         }
