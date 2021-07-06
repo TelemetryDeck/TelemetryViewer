@@ -33,14 +33,30 @@ struct BarChartContentView: View {
     let chartDataSet: ChartDataSet
     let isSelected: Bool
 
+    @State var hoveringDataEntry: DTO.InsightData?
+
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topTrailing) {
             VStack {
                 HStack {
                     GeometryReader { geometry in
                         HStack(alignment: .bottom, spacing: 1) {
                             ForEach(insightCalculationResult.data, id: \.self) { dataEntry in
-                                BarView(insightCalculationResult: insightCalculationResult, dataEntry: dataEntry, geometry: geometry)
+                                BarView(insightCalculationResult: insightCalculationResult, dataEntry: dataEntry, geometry: geometry, isHovering: dataEntry == hoveringDataEntry)
+                                    .onHover { over in
+                                        withAnimation {
+                                            if over {
+                                                hoveringDataEntry = dataEntry
+                                            } else {
+                                                hoveringDataEntry = nil
+                                            }
+                                        }
+                                    }
+                                #if os(iOS)
+                                    .onTapGesture {
+                                        hoveringDataEntry = dataEntry
+                                    }
+                                #endif
                             }
                         }
                     }
@@ -54,7 +70,12 @@ struct BarChartContentView: View {
                     .padding(.trailing, 35)
             }
             .padding(.horizontal)
-        .padding(.bottom)
+            .padding(.bottom)
+
+            if hoveringDataEntry != nil {
+                ChartHoverLabel(dataEntry: hoveringDataEntry!, interval: insightCalculationResult.groupBy ?? .day)
+                    .padding()
+            }
         }
     }
 }
@@ -63,8 +84,7 @@ struct BarView: View {
     let insightCalculationResult: DTO.InsightCalculationResult
     let dataEntry: DTO.InsightData
     let geometry: GeometryProxy
-
-    @State var isHovering = false
+    let isHovering: Bool
 
     /// `true` if the bar represents the current day/week/month/etc, and therefore represents
     /// incomplete data.
@@ -99,17 +119,8 @@ struct BarView: View {
                     .cornerRadius(3.0)
                     .offset(x: 0, y: 3)
                     .frame(height: 3)
-
-                if isHovering || dataEntry.yAxisValue == "38234"{
-                    ChartHoverLabel(dataEntry: dataEntry, interval: insightCalculationResult.groupBy ?? .day)
-                        .fixedSize(horizontal: true, vertical: false)
-                        .frame(width: 5)
-                        .padding()
-                }
             }
-            .onHover { over in
-                isHovering = over
-            }
+            .animation(.none)
         } else {
             EmptyView()
         }

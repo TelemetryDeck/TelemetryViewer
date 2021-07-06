@@ -62,6 +62,9 @@
 		2BB23B2C26567222003DDE5E /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* AppService.swift */; };
 		2BB23B2D26567222003DDE5E /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* AppService.swift */; };
 		2BB23B2E26567222003DDE5E /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* AppService.swift */; };
+		2BB4737E26950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
+		2BB4737F26950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
+		2BB4738026950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
@@ -129,9 +132,6 @@
 		2BDBB75E264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
 		2BDBB75F264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
 		2BDBB760264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
-		2BDBB761264551890013FC39 /* AppSignalCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75D264551890013FC39 /* AppSignalCount.swift */; };
-		2BDBB762264551890013FC39 /* AppSignalCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75D264551890013FC39 /* AppSignalCount.swift */; };
-		2BDBB763264551890013FC39 /* AppSignalCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75D264551890013FC39 /* AppSignalCount.swift */; };
 		2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BDD8E722653C14C00C6E51D /* InsightCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */; };
@@ -266,6 +266,7 @@
 		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
 		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		2BB23B2B26567222003DDE5E /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
+		2BB4737D26950731004DA1DC /* AppAdminEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAdminEntry.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BBFC9DA267D05E30013DC74 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		2BBFC9DB267D05E30013DC74 /* RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
@@ -300,7 +301,6 @@
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		2BCAF7D226946080000C33AB /* ChartHoverLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartHoverLabel.swift; sourceTree = "<group>"; };
 		2BDBB75C264551890013FC39 /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
-		2BDBB75D264551890013FC39 /* AppSignalCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSignalCount.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
 		2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCalculationService.swift; sourceTree = "<group>"; };
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPicker.swift; sourceTree = "<group>"; };
@@ -433,15 +433,15 @@
 			isa = PBXGroup;
 			children = (
 				2BDBB75C264551890013FC39 /* Aggregate.swift */,
-				2BDBB75D264551890013FC39 /* AppSignalCount.swift */,
+				2BB4737D26950731004DA1DC /* AppAdminEntry.swift */,
 				2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */,
 				2B19DE9826444B0C0086F70E /* InsightData.swift */,
 				2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */,
+				2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */,
 				2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */,
 				2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */,
 				2B61B951264C3061003F62C4 /* SignalDTO.swift */,
 				2B19DE9C26444B0C0086F70E /* UserDTO.swift */,
-				2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -969,7 +969,7 @@
 				DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				2B19DEB426444B2B0086F70E /* ChartDataPoint.swift in Sources */,
 				2BDD8E7A2655049700C6E51D /* InsightService.swift in Sources */,
-				2BDBB763264551890013FC39 /* AppSignalCount.swift in Sources */,
+				2BB4738026950731004DA1DC /* AppAdminEntry.swift in Sources */,
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
 				2B19DEB326444B2B0086F70E /* Formatter+ISO.swift in Sources */,
 				DC25A5AE256C0C2000EE84DA /* ChartBottomView.swift in Sources */,
@@ -1009,6 +1009,7 @@
 				2B19DEA826444B0C0086F70E /* UserDTO.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
+				2BB4737E26950731004DA1DC /* AppAdminEntry.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
 				2B318E892633596100870EE9 /* DonutChart.swift in Sources */,
@@ -1016,7 +1017,6 @@
 				2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPicker.swift in Sources */,
 				2B318E852633590B00870EE9 /* ChartLegend.swift in Sources */,
 				2BB23B2C26567222003DDE5E /* AppService.swift in Sources */,
-				2BDBB761264551890013FC39 /* AppSignalCount.swift in Sources */,
 				2BBFCA11267D05E40013DC74 /* DetailSidebar.swift in Sources */,
 				2BBFCA2F267D05E40013DC74 /* ValueUnitAndTitleView.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
@@ -1098,7 +1098,6 @@
 				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				2BDBB75F264551890013FC39 /* Aggregate.swift in Sources */,
 				2BBFCA1E267D05E40013DC74 /* URL+Open.swift in Sources */,
-				2BDBB762264551890013FC39 /* AppSignalCount.swift in Sources */,
 				2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */,
 				DCB5F9F725F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
 				DCB02B732502781A00304964 /* LoginView.swift in Sources */,
@@ -1114,6 +1113,7 @@
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
 				DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */,
 				2B19DEBE26444B2B0086F70E /* Formatter+ISO.swift in Sources */,
+				2BB4737F26950731004DA1DC /* AppAdminEntry.swift in Sources */,
 				DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F14253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				2BBFCA24267D05E40013DC74 /* DateExtensions.swift in Sources */,
