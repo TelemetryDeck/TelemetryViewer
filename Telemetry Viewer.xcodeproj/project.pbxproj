@@ -123,6 +123,9 @@
 		2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */; };
 		2BC522EA2625FCEF00E643AC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* FeedbackView.swift */; };
 		2BC522EB2625FCEF00E643AC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* FeedbackView.swift */; };
+		2BCAF7D326946080000C33AB /* ChartHoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF7D226946080000C33AB /* ChartHoverLabel.swift */; };
+		2BCAF7D426946080000C33AB /* ChartHoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF7D226946080000C33AB /* ChartHoverLabel.swift */; };
+		2BCAF7D526946080000C33AB /* ChartHoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAF7D226946080000C33AB /* ChartHoverLabel.swift */; };
 		2BDBB75E264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
 		2BDBB75F264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
 		2BDBB760264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
@@ -295,6 +298,7 @@
 		2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		2BCAF7D226946080000C33AB /* ChartHoverLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartHoverLabel.swift; sourceTree = "<group>"; };
 		2BDBB75C264551890013FC39 /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
 		2BDBB75D264551890013FC39 /* AppSignalCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSignalCount.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
@@ -537,6 +541,7 @@
 				2B318E82263358F000870EE9 /* Donut Chart */,
 				DC25A5AB256C0C2000EE84DA /* ChartBottomView.swift */,
 				DC92395625E5B2DE00D1729C /* ChartRangeView.swift */,
+				2BCAF7D226946080000C33AB /* ChartHoverLabel.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -942,6 +947,7 @@
 				2B19DEAC26444B2B0086F70E /* ChartDataSet.swift in Sources */,
 				2B19DEB526444B2B0086F70E /* OrganizationDTO.swift in Sources */,
 				DC25A5A7256C0B1B00EE84DA /* Numbers+Bound.swift in Sources */,
+				2BCAF7D526946080000C33AB /* ChartHoverLabel.swift in Sources */,
 				2BB23B2E26567222003DDE5E /* AppService.swift in Sources */,
 				2BDBB760264551890013FC39 /* Aggregate.swift in Sources */,
 				DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */,
@@ -1020,6 +1026,7 @@
 				2BBFCA23267D05E40013DC74 /* DateExtensions.swift in Sources */,
 				DC25A58D256BF1D800EE84DA /* BarChartView.swift in Sources */,
 				DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */,
+				2BCAF7D326946080000C33AB /* ChartHoverLabel.swift in Sources */,
 				2BDBB75E264551890013FC39 /* Aggregate.swift in Sources */,
 				2BBFCA1D267D05E40013DC74 /* URL+Open.swift in Sources */,
 				DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */,
@@ -1150,6 +1157,7 @@
 				2B61B953264C3061003F62C4 /* SignalDTO.swift in Sources */,
 				2B19DEBC26444B2B0086F70E /* InsightData.swift in Sources */,
 				2BB23B2D26567222003DDE5E /* AppService.swift in Sources */,
+				2BCAF7D426946080000C33AB /* ChartHoverLabel.swift in Sources */,
 				2B318E862633590B00870EE9 /* ChartLegend.swift in Sources */,
 				2BBFCA1A267D05E40013DC74 /* Buttonstyles.swift in Sources */,
 				2BBFCA14267D05E40013DC74 /* ListItemView.swift in Sources */,

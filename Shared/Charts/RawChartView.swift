@@ -259,14 +259,14 @@ struct RawTableView: View {
     }
 }
 
-fileprivate func dateString(from date: Date, groupedBy groupByInterval: InsightGroupByInterval?) -> String {
+func dateString(from date: Date, groupedBy groupByInterval: InsightGroupByInterval?) -> String {
     let formatter = DateFormatter()
 
     if let groupByInterval = groupByInterval {
         switch groupByInterval {
         case .hour:
             formatter.dateStyle = .short
-            formatter.timeStyle = .medium
+            formatter.timeStyle = .short
             return formatter.string(from: date)
         case .day:
             formatter.dateStyle = .long
