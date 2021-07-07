@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChartBottomView: View {
-    var insightData: DTO.InsightCalculationResult?
+    var insightData: ChartDataSet?
 
     let isSelected: Bool
 
@@ -30,7 +30,7 @@ struct ChartBottomView: View {
                 if numberOfLabels > 1 {
                     ForEach(1 ..< numberOfLabels, id: \.self) { number in
                         let index: Int = (insightData?.data.count ?? 0) * number / numberOfLabels
-                        let indexInsightData: DTO.InsightData? = insightData?.data[index]
+                        let indexInsightData = insightData?.data[index]
                         if let indexDate: Date = indexInsightData?.xAxisDate {
                             Text(indexDate, style: .date)
                         }

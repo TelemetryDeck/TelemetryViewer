@@ -20,8 +20,8 @@ struct DonutChartView: View {
     }
     
     var body: some View {
-        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), let chartDataSet = try? ChartDataSet(data: insightData.data) {
-            DonutChartContainer(chartDataset: chartDataSet, isSelected: isSelected)
+        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) {
+            DonutChartContainer(chartDataset: ChartDataSet(data: insightData.data), isSelected: isSelected)
                 .padding(.bottom)
                 .padding(.horizontal)
         } else {
@@ -41,9 +41,9 @@ struct DonutChartContainer: View {
         if chartDataset.data.count > maxEntries {
             let missingEntriesCount = chartDataset.data.count - maxEntries
             let missingEntries = Array(chartDataset.data.suffix(missingEntriesCount))
-            let otherSum = missingEntries.map { $0.yAxisValue }.reduce(Double(0), +)
+            let otherSum = missingEntries.map { $0.yAxisDouble ?? 0 }.reduce(Double(0), +)
             
-            chartDataPoints.append(ChartDataPoint(xAxisValue: "Other", yAxisValue: otherSum))
+            chartDataPoints.append(ChartDataPoint(xAxisValue: "Other", yAxisValue: "\(otherSum)"))
         }
                 
         return chartDataPoints
@@ -61,7 +61,7 @@ struct DonutChartContainer: View {
 
 // MARK: - Preview
 struct DonutChartView_Previews: PreviewProvider {
-    static var data: ChartDataSet = try! ChartDataSet(
+    static var data: ChartDataSet = ChartDataSet(
         data: [
             DTO.InsightData(xAxisValue: "Cool Users", yAxisValue: "859"),
             DTO.InsightData(xAxisValue: "Enthusiastic Users", yAxisValue: "515"),

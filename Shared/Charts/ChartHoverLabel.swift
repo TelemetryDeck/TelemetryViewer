@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChartHoverLabel: View {
-    let dataEntry: DTO.InsightData
+    let dataEntry: ChartDataPoint
     let interval: InsightGroupByInterval
     
     var body: some View {
@@ -33,9 +33,9 @@ struct ChartHoverLabel: View {
 
 struct ChartHoverLabel_Previews: PreviewProvider {
     static var previews: some View {
-        ChartHoverLabel(dataEntry: DTO.InsightData(xAxisValue: "2021-06-28T00:00:00.000Z", yAxisValue: "15234"), interval: .hour)
-        ChartHoverLabel(dataEntry: DTO.InsightData(xAxisValue: "2021-06-28T00:00:00.000Z", yAxisValue: "15234"), interval: .day)
-        ChartHoverLabel(dataEntry: DTO.InsightData(xAxisValue: "2021-06-28T00:00:00.000Z", yAxisValue: "15234"), interval: .week)
-        ChartHoverLabel(dataEntry: DTO.InsightData(xAxisValue: "2021-06-28T00:00:00.000Z", yAxisValue: "15234"), interval: .month)
+        ChartHoverLabel(dataEntry: .init(xAxisValue: "2021-06-28T00:00:00.000Z", yAxisValue: "15234"), interval: .hour)
+        ChartHoverLabel(dataEntry: .init(xAxisValue: "2021-06-28T00:00:00.000Z", yAxisValue: "15234"), interval: .day)
+        ChartHoverLabel(dataEntry: .init(xAxisValue: "2021-06-28T00:00:00.000Z", yAxisValue: "15234"), interval: .week)
+        ChartHoverLabel(dataEntry: .init(xAxisValue: "2021-06-28T00:00:00.000Z", yAxisValue: "15234"), interval: .month)
     }
 }

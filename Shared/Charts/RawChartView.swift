@@ -21,10 +21,12 @@ struct RawChartView: View {
 
     var body: some View {
         if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), !insightData.data.isEmpty {
-            if insightData.data.count > 2 || insightData.data.first?.xAxisDate == nil {
-                RawTableView(insightData: insightData, isSelected: isSelected)
+            let chartDataSet = ChartDataSet(data: insightData.data)
+            
+            if chartDataSet.data.count > 2 || chartDataSet.data.first?.xAxisDate == nil {
+                RawTableView(insightData: chartDataSet, isSelected: isSelected)
             } else {
-                SingleValueView(insightData: insightData, isSelected: isSelected)
+                SingleValueView(insightData: chartDataSet, isSelected: isSelected)
                     .frame(minWidth: 0,
                            maxWidth: .infinity,
                            minHeight: 0,
@@ -135,7 +137,7 @@ struct RawChartView: View {
 // }
 
 struct SingleValueView: View {
-    var insightData: DTO.InsightCalculationResult
+    var insightData: ChartDataSet
 
     let isSelected: Bool
 
@@ -175,7 +177,7 @@ struct SingleValueView: View {
         }
     }
 
-    func xAxisDefinition(insightData: DTO.InsightData, groupBy: InsightGroupByInterval? = .day) -> Text {
+    func xAxisDefinition(insightData: ChartDataPoint, groupBy: InsightGroupByInterval? = .day) -> Text {
         return Text(dateString(from: insightData, groupedBy: groupBy))
     }
 
@@ -211,7 +213,7 @@ struct SingleValueView: View {
 }
 
 struct RawTableView: View {
-    var insightData: DTO.InsightCalculationResult
+    var insightData: ChartDataSet
 
     let isSelected: Bool
 
@@ -249,8 +251,8 @@ struct RawTableView: View {
     }
 }
 
-func dateString(from insightData: DTO.InsightData, groupedBy groupByInterval: InsightGroupByInterval?) -> String {
-    guard let date = insightData.xAxisDate else { return insightData.xAxisValue }
+func dateString(from chartDataPoint: ChartDataPoint, groupedBy groupByInterval: InsightGroupByInterval?) -> String {
+    guard let date = chartDataPoint.xAxisDate else { return chartDataPoint.xAxisValue }
 
     let formatter = DateFormatter()
 

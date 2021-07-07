@@ -20,8 +20,8 @@ struct BarChartView: View {
     }
 
     var body: some View {
-        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), let chartDataSet = try? ChartDataSet(data: insightData.data) {
-            BarChartContentView(insightCalculationResult: insightData, chartDataSet: chartDataSet, isSelected: isSelected)
+        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) {
+            BarChartContentView(insightCalculationResult: insightData, chartDataSet: ChartDataSet(data: insightData.data), isSelected: isSelected)
         } else {
             Text("Cannot display this as a Chart")
         }
@@ -33,7 +33,7 @@ struct BarChartContentView: View {
     let chartDataSet: ChartDataSet
     let isSelected: Bool
 
-    @State var hoveringDataEntry: DTO.InsightData?
+    @State var hoveringDataEntry: ChartDataPoint?
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -41,8 +41,8 @@ struct BarChartContentView: View {
                 HStack {
                     GeometryReader { geometry in
                         HStack(alignment: .bottom, spacing: 1) {
-                            ForEach(insightCalculationResult.data, id: \.self) { dataEntry in
-                                BarView(insightCalculationResult: insightCalculationResult, dataEntry: dataEntry, geometry: geometry, isHovering: dataEntry == hoveringDataEntry)
+                            ForEach(chartDataSet.data) { dataEntry in
+                                BarView(dataSet: chartDataSet, dataEntry: dataEntry, geometry: geometry, isHovering: dataEntry == hoveringDataEntry)
                                     .onHover { over in
                                         withAnimation {
                                             if over {
@@ -61,12 +61,12 @@ struct BarChartContentView: View {
                         }
                     }
 
-                    if let lastValue = insightCalculationResult.data.last?.yAxisDouble {
+                    if let lastValue = chartDataSet.data.last?.yAxisDouble {
                         ChartRangeView(lastValue: lastValue, chartDataSet: chartDataSet, isSelected: isSelected)
                     }
                 }
 
-                ChartBottomView(insightData: insightCalculationResult, isSelected: isSelected)
+                ChartBottomView(insightData: chartDataSet, isSelected: isSelected)
                     .padding(.trailing, 35)
             }
             .padding(.horizontal)
@@ -81,15 +81,15 @@ struct BarChartContentView: View {
 }
 
 struct BarView: View {
-    let insightCalculationResult: DTO.InsightCalculationResult
-    let dataEntry: DTO.InsightData
+    let dataSet: ChartDataSet
+    let dataEntry: ChartDataPoint
     let geometry: GeometryProxy
     let isHovering: Bool
 
     /// `true` if the bar represents the current day/week/month/etc, and therefore represents
     /// incomplete data.
     var isCurrentPeriod: Bool {
-        let groupByPeriod = insightCalculationResult.groupBy ?? .day
+        let groupByPeriod = dataSet.groupBy ?? .day
 
         guard let date = dataEntry.xAxisDate else { return false }
 
@@ -107,7 +107,7 @@ struct BarView: View {
 
     var body: some View {
         if let yAxisValue = dataEntry.yAxisDouble {
-            let percentage = CGFloat(yAxisValue / insightCalculationResult.highestValue)
+            let percentage = CGFloat(yAxisValue / dataSet.highestValue)
 
             ZStack(alignment: .bottom) {
                 RoundedCorners(tl: 5, tr: 5, bl: 0, br: 0)
@@ -162,7 +162,7 @@ struct Barchart_Previews: PreviewProvider {
             calculationDuration: 12,
             shouldUseDruid: true)
 
-        BarChartContentView(insightCalculationResult: calculationResult, chartDataSet: try! ChartDataSet(data: calculationResult.data), isSelected: false)
+        BarChartContentView(insightCalculationResult: calculationResult, chartDataSet: ChartDataSet(data: calculationResult.data), isSelected: false)
             .padding()
     }
 }

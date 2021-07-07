@@ -12,11 +12,11 @@ struct DonutChart: View {
     
     private var pieSegments: [PieSegment] {
         var segments = [PieSegment]()
-        let total = chartDataPoints.reduce(0) { $0 + $1.yAxisValue }
+        let total = chartDataPoints.reduce(0) { $0 + ($1.yAxisDouble ?? 0) }
         var startAngle = -Double.pi / 2
         
         for (index, data) in chartDataPoints.enumerated() {
-            let amount = .pi * 2 * (data.yAxisValue / total)
+            let amount = .pi * 2 * ((data.yAxisDouble ?? 0) / total)
             let segment = PieSegment(data: data, id: index, startAngle: startAngle, amount: amount)
             segments.append(segment)
             startAngle += amount

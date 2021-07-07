@@ -44,12 +44,12 @@ struct DonutLegend: View {
         var values: [DonutLegendEntryValue] = []
         
         for (index, data) in chartDataPoints.enumerated() {
-            let value = DonutLegendEntryValue(id: index, xAxisValue: data.xAxisValue, yAxisValue: data.yAxisValue)
+            let value = DonutLegendEntryValue(id: index, xAxisValue: data.xAxisValue, yAxisValue: data.yAxisDouble ?? 0)
             values.append(value)
         }
         
         let totalSum: Double = chartDataPoints.reduce(0.0) { result, chartDataPoint in
-            result + chartDataPoint.yAxisValue
+            result + (chartDataPoint.yAxisDouble ?? 0)
         }
         
         values.append(.init(id: -1, xAxisValue: "Total", yAxisValue: totalSum))

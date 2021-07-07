@@ -33,7 +33,7 @@ struct InsightView: View {
             InsightTitleView(topSelectedInsightID: $topSelectedInsightID, appID: appID, insightGroupID: insightGroupID, insightID: insightID)
 
             Group {
-                if let calculationResult = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), !calculationResult.isEmpty {
+                if let calculationResult = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), !calculationResult.data.isEmpty {
                     InsightDisplayView(topSelectedInsightID: $topSelectedInsightID, appID: appID, insightGroupID: insightGroupID, insightID: insightID)
                 } else {
                     if insightCalculationService.isInsightCalculating(id: insightID) {

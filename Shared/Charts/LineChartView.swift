@@ -24,7 +24,7 @@ struct LineChart: Shape {
             var pathPoints: [CGPoint] = []
             for (index, data) in self.data.data.enumerated() {
                 let dayOffset = xWidthConstant * CGFloat(index)
-                let valueOffset = CGFloat(data.yAxisValue) * yHeightConstant
+                let valueOffset = CGFloat(data.yAxisDouble ?? 0) * yHeightConstant
 
                 pathPoints.append(CGPoint(x: dayOffset, y: rect.size.height - valueOffset))
             }
@@ -71,7 +71,9 @@ struct LineChartView: View {
     }
 
     var body: some View {
-        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), let chartDataSet = try? ChartDataSet(data: insightData.data) {
+        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) {
+            let chartDataSet =  ChartDataSet(data: insightData.data)
+            
             VStack {
                 HStack {
                     ZStack {
@@ -81,12 +83,12 @@ struct LineChartView: View {
                         LineChart(data: chartDataSet, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                     }
 
-                    if let lastValue = chartDataSet.data.last?.yAxisValue {
+                    if let lastValue = chartDataSet.data.last?.yAxisDouble {
                         ChartRangeView(lastValue: lastValue, chartDataSet: chartDataSet, isSelected: isSelected)
                     }
                 }
 
-                ChartBottomView(insightData: insightData, isSelected: isSelected)
+                ChartBottomView(insightData: chartDataSet, isSelected: isSelected)
                     .padding(.trailing, 35)
                     .padding(.leading)
             }

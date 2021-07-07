@@ -215,8 +215,8 @@ struct AppAdminDetailView: View {
                 getSignalCountHistory()
             }
             
-            if let signalCountHistory = signalCountHistory, let chartData = try? ChartDataSet(data: signalCountHistory) {
-                LineChart(data: chartData, shouldCloseShape: false)
+            if let signalCountHistory = signalCountHistory {
+                LineChart(data: ChartDataSet(data: signalCountHistory), shouldCloseShape: false)
                     .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                     .frame(maxWidth: .infinity, maxHeight: 300)
             }
