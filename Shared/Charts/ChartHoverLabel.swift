@@ -13,7 +13,7 @@ struct ChartHoverLabel: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(dateString(from: dataEntry.xAxisDate!, groupedBy: interval))
+            Text(dateString(from: dataEntry, groupedBy: interval))
                 .font(.footnote)
                 .bold()
             

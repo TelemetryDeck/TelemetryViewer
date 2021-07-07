@@ -176,11 +176,7 @@ struct SingleValueView: View {
     }
 
     func xAxisDefinition(insightData: DTO.InsightData, groupBy: InsightGroupByInterval? = .day) -> Text {
-        if let date = insightData.xAxisDate {
-            return Text(dateString(from: date, groupedBy: groupBy))
-        }
-
-        return Text(insightData.xAxisValue)
+        return Text(dateString(from: insightData, groupedBy: groupBy))
     }
 
     func percentageString(from percentage: Double) -> String {
@@ -230,15 +226,9 @@ struct RawTableView: View {
                 if let data = insightData.data {
                     ForEach(data, id: \.xAxisValue) { dataRow in
                         Group {
-                            Group {
-                                if let xAxisDate = dataRow.xAxisDate {
-                                    Text(dateString(from: xAxisDate, groupedBy: insightData.groupBy))
-                                } else {
-                                    Text(dataRow.xAxisValue)
-                                }
-                            }
-                            .font(.footnote)
-                            .foregroundColor(isSelected ? .cardBackground : .grayColor)
+                            Text(dateString(from: dataRow, groupedBy: insightData.groupBy))
+                                .font(.footnote)
+                                .foregroundColor(isSelected ? .cardBackground : .grayColor)
 
                             Group {
                                 if let doubleValue = dataRow.yAxisDouble {
@@ -259,7 +249,9 @@ struct RawTableView: View {
     }
 }
 
-func dateString(from date: Date, groupedBy groupByInterval: InsightGroupByInterval?) -> String {
+func dateString(from insightData: DTO.InsightData, groupedBy groupByInterval: InsightGroupByInterval?) -> String {
+    guard let date = insightData.xAxisDate else { return insightData.xAxisValue }
+
     let formatter = DateFormatter()
 
     if let groupByInterval = groupByInterval {

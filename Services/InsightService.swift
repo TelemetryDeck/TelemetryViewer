@@ -43,7 +43,7 @@ class InsightService: ObservableObject {
         if insightGroups == nil {
             print("Insight Groups not found for appID \(appID), asking server...")
             getInsightGroups(for: appID)
-        } else if let lastLoadTime = lastLoadTimeByAppID[appID], abs(lastLoadTime.timeIntervalSinceNow) > 60 * 5 { // data is over 5 minutes old
+        } else if let lastLoadTime = lastLoadTimeByAppID[appID], lastLoadTime < (Date() - 60 * 5) { // data is over 5 minutes old
             print("Insight Groups too old for appID \(appID), asking server...")
             getInsightGroups(for: appID)
         }
