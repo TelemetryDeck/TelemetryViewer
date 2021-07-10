@@ -10,6 +10,8 @@ import SwiftUI
 struct DonutChart: View {
     let chartDataPoints: [ChartDataPoint]
     
+    @Binding var hoveringDataPoint: ChartDataPoint?
+    
     private var pieSegments: [PieSegment] {
         var segments = [PieSegment]()
         let total = chartDataPoints.reduce(0) { $0 + ($1.yAxisDouble ?? 0) }
@@ -38,13 +40,12 @@ struct DonutChart: View {
                 
                 segment
                     .stroke(style: StrokeStyle(lineWidth: 40))
-                    .fill(Color.accentColor)
+                    .fill(segment.data == hoveringDataPoint ? Color.grayColor : Color.accentColor)
                     .opacity(opacity)
             }
         }
     }
 }
-
 
 struct PieSegment: Shape, Identifiable {
     let data: ChartDataPoint
@@ -69,4 +70,3 @@ struct PieSegment: Shape, Identifiable {
         return path
     }
 }
-

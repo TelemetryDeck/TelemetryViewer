@@ -35,6 +35,8 @@ struct DonutChartContainer: View {
     let maxEntries: Int = 4
     let isSelected: Bool
     
+    @State var hoveringDataPoint: ChartDataPoint?
+    
     private var chartDataPoints: [ChartDataPoint] {
         var chartDataPoints: [ChartDataPoint] = Array(chartDataset.data.prefix(maxEntries))
         
@@ -51,8 +53,8 @@ struct DonutChartContainer: View {
     
     var body: some View {
         HStack {
-            DonutLegend(chartDataPoints: chartDataPoints, isSelected: isSelected)
-            DonutChart(chartDataPoints: chartDataPoints)
+            DonutLegend(chartDataPoints: chartDataPoints, isSelected: isSelected, hoveringDataPoint: $hoveringDataPoint)
+            DonutChart(chartDataPoints: chartDataPoints, hoveringDataPoint: $hoveringDataPoint)
                 .transition(.opacity)
         }
     }
