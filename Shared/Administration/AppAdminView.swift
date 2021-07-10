@@ -211,16 +211,14 @@ struct AppAdminDetailView: View {
                 .buttonStyle(SmallSecondaryButtonStyle())
             }
             
-            Button("Get History") {
-                getSignalCountHistory()
-            }
-            
             if let signalCountHistory = signalCountHistory {
-                LineChartShape(data: ChartDataSet(data: signalCountHistory), shouldCloseShape: false)
-                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-                    .frame(maxWidth: .infinity, maxHeight: 300)
+                LineChart(chartDataSet: ChartDataSet(data: signalCountHistory), isSelected: false)
+                    .frame(maxWidth: .infinity, minHeight: 200)
             }
         }
+        .onAppear(perform: {
+            getSignalCountHistory()
+        })
         .padding()
     }
 }
