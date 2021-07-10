@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LineChart: Shape {
+struct LineChartShape: Shape {
     var data: ChartDataSet
     var shouldCloseShape: Bool
 
@@ -23,8 +23,8 @@ struct LineChart: Shape {
         let pathPoints: [CGPoint] = {
             var pathPoints: [CGPoint] = []
             for (index, data) in self.data.data.enumerated() {
-                let dayOffset = xWidthConstant * CGFloat(index)
-                let valueOffset = CGFloat(data.yAxisDouble ?? 0) * yHeightConstant
+                let dayOffset = xWidthConstant*CGFloat(index)
+                let valueOffset = CGFloat(data.yAxisDouble ?? 0)*yHeightConstant
 
                 pathPoints.append(CGPoint(x: dayOffset, y: rect.size.height - valueOffset))
             }
@@ -58,9 +58,38 @@ struct LineChart: Shape {
     }
 }
 
+struct LineChart: View {
+    let chartDataSet: ChartDataSet
+    let isSelected: Bool
+    
+    var body: some View {
+        VStack {
+            HStack {
+                ZStack {
+                    LineChartShape(data: chartDataSet, shouldCloseShape: true).fill(
+                        LinearGradient(gradient: Gradient(colors: [Color.accentColor.opacity(0.2), Color.accentColor.opacity(0.0)]), startPoint: .top, endPoint: .bottom)
+                    )
+                    LineChartShape(data: chartDataSet, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                }
+
+                if let lastValue = chartDataSet.data.last?.yAxisDouble {
+                    ChartRangeView(lastValue: lastValue, chartDataSet: chartDataSet, isSelected: isSelected)
+                }
+            }
+
+            ChartBottomView(insightData: chartDataSet, isSelected: isSelected)
+                .padding(.trailing, 35)
+                .padding(.leading)
+        }
+        .font(.footnote)
+        .foregroundColor(Color.grayColor)
+        .padding(.bottom)
+    }
+}
+
 struct LineChartView: View {
     @EnvironmentObject var insightCalculationService: InsightCalculationService
-    
+
     let insightID: UUID
     let insightGroupID: UUID
     let appID: UUID
@@ -72,51 +101,187 @@ struct LineChartView: View {
 
     var body: some View {
         if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) {
-            let chartDataSet =  ChartDataSet(data: insightData.data)
-            
-            VStack {
-                HStack {
-                    ZStack {
-                        LineChart(data: chartDataSet, shouldCloseShape: true).fill(
-                            LinearGradient(gradient: Gradient(colors: [Color.accentColor.opacity(0.2), Color.accentColor.opacity(0.0)]), startPoint: .top, endPoint: .bottom)
-                        )
-                        LineChart(data: chartDataSet, shouldCloseShape: false).stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-                    }
-
-                    if let lastValue = chartDataSet.data.last?.yAxisDouble {
-                        ChartRangeView(lastValue: lastValue, chartDataSet: chartDataSet, isSelected: isSelected)
-                    }
-                }
-
-                ChartBottomView(insightData: chartDataSet, isSelected: isSelected)
-                    .padding(.trailing, 35)
-                    .padding(.leading)
-            }
-            .font(.footnote)
-            .foregroundColor(Color.grayColor)
-            .padding(.bottom)
+            let chartDataSet = ChartDataSet(data: insightData.data)
+            LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
         } else {
             Text("Cannot display this as a Chart")
         }
     }
 }
 
-// struct LineChartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let chartData = try! ChartDataSet(data: [
-//            .init(date: Date(timeIntervalSinceNow: -3600*24*9), value: 1),
-//            .init(date: Date(timeIntervalSinceNow: -3600*24*8), value: 20),
-//            .init(date: Date(timeIntervalSinceNow: -3600*24*7), value: 30),
-//            .init(date: Date(timeIntervalSinceNow: -3600*24*6), value: 40),
-//            .init(date: Date(timeIntervalSinceNow: -3600*24*4), value: 30),
-//            .init(date: Date(timeIntervalSinceNow: -3600*24*3), value: 80),
-//            .init(date: Date(timeIntervalSinceNow: -3600*24*2), value: 24),
-//            .init(date: Date(timeIntervalSinceNow: -3600*24*1), value: 60),
-//        ])
-//
-//        LineChartView(data: chartData)
-//        .padding()
-//        .previewLayout(.fixed(width: 400, height: 200))
-//    }
-// }
-//
+struct LineChartView_Previews: PreviewProvider {
+    static var previews: some View {
+        let chartDataPoints: [ChartDataPoint] =  [
+            ChartDataPoint(
+              xAxisValue: "2021-05-31T00:00:00.000Z",
+              yAxisValue: "249"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-01T00:00:00.000Z",
+              yAxisValue: "205"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-02T00:00:00.000Z",
+              yAxisValue: "216"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-03T00:00:00.000Z",
+              yAxisValue: "180"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-04T00:00:00.000Z",
+              yAxisValue: "205"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-05T00:00:00.000Z",
+              yAxisValue: "195"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-06T00:00:00.000Z",
+              yAxisValue: "213"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-07T00:00:00.000Z",
+              yAxisValue: "216"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-08T00:00:00.000Z",
+              yAxisValue: "305"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-09T00:00:00.000Z",
+              yAxisValue: "195"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-10T00:00:00.000Z",
+              yAxisValue: "204"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-11T00:00:00.000Z",
+              yAxisValue: "220"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-12T00:00:00.000Z",
+              yAxisValue: "218"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-13T00:00:00.000Z",
+              yAxisValue: "225"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-14T00:00:00.000Z",
+              yAxisValue: "219"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-15T00:00:00.000Z",
+              yAxisValue: "224"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-16T00:00:00.000Z",
+              yAxisValue: "200"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-17T00:00:00.000Z",
+              yAxisValue: "220"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-18T00:00:00.000Z",
+              yAxisValue: "224"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-19T00:00:00.000Z",
+              yAxisValue: "172"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-20T00:00:00.000Z",
+              yAxisValue: "128"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-21T00:00:00.000Z",
+              yAxisValue: "190"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-22T00:00:00.000Z",
+              yAxisValue: "150"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-23T00:00:00.000Z",
+              yAxisValue: "199"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-24T00:00:00.000Z",
+              yAxisValue: "111"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-25T00:00:00.000Z",
+              yAxisValue: "196"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-26T00:00:00.000Z",
+              yAxisValue: "171"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-27T00:00:00.000Z",
+              yAxisValue: "224"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-28T00:00:00.000Z",
+              yAxisValue: "162"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-29T00:00:00.000Z",
+              yAxisValue: "177"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-06-30T00:00:00.000Z",
+              yAxisValue: "210"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-01T00:00:00.000Z",
+              yAxisValue: "185"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-02T00:00:00.000Z",
+              yAxisValue: "141"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-03T00:00:00.000Z",
+              yAxisValue: "173"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-04T00:00:00.000Z",
+              yAxisValue: "216"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-05T00:00:00.000Z",
+              yAxisValue: "190"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-06T00:00:00.000Z",
+              yAxisValue: "140"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-07T00:00:00.000Z",
+              yAxisValue: "106"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-08T00:00:00.000Z",
+              yAxisValue: "135"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-09T00:00:00.000Z",
+              yAxisValue: "138"
+            ),
+            ChartDataPoint(
+              xAxisValue: "2021-07-10T00:00:00.000Z",
+              yAxisValue: "131"
+            )
+        ]
+        
+        let chartDataSet = ChartDataSet(data: chartDataPoints, groupBy: .day)
+
+        LineChart(chartDataSet: chartDataSet, isSelected: false)
+            .padding()
+            .previewLayout(.fixed(width: 400, height: 200))
+    }
+}
