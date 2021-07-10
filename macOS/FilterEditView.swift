@@ -28,6 +28,7 @@ struct FilterEditView: View {
                     Text(key).foregroundColor(.grayColor)
 
                     TextField("Value", text: $keysAndValues[key].irreversiblyBound)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
 
                     Button(action: {
                         keysAndValues[key] = nil
@@ -40,8 +41,10 @@ struct FilterEditView: View {
             HStack {
                 if let autocompleteOptions = autocompleteOptions {
                     AutoCompletingTextField(title: "New Filter Name", text: $newKeyName.bound, autocompletionOptions: autocompleteOptions)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 } else {
                     TextField("New Filter Name", text: $newKeyName.bound)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
 
                 Button("Add") {

@@ -171,6 +171,7 @@ struct InsightEditor: View {
         let form = Form {
             CustomSection(header: Text("Name"), summary: Text(insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID)?.title ?? "..."), footer: Text("The Title of This Insight")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $editorContent.title, onEditingChanged: { _ in save() }, onCommit: { save() })
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
 
                 #if os(macOS)
                     Toggle(isOn: $editorContent.isExpanded, label: {
@@ -214,6 +215,7 @@ struct InsightEditor: View {
                     autocompletionOptions: signalTypeAutocompletionOptions,
                     onEditingChanged: { save() }
                 )
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
 
                 Toggle(isOn: $editorContent.uniqueUser) {
                     HStack {
@@ -236,6 +238,7 @@ struct InsightEditor: View {
                     autocompletionOptions: filterAutocompletionOptions,
                     onEditingChanged: { save() }
                 )
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
             }
 
             CustomSection(header: Text("Filters"), summary: Text("\(editorContent.filters.count) filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
@@ -244,7 +247,7 @@ struct InsightEditor: View {
             }
 
             CustomSection(header: Text("Insight Group"), summary: Text(insightGroupTitle), footer: Text("All insights belong to an insight group."), startCollapsed: true) {
-                Picker(selection: $editorContent.groupID, label: Text("Group")) {
+                Picker(selection: $editorContent.groupID, label: EmptyView()) {
                     ForEach(insightService.insightGroups(for: appID) ?? []) { insightGroup in
                         Text(insightGroup.title).tag(insightGroup.id)
                     }
@@ -333,5 +336,31 @@ struct InsightEditor: View {
                 }
             #endif
         }
+    }
+}
+
+struct InsightEditor_Previews: PreviewProvider {
+    static var previews: some View {
+        let editorContent: InsightEditorContent = InsightEditorContent(
+            order: 1,
+            title: "Test Insight",
+            signalType: "testSignal",
+            uniqueUser: true,
+            filters: ["platform": "macOS", "systemVersion": "12"],
+            rollingWindowSize: 0,
+            breakdownKey: "",
+            groupBy: .day,
+            displayMode: .barChart,
+            groupID: UUID(),
+            id: UUID(),
+            isExpanded: false,
+            shouldUseDruid: true
+        )
+        
+        let apiClient = APIClient()
+        
+        return InsightEditor(editorContent: editorContent, appID: UUID(), insightGroupID: UUID())
+            .environmentObject(InsightCalculationService(api: apiClient))
+            .environmentObject(InsightService(api: apiClient))
     }
 }
