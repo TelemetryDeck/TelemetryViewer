@@ -204,9 +204,9 @@ struct SingleValueView: View {
         guard insightData.data.count > 1 else { return Text("") }
         let previousData = insightData.data[0]
 
-        guard let currentValue = insightData.data[1].yAxisNumber, let previousValue = insightData.data[0].yAxisNumber else { return xAxisDefinition(insightData: previousData, groupBy: insightData.groupBy) }
+        guard let currentValue = insightData.data[1].yAxisDouble, let previousValue = insightData.data[0].yAxisDouble else { return xAxisDefinition(insightData: previousData, groupBy: insightData.groupBy) }
 
-        let percentage: Double = (currentValue.doubleValue - previousValue.doubleValue) / previousValue.doubleValue
+        let percentage: Double = (currentValue - previousValue) / previousValue
 
         return Text("\(percentageString(from: percentage)) compared to ") + xAxisDefinition(insightData: previousData, groupBy: insightData.groupBy) + Text(" (\(previousData.yAxisValue ?? ""))")
     }
