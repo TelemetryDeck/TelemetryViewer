@@ -262,6 +262,15 @@
 		2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexiconSignalDTO.swift; sourceTree = "<group>"; };
 		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
 		2B61B951264C3061003F62C4 /* SignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalDTO.swift; sourceTree = "<group>"; };
+		2B65C35226A5E25500606527 /* RawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
+		2B65C35326A5E25500606527 /* ChartRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRangeView.swift; sourceTree = "<group>"; };
+		2B65C35426A5E25500606527 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		2B65C35526A5E25600606527 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		2B65C35626A5E25600606527 /* ChartHoverLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartHoverLabel.swift; sourceTree = "<group>"; };
+		2B65C35726A5E25600606527 /* ChartBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBottomView.swift; sourceTree = "<group>"; };
+		2B65C35926A5E25600606527 /* ChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegend.swift; sourceTree = "<group>"; };
+		2B65C35A26A5E25600606527 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
+		2B65C35B26A5E25600606527 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
 		2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequestBody.swift; sourceTree = "<group>"; };
 		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
 		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
@@ -456,6 +465,30 @@
 			path = "Donut Chart";
 			sourceTree = "<group>";
 		};
+		2B65C35126A5E25500606527 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				2B65C35226A5E25500606527 /* RawChartView.swift */,
+				2B65C35526A5E25600606527 /* BarChartView.swift */,
+				2B65C35426A5E25500606527 /* LineChartView.swift */,
+				2B65C35826A5E25600606527 /* Donut Chart */,
+				2B65C35726A5E25600606527 /* ChartBottomView.swift */,
+				2B65C35326A5E25500606527 /* ChartRangeView.swift */,
+				2B65C35626A5E25600606527 /* ChartHoverLabel.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		2B65C35826A5E25600606527 /* Donut Chart */ = {
+			isa = PBXGroup;
+			children = (
+				2B65C35B26A5E25600606527 /* DonutChartView.swift */,
+				2B65C35926A5E25600606527 /* ChartLegend.swift */,
+				2B65C35A26A5E25600606527 /* DonutChart.swift */,
+			);
+			path = "Donut Chart";
+			sourceTree = "<group>";
+		};
 		2BBFC9E4267D05E30013DC74 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +521,7 @@
 		2BD189F6267BCEA900DFDE4D /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				2B65C35126A5E25500606527 /* Charts */,
 				2BBFC9EB267D05E30013DC74 /* Helpers+Extensions */,
 				2BBFC9E4267D05E30013DC74 /* Modifiers */,
 				2BBFC9DF267D05E30013DC74 /* README.md */,
