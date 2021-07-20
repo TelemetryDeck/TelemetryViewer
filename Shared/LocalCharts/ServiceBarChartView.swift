@@ -20,7 +20,7 @@ struct BarChartView: View {
     }
 
     var body: some View {
-        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) {
+        if let insightData = insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: appID) {
             BarChartContentView(insightCalculationResult: insightData.insightData, chartDataSet: insightData.chartDataSet, isSelected: isSelected)
         } else {
             Text("Cannot display this as a Chart")

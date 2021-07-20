@@ -20,7 +20,7 @@ struct RawChartView: View {
     }
 
     var body: some View {
-        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), !insightData.insightData.data.isEmpty {
+        if let insightData = insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: appID), !insightData.insightData.data.isEmpty {
             let chartDataSet = insightData.chartDataSet
             
             if chartDataSet.data.count > 2 || chartDataSet.data.first?.xAxisDate == nil {

@@ -169,7 +169,7 @@ struct InsightEditor: View {
 
     var body: some View {
         let form = Form {
-            CustomSection(header: Text("Name"), summary: Text(insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID)?.insightData.title ?? "..."), footer: Text("The Title of This Insight")) {
+            CustomSection(header: Text("Name"), summary: Text(insightCalculationService.calculationResult(for: editorContent.id, in: insightGroupID, in: appID)?.insightData.title ?? "..."), footer: Text("The Title of This Insight")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $editorContent.title, onEditingChanged: { _ in save() }, onCommit: { save() })
                     .textFieldStyle(RoundedBorderTextFieldStyle())
 
@@ -257,7 +257,7 @@ struct InsightEditor: View {
             }
 
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-                if let dto = insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID)?.insightData,
+                if let dto = insightCalculationService.calculationResult(for: editorContent.id, in: insightGroupID, in: appID)?.insightData,
                    let calculatedAt = dto.calculatedAt, let calculationDuration = dto.calculationDuration
                 {
                     Group {
@@ -295,7 +295,7 @@ struct InsightEditor: View {
         }
         .alert(isPresented: $showingAlert) {
             Alert(
-                title: Text("Are you sure you want to delete the Insight \(insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID)?.insightData.title ?? "–")?"),
+                title: Text("Are you sure you want to delete the Insight \(insightCalculationService.calculationResult(for: editorContent.id, in: insightGroupID, in: appID)?.insightData.title ?? "–")?"),
                 message: Text("This will delete the Insight. Your signals are not affected."),
                 primaryButton: .destructive(Text("Delete")) {
                     insightService.delete(insightID: editorContent.id, in: insightGroupID, in: appID) { _ in
@@ -310,7 +310,7 @@ struct InsightEditor: View {
             updatePayloadKeys()
         }
 
-        if insightCalculationService.insightData(for: editorContent.id, in: insightGroupID, in: appID) != nil {
+        if insightCalculationService.calculationResult(for: editorContent.id, in: insightGroupID, in: appID) != nil {
             #if os(macOS)
                 ScrollView {
                     form

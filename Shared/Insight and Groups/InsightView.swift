@@ -33,7 +33,7 @@ struct InsightView: View {
             InsightTitleView(topSelectedInsightID: $topSelectedInsightID, appID: appID, insightGroupID: insightGroupID, insightID: insightID)
 
             Group {
-                if let calculationResult = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), !calculationResult.insightData.data.isEmpty {
+                if let calculationResult = insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: appID), !calculationResult.insightData.data.isEmpty {
                     InsightDisplayView(topSelectedInsightID: $topSelectedInsightID, appID: appID, insightGroupID: insightGroupID, insightID: insightID)
                 } else {
                     if insightCalculationService.isInsightCalculating(id: insightID) {
@@ -48,7 +48,7 @@ struct InsightView: View {
         .frame(idealHeight: 200)
         .padding(.top)
         // Request a refresh every now and then
-        .onReceive(refreshTimer) { _ in _ = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) }
+        .onReceive(refreshTimer) { _ in _ = insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: appID) }
     }
 }
 
@@ -67,7 +67,7 @@ struct InsightDisplayView: View {
     }
 
     var body: some View {
-        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: insightID) {
+        if let insightData = insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: insightID) {
             switch insightData.insightData.displayMode {
             case .raw:
                 RawChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
@@ -107,7 +107,7 @@ struct InsightTitleView: View {
 
     var body: some View {
         HStack {
-            Text(insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID)?.insightData.title.uppercased() ?? insightService.insight(id: insightID, in: insightGroupID, in: appID)?.title.uppercased() ?? "–")
+            Text(insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: appID)?.insightData.title.uppercased() ?? insightService.insight(id: insightID, in: insightGroupID, in: appID)?.title.uppercased() ?? "–")
                 .font(.footnote)
                 .foregroundColor(isSelected ? .cardBackground : .grayColor)
             InsightReloadButtonView(isSelected: isSelected, insightID: insightID, insightGroupID: insightGroupID, appID: appID)

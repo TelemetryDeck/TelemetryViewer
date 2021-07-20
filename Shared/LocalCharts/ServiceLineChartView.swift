@@ -20,7 +20,7 @@ struct LineChartView: View {
     }
 
     var body: some View {
-        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) {
+        if let insightData = insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: appID) {
             let chartDataSet = insightData.chartDataSet
             LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
         } else {

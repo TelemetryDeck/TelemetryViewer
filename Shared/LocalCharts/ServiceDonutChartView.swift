@@ -20,7 +20,7 @@ struct DonutChartView: View {
     }
     
     var body: some View {
-        if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) {
+        if let insightData = insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: appID) {
             DonutChartContainer(chartDataset: insightData.chartDataSet, isSelected: isSelected)
                 .padding(.bottom)
                 .padding(.horizontal)
