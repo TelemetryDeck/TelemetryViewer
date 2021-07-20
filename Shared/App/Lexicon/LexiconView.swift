@@ -8,10 +8,12 @@
 import SwiftUI
 import TelemetryClient
 
+
 struct LexiconView: View {
     @EnvironmentObject var lexiconService: LexiconService
 
     @State private var sortKey: LexiconService.LexiconSortKey = .signalCount
+    
 
     #if os(iOS)
         @Environment(\.horizontalSizeClass) var sizeClass
@@ -28,21 +30,7 @@ struct LexiconView: View {
     let appID: UUID
 
     var body: some View {
-        if #available(macOS 12, *) {
-            Table(lexiconService.signalTypes(for: appID, sortedBy: sortKey)) {
-                TableColumn("Type", value: \.type)
-//                TableColumn("age", value: \.signalCount) { Text("\($0.signalCount)") }
-//                TableColumn("id", value: \.id) { Text("\($0.id)") }
-//                TableColumn("Users", value: \.userCount) { bla in Text("\(bla)") }
-//                TableColumn("Users", value: \.userCount)
-//                TableColumn("Sessions", value: \.sessionCount)
-            }
-            .navigationTitle("Lexicon")
-            .onAppear {
-                lexiconService.getPayloadKeys(for: appID)
-                lexiconService.getSignalTypes(for: appID)
-            }
-        } else {
+
             let list = List {
                 Section(header: HStack {
                     Button {
@@ -122,7 +110,7 @@ struct LexiconView: View {
                     lexiconService.getSignalTypes(for: appID)
                 }
         }
-    }
+    
 }
 
 struct LexiconView_Previews: PreviewProvider {

@@ -172,6 +172,7 @@
 		2BEDE70826A728D0007247B0 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35B26A5E25600606527 /* DonutChartView.swift */; };
 		2BEDE70926A728D0007247B0 /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35326A5E25500606527 /* ChartRangeView.swift */; };
 		2BEDE70A26A728D0007247B0 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35A26A5E25600606527 /* DonutChart.swift */; };
+		2BEDE71026A73EA9007247B0 /* MacOs12SignalTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE70F26A73EA9007247B0 /* MacOs12SignalTypesView.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* AppInfoView.swift */; };
@@ -329,6 +330,7 @@
 		2BEDE6E226A7281E007247B0 /* ServiceBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBarChartView.swift; sourceTree = "<group>"; };
 		2BEDE6E826A72853007247B0 /* ServiceLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLineChartView.swift; sourceTree = "<group>"; };
 		2BEDE6EC26A72879007247B0 /* ServiceDonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDonutChartView.swift; sourceTree = "<group>"; };
+		2BEDE70F26A73EA9007247B0 /* MacOs12SignalTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12SignalTypesView.swift; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				DCE23A0D24D3687D00053370 /* Info.plist */,
 				DCE23A0E24D3687D00053370 /* macOS.entitlements */,
 				2BE99692267D0A2600AF89B3 /* InsightGroupView.swift */,
+				2BEDE70F26A73EA9007247B0 /* MacOs12SignalTypesView.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1147,6 +1150,7 @@
 				2BBFCA38267D05E40013DC74 /* SingleKeyValueView.swift in Sources */,
 				DC92395B25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift in Sources */,
 				2BBFC9FE267D05E40013DC74 /* RoundedCorners.swift in Sources */,
+				2BEDE71026A73EA9007247B0 /* MacOs12SignalTypesView.swift in Sources */,
 				2BBFCA2C267D05E40013DC74 /* MacNavigationView.swift in Sources */,
 				2BBFCA0A267D05E40013DC74 /* Color.swift in Sources */,
 				DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,

@@ -57,14 +57,26 @@ struct LeftSidebarView: View {
                         }
                     )
 
-                    NavigationLink(
-                        destination: LexiconView(appID: app.id),
-                        tag: LeftSidebarViewSelection.lexicon,
-                        selection: $selection,
-                        label: {
-                            Label("Lexicon", systemImage: "book")
-                        }
-                    )
+                    if #available(macOS 12, *) {
+                        NavigationLink(
+                            destination: MacOs12SignalTypesView(appID: app.id),
+                            tag: LeftSidebarViewSelection.lexicon,
+                            selection: $selection,
+                            label: {
+                                Label("Signal Types", systemImage: "book")
+                            }
+                        )
+                    } else {
+                        NavigationLink(
+                            destination: LexiconView(appID: app.id),
+                            tag: LeftSidebarViewSelection.lexicon,
+                            selection: $selection,
+                            label: {
+                                Label("Lexicon", systemImage: "book")
+                            }
+                        )
+                    }
+
                     NavigationLink(
                         destination: SignalList(appID: app.id),
                         tag: LeftSidebarViewSelection.recentSignals,

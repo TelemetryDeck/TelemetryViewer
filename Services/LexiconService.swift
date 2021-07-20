@@ -41,6 +41,10 @@ class LexiconService: ObservableObject {
         }
     }
     
+    func signalTypes(for appID: UUID) -> [DTO.LexiconSignalDTO] {
+        lexiconSignals[appID] ?? []
+    }
+    
     func payloadKeys(for appID: UUID) -> [DTO.LexiconPayloadKey] {
         lexiconPayloadKeys[appID] ?? []
     }
