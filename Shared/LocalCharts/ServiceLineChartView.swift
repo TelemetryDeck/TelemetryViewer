@@ -21,7 +21,7 @@ struct LineChartView: View {
 
     var body: some View {
         if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID) {
-            let chartDataSet = ChartDataSet(data: insightData.data)
+            let chartDataSet = insightData.chartDataSet
             LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
         } else {
             Text("Cannot display this as a Chart")

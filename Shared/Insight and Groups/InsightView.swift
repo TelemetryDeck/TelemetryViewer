@@ -33,7 +33,7 @@ struct InsightView: View {
             InsightTitleView(topSelectedInsightID: $topSelectedInsightID, appID: appID, insightGroupID: insightGroupID, insightID: insightID)
 
             Group {
-                if let calculationResult = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), !calculationResult.data.isEmpty {
+                if let calculationResult = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID), !calculationResult.insightData.data.isEmpty {
                     InsightDisplayView(topSelectedInsightID: $topSelectedInsightID, appID: appID, insightGroupID: insightGroupID, insightID: insightID)
                 } else {
                     if insightCalculationService.isInsightCalculating(id: insightID) {
@@ -68,7 +68,7 @@ struct InsightDisplayView: View {
 
     var body: some View {
         if let insightData = insightCalculationService.insightData(for: insightID, in: insightGroupID, in: insightID) {
-            switch insightData.displayMode {
+            switch insightData.insightData.displayMode {
             case .raw:
                 RawChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
             case .pieChart:
@@ -78,7 +78,7 @@ struct InsightDisplayView: View {
             case .barChart:
                 BarChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
             default:
-                Text("\(insightData.displayMode.rawValue.capitalized) is not supported in this version.")
+                Text("\(insightData.insightData.displayMode.rawValue.capitalized) is not supported in this version.")
                     .font(.footnote)
                     .foregroundColor(.grayColor)
                     .padding(.vertical)
@@ -107,7 +107,7 @@ struct InsightTitleView: View {
 
     var body: some View {
         HStack {
-            Text(insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID)?.title.uppercased() ?? insightService.insight(id: insightID, in: insightGroupID, in: appID)?.title.uppercased() ?? "–")
+            Text(insightCalculationService.insightData(for: insightID, in: insightGroupID, in: appID)?.insightData.title.uppercased() ?? insightService.insight(id: insightID, in: insightGroupID, in: appID)?.title.uppercased() ?? "–")
                 .font(.footnote)
                 .foregroundColor(isSelected ? .cardBackground : .grayColor)
             InsightReloadButtonView(isSelected: isSelected, insightID: insightID, insightGroupID: insightGroupID, appID: appID)

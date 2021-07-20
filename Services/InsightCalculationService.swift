@@ -8,10 +8,15 @@
 import Foundation
 import SwiftUI
 
+struct ExpandedInsightCalculationResult {
+    let insightData: DTO.InsightCalculationResult
+    let chartDataSet: ChartDataSet
+}
+
 class InsightCalculationService: ObservableObject {
     let api: APIClient
 
-    @Published var calculationResultsByInsightID: [UUID: DTO.InsightCalculationResult] = [:]
+    @Published var calculationResultsByInsightID: [UUID: ExpandedInsightCalculationResult] = [:]
     @Published var loadingInsightIDs = Set<UUID>()
     @Published var errorInsightIDs = Set<UUID>()
 
@@ -90,23 +95,23 @@ class InsightCalculationService: ObservableObject {
     }
 
     /// Retrieve data for the specified insight. Will automatically load data if none is present, or the data is outdated
-    func insightData(for insightID: UUID, in insightGroupID: UUID, in appID: UUID) -> DTO.InsightCalculationResult? {
-        let insightData = calculationResultsByInsightID[insightID]
+    func calculationResult(for insightID: UUID, in insightGroupID: UUID, in appID: UUID) -> ExpandedInsightCalculationResult? {
+        let chartDataSet = calculationResultsByInsightID[insightID]
 
-        if insightData == nil {
-            getInsightData(for: insightID, in: insightGroupID, in: appID)
-        } else if abs(insightData!.calculatedAt.timeIntervalSinceNow) > 60 * 5 { // data is over 5 minutes old
-            getInsightData(for: insightID, in: insightGroupID, in: appID)
+        if chartDataSet == nil {
+            getCalculationResult(for: insightID, in: insightGroupID, in: appID)
+        } else if abs((chartDataSet?.insightData.calculatedAt ?? Date()).timeIntervalSinceNow) > 60 * 5 { // data is over 5 minutes old
+            getCalculationResult(for: insightID, in: insightGroupID, in: appID)
         }
 
-        return insightData
+        return chartDataSet
     }
 
     private func invalidateAllCalculationResults() {
         calculationResultsByInsightID = [:]
     }
 
-    func getInsightData(for insightID: UUID, in insightGroupID: UUID, in appID: UUID, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func getCalculationResult(for insightID: UUID, in insightGroupID: UUID, in appID: UUID, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         guard !loadingInsightIDs.contains(insightID) else { return }
         errorInsightIDs.remove(insightID)
         loadingInsightIDs.insert(insightID)
@@ -120,8 +125,18 @@ class InsightCalculationService: ObservableObject {
 
         api.get(url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
             if let insightDTO = try? result.get() {
-                withAnimation {
-                    self.calculationResultsByInsightID[insightID] = insightDTO
+                DispatchQueue.global(qos: .userInitiated).async {
+                    let chartDataSet = ChartDataSet(
+                        data: insightDTO.data,
+                        groupBy: insightDTO.groupBy)
+                    
+                    let calculationResult = ExpandedInsightCalculationResult(insightData: insightDTO, chartDataSet: chartDataSet)
+                    
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            self.calculationResultsByInsightID[insightID] = calculationResult
+                        }
+                    }
                 }
             } else {
                 errorInsightIDs.insert(insightID)
