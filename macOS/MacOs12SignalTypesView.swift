@@ -10,7 +10,6 @@ import SwiftUI
 @available(macOS 12, *)
 struct MacOs12SignalTypesView: View {
     @EnvironmentObject var lexiconService: LexiconService
-    @State private var selection: DTO.LexiconSignalDTO.ID?
     @State private var sortOrder: [KeyPathComparator<DTO.LexiconSignalDTO>] = [
         .init(\.type, order: SortOrder.forward)
     ]
@@ -19,7 +18,7 @@ struct MacOs12SignalTypesView: View {
     let appID: UUID
 
     var table: some View {
-        Table(signalTypes, selection: $selection, sortOrder: $sortOrder) {
+        Table(signalTypes, sortOrder: $sortOrder) {
             TableColumn("Type", value: \.type)
             TableColumn("Signals", value: \.signalCount) { x in Text("\(x.signalCount)") }
             TableColumn("Users", value: \.userCount) { x in Text("\(x.userCount)") }
@@ -30,7 +29,7 @@ struct MacOs12SignalTypesView: View {
     var body: some View {
         table
             .searchable(text: $searchText)
-            .navigationTitle("Lexicon")
+            .navigationTitle("Signal Types")
             .onAppear {
                 lexiconService.getSignalTypes(for: appID)
             }

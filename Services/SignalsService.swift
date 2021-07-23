@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 class SignalsService: ObservableObject {
-    @Published var signalsForAppID: [UUID: [DTO.Signal]] = [:]
-    @Published var loadingAppIDs: Set<UUID> = Set<UUID>()
+    @Published var signalsForAppID: [UUID: [DTO.IdentifiableSignal]] = [:]
+    @Published var loadingAppIDs = Set<UUID>()
     
     let api: APIClient
     
@@ -18,7 +18,7 @@ class SignalsService: ObservableObject {
         self.api = api
     }
     
-    func signals(for appID: UUID) -> [DTO.Signal] {
+    func signals(for appID: UUID) -> [DTO.IdentifiableSignal] {
         signalsForAppID[appID] ?? []
     }
     
@@ -26,21 +26,27 @@ class SignalsService: ObservableObject {
         loadingAppIDs.contains(appID)
     }
     
-    func getSignals(for appID: UUID, callback: ((Result<[DTO.Signal], TransferError>) -> Void)? = nil) {
+    func getSignals(for appID: UUID) {
         let url = api.urlForPath("apps", appID.uuidString, "signals")
         
         loadingAppIDs.insert(appID)
 
         api.get(url) { [unowned self] (result: Result<[DTO.Signal], TransferError>) in
-            switch result {
-            case let .success(signals):
-                self.signalsForAppID[appID] = signals
-            case let .failure(error):
-                api.handleError(error)
-            }
+            DispatchQueue.global(qos: .userInitiated).async {
+                switch result {
+                case let .success(signals):
+                    let identifiableSignals = signals.map { $0.toIdentifiableSignal() }
+                    DispatchQueue.main.async {
+                        self.signalsForAppID[appID] = identifiableSignals
+                    }
+                case let .failure(error):
+                    api.handleError(error)
+                }
 
-            loadingAppIDs.remove(appID)
-            callback?(result)
+                DispatchQueue.main.async {
+                    loadingAppIDs.remove(appID)
+                }
+            }
         }
     }
 }

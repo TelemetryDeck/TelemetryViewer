@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(macOS 12, *)
-struct MacOs12PayloadsView: View {
+struct MacOs12PayloadKeysView: View {
     @EnvironmentObject var lexiconService: LexiconService
     @State private var sortOrder: [KeyPathComparator<DTO.LexiconPayloadKey>] = [
         .init(\.payloadKey, order: SortOrder.forward)
@@ -27,7 +27,7 @@ struct MacOs12PayloadsView: View {
     var body: some View {
         table
             .searchable(text: $searchText)
-            .navigationTitle("Lexicon")
+            .navigationTitle("Payload Keys")
             .onAppear {
                 lexiconService.getPayloadKeys(for: appID)
             }

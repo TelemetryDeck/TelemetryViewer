@@ -69,7 +69,7 @@ struct LeftSidebarView: View {
                             }
                         )
                         NavigationLink(
-                            destination: MacOs12PayloadsView(appID: app.id),
+                            destination: MacOs12PayloadKeysView(appID: app.id),
                             tag: LeftSidebarViewSelection.payloads,
                             selection: $selection,
                             label: {
@@ -87,14 +87,25 @@ struct LeftSidebarView: View {
                         )
                     }
 
-                    NavigationLink(
-                        destination: SignalList(appID: app.id),
-                        tag: LeftSidebarViewSelection.recentSignals,
-                        selection: $selection,
-                        label: {
-                            Label("Recent Signals", systemImage: "waveform")
-                        }
-                    )
+                    if #available(macOS 12, *) {
+                        NavigationLink(
+                            destination: MacOs12RecentSignalsView(appID: app.id),
+                            tag: LeftSidebarViewSelection.recentSignals,
+                            selection: $selection,
+                            label: {
+                                Label("Recent Signals", systemImage: "waveform")
+                            }
+                        )
+                    } else {
+                        NavigationLink(
+                            destination: SignalList(appID: app.id),
+                            tag: LeftSidebarViewSelection.recentSignals,
+                            selection: $selection,
+                            label: {
+                                Label("Recent Signals", systemImage: "waveform")
+                            }
+                        )
+                    }
 
                     NavigationLink(
                         destination: AppEditor(appID: app.id),

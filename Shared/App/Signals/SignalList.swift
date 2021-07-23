@@ -35,14 +35,13 @@ struct SignalList: View {
             }
 
             let signals = signalsService.signals(for: appID)
-                .map { $0.toIdentifiableSignal() }
                 .filter {
                     filterText.isEmpty ||
                         $0.type.lowercased().contains(filterText.lowercased()) ||
                         $0.clientUser.lowercased().contains(filterText.lowercased())
                 }
 
-            ForEach(signals) { signal in
+            ForEach(signals, id: \.id) { signal in
                 NavigationLink(
                     destination: SignalView(signal: signal.signal),
                     label: { SignalListCell(signal: signal.signal) }
