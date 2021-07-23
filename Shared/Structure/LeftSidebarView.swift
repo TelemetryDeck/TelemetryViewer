@@ -39,7 +39,6 @@ struct LeftSidebarView: View {
             }
 
             if let app = appService.getSelectedApp() {
-                Section(header: Text("App")) {
                     Picker(selection: $appService.selectedAppID, label: EmptyView()) {
                         ForEach(appService.getTelemetryApps()) { app in
                             Text(app.name)
@@ -47,7 +46,6 @@ struct LeftSidebarView: View {
                                 .tag(app.id as UUID?)
                         }
                     }
-                }
 
                 Section(header: Text(app.name)) {
                     NavigationLink(
