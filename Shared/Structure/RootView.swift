@@ -22,8 +22,9 @@ struct RootView: View {
                     .opacity(0.2)
                     .frame(maxWidth: 200)
                     .toolbar {
-                        ToolbarItem {
+                        ToolbarItemGroup {
                             #if os(macOS)
+                            Spacer() 
                                 Button(action: toggleRightSidebar) {
                                     Image(systemName: "sidebar.right")
                                         .help("Toggle Sidebar")
