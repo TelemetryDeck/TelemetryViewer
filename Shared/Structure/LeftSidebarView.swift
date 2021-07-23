@@ -69,7 +69,7 @@ struct LeftSidebarView: View {
                             }
                         )
                         NavigationLink(
-                            destination: MacOs12SignalTypesView(appID: app.id),
+                            destination: MacOs12PayloadsView(appID: app.id),
                             tag: LeftSidebarViewSelection.payloads,
                             selection: $selection,
                             label: {

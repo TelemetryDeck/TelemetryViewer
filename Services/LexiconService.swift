@@ -84,7 +84,7 @@ class LexiconService: ObservableObject {
                 api.handleError(error)
             }
 
-            loadingAppIDs.insert(appID)
+            loadingAppIDs.remove(appID)
             callback?(result)
         }
     }
