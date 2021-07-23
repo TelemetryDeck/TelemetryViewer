@@ -23,10 +23,8 @@ struct SignalList: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
             #endif
-            
-            Text("These are the latest signals AppTelemetry has received from your app. Signals receive time have a granularity of one hour, and identical signals get grouped into one entry. Select a signal for more information.")
-                .font(.footnote)
-                .foregroundColor(.grayColor)
+
+            SignalListExplanationView()
 
             if signalsService.signals(for: appID).isEmpty && !signalsService.isLoading(appID: appID) {
                 Text("You haven't received any Signals yet. Once your app is sending out signals, you'll find here a list of the latest ones.\n\nHint: Usually, apps using the Telemetry Swift Client will only send out Signals if they are compiled in the Release build configuration. If your schema is in Debug mode, no signals will be sent.")
@@ -81,5 +79,16 @@ struct SignalListCell: View {
             Text(signal.receivedAt, style: .date).opacity(0.6)
             Text(signal.receivedAt, style: .time).opacity(0.6)
         }
+    }
+}
+
+struct SignalListExplanationView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("These are the latest signals AppTelemetry has received from your app.")
+            Text("Timestamps have a granularity of one hour, and mulitple identical signals might get grouped into one entry using the 'count' property.")
+        }
+        .font(.footnote)
+        .foregroundColor(.grayColor)
     }
 }

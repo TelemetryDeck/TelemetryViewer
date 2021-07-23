@@ -24,24 +24,39 @@ struct MacOs12PayloadKeysView: View {
         }
     }
 
+    var explanationView: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("This list contains all available payload keys known to AppTelemetry.")
+            }
+            .padding()
+            .font(.footnote)
+            .foregroundColor(.grayColor)
+        }
+    }
+
     var body: some View {
-        table
-            .searchable(text: $searchText)
-            .navigationTitle("Payload Keys")
-            .onAppear {
-                lexiconService.getPayloadKeys(for: appID)
-            }
-            .toolbar {
-                if lexiconService.isLoading(appID: appID) {
-                    ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
-                } else {
-                    Button(action: {
-                        lexiconService.getPayloadKeys(for: appID)
-                    }, label: {
-                        Image(systemName: "arrow.counterclockwise.circle")
-                    })
+        ZStack {
+            table
+                .searchable(text: $searchText)
+                .navigationTitle("Payload Keys")
+                .onAppear {
+                    lexiconService.getPayloadKeys(for: appID)
                 }
-            }
+                .toolbar {
+                    if lexiconService.isLoading(appID: appID) {
+                        ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
+                    } else {
+                        Button(action: {
+                            lexiconService.getPayloadKeys(for: appID)
+                        }, label: {
+                            Image(systemName: "arrow.counterclockwise.circle")
+                        })
+                    }
+                }
+            
+            NavigationLink("", destination: explanationView, isActive: .constant(true)).hidden()
+        }
     }
 
     var payloadTypes: [DTO.LexiconPayloadKey] {

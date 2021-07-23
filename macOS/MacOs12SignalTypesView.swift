@@ -26,24 +26,39 @@ struct MacOs12SignalTypesView: View {
         }
     }
 
+    var explanationView: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("This list contains all Signal Types seen by AppTelemetry in the last month.")
+            }
+            .padding()
+            .font(.footnote)
+            .foregroundColor(.grayColor)
+        }
+    }
+
     var body: some View {
-        table
-            .searchable(text: $searchText)
-            .navigationTitle("Signal Types")
-            .onAppear {
-                lexiconService.getSignalTypes(for: appID)
-            }
-            .toolbar {
-                if lexiconService.isLoading(appID: appID) {
-                    ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
-                } else {
-                    Button(action: {
-                        lexiconService.getSignalTypes(for: appID)
-                    }, label: {
-                        Image(systemName: "arrow.counterclockwise.circle")
-                    })
+        ZStack {
+            table
+                .searchable(text: $searchText)
+                .navigationTitle("Signal Types")
+                .onAppear {
+                    lexiconService.getSignalTypes(for: appID)
                 }
-            }
+                .toolbar {
+                    if lexiconService.isLoading(appID: appID) {
+                        ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
+                    } else {
+                        Button(action: {
+                            lexiconService.getSignalTypes(for: appID)
+                        }, label: {
+                            Image(systemName: "arrow.counterclockwise.circle")
+                        })
+                    }
+                }
+
+            NavigationLink("", destination: explanationView, isActive: .constant(true)).hidden()
+        }
     }
 
     var signalTypes: [DTO.LexiconSignalDTO] {
