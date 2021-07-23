@@ -58,6 +58,7 @@ struct LeftSidebarView: View {
                     )
 
                     if #available(macOS 12, *) {
+                        #if os(macOS)
                         NavigationLink(
                             destination: MacOs12SignalTypesView(appID: app.id),
                             tag: LeftSidebarViewSelection.signalTypes,
@@ -74,6 +75,7 @@ struct LeftSidebarView: View {
                                 Label("Payloads", systemImage: "book")
                             }
                         )
+                        #endif
                     } else {
                         NavigationLink(
                             destination: LexiconView(appID: app.id),
@@ -86,6 +88,7 @@ struct LeftSidebarView: View {
                     }
 
                     if #available(macOS 12, *) {
+                        #if os(macOS)
                         NavigationLink(
                             destination: MacOs12RecentSignalsView(appID: app.id),
                             tag: LeftSidebarViewSelection.recentSignals,
@@ -94,6 +97,7 @@ struct LeftSidebarView: View {
                                 Label("Recent Signals", systemImage: "waveform")
                             }
                         )
+                        #endif
                     } else {
                         NavigationLink(
                             destination: SignalList(appID: app.id),
