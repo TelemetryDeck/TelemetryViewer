@@ -11,24 +11,47 @@ import SwiftUI
 struct MacOs12SignalTypesView: View {
     @EnvironmentObject var lexiconService: LexiconService
     @State private var selection: DTO.LexiconSignalDTO.ID?
-    @State private var sorting = [
-        KeyPathComparator(\DTO.LexiconSignalDTO.type),
-        KeyPathComparator(\DTO.LexiconSignalDTO.signalCount),
-        KeyPathComparator(\DTO.LexiconSignalDTO.userCount)
+    @State private var sortOrder: [KeyPathComparator<DTO.LexiconSignalDTO>] = [
+        .init(\.type, order: SortOrder.forward)
     ]
+    @State var searchText: String = ""
 
     let appID: UUID
 
-    var body: some View {
-        Table(lexiconService.signalTypes(for: appID), selection: $selection, sortOrder: $sorting) {
+    var table: some View {
+        Table(signalTypes, selection: $selection, sortOrder: $sortOrder) {
             TableColumn("Type", value: \.type)
-            TableColumn("Signals") { x in Text("\(x.signalCount)") }
-            TableColumn("Users") { x in Text("\(x.userCount)") }
-//                TableColumn("Sessions") { x in Text("\(x.sessionCount)")}
+            TableColumn("Signals", value: \.signalCount) { x in Text("\(x.signalCount)") }
+            TableColumn("Users", value: \.userCount) { x in Text("\(x.userCount)") }
+            TableColumn("Sessions", value: \.sessionCount) { x in Text("\(x.sessionCount)") }
         }
-        .navigationTitle("Lexicon")
-        .onAppear {
-            lexiconService.getSignalTypes(for: appID)
-        }
+    }
+
+    var body: some View {
+        table
+            .searchable(text: $searchText)
+            .navigationTitle("Lexicon")
+            .onAppear {
+                lexiconService.getSignalTypes(for: appID)
+            }
+            .toolbar {
+                if lexiconService.isLoading(appID: appID) {
+                    ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
+                } else {
+                    Button(action: {
+                        lexiconService.getSignalTypes(for: appID)
+                    }, label: {
+                        Image(systemName: "arrow.counterclockwise.circle")
+                    })
+                }
+            }
+    }
+
+    var signalTypes: [DTO.LexiconSignalDTO] {
+        return lexiconService.signalTypes(for: appID)
+            .filter {
+                searchText.isEmpty ? true : $0.type.localizedCaseInsensitiveContains(searchText)
+            }
+            .sorted(using: sortOrder)
     }
 }

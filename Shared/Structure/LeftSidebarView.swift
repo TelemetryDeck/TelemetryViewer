@@ -11,6 +11,8 @@ enum LeftSidebarViewSelection {
     case gettingStarted
     case insights
     case lexicon
+    case signalTypes
+    case payloads
     case recentSignals
     case appSettings
     case helpAndFeedback
@@ -60,10 +62,18 @@ struct LeftSidebarView: View {
                     if #available(macOS 12, *) {
                         NavigationLink(
                             destination: MacOs12SignalTypesView(appID: app.id),
-                            tag: LeftSidebarViewSelection.lexicon,
+                            tag: LeftSidebarViewSelection.signalTypes,
                             selection: $selection,
                             label: {
                                 Label("Signal Types", systemImage: "book")
+                            }
+                        )
+                        NavigationLink(
+                            destination: MacOs12SignalTypesView(appID: app.id),
+                            tag: LeftSidebarViewSelection.payloads,
+                            selection: $selection,
+                            label: {
+                                Label("Payloads", systemImage: "book")
                             }
                         )
                     } else {
