@@ -20,7 +20,9 @@ struct AppRootView: View {
             if let selectedInsightGroupID = insightService.selectedInsightGroupID {
                 InsightGroupView(appID: appID, insightGroupID: selectedInsightGroupID)
             } else {
-                Text("...")
+                EmptyAppView(appID: appID)
+                    .frame(maxWidth: 400)
+                    .padding()
             }
         }
         .navigationTitle(appService.getSelectedApp()?.name ?? "No App Selected")

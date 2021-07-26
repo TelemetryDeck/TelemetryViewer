@@ -59,9 +59,6 @@ class InsightService: ObservableObject {
         guard let insightGroups = insightGroups(for: appID) else { return nil }
 
         guard let insightGroup = insightGroups.first(where: { $0.id == insightGroupID }) else {
-            print("Insight Groups not found for id \(insightGroupID), asking server...")
-            getInsightGroups(for: appID)
-
             return nil
         }
 
@@ -119,7 +116,9 @@ class InsightService: ObservableObject {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString)
 
         api.delete(url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
-            self.getInsightGroups(for: appID)
+            self.getInsightGroups(for: appID) { _ in
+                self.selectedInsightGroupID = nil
+            }
             callback?(result)
         }
     }
