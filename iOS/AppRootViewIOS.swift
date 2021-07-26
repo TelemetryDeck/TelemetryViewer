@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppRootView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
@@ -17,24 +19,37 @@ struct AppRootView: View {
 
     let appID: UUID
 
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            List {
-                ForEach(insightService.insightGroups(for: appID) ?? []) { insightGroup in
-                    Section(header: Text(insightGroup.title)) {
-                        let sortedInsights = insightGroup.insights.sorted {
-                            $0.order ?? 0 < $1.order ?? 0
-                        }
-
-                        InsightList(appID: appID, insightGroupID: insightGroup.id, insights: sortedInsights)
-
-                        newInsightButton(insightGroup: insightGroup)
-                        editInsightGroupButton(insightGroup: insightGroup)
+    var insightList: some View {
+        List {
+            ForEach(insightService.insightGroups(for: appID) ?? []) { insightGroup in
+                Section(header: Text(insightGroup.title)) {
+                    let sortedInsights = insightGroup.insights.sorted {
+                        $0.order ?? 0 < $1.order ?? 0
                     }
+
+                    InsightList(appID: appID, insightGroupID: insightGroup.id, insights: sortedInsights)
+
+                    newInsightButton(insightGroup: insightGroup)
+                    editInsightGroupButton(insightGroup: insightGroup)
                 }
             }
-            .navigationBarTitle(appService.getSelectedApp()?.name ?? "–")
-            .navigationBarItems(trailing: EditButton())
+        }
+    }
+
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            if #available(iOS 15.0, *) {
+                insightList
+                    .refreshable {
+                        insightService.getInsightGroups(for: appID)
+                    }
+                    .navigationBarTitle(appService.getSelectedApp()?.name ?? "–")
+                    .navigationBarItems(trailing: EditButton())
+            } else {
+                insightList
+                    .navigationBarTitle(appService.getSelectedApp()?.name ?? "–")
+                    .navigationBarItems(trailing: EditButton())
+            }
 
             if showDatePicker {
                 datePickerBackground()
@@ -62,7 +77,9 @@ struct AppRootView: View {
 
     func newInsight(_ definitionRequestBody: InsightDefinitionRequestBody, appID: UUID) {
         guard let groupID = definitionRequestBody.groupID else { return }
-        insightService.create(insightWith: definitionRequestBody, in: groupID, for: appID)
+        insightService.create(insightWith: definitionRequestBody, in: groupID, for: appID) { _ in
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 
     func datePickerBackground() -> some View {
@@ -168,7 +185,6 @@ struct InsightList: View {
                                         InsightEditor(editorContent: InsightEditorContent.from(insight: $0), appID: appID, insightGroupID: insightGroupID)
                                             .navigationBarTitleDisplayMode(.inline)
                                     }
-                                    
                                 }
                                 .padding(.top, -20)
                             }

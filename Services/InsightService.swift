@@ -12,7 +12,7 @@ class InsightService: ObservableObject {
     let api: APIClient
 
     @Published var insightGroupsByAppID: [UUID: [DTO.InsightGroup]] = [:]
-    
+
     /// A set of App IDs that are currently loading for an insight group
     ///
     /// Do not manually change this set. If an app's ID is in there, it means the service is currently
@@ -29,9 +29,9 @@ class InsightService: ObservableObject {
     func isAppLoadingInsightGroups(id appID: UUID) -> Bool {
         return appIDsLoadingInsightGroups.contains(appID)
     }
-    
+
     /// Removes the insight group from the cache, causing it to be reloaded from the server
-    private func invalidateInsightGroups(forAppID appID: UUID) {
+    func invalidateInsightGroups(forAppID appID: UUID) {
         insightGroupsByAppID.removeValue(forKey: appID)
         lastLoadTimeByAppID.removeValue(forKey: appID)
     }
@@ -74,7 +74,7 @@ class InsightService: ObservableObject {
         return insightGroup.insights.first { $0.id == insightID }
     }
 
-    private func getInsightGroups(for appID: UUID, callback: ((Result<[DTO.InsightGroup], TransferError>) -> Void)? = nil) {
+    func getInsightGroups(for appID: UUID, callback: ((Result<[DTO.InsightGroup], TransferError>) -> Void)? = nil) {
         guard !appIDsLoadingInsightGroups.contains(appID) else { return }
 
         appIDsLoadingInsightGroups.insert(appID)
@@ -83,9 +83,7 @@ class InsightService: ObservableObject {
         api.get(url) { [unowned self] (result: Result<[DTO.InsightGroup], TransferError>) in
             switch result {
             case let .success(foundInsightGroups):
-                DispatchQueue.main.async {
-                    self.insightGroupsByAppID[appID] = foundInsightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
-                }
+                self.insightGroupsByAppID[appID] = foundInsightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
 
             case let .failure(error):
                 api.handleError(error)
@@ -130,18 +128,19 @@ class InsightService: ObservableObject {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights")
 
         api.post(requestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
-            self.getInsightGroups(for: appID)
-            callback?(result)
+            self.getInsightGroups(for: appID) { _ in
+                callback?(result)
+            }
         }
     }
 
     func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
-        
-        let oldGroupID = self.insight(id: insightID, in: insightGroupID, in: appID)?.group["id"]
+
+        let oldGroupID = insight(id: insightID, in: insightGroupID, in: appID)?.group["id"]
         let newGroupID = insightUpdateRequestBody.groupID
         let insightGroupHasChanged = oldGroupID != newGroupID
-        
+
         api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
             if insightGroupHasChanged {
                 self.invalidateInsightGroups(forAppID: appID)
