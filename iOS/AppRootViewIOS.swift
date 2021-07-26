@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppRootView: View {
     @Environment(\.presentationMode) var presentationMode
-    
+
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
@@ -38,17 +38,13 @@ struct AppRootView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            if #available(iOS 15.0, *) {
-                insightList
-                    .refreshable {
-                        insightService.getInsightGroups(for: appID)
-                    }
-                    .navigationBarTitle(appService.getSelectedApp()?.name ?? "–")
-                    .navigationBarItems(trailing: EditButton())
-            } else {
-                insightList
-                    .navigationBarTitle(appService.getSelectedApp()?.name ?? "–")
-                    .navigationBarItems(trailing: EditButton())
+            insightList
+                .navigationBarTitle(appService.getSelectedApp()?.name ?? "–")
+                .navigationBarItems(trailing: EditButton())
+
+            if (insightService.insightGroups(for: appID) ?? []).isEmpty {
+                EmptyAppView(appID: appID)
+                    .padding()
             }
 
             if showDatePicker {
@@ -154,12 +150,6 @@ struct InsightList: View {
     @State var insights: [DTO.InsightDTO]
 
     var body: some View {
-        if insightService.insightGroups(for: appID) == nil {
-            ProgressView()
-        } else if (insightService.insightGroups(for: appID) ?? []).isEmpty {
-            EmptyAppView(appID: appID)
-        }
-
         ForEach(insights) { data in
             HStack {
                 InsightView(topSelectedInsightID: .constant(nil), appID: appID, insightGroupID: insightGroupID, insightID: data.id)

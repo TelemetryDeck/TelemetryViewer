@@ -57,7 +57,9 @@ struct AppEditor: View {
                     .accentColor(.red)
                 }
                 
+                #if os(macOS)
                 Spacer()
+                #endif
             }
             .padding(.horizontal, self.padding)
             .padding(.vertical, self.padding)

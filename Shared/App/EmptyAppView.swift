@@ -31,16 +31,12 @@ struct EmptyAppView: View {
             Text("Create your first Insight Group now by clicking the New Group button in the top left.")
                 .foregroundColor(.grayColor)
             #else
-            Text("Create your first Insight Group now by tapping the Menu button in the top right corner, then tapping 'New Group'.")
+            Text("Create your first Insight Group now by tapping 'New Insight Group' in the toolbar.")
                 .foregroundColor(.grayColor)
             #endif
 
             Button("Documentation: Sending Signals") {
-                #if os(macOS)
-                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                #else
-                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                #endif
+                URL(string: "https://apptelemetry.io/pages/quickstart.html")?.open()
             }
             .buttonStyle(SmallSecondaryButtonStyle())
 
