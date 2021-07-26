@@ -137,10 +137,16 @@ class InsightService: ObservableObject {
 
     func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
-
+        
+        let oldGroupID = self.insight(id: insightID, in: insightGroupID, in: appID)?.group["id"]
+        let newGroupID = insightUpdateRequestBody.groupID
+        let insightGroupHasChanged = oldGroupID != newGroupID
+        
         api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
-            self.invalidateInsightGroups(forAppID: appID)
-            self.getInsightGroups(for: appID)
+            if insightGroupHasChanged {
+                self.invalidateInsightGroups(forAppID: appID)
+                self.getInsightGroups(for: appID)
+            }
             callback?(result)
         }
     }
