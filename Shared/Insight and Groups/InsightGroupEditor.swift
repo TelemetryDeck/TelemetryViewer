@@ -26,6 +26,8 @@ struct InsightGroupEditorContent {
 }
 
 struct InsightGroupEditor: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var insightService: InsightService
     @State var editorContent: InsightGroupEditorContent
@@ -43,7 +45,10 @@ struct InsightGroupEditor: View {
     }
 
     func delete() {
-        insightService.delete(insightGroupID: editorContent.id, in: appID)
+        insightService.delete(insightGroupID: editorContent.id, in: appID) { _ in
+            presentationMode.wrappedValue.dismiss()
+        }
+        
     }
 
     var body: some View {
