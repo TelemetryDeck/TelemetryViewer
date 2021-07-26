@@ -87,7 +87,7 @@ struct InsightGroupView: View {
             
             AdaptiveStack {
                 if let insightGroup = insightGroup {
-                    NavigationLink("Edit Group", destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup))
+                    NavigationLink("Edit Group", destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup), tag: insightGroup.id, selection: $selectedInsightID)
                         .buttonStyle(SmallSecondaryButtonStyle())
                         .frame(maxWidth: 400)
                         .simultaneousGesture(TapGesture().onEnded {
