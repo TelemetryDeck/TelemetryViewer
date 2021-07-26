@@ -10,7 +10,6 @@ import SwiftUI
 struct InsightGroupView: View {
     @EnvironmentObject var insightService: InsightService
     @State private var selectedInsightID: UUID?
-    @State private var isDefaultItemActive = true
 
     let appID: UUID
     let insightGroupID: UUID
@@ -26,28 +25,29 @@ struct InsightGroupView: View {
     #endif
 
     var body: some View {
-        ScrollView(.vertical) {
-            if let insightGroup = insightGroup {
-                if insightGroup.insights.count == 0 {
-                    EmptyInsightGroupView(selectedInsightGroupID: insightGroup.id, appID: appID)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        ZStack(alignment: .bottomLeading) {
+            ScrollView(.vertical) {
+                if let insightGroup = insightGroup {
+                    if insightGroup.insights.count == 0 {
+                        EmptyInsightGroupView(selectedInsightGroupID: insightGroup.id, appID: appID)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    } else {
+                        insightsGrid(insightGroup: insightGroup)
+                            .padding(.bottom, 50)
+                    }
                 } else {
-                    insightsGrid(insightGroup: insightGroup)
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 }
-            } else {
-                ProgressView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            }
+            .onTapGesture {
+                selectedInsightID = nil
             }
 
-            bottomHelpView()
-        }
-        .background(Color.cardBackground)
-        .onTapGesture {
-            selectedInsightID = nil
-            isDefaultItemActive = true
+            bottomHelpView
         }
     }
-    
+
     func card(for insight: DTO.InsightDTO, insightGroup: DTO.InsightGroup) -> some View {
         let editorContent = InsightEditorContent.from(insight: insight)
         let destination = InsightEditor(editorContent: editorContent, appID: appID, insightGroupID: insightGroupID)
@@ -62,7 +62,7 @@ struct InsightGroupView: View {
         })
         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
     }
-    
+
     func insightsGrid(insightGroup: DTO.InsightGroup) -> some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: spacing)], alignment: .leading, spacing: spacing) {
             let expandedInsights = insightGroup.insights.filter { $0.isExpanded }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
@@ -79,42 +79,36 @@ struct InsightGroupView: View {
             }
         }
         .padding(.vertical, spacing)
-        .background(Color.separatorColor)
     }
-    
-    func bottomHelpView() -> some View {
-        AdaptiveStack {
-            if let insightGroup = insightGroup {
-                NavigationLink("Edit Group", destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup))
-                    .buttonStyle(SmallSecondaryButtonStyle())
-                    .frame(maxWidth: 400)
-                    .padding()
-                    .simultaneousGesture(TapGesture().onEnded {
-                        #if os(macOS)
-                        expandRightSidebar()
-                        #endif
-                    })
-            }
 
-            Button("Documentation: Sending Signals") {
-                #if os(macOS)
-                NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                #else
-                UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
-                #endif
-            }
-            .buttonStyle(SmallSecondaryButtonStyle())
-            .frame(maxWidth: 400)
-            .padding()
+    var bottomHelpView: some View {
+        VStack {
+            Divider()
+            
+            AdaptiveStack {
+                if let insightGroup = insightGroup {
+                    NavigationLink("Edit Group", destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup))
+                        .buttonStyle(SmallSecondaryButtonStyle())
+                        .frame(maxWidth: 400)
+                        .simultaneousGesture(TapGesture().onEnded {
+                            #if os(macOS)
+                            expandRightSidebar()
+                            #endif
+                        })
+                }
 
-            #if os(iOS)
-            NavigationLink("Recent Signals", destination: SignalList(appID: appID))
+                Button("Documentation: Sending Signals") {
+                    #if os(macOS)
+                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                    #else
+                    UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                    #endif
+                }
                 .buttonStyle(SmallSecondaryButtonStyle())
-                .padding()
-            NavigationLink("Lexicon", destination: LexiconView(appID: appID))
-                .buttonStyle(SmallSecondaryButtonStyle())
-                .padding()
-            #endif
+                .frame(maxWidth: 400)
+            }
+            .padding(.bottom, 8)
         }
+        .background(Color.cardBackground)
     }
 }
