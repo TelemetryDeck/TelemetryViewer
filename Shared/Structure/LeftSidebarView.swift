@@ -39,14 +39,14 @@ struct LeftSidebarView: View {
             }
 
             if let app = appService.getSelectedApp() {
-                    Picker(selection: $appService.selectedAppID, label: EmptyView()) {
-                        ForEach(appService.getTelemetryApps()) { app in
-                            Text(app.name)
-                                .foregroundColor(.customTextColor)
-                                .tag(app.id as UUID?)
-                        }
+                Picker(selection: $appService.selectedAppID, label: EmptyView()) {
+                    ForEach(appService.getTelemetryApps()) { app in
+                        Text(app.name)
+                            .foregroundColor(.customTextColor)
+                            .tag(app.id as UUID?)
                     }
-                    .onChange(of: appService.selectedAppID) { _ in selection = .insights }
+                }
+                .onChange(of: appService.selectedAppID) { _ in selection = .insights }
 
                 Section(header: Text(app.name)) {
                     NavigationLink(
@@ -58,48 +58,66 @@ struct LeftSidebarView: View {
                         }
                     )
 
-                    if #available(macOS 12, *) {
-                        #if os(macOS)
-                        NavigationLink(
-                            destination: MacOs12SignalTypesView(appID: app.id),
-                            tag: LeftSidebarViewSelection.signalTypes,
-                            selection: $selection,
-                            label: {
-                                Label("Signal Types", systemImage: "book")
-                            }
-                        )
-                        NavigationLink(
-                            destination: MacOs12PayloadKeysView(appID: app.id),
-                            tag: LeftSidebarViewSelection.payloads,
-                            selection: $selection,
-                            label: {
-                                Label("Payloads", systemImage: "book")
-                            }
-                        )
-                        #endif
-                    } else {
+                    #if os(macOS)
+                        if #available(macOS 12, *) {
+                            NavigationLink(
+                                destination: MacOs12SignalTypesView(appID: app.id),
+                                tag: LeftSidebarViewSelection.signalTypes,
+                                selection: $selection,
+                                label: {
+                                    Label("Signal Types", systemImage: "book")
+                                }
+                            )
+                            NavigationLink(
+                                destination: MacOs12PayloadKeysView(appID: app.id),
+                                tag: LeftSidebarViewSelection.payloads,
+                                selection: $selection,
+                                label: {
+                                    Label("Payloads", systemImage: "book")
+                                }
+                            )
+                        } else {
+                            NavigationLink(
+                                destination: LexiconView(appID: app.id),
+                                tag: LeftSidebarViewSelection.lexicon,
+                                selection: $selection,
+                                label: {
+                                    Label("Signal Types", systemImage: "book")
+                                }
+                            )
+                        }
+
+                        if #available(macOS 12, *) {
+                            NavigationLink(
+                                destination: MacOs12RecentSignalsView(appID: app.id),
+                                tag: LeftSidebarViewSelection.recentSignals,
+                                selection: $selection,
+                                label: {
+                                    Label("Recent Signals", systemImage: "waveform")
+                                }
+                            )
+                        } else {
+                            NavigationLink(
+                                destination: SignalList(appID: app.id),
+                                tag: LeftSidebarViewSelection.recentSignals,
+                                selection: $selection,
+                                label: {
+                                    Label("Recent Signals", systemImage: "waveform")
+                                }
+                            )
+                        }
+
+                    #else
+
                         NavigationLink(
                             destination: LexiconView(appID: app.id),
                             tag: LeftSidebarViewSelection.lexicon,
                             selection: $selection,
                             label: {
-                                Label("Lexicon", systemImage: "book")
+                                Label("Signal Types", systemImage: "book")
                             }
                         )
-                    }
 
-                    if #available(macOS 12, *) {
-                        #if os(macOS)
-                        NavigationLink(
-                            destination: MacOs12RecentSignalsView(appID: app.id),
-                            tag: LeftSidebarViewSelection.recentSignals,
-                            selection: $selection,
-                            label: {
-                                Label("Recent Signals", systemImage: "waveform")
-                            }
-                        )
-                        #endif
-                    } else {
                         NavigationLink(
                             destination: SignalList(appID: app.id),
                             tag: LeftSidebarViewSelection.recentSignals,
@@ -108,7 +126,7 @@ struct LeftSidebarView: View {
                                 Label("Recent Signals", systemImage: "waveform")
                             }
                         )
-                    }
+                    #endif
 
                     NavigationLink(
                         destination: AppEditor(appID: app.id, appName: app.name),
@@ -126,13 +144,15 @@ struct LeftSidebarView: View {
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
                     })
-
+                
+                if let user = api.user {
                     NavigationLink(
-                        destination: UserSettingsView(),
+                        destination: UserSettingsView(userDTO: user),
                         label: {
                             Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
                         }
                     )
+                }
                 #endif
 
                 NavigationLink(

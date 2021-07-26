@@ -104,7 +104,7 @@ struct LexiconView: View {
 
             list
                 .listRowBackground(Color.clear)
-                .navigationTitle("Lexicon")
+                .navigationTitle("Signal Types")
                 .onAppear {
                     lexiconService.getPayloadKeys(for: appID)
                     lexiconService.getSignalTypes(for: appID)
