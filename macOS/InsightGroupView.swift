@@ -38,6 +38,7 @@ struct InsightGroupView: View {
                 } else {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        .padding()
                 }
             }
             .onTapGesture {

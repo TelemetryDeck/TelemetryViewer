@@ -81,6 +81,13 @@ class InsightService: ObservableObject {
             switch result {
             case let .success(foundInsightGroups):
                 self.insightGroupsByAppID[appID] = foundInsightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
+                
+                // check if the currently selected insight group id is part of the loaded ones,
+                // and remove it if that is not the case.
+                // if we don't do this, navigating to a newly created app will hang
+                if foundInsightGroups.filter({ $0.id == selectedInsightGroupID }).isEmpty {
+                    selectedInsightGroupID = nil
+                }
 
             case let .failure(error):
                 api.handleError(error)
@@ -88,6 +95,7 @@ class InsightService: ObservableObject {
 
             self.appIDsLoadingInsightGroups.remove(appID)
             self.lastLoadTimeByAppID[appID] = Date()
+            
             callback?(result)
         }
     }
