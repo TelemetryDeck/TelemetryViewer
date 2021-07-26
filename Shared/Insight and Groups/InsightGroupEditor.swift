@@ -49,7 +49,7 @@ struct InsightGroupEditor: View {
     var body: some View {
         let form = Form {
             CustomSection(header: Text("Insight Group Title"), summary: EmptyView(), footer: EmptyView()) {
-                TextField("Title", text: $editorContent.title, onEditingChanged: { isEditing in if !isEditing { save() } }, onCommit: { })
+                TextField("", text: $editorContent.title, onEditingChanged: { isEditing in if !isEditing { save() } }, onCommit: { })
             }
 
             CustomSection(header: Text("Ordering"), summary: Text(String(format: "%.0f", editorContent.order)), footer: Text("Insights are ordered by this number, ascending"), startCollapsed: true) {
