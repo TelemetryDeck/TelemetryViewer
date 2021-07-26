@@ -50,6 +50,14 @@ class AppService: ObservableObject {
         return selectedApp ?? apps?.first
     }
     
+    func getApp(with id: UUID) -> TelemetryApp? {
+        if apps == nil && api.userNotLoggedIn == false {
+            getApps()
+        }
+        
+        return apps?.first { $0.id == id }
+    }
+    
     private func getApps(callback: ((Result<[TelemetryApp], TransferError>) -> Void)? = nil) {
         guard !isLoading else { return }
         

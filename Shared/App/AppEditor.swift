@@ -13,11 +13,11 @@ struct AppEditor: View {
     
     let appID: UUID
     
-    @State private var newName: String = ""
+    @State var appName: String
     @State private var showingAlert = false
     
     func saveToAPI() {
-        appService.update(appID: appID, newName: newName)
+        appService.update(appID: appID, newName: appName)
     }
     
     var padding: CGFloat? {
@@ -29,10 +29,10 @@ struct AppEditor: View {
     }
     
     var body: some View {
-        if let app = appService.getSelectedApp() {
+        if let app = appService.getApp(with: appID) {
             Form {
                 CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
-                    TextField("App Name", text: $newName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
+                    TextField("App Name", text: $appName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
                 }
                 
                 CustomSection(header: Text("Unique Identifier"), summary: EmptyView(), footer: EmptyView()) {
@@ -64,7 +64,7 @@ struct AppEditor: View {
             .navigationTitle("App Settings")
             .onDisappear { saveToAPI() }
             .onAppear {
-                newName = appService.getSelectedApp()?.name ?? "----"
+                appName = appService.getSelectedApp()?.name ?? "----"
             }
             .alert(isPresented: $showingAlert) {
                 Alert(

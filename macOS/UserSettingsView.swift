@@ -104,7 +104,7 @@ struct UserSettingsView: View {
                         footer: EmptyView(),
                         startCollapsed: true
                     ) {
-                        Button("Click Here To Log Out") {
+                        Button("Log Out \(api.user?.firstName ?? "User")") {
                             showingAlert = true
                         }
                         .alert(isPresented: $showingAlert) {

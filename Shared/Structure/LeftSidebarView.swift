@@ -46,6 +46,7 @@ struct LeftSidebarView: View {
                                 .tag(app.id as UUID?)
                         }
                     }
+                    .onChange(of: appService.selectedAppID) { _ in selection = .insights }
 
                 Section(header: Text(app.name)) {
                     NavigationLink(
@@ -110,7 +111,7 @@ struct LeftSidebarView: View {
                     }
 
                     NavigationLink(
-                        destination: AppEditor(appID: app.id),
+                        destination: AppEditor(appID: app.id, appName: app.name),
                         tag: LeftSidebarViewSelection.appSettings,
                         selection: $selection,
                         label: {
