@@ -116,6 +116,7 @@ struct InsightGroupView: View {
                 .frame(maxWidth: 400)
             }
             .padding(.bottom, 8)
+            .padding(.horizontal)
         }
         .background(Color.cardBackground)
     }
