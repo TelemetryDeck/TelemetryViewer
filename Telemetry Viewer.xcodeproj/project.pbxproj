@@ -53,6 +53,7 @@
 		2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
 		2B69B543264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
 		2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43D26512414003D3965 /* UpdateSettingsView.swift */; };
+		2B7E2BA526AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E2BA426AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift */; };
 		2BA0397E26AAE19B004A9E48 /* MacOs12SignalTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */; };
 		2BB23B2C26567222003DDE5E /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* AppService.swift */; };
 		2BB23B2D26567222003DDE5E /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* AppService.swift */; };
@@ -262,6 +263,16 @@
 		DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2B7E2BA626AF19560059CE34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCE239F724D3687C00053370 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCE23A0A24D3687D00053370;
+			remoteInfo = "Telemetry Viewer (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataPoint.swift; sourceTree = "<group>"; };
 		2B19DE9326444B0C0086F70E /* ChartDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataSet.swift; sourceTree = "<group>"; };
@@ -288,6 +299,8 @@
 		2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequestBody.swift; sourceTree = "<group>"; };
 		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
 		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
+		2B7E2BA226AF19560059CE34 /* Telemetry Viewer Mac UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Telemetry Viewer Mac UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7E2BA426AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_Viewer_Mac_UITests.swift; sourceTree = "<group>"; };
 		2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12SignalTypesView.swift; sourceTree = "<group>"; };
 		2BB23B2B26567222003DDE5E /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		2BB4737D26950731004DA1DC /* AppAdminEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAdminEntry.swift; sourceTree = "<group>"; };
@@ -395,6 +408,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2B7E2B9F26AF19560059CE34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCD86AE4254EF0B5008F63CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -491,6 +511,14 @@
 				2B65C35A26A5E25600606527 /* DonutChart.swift */,
 			);
 			path = "Donut Chart";
+			sourceTree = "<group>";
+		};
+		2B7E2BA326AF19560059CE34 /* Telemetry Viewer Mac UITests */ = {
+			isa = PBXGroup;
+			children = (
+				2B7E2BA426AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift */,
+			);
+			path = "Telemetry Viewer Mac UITests";
 			sourceTree = "<group>";
 		};
 		2BBFC9E4267D05E30013DC74 /* Modifiers */ = {
@@ -699,6 +727,7 @@
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
 				DCD86AEC254EF0B5008F63CB /* TelemetryWidget */,
+				2B7E2BA326AF19560059CE34 /* Telemetry Viewer Mac UITests */,
 				DCE23A0424D3687D00053370 /* Products */,
 				DC9C0840252CEAC9001C0F94 /* Frameworks */,
 			);
@@ -733,6 +762,7 @@
 				DCE23A0324D3687D00053370 /* Telemetry Viewer.app */,
 				DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */,
 				DCD86AE7254EF0B5008F63CB /* TelemetryWidgetExtension.appex */,
+				2B7E2BA226AF19560059CE34 /* Telemetry Viewer Mac UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -784,6 +814,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2B7E2BA126AF19560059CE34 /* Telemetry Viewer Mac UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B7E2BAA26AF19560059CE34 /* Build configuration list for PBXNativeTarget "Telemetry Viewer Mac UITests" */;
+			buildPhases = (
+				2B7E2B9E26AF19560059CE34 /* Sources */,
+				2B7E2B9F26AF19560059CE34 /* Frameworks */,
+				2B7E2BA026AF19560059CE34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B7E2BA726AF19560059CE34 /* PBXTargetDependency */,
+			);
+			name = "Telemetry Viewer Mac UITests";
+			productName = "Telemetry Viewer Mac UITests";
+			productReference = 2B7E2BA226AF19560059CE34 /* Telemetry Viewer Mac UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		DCD86AE6254EF0B5008F63CB /* TelemetryWidgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCD86AFB254EF0B6008F63CB /* Build configuration list for PBXNativeTarget "TelemetryWidgetExtension" */;
@@ -852,9 +900,13 @@
 		DCE239F724D3687C00053370 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					2B7E2BA126AF19560059CE34 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = DCE23A0A24D3687D00053370;
+					};
 					DCD86AE6254EF0B5008F63CB = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -885,11 +937,19 @@
 				DCE23A0224D3687D00053370 /* Telemetry Viewer (iOS) */,
 				DCE23A0A24D3687D00053370 /* Telemetry Viewer (macOS) */,
 				DCD86AE6254EF0B5008F63CB /* TelemetryWidgetExtension */,
+				2B7E2BA126AF19560059CE34 /* Telemetry Viewer Mac UITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2B7E2BA026AF19560059CE34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCD86AE5254EF0B5008F63CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -977,6 +1037,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2B7E2B9E26AF19560059CE34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7E2BA526AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCD86AE3254EF0B5008F63CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1242,6 +1310,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2B7E2BA726AF19560059CE34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCE23A0A24D3687D00053370 /* Telemetry Viewer (macOS) */;
+			targetProxy = 2B7E2BA626AF19560059CE34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		DCB28D8C2551C3330032B9AD /* TelemetryWidget.intentdefinition */ = {
 			isa = PBXVariantGroup;
@@ -1255,6 +1331,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2B7E2BA826AF19560059CE34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FL4V655A94;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.breakthesystem.Telemetry-Viewer-Mac-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Telemetry Viewer (macOS)";
+			};
+			name = Debug;
+		};
+		2B7E2BA926AF19560059CE34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FL4V655A94;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.breakthesystem.Telemetry-Viewer-Mac-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Telemetry Viewer (macOS)";
+			};
+			name = Release;
+		};
 		DCD86AF9254EF0B6008F63CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1523,6 +1649,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2B7E2BAA26AF19560059CE34 /* Build configuration list for PBXNativeTarget "Telemetry Viewer Mac UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7E2BA826AF19560059CE34 /* Debug */,
+				2B7E2BA926AF19560059CE34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DCD86AFB254EF0B6008F63CB /* Build configuration list for PBXNativeTarget "TelemetryWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

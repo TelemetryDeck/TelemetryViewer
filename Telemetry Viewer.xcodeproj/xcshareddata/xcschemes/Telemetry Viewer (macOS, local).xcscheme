@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2B7E2BA126AF19560059CE34"
+               BuildableName = "Telemetry Viewer Mac UITests.xctest"
+               BlueprintName = "Telemetry Viewer Mac UITests"
+               ReferencedContainer = "container:Telemetry Viewer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
