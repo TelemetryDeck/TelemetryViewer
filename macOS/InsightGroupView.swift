@@ -62,6 +62,13 @@ struct InsightGroupView: View {
             #endif
         })
         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
+        #if os(macOS)
+        .contextMenu {
+            Button("Delete") {
+                insightService.delete(insightID: insight.id, in: insightGroup.id, in: appID)
+            }
+        }
+        #endif
     }
 
     func insightsGrid(insightGroup: DTO.InsightGroup) -> some View {
