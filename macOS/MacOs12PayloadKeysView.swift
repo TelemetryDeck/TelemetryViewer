@@ -38,7 +38,7 @@ struct MacOs12PayloadKeysView: View {
     var body: some View {
         ZStack {
             table
-                .searchable(text: $searchText)
+//                .searchable(text: $searchText)
                 .navigationTitle("Payload Keys")
                 .onAppear {
                     lexiconService.getPayloadKeys(for: appID)

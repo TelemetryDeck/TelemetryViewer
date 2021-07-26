@@ -40,7 +40,7 @@ struct MacOs12SignalTypesView: View {
     var body: some View {
         ZStack {
             table
-                .searchable(text: $searchText)
+//                .searchable(text: $searchText)
                 .navigationTitle("Signal Types")
                 .onAppear {
                     lexiconService.getSignalTypes(for: appID)
