@@ -61,6 +61,16 @@ struct UserSettingsView: View {
                         }
                     }
                     
+                    #if DEBUG
+                    if let bearerTokenString = api.userToken?.bearerTokenAuthString {
+                        CustomSection(header: Text("Token"), summary: Text(bearerTokenString), footer: EmptyView(), startCollapsed: true) {
+                            Button(bearerTokenString) {
+                                saveToClipBoard(bearerTokenString)
+                            }
+                        }
+                    }
+                    #endif
+                    
                     CustomSection(
                         header: Text("Email"),
                         summary: Text(userDTO.email),
