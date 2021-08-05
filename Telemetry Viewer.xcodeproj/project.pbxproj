@@ -1701,7 +1701,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
-				branch = main;
+				branch = feature/nom;
 				kind = branch;
 			};
 		};
