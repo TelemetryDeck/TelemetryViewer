@@ -28,7 +28,6 @@ struct AppRootView: View {
         .navigationTitle(appService.getSelectedApp()?.name ?? "No App Selected")
         .onAppear {
             insightService.selectedInsightGroupID = nil
-            setupSidebars()
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {

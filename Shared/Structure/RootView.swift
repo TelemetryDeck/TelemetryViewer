@@ -14,28 +14,6 @@ struct RootView: View {
         NavigationView {
             LeftSidebarView()
             AppInfoView()
-
-            #if os(macOS)
-                Image("sidebarBackground")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .opacity(0.2)
-                    .frame(maxWidth: 200)
-                    .toolbar {
-                        ToolbarItemGroup {
-                            #if os(macOS)
-                            Spacer() 
-                                Button(action: toggleRightSidebar) {
-                                    Image(systemName: "sidebar.right")
-                                        .help("Toggle Sidebar")
-                                }
-                                .help("Toggle the right sidebar")
-                            #else
-                                EmptyView()
-                            #endif
-                        }
-                    }
-            #endif
         }
         .sheet(isPresented: $api.userNotLoggedIn, onDismiss: { api.userNotLoggedIn = api.userToken == nil }) {
             WelcomeView().accentColor(.telemetryOrange)
@@ -52,10 +30,5 @@ struct RootView: View {
                 }
             )
         })
-        .onAppear {
-            #if os(macOS)
-                setupSidebars()
-            #endif
-        }
     }
 }

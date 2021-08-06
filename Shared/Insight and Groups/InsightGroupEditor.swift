@@ -83,17 +83,6 @@ struct InsightGroupEditor: View {
             ScrollView {
                 form
                     .padding()
-                    .toolbar {
-                        ToolbarItemGroup {
-                            Spacer()
-
-                            Button(action: toggleRightSidebar) {
-                                Image(systemName: "sidebar.right")
-                                    .help("Toggle Sidebar")
-                            }
-                            .help("Toggle the right sidebar")
-                        }
-                    }
             }
         #else
             form

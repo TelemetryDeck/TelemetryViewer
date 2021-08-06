@@ -39,10 +39,5 @@ struct AppInfoView: View {
                 .frame(maxWidth: 400)
             }
         }
-        .onAppear {
-            #if os(macOS)
-                setupSidebars()
-            #endif
-        }
     }
 }

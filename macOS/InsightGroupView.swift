@@ -56,11 +56,6 @@ struct InsightGroupView: View {
         return NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
             InsightView(topSelectedInsightID: $selectedInsightID, appID: appID, insightGroupID: insightGroup.id, insightID: insight.id)
         }
-        .simultaneousGesture(TapGesture().onEnded {
-            #if os(macOS)
-            expandRightSidebar()
-            #endif
-        })
         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
         #if os(macOS)
         .contextMenu {
@@ -98,11 +93,6 @@ struct InsightGroupView: View {
                     NavigationLink("Edit Group", destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup), tag: insightGroup.id, selection: $selectedInsightID)
                         .buttonStyle(SmallSecondaryButtonStyle())
                         .frame(maxWidth: 400)
-                        .simultaneousGesture(TapGesture().onEnded {
-                            #if os(macOS)
-                            expandRightSidebar()
-                            #endif
-                        })
                 }
 
                 Button("Documentation: Sending Signals") {

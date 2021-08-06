@@ -90,12 +90,10 @@
 		2BBFCA14267D05E40013DC74 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E7267D05E30013DC74 /* ListItemView.swift */; };
 		2BBFCA19267D05E40013DC74 /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EA267D05E30013DC74 /* Buttonstyles.swift */; };
 		2BBFCA1A267D05E40013DC74 /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EA267D05E30013DC74 /* Buttonstyles.swift */; };
-		2BBFCA1C267D05E40013DC74 /* NSView+FindViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EC267D05E30013DC74 /* NSView+FindViews.swift */; };
 		2BBFCA1D267D05E40013DC74 /* URL+Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9ED267D05E30013DC74 /* URL+Open.swift */; };
 		2BBFCA1E267D05E40013DC74 /* URL+Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9ED267D05E30013DC74 /* URL+Open.swift */; };
 		2BBFCA1F267D05E40013DC74 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EE267D05E30013DC74 /* BigNumberFormatter.swift */; };
 		2BBFCA20267D05E40013DC74 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EE267D05E30013DC74 /* BigNumberFormatter.swift */; };
-		2BBFCA22267D05E40013DC74 /* View+toggleSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EF267D05E30013DC74 /* View+toggleSidebar.swift */; };
 		2BBFCA23267D05E40013DC74 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */; };
 		2BBFCA24267D05E40013DC74 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */; };
 		2BBFCA25267D05E40013DC74 /* ProgressView+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F1267D05E30013DC74 /* ProgressView+Scale.swift */; };
@@ -320,10 +318,8 @@
 		2BBFC9E6267D05E30013DC74 /* DetailSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
 		2BBFC9E7267D05E30013DC74 /* ListItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		2BBFC9EA267D05E30013DC74 /* Buttonstyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttonstyles.swift; sourceTree = "<group>"; };
-		2BBFC9EC267D05E30013DC74 /* NSView+FindViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+FindViews.swift"; sourceTree = "<group>"; };
 		2BBFC9ED267D05E30013DC74 /* URL+Open.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Open.swift"; sourceTree = "<group>"; };
 		2BBFC9EE267D05E30013DC74 /* BigNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigNumberFormatter.swift; sourceTree = "<group>"; };
-		2BBFC9EF267D05E30013DC74 /* View+toggleSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+toggleSidebar.swift"; sourceTree = "<group>"; };
 		2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		2BBFC9F1267D05E30013DC74 /* ProgressView+Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProgressView+Scale.swift"; sourceTree = "<group>"; };
 		2BBFC9F3267D05E30013DC74 /* Binding+OnUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+OnUpdate.swift"; sourceTree = "<group>"; };
@@ -534,10 +530,8 @@
 		2BBFC9EB267D05E30013DC74 /* Helpers+Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2BBFC9EC267D05E30013DC74 /* NSView+FindViews.swift */,
 				2BBFC9ED267D05E30013DC74 /* URL+Open.swift */,
 				2BBFC9EE267D05E30013DC74 /* BigNumberFormatter.swift */,
-				2BBFC9EF267D05E30013DC74 /* View+toggleSidebar.swift */,
 				2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */,
 				2BBFC9F1267D05E30013DC74 /* ProgressView+Scale.swift */,
 			);
@@ -1201,7 +1195,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BBFCA1C267D05E40013DC74 /* NSView+FindViews.swift in Sources */,
 				2B69B53E264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
 				2BBFCA26267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				2BBFCA10267D05E40013DC74 /* TextModifiers.swift in Sources */,
@@ -1251,7 +1244,6 @@
 				DC3472EB258A720500BEEDE0 /* UpateService.swift in Sources */,
 				2BBFCA04267D05E40013DC74 /* CardView.swift in Sources */,
 				2BBFCA20267D05E40013DC74 /* BigNumberFormatter.swift in Sources */,
-				2BBFCA22267D05E40013DC74 /* View+toggleSidebar.swift in Sources */,
 				2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				2B19DEB826444B2B0086F70E /* InsightCalculationResult.swift in Sources */,

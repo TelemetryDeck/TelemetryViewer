@@ -162,29 +162,6 @@ struct LeftSidebarView: View {
                     }
                 )
             }
-
-            if api.user?.organization?.isSuperOrg == true {
-                Section(header: Text("Administration")) {
-                    NavigationLink(
-                        destination: AppAdminView(),
-                        label: {
-                            Label("Apps", systemImage: "app.badge")
-                        }
-                    )
-
-                    NavigationLink(
-                        destination: InsightQueryAdmin(),
-                        label: {
-                            Label("Insights", systemImage: "app.badge")
-                        }
-                    )
-                }
-            }
-        }
-        .onAppear {
-            #if os(macOS)
-                setupSidebars()
-            #endif
         }
         .sheet(isPresented: $api.needsDecisionForMarketingEmails, content: {
             AskForMarketingEmailsView()
