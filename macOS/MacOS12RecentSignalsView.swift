@@ -33,31 +33,29 @@ struct MacOs12RecentSignalsView: View {
     }
 
     var explanationView: some View {
-        ScrollView {
-            SignalListExplanationView().padding()
-        }
+        SignalListExplanationView().padding()
     }
 
     var body: some View {
-        ZStack {
+        SidebarSplitView {
             table
-                .navigationTitle("Recent Signals")
-                .onAppear {
-                    signalsService.getSignals(for: appID)
+            explanationView
+        } toolbar: {
+            ToolbarItemGroup {
+                if signalsService.isLoading(appID: appID) {
+                    ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
+                } else {
+                    Button(action: {
+                        signalsService.getSignals(for: appID)
+                    }, label: {
+                        Image(systemName: "arrow.counterclockwise.circle")
+                    })
                 }
-                .toolbar {
-                    if signalsService.isLoading(appID: appID) {
-                        ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
-                    } else {
-                        Button(action: {
-                            signalsService.getSignals(for: appID)
-                        }, label: {
-                            Image(systemName: "arrow.counterclockwise.circle")
-                        })
-                    }
-                }
-
-            NavigationLink("", destination: explanationView, isActive: .constant(true)).hidden()
+            }
+        }
+        .navigationTitle("Recent Signals")
+        .onAppear {
+            signalsService.getSignals(for: appID)
         }
     }
 }

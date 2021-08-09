@@ -24,40 +24,37 @@ struct MacOs12SignalTypesView: View {
             TableColumn("Users", value: \.userCount) { x in Text("\(x.userCount)") }
             TableColumn("Sessions", value: \.sessionCount) { x in Text("\(x.sessionCount)") }
         }
-    }
-
-    var explanationView: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("This list contains all Signal Types seen by AppTelemetry in the last month.")
-            }
-            .padding()
-            .font(.footnote)
-            .foregroundColor(.grayColor)
+        .navigationTitle("Signal Types")
+        .onAppear {
+            lexiconService.getSignalTypes(for: appID)
         }
     }
 
-    var body: some View {
-        ZStack {
-            table
-//                .searchable(text: $searchText)
-                .navigationTitle("Signal Types")
-                .onAppear {
-                    lexiconService.getSignalTypes(for: appID)
-                }
-                .toolbar {
-                    if lexiconService.isLoading(appID: appID) {
-                        ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
-                    } else {
-                        Button(action: {
-                            lexiconService.getSignalTypes(for: appID)
-                        }, label: {
-                            Image(systemName: "arrow.counterclockwise.circle")
-                        })
-                    }
-                }
+    var explanationView: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("This list contains all Signal Types seen by AppTelemetry in the last month.")
+        }
+        .padding()
+        .font(.footnote)
+        .foregroundColor(.grayColor)
+    }
 
-            NavigationLink("", destination: explanationView, isActive: .constant(true)).hidden()
+    var body: some View {
+        SidebarSplitView {
+            table
+            explanationView
+        } toolbar: {
+            ToolbarItemGroup {
+                if lexiconService.isLoading(appID: appID) {
+                    ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
+                } else {
+                    Button(action: {
+                        lexiconService.getSignalTypes(for: appID)
+                    }, label: {
+                        Image(systemName: "arrow.counterclockwise.circle")
+                    })
+                }
+            }
         }
     }
 
