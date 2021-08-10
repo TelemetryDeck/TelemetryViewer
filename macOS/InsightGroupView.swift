@@ -10,6 +10,7 @@ import SwiftUI
 struct InsightGroupView: View {
     @EnvironmentObject var insightService: InsightService
     @State private var selectedInsightID: UUID?
+    @State private var insightEditorContent: InsightEditorContent?
 
     let appID: UUID
     let insightGroupID: UUID
@@ -26,43 +27,71 @@ struct InsightGroupView: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            ScrollView(.vertical) {
-                if let insightGroup = insightGroup {
-                    if insightGroup.insights.count == 0 {
-                        EmptyInsightGroupView(selectedInsightGroupID: insightGroup.id, appID: appID)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            SidebarSplitView {
+                ScrollView(.vertical) {
+                    if let insightGroup = insightGroup {
+                        if insightGroup.insights.count == 0 {
+                            EmptyInsightGroupView(selectedInsightGroupID: insightGroup.id, appID: appID)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        } else {
+                            insightsGrid(insightGroup: insightGroup)
+                                .padding(.bottom, 50)
+                        }
                     } else {
-                        insightsGrid(insightGroup: insightGroup)
-                            .padding(.bottom, 50)
+                        ProgressView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            .padding()
                     }
+                }
+                .frame(idealWidth: 600)
+                .onTapGesture {
+                    selectedInsightID = nil
+                    insightEditorContent = nil
+                }
+
+                if let selectedInsightID = selectedInsightID, let insightEditorContent = insightEditorContent {
+                    InsightEditor(editorContent: insightEditorContent, appID: appID, insightGroupID: insightGroupID)
+                        .tag(selectedInsightID)
                 } else {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    Text("Insights are your view into Telemetry's database. Select one to edit it live, or click the plus button in the toolbar to create a new insight.")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
                         .padding()
                 }
-            }
-            .onTapGesture {
-                selectedInsightID = nil
+
+            } toolbar: {
+                ToolbarItemGroup {}
             }
 
             bottomHelpView
         }
     }
 
-    func card(for insight: DTO.InsightDTO, insightGroup: DTO.InsightGroup) -> some View {
+    func editor(for insight: DTO.InsightDTO) -> some View {
         let editorContent = InsightEditorContent.from(insight: insight)
-        let destination = InsightEditor(editorContent: editorContent, appID: appID, insightGroupID: insightGroupID)
+        return InsightEditor(editorContent: editorContent, appID: appID, insightGroupID: insightGroupID)
+    }
 
-        return NavigationLink(destination: destination, tag: insight.id, selection: $selectedInsightID) {
+    func card(for insight: DTO.InsightDTO, insightGroup: DTO.InsightGroup) -> some View {
+        return Button {
+            selectedInsightID = insight.id
+            insightEditorContent = nil
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                withAnimation(.easeOut(duration: 0.3)) {
+                    insightEditorContent = InsightEditorContent.from(insight: insight)
+                }
+            }
+        } label: {
             InsightView(topSelectedInsightID: $selectedInsightID, appID: appID, insightGroupID: insightGroup.id, insightID: insight.id)
         }
         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insight.id))
         #if os(macOS)
-        .contextMenu {
-            Button("Delete") {
-                insightService.delete(insightID: insight.id, in: insightGroup.id, in: appID)
+            .contextMenu {
+                Button("Delete") {
+                    insightService.delete(insightID: insight.id, in: insightGroup.id, in: appID)
+                }
             }
-        }
         #endif
     }
 
@@ -87,7 +116,7 @@ struct InsightGroupView: View {
     var bottomHelpView: some View {
         VStack {
             Divider()
-            
+
             AdaptiveStack {
                 if let insightGroup = insightGroup {
                     NavigationLink("Edit Group", destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup), tag: insightGroup.id, selection: $selectedInsightID)

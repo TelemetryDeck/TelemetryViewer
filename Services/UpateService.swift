@@ -40,6 +40,10 @@ class UpateService: ObservableObject {
     }
     
     func isUpdateAvailable() -> Bool {
+        #if DEBUG
+        return false
+        #endif
+        
         if let latestVersionOnServer = latestVersionOnServer {
             return latestVersionOnServer.tag_name.compare(internalVersion, options: .numeric) == .orderedDescending
         } else {
