@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AppRootView: View {
-    @EnvironmentObject var appService: AppService
-    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var appService: OldAppService
+    @EnvironmentObject var insightService: OldInsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
     @State private var showDatePicker: Bool = false
     

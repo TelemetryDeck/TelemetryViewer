@@ -29,7 +29,7 @@ struct InsightGroupEditor: View {
     @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var api: APIClient
-    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightService: OldInsightService
     @State var editorContent: InsightGroupEditorContent
     @State private var showingAlert = false
 

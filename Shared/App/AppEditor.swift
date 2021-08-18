@@ -9,7 +9,7 @@ import SwiftUI
 import TelemetryClient
 
 struct AppEditor: View {
-    @EnvironmentObject var appService: AppService
+    @EnvironmentObject var appService: OldAppService
     
     let appID: UUID
     

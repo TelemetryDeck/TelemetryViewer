@@ -104,7 +104,7 @@ struct InsightEditorContent {
 
 struct InsightEditor: View {
     @Environment(\.presentationMode) var presentation
-    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightService: OldInsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
     @EnvironmentObject var lexiconService: LexiconService
 
@@ -318,7 +318,7 @@ struct InsightEditor: View {
                 }
             #else
                 VStack {
-                    InsightView(topSelectedInsightID: .constant(nil), appID: appID, insightGroupID: insightGroupID, insightID: editorContent.id)
+                    InsightView(topSelectedInsightID: .constant(nil), appID: appID, groupID: groupID, insightID: editorContent.id)
                         .frame(maxHeight: 200)
 
                     form
@@ -350,6 +350,6 @@ struct InsightEditor_Previews: PreviewProvider {
         
         return InsightEditor(editorContent: editorContent, appID: UUID(), insightGroupID: UUID())
             .environmentObject(InsightCalculationService(api: apiClient))
-            .environmentObject(InsightService(api: apiClient))
+            .environmentObject(OldInsightService(api: apiClient))
     }
 }

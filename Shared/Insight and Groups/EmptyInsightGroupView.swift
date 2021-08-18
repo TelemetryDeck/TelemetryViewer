@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EmptyInsightGroupView: View {
-    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightService: OldInsightService
     
     let selectedInsightGroupID: UUID
 

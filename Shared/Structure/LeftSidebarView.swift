@@ -20,7 +20,70 @@ enum LeftSidebarViewSelection {
 
 struct LeftSidebarView: View {
     @EnvironmentObject var api: APIClient
+    @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
+    @State var selection: LeftSidebarViewSelection? = .insights
+    
+    var body: some View {
+        List {
+            LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
+            
+            if let organization = orgService.organization {   
+                ForEach(organization.appIDs, id: \.self) { appID in
+                    section(for: appID)
+                }
+            }
+            
+            Section(header: Text("Meta")) {
+                #if os(iOS)
+                    NavigationLink(destination: OrganizationSettingsView(), label: {
+                        Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
+                    })
+                
+                if let user = api.user {
+                    NavigationLink(
+                        destination: UserSettingsView(userDTO: user),
+                        label: {
+                            Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
+                        }
+                    )
+                }
+                #endif
+
+                NavigationLink(
+                    destination: FeedbackView(),
+                    label: {
+                        Label("Help & Feedback", systemImage: "ladybug.fill")
+                    }
+                )
+            }
+            
+        }
+        .listStyle(.sidebar)
+    }
+    
+    func section(for appID: DTOsWithIdentifiers.App.ID) -> some View {
+        Section {
+            if let app = appService.app(withID: appID) {
+                if let first = app.insightGroupIDs.first {
+                    NavigationLink { InsightGroupsView(selectedInsightGroupID: first, appID: app.id) } label: { Label(app.name, systemImage: "app") }
+                }
+            } else {
+                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name)
+            }
+        } header: {
+            if let app = appService.app(withID: appID) {
+                Text(app.name)
+            } else {
+                LoadingStateIndicator(loadingState: appService.loadingState(for: appID))
+            }
+        }
+    }
+}
+
+struct OldLeftSidebarView: View {
+    @EnvironmentObject var api: APIClient
+    @EnvironmentObject var appService: OldAppService
     @State var selection: LeftSidebarViewSelection? = .insights
 
     #if os(macOS)

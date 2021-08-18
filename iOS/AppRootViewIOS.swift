@@ -10,8 +10,8 @@ import SwiftUI
 struct AppRootView: View {
     @Environment(\.presentationMode) var presentationMode
 
-    @EnvironmentObject var appService: AppService
-    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var appService: OldAppService
+    @EnvironmentObject var insightService: OldInsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
 
     @State private var showDatePicker: Bool = false
@@ -138,7 +138,7 @@ struct AppRootView: View {
 
 struct InsightList: View {
     @Environment(\.editMode) var isEditMode
-    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightService: OldInsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
 
     @State var showEditorSheet: Bool = false

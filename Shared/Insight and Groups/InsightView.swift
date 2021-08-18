@@ -91,7 +91,7 @@ struct InsightDisplayView: View {
 }
 
 struct InsightTitleView: View {
-    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightService: OldInsightService
     @EnvironmentObject var insightCalculationService: InsightCalculationService
 
     /// In the outside world, the insight ID that is selected by the user, if any

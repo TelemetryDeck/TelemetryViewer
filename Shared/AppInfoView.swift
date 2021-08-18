@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppInfoView: View {
-    @EnvironmentObject var appService: AppService
+    @EnvironmentObject var appService: OldAppService
 
     var body: some View {
         Group {

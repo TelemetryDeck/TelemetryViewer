@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class AppService: ObservableObject {
+class OldAppService: ObservableObject {
     let api: APIClient
 
     @Published var apps: [TelemetryApp]?

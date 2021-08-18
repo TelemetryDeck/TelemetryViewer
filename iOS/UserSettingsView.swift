@@ -10,7 +10,7 @@ import TelemetryClient
 
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIClient
-    @EnvironmentObject var appService: AppService
+    @EnvironmentObject var appService: OldAppService
     @State private var showChangePasswordForm: Bool = false
     @State private var showingAlert = false
     @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")

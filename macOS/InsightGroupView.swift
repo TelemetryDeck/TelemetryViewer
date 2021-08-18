@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InsightGroupView: View {
-    @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var insightService: OldInsightService
     @State private var selectedInsightID: UUID?
     @State private var insightEditorContent: InsightEditorContent?
 
@@ -27,7 +27,6 @@ struct InsightGroupView: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            SidebarSplitView {
                 ScrollView(.vertical) {
                     if let insightGroup = insightGroup {
                         if insightGroup.insights.count == 0 {
@@ -59,9 +58,7 @@ struct InsightGroupView: View {
                         .padding()
                 }
 
-            } toolbar: {
-                ToolbarItemGroup {}
-            }
+
 
             bottomHelpView
         }

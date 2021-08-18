@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EmptyAppView: View {
-    @EnvironmentObject var appService: AppService
+    @EnvironmentObject var appService: OldAppService
 
     let appID: UUID
     private var app: TelemetryApp? { appService.getSelectedApp() }

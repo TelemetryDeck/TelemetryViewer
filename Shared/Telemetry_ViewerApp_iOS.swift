@@ -14,8 +14,8 @@ struct Telemetry_ViewerApp: App {
     let api: APIClient
     let signalsService: SignalsService
     let lexiconService: LexiconService
-    let appService: AppService
-    let insightService: InsightService
+    let appService: OldAppService
+    let insightService: OldInsightService
     let insightCalculationService: InsightCalculationService
 
     var body: some Scene {
@@ -39,8 +39,8 @@ struct Telemetry_ViewerApp: App {
         self.api = APIClient()
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
-        self.appService = AppService(api: api)
-        self.insightService = InsightService(api: api)
+        self.appService = OldAppService(api: api)
+        self.insightService = OldInsightService(api: api)
         self.insightCalculationService = InsightCalculationService(api: api)
         
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
