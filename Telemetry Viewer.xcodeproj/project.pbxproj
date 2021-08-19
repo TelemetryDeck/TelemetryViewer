@@ -541,8 +541,8 @@
 				2B1D468826CC4423008814A9 /* OrgService.swift */,
 				2B1D469A26CC4F45008814A9 /* AppService.swift */,
 				2B1D469D26CC51A8008814A9 /* GroupService.swift */,
-				2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */,
 				2B1D46A026CC52DD008814A9 /* InsightService.swift */,
+				2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */,
 			);
 			path = UpdatedServices;
 			sourceTree = "<group>";

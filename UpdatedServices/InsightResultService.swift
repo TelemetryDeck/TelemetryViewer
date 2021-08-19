@@ -44,7 +44,7 @@ class InsightResultService: ObservableObject {
         return loadingState
     }
     
-    func insightCalculationResult(withID insightID: DTOsWithIdentifiers.Insight.ID) -> DTOsWithIdentifiers.InsightCalculationResult? {
+    func insightCalculationResult(withID insightID: DTOsWithIdentifiers.Insight.ID) -> InsightResultWrap? {
         guard let insight = cache.insightCalculationResultCache[insightID] else {
             retrieveInsightCalculationResult(with: insightID)
             return nil
@@ -81,7 +81,8 @@ private extension InsightResultService {
             self?.cache.queue.async { [weak self] in
                 switch result {
                 case let .success(insight):
-                    self?.cache.insightCalculationResultCache[insightID] = insight
+                    let chartDataSet = ChartDataSet(data: insight.data, groupBy: insight.insight.groupBy)
+                    self?.cache.insightCalculationResultCache[insightID] = InsightResultWrap(chartDataSet: chartDataSet, calculationResult: insight)
                     self?.loadingState[insightID] = .finished(Date())
                 case let .failure(error):
                     self?.errorService.handle(transferError: error)

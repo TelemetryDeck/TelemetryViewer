@@ -70,13 +70,13 @@ struct InsightDisplayView: View {
         if let insightData = insightCalculationService.calculationResult(for: insightID, in: insightGroupID, in: insightID) {
             switch insightData.insightData.displayMode {
             case .raw:
-                RawChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
+                ServiceRawChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
             case .pieChart:
-                DonutChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
+                ServiceDonutChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
             case .lineChart:
                 LineChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
             case .barChart:
-                BarChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
+                ServiceBarChartView(insightID: insightID, insightGroupID: insightGroupID, appID: appID, topSelectedInsightID: $topSelectedInsightID)
             default:
                 Text("\(insightData.insightData.displayMode.rawValue.capitalized) is not supported in this version.")
                     .font(.footnote)
