@@ -13,11 +13,12 @@ struct InsightGroupsView: View {
     
     @State var sidebarVisible = false
     @State var selectedInsightGroupID: DTOsWithIdentifiers.Group.ID
+    @State var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
     
     let appID: DTOsWithIdentifiers.App.ID
     
     var body: some View {
-        GroupView(groupID: selectedInsightGroupID, sidebarVisible: $sidebarVisible)
+        GroupView(groupID: selectedInsightGroupID, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
             .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
             .toolbar {
                 ToolbarItemGroup(placement: .navigation) {
@@ -39,7 +40,6 @@ struct InsightGroupsView: View {
             withAnimation {
                 sidebarVisible.toggle()
             }
-
         } label: {
             Image(systemName: "sidebar.right")
         }

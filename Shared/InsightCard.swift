@@ -12,6 +12,7 @@ struct InsightCard: View {
     @EnvironmentObject var insightResultService: InsightResultService
     
     @Binding var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
+    @Binding var sidebarVisible: Bool
     
     private var isSelected: Bool {
         selectedInsightID == insightID
@@ -29,6 +30,9 @@ struct InsightCard: View {
         Button {
             selectedInsightID = insightID
             
+            withAnimation {
+                sidebarVisible = true
+            }
         } label: {
             VStack(alignment: .leading) {
                 TinyLoadingStateIndicator(loadingState: insightService.loadingState(for: insightID), title: insightService.insight(withID: insightID)?.title)

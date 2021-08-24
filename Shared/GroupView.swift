@@ -15,43 +15,88 @@ let spacing: CGFloat = 1
 
 struct GroupView: View {
     let groupID: DTOsWithIdentifiers.Group.ID
-    
-    @State var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
 
+    @Binding var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
     @Binding var sidebarVisible: Bool
 
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var insightService: InsightService
+    @EnvironmentObject var lexiconService: LexiconService
 
     var body: some View {
-        HSplitView {
+        HStack(spacing: 0) {
             ScrollView(.vertical) {
-            insightsList
+                insightsList
             }
             .frame(idealWidth: 600, maxWidth: .infinity, maxHeight: .infinity)
-                .onTapGesture {
-                    selectedInsightID = nil
-                }
+            .onTapGesture {
+                selectedInsightID = nil
+            }
 
             if sidebarVisible {
-                Text("Hello Sidebar")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .transition(.move(edge: .trailing))
+                Divider()
+                Group {
+                    if let selectedInsightID = selectedInsightID {
+                        if let insight = insightService.insight(withID: selectedInsightID), let group = groupService.group(withID: groupID) {
+                            EditorView(viewModel: EditorViewModel(insight: insight, appID: group.appID, insightService: insightService, lexiconService: lexiconService))
+                        } else {
+                            IconOnlyLoadingStateIndicator(loadingState: insightService.loadingState(for: selectedInsightID))
+                        }
+
+                    } else {
+                        Text("Select an insight to edit it here.")
+                            .foregroundColor(.grayColor)
+                            .font(.system(size: 14))
+                            .padding()
+                    }
+                }
+                .frame(maxWidth: 250, maxHeight: .infinity)
+                .transition(.move(edge: .trailing))
             }
         }
     }
 
     var insightsList: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
+        Group {
             if let insightGroup = groupService.group(withID: groupID) {
-                ForEach(insightGroup.insightIDs, id: \.self) { insightID in
-                    InsightCard(selectedInsightID: $selectedInsightID, insightID: insightID)
-                }
+                insightsGrid(withGroup: insightGroup)
             } else {
-                LoadingStateIndicator(loadingState: groupService.loadingState(for: groupID), title: groupService.group(withID: groupID)?.title)
+                loadingStateIndicator
             }
         }
         .padding(.vertical, spacing)
+    }
+
+    func insightsGrid(withGroup insightGroup: DTOsWithIdentifiers.Group) -> some View {
+        let allInsights = insightGroup.insightIDs.map {
+            ($0, insightService.insight(withID: $0))
+        }
+        
+        let loadedInsights = allInsights.filter { $0.1 != nil }
+        let loadingInsights = allInsights.filter { $0.1 == nil }
+        let expandedInsights = loadedInsights.filter { $0.1?.isExpanded == true }.sorted { $0.1?.order ?? 0 < $1.1?.order ?? 0 }
+        let unexpandedInsights = loadedInsights.filter { $0.1?.isExpanded == false }.sorted { $0.1?.order ?? 0 < $1.1?.order ?? 0 }
+        
+        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: spacing)], alignment: .leading, spacing: spacing) {
+            ForEach(expandedInsights.map { $0.0 }, id: \.self) { insightID in
+                InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+            }
+
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
+                ForEach(unexpandedInsights.map { $0.0 }, id: \.self) { insightID in
+                    InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+                }
+            }
             
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
+                ForEach(loadingInsights.map { $0.0 }, id: \.self) { insightID in
+                    InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+                }
+            }
+        }
+    }
+
+    var loadingStateIndicator: some View {
+        LoadingStateIndicator(loadingState: groupService.loadingState(for: groupID), title: groupService.group(withID: groupID)?.title)
     }
 }

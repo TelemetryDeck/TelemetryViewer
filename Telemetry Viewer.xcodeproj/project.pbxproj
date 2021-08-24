@@ -54,6 +54,9 @@
 		2B1D46A226CC52DD008814A9 /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
 		2B1D46A426CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A326CCF9CB008814A9 /* LoadingStateIndicator.swift */; };
 		2B1D46A526CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A326CCF9CB008814A9 /* LoadingStateIndicator.swift */; };
+		2B25EAE526D3EA4D00BBBB1B /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */; };
+		2B25EAE626D3EA4D00BBBB1B /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */; };
+		2B25EAE926D3EEE700BBBB1B /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 2B25EAE826D3EEE700BBBB1B /* Shimmer */; };
 		2B2C4EDD26C2DA6400A4F32B /* LineChartCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */; };
 		2B2C4EDE26C2DA6400A4F32B /* LineChartCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */; };
 		2B2C4EDF26C2DA6400A4F32B /* LineChartCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */; };
@@ -323,6 +326,7 @@
 		2B1D469D26CC51A8008814A9 /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		2B1D46A026CC52DD008814A9 /* InsightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightService.swift; sourceTree = "<group>"; };
 		2B1D46A326CCF9CB008814A9 /* LoadingStateIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateIndicator.swift; sourceTree = "<group>"; };
+		2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartCanvas.swift; sourceTree = "<group>"; };
 		2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconService.swift; sourceTree = "<group>"; };
 		2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexiconSignalDTO.swift; sourceTree = "<group>"; };
@@ -480,6 +484,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B25EAE926D3EEE700BBBB1B /* Shimmer in Frameworks */,
 				DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,6 +822,7 @@
 				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
 				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
 				2BA5D50626CD1403008FBF8F /* InsightCard.swift */,
+				2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -954,6 +960,7 @@
 			name = "Telemetry Viewer (macOS)";
 			packageProductDependencies = (
 				DC9C0841252CEAC9001C0F94 /* TelemetryClient */,
+				2B25EAE826D3EEE700BBBB1B /* Shimmer */,
 			);
 			productName = "Telemetry Viewer (macOS)";
 			productReference = DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */;
@@ -994,6 +1001,7 @@
 			mainGroup = DCE239F624D3687C00053370;
 			packageReferences = (
 				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
+				2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
 			projectDirPath = "";
@@ -1208,6 +1216,7 @@
 				2BB23B2C26567222003DDE5E /* OldAppService.swift in Sources */,
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
 				2BBFCA11267D05E40013DC74 /* DetailSidebar.swift in Sources */,
+				2B25EAE526D3EA4D00BBBB1B /* EditorView.swift in Sources */,
 				2BBFCA2F267D05E40013DC74 /* ValueUnitAndTitleView.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				2BEDE6E326A7281E007247B0 /* ServiceBarChartView.swift in Sources */,
@@ -1360,6 +1369,7 @@
 				DCEC64B126025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				DC24DF3425DD54090003ADCB /* AppInfoView.swift in Sources */,
 				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
+				2B25EAE626D3EA4D00BBBB1B /* EditorView.swift in Sources */,
 				2BBFCA08267D05E40013DC74 /* OptionalToggle.swift in Sources */,
 				2BEDE6F126A728C7007247B0 /* RawChartView.swift in Sources */,
 				2BEDE6EA26A72853007247B0 /* ServiceLineChartView.swift in Sources */,
@@ -1793,6 +1803,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
@@ -1804,6 +1822,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B25EAE826D3EEE700BBBB1B /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
+		};
 		DC9C0830252CD622001C0F94 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
