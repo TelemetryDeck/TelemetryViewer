@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct InsightDataTimeIntervalPicker: View {
-    @EnvironmentObject var insightCalculationService: InsightResultService
+struct InsightDataTimeIntervalPickerForCalculationService: View {
+    @EnvironmentObject var insightCalculationService: InsightCalculationService
 
     var body: some View {
         VStack {
@@ -82,5 +82,13 @@ struct InsightDataTimeIntervalPicker: View {
         }
         .buttonStyle(SmallSecondaryButtonStyle())
         
+    }
+}
+
+struct InsightDataTimeIntervalPicker_Previews: PreviewProvider {
+    static var previews: some View {
+        InsightDataTimeIntervalPickerForCalculationService()
+            .environmentObject(InsightCalculationService(api: APIClient()))
+            .previewLayout(PreviewLayout.fixed(width: 400, height: 300))
     }
 }

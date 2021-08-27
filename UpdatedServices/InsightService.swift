@@ -62,6 +62,44 @@ class InsightService: ObservableObject {
             self?.performRetrieval(ofInsightWithID: insightID)
         }
     }
+    
+    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightDTO: DTOsWithIdentifiers.Insight, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
+        
+        let insightUpdateRequestBody = InsightDefinitionRequestBody(
+            order: insightDTO.order,
+            title: insightDTO.title,
+            subtitle: nil,
+            signalType: insightDTO.signalType,
+            uniqueUser: insightDTO.uniqueUser,
+            filters: insightDTO.filters,
+            rollingWindowSize: 0,
+            breakdownKey: insightDTO.breakdownKey,
+            groupBy: insightDTO.groupBy,
+            displayMode: insightDTO.displayMode,
+            groupID: insightDTO.groupID,
+            id: insightDTO.id,
+            isExpanded: insightDTO.isExpanded,
+            shouldUseDruid: true
+        )
+
+        let oldGroupID = insight(withID: insightID)?.groupID
+        let newGroupID = insightUpdateRequestBody.groupID
+        let insightGroupHasChanged = oldGroupID != newGroupID
+
+        api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+//            if insightGroupHasChanged {
+//                self.invalidateInsightGroups(forAppID: appID)
+//                self.getInsightGroups(for: appID)
+//            }
+            
+            cache.insightCalculationResultCache.removeValue(forKey: insightID)
+            
+            retrieveInsight(with: insightID)
+            
+            callback?(result)
+        }
+    }
 }
 
 private extension InsightService {

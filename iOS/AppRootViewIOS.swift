@@ -92,7 +92,7 @@ struct AppRootView: View {
 
     func datePicker() -> some View {
         CardView {
-            InsightDataTimeIntervalPicker()
+            InsightDataTimeIntervalPickerForCalculationService()
                 .padding()
         }
         .frame(maxHeight: 200)

@@ -72,11 +72,7 @@ struct LeftSidebarView: View {
                 TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name)
             }
         } header: {
-            if let app = appService.app(withID: appID) {
-                Text(app.name)
-            } else {
-                LoadingStateIndicator(loadingState: appService.loadingState(for: appID))
-            }
+            TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name)
         }
     }
 }

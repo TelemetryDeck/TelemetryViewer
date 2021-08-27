@@ -56,7 +56,7 @@ struct AppRootView: View {
                 }.popover(
                     isPresented: self.$showDatePicker,
                     arrowEdge: .bottom
-                ) { InsightDataTimeIntervalPicker().padding() }
+                ) { InsightDataTimeIntervalPickerForCalculationService().padding() }
             }
             
             ToolbarItem {

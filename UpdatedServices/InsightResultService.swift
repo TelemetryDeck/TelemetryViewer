@@ -18,6 +18,56 @@ class InsightResultService: ObservableObject {
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
     
+    @Published var timeWindowBeginning: RelativeDateDescription = .beginning(of: .previous(.month)) { didSet { invalidateAllCalculationResults() }}
+    @Published var timeWindowEnd: RelativeDateDescription = .end(of: .current(.month)) { didSet { invalidateAllCalculationResults() }}
+    
+    var timeWindowBeginningDate: Date { resolvedDate(from: timeWindowBeginning, defaultDate: Date() - 30 * 24 * 3600) }
+    var timeWindowEndDate: Date { resolvedDate(from: timeWindowEnd, defaultDate: Date()) }
+
+    func setTimeIntervalTo(days: Int) {
+        timeWindowEnd = .end(of: .current(.day))
+        timeWindowBeginning = .goBack(days: days)
+    }
+
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
+    var timeIntervalDescription: String {
+        return "\(dateFormatter.string(from: timeWindowBeginningDate)) – \(dateFormatter.string(from: timeWindowEndDate))"
+    }
+    
+    func resolvedDate(from date: RelativeDateDescription, defaultDate: Date) -> Date {
+        let currentDate = Date()
+
+        switch date {
+        case .end(of: let of):
+            switch of {
+            case .current(let calendarComponent):
+                return currentDate.end(of: calendarComponent) ?? defaultDate
+            case .previous(let calendarComponent):
+                return currentDate.beginning(of: calendarComponent)?.adding(calendarComponent, value: -1).end(of: calendarComponent) ?? defaultDate
+            }
+
+        case .beginning(of: let of):
+            switch of {
+            case .current(let calendarComponent):
+                return currentDate.beginning(of: calendarComponent) ?? defaultDate
+            case .previous(let calendarComponent):
+                return currentDate.beginning(of: calendarComponent)?.adding(calendarComponent, value: -1).beginning(of: calendarComponent) ?? defaultDate
+            }
+
+        case .goBack(days: let days):
+            return currentDate.adding(.day, value: -days).beginning(of: .day) ?? defaultDate
+
+        case .absolute(date: let date):
+            return date
+        }
+    }
+    
     init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
         self.api = api
         self.cache = cache
@@ -65,6 +115,10 @@ class InsightResultService: ObservableObject {
 }
 
 private extension InsightResultService {
+    func invalidateAllCalculationResults() {
+        cache.insightCalculationResultCache.invalidateAllObjects()
+    }
+    
     func performRetrieval(ofInsightWithID insightID: DTOsWithIdentifiers.Insight.ID) {
         switch loadingState(for: insightID) {
         case .loading, .error(_, _):
@@ -75,7 +129,9 @@ private extension InsightResultService {
 
         loadingState[insightID] = .loading
         
-        let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result")
+        let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
+                                 Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
+                                 Formatter.iso8601noFS.string(from: timeWindowEndDate))
         
         api.get(url) { [weak self] (result: Result<DTOsWithIdentifiers.InsightCalculationResult, TransferError>) in
             self?.cache.queue.async { [weak self] in

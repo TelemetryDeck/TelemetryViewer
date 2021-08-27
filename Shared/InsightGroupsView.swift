@@ -10,10 +10,12 @@ import SwiftUI
 struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
+    @EnvironmentObject var insightResultService: InsightResultService
     
     @State var sidebarVisible = false
     @State var selectedInsightGroupID: DTOsWithIdentifiers.Group.ID
     @State var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
+    @State private var showDatePicker: Bool = false
     
     let appID: DTOsWithIdentifiers.App.ID
     
@@ -26,6 +28,15 @@ struct InsightGroupsView: View {
                 }
                 
                 ToolbarItem {
+                    Button(insightResultService.timeIntervalDescription) {
+                        self.showDatePicker = true
+                    }.popover(
+                        isPresented: self.$showDatePicker,
+                        arrowEdge: .bottom
+                    ) { InsightDataTimeIntervalPickerForCalculationService().padding() }
+                }
+                
+                ToolbarItem {
                     LoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name)
                 }
                 
@@ -34,7 +45,7 @@ struct InsightGroupsView: View {
                 }
             }
     }
-    
+
     private var sidebarToggleButton: some View {
         Button {
             withAnimation {

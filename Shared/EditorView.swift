@@ -52,26 +52,58 @@ class EditorViewModel: ObservableObject {
         self.filters = insight.filters
         self.breakdownKey = insight.breakdownKey ?? ""
         self.groupBy = insight.groupBy ?? .day
+        
+        self.isSettingUp = false
     }
     
     var generatedInsight: DTOsWithIdentifiers.Insight {
-        fatalError()
+        DTOsWithIdentifiers.Insight(
+            id: id,
+            groupID: groupID,
+            order: order,
+            title: title,
+            signalType: signalType,
+            uniqueUser: uniqueUser,
+            filters: filters,
+            breakdownKey: breakdownKey.isEmpty ? nil : breakdownKey,
+            groupBy: groupBy,
+            displayMode: displayMode,
+            isExpanded: isExpanded,
+            lastRunTime: nil,
+            lastRunAt: nil
+        )
     }
     
+    private var lastSaveCallAt = Date.distantPast
+    private let waitBeforeSave: TimeInterval = 1
+    private var isSettingUp = false
+    
     func shouldSave() {
-        // TODO: only call save after a few seconds, so things settle down
-        save()
+        guard !isSettingUp else { return }
+        
+        lastSaveCallAt = Date()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + waitBeforeSave + 0.01) {
+            if -self.lastSaveCallAt.timeIntervalSinceNow > self.waitBeforeSave {
+                self.save()
+            }
+        }
     }
     
     func save() {
-//        insightService.save(generatedInsight)
-        print("save")
+        insightService.update(
+            insightID: id,
+            in: groupID,
+            in: appID,
+            with: generatedInsight) { result in
+                
+            }
     }
     
     let id: DTOsWithIdentifiers.Insight.ID
     let appID: DTOsWithIdentifiers.App.ID
     
-    @Published var order: Double
+    @Published var order: Double { didSet { shouldSave() }}
     
     @Published var title: String { didSet { shouldSave() }}
     
@@ -84,22 +116,22 @@ class EditorViewModel: ObservableObject {
     @Published var isExpanded: Bool { didSet { shouldSave() }}
     
     /// Which signal types are we interested in? If empty, do not filter by signal type
-    @Published var signalType: String
+    @Published var signalType: String { didSet { shouldSave() }}
 
     /// If true, only include at the newest signal from each user
-    @Published var uniqueUser: Bool
+    @Published var uniqueUser: Bool { didSet { shouldSave() }}
 
     /// Only include signals that match all of these key-values in the payload
-    @Published var filters: [String: String]
+    @Published var filters: [String: String] { didSet { shouldSave() }}
 
     /// If set, break down the values in this key
-    @Published var breakdownKey: String
+    @Published var breakdownKey: String { didSet { shouldSave() }}
 
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
-    @Published var groupBy: InsightGroupByInterval
+    @Published var groupBy: InsightGroupByInterval { didSet { shouldSave() }}
 
     /// Which group should the insight belong to? (Only use this in update mode)
-    @Published var groupID: UUID
+    @Published var groupID: UUID { didSet { shouldSave() }}
     
     var filterAutocompletionOptions: [String] {
         return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey)
@@ -233,6 +265,24 @@ struct EditorView: View {
                 }
                 .padding(.horizontal)
             }
+//
+//            Group {
+//                Text("This Insight was last updated ")
+//                    + Text(calculatedAt, style: .relative).bold()
+//                    + Text(" ago. The server needed ")
+//                    + Text("\(calculationDuration) seconds").bold()
+//                    + Text(" to calculate it.")
+//            }
+//            .opacity(0.4)
+//            .padding(.vertical, 2)
+//
+//            Group {
+//                Text("The Insight will automatically be updated once it's ")
+//                    + Text("5 Minutes").bold()
+//                    + Text(" old.")
+//            }
+//            .opacity(0.4)
+//            .padding(.bottom, 4)
         }
     }
 }

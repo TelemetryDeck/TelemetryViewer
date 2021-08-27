@@ -58,18 +58,6 @@ class InsightCalculationService: ObservableObject {
         self.api = api
     }
 
-    enum RelativeDateDescription {
-        case end(of: CurrentOrPrevious)
-        case beginning(of: CurrentOrPrevious)
-        case goBack(days: Int)
-        case absolute(date: Date)
-    }
-
-    enum CurrentOrPrevious {
-        case current(_ value: Calendar.Component)
-        case previous(_ value: Calendar.Component)
-    }
-
     func setTimeIntervalTo(days: Int) {
         timeWindowEnd = .end(of: .current(.day))
         timeWindowBeginning = .goBack(days: days)

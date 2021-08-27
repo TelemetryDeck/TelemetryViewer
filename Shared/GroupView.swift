@@ -80,17 +80,20 @@ struct GroupView: View {
         return LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: spacing)], alignment: .leading, spacing: spacing) {
             ForEach(expandedInsights.map { $0.0 }, id: \.self) { insightID in
                 InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+                    .id(insightID)
             }
 
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
                 ForEach(unexpandedInsights.map { $0.0 }, id: \.self) { insightID in
                     InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+                        .id(insightID)
                 }
             }
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
                 ForEach(loadingInsights.map { $0.0 }, id: \.self) { insightID in
                     InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+                        .id(insightID)
                 }
             }
         }
