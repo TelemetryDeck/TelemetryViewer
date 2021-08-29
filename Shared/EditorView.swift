@@ -62,7 +62,7 @@ class EditorViewModel: ObservableObject {
             groupID: groupID,
             order: order,
             title: title,
-            signalType: signalType,
+            signalType: signalType.isEmpty ? nil : signalType,
             uniqueUser: uniqueUser,
             filters: filters,
             breakdownKey: breakdownKey.isEmpty ? nil : breakdownKey,
@@ -265,6 +265,25 @@ struct EditorView: View {
                 }
                 .padding(.horizontal)
             }
+            
+            
+            CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
+
+
+                Button("Copy Insight ID") {
+                    saveToClipBoard(viewModel.id.uuidString)
+                }
+                .buttonStyle(SmallSecondaryButtonStyle())
+            }
+
+//            CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
+//                Button("Delete this Insight", action: {
+//                    showingAlert = true
+//                })
+//                    .buttonStyle(SmallSecondaryButtonStyle())
+//                    .accentColor(.red)
+//            }
+            
 //
 //            Group {
 //                Text("This Insight was last updated ")
