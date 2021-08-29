@@ -14,7 +14,7 @@ struct UserSettingsView: View {
     @State private var showChangePasswordForm: Bool = false
     @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")
     @State private var showingAlert = false
-    @State private var userDTO = DTO.UserDTO(id: UUID(), organization: nil, firstName: "", lastName: "", email: "", emailIsVerified: false, receiveMarketingEmails: nil, isFoundingUser: false)
+    @State private var userDTO = DTO.UserDTO(id: UUID(), organization: nil, firstName: "", lastName: "", email: "", emailIsVerified: false, receiveMarketingEmails: nil, isFoundingUser: false, receiveReports: .never)
     @State var isShowingSaveButtons: Bool = false
     
     func boolToString(value: Bool?) -> String {
