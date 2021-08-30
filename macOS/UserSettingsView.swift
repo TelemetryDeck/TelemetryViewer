@@ -90,6 +90,20 @@ struct UserSettingsView: View {
                     }
                     
                     CustomSection(
+                        header: Text("Receive Reports"),
+                        summary: Text(userDTO.receiveReports.rawValue),
+                        footer: Text("How often should we send you an email update on how your organization's apps are doing?"),
+                        startCollapsed: true
+                    ) {
+                        Picker("", selection: $userDTO.receiveReports) {
+                            ForEach([ReportSendingRate.daily, .weekly, .monthly, .never], id: \.self) {
+                                Text($0.rawValue)
+                            }
+                        }
+                        .onChange(of: userDTO.receiveReports) { _ in save() }
+                    }
+                    
+                    CustomSection(
                         header: Text("Change Password"),
                         summary: EmptyView(),
                         footer: EmptyView(),
