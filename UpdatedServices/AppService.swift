@@ -5,8 +5,8 @@
 //  Created by Daniel Jilg on 17.08.21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class AppService: ObservableObject {
     private let api: APIClient
@@ -21,7 +21,7 @@ class AppService: ObservableObject {
     init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
         self.api = api
         self.cache = cache
-        self.errorService = errors
+        errorService = errors
         
         loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
         cacheCancellable = cache.appCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
@@ -32,7 +32,7 @@ class AppService: ObservableObject {
         
         // after 60 seconds, clear the error, allowing another load
         switch loadingState {
-        case .error(_, let date):
+        case let .error(_, date):
             if date < Date() - 60 {
                 self.loadingState[appID] = .idle
                 return .idle
@@ -62,12 +62,48 @@ class AppService: ObservableObject {
             self?.performRetrieval(ofAppWithID: appID)
         }
     }
+    
+    func create(appNamed name: String, callback: ((Result<TelemetryApp, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps")
+
+        api.post(["name": name], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
+            callback?(result)
+            
+            if let userToken = api.userToken?.bearerTokenAuthString {
+                cache.organizationCache.removeValue(forKey: userToken)
+            }
+        }
+    }
+
+    func update(appID: UUID, newName: String, callback: ((Result<TelemetryApp, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString)
+
+        api.patch(["name": newName], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
+//            if let userToken = api.userToken?.bearerTokenAuthString {
+//                cache.organizationCache.removeValue(forKey: userToken)
+//            }
+            cache.appCache.removeValue(forKey: appID)
+            callback?(result)
+        }
+    }
+
+    func delete(appID: UUID, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString)
+
+        api.delete(url) { [unowned self] (result: Result<String, TransferError>) in
+            if let userToken = api.userToken?.bearerTokenAuthString {
+                cache.organizationCache.removeValue(forKey: userToken)
+            }
+            cache.appCache.removeValue(forKey: appID)
+            callback?(result)
+        }
+    }
 }
 
 private extension AppService {
     func performRetrieval(ofAppWithID appID: DTOsWithIdentifiers.App.ID) {
         switch loadingState(for: appID) {
-        case .loading, .error(_, _):
+        case .loading, .error:
             return
         default:
             break

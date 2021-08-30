@@ -22,32 +22,39 @@ struct LeftSidebarView: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
-    @State var selection: LeftSidebarViewSelection? = .insights
-    
+
     var body: some View {
         List {
-            LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
-            
-            if let organization = orgService.organization {   
+            if let organization = orgService.organization {
                 ForEach(organization.appIDs, id: \.self) { appID in
                     section(for: appID)
                 }
+
+                if organization.appIDs.isEmpty {
+                    NavigationLink(destination: AppInfoView()) {
+                        Label("Get Started", systemImage: "mustache.fill")
+                    }
+                }
             }
-            
+
+            #if os(macOS)
+                Divider()
+            #endif
+
             Section(header: Text("Meta")) {
                 #if os(iOS)
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
                     })
-                
-                if let user = api.user {
-                    NavigationLink(
-                        destination: UserSettingsView(userDTO: user),
-                        label: {
-                            Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
-                        }
-                    )
-                }
+
+                    if let user = api.user {
+                        NavigationLink(
+                            destination: UserSettingsView(userDTO: user),
+                            label: {
+                                Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
+                            }
+                        )
+                    }
                 #endif
 
                 NavigationLink(
@@ -56,25 +63,68 @@ struct LeftSidebarView: View {
                         Label("Help & Feedback", systemImage: "ladybug.fill")
                     }
                 )
+
+                LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
             }
-            
         }
         .listStyle(.sidebar)
+        .toolbar {
+            ToolbarItemGroup {
+                #if os(macOS)
+                    Button(action: toggleSidebar) {
+                        Image(systemName: "sidebar.left")
+                            .help("Toggle Sidebar")
+                    }
+                    .help("Toggle the left sidebar")
+
+                    Spacer()
+                #endif
+
+                Button(action: {
+                    appService.create(appNamed: "New App") { result in
+                        switch result {
+                        case .failure(let error):
+                            print(error)
+                        case .success(let newApp):
+                            print("done")
+                        }
+                    }
+                }) {
+                    Label("New App", systemImage: "plus.app.fill")
+                }
+                .help("Create a New App")
+            }
+        }
     }
-    
+
     func section(for appID: DTOsWithIdentifiers.App.ID) -> some View {
         Section {
             if let app = appService.app(withID: appID) {
                 if let first = app.insightGroupIDs.first {
-                    NavigationLink { InsightGroupsView(selectedInsightGroupID: first, appID: app.id) } label: { Label(app.name, systemImage: "app") }
+                    NavigationLink { InsightGroupsView(selectedInsightGroupID: first, appID: app.id) } label: { Label("Insights", systemImage: "app") }
                 }
+
+                NavigationLink { LexiconView(appID: app.id) } label: { Label("Signal Types", systemImage: "app") }
+                NavigationLink { SignalList(appID: app.id) } label: { Label("Recent Signals", systemImage: "app") }
+                NavigationLink { AppEditor(appID: app.id, appName: app.name) } label: { Label("Edit App", systemImage: "app") }
+
             } else {
-                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name)
+                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Insights")
+                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Signal Types")
+                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Recent Signals")
+                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Edit App")
             }
         } header: {
             TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name)
         }
     }
+
+    #if os(macOS)
+        private func toggleSidebar() {
+            NSApp.keyWindow?.firstResponder?
+                .tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+        }
+    #endif
 }
 
 struct OldLeftSidebarView: View {
@@ -203,15 +253,15 @@ struct OldLeftSidebarView: View {
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
                     })
-                
-                if let user = api.user {
-                    NavigationLink(
-                        destination: UserSettingsView(userDTO: user),
-                        label: {
-                            Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
-                        }
-                    )
-                }
+
+                    if let user = api.user {
+                        NavigationLink(
+                            destination: UserSettingsView(userDTO: user),
+                            label: {
+                                Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
+                            }
+                        )
+                    }
                 #endif
 
                 NavigationLink(

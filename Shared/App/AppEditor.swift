@@ -9,7 +9,7 @@ import SwiftUI
 import TelemetryClient
 
 struct AppEditor: View {
-    @EnvironmentObject var appService: OldAppService
+    @EnvironmentObject var appService: AppService
     
     let appID: UUID
     
@@ -29,7 +29,7 @@ struct AppEditor: View {
     }
     
     var body: some View {
-        if let app = appService.getApp(with: appID) {
+        if let app = appService.app(withID: appID) {
             Form {
                 CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("App Name", text: $appName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
@@ -65,9 +65,6 @@ struct AppEditor: View {
             .padding(.vertical, self.padding)
             .navigationTitle("App Settings")
             .onDisappear { saveToAPI() }
-            .onAppear {
-                appName = appService.getSelectedApp()?.name ?? "----"
-            }
             .alert(isPresented: $showingAlert) {
                 Alert(
                     title: Text("Are you sure you want to delete \(app.name)?"),
