@@ -99,6 +99,8 @@
 		2BB4737E26950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
 		2BB4737F26950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
 		2BB4738026950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
+		2BB6BD0326DD025700208481 /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6BD0226DD025700208481 /* Date+StartEnd.swift */; };
+		2BB6BD0426DD025700208481 /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6BD0226DD025700208481 /* Date+StartEnd.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
@@ -357,6 +359,7 @@
 		2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightResultService.swift; sourceTree = "<group>"; };
 		2BB23B2B26567222003DDE5E /* OldAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAppService.swift; sourceTree = "<group>"; };
 		2BB4737D26950731004DA1DC /* AppAdminEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAdminEntry.swift; sourceTree = "<group>"; };
+		2BB6BD0226DD025700208481 /* Date+StartEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+StartEnd.swift"; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BBFC9DA267D05E30013DC74 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		2BBFC9DB267D05E30013DC74 /* RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
@@ -807,6 +810,7 @@
 		DCE239FB24D3687C00053370 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2BB6BD0226DD025700208481 /* Date+StartEnd.swift */,
 				2BEDE6DF26A72731007247B0 /* LocalCharts */,
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
 				DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */,
@@ -1273,6 +1277,7 @@
 				2B3CC0D9264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
 				DC5F3A8925A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
+				2BB6BD0326DD025700208481 /* Date+StartEnd.swift in Sources */,
 				2BBFCA03267D05E40013DC74 /* CardView.swift in Sources */,
 				DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */,
 				2BBFCA13267D05E40013DC74 /* ListItemView.swift in Sources */,
@@ -1414,6 +1419,7 @@
 				2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */,
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2BBFCA2E267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */,
+				2BB6BD0426DD025700208481 /* Date+StartEnd.swift in Sources */,
 				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				2B19DEBB26444B2B0086F70E /* UserDTO.swift in Sources */,
 				2BA5D50226CD05CC008FBF8F /* InsightGroupsView.swift in Sources */,

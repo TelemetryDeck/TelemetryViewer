@@ -5,8 +5,8 @@
 //  Created by Daniel Jilg on 17.08.21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class InsightResultService: ObservableObject {
     private let api: APIClient
@@ -18,8 +18,8 @@ class InsightResultService: ObservableObject {
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
     
-    @Published var timeWindowBeginning: RelativeDateDescription = .beginning(of: .previous(.month)) { didSet { invalidateAllCalculationResults() }}
-    @Published var timeWindowEnd: RelativeDateDescription = .end(of: .current(.month)) { didSet { invalidateAllCalculationResults() }}
+    @Published var timeWindowBeginning: RelativeDateDescription = .beginning(of: .previous(.month))
+    @Published var timeWindowEnd: RelativeDateDescription = .end(of: .current(.month))
     
     var timeWindowBeginningDate: Date { resolvedDate(from: timeWindowBeginning, defaultDate: Date() - 30 * 24 * 3600) }
     var timeWindowEndDate: Date { resolvedDate(from: timeWindowEnd, defaultDate: Date()) }
@@ -71,7 +71,7 @@ class InsightResultService: ObservableObject {
     init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
         self.api = api
         self.cache = cache
-        self.errorService = errors
+        errorService = errors
         
         loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
         cacheCancellable = cache.insightCalculationResultCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
@@ -94,17 +94,27 @@ class InsightResultService: ObservableObject {
         return loadingState
     }
     
+    func cacheKey(insight: DTOsWithIdentifiers.Insight) -> String {
+        let uuidString = insight.id.uuidString
+        let earlierDateString = Formatter.iso8601.string(from: timeWindowBeginningDate)
+        let laterDateString = Formatter.iso8601.string(from: timeWindowEndDate.startOfHour)
+        let insightHash = insight.hashValue
+        return "\(uuidString)/\(earlierDateString)/\(laterDateString)/\(insightHash)/v1"
+    }
+    
     func insightCalculationResult(withID insightID: DTOsWithIdentifiers.Insight.ID) -> InsightResultWrap? {
-        guard let insight = cache.insightCalculationResultCache[insightID] else {
+        guard let insight = cache.insightCache[insightID],
+              let insightCalculationResult = cache.insightCalculationResultCache[cacheKey(insight: insight)]
+        else {
             retrieveInsightCalculationResult(with: insightID)
             return nil
         }
         
-        if cache.insightCalculationResultCache.needsUpdate(forKey: insightID) {
+        if cache.insightCalculationResultCache.needsUpdate(forKey: cacheKey(insight: insight)) {
             retrieveInsightCalculationResult(with: insightID)
         }
         
-        return insight
+        return insightCalculationResult
     }
     
     func retrieveInsightCalculationResult(with insightID: DTOsWithIdentifiers.Insight.ID) {
@@ -115,13 +125,9 @@ class InsightResultService: ObservableObject {
 }
 
 private extension InsightResultService {
-    func invalidateAllCalculationResults() {
-        cache.insightCalculationResultCache.invalidateAllObjects()
-    }
-    
     func performRetrieval(ofInsightWithID insightID: DTOsWithIdentifiers.Insight.ID) {
         switch loadingState(for: insightID) {
-        case .loading, .error(_, _):
+        case .loading, .error:
             return
         default:
             break
@@ -136,11 +142,15 @@ private extension InsightResultService {
         api.get(url) { [weak self] (result: Result<DTOsWithIdentifiers.InsightCalculationResult, TransferError>) in
             self?.cache.queue.async { [weak self] in
                 switch result {
-                case let .success(insight):
-                    let chartDataSet = ChartDataSet(data: insight.data, groupBy: insight.insight.groupBy)
-                    self?.cache.insightCalculationResultCache[insightID] = InsightResultWrap(chartDataSet: chartDataSet, calculationResult: insight)
+                case .success(let insightCalculationResult):
+                    let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
+                    
+                    if let insight = self?.cache.insightCache[insightID], let cacheKey = self?.cacheKey(insight: insight) {
+                        self?.cache.insightCalculationResultCache[cacheKey] = InsightResultWrap(chartDataSet: chartDataSet, calculationResult: insightCalculationResult)
+                    }
+                    
                     self?.loadingState[insightID] = .finished(Date())
-                case let .failure(error):
+                case .failure(let error):
                     self?.errorService.handle(transferError: error)
                     self?.loadingState[insightID] = .error(error.localizedDescription, Date())
                 }

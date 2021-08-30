@@ -93,8 +93,6 @@ class InsightService: ObservableObject {
 //                self.getInsightGroups(for: appID)
 //            }
             
-            cache.insightCalculationResultCache.removeValue(forKey: insightID)
-            
             retrieveInsight(with: insightID)
             
             callback?(result)

@@ -33,7 +33,7 @@ struct InsightGroupsView: View {
                     }.popover(
                         isPresented: self.$showDatePicker,
                         arrowEdge: .bottom
-                    ) { InsightDataTimeIntervalPickerForCalculationService().padding() }
+                    ) { InsightDataTimeIntervalPicker().padding() }
                 }
                 
                 ToolbarItem {

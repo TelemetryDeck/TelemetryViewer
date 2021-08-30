@@ -95,9 +95,9 @@ class EditorViewModel: ObservableObject {
             insightID: id,
             in: groupID,
             in: appID,
-            with: generatedInsight) { result in
-                
-            }
+            with: generatedInsight
+        ) { _ in
+        }
     }
     
     let id: DTOsWithIdentifiers.Insight.ID
@@ -266,15 +266,13 @@ struct EditorView: View {
                 .padding(.horizontal)
             }
             
-            
             CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-
-
                 Button("Copy Insight ID") {
                     saveToClipBoard(viewModel.id.uuidString)
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())
             }
+            .padding(.horizontal)
 
 //            CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
 //                Button("Delete this Insight", action: {
