@@ -175,7 +175,11 @@ extension InsightDisplayMode {
 }
 
 struct EditorView: View {
+    @EnvironmentObject var groupService: GroupService
+    
     @ObservedObject var viewModel: EditorViewModel
+    
+    @State var showingAlert: Bool = false
     
     var body: some View {
         ScrollView {
@@ -274,32 +278,27 @@ struct EditorView: View {
             }
             .padding(.horizontal)
 
-//            CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-//                Button("Delete this Insight", action: {
-//                    showingAlert = true
-//                })
-//                    .buttonStyle(SmallSecondaryButtonStyle())
-//                    .accentColor(.red)
-//            }
-            
-//
-//            Group {
-//                Text("This Insight was last updated ")
-//                    + Text(calculatedAt, style: .relative).bold()
-//                    + Text(" ago. The server needed ")
-//                    + Text("\(calculationDuration) seconds").bold()
-//                    + Text(" to calculate it.")
-//            }
-//            .opacity(0.4)
-//            .padding(.vertical, 2)
-//
-//            Group {
-//                Text("The Insight will automatically be updated once it's ")
-//                    + Text("5 Minutes").bold()
-//                    + Text(" old.")
-//            }
-//            .opacity(0.4)
-//            .padding(.bottom, 4)
+            CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
+                Button("Delete this Insight", action: {
+                    showingAlert = true
+                })
+                    .buttonStyle(SmallSecondaryButtonStyle())
+                    .accentColor(.red)
+                    .alert(isPresented: $showingAlert) {
+                        Alert(
+                            title: Text("Are you sure you want to delete the Insight \(viewModel.title)?"),
+                            message: Text("This will delete the Insight. Your signals are not affected."),
+                            primaryButton: .destructive(Text("Delete")) {
+                                viewModel.insightService.delete(insightID: viewModel.id, in: viewModel.groupID, in: viewModel.appID) { _ in
+                                    // TODO: Ios ONLY: self.presentation.wrappedValue.dismiss()
+                                    groupService.retrieveGroup(with: viewModel.groupID)
+                                }
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
+            }
+            .padding(.horizontal)
         }
     }
 }

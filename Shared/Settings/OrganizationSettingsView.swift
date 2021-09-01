@@ -128,7 +128,9 @@ struct OrganizationSettingsView: View {
                     let chartDataSet = ChartDataSet(data: signalCount, groupBy: .month)
 
                     DispatchQueue.main.async {
-                        self.organizationSignalNumbers = chartDataSet
+                        withAnimation {
+                            self.organizationSignalNumbers = chartDataSet
+                        }
                     }
                 }
 

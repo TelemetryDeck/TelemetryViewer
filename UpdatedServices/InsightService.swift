@@ -98,6 +98,14 @@ class InsightService: ObservableObject {
             callback?(result)
         }
     }
+
+    func delete(insightID: UUID, in insightGroupID: UUID, in appID: UUID, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
+
+        api.delete(url) { [unowned self] (result: Result<String, TransferError>) in
+            callback?(result)
+        }
+    }
 }
 
 private extension InsightService {

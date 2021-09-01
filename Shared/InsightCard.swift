@@ -72,7 +72,7 @@ struct InsightCard: View {
         .frame(idealHeight: 200)
         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insightID))
         .onReceive(refreshTimer) { _ in
-            // This check will hopefully prevent the insight loading away under the user's fingers 
+            // This check will hopefully prevent the insight loading away under the user's fingers
             if selectedInsightID == nil {
                 _ = insightResultService.insightCalculationResult(withID: insightID)
             }
