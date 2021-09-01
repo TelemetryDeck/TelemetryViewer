@@ -116,7 +116,7 @@ struct InsightGroupView: View {
 
             AdaptiveStack {
                 if let insightGroup = insightGroup {
-                    NavigationLink("Edit Group", destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup), tag: insightGroup.id, selection: $selectedInsightID)
+                    NavigationLink("Edit Group", destination: OldInsightGroupEditor(appID: appID, insightGroup: insightGroup), tag: insightGroup.id, selection: $selectedInsightID)
                         .buttonStyle(SmallSecondaryButtonStyle())
                         .frame(maxWidth: 400)
                 }

@@ -43,11 +43,10 @@ struct GroupView: View {
                             IconOnlyLoadingStateIndicator(loadingState: insightService.loadingState(for: selectedInsightID))
                         }
 
+                    } else if let group = groupService.group(withID: groupID) {
+                        InsightGroupEditor(id: groupID, title: group.title, order: group.order ?? 0, appID: group.appID)
                     } else {
-                        Text("Select an insight to edit it here.")
-                            .foregroundColor(.grayColor)
-                            .font(.system(size: 14))
-                            .padding()
+                        Text("Please select a thing!")
                     }
                 }
                 .frame(maxWidth: 250, maxHeight: .infinity)
