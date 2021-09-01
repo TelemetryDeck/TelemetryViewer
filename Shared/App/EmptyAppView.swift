@@ -36,7 +36,7 @@ struct EmptyAppView: View {
             #endif
 
             Button("Documentation: Sending Signals") {
-                URL(string: "https://apptelemetry.io/pages/quickstart.html")?.open()
+                URL(string: "https://telemetrydeck.com/pages/quickstart.html")?.open()
             }
             .buttonStyle(SmallSecondaryButtonStyle())
 

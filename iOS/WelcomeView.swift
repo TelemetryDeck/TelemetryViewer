@@ -34,7 +34,7 @@ struct WelcomeView: View {
                         .buttonStyle(SmallSecondaryButtonStyle())
 
                     Button("Docs: Getting Started →") {
-                        UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)
+                        UIApplication.shared.open(URL(string: "https://telemetrydeck.com/pages/docs.html")!)
                     }
                     .buttonStyle(SmallSecondaryButtonStyle())
 

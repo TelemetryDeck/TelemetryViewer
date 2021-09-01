@@ -28,9 +28,9 @@ struct AppInfoView: View {
 
                         Button("Documentation: Sending Signals") {
                             #if os(macOS)
-                                NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                                NSWorkspace.shared.open(URL(string: "https://telemetrydeck.com/pages/quickstart.html")!)
                             #else
-                                UIApplication.shared.open(URL(string: "https://apptelemetry.io/pages/quickstart.html")!)
+                                UIApplication.shared.open(URL(string: "https://telemetrydeck.com/pages/quickstart.html")!)
                             #endif
                         }
                         .buttonStyle(SmallSecondaryButtonStyle())

@@ -58,7 +58,7 @@ struct WelcomeView: View {
                 .buttonStyle(SmallSecondaryButtonStyle())
 
                 Button("Docs: Getting Started →") {
-                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)
+                    NSWorkspace.shared.open(URL(string: "https://telemetrydeck.com/pages/docs.html")!)
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())
 

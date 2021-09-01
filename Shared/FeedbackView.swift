@@ -46,7 +46,7 @@ struct FeedbackView: View {
             FeedbackViewEntry(
                 title: "Documentation",
                 subtitle: "All documentation articles available for AppTelemetry and its clients",
-                link: "https://apptelemetry.io/pages/docs.html",
+                link: "https://telemetrydeck.com/pages/docs.html",
                 systemImage: "text.book.closed"
             )
             
@@ -74,7 +74,7 @@ struct FeedbackView: View {
             FeedbackViewEntry(
                 title: "Slack Workspace",
                 subtitle: "If you prefer real-time conversation, AppTelemetry also has a Slack, come in and let's talk",
-                link: "https://apptelemetry.io/pages/slack.html",
+                link: "https://telemetrydeck.com/pages/slack.html",
                 systemImage: "quote.bubble"
             )
         }

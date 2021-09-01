@@ -52,7 +52,7 @@ struct Telemetry_ViewerApp: App {
 
             CommandGroup(replacing: CommandGroupPlacement.help) {
                 Button("Online Docs for Telemetry") {
-                    NSWorkspace.shared.open(URL(string: "https://apptelemetry.io/pages/docs.html")!)
+                    NSWorkspace.shared.open(URL(string: "https://telemetrydeck.com/pages/docs.html")!)
                 }
             }
 
