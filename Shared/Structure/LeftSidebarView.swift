@@ -100,10 +100,7 @@ struct LeftSidebarView: View {
     func section(for appID: DTOsWithIdentifiers.App.ID) -> some View {
         Section {
             if let app = appService.app(withID: appID) {
-                if let first = app.insightGroupIDs.first {
-                    NavigationLink { InsightGroupsView(selectedInsightGroupID: first, appID: app.id) } label: { Label("Insights", systemImage: "app") }
-                }
-
+                NavigationLink { InsightGroupsView(appID: app.id) } label: { Label("Insights", systemImage: "app") }
                 NavigationLink { LexiconView(appID: app.id) } label: { Label("Signal Types", systemImage: "app") }
                 NavigationLink { SignalList(appID: app.id) } label: { Label("Recent Signals", systemImage: "app") }
                 NavigationLink { AppEditor(appID: app.id, appName: app.name) } label: { Label("Edit App", systemImage: "app") }

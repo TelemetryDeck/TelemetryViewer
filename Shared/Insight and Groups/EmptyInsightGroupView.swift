@@ -8,16 +8,6 @@
 import SwiftUI
 
 struct EmptyInsightGroupView: View {
-    @EnvironmentObject var insightService: OldInsightService
-    
-    let selectedInsightGroupID: UUID
-
-    var appID: UUID
-
-    private var insightGroup: DTO.InsightGroup? {
-        return insightService.insightGroups(for: appID)?.first
-    }
-
     var body: some View {
         VStack(spacing: 20) {
             Spacer()

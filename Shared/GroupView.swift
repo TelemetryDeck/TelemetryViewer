@@ -59,7 +59,13 @@ struct GroupView: View {
     var insightsList: some View {
         Group {
             if let insightGroup = groupService.group(withID: groupID) {
-                insightsGrid(withGroup: insightGroup)
+                if !insightGroup.insightIDs.isEmpty {
+                    insightsGrid(withGroup: insightGroup)
+                } else {
+                    EmptyInsightGroupView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+
             } else {
                 loadingStateIndicator
             }
@@ -71,12 +77,12 @@ struct GroupView: View {
         let allInsights = insightGroup.insightIDs.map {
             ($0, insightService.insight(withID: $0))
         }
-        
+
         let loadedInsights = allInsights.filter { $0.1 != nil }
         let loadingInsights = allInsights.filter { $0.1 == nil }
         let expandedInsights = loadedInsights.filter { $0.1?.isExpanded == true }.sorted { $0.1?.order ?? 0 < $1.1?.order ?? 0 }
         let unexpandedInsights = loadedInsights.filter { $0.1?.isExpanded == false }.sorted { $0.1?.order ?? 0 < $1.1?.order ?? 0 }
-        
+
         return LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: spacing)], alignment: .leading, spacing: spacing) {
             ForEach(expandedInsights.map { $0.0 }, id: \.self) { insightID in
                 InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
@@ -89,7 +95,7 @@ struct GroupView: View {
                         .id(insightID)
                 }
             }
-            
+
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
                 ForEach(loadingInsights.map { $0.0 }, id: \.self) { insightID in
                     InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)

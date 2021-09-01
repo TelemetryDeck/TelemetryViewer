@@ -5,8 +5,8 @@
 //  Created by Daniel Jilg on 17.08.21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class GroupService: ObservableObject {
     private let api: APIClient
@@ -21,7 +21,7 @@ class GroupService: ObservableObject {
     init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
         self.api = api
         self.cache = cache
-        self.errorService = errors
+        errorService = errors
         
         loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
         cacheCancellable = cache.groupCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
@@ -32,7 +32,7 @@ class GroupService: ObservableObject {
         
         // after 60 seconds, clear the error, allowing another load
         switch loadingState {
-        case .error(_, let date):
+        case let .error(_, date):
             if date < Date() - 60 {
                 self.loadingState[groupID] = .idle
                 return .idle
@@ -62,12 +62,47 @@ class GroupService: ObservableObject {
             self?.performRetrieval(ofGroupWithID: groupID)
         }
     }
+    
+    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString, "insightgroups")
+
+        api.post(["title": insightGroupNamed], to: url) { (result: Result<DTO.InsightGroup, TransferError>) in
+            callback?(result)
+        }
+    }
+
+    func update(insightGroup: DTO.InsightGroup, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroup.id.uuidString)
+
+        api.patch(insightGroup, to: url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+//            self.invalidateInsightGroups(forAppID: appID) // TODO
+            callback?(result)
+        }
+    }
+
+    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString)
+
+        api.delete(url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+            // TODO:
+            callback?(result)
+        }
+    }
+
+    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroupID: UUID, for appID: UUID, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights")
+
+        api.post(requestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+            self.retrieveGroup(with: insightGroupID)
+            callback?(result)
+        }
+    }
 }
 
 private extension GroupService {
     func performRetrieval(ofGroupWithID groupID: DTOsWithIdentifiers.Group.ID) {
         switch loadingState(for: groupID) {
-        case .loading, .error(_, _):
+        case .loading, .error:
             return
         default:
             break

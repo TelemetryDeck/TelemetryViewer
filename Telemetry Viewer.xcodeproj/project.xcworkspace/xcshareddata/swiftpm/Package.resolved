@@ -5,9 +5,9 @@
         "package": "TelemetryClient",
         "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "d4e89dfd8fc7d986c0fd69989a68edc27c58b228",
-          "version": null
+          "version": "1.1.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/markiv/SwiftUI-Shimmer",
         "state": {
           "branch": null,
-          "revision": "5b2e81191e77f66e6c6ca497f11a77fe48f7f0fc",
-          "version": "1.0.0"
+          "revision": "61411771350a5a4e96666a8a202ae4b2be327a2b",
+          "version": "1.0.1"
         }
       }
     ]

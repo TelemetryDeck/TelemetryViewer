@@ -30,7 +30,7 @@ struct InsightGroupView: View {
                 ScrollView(.vertical) {
                     if let insightGroup = insightGroup {
                         if insightGroup.insights.count == 0 {
-                            EmptyInsightGroupView(selectedInsightGroupID: insightGroup.id, appID: appID)
+                            EmptyInsightGroupView()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                         } else {
                             insightsGrid(insightGroup: insightGroup)

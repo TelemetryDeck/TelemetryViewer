@@ -36,28 +36,28 @@ struct OrganizationSettingsView: View {
     #endif
 
     @State private var showingSheet = false
-    @State private var isLoadingMonthlySignalNumbers: Bool = false
-    @State private var isLoadingTotalSignalNumbers: Bool = false
     @State private var isLoadingOrganizationJoinRequests: Bool = false
     @State private var isLoadingOrganizationUsers: Bool = false
+    @State private var organizationSignalNumbers: ChartDataSet?
 
     var body: some View {
-        HStack {
+        VStack {
             List {
-                HStack {
-                    ValueUnitAndTitleView(
-                        value: Double(api.numberOfSignalsThisMonth),
-                        title: "signals this month",
-                        isLoading: isLoadingMonthlySignalNumbers,
-                        shouldFormatBigNumbers: true
-                    )
-                    Divider()
-                    ValueUnitAndTitleView(
-                        value: Double(api.totalNumberOfSignals),
-                        title: "signals total",
-                        isLoading: isLoadingTotalSignalNumbers,
-                        shouldFormatBigNumbers: true
-                    )
+                Section(header: Text("Signal Counts")) {
+                    if organizationSignalNumbers == nil {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                    }
+
+                    organizationSignalNumbers.map {
+                        BarChartView(chartDataSet: $0, isSelected: false)
+                            .padding(.top, 10)
+                            .frame(height: 160)
+                            .padding(.bottom, -20)
+                    }
                 }
 
                 Section(header: Text("Organization Users")) {
@@ -111,18 +111,30 @@ struct OrganizationSettingsView: View {
                 isLoadingOrganizationJoinRequests = false
             }
 
-            isLoadingMonthlySignalNumbers = true
-            api.getNumberOfSignalsThisMonth { _ in
-                isLoadingMonthlySignalNumbers = false
-            }
-
-            isLoadingTotalSignalNumbers = true
-            api.getTotalNumberOfSignals() { _ in
-                isLoadingTotalSignalNumbers = false
-            }
+            loadOrganizationSignalNumbers()
         }
         .sheet(isPresented: $showingSheet) {
             CreateOrganizationJoinRequestView()
+        }
+    }
+
+    func loadOrganizationSignalNumbers() {
+        let url = api.urlForPath("organization", "signalcount")
+
+        api.get(url) { (result: Result<[DTOsWithIdentifiers.InsightCalculationResultRow], TransferError>) in
+            switch result {
+            case let .success(signalCount):
+                DispatchQueue.global(qos: .default).async {
+                    let chartDataSet = ChartDataSet(data: signalCount, groupBy: .month)
+
+                    DispatchQueue.main.async {
+                        self.organizationSignalNumbers = chartDataSet
+                    }
+                }
+
+            case let .failure(error):
+                api.handleError(error)
+            }
         }
     }
 }
