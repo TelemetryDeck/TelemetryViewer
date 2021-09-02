@@ -38,19 +38,22 @@ struct GroupView: View {
                 Group {
                     if let selectedInsightID = selectedInsightID {
                         if let insight = insightService.insight(withID: selectedInsightID), let group = groupService.group(withID: groupID) {
-                            EditorView(viewModel: EditorViewModel(insight: insight, appID: group.appID, insightService: insightService, groupService: groupService, lexiconService: lexiconService))
+                            EditorView(viewModel: EditorViewModel(insight: insight, appID: group.appID, insightService: insightService, groupService: groupService, lexiconService: lexiconService), selectedInsightID: $selectedInsightID)
                         } else {
                             IconOnlyLoadingStateIndicator(loadingState: insightService.loadingState(for: selectedInsightID))
                         }
 
                     } else if let group = groupService.group(withID: groupID) {
-                        InsightGroupEditor(id: groupID, title: group.title, order: group.order ?? 0, appID: group.appID)
+                        InsightGroupEditor(groupID: groupID, appID: group.appID, title: group.title, order: group.order ?? 0)
                     } else {
                         Text("Please select a thing!")
                     }
                 }
                 .frame(maxWidth: 250, maxHeight: .infinity)
                 .transition(.move(edge: .trailing))
+                .onChange(of: groupID) { newValue in
+                    sidebarVisible = false
+                }
             }
         }
     }

@@ -13,14 +13,24 @@ struct InsightGroupEditor: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var insightService: OldInsightService
     @EnvironmentObject var groupService: GroupService
+    @EnvironmentObject var appService: AppService
+
+    let appID: UUID
+    let id: UUID
     
-    @State var id: UUID
     @State var title: String
     @State var order: Double
     
     @State private var showingAlert = false
 
-    let appID: UUID
+    
+    init(groupID: DTOsWithIdentifiers.Group.ID, appID: DTOsWithIdentifiers.App.ID, title: String, order: Double) {
+        self.id = groupID
+        self.appID = appID
+        self._title = State(initialValue: title)
+        self._order = State(initialValue: order)
+        self._showingAlert = State(initialValue: false)
+    }
 
     func save() {
         insightService.update(insightGroup: DTO.InsightGroup(id: self.id, title: self.title, order: self.order), in: appID) { _ in
@@ -30,7 +40,11 @@ struct InsightGroupEditor: View {
 
     func delete() {
         insightService.delete(insightGroupID: id, in: appID) { _ in
-            presentationMode.wrappedValue.dismiss()
+            #if os(iOS)
+                presentationMode.wrappedValue.dismiss()
+            #endif
+            
+            appService.retrieveApp(with: appID)
         }
         
     }

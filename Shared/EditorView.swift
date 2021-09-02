@@ -198,6 +198,8 @@ struct EditorView: View {
     
     @State var showingAlert: Bool = false
     
+    @Binding var selectedInsightID: UUID?
+    
     var body: some View {
         ScrollView {
             CustomSection(header: Text("Name and Group"), summary: Text(viewModel.title), footer: Text("The Title of This Insight, and in which group it is located")) {
@@ -320,6 +322,7 @@ struct EditorView: View {
                                 viewModel.insightService.delete(insightID: viewModel.id, in: viewModel.groupID, in: viewModel.appID) { _ in
                                     // TODO: Ios ONLY: self.presentation.wrappedValue.dismiss()
                                     groupService.retrieveGroup(with: viewModel.groupID)
+                                    selectedInsightID = nil
                                 }
                             },
                             secondaryButton: .cancel()

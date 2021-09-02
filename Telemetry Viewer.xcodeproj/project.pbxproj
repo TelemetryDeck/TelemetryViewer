@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B135E0C26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
+		2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
+		2B135E0E26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
+		2B135E0F26E0E7B900CC0A40 /* DruidNativeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidNativeQuery.swift */; };
+		2B135E1026E0E7B900CC0A40 /* DruidNativeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidNativeQuery.swift */; };
+		2B135E1126E0E7B900CC0A40 /* DruidNativeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidNativeQuery.swift */; };
+		2B135E1226E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */; };
+		2B135E1326E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */; };
+		2B135E1426E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */; };
 		2B19DEA026444B0C0086F70E /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
 		2B19DEA126444B0C0086F70E /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
 		2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
@@ -312,6 +321,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UUID+Empty.swift"; sourceTree = "<group>"; };
+		2B135E0A26E0E7B900CC0A40 /* DruidNativeQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DruidNativeQuery.swift; sourceTree = "<group>"; };
+		2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DruidSQLQuery.swift; sourceTree = "<group>"; };
 		2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataPoint.swift; sourceTree = "<group>"; };
 		2B19DE9326444B0C0086F70E /* ChartDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataSet.swift; sourceTree = "<group>"; };
 		2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
@@ -498,13 +510,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B135E0926E0E7B900CC0A40 /* DruidDTOs */ = {
+			isa = PBXGroup;
+			children = (
+				2B135E0A26E0E7B900CC0A40 /* DruidNativeQuery.swift */,
+				2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */,
+			);
+			path = DruidDTOs;
+			sourceTree = "<group>";
+		};
 		2B19DE9026444B0C0086F70E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B135E0926E0E7B900CC0A40 /* DruidDTOs */,
 				2B19DE9126444B0C0086F70E /* Derived Structs */,
 				2B19DE9426444B0C0086F70E /* Extensions */,
 				2B19DE9726444B0C0086F70E /* DTOs */,
 				2B19DE9F26444B0C0086F70E /* Models.swift */,
+				2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1152,11 +1175,14 @@
 				2B69B543264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				2B2C4EDF26C2DA6400A4F32B /* LineChartCanvas.swift in Sources */,
 				2B19DEB626444B2B0086F70E /* Models.swift in Sources */,
+				2B135E1126E0E7B900CC0A40 /* DruidNativeQuery.swift in Sources */,
 				2B19DEAD26444B2B0086F70E /* InsightCalculationResult.swift in Sources */,
 				2B69B53F264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
 				2BC2720A262086020045A2FE /* MockData.swift in Sources */,
+				2B135E0E26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				2B61B954264C3061003F62C4 /* SignalDTO.swift in Sources */,
 				2BC1427926656DEF009BCB3B /* APIClient.swift in Sources */,
+				2B135E1426E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */,
 				2BEDE6EF26A72879007247B0 /* ServiceDonutChartView.swift in Sources */,
 				DCB28D8A2551C3330032B9AD /* TelemetryWidget.intentdefinition in Sources */,
 				2B19DEB426444B2B0086F70E /* ChartDataPoint.swift in Sources */,
@@ -1249,7 +1275,9 @@
 				2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */,
 				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				2B1D469326CC471A008814A9 /* CacheLayer.swift in Sources */,
+				2B135E0F26E0E7B900CC0A40 /* DruidNativeQuery.swift in Sources */,
 				2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */,
+				2B135E1226E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */,
 				2B19DEA026444B0C0086F70E /* ChartDataPoint.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				2B69B541264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
@@ -1272,6 +1300,7 @@
 				2BA5D50426CD0E5B008FBF8F /* GroupView.swift in Sources */,
 				2BC2720226207D710045A2FE /* MockData.swift in Sources */,
 				2BEDE6F026A728C6007247B0 /* RawChartView.swift in Sources */,
+				2B135E0C26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				2B19DEAB26444B0C0086F70E /* Models.swift in Sources */,
 				2B3CC0D9264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
@@ -1336,6 +1365,7 @@
 				2BEDE6EE26A72879007247B0 /* ServiceDonutChartView.swift in Sources */,
 				2B19DEBE26444B2B0086F70E /* Formatter+ISO.swift in Sources */,
 				2BB4737F26950731004DA1DC /* AppAdminEntry.swift in Sources */,
+				2B135E1326E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */,
 				2BEDE6FD26A728CF007247B0 /* BarChartView.swift in Sources */,
 				DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F14253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
@@ -1401,6 +1431,7 @@
 				2B1D469426CC471A008814A9 /* CacheLayer.swift in Sources */,
 				DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				2B1D469F26CC51A8008814A9 /* GroupService.swift in Sources */,
+				2B135E1026E0E7B900CC0A40 /* DruidNativeQuery.swift in Sources */,
 				2BBFCA2A267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */,
 				2BBFCA0C267D05E40013DC74 /* CustomSection.swift in Sources */,
 				2B19DEC026444B2B0086F70E /* OrganizationDTO.swift in Sources */,
@@ -1412,6 +1443,7 @@
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				2BEDE6FB26A728CF007247B0 /* ChartBottomView.swift in Sources */,
+				2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				2B1D469926CC4C5D008814A9 /* ErrorService.swift in Sources */,
 				DCFCDCBF25DD82BF00ACC529 /* InsightEditor.swift in Sources */,
