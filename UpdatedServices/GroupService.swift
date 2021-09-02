@@ -74,8 +74,7 @@ class GroupService: ObservableObject {
     func update(insightGroup: DTO.InsightGroup, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroup.id.uuidString)
 
-        api.patch(insightGroup, to: url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
-//            self.invalidateInsightGroups(forAppID: appID) // TODO
+        api.patch(insightGroup, to: url) { (result: Result<DTO.InsightGroup, TransferError>) in
             callback?(result)
         }
     }
@@ -83,7 +82,7 @@ class GroupService: ObservableObject {
     func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString)
 
-        api.delete(url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+        api.delete(url) { (result: Result<DTO.InsightGroup, TransferError>) in
             // TODO:
             callback?(result)
         }

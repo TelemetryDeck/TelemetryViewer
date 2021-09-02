@@ -12,6 +12,7 @@ struct InsightGroupEditor: View {
     
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var insightService: OldInsightService
+    @EnvironmentObject var groupService: GroupService
     
     @State var id: UUID
     @State var title: String
@@ -22,7 +23,9 @@ struct InsightGroupEditor: View {
     let appID: UUID
 
     func save() {
-        insightService.update(insightGroup: DTO.InsightGroup(id: self.id, title: self.title, order: self.order), in: appID)
+        insightService.update(insightGroup: DTO.InsightGroup(id: self.id, title: self.title, order: self.order), in: appID) { _ in
+            groupService.retrieveGroup(with: self.id)
+        }
     }
 
     func delete() {

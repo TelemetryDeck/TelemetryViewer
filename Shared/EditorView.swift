@@ -31,10 +31,12 @@ class EditorViewModel: ObservableObject {
         }
     }
     
+    let groupService: GroupService
     let insightService: InsightService
     let lexiconService: LexiconService
     
-    init(insight: DTOsWithIdentifiers.Insight, appID: UUID, insightService: InsightService, lexiconService: LexiconService) {
+    init(insight: DTOsWithIdentifiers.Insight, appID: UUID, insightService: InsightService, groupService: GroupService, lexiconService: LexiconService) {
+        self.groupService = groupService
         self.insightService = insightService
         self.lexiconService = lexiconService
         
@@ -77,6 +79,7 @@ class EditorViewModel: ObservableObject {
     private var lastSaveCallAt = Date.distantPast
     private let waitBeforeSave: TimeInterval = 1
     private var isSettingUp = false
+    private var oldGroupID: UUID?
     
     func shouldSave() {
         guard !isSettingUp else { return }
@@ -97,6 +100,14 @@ class EditorViewModel: ObservableObject {
             in: appID,
             with: generatedInsight
         ) { _ in
+            if let oldGroupID = self.oldGroupID {
+                let newGroupID = self.groupID
+                
+                self.oldGroupID = nil
+                
+                self.groupService.retrieveGroup(with: oldGroupID)
+                self.groupService.retrieveGroup(with: newGroupID)
+            }
         }
     }
     
@@ -131,7 +142,12 @@ class EditorViewModel: ObservableObject {
     @Published var groupBy: InsightGroupByInterval { didSet { shouldSave() }}
 
     /// Which group should the insight belong to? (Only use this in update mode)
-    @Published var groupID: UUID { didSet { shouldSave() }}
+    @Published var groupID: UUID {
+        didSet {
+            oldGroupID = oldValue
+            shouldSave()
+        }
+    }
     
     var filterAutocompletionOptions: [String] {
         return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey)
@@ -175,6 +191,7 @@ extension InsightDisplayMode {
 }
 
 struct EditorView: View {
+    @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
     
     @ObservedObject var viewModel: EditorViewModel
@@ -183,7 +200,7 @@ struct EditorView: View {
     
     var body: some View {
         ScrollView {
-            CustomSection(header: Text("Name"), summary: Text(viewModel.title), footer: Text("The Title of This Insight")) {
+            CustomSection(header: Text("Name and Group"), summary: Text(viewModel.title), footer: Text("The Title of This Insight, and in which group it is located")) {
                 TextField("Title e.g. 'Daily Active Users'", text: $viewModel.title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
 
@@ -192,6 +209,17 @@ struct EditorView: View {
                     Text("Show Expanded")
                 })
                 #endif
+                
+                Picker(selection: $viewModel.groupID, label: Text("Group")) {
+                    ForEach(appService.app(withID: viewModel.appID)?.insightGroupIDs ?? [], id: \.self) { insightGroupID in
+                        TinyLoadingStateIndicator(
+                            loadingState: groupService.loadingState(for: insightGroupID),
+                            title: groupService.group(withID: insightGroupID)?.title
+                        )
+                            .tag(insightGroupID)
+                    }
+                }
+                .pickerStyle(DefaultPickerStyle())
             }
             .padding(.top)
             .padding(.horizontal)
