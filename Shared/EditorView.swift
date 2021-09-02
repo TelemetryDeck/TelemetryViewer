@@ -205,7 +205,7 @@ struct EditorView: View {
     
     var body: some View {
         ScrollView {
-            CustomSection(header: Text("Name and Group"), summary: Text(viewModel.title), footer: Text("The Title of This Insight, and in which group it is located")) {
+            CustomSection(header: Text("Name and Group"), summary: Text(viewModel.title), footer: Text("The Title of This Insight, and in which group it is located"), startCollapsed: true) {
                 TextField("Title e.g. 'Daily Active Users'", text: $viewModel.title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
 
@@ -240,7 +240,7 @@ struct EditorView: View {
             }
             .padding(.horizontal)
             
-            CustomSection(header: Text("Insight Type"), summary: Text(viewModel.insightType.stringValue), footer: Text(viewModel.insightType.explanation)) {
+            CustomSection(header: Text("Insight Type"), summary: Text(viewModel.insightType.stringValue), footer: Text(viewModel.insightType.explanation), startCollapsed: true) {
                 Picker(selection: $viewModel.insightType, label: Text("")) {
                     Text(EditorViewModel.InsightType.timeSeries.stringValue).tag(EditorViewModel.InsightType.timeSeries)
                     Text(EditorViewModel.InsightType.breakdown.stringValue).tag(EditorViewModel.InsightType.breakdown)
