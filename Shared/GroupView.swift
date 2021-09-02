@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 #if os(iOS)
 let spacing: CGFloat = 0.5
@@ -55,6 +56,9 @@ struct GroupView: View {
                     sidebarVisible = false
                 }
             }
+        }
+        .onAppear {
+            TelemetryManager.send("GroupViewAppear")
         }
     }
 

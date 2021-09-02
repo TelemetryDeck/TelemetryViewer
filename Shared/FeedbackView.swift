@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct FeedbackViewEntry: View {
     let title: String
@@ -79,6 +80,9 @@ struct FeedbackView: View {
             )
         }
         .navigationTitle("Help & Feedback")
+        .onAppear {
+            TelemetryManager.send("FeedbackViewAppear")
+        }
     }
 }
 

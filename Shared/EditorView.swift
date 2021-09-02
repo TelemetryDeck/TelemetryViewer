@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 class EditorViewModel: ObservableObject {
     enum InsightType {
@@ -109,6 +110,8 @@ class EditorViewModel: ObservableObject {
                 self.groupService.retrieveGroup(with: newGroupID)
             }
         }
+        
+        TelemetryManager.send("EditorViewSave")
     }
     
     let id: DTOsWithIdentifiers.Insight.ID
@@ -218,7 +221,7 @@ struct EditorView: View {
                             loadingState: groupService.loadingState(for: insightGroupID),
                             title: groupService.group(withID: insightGroupID)?.title
                         )
-                            .tag(insightGroupID)
+                        .tag(insightGroupID)
                     }
                 }
                 .pickerStyle(DefaultPickerStyle())
@@ -330,6 +333,9 @@ struct EditorView: View {
                     }
             }
             .padding(.horizontal)
+            .onAppear {
+                TelemetryManager.send("EditorViewAppear")
+            }
         }
     }
 }

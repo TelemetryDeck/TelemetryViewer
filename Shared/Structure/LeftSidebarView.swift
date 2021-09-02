@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-enum LeftSidebarViewSelection {
-    case gettingStarted
-    case insights
-    case lexicon
-    case signalTypes
-    case payloads
-    case recentSignals
-    case appSettings
-    case helpAndFeedback
-}
-
 struct LeftSidebarView: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
+
+    @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection? = nil
+
+    enum Selection: Codable, Hashable {
+        case getStarted
+        case feedback
+        case insights(app: UUID)
+        case signalTypes(app: UUID)
+        case recentSignals(app: UUID)
+        case editApp(app: UUID)
+    }
 
     var body: some View {
         List {
@@ -31,7 +31,9 @@ struct LeftSidebarView: View {
                 }
 
                 if organization.appIDs.isEmpty {
-                    NavigationLink(destination: AppInfoView()) {
+                    NavigationLink(tag: Selection.getStarted, selection: $sidebarSelection) {
+                        AppInfoView()
+                    } label: {
                         Label("Get Started", systemImage: "mustache.fill")
                     }
                 }
@@ -57,12 +59,11 @@ struct LeftSidebarView: View {
                     }
                 #endif
 
-                NavigationLink(
-                    destination: FeedbackView(),
-                    label: {
-                        Label("Help & Feedback", systemImage: "ladybug.fill")
-                    }
-                )
+                NavigationLink(tag: Selection.feedback, selection: $sidebarSelection) {
+                    FeedbackView()
+                } label: {
+                    Label("Help & Feedback", systemImage: "ladybug.fill")
+                }
 
                 LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
             }
@@ -85,7 +86,7 @@ struct LeftSidebarView: View {
                         switch result {
                         case .failure(let error):
                             print(error)
-                        case .success(let newApp):
+                        case .success:
                             print("done")
                         }
                     }
@@ -100,10 +101,30 @@ struct LeftSidebarView: View {
     func section(for appID: DTOsWithIdentifiers.App.ID) -> some View {
         Section {
             if let app = appService.app(withID: appID) {
-                NavigationLink { InsightGroupsView(appID: app.id) } label: { Label("Insights", systemImage: "app") }
-                NavigationLink { LexiconView(appID: app.id) } label: { Label("Signal Types", systemImage: "app") }
-                NavigationLink { SignalList(appID: app.id) } label: { Label("Recent Signals", systemImage: "app") }
-                NavigationLink { AppEditor(appID: app.id, appName: app.name) } label: { Label("Edit App", systemImage: "app") }
+                NavigationLink(tag: Selection.insights(app: app.id), selection: $sidebarSelection) {
+                    InsightGroupsView(appID: app.id)
+                } label: {
+                    Label("Insights", systemImage: "app")
+                }
+                
+                NavigationLink(tag: Selection.signalTypes(app: app.id), selection: $sidebarSelection) {
+                    LexiconView(appID: app.id)
+                } label: {
+                    Label("Signal Types", systemImage: "app")
+                }
+                
+                
+                NavigationLink(tag: Selection.recentSignals(app: app.id), selection: $sidebarSelection) {
+                    SignalList(appID: app.id)
+                } label: {
+                    Label("Recent Signals", systemImage: "app")
+                }
+                
+                NavigationLink(tag: Selection.editApp(app: app.id), selection: $sidebarSelection) {
+                    AppEditor(appID: app.id, appName: app.name)
+                } label: {
+                    Label("Edit App", systemImage: "app")
+                }
 
             } else {
                 TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Insights")
@@ -128,6 +149,17 @@ struct OldLeftSidebarView: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var appService: OldAppService
     @State var selection: LeftSidebarViewSelection? = .insights
+
+    enum LeftSidebarViewSelection {
+        case gettingStarted
+        case insights
+        case lexicon
+        case signalTypes
+        case payloads
+        case recentSignals
+        case appSettings
+        case helpAndFeedback
+    }
 
     #if os(macOS)
         @EnvironmentObject var updateService: UpateService

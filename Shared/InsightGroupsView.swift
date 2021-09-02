@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService
@@ -33,6 +34,7 @@ struct InsightGroupsView: View {
         }
         .onAppear {
             selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
+            TelemetryManager.send("InsightGroupsAppear")
         }
         .onReceive(appService.objectWillChange) { _ in
             if selectedInsightGroupID == nil {
@@ -46,7 +48,7 @@ struct InsightGroupsView: View {
                 groupSelector
                 
                 Button(action: {
-                    groupService.create(insightGroupNamed: "New Group", for: appID) { result in
+                    groupService.create(insightGroupNamed: "New Group", for: appID) { _ in
                         appService.retrieveApp(with: appID)
                     }
                 }) {
@@ -155,6 +157,8 @@ struct InsightGroupsView: View {
 
     private var sidebarToggleButton: some View {
         Button {
+            TelemetryManager.send("InsightGroupsSidebarToggle")
+            
             withAnimation {
                 sidebarVisible.toggle()
             }

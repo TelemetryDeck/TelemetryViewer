@@ -16,6 +16,9 @@
 		2B135E1226E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */; };
 		2B135E1326E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */; };
 		2B135E1426E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */; };
+		2B135E1626E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
+		2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
+		2B135E1826E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
 		2B19DEA026444B0C0086F70E /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
 		2B19DEA126444B0C0086F70E /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
 		2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
@@ -324,6 +327,7 @@
 		2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UUID+Empty.swift"; sourceTree = "<group>"; };
 		2B135E0A26E0E7B900CC0A40 /* DruidNativeQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DruidNativeQuery.swift; sourceTree = "<group>"; };
 		2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DruidSQLQuery.swift; sourceTree = "<group>"; };
+		2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+RawRepresentable.swift"; sourceTree = "<group>"; };
 		2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataPoint.swift; sourceTree = "<group>"; };
 		2B19DE9326444B0C0086F70E /* ChartDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataSet.swift; sourceTree = "<group>"; };
 		2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
@@ -797,6 +801,7 @@
 				DCDC6F0B253EEB9B0012D9A7 /* Optional+Bound.swift */,
 				DCDC6F12253EECA90012D9A7 /* Numbers+Bound.swift */,
 				DCD52C492541FFE3003F12C6 /* ColSpan.swift */,
+				2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -1192,6 +1197,7 @@
 				DCD86AEE254EF0B5008F63CB /* TelemetryWidget.swift in Sources */,
 				2BEDE70726A728D0007247B0 /* ChartLegend.swift in Sources */,
 				2B1D469526CC471A008814A9 /* CacheLayer.swift in Sources */,
+				2B135E1826E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
 				2B19DEB326444B2B0086F70E /* Formatter+ISO.swift in Sources */,
 				2BEDE6F226A728C7007247B0 /* RawChartView.swift in Sources */,
 				2B61B950264C08D4003F62C4 /* SignalsService.swift in Sources */,
@@ -1314,6 +1320,7 @@
 				DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */,
 				2BBFCA19267D05E40013DC74 /* Buttonstyles.swift in Sources */,
 				DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */,
+				2B135E1626E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
 				2BBFCA2B267D05E40013DC74 /* MacNavigationView.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				2B69B53D264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
@@ -1442,6 +1449,7 @@
 				2B19DEC126444B2B0086F70E /* Models.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
+				2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
 				2BEDE6FB26A728CF007247B0 /* ChartBottomView.swift in Sources */,
 				2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,

@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct InsightGroupEditor: View {
     @Environment(\.presentationMode) var presentationMode
-    
+
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var insightService: OldInsightService
     @EnvironmentObject var groupService: GroupService
@@ -17,13 +18,12 @@ struct InsightGroupEditor: View {
 
     let appID: UUID
     let id: UUID
-    
+
     @State var title: String
     @State var order: Double
-    
+
     @State private var showingAlert = false
 
-    
     init(groupID: DTOsWithIdentifiers.Group.ID, appID: DTOsWithIdentifiers.App.ID, title: String, order: Double) {
         self.id = groupID
         self.appID = appID
@@ -33,7 +33,7 @@ struct InsightGroupEditor: View {
     }
 
     func save() {
-        insightService.update(insightGroup: DTO.InsightGroup(id: self.id, title: self.title, order: self.order), in: appID) { _ in
+        insightService.update(insightGroup: DTO.InsightGroup(id: id, title: title, order: order), in: appID) { _ in
             groupService.retrieveGroup(with: self.id)
         }
     }
@@ -43,16 +43,15 @@ struct InsightGroupEditor: View {
             #if os(iOS)
                 presentationMode.wrappedValue.dismiss()
             #endif
-            
+
             appService.retrieveApp(with: appID)
         }
-        
     }
 
     var body: some View {
         let form = Form {
             CustomSection(header: Text("Insight Group Title"), summary: EmptyView(), footer: EmptyView()) {
-                TextField("", text: $title, onEditingChanged: { isEditing in if !isEditing { save() } }, onCommit: { })
+                TextField("", text: $title, onEditingChanged: { isEditing in if !isEditing { save() } }, onCommit: {})
             }
 
             CustomSection(header: Text("Ordering"), summary: Text(String(format: "%.0f", order)), footer: Text("Insights are ordered by this number, ascending"), startCollapsed: true) {
@@ -65,6 +64,9 @@ struct InsightGroupEditor: View {
                     .buttonStyle(SmallSecondaryButtonStyle())
                     .accentColor(.red)
             }
+        }
+        .onAppear {
+            TelemetryManager.send("InsightGroupEditorAppear")
         }
         .alert(isPresented: $showingAlert) {
             Alert(
@@ -108,7 +110,7 @@ struct OldInsightGroupEditorContent {
 
 struct OldInsightGroupEditor: View {
     @Environment(\.presentationMode) var presentationMode
-    
+
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var insightService: OldInsightService
     @State var editorContent: OldInsightGroupEditorContent
@@ -123,19 +125,19 @@ struct OldInsightGroupEditor: View {
 
     func save() {
         insightService.update(insightGroup: editorContent.getInsightGroupDTO(), in: appID)
+        TelemetryManager.send("InsightGroupEditorSave")
     }
 
     func delete() {
         insightService.delete(insightGroupID: editorContent.id, in: appID) { _ in
             presentationMode.wrappedValue.dismiss()
         }
-        
     }
 
     var body: some View {
         let form = Form {
             CustomSection(header: Text("Insight Group Title"), summary: EmptyView(), footer: EmptyView()) {
-                TextField("", text: $editorContent.title, onEditingChanged: { isEditing in if !isEditing { save() } }, onCommit: { })
+                TextField("", text: $editorContent.title, onEditingChanged: { isEditing in if !isEditing { save() } }, onCommit: {})
             }
 
             CustomSection(header: Text("Ordering"), summary: Text(String(format: "%.0f", editorContent.order)), footer: Text("Insights are ordered by this number, ascending"), startCollapsed: true) {
