@@ -12,6 +12,7 @@ struct LeftSidebarView: View {
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
 
+    @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOsWithIdentifiers.App.ID: Bool]? = nil
     @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection? = nil
 
     enum Selection: Codable, Hashable {
@@ -43,7 +44,7 @@ struct LeftSidebarView: View {
                 Divider()
             #endif
 
-            Section(header: Text("Meta")) {
+            DisclosureGroup("Meta") {
                 #if os(iOS)
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
@@ -98,32 +99,43 @@ struct LeftSidebarView: View {
         }
     }
 
+    private func binding(for key: DTOsWithIdentifiers.App.ID) -> Binding<Bool> {
+        return .init(
+            get: { self.expandedSections?[key] ?? false },
+            set: {
+                if self.expandedSections == nil {
+                    self.expandedSections = [:]
+                }
+                self.expandedSections?[key] = $0
+            }
+        )
+    }
+
     func section(for appID: DTOsWithIdentifiers.App.ID) -> some View {
-        Section {
+        DisclosureGroup(isExpanded: self.binding(for: appID)) {
             if let app = appService.app(withID: appID) {
                 NavigationLink(tag: Selection.insights(app: app.id), selection: $sidebarSelection) {
                     InsightGroupsView(appID: app.id)
                 } label: {
-                    Label("Insights", systemImage: "app")
+                    Label("Insights", systemImage: "chart.bar.xaxis")
                 }
-                
+
                 NavigationLink(tag: Selection.signalTypes(app: app.id), selection: $sidebarSelection) {
                     LexiconView(appID: app.id)
                 } label: {
-                    Label("Signal Types", systemImage: "app")
+                    Label("Signal Types", systemImage: "book")
                 }
-                
-                
+
                 NavigationLink(tag: Selection.recentSignals(app: app.id), selection: $sidebarSelection) {
                     SignalList(appID: app.id)
                 } label: {
-                    Label("Recent Signals", systemImage: "app")
+                    Label("Recent Signals", systemImage: "list.triangle")
                 }
-                
+
                 NavigationLink(tag: Selection.editApp(app: app.id), selection: $sidebarSelection) {
                     AppEditor(appID: app.id, appName: app.name)
                 } label: {
-                    Label("Edit App", systemImage: "app")
+                    Label("Edit App", systemImage: "square.and.pencil")
                 }
 
             } else {
@@ -132,213 +144,9 @@ struct LeftSidebarView: View {
                 TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Recent Signals")
                 TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Edit App")
             }
-        } header: {
-            TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name)
+        } label: {
+            LabelLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name, systemImage: "app")
         }
-    }
-
-    #if os(macOS)
-        private func toggleSidebar() {
-            NSApp.keyWindow?.firstResponder?
-                .tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-        }
-    #endif
-}
-
-struct OldLeftSidebarView: View {
-    @EnvironmentObject var api: APIClient
-    @EnvironmentObject var appService: OldAppService
-    @State var selection: LeftSidebarViewSelection? = .insights
-
-    enum LeftSidebarViewSelection {
-        case gettingStarted
-        case insights
-        case lexicon
-        case signalTypes
-        case payloads
-        case recentSignals
-        case appSettings
-        case helpAndFeedback
-    }
-
-    #if os(macOS)
-        @EnvironmentObject var updateService: UpateService
-    #endif
-
-    var body: some View {
-        List {
-            if appService.getTelemetryApps().isEmpty {
-                Text("Hint: Click the + Button")
-                    .font(.footnote)
-
-                NavigationLink(destination: AppInfoView()) {
-                    Label("Get Started", systemImage: "mustache.fill")
-                }
-            }
-
-            if let app = appService.getSelectedApp() {
-                Picker(selection: $appService.selectedAppID, label: EmptyView()) {
-                    ForEach(appService.getTelemetryApps()) { app in
-                        Text(app.name)
-                            .foregroundColor(.customTextColor)
-                            .tag(app.id as UUID?)
-                    }
-                }
-                .onChange(of: appService.selectedAppID) { _ in selection = .insights }
-
-                Section(header: Text(app.name)) {
-                    NavigationLink(
-                        destination: AppRootView(appID: app.id),
-                        tag: LeftSidebarViewSelection.insights,
-                        selection: $selection,
-                        label: {
-                            Label("Insights", systemImage: "app")
-                        }
-                    )
-
-                    #if os(macOS)
-                        if #available(macOS 12, *) {
-                            NavigationLink(
-                                destination: MacOs12SignalTypesView(appID: app.id),
-                                tag: LeftSidebarViewSelection.signalTypes,
-                                selection: $selection,
-                                label: {
-                                    Label("Signal Types", systemImage: "book")
-                                }
-                            )
-                            NavigationLink(
-                                destination: MacOs12PayloadKeysView(appID: app.id),
-                                tag: LeftSidebarViewSelection.payloads,
-                                selection: $selection,
-                                label: {
-                                    Label("Payloads", systemImage: "book")
-                                }
-                            )
-                        } else {
-                            NavigationLink(
-                                destination: LexiconView(appID: app.id),
-                                tag: LeftSidebarViewSelection.lexicon,
-                                selection: $selection,
-                                label: {
-                                    Label("Signal Types", systemImage: "book")
-                                }
-                            )
-                        }
-
-                        if #available(macOS 12, *) {
-                            NavigationLink(
-                                destination: MacOs12RecentSignalsView(appID: app.id),
-                                tag: LeftSidebarViewSelection.recentSignals,
-                                selection: $selection,
-                                label: {
-                                    Label("Recent Signals", systemImage: "waveform")
-                                }
-                            )
-                        } else {
-                            NavigationLink(
-                                destination: SignalList(appID: app.id),
-                                tag: LeftSidebarViewSelection.recentSignals,
-                                selection: $selection,
-                                label: {
-                                    Label("Recent Signals", systemImage: "waveform")
-                                }
-                            )
-                        }
-
-                    #else
-
-                        NavigationLink(
-                            destination: LexiconView(appID: app.id),
-                            tag: LeftSidebarViewSelection.lexicon,
-                            selection: $selection,
-                            label: {
-                                Label("Signal Types", systemImage: "book")
-                            }
-                        )
-
-                        NavigationLink(
-                            destination: SignalList(appID: app.id),
-                            tag: LeftSidebarViewSelection.recentSignals,
-                            selection: $selection,
-                            label: {
-                                Label("Recent Signals", systemImage: "waveform")
-                            }
-                        )
-                    #endif
-
-                    NavigationLink(
-                        destination: AppEditor(appID: app.id, appName: app.name),
-                        tag: LeftSidebarViewSelection.appSettings,
-                        selection: $selection,
-                        label: {
-                            Label("App Settings", systemImage: "gear")
-                        }
-                    )
-                }
-            }
-
-            Section(header: Text("Meta")) {
-                #if os(iOS)
-                    NavigationLink(destination: OrganizationSettingsView(), label: {
-                        Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
-                    })
-
-                    if let user = api.user {
-                        NavigationLink(
-                            destination: UserSettingsView(userDTO: user),
-                            label: {
-                                Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
-                            }
-                        )
-                    }
-                #endif
-
-                NavigationLink(
-                    destination: FeedbackView(),
-                    label: {
-                        Label("Help & Feedback", systemImage: "ladybug.fill")
-                    }
-                )
-            }
-        }
-        .sheet(isPresented: $api.needsDecisionForMarketingEmails, content: {
-            AskForMarketingEmailsView()
-        })
-        .listStyle(SidebarListStyle())
-        #if os(macOS)
-            .sheet(isPresented: $updateService.shouldShowUpdateNowScreen) {
-                AppUpdateView()
-            }
-        #endif
-        .navigationTitle("AppTelemetry")
-            .toolbar {
-                ToolbarItemGroup {
-                    #if os(macOS)
-                        Button(action: toggleSidebar) {
-                            Image(systemName: "sidebar.left")
-                                .help("Toggle Sidebar")
-                        }
-                        .help("Toggle the left sidebar")
-
-                        Spacer()
-                    #endif
-
-                    Button(action: {
-                        appService.create(appNamed: "New App") { result in
-                            switch result {
-                            case .failure(let error):
-                                print(error)
-                            case .success(let newApp):
-                                appService.selectedAppID = newApp.id
-                                selection = .appSettings
-                            }
-                        }
-                    }) {
-                        Label("New App", systemImage: "plus.app.fill")
-                    }
-                    .help("Create a New App")
-                }
-            }
     }
 
     #if os(macOS)
