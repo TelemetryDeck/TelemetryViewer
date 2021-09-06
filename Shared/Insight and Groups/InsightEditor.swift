@@ -318,8 +318,8 @@ struct InsightEditor: View {
                 }
             #else
                 VStack {
-                    InsightView(topSelectedInsightID: .constant(nil), appID: appID, groupID: groupID, insightID: editorContent.id)
-                        .frame(maxHeight: 200)
+//                    InsightView(topSelectedInsightID: .constant(nil), appID: appID, groupID: groupID, insightID: editorContent.id)
+//                        .frame(maxHeight: 200)
 
                     form
                 }

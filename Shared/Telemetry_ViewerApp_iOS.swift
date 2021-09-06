@@ -11,22 +11,38 @@ import TelemetryClient
 @main
 struct Telemetry_ViewerApp: App {
     @Environment(\.scenePhase) var scenePhase
+    
     let api: APIClient
+    let cacheLayer: CacheLayer
+    let errors: ErrorService
+    let orgService: OrgService
+    let appService: AppService
+    let groupService: GroupService
+    let insightService: InsightService
+    let insightResultService: InsightResultService
+        
     let signalsService: SignalsService
     let lexiconService: LexiconService
-    let appService: OldAppService
-    let insightService: OldInsightService
+    let oldappService: OldAppService
+    let oldinsightService: OldInsightService
     let insightCalculationService: InsightCalculationService
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environmentObject(api)
+                .environmentObject(errors)
+                .environmentObject(orgService)
+                .environmentObject(appService)
+                .environmentObject(groupService)
+                .environmentObject(insightService)
+                .environmentObject(insightResultService)
                 .environmentObject(signalsService)
                 .environmentObject(lexiconService)
-                .environmentObject(appService)
-                .environmentObject(insightService)
+                .environmentObject(oldappService)
+                .environmentObject(oldinsightService)
                 .environmentObject(insightCalculationService)
+                .environmentObject(orgService)
         }
         .onChange(of: scenePhase) { newScenePhase in
             if newScenePhase == .active {
@@ -37,11 +53,21 @@ struct Telemetry_ViewerApp: App {
 
     init() {
         self.api = APIClient()
+        self.cacheLayer = CacheLayer()
+        self.errors = ErrorService()
+        
+        self.orgService = OrgService(api: api, cache: cacheLayer, errors: errors)
+        self.appService = AppService(api: api, cache: cacheLayer, errors: errors)
+        self.groupService = GroupService(api: api, cache: cacheLayer, errors: errors)
+        self.insightService = InsightService(api: api, cache: cacheLayer, errors: errors)
+        self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
+        
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
-        self.appService = OldAppService(api: api)
-        self.insightService = OldInsightService(api: api)
+        self.oldappService = OldAppService(api: api)
+        self.oldinsightService = OldInsightService(api: api)
         self.insightCalculationService = InsightCalculationService(api: api)
+        
         
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)

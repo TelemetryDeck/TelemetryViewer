@@ -26,25 +26,27 @@ struct LeftSidebarView: View {
 
     var body: some View {
         List {
-            if let organization = orgService.organization {
-                ForEach(organization.appIDs, id: \.self) { appID in
-                    section(for: appID)
-                }
+            Section {
+                if let organization = orgService.organization {
+                    ForEach(organization.appIDs, id: \.self) { appID in
+                        section(for: appID)
+                    }
 
-                if organization.appIDs.isEmpty {
-                    NavigationLink(tag: Selection.getStarted, selection: $sidebarSelection) {
-                        AppInfoView()
-                    } label: {
-                        Label("Get Started", systemImage: "mustache.fill")
+                    if organization.appIDs.isEmpty {
+                        NavigationLink(tag: Selection.getStarted, selection: $sidebarSelection) {
+                            AppInfoView()
+                        } label: {
+                            Label("Get Started", systemImage: "mustache.fill")
+                        }
                     }
                 }
+            } header: {
+                Text("Apps")
             }
+            
+            Section {
 
-            #if os(macOS)
-                Divider()
-            #endif
-
-            DisclosureGroup("Meta") {
+//            DisclosureGroup("Meta") {
                 #if os(iOS)
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
@@ -67,8 +69,12 @@ struct LeftSidebarView: View {
                 }
 
                 LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
+//            }
+            } header: {
+                Text("Meta")
             }
         }
+        .navigationTitle("TelemetryDeck")
         .listStyle(.sidebar)
         .toolbar {
             ToolbarItemGroup {

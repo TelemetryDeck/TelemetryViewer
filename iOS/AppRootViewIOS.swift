@@ -101,9 +101,10 @@ struct AppRootView: View {
     }
 
     func editInsightGroupButton(insightGroup: DTO.InsightGroup) -> some View {
-        NavigationLink(destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup)) {
-            Label("Edit \(insightGroup.title)", systemImage: "pencil")
-        }
+//        NavigationLink(destination: InsightGroupEditor(appID: appID, insightGroup: insightGroup)) {
+//            Label("Edit \(insightGroup.title)", systemImage: "pencil")
+//        }
+        Text("omsn")
     }
 
     func newInsightButton(insightGroup: DTO.InsightGroup) -> some View {
