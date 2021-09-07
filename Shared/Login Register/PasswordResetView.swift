@@ -33,7 +33,7 @@ struct PasswordResetView: View {
                 ProgressView()
 
             case .request:
-                CustomSection(header: Text("Email Address"), summary: EmptyView(), footer: Text("Please enter the email address you used to register with AppTelemetry. You'll receive an email with a reset code.")) {
+                CustomSection(header: Text("Email Address"), summary: EmptyView(), footer: Text("Please enter the email address you used to register with TelemetryDeck. You'll receive an email with a reset code.")) {
                     #if os(macOS)
                         TextField("Email", text: $requestPasswordResetRequestBody.email)
                     #else

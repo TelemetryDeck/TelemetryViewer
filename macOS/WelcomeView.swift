@@ -63,7 +63,7 @@ struct WelcomeView: View {
                 .buttonStyle(SmallSecondaryButtonStyle())
 
                 Button("Issues on GitHub →") {
-                    NSWorkspace.shared.open(URL(string: "https://github.com/AppTelemetry/Viewer/issues")!)
+                    NSWorkspace.shared.open(URL(string: "https://github.com/TelemetryDeck/Viewer/issues")!)
                 }
                 .buttonStyle(SmallSecondaryButtonStyle())
             }

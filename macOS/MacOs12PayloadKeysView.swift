@@ -26,7 +26,7 @@ struct MacOs12PayloadKeysView: View {
 
     var explanationView: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("This list contains all available payload keys known to AppTelemetry.")
+            Text("This list contains all available payload keys known to TelemetryDeck.")
         }
         .padding()
         .font(.footnote)

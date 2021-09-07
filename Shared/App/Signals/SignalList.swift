@@ -85,8 +85,8 @@ struct SignalListCell: View {
 struct SignalListExplanationView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("These are the latest signals AppTelemetry has received from your app.")
-            Text("Timestamps have a granularity of one hour, and mulitple identical signals might get grouped into one entry using the 'count' property.")
+            Text("These are the latest signals TelemetryDeck has received from your app.")
+            Text("Timestamps have a granularity of one hour, and multiple identical signals might get grouped into one entry using the 'count' property.")
         }
         .font(.footnote)
         .foregroundColor(.grayColor)

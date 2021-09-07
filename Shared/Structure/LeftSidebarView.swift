@@ -43,10 +43,8 @@ struct LeftSidebarView: View {
             } header: {
                 Text("Apps")
             }
-            
-            Section {
 
-//            DisclosureGroup("Meta") {
+            Section {
                 #if os(iOS)
                     NavigationLink(destination: OrganizationSettingsView(), label: {
                         Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
@@ -69,7 +67,7 @@ struct LeftSidebarView: View {
                 }
 
                 LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
-//            }
+
             } header: {
                 Text("Meta")
             }

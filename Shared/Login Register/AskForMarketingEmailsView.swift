@@ -16,11 +16,11 @@ struct AskForMarketingEmailsView: View {
                 Text("Hi, quick question!")
                     .font(.title)
                 
-                Text("There will be a free ") + Text("AppTelemetry newsletter").bold() + Text(" soon with contents like:")
+                Text("There will be a free ") + Text("TelemetryDeck newsletter").bold() + Text(" soon with contents like:")
                 
                 Label("Tips on how to generate good data with signals", systemImage: "wand.and.stars")
-                Label("News, new features and best practices regarding AppTelemetry", systemImage: "flowchart")
-                Label("Articles about AppTelemetry's features and how to get the most out of them", systemImage: "chart.pie.fill")
+                Label("News, new features and best practices regarding TelemetryDeck", systemImage: "flowchart")
+                Label("Articles about TelemetryDeck's features and how to get the most out of them", systemImage: "chart.pie.fill")
                 Label("Tutorials on how to improve your revenue and engagement without resorting to dark patterns", systemImage: "chart.bar.xaxis")
                 
                 Text("Do you want the newsletter? It's free, low-volume, and you can unsubscribe at any time in the app settings.")

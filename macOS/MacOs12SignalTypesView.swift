@@ -32,7 +32,7 @@ struct MacOs12SignalTypesView: View {
 
     var explanationView: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("This list contains all Signal Types seen by AppTelemetry in the last month.")
+            Text("This list contains all Signal Types seen by TelemetryDeck in the last month.")
         }
         .padding()
         .font(.footnote)

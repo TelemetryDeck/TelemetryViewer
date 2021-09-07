@@ -74,7 +74,7 @@ struct UserSettingsView: View {
                     CustomSection(
                         header: Text("Email"),
                         summary: Text(userDTO.email),
-                        footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding AppTelemetry. Can we also send you our low volume newsletter please?"),
+                        footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding TelemetryDeck. Can we also send you our low volume newsletter please?"),
                         startCollapsed: true
                     ) {
                         HStack {

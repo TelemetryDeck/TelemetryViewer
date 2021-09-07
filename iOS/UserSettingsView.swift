@@ -28,7 +28,7 @@ struct UserSettingsView: View {
                     TextField("Last Name", text: $userDTO.lastName)
                 }
                 
-                Section(header: Text("Email"), footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding AppTelemetry. Can we also send you our low volume newsletter please?")) {
+                Section(header: Text("Email"), footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding TelemetryDeck. Can we also send you our low volume newsletter please?")) {
                     TextField("Email", text: $userDTO.email)
                     
                     OptionalToggle(description: "Receive the newsletter?", isOn: $userDTO.receiveMarketingEmails)

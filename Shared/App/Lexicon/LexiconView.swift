@@ -82,7 +82,7 @@ struct LexiconView: View {
                         }
                     }
                 }, footer:
-                Text("This list contains all Signal Types seen by to AppTelemetry in the last month.")
+                Text("This list contains all Signal Types seen by to TelemetryDeck in the last month.")
                     .font(.footnote)
                     .foregroundColor(.grayColor)
                     .multilineTextAlignment(.center)) {
@@ -92,7 +92,7 @@ struct LexiconView: View {
                 }
 
                 Section(header: Text("Payload Keys"), footer:
-                    Text("This list contains all available payload keys known to AppTelemetry.")
+                    Text("This list contains all available payload keys known to TelemetryDeck.")
                         .font(.footnote)
                         .foregroundColor(.grayColor)
                         .multilineTextAlignment(.center)) {

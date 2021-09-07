@@ -21,7 +21,7 @@ struct RootView: View {
         .alert(isPresented: $api.userLoginFailed, content: {
             Alert(
                 title: Text("Login Failed"),
-                message: Text("AppTelemetry could not connect to the server. Please check your internet connection."),
+                message: Text("TelemetryDeck could not connect to the server. Please check your internet connection."),
                 primaryButton: .default(Text("Reload")) {
                     api.getUserInformation()
                 },

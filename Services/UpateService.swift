@@ -52,7 +52,7 @@ class UpateService: ObservableObject {
     }
 
     func checkForUpdate() {
-        let url = URL(string: "https://api.github.com/repos/AppTelemetry/Viewer/releases")!
+        let url = URL(string: "https://api.github.com/repos/TelemetryDeck/Viewer/releases")!
 
         var request = URLRequest(url: url)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
