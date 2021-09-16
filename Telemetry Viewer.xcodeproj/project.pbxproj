@@ -95,6 +95,8 @@
 		2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
 		2B69B543264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
 		2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43D26512414003D3965 /* UpdateSettingsView.swift */; };
+		2B781B7C26F28C320062DBDC /* PricingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */; };
+		2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */; };
 		2B7E2BA526AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E2BA426AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift */; };
 		2B85640626E6699D00AC99B0 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 2B85640526E6699D00AC99B0 /* BottomSheet */; };
 		2BA0397E26AAE19B004A9E48 /* MacOs12SignalTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */; };
@@ -367,6 +369,7 @@
 		2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequestBody.swift; sourceTree = "<group>"; };
 		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
 		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
+		2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingSettingsView.swift; sourceTree = "<group>"; };
 		2B7E2BA226AF19560059CE34 /* Telemetry Viewer Mac UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Telemetry Viewer Mac UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7E2BA426AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_Viewer_Mac_UITests.swift; sourceTree = "<group>"; };
 		2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12SignalTypesView.swift; sourceTree = "<group>"; };
@@ -728,6 +731,7 @@
 			children = (
 				DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */,
 				DC9A92C0255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift */,
+				2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1333,6 +1337,7 @@
 				2B19DEA926444B0C0086F70E /* InsightCalculationResult.swift in Sources */,
 				2B19DEA326444B0C0086F70E /* String+CamelCase.swift in Sources */,
 				2BA5D50126CD05CC008FBF8F /* InsightGroupsView.swift in Sources */,
+				2B781B7C26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1384,6 +1389,7 @@
 				2BBFCA02267D05E40013DC74 /* DashedCardView.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
 				2BEDE6E626A7282B007247B0 /* ServiceRawChartView.swift in Sources */,
+				2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
 				2BC2720326207D710045A2FE /* MockData.swift in Sources */,
 				DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */,
 				2BDD8E792655049700C6E51D /* OldInsightService.swift in Sources */,
@@ -1879,8 +1885,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.1;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

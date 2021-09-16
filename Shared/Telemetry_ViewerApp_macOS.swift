@@ -67,6 +67,7 @@ struct Telemetry_ViewerApp: App {
             MacSettingsView()
                 .environmentObject(api)
                 .environmentObject(updateService)
+                .environmentObject(orgService)
         }
     }
 

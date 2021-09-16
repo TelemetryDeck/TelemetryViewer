@@ -8,7 +8,7 @@
 import Foundation
 
 struct MockData {
-    static let exampleOrganization: DTO.Organization = .init(id: UUID(), name: "breakthesystem", isSuperOrg: true)
+    static let exampleOrganization: DTO.Organization = .init(id: UUID(), name: "breakthesystem", isSuperOrg: true, createdAt: Date(), updatedAt: Date())
 
     static let app1: TelemetryApp = .init(id: UUID(), name: "Test App", organization: ["id": "123"])
     static let app2: TelemetryApp = .init(id: UUID(), name: "Other Test App", organization: ["id": "123"])
