@@ -115,9 +115,6 @@ struct PriceButton: View {
                         VStack {
                             Text(priceStructure.price)
                                 .valueStyle()
-                            Text("Order with Stripe")
-                                .font(.footnote)
-                                .opacity(0.5)
                         }
                     }
                 }
@@ -151,9 +148,11 @@ struct CheckoutPricesView: View {
     @State var prices: [DTOsWithIdentifiers.PriceStructure] = []
 
     var body: some View {
-        HStack {
+        HStack(spacing: -25) {
             ForEach(prices) { priceStructure in
                 PriceButton(showCheckoutPrices: $showCheckoutPrices, priceStructure: priceStructure)
+                    .scaleEffect((priceStructure == prices.last || priceStructure == prices.first) ? 0.85 : 1.0)
+                    .zIndex((priceStructure == prices.last || priceStructure == prices.first) ? -1 : 1)
             }
         }
         .frame(minHeight: 200)
