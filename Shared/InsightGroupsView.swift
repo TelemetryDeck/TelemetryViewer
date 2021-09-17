@@ -37,15 +37,19 @@ struct InsightGroupsView: View {
     let appID: DTOsWithIdentifiers.App.ID
     
     var body: some View {
-        Group {
-            if selectedInsightGroupID == nil {
-                EmptyAppView(appID: appID)
-                    .frame(maxWidth: 400)
-                    .padding()
-            }
+        VStack(alignment: .leading, spacing: 0) {
+            StatusMessageDisplay()
             
-            selectedInsightGroupID.map {
-                GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
+            Group {
+                if selectedInsightGroupID == nil {
+                    EmptyAppView(appID: appID)
+                        .frame(maxWidth: 400)
+                        .padding()
+                }
+            
+                selectedInsightGroupID.map {
+                    GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
+                }
             }
         }
         .onAppear {
@@ -70,9 +74,9 @@ struct InsightGroupsView: View {
                         }
                         
                         if sizeClass == .compact {
-                        Spacer()
+                            Spacer()
                         
-                        sidebarToggleButton
+                            sidebarToggleButton
                         }
                     }
                     
