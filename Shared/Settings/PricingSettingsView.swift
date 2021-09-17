@@ -24,10 +24,10 @@ struct OrganizationSignalNumbersView: View {
             organizationSignalNumbers.map {
                 BarChartView(chartDataSet: $0, isSelected: false)
                     .padding(.top, 10)
-                    .frame(height: 160)
                     .padding(.bottom, -20)
             }
         }
+        .frame(height: 140)
         .onAppear(perform: loadOrganizationSignalNumbers)
     }
 
