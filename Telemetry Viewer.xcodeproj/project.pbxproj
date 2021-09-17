@@ -97,6 +97,10 @@
 		2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43D26512414003D3965 /* UpdateSettingsView.swift */; };
 		2B781B7C26F28C320062DBDC /* PricingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */; };
 		2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */; };
+		2B781B8326F4A5E30062DBDC /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8226F4A5E30062DBDC /* StatusMessage.swift */; };
+		2B781B8426F4A5E30062DBDC /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8226F4A5E30062DBDC /* StatusMessage.swift */; };
+		2B781B8626F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */; };
+		2B781B8726F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */; };
 		2B7E2BA526AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E2BA426AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift */; };
 		2B85640626E6699D00AC99B0 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 2B85640526E6699D00AC99B0 /* BottomSheet */; };
 		2BA0397E26AAE19B004A9E48 /* MacOs12SignalTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */; };
@@ -370,6 +374,8 @@
 		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
 		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingSettingsView.swift; sourceTree = "<group>"; };
+		2B781B8226F4A5E30062DBDC /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
+		2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageDisplay.swift; sourceTree = "<group>"; };
 		2B7E2BA226AF19560059CE34 /* Telemetry Viewer Mac UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Telemetry Viewer Mac UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7E2BA426AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_Viewer_Mac_UITests.swift; sourceTree = "<group>"; };
 		2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12SignalTypesView.swift; sourceTree = "<group>"; };
@@ -615,6 +621,15 @@
 			path = "Donut Chart";
 			sourceTree = "<group>";
 		};
+		2B781B8126F4A5D60062DBDC /* Status Messages */ = {
+			isa = PBXGroup;
+			children = (
+				2B781B8226F4A5E30062DBDC /* StatusMessage.swift */,
+				2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */,
+			);
+			path = "Status Messages";
+			sourceTree = "<group>";
+		};
 		2B7E2BA326AF19560059CE34 /* Telemetry Viewer Mac UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +859,7 @@
 		DCE239FB24D3687C00053370 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2B781B8126F4A5D60062DBDC /* Status Messages */,
 				2BB6BD0226DD025700208481 /* Date+StartEnd.swift */,
 				2BEDE6DF26A72731007247B0 /* LocalCharts */,
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
@@ -1256,6 +1272,7 @@
 				2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
 				2BEDE6E926A72853007247B0 /* ServiceLineChartView.swift in Sources */,
 				2BB4737E26950731004DA1DC /* AppAdminEntry.swift in Sources */,
+				2B781B8326F4A5E30062DBDC /* StatusMessage.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
@@ -1274,6 +1291,7 @@
 				DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				2BBFCA23267D05E40013DC74 /* DateExtensions.swift in Sources */,
 				DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */,
+				2B781B8626F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */,
 				2BEDE6F626A728CF007247B0 /* ChartHoverLabel.swift in Sources */,
 				2BDBB75E264551890013FC39 /* Aggregate.swift in Sources */,
 				2BEDE6ED26A72879007247B0 /* ServiceDonutChartView.swift in Sources */,
@@ -1386,6 +1404,7 @@
 				DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F14253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				2BBFCA24267D05E40013DC74 /* DateExtensions.swift in Sources */,
+				2B781B8726F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */,
 				2BBFCA02267D05E40013DC74 /* DashedCardView.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
 				2BEDE6E626A7282B007247B0 /* ServiceRawChartView.swift in Sources */,
@@ -1441,6 +1460,7 @@
 				2BBFCA1A267D05E40013DC74 /* Buttonstyles.swift in Sources */,
 				2BBFCA14267D05E40013DC74 /* ListItemView.swift in Sources */,
 				DC815F3D24E283640095A047 /* SignalList.swift in Sources */,
+				2B781B8426F4A5E30062DBDC /* StatusMessage.swift in Sources */,
 				2BA0397E26AAE19B004A9E48 /* MacOs12SignalTypesView.swift in Sources */,
 				2BF2754626AAC5C10051591C /* MacOs12PayloadKeysView.swift in Sources */,
 				2B19DEB726444B2B0086F70E /* ChartDataSet.swift in Sources */,

@@ -18,7 +18,7 @@ struct StatusMessage: View {
                 .padding(.vertical, 10)
             
             VStack(alignment: .leading) {
-                HStack {
+                HStack(spacing: 0) {
                     Text(statusMessage.validFrom, style: .date)
                 
                     statusMessage.validUntil.map {

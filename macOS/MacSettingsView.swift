@@ -35,7 +35,7 @@ struct MacSettingsView: View {
                 }
                 .tag(Tabs.updates)
         }
-        .frame(width: 375, height: 350)
+        .frame(width: 575, height: 550)
     }
 }
 

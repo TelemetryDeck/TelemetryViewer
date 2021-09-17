@@ -56,7 +56,7 @@ struct OrganizationSignalNumbersView: View {
 
 struct SignalsPerMonthDisplay: View {
     let signals: Int64
-    
+
     var body: some View {
         HStack {
             Text("\(signals)").font(.largeTitle)
@@ -65,53 +65,65 @@ struct SignalsPerMonthDisplay: View {
     }
 }
 
-struct PriceSettingsNotSubscribedView: View {
+struct PriceButton: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
+    @Binding var showCheckoutPrices: Bool
+    let priceStructure: DTOsWithIdentifiers.PriceStructure
 
-    @State var prices: [DTOsWithIdentifiers.PriceStructure] = []
+    @State var isLoading = false
 
     var body: some View {
-        VStack {
-            Text("You are on the free Plan").font(.title)
-            Text("The free plan includes 100 000 signals per month.").foregroundColor(.grayColor)
-            
-            orgService.organization?.maxSignalsMultiplier.map {
-                Text("Your are getting a multipler of ") + Text("\($0)").bold() + Text("applied to your signals.")
-            }
-            
-            SignalsPerMonthDisplay(signals: Int64(100000.0 * (orgService.organization?.maxSignalsMultiplier ?? 1.0)))
-            
-            Divider()
+        CardView {
+            VStack {
+                Text(priceStructure.title)
+                    .font(.title)
+                    .padding(.top)
 
-            ForEach(prices) { priceStructure in
-                HStack {
-                    Text(priceStructure.title).font(.title)
-                    Text(priceStructure.description).font(.footnote)
-                    Text(priceStructure.price).font(.largeTitle)
-                    Button("Get") {
-                        openCheckoutSession(priceID: priceStructure.id)
+                Text(priceStructure.description)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
+                    .foregroundColor(.grayColor)
+                    .padding(.horizontal)
+
+                Spacer()
+
+                VStack(spacing: -4) {
+                    ValueView(value: Double(priceStructure.includedSignals), shouldFormatBigNumbers: true)
+                    Text("signals per month")
+                        .smallValueStyle()
+                }
+                .foregroundColor(.grayColor)
+
+                Button {
+                    guard !isLoading else { return }
+                    isLoading = true
+                    openCheckoutSession(priceID: priceStructure.id)
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        isLoading = false
+                        showCheckoutPrices = false
+                    }
+
+                } label: {
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+                            .padding(7)
+                    } else {
+                        VStack {
+                            Text(priceStructure.price)
+                                .valueStyle()
+                            Text("Order with Stripe")
+                                .font(.footnote)
+                                .opacity(0.5)
+                        }
                     }
                 }
-                .border(.blue)
+                .buttonStyle(PrimaryButtonStyle())
             }
-        }
-        .onAppear(perform: load)
-    }
-
-    func load() {
-        let url = api.urlForPath(apiVersion: .v2, "stripe", "prices")
-
-        api.get(url, defaultValue: []) { (result: Result<[DTOsWithIdentifiers.PriceStructure], TransferError>) in
-            switch result {
-            case .failure(let error):
-                break
-//                 errorMessage = error.localizedDescription
-            case .success(let prices):
-                DispatchQueue.main.async {
-                    self.prices = prices
-                }
-            }
+            .padding(6)
         }
     }
 
@@ -133,26 +145,88 @@ struct PriceSettingsNotSubscribedView: View {
     }
 }
 
-struct PriceSettingsSubscribedView: View {
+struct CheckoutPricesView: View {
     @EnvironmentObject var api: APIClient
-    @EnvironmentObject var orgService: OrgService
+    @Binding var showCheckoutPrices: Bool
+    @State var prices: [DTOsWithIdentifiers.PriceStructure] = []
+
+    var body: some View {
+        HStack {
+            ForEach(prices) { priceStructure in
+                PriceButton(showCheckoutPrices: $showCheckoutPrices, priceStructure: priceStructure)
+            }
+        }
+        .frame(minHeight: 200)
+        .padding()
+        .onAppear(perform: load)
+    }
+
+    func load() {
+        let url = api.urlForPath(apiVersion: .v2, "stripe", "prices")
+
+        api.get(url, defaultValue: []) { (result: Result<[DTOsWithIdentifiers.PriceStructure], TransferError>) in
+            switch result {
+            case .failure:
+                break
+            case .success(let prices):
+                DispatchQueue.main.async {
+                    withAnimation {
+                        self.prices = prices
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct CheckoutPricesContainerView: View {
+    @Binding var showCheckoutPrices: Bool
+
+    var body: some View {
+        CheckoutPricesView(showCheckoutPrices: $showCheckoutPrices)
+            .transition(.slide)
+
+        VStack {
+            Text("Clicking the price buttons opens a browser window, where you can use Stripe to checkout. You can manage or cancel your subscription at any time by coming back to this screen.")
+                .font(.footnote)
+                .foregroundColor(.grayColor)
+                .padding(.horizontal)
+            Button("Cancel") {
+                withAnimation {
+                    showCheckoutPrices = false
+                }
+            }
+            .buttonStyle(.borderless)
+        }
+        .transition(.opacity)
+    }
+}
+
+struct OpenBillingPortalButton: View {
+    @EnvironmentObject var api: APIClient
+    @State var isLoading = false
 
     var body: some View {
         VStack {
-            Text("Thanks for subscribing to TelemetryDeck!").font(.title)
-            
-            orgService.organization?.maxSignalsMultiplier.map {
-                Text("You're paying for ") + Text("\(orgService.organization?.stripeMaxSignals ?? 100000)") + Text(" signals but we're applying a multiplier of ") + Text("\($0)").bold() + Text(" to your signals.")
+            if isLoading {
+                ProgressView()
+            } else {
+                Button {
+                    guard !isLoading else { return }
+
+                    isLoading = true
+                    openBillingPortal()
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        isLoading = false
+                    }
+                } label: {
+                    Text("Manage your subscriptions")
+                }
+                .buttonStyle(SmallSecondaryButtonStyle())
             }
-            
-            SignalsPerMonthDisplay(signals: Int64(Double(orgService.organization?.stripeMaxSignals ?? 100000) * (orgService.organization?.maxSignalsMultiplier ?? 1.0)))
-            
-            Button("Open Billing Portal") {
-                openBillingPortal()
-            }
-            .buttonStyle(SmallSecondaryButtonStyle())
-            .padding()
         }
+        .padding()
     }
 
     func openBillingPortal() {
@@ -177,19 +251,64 @@ struct PricingSettingsView: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
 
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+
+    @State var showCheckoutPrices = false
+
+    func multiplierDescription(multiplier: Double) -> String {
+        if let maxSignals = orgService.organization?.stripeMaxSignals {
+            return "\(maxSignals) ✕ \(String(format: "%.2f", multiplier))"
+        }
+
+        return "Included Signals ✕ \(String(format: "%.2f", multiplier))"
+    }
+
     var body: some View {
-        VStack {
-            OrganizationSignalNumbersView()
+        VStack(spacing: 16) {
+            OrganizationSignalNumbersView().padding(.top)
 
             Divider()
 
-            if orgService.organization == nil {
-                ProgressView()
-            } else if orgService.organization?.stripeMaxSignals == nil {
-                PriceSettingsNotSubscribedView()
+            if showCheckoutPrices {
+                CheckoutPricesContainerView(showCheckoutPrices: $showCheckoutPrices)
             } else {
-                PriceSettingsSubscribedView()
+                VStack(spacing: 24) {
+                    VStack {
+                        Text("Subscription Status")
+                            .font(.footnote)
+                            .foregroundColor(.grayColor)
+                        Text(orgService.organization?.stripeMaxSignals == nil ? "Free" : "Subscription Active").valueStyle()
+                    }
+
+                    VStack {
+                        ValueAndUnitView(value: Double(orgService.organization?.resolvedMaxSignals ?? 0), unit: "signals/mo", shouldFormatBigNumbers: false)
+
+                        if let multiplier = orgService.organization?.maxSignalsMultiplier {
+                            Text(multiplierDescription(multiplier: multiplier))
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
+                        }
+                    }
+
+                    if orgService.organization?.stripeMaxSignals == nil {
+                        Button("Update Subscription Status") {
+                            withAnimation {
+                                showCheckoutPrices = true
+                            }
+                        }
+                        .buttonStyle(PrimaryButtonStyle())
+                        .padding(.horizontal)
+                    } else {
+                        OpenBillingPortalButton()
+                    }
+                }
+                .transition(.slide)
             }
+
+            Spacer()
+        }
+        .onReceive(timer) { _ in
+            orgService.retrieveOrganization()
         }
     }
 }

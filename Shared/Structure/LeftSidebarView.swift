@@ -17,6 +17,7 @@ struct LeftSidebarView: View {
 
     enum Selection: Codable, Hashable {
         case getStarted
+        case plansAndPricing
         case feedback
         case insights(app: UUID)
         case signalTypes(app: UUID)
