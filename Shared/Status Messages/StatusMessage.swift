@@ -36,7 +36,7 @@ struct StatusMessage: View {
                 
                 #if os(macOS)
                 if statusMessage.id == "restricted-mode-notification" {
-                    Button("Open Organization Settings") {
+                    Button("Open Settings") {
                         NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
                     }
                 }

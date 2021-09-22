@@ -313,7 +313,7 @@ struct PricingSettingsView: View {
                     }
 
                     if orgService.organization?.stripeMaxSignals == nil {
-                        Button("Update Subscription Status") {
+                        Button("Show Plans") {
                             withAnimation {
                                 showCheckoutPrices = true
                             }

@@ -29,6 +29,7 @@ struct StatusMessageDisplay: View {
     }
 
     func loadMessages() {
+        statusMessages = []
         loadOrganizationStatusMessages()
         loadPublicStatusMessages()
     }
