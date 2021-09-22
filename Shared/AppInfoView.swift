@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct AppInfoView: View {
-    @EnvironmentObject var appService: OldAppService
+    @EnvironmentObject var orgService: OrgService
+    @EnvironmentObject var appService: AppService
 
     var body: some View {
         Group {
-            if appService.getTelemetryApps().count > 0 {
+            if (orgService.organization?.appIDs.count ?? 0) > 0 {
                 Text("Please Select an App")
                     .foregroundColor(.grayColor)
             } else {

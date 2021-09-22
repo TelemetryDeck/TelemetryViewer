@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct OrganizationSignalNumbersView: View {
     @EnvironmentObject var api: APIClient
@@ -100,6 +101,8 @@ struct PriceButton: View {
                     guard !isLoading else { return }
                     isLoading = true
                     openCheckoutSession(priceID: priceStructure.id)
+
+                    TelemetryManager.send("CheckoutButtonPressed")
 
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         isLoading = false
@@ -198,6 +201,9 @@ struct CheckoutPricesContainerView: View {
             .buttonStyle(.borderless)
         }
         .transition(.opacity)
+        .onAppear {
+            TelemetryManager.send("PricingSettingsShown")
+        }
     }
 }
 
@@ -212,6 +218,8 @@ struct OpenBillingPortalButton: View {
             isLoading = true
             openBillingPortal()
 
+            TelemetryManager.send("OpenBillingPortalButtonPressed")
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 isLoading = false
             }
@@ -221,7 +229,7 @@ struct OpenBillingPortalButton: View {
             } else {
                 VStack {
                     Text("Manage your subscription").font(.headline)
-                    Text("Upgrade Plans, Change payment method, Cancel, etc")
+                    Text("Upgrade Plans, Change payment method, Cancel, etc").foregroundColor(.grayColor)
                 }
             }
         }
@@ -297,7 +305,7 @@ struct PricingSettingsView: View {
                             }
                         }
                     }
-                    
+
                     if orgService.organization?.isInRestrictedMode == true {
                         VStack(spacing: 10) {
                             Text("Restricted Mode").font(.title)
@@ -328,6 +336,9 @@ struct PricingSettingsView: View {
             }
 
             Spacer()
+        }
+        .onAppear {
+            TelemetryManager.send("PricingSettingsShown")
         }
         .onReceive(timer) { _ in
             orgService.retrieveOrganization()
