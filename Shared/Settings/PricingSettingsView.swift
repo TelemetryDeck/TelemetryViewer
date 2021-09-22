@@ -206,25 +206,27 @@ struct OpenBillingPortalButton: View {
     @State var isLoading = false
 
     var body: some View {
-        VStack {
+        Button {
+            guard !isLoading else { return }
+
+            isLoading = true
+            openBillingPortal()
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                isLoading = false
+            }
+        } label: {
             if isLoading {
                 ProgressView()
             } else {
-                Button {
-                    guard !isLoading else { return }
-
-                    isLoading = true
-                    openBillingPortal()
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        isLoading = false
-                    }
-                } label: {
-                    Text("Manage your subscriptions")
+                VStack {
+                    Text("Manage your subscription").font(.headline)
+                    Text("Upgrade Plans, Change payment method, Cancel, etc")
                 }
-                .buttonStyle(SmallSecondaryButtonStyle())
             }
         }
+        .buttonStyle(SecondaryButtonStyle())
+
         .padding()
     }
 
@@ -280,12 +282,19 @@ struct PricingSettingsView: View {
                     }
 
                     VStack {
-                        ValueAndUnitView(value: Double(orgService.organization?.resolvedMaxSignals ?? 0), unit: "signals/mo", shouldFormatBigNumbers: false)
-
-                        if let multiplier = orgService.organization?.maxSignalsMultiplier {
-                            Text(multiplierDescription(multiplier: multiplier))
-                                .font(.footnote)
-                                .foregroundColor(.grayColor)
+                        if orgService.organization?.stripeMaxSignals == -1 {
+                            HStack {
+                                Text("∞").valueStyle()
+                                Text("signals/mo").unitStyle()
+                            }
+                        } else {
+                            ValueAndUnitView(value: Double(orgService.organization?.resolvedMaxSignals ?? 0), unit: "signals/mo", shouldFormatBigNumbers: false)
+                            
+                            if let multiplier = orgService.organization?.maxSignalsMultiplier {
+                                Text(multiplierDescription(multiplier: multiplier))
+                                    .font(.footnote)
+                                    .foregroundColor(.grayColor)
+                            }
                         }
                     }
 
