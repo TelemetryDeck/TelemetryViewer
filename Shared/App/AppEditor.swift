@@ -10,14 +10,21 @@ import TelemetryClient
 
 struct AppEditor: View {
     @EnvironmentObject var appService: AppService
+    @EnvironmentObject var iconFinderService: IconFinderService
     
     let appID: UUID
     
     @State var appName: String
     @State private var showingAlert = false
     
+    @State var appIconURL: URL?
+    
     func saveToAPI() {
         appService.update(appID: appID, newName: appName)
+    }
+    
+    func getIconURL() {
+        iconFinderService.findIcon(forAppName: appName) { appIconURL = $0 }
     }
     
     var padding: CGFloat? {
@@ -31,6 +38,22 @@ struct AppEditor: View {
     var body: some View {
         if let app = appService.app(withID: appID) {
             Form {
+                if #available(iOS 15, macOS 12, *) {
+                    appIconURL.map {
+                        AsyncImage(url: $0) { image in
+                            image.resizable()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 50, height: 50)
+                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    }
+                }
+                
+                Button("Get Icon") {
+                    getIconURL()
+                }
+                
                 CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("App Name", text: $appName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
                 }

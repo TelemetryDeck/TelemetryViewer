@@ -20,6 +20,7 @@ struct Telemetry_ViewerApp: App {
     let groupService: GroupService
     let insightService: InsightService
     let insightResultService: InsightResultService
+    let iconFinderService: IconFinderService
         
     let signalsService: SignalsService
     let lexiconService: LexiconService
@@ -43,6 +44,7 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(oldinsightService)
                 .environmentObject(insightCalculationService)
                 .environmentObject(orgService)
+                .environmentObject(iconFinderService)
         }
         .onChange(of: scenePhase) { newScenePhase in
             if newScenePhase == .active {
@@ -67,6 +69,8 @@ struct Telemetry_ViewerApp: App {
         self.oldappService = OldAppService(api: api)
         self.oldinsightService = OldInsightService(api: api)
         self.insightCalculationService = InsightCalculationService(api: api)
+        
+        self.iconFinderService = IconFinderService(api: api)
         
         
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")

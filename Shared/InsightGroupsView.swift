@@ -37,21 +37,46 @@ struct InsightGroupsView: View {
     let appID: DTOsWithIdentifiers.App.ID
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            StatusMessageDisplay()
+            VStack(alignment: .leading, spacing: 0) {
+                StatusMessageDisplay()
             
-            Group {
-                if selectedInsightGroupID == nil {
-                    EmptyAppView(appID: appID)
-                        .frame(maxWidth: 400)
-                        .padding()
+                Group {
+                    if selectedInsightGroupID == nil {
+                        EmptyAppView(appID: appID)
+                            .frame(maxWidth: 400)
+                            .padding()
+                    }
+            
+                    selectedInsightGroupID.map {
+                        GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
+                    }
                 }
             
-                selectedInsightGroupID.map {
-                    GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
+            
+            #if os(iOS)
+            Divider()
+            
+                VStack {
+                    HStack {
+                        newGroupButton
+                        if let selectedInsightGroupID = selectedInsightGroupID, sizeClass == .compact {
+                            newInsightMenu(selectedInsightGroupID: selectedInsightGroupID)
+                        }
+                    
+                        if sizeClass == .compact {
+                            Spacer()
+                    
+                            sidebarToggleButton
+                        }
+                    }
+                
+                    groupSelector
                 }
+                .padding()
+
+            .background(Color.cardBackground.opacity(0.9).ignoresSafeArea())
+            #endif
             }
-        }
         .onAppear {
             selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
             TelemetryManager.send("InsightGroupsAppear")
@@ -64,29 +89,12 @@ struct InsightGroupsView: View {
         
         .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
         .toolbar {
+            #if os(macOS)
             ToolbarItemGroup(placement: groupsToolbarPlacement) {
-                #if os(iOS)
-                VStack {
-                    HStack {
-                        newGroupButton
-                        if let selectedInsightGroupID = selectedInsightGroupID, sizeClass == .compact {
-                            newInsightMenu(selectedInsightGroupID: selectedInsightGroupID)
-                        }
-                        
-                        if sizeClass == .compact {
-                            Spacer()
-                        
-                            sidebarToggleButton
-                        }
-                    }
-                    
-                    groupSelector
-                }
-                #else
                 groupSelector
                 newGroupButton
-                #endif
             }
+            #endif
                 
             ToolbarItem {
                 Button(insightResultService.timeIntervalDescription) {

@@ -75,6 +75,8 @@
 		2B2C4EDE26C2DA6400A4F32B /* LineChartCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */; };
 		2B2C4EDF26C2DA6400A4F32B /* LineChartCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */; };
 		2B2C4EE026C2DA6400A4F32B /* LineChartCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */; };
+		2B379D2126FBC3A300714BE6 /* IconFinderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B379D2026FBC3A300714BE6 /* IconFinderService.swift */; };
+		2B379D2226FBCC4B00714BE6 /* IconFinderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B379D2026FBC3A300714BE6 /* IconFinderService.swift */; };
 		2B3CC0D9264D4A570038B528 /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
 		2B3CC0DA264D4A570038B528 /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
 		2B3CC0DB264D4A570038B528 /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
@@ -356,6 +358,7 @@
 		2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		2B25EAEA26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPicker.swift; sourceTree = "<group>"; };
 		2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartCanvas.swift; sourceTree = "<group>"; };
+		2B379D2026FBC3A300714BE6 /* IconFinderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconFinderService.swift; sourceTree = "<group>"; };
 		2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconService.swift; sourceTree = "<group>"; };
 		2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexiconSignalDTO.swift; sourceTree = "<group>"; };
 		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
@@ -592,6 +595,7 @@
 				2B1D469D26CC51A8008814A9 /* GroupService.swift */,
 				2B1D46A026CC52DD008814A9 /* InsightService.swift */,
 				2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */,
+				2B379D2026FBC3A300714BE6 /* IconFinderService.swift */,
 			);
 			path = UpdatedServices;
 			sourceTree = "<group>";
@@ -1249,6 +1253,7 @@
 				2BEDE6F926A728CF007247B0 /* ChartRangeView.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				2BEDE6F326A728CF007247B0 /* ChartBottomView.swift in Sources */,
+				2B379D2126FBC3A300714BE6 /* IconFinderService.swift in Sources */,
 				2BBFC9FF267D05E40013DC74 /* OrderSetter.swift in Sources */,
 				2BA5D50726CD1403008FBF8F /* InsightCard.swift in Sources */,
 				DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
@@ -1424,6 +1429,7 @@
 				2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
 				2B1D468A26CC4423008814A9 /* OrgService.swift in Sources */,
 				DC98AAB8250A671900FF26FD /* AppEditor.swift in Sources */,
+				2B379D2226FBCC4B00714BE6 /* IconFinderService.swift in Sources */,
 				2BEDE6FF26A728CF007247B0 /* ChartLegend.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				2BBFCA34267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
