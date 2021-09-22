@@ -289,13 +289,27 @@ struct PricingSettingsView: View {
                             }
                         } else {
                             ValueAndUnitView(value: Double(orgService.organization?.resolvedMaxSignals ?? 0), unit: "signals/mo", shouldFormatBigNumbers: false)
-                            
+
                             if let multiplier = orgService.organization?.maxSignalsMultiplier {
                                 Text(multiplierDescription(multiplier: multiplier))
                                     .font(.footnote)
                                     .foregroundColor(.grayColor)
                             }
                         }
+                    }
+                    
+                    if orgService.organization?.isInRestrictedMode == true {
+                        VStack(spacing: 10) {
+                            Text("Restricted Mode").font(.title)
+                            Text("Your apps have sent more signals to TelemetryDeck in the current month than are currently included in your plan. We will continue to accept all signals your applications send to us, and store them safely, but we ask you to please upgrade your plan to a higher tier.")
+                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(maxWidth: .infinity)
+                        }
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(15)
+                        .padding(.horizontal)
                     }
 
                     if orgService.organization?.stripeMaxSignals == nil {

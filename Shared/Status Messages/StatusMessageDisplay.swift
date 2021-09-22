@@ -13,6 +13,8 @@ struct StatusMessageDisplay: View {
 
     @State var statusMessages: [DTOsWithIdentifiers.StatusMessage] = []
 
+    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+
     var body: some View {
         VStack(spacing: 1) {
             ForEach(statusMessages) { message in
@@ -21,6 +23,9 @@ struct StatusMessageDisplay: View {
         }
         .background(Color.cardBackground)
         .onAppear(perform: loadMessages)
+        .onReceive(timer) { _ in
+            loadMessages()
+        }
     }
 
     func loadMessages() {

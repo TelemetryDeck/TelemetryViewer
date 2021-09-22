@@ -33,6 +33,14 @@ struct StatusMessage: View {
                 statusMessage.description.map {
                     Text($0).foregroundColor(.grayColor)
                 }
+                
+                #if os(macOS)
+                if statusMessage.id == "restricted-mode-notification" {
+                    Button("Open Organization Settings") {
+                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                    }
+                }
+                #endif
             }
             
             Spacer()
