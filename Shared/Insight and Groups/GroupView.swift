@@ -24,8 +24,24 @@ struct GroupView: View {
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var lexiconService: LexiconService
 
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var sizeClass
+    #endif
+    
+    var editorPanelEdge: Edge {
+        #if os(iOS)
+        if sizeClass == .compact {
+            return .bottom
+        } else {
+            return .trailing
+        }
+        #else
+        return .trailing
+        #endif
+    }
+
     var body: some View {
-        HStack(spacing: 0) {
+        AdaptiveStack(spacing: 0) {
             ScrollView(.vertical) {
                 insightsList
             }
@@ -51,8 +67,8 @@ struct GroupView: View {
                     }
                 }
                 .frame(maxWidth: 250, maxHeight: .infinity)
-                .transition(.move(edge: .trailing))
-                .onChange(of: groupID) { newValue in
+                .transition(.move(edge: editorPanelEdge))
+                .onChange(of: groupID) { _ in
                     sidebarVisible = false
                 }
             }
