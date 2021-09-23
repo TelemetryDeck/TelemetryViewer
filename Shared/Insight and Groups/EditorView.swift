@@ -285,7 +285,7 @@ struct EditorView: View {
             }
             .padding(.horizontal)
 
-            CustomSection(header: Text("Filters"), summary: Text("\(viewModel.filters.count) filters"), footer: EmptyView(), startCollapsed: true) {
+            CustomSection(header: Text("Filters"), summary: Text("\(viewModel.filters.count) filters"), footer: Text("Due to a server limitation, currently only one filter at a time is supported. This will change in the future."), startCollapsed: true) {
                 FilterEditView(keysAndValues: $viewModel.filters, autocompleteOptions: viewModel.filterAutocompletionOptions)
             }
             .padding(.horizontal)

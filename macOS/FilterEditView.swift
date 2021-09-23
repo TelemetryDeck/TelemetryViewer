@@ -24,31 +24,40 @@ struct FilterEditView: View {
 
         VStack {
             ForEach(theKeys, id: \.self) { key in
-                HStack {
-                    Text(key).foregroundColor(.grayColor)
-                    
-                    Text("==")
+                HStack(spacing: 2) {
+                        Text(key)
+                            .foregroundColor(.grayColor)
+                            .frame(width: 70, alignment: .trailing)
+                            
 
-                    TextField("Value", text: $keysAndValues[key].irreversiblyBound)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Text("==")
 
-                    Button(action: {
-                        keysAndValues[key] = nil
-                    }, label: {
-                        Image(systemName: "minus.circle")
-                    })
-                }
+                        TextField("Value", text: $keysAndValues[key].irreversiblyBound)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            
+
+                        Button(action: {
+                            keysAndValues[key] = nil
+                        }, label: {
+                            Image(systemName: "minus.circle")
+                        })
+                    }.frame(height: 18)
+                
+                
             }
-
+            
             HStack {
                 if let autocompleteOptions = autocompleteOptions {
-                    Picker("Key", selection: $newKeyName.bound) {
+                    Picker(selection: $newKeyName.bound) {
                         ForEach(autocompleteOptions, id: \.self) { option in
                             Text(option).tag(option)
                         }
+                    } label: {
+                        Text("Add Key")
+                            .frame(width: 85, alignment: .trailing)
                     }
                 } else {
-                    TextField("Key", text: $newKeyName.bound)
+                    TextField("Add Key", text: $newKeyName.bound)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
 
