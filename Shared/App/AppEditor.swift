@@ -38,21 +38,21 @@ struct AppEditor: View {
     var body: some View {
         if let app = appService.app(withID: appID) {
             Form {
-                if #available(iOS 15, macOS 12, *) {
-                    appIconURL.map {
-                        AsyncImage(url: $0) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .frame(width: 50, height: 50)
-                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                    }
-                }
-                
-                Button("Get Icon") {
-                    getIconURL()
-                }
+//                if #available(iOS 15, macOS 12, *) {
+//                    appIconURL.map {
+//                        AsyncImage(url: $0) { image in
+//                            image.resizable()
+//                        } placeholder: {
+//                            ProgressView()
+//                        }
+//                        .frame(width: 50, height: 50)
+//                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+//                    }
+//                }
+//
+//                Button("Get Icon") {
+//                    getIconURL()
+//                }
                 
                 CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("App Name", text: $appName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
