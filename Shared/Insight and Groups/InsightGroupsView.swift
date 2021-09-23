@@ -37,46 +37,45 @@ struct InsightGroupsView: View {
     let appID: DTOsWithIdentifiers.App.ID
     
     var body: some View {
-            VStack(alignment: .leading, spacing: 0) {
-                StatusMessageDisplay()
+        VStack(alignment: .leading, spacing: 0) {
+            StatusMessageDisplay()
             
-                Group {
-                    if selectedInsightGroupID == nil {
-                        EmptyAppView(appID: appID)
-                            .frame(maxWidth: 400)
-                            .padding()
-                    }
-            
-                    selectedInsightGroupID.map {
-                        GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
-                    }
+            Group {
+                if selectedInsightGroupID == nil {
+                    EmptyAppView(appID: appID)
+                        .frame(maxWidth: 400)
+                        .padding()
                 }
             
+                selectedInsightGroupID.map {
+                    GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
+                }
+            }
             
             #if os(iOS)
             Divider()
             
-                VStack {
-                    HStack {
-                        newGroupButton
-                        if let selectedInsightGroupID = selectedInsightGroupID, sizeClass == .compact {
-                            newInsightMenu(selectedInsightGroupID: selectedInsightGroupID)
-                        }
-                    
-                        if sizeClass == .compact {
-                            Spacer()
-                    
-                            sidebarToggleButton
-                        }
+            VStack {
+                HStack {
+                    newGroupButton
+                    if let selectedInsightGroupID = selectedInsightGroupID, sizeClass == .compact {
+                        newInsightMenu(selectedInsightGroupID: selectedInsightGroupID)
                     }
-                
-                    groupSelector
+                    
+                    if sizeClass == .compact {
+                        Spacer()
+                    
+                        sidebarToggleButton
+                    }
                 }
-                .padding()
+                
+                groupSelector
+            }
+            .padding()
 
             .background(Color.cardBackground.opacity(0.9).ignoresSafeArea())
             #endif
-            }
+        }
         .onAppear {
             selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
             TelemetryManager.send("InsightGroupsAppear")
@@ -141,9 +140,17 @@ struct InsightGroupsView: View {
     private var groupSelector: some View {
         Picker("Group", selection: $selectedInsightGroupID) {
             if let app = appService.app(withID: appID) {
-                ForEach(app.insightGroupIDs, id: \.self) { id in
-                    TinyLoadingStateIndicator(loadingState: groupService.loadingState(for: id), title: groupService.group(withID: id)?.title)
-                        .tag(id as DTOsWithIdentifiers.Group.ID?)
+                ForEach(
+                    app.insightGroupIDs
+                        .map { ($0, groupService.group(withID: $0)?.order ?? 0) }
+                        .sorted(by: { $0.1 < $1.1 }),
+                    id: \.0
+                ) { idTuple in
+                    TinyLoadingStateIndicator(
+                        loadingState: groupService.loadingState(for: idTuple.0),
+                        title: groupService.group(withID: idTuple.0)?.title
+                    )
+                    .tag(idTuple.0 as DTOsWithIdentifiers.Group.ID?)
                 }
             }
         }

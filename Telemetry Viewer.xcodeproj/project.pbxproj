@@ -193,7 +193,6 @@
 		2BDD8E782655049700C6E51D /* OldInsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E772655049700C6E51D /* OldInsightService.swift */; };
 		2BDD8E792655049700C6E51D /* OldInsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E772655049700C6E51D /* OldInsightService.swift */; };
 		2BDD8E7A2655049700C6E51D /* OldInsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E772655049700C6E51D /* OldInsightService.swift */; };
-		2BE99694267D0A5200AF89B3 /* InsightGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE99692267D0A2600AF89B3 /* InsightGroupView.swift */; };
 		2BEDE6E126A727E3007247B0 /* ServiceRawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E026A727E3007247B0 /* ServiceRawChartView.swift */; };
 		2BEDE6E326A7281E007247B0 /* ServiceBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E226A7281E007247B0 /* ServiceBarChartView.swift */; };
 		2BEDE6E426A7281E007247B0 /* ServiceBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E226A7281E007247B0 /* ServiceBarChartView.swift */; };
@@ -241,7 +240,6 @@
 		DC24DF3425DD54090003ADCB /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* AppInfoView.swift */; };
 		DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
 		DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
-		DC24DF4625DD54D90003ADCB /* AppRootViewMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF4425DD54D90003ADCB /* AppRootViewMacOS.swift */; };
 		DC24DF6625DD73990003ADCB /* AppRootViewIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF6525DD73990003ADCB /* AppRootViewIOS.swift */; };
 		DC25A57B256BBD5800EE84DA /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
 		DC25A5A7256C0B1B00EE84DA /* Numbers+Bound.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC6F12253EECA90012D9A7 /* Numbers+Bound.swift */; };
@@ -424,7 +422,6 @@
 		2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCalculationService.swift; sourceTree = "<group>"; };
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPickerForCalculationService.swift; sourceTree = "<group>"; };
 		2BDD8E772655049700C6E51D /* OldInsightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldInsightService.swift; sourceTree = "<group>"; };
-		2BE99692267D0A2600AF89B3 /* InsightGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGroupView.swift; sourceTree = "<group>"; };
 		2BEDE6E026A727E3007247B0 /* ServiceRawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRawChartView.swift; sourceTree = "<group>"; };
 		2BEDE6E226A7281E007247B0 /* ServiceBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBarChartView.swift; sourceTree = "<group>"; };
 		2BEDE6E826A72853007247B0 /* ServiceLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLineChartView.swift; sourceTree = "<group>"; };
@@ -434,7 +431,6 @@
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
-		DC24DF4425DD54D90003ADCB /* AppRootViewMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewMacOS.swift; sourceTree = "<group>"; };
 		DC24DF6525DD73990003ADCB /* AppRootViewIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewIOS.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
@@ -724,6 +720,8 @@
 		DC53393E25222C0900D9C889 /* Insight and Groups */ = {
 			isa = PBXGroup;
 			children = (
+				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
+				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
 				DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */,
 				DCFCDCBD25DD82BF00ACC529 /* InsightEditor.swift */,
@@ -881,8 +879,6 @@
 				DCB1A3C92549C936000C6575 /* Administration */,
 				DC24DF3225DD54090003ADCB /* AppInfoView.swift */,
 				2BC522E92625FCEF00E643AC /* FeedbackView.swift */,
-				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
-				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
 				2BA5D50626CD1403008FBF8F /* InsightCard.swift */,
 				2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */,
 			);
@@ -916,7 +912,6 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				DC24DF4425DD54D90003ADCB /* AppRootViewMacOS.swift */,
 				2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */,
 				2B77A43D26512414003D3965 /* UpdateSettingsView.swift */,
 				2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */,
@@ -927,7 +922,6 @@
 				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
 				DCE23A0D24D3687D00053370 /* Info.plist */,
 				DCE23A0E24D3687D00053370 /* macOS.entitlements */,
-				2BE99692267D0A2600AF89B3 /* InsightGroupView.swift */,
 				2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */,
 				2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */,
 				2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */,
@@ -1377,7 +1371,6 @@
 				2BEDE70226A728CF007247B0 /* DonutChart.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BC522EB2625FCEF00E643AC /* FeedbackView.swift in Sources */,
-				2BE99694267D0A5200AF89B3 /* InsightGroupView.swift in Sources */,
 				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				2BBFCA30267D05E40013DC74 /* ValueUnitAndTitleView.swift in Sources */,
 				DCB5F9F325F294C6004C4922 /* FavouritesView.swift in Sources */,
@@ -1480,7 +1473,6 @@
 				2B19DEC026444B2B0086F70E /* OrganizationDTO.swift in Sources */,
 				2BA5D50A26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
 				2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */,
-				DC24DF4625DD54D90003ADCB /* AppRootViewMacOS.swift in Sources */,
 				2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */,
 				2B19DEC126444B2B0086F70E /* Models.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
