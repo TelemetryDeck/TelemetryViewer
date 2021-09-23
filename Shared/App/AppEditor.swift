@@ -16,11 +16,18 @@ struct AppEditor: View {
     
     @State var appName: String
     @State private var showingAlert = false
+    @State private var needsSaving = false
     
     @State var appIconURL: URL?
     
     func saveToAPI() {
         appService.update(appID: appID, newName: appName)
+    }
+    
+    func setNeedsSaving() {
+        withAnimation {
+            needsSaving = true
+        }
     }
     
     func getIconURL() {
@@ -55,7 +62,13 @@ struct AppEditor: View {
 //                }
                 
                 CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
-                    TextField("App Name", text: $appName, onEditingChanged: { if !$0 { saveToAPI() }}) { saveToAPI() }
+                    TextField("App Name", text: $appName, onEditingChanged: { _ in setNeedsSaving() }) { setNeedsSaving() }
+                    
+                    if needsSaving {
+                        Button("Save") {
+                            saveToAPI()
+                        }
+                    }
                 }
                 
                 CustomSection(header: Text("Unique Identifier"), summary: EmptyView(), footer: EmptyView()) {
