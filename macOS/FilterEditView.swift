@@ -26,6 +26,8 @@ struct FilterEditView: View {
             ForEach(theKeys, id: \.self) { key in
                 HStack {
                     Text(key).foregroundColor(.grayColor)
+                    
+                    Text("==")
 
                     TextField("Value", text: $keysAndValues[key].irreversiblyBound)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -40,18 +42,23 @@ struct FilterEditView: View {
 
             HStack {
                 if let autocompleteOptions = autocompleteOptions {
-                    AutoCompletingTextField(title: "New Filter Name", text: $newKeyName.bound, autocompletionOptions: autocompleteOptions)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Picker("Key", selection: $newKeyName.bound) {
+                        ForEach(autocompleteOptions, id: \.self) { option in
+                            Text(option).tag(option)
+                        }
+                    }
                 } else {
-                    TextField("New Filter Name", text: $newKeyName.bound)
+                    TextField("Key", text: $newKeyName.bound)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
 
-                Button("Add") {
+                Button(action: {
                     self.keysAndValues[newKeyName.bound] = ""
                     newKeyName = nil
                     onEditingChanged?()
-                }
+                }, label: {
+                    Image(systemName: "plus.circle")
+                })
             }
         }
     }

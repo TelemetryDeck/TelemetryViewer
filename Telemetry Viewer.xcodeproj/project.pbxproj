@@ -314,8 +314,6 @@
 		DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
 		DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */; };
 		DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */; };
-		DCFCDCBE25DD82BF00ACC529 /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCDCBD25DD82BF00ACC529 /* InsightEditor.swift */; };
-		DCFCDCBF25DD82BF00ACC529 /* InsightEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFCDCBD25DD82BF00ACC529 /* InsightEditor.swift */; };
 		DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 		DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 /* End PBXBuildFile section */
@@ -482,7 +480,6 @@
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
 		DCF8977E25C833A000E0BE57 /* InsightQueryAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightQueryAdmin.swift; sourceTree = "<group>"; };
-		DCFCDCBD25DD82BF00ACC529 /* InsightEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEditor.swift; sourceTree = "<group>"; };
 		DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -724,8 +721,8 @@
 				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
 				DC23286C2522725A00DB6145 /* InsightView.swift */,
 				DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */,
-				DCFCDCBD25DD82BF00ACC529 /* InsightEditor.swift */,
 				DCB5F9F525F29BF4004C4922 /* InsightGroupEditor.swift */,
+				2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */,
 			);
 			path = "Insight and Groups";
 			sourceTree = "<group>";
@@ -880,7 +877,6 @@
 				DC24DF3225DD54090003ADCB /* AppInfoView.swift */,
 				2BC522E92625FCEF00E643AC /* FeedbackView.swift */,
 				2BA5D50626CD1403008FBF8F /* InsightCard.swift */,
-				2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1321,7 +1317,6 @@
 				2BBFCA0F267D05E40013DC74 /* TextModifiers.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				2BBFCA25267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
-				DCFCDCBE25DD82BF00ACC529 /* InsightEditor.swift in Sources */,
 				DC8FAD6C257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				2BEDE6F726A728CF007247B0 /* ChartLegend.swift in Sources */,
 				2BBFC9FD267D05E40013DC74 /* RoundedCorners.swift in Sources */,
@@ -1482,7 +1477,6 @@
 				2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				2B1D469926CC4C5D008814A9 /* ErrorService.swift in Sources */,
-				DCFCDCBF25DD82BF00ACC529 /* InsightEditor.swift in Sources */,
 				2B1D468726CC0A28008814A9 /* DTOsWithIdentifiers.swift in Sources */,
 				2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */,
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,

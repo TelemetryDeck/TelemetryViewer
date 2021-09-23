@@ -82,18 +82,6 @@ class EditorViewModel: ObservableObject {
     private var isSettingUp = false
     private var oldGroupID: UUID?
     
-    func shouldSave() {
-        guard !isSettingUp else { return }
-        
-        lastSaveCallAt = Date()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + waitBeforeSave + 0.01) {
-            if -self.lastSaveCallAt.timeIntervalSinceNow > self.waitBeforeSave {
-                self.save()
-            }
-        }
-    }
-    
     func save() {
         insightService.update(
             insightID: id,
@@ -108,47 +96,57 @@ class EditorViewModel: ObservableObject {
                 
                 self.groupService.retrieveGroup(with: oldGroupID)
                 self.groupService.retrieveGroup(with: newGroupID)
+                
+                self.needsSaving = false
             }
         }
         
         TelemetryManager.send("EditorViewSave")
     }
     
+    func setNeedsSaving(_ newValue: Bool) {
+        withAnimation {
+            needsSaving = newValue
+        }
+    }
+    
     let id: DTOsWithIdentifiers.Insight.ID
     let appID: DTOsWithIdentifiers.App.ID
     
-    @Published var order: Double { didSet { shouldSave() }}
+    @Published var needsSaving: Bool = false
     
-    @Published var title: String { didSet { shouldSave() }}
+    @Published var order: Double { didSet { save() }}
+    
+    @Published var title: String { didSet { setNeedsSaving(true) }}
     
     @Published var insightType: InsightType
     
     /// How should this insight's data be displayed?
-    @Published var displayMode: InsightDisplayMode { didSet { shouldSave() }}
+    @Published var displayMode: InsightDisplayMode { didSet { save() }}
     
     /// If true, the insight will be displayed bigger
-    @Published var isExpanded: Bool { didSet { shouldSave() }}
+    @Published var isExpanded: Bool { didSet { setNeedsSaving(true) }}
     
     /// Which signal types are we interested in? If empty, do not filter by signal type
-    @Published var signalType: String { didSet { shouldSave() }}
+    @Published var signalType: String { didSet { save() }}
 
     /// If true, only include at the newest signal from each user
-    @Published var uniqueUser: Bool { didSet { shouldSave() }}
+    @Published var uniqueUser: Bool { didSet { save() }}
 
     /// Only include signals that match all of these key-values in the payload
-    @Published var filters: [String: String] { didSet { shouldSave() }}
+    @Published var filters: [String: String] { didSet { setNeedsSaving(true) }}
 
     /// If set, break down the values in this key
-    @Published var breakdownKey: String { didSet { shouldSave() }}
+    @Published var breakdownKey: String { didSet { save() }}
 
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
-    @Published var groupBy: InsightGroupByInterval { didSet { shouldSave() }}
+    @Published var groupBy: InsightGroupByInterval { didSet { save() }}
 
     /// Which group should the insight belong to? (Only use this in update mode)
     @Published var groupID: UUID {
         didSet {
             oldGroupID = oldValue
-            shouldSave()
+            save()
         }
     }
     
@@ -264,13 +262,14 @@ struct EditorView: View {
             let signalText = viewModel.signalType.isEmpty ? "All Signals" : viewModel.signalType
             let uniqueText = viewModel.uniqueUser ? ", unique" : ""
 
-            CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text("What signal type are you interested in (e.g. appLaunchedRegularly)? Leave blank for any"), startCollapsed: true) {
-                AutoCompletingTextField(
-                    title: "All Signals",
-                    text: $viewModel.signalType,
-                    autocompletionOptions: viewModel.signalTypeAutocompletionOptions
-                )
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text("If you want, only look at a single signal type for this insight."), startCollapsed: true) {
+                Picker("Signal Type", selection: $viewModel.signalType) {
+                    Text("All Signals").tag("")
+                    
+                    ForEach(viewModel.signalTypeAutocompletionOptions, id: \.self) { option in
+                        Text(option).tag(option)
+                    }
+                }
 
                 Toggle(isOn: $viewModel.uniqueUser) {
                     HStack {
@@ -286,19 +285,21 @@ struct EditorView: View {
             }
             .padding(.horizontal)
 
-            CustomSection(header: Text("Filters"), summary: Text("\(viewModel.filters.count) filters"), footer: Text("To add a filter, type a key into the text field and tap 'Add'"), startCollapsed: true) {
+            CustomSection(header: Text("Filters"), summary: Text("\(viewModel.filters.count) filters"), footer: EmptyView(), startCollapsed: true) {
                 FilterEditView(keysAndValues: $viewModel.filters, autocompleteOptions: viewModel.filterAutocompletionOptions)
             }
             .padding(.horizontal)
             
             if viewModel.insightType == .breakdown {
-                CustomSection(header: Text("Breakdown"), summary: Text(viewModel.breakdownKey.isEmpty ? "No Breakdown" : viewModel.breakdownKey), footer: Text("If you enter a key for the metadata payload here, you'll get a breakdown of its values."), startCollapsed: true) {
-                    AutoCompletingTextField(
-                        title: "Payload Key",
-                        text: $viewModel.breakdownKey,
-                        autocompletionOptions: viewModel.filterAutocompletionOptions
-                    )
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                CustomSection(header: Text("Breakdown"), summary: Text(viewModel.breakdownKey.isEmpty ? "No Breakdown" : viewModel.breakdownKey), footer: Text("Select a metadata payload key, you'll get a breakdown of its values."), startCollapsed: true) {
+                    
+                    Picker("Key", selection: $viewModel.breakdownKey) {
+                        Text("None").tag("")
+                        
+                        ForEach(viewModel.filterAutocompletionOptions, id: \.self) { option in
+                            Text(option).tag(option)
+                        }
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -333,9 +334,24 @@ struct EditorView: View {
                     }
             }
             .padding(.horizontal)
-            .onAppear {
-                TelemetryManager.send("EditorViewAppear")
+            
+            if viewModel.needsSaving {
+                Button(action: viewModel.save) {
+                    Text("Save")
+                        .frame(maxWidth: .infinity)
+                }
+                .keyboardShortcut(.defaultAction)
+                .padding(.horizontal)
             }
+        }
+        .onAppear {
+            TelemetryManager.send("EditorViewAppear")
+            
+            viewModel.lexiconService.getPayloadKeys(for: viewModel.appID)
+            viewModel.lexiconService.getSignalTypes(for: viewModel.appID)
+        }
+        .onDisappear {
+            viewModel.save()
         }
     }
 }
