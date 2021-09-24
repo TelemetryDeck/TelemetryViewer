@@ -40,6 +40,7 @@ struct RegisterView: View {
                             CustomSection(header: Text("Registration Token"), summary: EmptyView(), footer: Text("Registration is currently only available for people with a registration token. Please enter your registration token above.")) {
                                 TextField("Registration Token", text: $registrationRequestBody.registrationToken)
                                     .disableAutocorrection(true)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
                             }
 
                             #if os(macOS)
@@ -47,32 +48,52 @@ struct RegisterView: View {
                             #endif
                         }
 
-                        CustomSection(header: Text("Your Organization"), summary: EmptyView(), footer: EmptyView()) {
-                            TextField("Organization Name", text: $registrationRequestBody.organisationName)
+                        Section {
+                            TextField("Organization", text: $registrationRequestBody.organisationName)
                                 .disableAutocorrection(true)
+                                .font(.title)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                            Text("Your Organization is what contains all your apps. Organizations can have multiple users, but you're the first and founding user of this organization.")
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
                         }
 
-                        CustomSection(header: Text("You"), summary: EmptyView(), footer: EmptyView()) {
-                            TextField("First Name (or Display Name)", text: $registrationRequestBody.userFirstName)
+                        Divider()
+
+                        Section {
+                            TextField("Your First Name", text: $registrationRequestBody.userFirstName)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
                             TextField("Last Name", text: $registrationRequestBody.userLastName)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            VStack(alignment: .leading) {
+                                Text("Only the first name field is required for this form. We will display your name like so: ")
+                                Text("Hello, \(registrationRequestBody.userFirstName) \(registrationRequestBody.userLastName)!")
+                                    .bold()
+                            }
+                            .font(.footnote)
+                            .foregroundColor(.grayColor)
 
                             #if os(macOS)
                                 TextField("Email", text: $registrationRequestBody.userEmail)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
                             #else
                                 TextField("Email", text: $registrationRequestBody.userEmail)
                                     .textContentType(.emailAddress)
                                     .autocapitalization(.none)
                                     .disableAutocorrection(true)
                             #endif
-                            
+
                             Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding TelemetryDeck. Can we also send you our low volume newsletter please?")
                                 .font(.footnote)
                                 .foregroundColor(.grayColor)
-                            
+
                             Toggle("Send me the newsletter", isOn: $registrationRequestBody.receiveMarketingEmails)
                         }
 
-                        CustomSection(header: Text("Your Password"), summary: EmptyView(), footer: EmptyView()) {
+                        Divider()
+
+                        Section {
                             SecureField("Password", text: $registrationRequestBody.userPassword)
                             SecureField("Confirm Password", text: $registrationRequestBody.userPasswordConfirm)
                         }
@@ -128,7 +149,7 @@ struct RegisterView: View {
                 api.getRegistrationStatus()
             }
             .animation(.easeInOut)
-            .frame(idealHeight: 500)
+            .frame(minWidth: 500, idealHeight: 500)
         }
     }
 
@@ -140,7 +161,7 @@ struct RegisterView: View {
             switch result {
             case .success:
                 showingSuccessAlert = true
-                
+
                 api.login(
                     loginRequestBody: LoginRequestBody(
                         userEmail: registrationRequestBody.userEmail,

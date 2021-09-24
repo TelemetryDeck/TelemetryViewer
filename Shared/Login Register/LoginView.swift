@@ -53,7 +53,7 @@ struct LoginView: View {
                         .disableAutocorrection(true)
                 #endif
 
-                SecureField("Password", text: $loginRequestBody.userPassword)
+                SecureField("Password", text: $loginRequestBody.userPassword, onCommit: login)
                     .textContentType(.password)
             }
 
@@ -61,20 +61,13 @@ struct LoginView: View {
                 if isLoading {
                     ProgressView()
                 } else {
-                    Button("Login") {
-                        isLoading = true
-                        api.login(loginRequestBody: loginRequestBody) { success in
-                            isLoading = false
-
-                            showLoginErrorMessage = !success
-                        }
-                    }
-                    .buttonStyle(PrimaryButtonStyle())
-                    .listRowInsets(EdgeInsets())
-                    .keyboardShortcut(.defaultAction)
-                    .disabled(!loginRequestBody.isValid)
-                    .saturation(loginRequestBody.isValid ? 1 : 0)
-                    .animation(.easeOut)
+                    Button("Login", action: login)
+                        .buttonStyle(PrimaryButtonStyle())
+                        .listRowInsets(EdgeInsets())
+                        .keyboardShortcut(.defaultAction)
+                        .disabled(!loginRequestBody.isValid)
+                        .saturation(loginRequestBody.isValid ? 1 : 0)
+                        .animation(.easeOut)
 
                     if !loginRequestBody.isValid {
                         Text("Waiting for you to fill out both fields")
@@ -85,6 +78,15 @@ struct LoginView: View {
             }
         }
         .navigationTitle("Login")
+    }
+
+    func login() {
+        isLoading = true
+        api.login(loginRequestBody: loginRequestBody) { success in
+            isLoading = false
+
+            showLoginErrorMessage = !success
+        }
     }
 }
 
