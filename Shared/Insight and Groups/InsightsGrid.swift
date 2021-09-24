@@ -48,7 +48,7 @@ struct InsightsGrid: View {
 
             if showBottomPooper == true {
                 BottomPooper()
-                    .padding(.vertical, 70)
+                    .padding(.vertical, 100)
             }
         }
     }

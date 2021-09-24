@@ -37,7 +37,6 @@ struct InsightGroupsView: View {
             
                 selectedInsightGroupID.map {
                     GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
-                        .background(Color.separatorColor)
                 }
             }
         }
