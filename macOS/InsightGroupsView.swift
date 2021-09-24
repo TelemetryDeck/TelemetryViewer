@@ -69,7 +69,7 @@ struct InsightGroupsView: View {
             
             ToolbarItem {
                 if let selectedInsightGroupID = selectedInsightGroupID {
-                    newInsightMenu(selectedInsightGroupID: selectedInsightGroupID)
+                    NewInsightMenu(appID: appID, selectedInsightGroupID: selectedInsightGroupID)
                 }
             }
                
