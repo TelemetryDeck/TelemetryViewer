@@ -86,6 +86,12 @@ struct InsightGroupEditor: View {
             }
         #else
             form
+                .onAppear {
+                    UITableView.appearance().backgroundColor = .clear
+                }
+                .onDisappear {
+                    UITableView.appearance().backgroundColor = .systemGroupedBackground
+                }
         #endif
     }
 }

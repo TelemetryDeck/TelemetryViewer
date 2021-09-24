@@ -201,8 +201,8 @@ struct EditorView: View {
     
     @Binding var selectedInsightID: UUID?
     
-    var body: some View {
-        ScrollView {
+    var formContent: some View {
+        Group {
             CustomSection(header: Text("Name and Group"), summary: Text(viewModel.title), footer: Text("The Title of This Insight, and in which group it is located"), startCollapsed: true) {
                 TextField("Title e.g. 'Daily Active Users'", text: $viewModel.title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -292,7 +292,6 @@ struct EditorView: View {
             
             if viewModel.insightType == .breakdown {
                 CustomSection(header: Text("Breakdown"), summary: Text(viewModel.breakdownKey.isEmpty ? "No Breakdown" : viewModel.breakdownKey), footer: Text("Select a metadata payload key, you'll get a breakdown of its values."), startCollapsed: true) {
-                    
                     Picker("Key", selection: $viewModel.breakdownKey) {
                         Text("None").tag("")
                         
@@ -353,5 +352,24 @@ struct EditorView: View {
         .onDisappear {
             viewModel.save()
         }
+    }
+    
+    var body: some View {
+        #if os(macOS)
+        ScrollView {
+            formContent
+        }
+        #else
+        Form {
+            formContent
+        }
+        .background(Color.clear)
+        .onAppear {
+            UITableView.appearance().backgroundColor = .clear
+        }
+        .onDisappear {
+            UITableView.appearance().backgroundColor = .systemGroupedBackground
+        }
+        #endif
     }
 }

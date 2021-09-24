@@ -12,7 +12,7 @@ import TelemetryClient
 let spacing: CGFloat = 0.5
 
 enum EditorBottomSheetPosition: CGFloat, CaseIterable {
-    case middle = 0.7, low = 0.3, bottom = 0.125
+    case middle = 0.9, low = 0.5, bottom = 0.17
 }
 
 struct GroupView: View {
@@ -64,11 +64,13 @@ struct GroupView: View {
                 }
             }
             .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, options: [.allowContentDrag, .swipeToDismiss], headerContent: {
-                Text(helpMessage())
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .font(.subheadline).foregroundColor(.secondary)
-                    .padding()
-
+                VStack {
+                    Text(helpMessage())
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .font(.subheadline).foregroundColor(.secondary)
+                        .padding()
+                    Divider()
+                }
             }) {
                 VStack(spacing: 0) {
                     if let selectedInsightID = selectedInsightID {
@@ -84,7 +86,7 @@ struct GroupView: View {
                         Text("Please select a thing!")
                     }
                 }
-                .padding([.horizontal, .top])
+                .padding(.top)
             }
         }
         .onAppear {
