@@ -9,6 +9,8 @@ import SwiftUI
 
 struct InsightsList: View {
     let groupID: DTOsWithIdentifiers.Group.ID
+    let isSelectable: Bool
+    
     @Binding var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
     @Binding var sidebarVisible: Bool
     @EnvironmentObject var groupService: GroupService
@@ -17,7 +19,7 @@ struct InsightsList: View {
         Group {
             if let insightGroup = groupService.group(withID: groupID) {
                 if !insightGroup.insightIDs.isEmpty {
-                    InsightsGrid(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightGroup: insightGroup)
+                    InsightsGrid(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightGroup: insightGroup, showBottomPooper: true, isSelectable: isSelectable)
                 } else {
                     EmptyInsightGroupView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

@@ -74,6 +74,8 @@
 		2B21FCDD26FDCA6A00A8A55B /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCDC26FDCA6A00A8A55B /* GroupView.swift */; };
 		2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */; };
 		2B21FCE026FDCAE200A8A55B /* InsightsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */; };
+		2B21FCE226FDD28700A8A55B /* BottomPooper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCE126FDD28700A8A55B /* BottomPooper.swift */; };
+		2B21FCE326FDD28700A8A55B /* BottomPooper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCE126FDD28700A8A55B /* BottomPooper.swift */; };
 		2B25EAE526D3EA4D00BBBB1B /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */; };
 		2B25EAE626D3EA4D00BBBB1B /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */; };
 		2B25EAE926D3EEE700BBBB1B /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 2B25EAE826D3EEE700BBBB1B /* Shimmer */; };
@@ -361,6 +363,7 @@
 		2B21FCD926FDC9F900A8A55B /* InsightsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsGrid.swift; sourceTree = "<group>"; };
 		2B21FCDC26FDCA6A00A8A55B /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
 		2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsList.swift; sourceTree = "<group>"; };
+		2B21FCE126FDD28700A8A55B /* BottomPooper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPooper.swift; sourceTree = "<group>"; };
 		2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		2B25EAEA26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPicker.swift; sourceTree = "<group>"; };
 		2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartCanvas.swift; sourceTree = "<group>"; };
@@ -733,6 +736,7 @@
 				2B21FCD626FDC38500A8A55B /* NewInsightMenu.swift */,
 				2B21FCD926FDC9F900A8A55B /* InsightsGrid.swift */,
 				2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */,
+				2B21FCE126FDD28700A8A55B /* BottomPooper.swift */,
 			);
 			path = "Insight and Groups";
 			sourceTree = "<group>";
@@ -1269,6 +1273,7 @@
 				DCB5F9F625F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
 				2B1D469826CC4C5D008814A9 /* ErrorService.swift in Sources */,
 				2B1D468626CC0A28008814A9 /* DTOsWithIdentifiers.swift in Sources */,
+				2B21FCE226FDD28700A8A55B /* BottomPooper.swift in Sources */,
 				2B19DEA426444B0C0086F70E /* InsightData.swift in Sources */,
 				2BBFCA01267D05E40013DC74 /* DashedCardView.swift in Sources */,
 				2B19DEA726444B0C0086F70E /* OrganizationDTO.swift in Sources */,
@@ -1439,6 +1444,7 @@
 				2BEDE6FF26A728CF007247B0 /* ChartLegend.swift in Sources */,
 				DC98AABD250BC30200FF26FD /* Telemetry.swift in Sources */,
 				2BBFCA34267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
+				2B21FCE326FDD28700A8A55B /* BottomPooper.swift in Sources */,
 				2B1D46A226CC52DD008814A9 /* InsightService.swift in Sources */,
 				2BDD8E752653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift in Sources */,
 				2BBFCA00267D05E40013DC74 /* OrderSetter.swift in Sources */,

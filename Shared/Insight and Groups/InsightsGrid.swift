@@ -11,8 +11,11 @@ struct InsightsGrid: View {
     @EnvironmentObject var insightService: InsightService
     @Binding var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
     @Binding var sidebarVisible: Bool
+
     let insightGroup: DTOsWithIdentifiers.Group
-    
+    let showBottomPooper: Bool?
+    let isSelectable: Bool
+
     var body: some View {
         let allInsights = insightGroup.insightIDs.map {
             ($0, insightService.insight(withID: $0))
@@ -25,22 +28,27 @@ struct InsightsGrid: View {
 
         return LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: spacing)], alignment: .leading, spacing: spacing) {
             ForEach(expandedInsights.map { $0.0 }, id: \.self) { insightID in
-                InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+                InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID, isSelectable: isSelectable)
                     .id(insightID)
             }
 
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
                 ForEach(unexpandedInsights.map { $0.0 }, id: \.self) { insightID in
-                    InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+                    InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID, isSelectable: isSelectable)
                         .id(insightID)
                 }
             }
 
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
                 ForEach(loadingInsights.map { $0.0 }, id: \.self) { insightID in
-                    InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID)
+                    InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID, isSelectable: isSelectable)
                         .id(insightID)
                 }
+            }
+
+            if showBottomPooper == true {
+                BottomPooper()
+                    .padding(.vertical, 70)
             }
         }
     }

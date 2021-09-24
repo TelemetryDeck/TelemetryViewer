@@ -19,6 +19,7 @@ struct InsightCard: View {
     }
     
     let insightID: DTOsWithIdentifiers.Insight.ID
+    let isSelectable: Bool
     
     private let refreshTimer = Timer.publish(
         every: 5, // seconds
@@ -28,49 +29,55 @@ struct InsightCard: View {
     
     var body: some View {
         Button {
-            selectedInsightID = insightID
+            if isSelectable {
+                selectedInsightID = insightID
             
-            withAnimation {
-                sidebarVisible = true
+                withAnimation {
+                    sidebarVisible = true
+                }
             }
         } label: {
-            VStack(alignment: .leading) {
-                TinyLoadingStateIndicator(loadingState: insightService.loadingState(for: insightID), title: insightService.insight(withID: insightID)?.title)
-                    .font(.footnote)
-                    .foregroundColor(isSelected ? .cardBackground : .grayColor)
-                    .padding(.leading)
-                
-                Group {
-                    if let insightWrap = insightResultService.insightCalculationResult(withID: insightID) {
-                        switch insightWrap.calculationResult.insight.displayMode {
-                        case .raw:
-                            RawChartView(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
-                        case .pieChart:
-                            DonutChartView(chartDataset: insightWrap.chartDataSet, isSelected: isSelected)
-                                .padding(.bottom)
-                                .padding(.horizontal)
-                        case .lineChart:
-                            LineChart(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
-                        case .barChart:
-                            BarChartView(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
-                        default:
-                            Text("\(insightWrap.calculationResult.insight.displayMode.rawValue.capitalized) is not supported in this version.")
-                                .font(.footnote)
-                                .foregroundColor(.grayColor)
-                                .padding(.vertical)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                        }
-                        
-                    } else {
-                        IconOnlyLoadingStateIndicator(loadingState: insightResultService.loadingState(for: insightID))
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            }
-            .padding(.top)
+            cardContent
         }
         .frame(idealHeight: 200)
         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insightID))
+    }
+    
+    var cardContent: some View {
+        VStack(alignment: .leading) {
+            TinyLoadingStateIndicator(loadingState: insightService.loadingState(for: insightID), title: insightService.insight(withID: insightID)?.title)
+                .font(.footnote)
+                .foregroundColor(isSelected ? .cardBackground : .grayColor)
+                .padding(.leading)
+            
+            Group {
+                if let insightWrap = insightResultService.insightCalculationResult(withID: insightID) {
+                    switch insightWrap.calculationResult.insight.displayMode {
+                    case .raw:
+                        RawChartView(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
+                    case .pieChart:
+                        DonutChartView(chartDataset: insightWrap.chartDataSet, isSelected: isSelected)
+                            .padding(.bottom)
+                            .padding(.horizontal)
+                    case .lineChart:
+                        LineChart(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
+                    case .barChart:
+                        BarChartView(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
+                    default:
+                        Text("\(insightWrap.calculationResult.insight.displayMode.rawValue.capitalized) is not supported in this version.")
+                            .font(.footnote)
+                            .foregroundColor(.grayColor)
+                            .padding(.vertical)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    }
+                    
+                } else {
+                    IconOnlyLoadingStateIndicator(loadingState: insightResultService.loadingState(for: insightID))
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }
+        .padding(.top)
         .onReceive(refreshTimer) { _ in
             // This check will hopefully prevent the insight loading away under the user's fingers
             if selectedInsightID == nil {

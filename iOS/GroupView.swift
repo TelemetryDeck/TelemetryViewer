@@ -12,7 +12,7 @@ import TelemetryClient
 let spacing: CGFloat = 0.5
 
 enum EditorBottomSheetPosition: CGFloat, CaseIterable {
-    case middle = 0.7, bottom = 0.125
+    case middle = 0.7, low = 0.3, bottom = 0.125
 }
 
 struct GroupView: View {
@@ -37,29 +37,38 @@ struct GroupView: View {
         }
     }
 
+    func helpMessage() -> String {
+        if bottomSheetPosition == .bottom {
+            return "Swipe up to edit Groups and Insights"
+        } else {
+            if selectedInsightID == nil {
+                return "Select an Insight to edit it instead of the group"
+            } else {
+                return "Swipe down to save"
+            }
+        }
+    }
+
     var body: some View {
         AdaptiveStack(spacing: 0) {
             ScrollView(.vertical) {
-                InsightsList(groupID: groupID, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
+                InsightsList(groupID: groupID, isSelectable: bottomSheetPosition != .bottom, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
             }
             .frame(idealWidth: 600, maxWidth: .infinity, maxHeight: .infinity)
             .onTapGesture {
                 selectedInsightID = nil
             }
-            .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, options: [.allowContentDrag, .swipeToDismiss, .tapToDissmiss], headerContent: {
-                VStack(alignment: .leading) {
-                    Group {
-                        switch bottomSheetPosition {
-                        case .middle:
-                            Text("Select an Insight to edit it")
-                        case .bottom:
-                            Text("Swipe up to edit Groups and Insights")
-                        }
-                    }
-
+            .onChange(of: bottomSheetPosition) { _ in
+                if bottomSheetPosition == .bottom {
+                    selectedInsightID = nil
+                }
+            }
+            .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, options: [.allowContentDrag, .swipeToDismiss], headerContent: {
+                Text(helpMessage())
                     .frame(maxWidth: .infinity, alignment: .center)
                     .font(.subheadline).foregroundColor(.secondary)
-                }
+                    .padding()
+
             }) {
                 VStack(spacing: 0) {
                     if let selectedInsightID = selectedInsightID {
