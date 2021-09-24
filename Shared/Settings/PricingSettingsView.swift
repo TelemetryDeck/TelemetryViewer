@@ -234,7 +234,6 @@ struct OpenBillingPortalButton: View {
             }
         }
         .buttonStyle(SecondaryButtonStyle())
-
         .padding()
     }
 
@@ -333,6 +332,18 @@ struct PricingSettingsView: View {
                     }
                 }
                 .transition(.slide)
+            }
+            
+            HStack {
+                Button("Terms of Service") {
+                    URL(string: "https://telemetrydeck.com/pages/termsofservice.html")?.open()
+                }
+                .buttonStyle(.borderless)
+                
+                Button("Privacy Policy") {
+                    URL(string: "https://telemetrydeck.com/pages/privacy-policy.html")?.open()
+                }
+                .buttonStyle(.borderless)
             }
 
             Spacer()
