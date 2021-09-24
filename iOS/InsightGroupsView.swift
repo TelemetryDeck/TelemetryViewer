@@ -44,6 +44,7 @@ struct InsightGroupsView: View {
                     }
                 } label: {
                     Image(systemName: "ellipsis.circle")
+                        .padding()
                 }
             }
             .padding()

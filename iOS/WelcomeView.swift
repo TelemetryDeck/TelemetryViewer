@@ -45,12 +45,12 @@ struct WelcomeView: View {
                 }
                 .padding(.horizontal)
 
-                Text("Telemetry is currently in public beta! If things don't work the way you expect them to, please be patient, and share your thoughts with Daniel on GitHub or the Slack <3")
+                Text("TelemetryDeck is currently in public beta! If things don't work the way you expect them to, please be patient, and share your thoughts with Daniel on GitHub or the Slack <3")
                     .font(.footnote)
                     .foregroundColor(.grayColor)
             }
             .padding()
-            .navigationTitle("Welcome to Telemetry")
+            .navigationTitle("Welcome to TelemetryDeck")
         }
     }
 }

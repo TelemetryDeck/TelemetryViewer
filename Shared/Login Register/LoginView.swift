@@ -15,28 +15,33 @@ struct LoginView: View {
 
     var body: some View {
         Form {
-            HStack {
-                Spacer()
-                Image("authentication").resizable().scaledToFit().frame(maxHeight: 200)
-                Spacer()
-            }
-
-            .listRowInsets(EdgeInsets())
-            .listRowBackground(Color.telemetryOrange.opacity(0.1))
-
-            if showLoginErrorMessage {
-                VStack(alignment: .leading) {
-                    Text("Login Failed").font(.title2)
-                    Text("Something was wrong with your username or password. Please try again.")
+            ZStack(alignment: .bottom) {
+                HStack {
+                    Spacer()
+                    Image("authentication").resizable().scaledToFit()
+                    Spacer()
                 }
-                .padding()
-                .background(Color.red.opacity(0.2))
-                .padding(.vertical)
-                .animation(Animation.easeOut.speed(1.5))
-                .transition(.move(edge: .top))
+
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.telemetryOrange.opacity(0.1))
+
+                if showLoginErrorMessage {
+                    VStack(alignment: .leading) {
+                        Text("Login Failed").font(.title2)
+                        Text("Something was wrong with your username or password. Please check your spelling and try again.")
+                        Text("If you can't remember, use the password reset button on the welcome page.").font(.footnote)
+                    }
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.telemetryOrange)
+                    .cornerRadius(15)
+                    .padding(.vertical)
+                    .animation(Animation.easeOut.speed(1.5))
+                    .transition(.move(edge: .top))
+                }
             }
 
-            Section(header: Text("Login")) {
+            Section {
                 #if os(macOS)
                     TextField("Email", text: $loginRequestBody.userEmail)
                         .textContentType(.username)
@@ -72,7 +77,7 @@ struct LoginView: View {
                     .animation(.easeOut)
 
                     if !loginRequestBody.isValid {
-                        Text("Please fill out all the fields")
+                        Text("Waiting for you to fill out both fields")
                             .font(.footnote)
                             .foregroundColor(.grayColor)
                     }

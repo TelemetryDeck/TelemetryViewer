@@ -20,7 +20,7 @@ struct WelcomeView: View {
 
     var welcomeView: some View {
         VStack(spacing: 15) {
-            Text("Telemetry is a service that helps app and web developers improve their product by supplying immediate, accurate telemetry data while users use your app. And the best part: It's all anonymized so your users' data stays private!")
+            Text("TelemetryDeck is a service that helps app and web developers improve their product by supplying immediate, accurate telemetry data while users use your app. And the best part: It's all anonymized so your users' data stays private!")
                 .padding(.bottom)
 
             HStack {
@@ -29,7 +29,7 @@ struct WelcomeView: View {
                 Image("appIcon")
                     .resizable()
                     .scaledToFit()
-                    .frame(maxHeight: 400)
+                    .frame(minHeight: 200, maxHeight: 400)
                 Spacer()
             }
 
@@ -69,7 +69,7 @@ struct WelcomeView: View {
             }
             .padding(.horizontal)
 
-            Text("Telemetry is currently in public beta! If things don't work the way you expect them to, please be patient, and share your thoughts with Daniel on GitHub or the Slack <3")
+            Text("TelemetryDeck is currently in public beta! If things don't work the way you expect them to, please be patient, and share your thoughts with Daniel on GitHub or the Slack <3")
                 .font(.footnote)
                 .foregroundColor(.grayColor)
         }
@@ -78,7 +78,7 @@ struct WelcomeView: View {
     var body: some View {
         switch self.displayMode {
         case .welcomeView:
-            MacNavigationView(title: "Welcome to Telemetry") { welcomeView }
+            MacNavigationView(title: "Welcome to TelemetryDeck") { welcomeView }
         case .loginView:
             MacNavigationView(title: "Login to Your Account", backButtonAction: { self.displayMode = .welcomeView }, height: 200) { LoginView() }
         case .registerView:

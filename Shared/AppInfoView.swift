@@ -11,7 +11,7 @@ struct AppInfoView: View {
                     .foregroundColor(.grayColor)
             } else {
                 VStack(spacing: 20) {
-                    Text("Welcome to Telemetry!")
+                    Text("Welcome to TelemetryDeck")
                         .font(.title)
                         .foregroundColor(.grayColor)
 

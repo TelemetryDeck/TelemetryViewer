@@ -10,7 +10,7 @@ import SwiftUI
 struct FavouritesView: View {
     var body: some View {
         VStack {
-            Text("Welcome to Telemetry")
+            Text("Welcome to TelemetryDeck")
                 .font(.title)
                 .foregroundColor(.grayColor)
         }
