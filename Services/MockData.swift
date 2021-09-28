@@ -43,7 +43,6 @@ struct MockData {
         id: UUID(),
         order: 12,
         title: "Users Today",
-        subtitle: "Number of users seen in the last 24 hours",
         signalType: nil,
         uniqueUser: true,
         filters: [:],
@@ -52,6 +51,6 @@ struct MockData {
         displayMode: .raw,
         isExpanded: false,
         data: [DTO.InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
-        calculatedAt: Date(), calculationDuration: 1, shouldUseDruid: false
+        calculatedAt: Date(), calculationDuration: 1
     )
 }

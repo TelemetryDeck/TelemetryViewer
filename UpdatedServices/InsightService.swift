@@ -69,7 +69,6 @@ class InsightService: ObservableObject {
         let insightUpdateRequestBody = InsightDefinitionRequestBody(
             order: insightDTO.order,
             title: insightDTO.title,
-            subtitle: nil,
             signalType: insightDTO.signalType,
             uniqueUser: insightDTO.uniqueUser,
             filters: insightDTO.filters,
@@ -79,8 +78,7 @@ class InsightService: ObservableObject {
             displayMode: insightDTO.displayMode,
             groupID: insightDTO.groupID,
             id: insightDTO.id,
-            isExpanded: insightDTO.isExpanded,
-            shouldUseDruid: true
+            isExpanded: insightDTO.isExpanded
         )
 
         api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
