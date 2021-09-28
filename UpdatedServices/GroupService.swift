@@ -88,14 +88,14 @@ class GroupService: ObservableObject {
         }
     }
 
-    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroupID: UUID, for appID: UUID, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights")
-
-        api.post(requestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
-            self.retrieveGroup(with: insightGroupID)
-            callback?(result)
-        }
-    }
+//    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroupID: UUID, for appID: UUID, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+//        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights")
+//
+//        api.post(requestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+//            self.retrieveGroup(with: insightGroupID)
+//            callback?(result)
+//        }
+//    }
 }
 
 private extension GroupService {

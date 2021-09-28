@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewInsightMenu: View {
     @EnvironmentObject var groupService: GroupService
+    @EnvironmentObject var insightService: InsightService
     
     let appID: UUID
     let selectedInsightGroupID: UUID
@@ -17,73 +18,73 @@ struct NewInsightMenu: View {
         Menu {
             Section {
                 Button("Generic Timeseries Insight") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newTimeSeriesInsight(groupID: selectedInsightGroupID)
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newTimeSeriesInsight(groupID: selectedInsightGroupID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
                             
                 Button("Generic Breakdown Insight") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(groupID: selectedInsightGroupID)
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newBreakdownInsight(groupID: selectedInsightGroupID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
             }
                         
             Section {
                 Button("Daily Active Users") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newDailyUserCountInsight(groupID: selectedInsightGroupID)
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newDailyUserCountInsight(groupID: selectedInsightGroupID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
                             
                 Button("Weekly Active Users") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newWeeklyUserCountInsight(groupID: selectedInsightGroupID)
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newWeeklyUserCountInsight(groupID: selectedInsightGroupID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
                             
                 Button("Monthly Active Users") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newMonthlyUserCountInsight(groupID: selectedInsightGroupID)
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newMonthlyUserCountInsight(groupID: selectedInsightGroupID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
                             
                 Button("Daily Signals") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newSignalInsight(groupID: selectedInsightGroupID)
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newSignalInsight(groupID: selectedInsightGroupID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
             }
                         
             Section {
                 Button("App Versions Breakdown") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newBreakdownInsight(
                         groupID: selectedInsightGroupID,
                         title: "App Versions Breakdown",
                         breakdownKey: "appVersion"
                     )
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
                             
                 Button("Build Number Breakdown") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newBreakdownInsight(
                         groupID: selectedInsightGroupID,
                         title: "Build Number Breakdown",
                         breakdownKey: "buildNumber"
                     )
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
                             
                 Button("Device Type Breakdown") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newBreakdownInsight(
                         groupID: selectedInsightGroupID,
                         title: "Device Type Breakdown",
                         breakdownKey: "modelName"
                     )
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
                             
                 Button("OS Breakdown") {
-                    let definitionRequestBody = InsightDefinitionRequestBody.newBreakdownInsight(
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newBreakdownInsight(
                         groupID: selectedInsightGroupID,
                         title: "OS Breakdown",
                         breakdownKey: "systemVersion"
                     )
-                    groupService.create(insightWith: definitionRequestBody, in: selectedInsightGroupID, for: appID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
                 }
             }
         }

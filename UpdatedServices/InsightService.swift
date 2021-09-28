@@ -45,7 +45,7 @@ class InsightService: ObservableObject {
     }
     
     func insight(withID insightID: DTOsWithIdentifiers.Insight.ID) -> DTOsWithIdentifiers.Insight? {
-        guard let group = cache.insightCache[insightID] else {
+        guard let object = cache.insightCache[insightID] else {
             retrieveInsight(with: insightID)
             return nil
         }
@@ -54,12 +54,20 @@ class InsightService: ObservableObject {
             retrieveInsight(with: insightID)
         }
         
-        return group
+        return object
     }
     
     func retrieveInsight(with insightID: DTOsWithIdentifiers.Insight.ID) {
         cache.queue.async { [weak self] in
             self?.performRetrieval(ofInsightWithID: insightID)
+        }
+    }
+    
+    func create(insightWith: DTOsWithIdentifiers.Insight, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath(apiVersion: .v2, "insights")
+        
+        api.post(insightWith, to: url, defaultValue: nil) { (result: Result<String, TransferError>) in
+            callback?(result)
         }
     }
     
