@@ -367,8 +367,7 @@ struct EditorView: View {
                         title: Text("Are you sure you want to delete the Insight \(viewModel.title)?"),
                         message: Text("This will delete the Insight. Your signals are not affected."),
                         primaryButton: .destructive(Text("Delete")) {
-                            viewModel.insightService.delete(insightID: viewModel.id, in: viewModel.groupID, in: viewModel.appID) { _ in
-                                // TODO: Ios ONLY: self.presentation.wrappedValue.dismiss()
+                            viewModel.insightService.delete(insightID: viewModel.id) { _ in
                                 groupService.retrieveGroup(with: viewModel.groupID)
                                 selectedInsightID = nil
                             }

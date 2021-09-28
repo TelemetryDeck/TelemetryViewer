@@ -72,33 +72,18 @@ class InsightService: ObservableObject {
     }
     
     func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightDTO: DTOsWithIdentifiers.Insight, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
-        
-        let insightUpdateRequestBody = InsightDefinitionRequestBody(
-            order: insightDTO.order,
-            title: insightDTO.title,
-            signalType: insightDTO.signalType,
-            uniqueUser: insightDTO.uniqueUser,
-            filters: insightDTO.filters,
-            rollingWindowSize: 0,
-            breakdownKey: insightDTO.breakdownKey,
-            groupBy: insightDTO.groupBy,
-            displayMode: insightDTO.displayMode,
-            groupID: insightDTO.groupID,
-            id: insightDTO.id,
-            isExpanded: insightDTO.isExpanded
-        )
+        let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
 
-        api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+        api.patch(insightDTO, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
             retrieveInsight(with: insightID)
             
             callback?(result)
         }
     }
 
-    func delete(insightID: UUID, in insightGroupID: UUID, in appID: UUID, callback: ((Result<String, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
-
+    func delete(insightID: UUID, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
+        
         api.delete(url) { (result: Result<String, TransferError>) in
             callback?(result)
         }
