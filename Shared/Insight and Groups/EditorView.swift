@@ -61,6 +61,7 @@ class EditorViewModel: ObservableObject {
         self.groupID = insight.groupID
         self.order = insight.order ?? 0
         self.title = insight.title
+        self.accentColor = insight.accentColor ?? ""
         self.displayMode = insight.displayMode
         self.isExpanded = insight.isExpanded
         self.signalType = insight.signalType ?? ""
@@ -94,6 +95,7 @@ class EditorViewModel: ObservableObject {
             groupID: groupID,
             order: order,
             title: title,
+            accentColor: accentColor != "" ? accentColor : nil,
             signalType: signalType.isEmpty ? nil : signalType,
             uniqueUser: uniqueUser,
             filters: filters,
@@ -147,6 +149,8 @@ class EditorViewModel: ObservableObject {
     @Published var order: Double { didSet { save() }}
     
     @Published var title: String { didSet { setNeedsSaving(true) }}
+    
+    @Published var accentColor: String { didSet { save() }}
     
     @Published var druidCustomQuery: DruidCustomQuery?
     
@@ -388,9 +392,28 @@ struct EditorView: View {
         .padding(.horizontal)
     }
     
+    var colorSelectionSection: some View {
+        CustomSection(header: Text("Accent Color"), summary: Text(viewModel.accentColor), footer: Text("If you want, you can set a custom color for this insight"), startCollapsed: true) {
+            Picker(selection: $viewModel.accentColor, label: Text("")) {
+                Text("Default Telemetry Orange").tag("")
+                Text("Aioli").tag("69D2E7")
+                Text("Panda Water").tag("A7DBD8")
+                Text("Grandma's Pants").tag("E0E4CC")
+                Text("Giant Goldfish").tag("F38630")
+                Text("Post Office").tag("FDBD33")
+                Text("Urgent!").tag("EB2727")
+                Text("Gandalf").tag("C2CBCE")
+                Text("Inked").tag("2A363B")
+            }
+        }
+        .padding(.horizontal)
+    }
+    
     var formContent: some View {
         Group {
             nameAndGroupSection
+            
+            colorSelectionSection
 
             chartTypeSection
 

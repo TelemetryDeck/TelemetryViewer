@@ -37,7 +37,7 @@ struct FeedbackViewEntry: View {
             Divider()
             #endif
         })
-        .buttonStyle(CardButtonStyle(isSelected: false))
+            .buttonStyle(CardButtonStyle(isSelected: false, customAccentColor: nil))
     }
 }
 

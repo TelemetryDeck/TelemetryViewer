@@ -40,7 +40,7 @@ struct InsightCard: View {
             cardContent
         }
         .frame(idealHeight: 200)
-        .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insightID))
+        .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insightID, customAccentColor: Color.init(hex: insightService.insight(withID: insightID)?.accentColor ?? "")))
     }
     
     var cardContent: some View {
@@ -76,6 +76,7 @@ struct InsightCard: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+//            .accentColor(Color.init(hex: insightService.insight(withID: insightID)?.accentColor ?? "") ?? (isSelected ? Color.cardBackground : Color.telemetryOrange ))
         }
         .padding(.top)
         .onReceive(refreshTimer) { _ in

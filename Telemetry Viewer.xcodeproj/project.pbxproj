@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0050912703617A009C609C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
+		2B0050922703617B009C609C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
+		2B0050932703617B009C609C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
 		2B135E0C26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
 		2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
 		2B135E0E26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
@@ -1219,6 +1222,7 @@
 				2B19DEB626444B2B0086F70E /* Models.swift in Sources */,
 				2B135E1126E0E7B900CC0A40 /* DruidCustomQuery.swift in Sources */,
 				2B19DEAD26444B2B0086F70E /* InsightCalculationResult.swift in Sources */,
+				2B0050912703617A009C609C /* Color+Hex.swift in Sources */,
 				2B69B53F264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
 				2BC2720A262086020045A2FE /* MockData.swift in Sources */,
 				2B135E0E26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
@@ -1303,6 +1307,7 @@
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				2BEDE6E326A7281E007247B0 /* ServiceBarChartView.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
+				2B0050932703617B009C609C /* Color+Hex.swift in Sources */,
 				2B1D46A426CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
 				DCB02B762502809200304964 /* RootView.swift in Sources */,
 				DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */,
@@ -1386,6 +1391,7 @@
 				2BEDE6E426A7281E007247B0 /* ServiceBarChartView.swift in Sources */,
 				DC23286E2522725A00DB6145 /* InsightView.swift in Sources */,
 				2BEDE70226A728CF007247B0 /* DonutChart.swift in Sources */,
+				2B0050922703617B009C609C /* Color+Hex.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BC522EB2625FCEF00E643AC /* FeedbackView.swift in Sources */,
 				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
