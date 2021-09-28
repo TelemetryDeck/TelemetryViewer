@@ -336,6 +336,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B00509027035C85009C609C /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UUID+Empty.swift"; sourceTree = "<group>"; };
 		2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DruidCustomQuery.swift; sourceTree = "<group>"; };
 		2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DruidSQLQuery.swift; sourceTree = "<group>"; };
@@ -832,6 +833,7 @@
 		DCD52C4E2541FFF0003F12C6 /* Helpers + Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2B00509027035C85009C609C /* Color+Hex.swift */,
 				DCDC6F0B253EEB9B0012D9A7 /* Optional+Bound.swift */,
 				DCDC6F12253EECA90012D9A7 /* Numbers+Bound.swift */,
 				DCD52C492541FFE3003F12C6 /* ColSpan.swift */,
