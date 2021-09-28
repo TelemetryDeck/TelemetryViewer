@@ -19,34 +19,34 @@ struct NewInsightMenu: View {
             Section {
                 Button("Generic Timeseries Insight") {
                     let definitionRequestBody = DTOsWithIdentifiers.Insight.newTimeSeriesInsight(groupID: selectedInsightGroupID)
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
                             
                 Button("Generic Breakdown Insight") {
                     let definitionRequestBody = DTOsWithIdentifiers.Insight.newBreakdownInsight(groupID: selectedInsightGroupID)
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
             }
                         
             Section {
                 Button("Daily Active Users") {
                     let definitionRequestBody = DTOsWithIdentifiers.Insight.newDailyUserCountInsight(groupID: selectedInsightGroupID)
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
                             
                 Button("Weekly Active Users") {
                     let definitionRequestBody = DTOsWithIdentifiers.Insight.newWeeklyUserCountInsight(groupID: selectedInsightGroupID)
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
                             
                 Button("Monthly Active Users") {
                     let definitionRequestBody = DTOsWithIdentifiers.Insight.newMonthlyUserCountInsight(groupID: selectedInsightGroupID)
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
                             
                 Button("Daily Signals") {
                     let definitionRequestBody = DTOsWithIdentifiers.Insight.newSignalInsight(groupID: selectedInsightGroupID)
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
             }
                         
@@ -57,7 +57,7 @@ struct NewInsightMenu: View {
                         title: "App Versions Breakdown",
                         breakdownKey: "appVersion"
                     )
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
                             
                 Button("Build Number Breakdown") {
@@ -66,7 +66,7 @@ struct NewInsightMenu: View {
                         title: "Build Number Breakdown",
                         breakdownKey: "buildNumber"
                     )
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
                             
                 Button("Device Type Breakdown") {
@@ -75,7 +75,7 @@ struct NewInsightMenu: View {
                         title: "Device Type Breakdown",
                         breakdownKey: "modelName"
                     )
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
                             
                 Button("OS Breakdown") {
@@ -84,7 +84,14 @@ struct NewInsightMenu: View {
                         title: "OS Breakdown",
                         breakdownKey: "systemVersion"
                     )
-                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID )}
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
+                }
+            }
+            
+            Section {
+                Button("Custom Query") {
+                    let definitionRequestBody = DTOsWithIdentifiers.Insight.newCustomQueryInsight(groupID: selectedInsightGroupID)
+                    insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
             }
         }
