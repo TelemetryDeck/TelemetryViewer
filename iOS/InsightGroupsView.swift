@@ -44,10 +44,11 @@ struct InsightGroupsView: View {
                     }
                 } label: {
                     Image(systemName: "ellipsis.circle")
-                        .padding()
+                        .padding(.horizontal)
                 }
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.bottom)
             
             Divider()
             
@@ -73,7 +74,7 @@ struct InsightGroupsView: View {
                 selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
             }
         }
-        
+        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
         .toolbar {
             ToolbarItem {

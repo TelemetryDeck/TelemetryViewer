@@ -404,6 +404,7 @@ struct EditorView: View {
                 Text("Urgent!").tag("EB2727")
                 Text("Gandalf").tag("C2CBCE")
                 Text("Inked").tag("2A363B")
+                Text("Not Sitting Straight").tag("E0A4C3")
             }
         }
         .padding(.horizontal)
