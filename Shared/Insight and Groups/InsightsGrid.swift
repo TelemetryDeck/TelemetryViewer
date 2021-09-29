@@ -13,7 +13,7 @@ struct InsightsGrid: View {
     @Binding var sidebarVisible: Bool
 
     let insightGroup: DTOsWithIdentifiers.Group
-    let showBottomPooper: Bool?
+    let showBottomSondrine: Bool?
     let isSelectable: Bool
 
     var body: some View {
@@ -46,8 +46,8 @@ struct InsightsGrid: View {
                 }
             }
 
-            if showBottomPooper == true {
-                BottomPooper()
+            if showBottomSondrine == true {
+                BottomSondrine()
                     .padding(.vertical, 100)
             }
         }

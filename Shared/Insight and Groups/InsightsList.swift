@@ -19,7 +19,7 @@ struct InsightsList: View {
         Group {
             if let insightGroup = groupService.group(withID: groupID) {
                 if !insightGroup.insightIDs.isEmpty {
-                    InsightsGrid(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightGroup: insightGroup, showBottomPooper: true, isSelectable: isSelectable)
+                    InsightsGrid(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightGroup: insightGroup, showBottomSondrine: true, isSelectable: isSelectable)
                 } else {
                     EmptyInsightGroupView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct BottomPooper: View {    
+struct BottomSondrine: View {    
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.cardBackground.opacity(0.5))
+                .fill(Color.white.opacity(0.5))
 
             Image("sidebarBackground")
                 .resizable()
