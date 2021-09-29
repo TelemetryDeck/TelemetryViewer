@@ -88,6 +88,15 @@ class InsightService: ObservableObject {
             callback?(result)
         }
     }
+    
+    func widgetableInsightIDs(callback: (([UUID]) -> Void)) {
+        callback([
+            UUID(uuidString: "0EFDB5F0-446D-4468-95CB-2D5CD75AF8C8")!,
+            UUID(uuidString: "C8DB1A2A-40DE-40F8-A4DD-741F3D97F9F3")!,
+            UUID(uuidString: "6106D79C-215C-4EF7-9F10-BF9DF6344C1C")!,
+            UUID(uuidString: "36ECF853-7651-40C1-BABF-6ED06324C16A")!
+        ])
+    }
 }
 
 private extension InsightService {
