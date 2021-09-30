@@ -89,13 +89,25 @@ class InsightService: ObservableObject {
         }
     }
     
-    func widgetableInsightIDs(callback: (([UUID]) -> Void)) {
-        callback([
-            UUID(uuidString: "0EFDB5F0-446D-4468-95CB-2D5CD75AF8C8")!,
-            UUID(uuidString: "C8DB1A2A-40DE-40F8-A4DD-741F3D97F9F3")!,
-            UUID(uuidString: "6106D79C-215C-4EF7-9F10-BF9DF6344C1C")!,
-            UUID(uuidString: "36ECF853-7651-40C1-BABF-6ED06324C16A")!
-        ])
+    /// Gets a list of all Insight IDs of Insights that have been marked as widgetable
+    ///
+    /// Since an HTTP request is involved, this method is asynchronous. Provide a callback that will be called
+    /// once the data has been returned from the server.
+    ///
+    /// Should the server return an error, or should a communication error occur, this method will call
+    /// the callback black with an empty array and inform the APIClient error service about the error.
+    func widgetableInsightIDs(callback: @escaping (([UUID]) -> Void)) {
+        let url = api.urlForPath(apiVersion: .v2, "insights", "widgetableInsightIDs")
+        
+        api.get(url) { (result: Result<[UUID], TransferError>) in
+            switch result {
+            case let .success(insightIDList):
+                callback(insightIDList)
+            case let .failure(transferError):
+                callback([])
+                self.api.handleError(transferError)
+            }
+        }
     }
 }
 
