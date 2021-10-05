@@ -212,6 +212,10 @@
 		C5A8D871270C5D800032560A /* TelemetryDeckWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D876270C5FB00032560A /* Keychain+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D91D9270C587900ACF564 /* Keychain+Saving.swift */; };
 		C5A8D877270C5FB20032560A /* Keychain+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D91D9270C587900ACF564 /* Keychain+Saving.swift */; };
+		C5A8D878270C61210032560A /* DTOsWithIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOsWithIdentifiers.swift */; };
+		C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
+		C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
+		C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* AppInfoView.swift */; };
@@ -1161,8 +1165,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */,
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
+				C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */,
 				C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
+				C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */,
+				C5A8D878270C61210032560A /* DTOsWithIdentifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
