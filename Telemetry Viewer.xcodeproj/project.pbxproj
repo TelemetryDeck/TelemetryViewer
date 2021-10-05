@@ -241,6 +241,7 @@
 		C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */; };
 		C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
 		C5A8D8A3270C69020032560A /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = C5A8D8A2270C69020032560A /* TelemetryClient */; };
+		C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8A4270C6FB70032560A /* MockData.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* AppInfoView.swift */; };
@@ -458,6 +459,7 @@
 		C5A8D86A270C5D800032560A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A8D86C270C5D800032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StartEnd.swift"; sourceTree = "<group>"; };
+		C5A8D8A4270C6FB70032560A /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 			isa = PBXGroup;
 			children = (
 				C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */,
+				C5A8D8A4270C6FB70032560A /* MockData.swift */,
 				C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */,
 				C5A8D86A270C5D800032560A /* Assets.xcassets */,
 				C5A8D86C270C5D800032560A /* Info.plist */,
@@ -1202,6 +1205,7 @@
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
 				C5A8D899270C68AB0032560A /* AppAdminEntry.swift in Sources */,
 				C5A8D892270C68790032560A /* Telemetry.swift in Sources */,
+				C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */,
 				C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */,
 				C5A8D87F270C65F90032560A /* APIClient.swift in Sources */,
 				C5A8D880270C65F90032560A /* Keychain+Saving.swift in Sources */,

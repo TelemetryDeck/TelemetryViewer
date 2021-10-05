@@ -36,6 +36,13 @@ struct Provider: IntentTimelineProvider {
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
+                
+        // TODO: dynamic configuration that asks for list of vegetable insights from the api
+        // TODO: get selected InsightID from configuration
+        // TODO: get InsightCalculationResult from API
+        // TODO: construct simple entry from InsightCalculationResult
+        // TODO: tell the timeline to reload
+        // TODO: construct a real InsightCalculationResult UI similar to the main app
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
