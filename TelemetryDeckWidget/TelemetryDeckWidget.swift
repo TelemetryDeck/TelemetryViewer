@@ -10,6 +10,20 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+    let api: APIClient
+    let cacheLayer: CacheLayer
+    let errors: ErrorService
+    let insightService: InsightService
+    let insightResultService: InsightResultService
+    
+    init() {
+        self.api = APIClient()
+        self.cacheLayer = CacheLayer()
+        self.errors = ErrorService()
+        
+        self.insightService = InsightService(api: api, cache: cacheLayer, errors: errors)
+        self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
+    }
 
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: .init(id: UUID.empty, insight: DTOsWithIdentifiers.Insight.init(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0))
