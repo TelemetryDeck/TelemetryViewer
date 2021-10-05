@@ -106,8 +106,6 @@
 		2BB23B2D26567222003DDE5E /* OldAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* OldAppService.swift */; };
 		2BB4737E26950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
 		2BB4737F26950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
-		2BB6BD0326DD025700208481 /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6BD0226DD025700208481 /* Date+StartEnd.swift */; };
-		2BB6BD0426DD025700208481 /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6BD0226DD025700208481 /* Date+StartEnd.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
@@ -212,10 +210,37 @@
 		C5A8D871270C5D800032560A /* TelemetryDeckWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D876270C5FB00032560A /* Keychain+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D91D9270C587900ACF564 /* Keychain+Saving.swift */; };
 		C5A8D877270C5FB20032560A /* Keychain+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D91D9270C587900ACF564 /* Keychain+Saving.swift */; };
-		C5A8D878270C61210032560A /* DTOsWithIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOsWithIdentifiers.swift */; };
 		C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
 		C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
 		C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
+		C5A8D87C270C65F90032560A /* InsightResultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */; };
+		C5A8D87D270C65F90032560A /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
+		C5A8D87E270C65F90032560A /* CacheLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468E26CC471A008814A9 /* CacheLayer.swift */; };
+		C5A8D87F270C65F90032560A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1427426656DEF009BCB3B /* APIClient.swift */; };
+		C5A8D880270C65F90032560A /* Keychain+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D91D9270C587900ACF564 /* Keychain+Saving.swift */; };
+		C5A8D881270C65F90032560A /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468F26CC471A008814A9 /* Caching.swift */; };
+		C5A8D882270C66190032560A /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D469726CC4C5D008814A9 /* ErrorService.swift */; };
+		C5A8D883270C66400032560A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
+		C5A8D886270C66E90032560A /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */; };
+		C5A8D88C270C67C10032560A /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */; };
+		C5A8D88D270C67D90032560A /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */; };
+		C5A8D88E270C67DA0032560A /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */; };
+		C5A8D890270C682E0032560A /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
+		C5A8D891270C682E0032560A /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
+		C5A8D892270C68790032560A /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
+		C5A8D893270C68970032560A /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
+		C5A8D897270C68AB0032560A /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
+		C5A8D898270C68AB0032560A /* DTOsWithIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOsWithIdentifiers.swift */; };
+		C5A8D899270C68AB0032560A /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
+		C5A8D89A270C68AB0032560A /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
+		C5A8D89B270C68AB0032560A /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
+		C5A8D89C270C68AB0032560A /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
+		C5A8D89D270C68AB0032560A /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
+		C5A8D89E270C68AB0032560A /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
+		C5A8D89F270C68AB0032560A /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
+		C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */; };
+		C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
+		C5A8D8A3270C69020032560A /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = C5A8D8A2270C69020032560A /* TelemetryClient */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* AppInfoView.swift */; };
@@ -385,7 +410,6 @@
 		2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightResultService.swift; sourceTree = "<group>"; };
 		2BB23B2B26567222003DDE5E /* OldAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAppService.swift; sourceTree = "<group>"; };
 		2BB4737D26950731004DA1DC /* AppAdminEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAdminEntry.swift; sourceTree = "<group>"; };
-		2BB6BD0226DD025700208481 /* Date+StartEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+StartEnd.swift"; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BBFC9DA267D05E30013DC74 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		2BBFC9DB267D05E30013DC74 /* RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
@@ -433,6 +457,7 @@
 		C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TelemetryDeckWidget.intentdefinition; sourceTree = "<group>"; };
 		C5A8D86A270C5D800032560A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A8D86C270C5D800032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StartEnd.swift"; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -496,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */,
+				C5A8D8A3270C69020032560A /* TelemetryClient in Frameworks */,
 				C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,6 +583,7 @@
 			children = (
 				2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */,
 				2B19DE9626444B0C0086F70E /* String+CamelCase.swift */,
+				C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -863,7 +890,6 @@
 			isa = PBXGroup;
 			children = (
 				2B781B8126F4A5D60062DBDC /* Status Messages */,
-				2BB6BD0226DD025700208481 /* Date+StartEnd.swift */,
 				2BEDE6DF26A72731007247B0 /* LocalCharts */,
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
 				DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */,
@@ -975,6 +1001,9 @@
 			dependencies = (
 			);
 			name = TelemetryDeckWidgetExtension;
+			packageProductDependencies = (
+				C5A8D8A2270C69020032560A /* TelemetryClient */,
+			);
 			productName = TelemetryDeckWidgetExtension;
 			productReference = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1165,12 +1194,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5A8D89F270C68AB0032560A /* InsightData.swift in Sources */,
 				C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */,
+				C5A8D89C270C68AB0032560A /* OrganisationJoinRequest.swift in Sources */,
+				C5A8D891270C682E0032560A /* ChartDataSet.swift in Sources */,
+				C5A8D886270C66E90032560A /* DateExtensions.swift in Sources */,
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
+				C5A8D899270C68AB0032560A /* AppAdminEntry.swift in Sources */,
+				C5A8D892270C68790032560A /* Telemetry.swift in Sources */,
 				C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */,
+				C5A8D87F270C65F90032560A /* APIClient.swift in Sources */,
+				C5A8D880270C65F90032560A /* Keychain+Saving.swift in Sources */,
+				C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */,
+				C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */,
 				C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
 				C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */,
-				C5A8D878270C61210032560A /* DTOsWithIdentifiers.swift in Sources */,
+				C5A8D89A270C68AB0032560A /* RegistrationRequestBody.swift in Sources */,
+				C5A8D87C270C65F90032560A /* InsightResultService.swift in Sources */,
+				C5A8D890270C682E0032560A /* ChartDataPoint.swift in Sources */,
+				C5A8D87E270C65F90032560A /* CacheLayer.swift in Sources */,
+				C5A8D897270C68AB0032560A /* Aggregate.swift in Sources */,
+				C5A8D898270C68AB0032560A /* DTOsWithIdentifiers.swift in Sources */,
+				C5A8D89D270C68AB0032560A /* UserDTO.swift in Sources */,
+				C5A8D881270C65F90032560A /* Caching.swift in Sources */,
+				C5A8D87D270C65F90032560A /* InsightService.swift in Sources */,
+				C5A8D893270C68970032560A /* JSONDecoder.swift in Sources */,
+				C5A8D88C270C67C10032560A /* Date+StartEnd.swift in Sources */,
+				C5A8D882270C66190032560A /* ErrorService.swift in Sources */,
+				C5A8D883270C66400032560A /* Models.swift in Sources */,
+				C5A8D89E270C68AB0032560A /* OrganizationDTO.swift in Sources */,
+				C5A8D89B270C68AB0032560A /* SignalDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1222,6 +1275,7 @@
 				2B781B8326F4A5E30062DBDC /* StatusMessage.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
+				C5A8D88E270C67DA0032560A /* Date+StartEnd.swift in Sources */,
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				2B1D469E26CC51A8008814A9 /* GroupService.swift in Sources */,
 				2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift in Sources */,
@@ -1284,7 +1338,6 @@
 				2B3CC0D9264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
 				DC5F3A8925A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
-				2BB6BD0326DD025700208481 /* Date+StartEnd.swift in Sources */,
 				2BBFCA03267D05E40013DC74 /* CardView.swift in Sources */,
 				DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */,
 				2B21FCDA26FDC9F900A8A55B /* InsightsGrid.swift in Sources */,
@@ -1405,6 +1458,7 @@
 				2BEDE6F126A728C7007247B0 /* RawChartView.swift in Sources */,
 				2BEDE6EA26A72853007247B0 /* ServiceLineChartView.swift in Sources */,
 				2BDD8E732653C14C00C6E51D /* InsightCalculationService.swift in Sources */,
+				C5A8D88D270C67D90032560A /* Date+StartEnd.swift in Sources */,
 				2B61B953264C3061003F62C4 /* SignalDTO.swift in Sources */,
 				2B19DEBC26444B2B0086F70E /* InsightData.swift in Sources */,
 				2BEDE6FE26A728CF007247B0 /* ChartHoverLabel.swift in Sources */,
@@ -1441,7 +1495,6 @@
 				2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */,
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2BBFCA2E267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */,
-				2BB6BD0426DD025700208481 /* Date+StartEnd.swift in Sources */,
 				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				2B19DEBB26444B2B0086F70E /* UserDTO.swift in Sources */,
 				2BA5D50226CD05CC008FBF8F /* InsightGroupsView.swift in Sources */,
@@ -1878,6 +1931,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B85640426E6699D00AC99B0 /* XCRemoteSwiftPackageReference "BottomSheet" */;
 			productName = BottomSheet;
+		};
+		C5A8D8A2270C69020032560A /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
 		};
 		DC9C0830252CD622001C0F94 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;
