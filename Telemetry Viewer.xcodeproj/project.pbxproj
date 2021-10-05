@@ -439,6 +439,7 @@
 		2BEDE6EC26A72879007247B0 /* ServiceDonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDonutChartView.swift; sourceTree = "<group>"; };
 		2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOS12RecentSignalsView.swift; sourceTree = "<group>"; };
 		2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12PayloadKeysView.swift; sourceTree = "<group>"; };
+		C58D91D9270C587900ACF564 /* Keychain+Saving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Saving.swift"; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -664,6 +665,7 @@
 		2BC1427326656DEF009BCB3B /* APIClient */ = {
 			isa = PBXGroup;
 			children = (
+				C58D91D9270C587900ACF564 /* Keychain+Saving.swift */,
 				2BC1427426656DEF009BCB3B /* APIClient.swift */,
 				2B1D468F26CC471A008814A9 /* Caching.swift */,
 				2B1D468E26CC471A008814A9 /* CacheLayer.swift */,
