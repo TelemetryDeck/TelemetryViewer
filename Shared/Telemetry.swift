@@ -5,6 +5,7 @@
 //  Copyright © 2019 breakthesystem. All rights reserved.
 //
 
+#if canImport(TelemetryClient)
 import SwiftUI
 import TelemetryClient
 
@@ -26,3 +27,4 @@ enum TelemetrySignal: String {
     case userLogin
     case userLogout
 }
+#endif

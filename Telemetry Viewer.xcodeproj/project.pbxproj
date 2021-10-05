@@ -237,7 +237,6 @@
 		C5A8D89F270C68AB0032560A /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
 		C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */; };
 		C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
-		C5A8D8A3270C69020032560A /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = C5A8D8A2270C69020032560A /* TelemetryClient */; };
 		C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8A4270C6FB70032560A /* MockData.swift */; };
 		C5A8D8AE270C821A0032560A /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8AD270C821A0032560A /* Intents.framework */; platformFilter = maccatalyst; };
 		C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
@@ -556,7 +555,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */,
-				C5A8D8A3270C69020032560A /* TelemetryClient in Frameworks */,
 				C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1083,7 +1081,6 @@
 			);
 			name = TelemetryDeckWidgetExtension;
 			packageProductDependencies = (
-				C5A8D8A2270C69020032560A /* TelemetryClient */,
 			);
 			productName = TelemetryDeckWidgetExtension;
 			productReference = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */;
@@ -2260,11 +2257,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B85640426E6699D00AC99B0 /* XCRemoteSwiftPackageReference "BottomSheet" */;
 			productName = BottomSheet;
-		};
-		C5A8D8A2270C69020032560A /* TelemetryClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
-			productName = TelemetryClient;
 		};
 		DC9C0830252CD622001C0F94 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;
