@@ -208,8 +208,6 @@
 		C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C5A8D86E270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C5A8D871270C5D800032560A /* TelemetryDeckWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C5A8D876270C5FB00032560A /* Keychain+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D91D9270C587900ACF564 /* Keychain+Saving.swift */; };
-		C5A8D877270C5FB20032560A /* Keychain+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D91D9270C587900ACF564 /* Keychain+Saving.swift */; };
 		C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
 		C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
 		C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
@@ -217,7 +215,6 @@
 		C5A8D87D270C65F90032560A /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
 		C5A8D87E270C65F90032560A /* CacheLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468E26CC471A008814A9 /* CacheLayer.swift */; };
 		C5A8D87F270C65F90032560A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1427426656DEF009BCB3B /* APIClient.swift */; };
-		C5A8D880270C65F90032560A /* Keychain+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D91D9270C587900ACF564 /* Keychain+Saving.swift */; };
 		C5A8D881270C65F90032560A /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468F26CC471A008814A9 /* Caching.swift */; };
 		C5A8D882270C66190032560A /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D469726CC4C5D008814A9 /* ErrorService.swift */; };
 		C5A8D883270C66400032560A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
@@ -408,6 +405,10 @@
 		2B379D2026FBC3A300714BE6 /* IconFinderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconFinderService.swift; sourceTree = "<group>"; };
 		2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconService.swift; sourceTree = "<group>"; };
 		2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexiconSignalDTO.swift; sourceTree = "<group>"; };
+		2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS)Release.entitlements"; sourceTree = "<group>"; };
+		2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS).entitlements"; sourceTree = "<group>"; };
+		2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckWidgetExtension.entitlements; sourceTree = "<group>"; };
+		2B4DB011270CF37C002A4743 /* TelemetryDeckWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
 		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
 		2B61B951264C3061003F62C4 /* SignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalDTO.swift; sourceTree = "<group>"; };
 		2B65C35226A5E25500606527 /* RawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
@@ -476,7 +477,6 @@
 		2BEDE6EC26A72879007247B0 /* ServiceDonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDonutChartView.swift; sourceTree = "<group>"; };
 		2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOS12RecentSignalsView.swift; sourceTree = "<group>"; };
 		2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12PayloadKeysView.swift; sourceTree = "<group>"; };
-		C58D91D9270C587900ACF564 /* Keychain+Saving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Saving.swift"; sourceTree = "<group>"; };
 		C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidget.swift; sourceTree = "<group>"; };
 		C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TelemetryDeckWidget.intentdefinition; sourceTree = "<group>"; };
@@ -735,7 +735,6 @@
 		2BC1427326656DEF009BCB3B /* APIClient */ = {
 			isa = PBXGroup;
 			children = (
-				C58D91D9270C587900ACF564 /* Keychain+Saving.swift */,
 				2BC1427426656DEF009BCB3B /* APIClient.swift */,
 				2B1D468F26CC471A008814A9 /* Caching.swift */,
 				2B1D468E26CC471A008814A9 /* CacheLayer.swift */,
@@ -944,6 +943,10 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
+				2B4DB011270CF37C002A4743 /* TelemetryDeckWidgetExtensionRelease.entitlements */,
+				2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */,
+				2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */,
+				2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */,
 				2BD189F6267BCEA900DFDE4D /* UIComponents */,
 				2BC1427326656DEF009BCB3B /* APIClient */,
 				2B1D469626CC484D008814A9 /* UpdatedServices */,
@@ -1070,6 +1073,7 @@
 			buildConfigurationList = C5A8D872270C5D800032560A /* Build configuration list for PBXNativeTarget "TelemetryDeckWidgetExtension" */;
 			buildPhases = (
 				C5A8D85F270C5D7A0032560A /* Sources */,
+				2B4DB012270CF4DA002A4743 /* ShellScript */,
 				C5A8D860270C5D7A0032560A /* Frameworks */,
 				C5A8D861270C5D7A0032560A /* Resources */,
 			);
@@ -1279,6 +1283,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2B4DB012270CF4DA002A4743 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\necho \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
+		};
 		DC7DEE8A258A334900BEA712 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1341,7 +1362,6 @@
 				C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */,
 				C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */,
 				C5A8D87F270C65F90032560A /* APIClient.swift in Sources */,
-				C5A8D880270C65F90032560A /* Keychain+Saving.swift in Sources */,
 				C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */,
 				C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */,
 				C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
@@ -1496,7 +1516,6 @@
 				DCDC6EFF253EDA4C0012D9A7 /* FilterEditView.swift in Sources */,
 				2B21FCDA26FDC9F900A8A55B /* InsightsGrid.swift in Sources */,
 				2BBFCA13267D05E40013DC74 /* ListItemView.swift in Sources */,
-				C5A8D876270C5FB00032560A /* Keychain+Saving.swift in Sources */,
 				2BEDE6FA26A728CF007247B0 /* DonutChart.swift in Sources */,
 				DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */,
 				2BBFCA19267D05E40013DC74 /* Buttonstyles.swift in Sources */,
@@ -1553,7 +1572,6 @@
 				DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */,
 				2BEDE6EE26A72879007247B0 /* ServiceDonutChartView.swift in Sources */,
 				2B19DEBE26444B2B0086F70E /* Formatter+ISO.swift in Sources */,
-				C5A8D877270C5FB20032560A /* Keychain+Saving.swift in Sources */,
 				2BB4737F26950731004DA1DC /* AppAdminEntry.swift in Sources */,
 				2B135E1326E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */,
 				2BEDE6FD26A728CF007247B0 /* BarChartView.swift in Sources */,
@@ -1748,8 +1766,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = TelemetryDeckWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckWidget/Info.plist;
@@ -1761,7 +1780,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1778,8 +1797,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = TelemetryDeckWidgetExtensionRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckWidget/Info.plist;
@@ -1791,7 +1811,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2034,6 +2054,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Telemetry Viewer (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -2059,6 +2080,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Telemetry Viewer (iOS)Release.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FL4V655A94;

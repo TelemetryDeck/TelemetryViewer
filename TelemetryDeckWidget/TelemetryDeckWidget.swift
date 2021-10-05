@@ -36,6 +36,10 @@ struct Provider: IntentTimelineProvider {
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
+        
+        insightService.widgetableInsightIDs { uuids in
+            print(uuids)
+        }
                 
         // TODO: dynamic configuration that asks for list of vegetable insights from the api
         // TODO: get selected InsightID from configuration
