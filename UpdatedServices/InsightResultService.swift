@@ -13,7 +13,7 @@ class InsightResultService: ObservableObject {
     private let cache: CacheLayer
     private let errorService: ErrorService
     
-    private let loadingState = Cache<DTOsWithIdentifiers.Insight.ID, LoadingState>()
+    private let loadingState = Cache<DTOv2.Insight.ID, LoadingState>()
     
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
@@ -77,7 +77,7 @@ class InsightResultService: ObservableObject {
         cacheCancellable = cache.insightCalculationResultCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
     }
     
-    func loadingState(for insightID: DTOsWithIdentifiers.Insight.ID) -> LoadingState {
+    func loadingState(for insightID: DTOv2.Insight.ID) -> LoadingState {
         let loadingState = loadingState[insightID] ?? .idle
         
         // after 60 seconds, clear the error, allowing another load
@@ -94,7 +94,7 @@ class InsightResultService: ObservableObject {
         return loadingState
     }
     
-    func cacheKey(insight: DTOsWithIdentifiers.Insight) -> String {
+    func cacheKey(insight: DTOv2.Insight) -> String {
         let uuidString = insight.id.uuidString
         let earlierDateString = Formatter.iso8601.string(from: timeWindowBeginningDate)
         let laterDateString = Formatter.iso8601.string(from: timeWindowEndDate.startOfHour)
@@ -102,7 +102,7 @@ class InsightResultService: ObservableObject {
         return "\(uuidString)/\(earlierDateString)/\(laterDateString)/\(insightHash)/v1"
     }
     
-    func insightCalculationResult(withID insightID: DTOsWithIdentifiers.Insight.ID) -> InsightResultWrap? {
+    func insightCalculationResult(withID insightID: DTOv2.Insight.ID) -> InsightResultWrap? {
         guard let insight = cache.insightCache[insightID],
               let insightCalculationResult = cache.insightCalculationResultCache[cacheKey(insight: insight)]
         else {
@@ -117,7 +117,7 @@ class InsightResultService: ObservableObject {
         return insightCalculationResult
     }
     
-    func retrieveInsightCalculationResult(with insightID: DTOsWithIdentifiers.Insight.ID) {
+    func retrieveInsightCalculationResult(with insightID: DTOv2.Insight.ID) {
         cache.queue.async { [weak self] in
             self?.performRetrieval(ofInsightWithID: insightID)
         }
@@ -125,7 +125,7 @@ class InsightResultService: ObservableObject {
 }
 
 private extension InsightResultService {
-    func performRetrieval(ofInsightWithID insightID: DTOsWithIdentifiers.Insight.ID) {
+    func performRetrieval(ofInsightWithID insightID: DTOv2.Insight.ID) {
         switch loadingState(for: insightID) {
         case .loading, .error:
             return
@@ -139,7 +139,7 @@ private extension InsightResultService {
                                  Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
                                  Formatter.iso8601noFS.string(from: timeWindowEndDate))
         
-        api.get(url) { [weak self] (result: Result<DTOsWithIdentifiers.InsightCalculationResult, TransferError>) in
+        api.get(url) { [weak self] (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
             self?.cache.queue.async { [weak self] in
                 switch result {
                 case .success(let insightCalculationResult):

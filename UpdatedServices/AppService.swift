@@ -13,7 +13,7 @@ class AppService: ObservableObject {
     private let cache: CacheLayer
     private let errorService: ErrorService
     
-    private let loadingState = Cache<DTOsWithIdentifiers.App.ID, LoadingState>()
+    private let loadingState = Cache<DTOv2.App.ID, LoadingState>()
         
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
@@ -27,7 +27,7 @@ class AppService: ObservableObject {
         cacheCancellable = cache.appCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
     }
     
-    func loadingState(for appID: DTOsWithIdentifiers.App.ID) -> LoadingState {
+    func loadingState(for appID: DTOv2.App.ID) -> LoadingState {
         let loadingState = loadingState[appID] ?? .idle
         
         // after 60 seconds, clear the error, allowing another load
@@ -44,7 +44,7 @@ class AppService: ObservableObject {
         return loadingState
     }
     
-    func app(withID appID: DTOsWithIdentifiers.App.ID) -> DTOsWithIdentifiers.App? {
+    func app(withID appID: DTOv2.App.ID) -> DTOv2.App? {
         guard let app = cache.appCache[appID] else {
             retrieveApp(with: appID)
             return nil
@@ -57,7 +57,7 @@ class AppService: ObservableObject {
         return app
     }
     
-    func retrieveApp(with appID: DTOsWithIdentifiers.App.ID) {
+    func retrieveApp(with appID: DTOv2.App.ID) {
         cache.queue.async { [weak self] in
             self?.performRetrieval(ofAppWithID: appID)
         }
@@ -101,7 +101,7 @@ class AppService: ObservableObject {
 }
 
 private extension AppService {
-    func performRetrieval(ofAppWithID appID: DTOsWithIdentifiers.App.ID) {
+    func performRetrieval(ofAppWithID appID: DTOv2.App.ID) {
         switch loadingState(for: appID) {
         case .loading, .error:
             return
@@ -113,7 +113,7 @@ private extension AppService {
         
         let url = api.urlForPath(apiVersion: .v2, "apps", appID.uuidString)
         
-        api.get(url) { [weak self] (result: Result<DTOsWithIdentifiers.App, TransferError>) in
+        api.get(url) { [weak self] (result: Result<DTOv2.App, TransferError>) in
             self?.cache.queue.async { [weak self] in
                 switch result {
                 case let .success(app):

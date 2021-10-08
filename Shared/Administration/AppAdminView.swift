@@ -148,7 +148,7 @@ struct AppAdminView: View {
 }
 
 private struct AddAdminViewListEntry: View {
-    let appSignalCountDTO: DTO.AppAdminEntry
+    let appSignalCountDTO: DTOv1.AppAdminEntry
     let displayMode: DisplayMode
     
     var body: some View {
@@ -174,10 +174,10 @@ private struct AddAdminViewListEntry: View {
 }
 
 struct AppAdminDetailView: View {
-    let entry: DTO.AppAdminEntry
+    let entry: DTOv1.AppAdminEntry
     
     @EnvironmentObject var api: APIClient
-    @State var signalCountHistory: [DTO.InsightData]?
+    @State var signalCountHistory: [DTOv1.InsightData]?
     
     func getSignalCountHistory() {
         api.getAppSignalCountHistory(forAppID: entry.id) {

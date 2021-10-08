@@ -10,7 +10,7 @@ import SwiftUI
 @available(macOS 12, *)
 struct MacOs12SignalTypesView: View {
     @EnvironmentObject var lexiconService: LexiconService
-    @State private var sortOrder: [KeyPathComparator<DTO.LexiconSignalDTO>] = [
+    @State private var sortOrder: [KeyPathComparator<DTOv1.LexiconSignalDTO>] = [
         .init(\.type, order: SortOrder.forward)
     ]
     @State var searchText: String = ""
@@ -58,7 +58,7 @@ struct MacOs12SignalTypesView: View {
         }
     }
 
-    var signalTypes: [DTO.LexiconSignalDTO] {
+    var signalTypes: [DTOv1.LexiconSignalDTO] {
         return lexiconService.signalTypes(for: appID)
             .filter {
                 searchText.isEmpty ? true : $0.type.localizedCaseInsensitiveContains(searchText)

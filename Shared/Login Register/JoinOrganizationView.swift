@@ -15,7 +15,7 @@ struct JoinOrganizationView: View {
     @State var isLoading: Bool = false
     @State var organizationJoinRequestToken: String = ""
     @State var organizationJoinRequestPresent: Bool = false
-    @State var organizationJoinRequest = DTO.OrganizationJoinRequestDTO(
+    @State var organizationJoinRequest = DTOv1.OrganizationJoinRequestDTO(
         email: "", receiveMarketingEmails: false, firstName: "", lastName: "", password: "",
         organizationID: UUID(), registrationToken: ""
     )
@@ -113,7 +113,7 @@ struct JoinOrganizationView: View {
                     api.getOrganizationJoinRequest(with: organizationJoinRequestToken) { result in
                         switch result {
                         case let .success(joinRequest):
-                            organizationJoinRequest = DTO.OrganizationJoinRequestDTO(
+                            organizationJoinRequest = DTOv1.OrganizationJoinRequestDTO(
                                 email: joinRequest.email,
                                 receiveMarketingEmails: false,
                                 firstName: "",

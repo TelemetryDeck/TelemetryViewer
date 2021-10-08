@@ -14,8 +14,8 @@ struct InsightGroupsView: View {
     @EnvironmentObject var insightResultService: InsightResultService
     
     @State var sidebarVisible = false
-    @State var selectedInsightGroupID: DTOsWithIdentifiers.Group.ID?
-    @State var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
+    @State var selectedInsightGroupID: DTOv2.Group.ID?
+    @State var selectedInsightID: DTOv2.Insight.ID?
     @State private var showDatePicker: Bool = false
     
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -28,7 +28,7 @@ struct InsightGroupsView: View {
         }
     }
     
-    let appID: DTOsWithIdentifiers.App.ID
+    let appID: DTOv2.App.ID
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -101,7 +101,7 @@ struct InsightGroupsView: View {
                         loadingState: groupService.loadingState(for: idTuple.0),
                         title: groupService.group(withID: idTuple.0)?.title
                     )
-                    .tag(idTuple.0 as DTOsWithIdentifiers.Group.ID?)
+                    .tag(idTuple.0 as DTOv2.Group.ID?)
                 }
             }
         }

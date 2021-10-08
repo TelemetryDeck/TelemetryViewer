@@ -24,7 +24,7 @@ struct InsightGroupEditor: View {
 
     @State private var showingAlert = false
 
-    init(groupID: DTOsWithIdentifiers.Group.ID, appID: DTOsWithIdentifiers.App.ID, title: String, order: Double) {
+    init(groupID: DTOv2.Group.ID, appID: DTOv2.App.ID, title: String, order: Double) {
         self.id = groupID
         self.appID = appID
         self._title = State(initialValue: title)
@@ -33,7 +33,7 @@ struct InsightGroupEditor: View {
     }
 
     func save() {
-        insightService.update(insightGroup: DTO.InsightGroup(id: id, title: title, order: order), in: appID) { _ in
+        insightService.update(insightGroup: DTOv1.InsightGroup(id: id, title: title, order: order), in: appID) { _ in
             groupService.retrieveGroup(with: self.id)
         }
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignalTypeView: View {
-    let lexiconItem: DTO.LexiconSignalDTO
+    let lexiconItem: DTOv1.LexiconSignalDTO
     let compressed: Bool
 
     var body: some View {
@@ -37,7 +37,7 @@ struct SignalTypeView: View {
 }
 
 struct PayloadKeyView: View {
-    let lexiconItem: DTO.LexiconPayloadKey
+    let lexiconItem: DTOv1.LexiconPayloadKey
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

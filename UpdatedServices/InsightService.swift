@@ -13,7 +13,7 @@ class InsightService: ObservableObject {
     private let cache: CacheLayer
     private let errorService: ErrorService
     
-    private let loadingState = Cache<DTOsWithIdentifiers.Insight.ID, LoadingState>()
+    private let loadingState = Cache<DTOv2.Insight.ID, LoadingState>()
     
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
@@ -27,7 +27,7 @@ class InsightService: ObservableObject {
         cacheCancellable = cache.insightCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
     }
     
-    func loadingState(for insightID: DTOsWithIdentifiers.Insight.ID) -> LoadingState {
+    func loadingState(for insightID: DTOv2.Insight.ID) -> LoadingState {
         let loadingState = loadingState[insightID] ?? .idle
         
         // after 60 seconds, clear the error, allowing another load
@@ -44,7 +44,7 @@ class InsightService: ObservableObject {
         return loadingState
     }
     
-    func insight(withID insightID: DTOsWithIdentifiers.Insight.ID) -> DTOsWithIdentifiers.Insight? {
+    func insight(withID insightID: DTOv2.Insight.ID) -> DTOv2.Insight? {
         guard let object = cache.insightCache[insightID] else {
             retrieveInsight(with: insightID)
             return nil
@@ -57,13 +57,13 @@ class InsightService: ObservableObject {
         return object
     }
     
-    func retrieveInsight(with insightID: DTOsWithIdentifiers.Insight.ID) {
+    func retrieveInsight(with insightID: DTOv2.Insight.ID) {
         cache.queue.async { [weak self] in
             self?.performRetrieval(ofInsightWithID: insightID)
         }
     }
     
-    func create(insightWith: DTOsWithIdentifiers.Insight, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+    func create(insightWith: DTOv2.Insight, callback: ((Result<String, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "insights")
         
         api.post(insightWith, to: url, defaultValue: nil) { (result: Result<String, TransferError>) in
@@ -71,10 +71,10 @@ class InsightService: ObservableObject {
         }
     }
     
-    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightDTO: DTOsWithIdentifiers.Insight, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightDTO: DTOv2.Insight, callback: ((Result<DTOv1.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
 
-        api.patch(insightDTO, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+        api.patch(insightDTO, to: url) { [unowned self] (result: Result<DTOv1.InsightCalculationResult, TransferError>) in
             retrieveInsight(with: insightID)
             
             callback?(result)
@@ -112,7 +112,7 @@ class InsightService: ObservableObject {
 }
 
 private extension InsightService {
-    func performRetrieval(ofInsightWithID insightID: DTOsWithIdentifiers.Insight.ID) {
+    func performRetrieval(ofInsightWithID insightID: DTOv2.Insight.ID) {
         switch loadingState(for: insightID) {
         case .loading, .error:
             return
@@ -124,7 +124,7 @@ private extension InsightService {
         
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
         
-        api.get(url) { [weak self] (result: Result<DTOsWithIdentifiers.Insight, TransferError>) in
+        api.get(url) { [weak self] (result: Result<DTOv2.Insight, TransferError>) in
             self?.cache.queue.async { [weak self] in
                 switch result {
                 case let .success(insight):

@@ -12,7 +12,7 @@ struct SignalList: View {
     @EnvironmentObject var signalsService: SignalsService
 
     @State var filterText: String = ""
-    @State var selectedSignal: DTO.IdentifiableSignal?
+    @State var selectedSignal: DTOv1.IdentifiableSignal?
 
     let appID: UUID
 
@@ -84,7 +84,7 @@ struct SignalList: View {
 }
 
 struct SignalListCell: View {
-    let signal: DTO.Signal
+    let signal: DTOv1.Signal
 
     var body: some View {
         HStack {

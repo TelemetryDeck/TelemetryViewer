@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StatusMessage: View {
-    let statusMessage: DTOsWithIdentifiers.StatusMessage
+    let statusMessage: DTOv2.StatusMessage
     
     var body: some View {
         HStack(alignment: .top) {

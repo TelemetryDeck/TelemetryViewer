@@ -11,7 +11,7 @@ struct RegisterView: View {
     @EnvironmentObject var api: APIClient
     @Environment(\.presentationMode) var presentationMode
     @State private var isLoading = false
-    @State private var registrationRequestBody = DTO.RegistrationRequestBody()
+    @State private var registrationRequestBody = DTOv1.RegistrationRequestBody()
     @State private var showingSuccessAlert = false
     @State private var error: TransferError?
 

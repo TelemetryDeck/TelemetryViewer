@@ -16,9 +16,9 @@ enum EditorBottomSheetPosition: CGFloat, CaseIterable {
 }
 
 struct GroupView: View {
-    let groupID: DTOsWithIdentifiers.Group.ID
+    let groupID: DTOv2.Group.ID
 
-    @Binding var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
+    @Binding var selectedInsightID: DTOv2.Insight.ID?
     @Binding var sidebarVisible: Bool
 
     @EnvironmentObject var groupService: GroupService

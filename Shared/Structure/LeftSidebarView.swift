@@ -12,7 +12,7 @@ struct LeftSidebarView: View {
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
 
-    @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOsWithIdentifiers.App.ID: Bool]? = nil
+    @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOv2.App.ID: Bool]? = nil
     @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection? = nil
 
     enum Selection: Codable, Hashable {
@@ -104,7 +104,7 @@ struct LeftSidebarView: View {
         }
     }
 
-    private func binding(for key: DTOsWithIdentifiers.App.ID) -> Binding<Bool> {
+    private func binding(for key: DTOv2.App.ID) -> Binding<Bool> {
         return .init(
             get: { self.expandedSections?[key] ?? false },
             set: {
@@ -116,7 +116,7 @@ struct LeftSidebarView: View {
         )
     }
 
-    func section(for appID: DTOsWithIdentifiers.App.ID) -> some View {
+    func section(for appID: DTOv2.App.ID) -> some View {
         DisclosureGroup(isExpanded: self.binding(for: appID)) {
             if let app = appService.app(withID: appID) {
                 NavigationLink(tag: Selection.insights(app: app.id), selection: $sidebarSelection) {

@@ -41,7 +41,7 @@ class EditorViewModel: ObservableObject {
     let insightService: InsightService
     let lexiconService: LexiconService
     
-    init(insight: DTOsWithIdentifiers.Insight, appID: UUID, insightService: InsightService, groupService: GroupService, lexiconService: LexiconService) {
+    init(insight: DTOv2.Insight, appID: UUID, insightService: InsightService, groupService: GroupService, lexiconService: LexiconService) {
         self.groupService = groupService
         self.insightService = insightService
         self.lexiconService = lexiconService
@@ -89,8 +89,8 @@ class EditorViewModel: ObservableObject {
         return stringValue
     }
     
-    var generatedInsight: DTOsWithIdentifiers.Insight {
-        DTOsWithIdentifiers.Insight(
+    var generatedInsight: DTOv2.Insight {
+        DTOv2.Insight(
             id: id,
             groupID: groupID,
             order: order,
@@ -141,8 +141,8 @@ class EditorViewModel: ObservableObject {
         }
     }
     
-    let id: DTOsWithIdentifiers.Insight.ID
-    let appID: DTOsWithIdentifiers.App.ID
+    let id: DTOv2.Insight.ID
+    let appID: DTOv2.App.ID
     
     @Published var needsSaving: Bool = false
     

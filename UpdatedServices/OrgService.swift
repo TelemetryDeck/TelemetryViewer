@@ -25,7 +25,7 @@ class OrgService: ObservableObject {
         cacheCancellable = cache.organizationCache.objectWillChange.receive(on: DispatchQueue.main).sink { _ in self.objectWillChange.send() }
     }
     
-    var organization: DTOsWithIdentifiers.Organization? {
+    var organization: DTOv2.Organization? {
         guard let userToken = api.userToken?.bearerTokenAuthString, let organization = cache.organizationCache[userToken] else {
             retrieveOrganization()
             return nil
@@ -72,7 +72,7 @@ private extension OrgService {
         
         let url = api.urlForPath(apiVersion: .v2, "organization")
         
-        api.get(url) { [weak self] (result: Result<DTOsWithIdentifiers.Organization, TransferError>) in
+        api.get(url) { [weak self] (result: Result<DTOv2.Organization, TransferError>) in
             switch result {
             case let .success(organization):
                 self?.cache.queue.async {

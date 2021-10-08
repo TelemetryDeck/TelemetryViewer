@@ -35,7 +35,7 @@ struct OrganizationSignalNumbersView: View {
     func loadOrganizationSignalNumbers() {
         let url = api.urlForPath("organization", "signalcount")
 
-        api.get(url) { (result: Result<[DTOsWithIdentifiers.InsightCalculationResultRow], TransferError>) in
+        api.get(url) { (result: Result<[DTOv2.InsightCalculationResultRow], TransferError>) in
             switch result {
             case .success(let signalCount):
                 DispatchQueue.global(qos: .default).async {
@@ -70,7 +70,7 @@ struct PriceButton: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
     @Binding var showCheckoutPrices: Bool
-    let priceStructure: DTOsWithIdentifiers.PriceStructure
+    let priceStructure: DTOv2.PriceStructure
 
     @State var isLoading = false
 
@@ -148,7 +148,7 @@ struct PriceButton: View {
 struct CheckoutPricesView: View {
     @EnvironmentObject var api: APIClient
     @Binding var showCheckoutPrices: Bool
-    @State var prices: [DTOsWithIdentifiers.PriceStructure] = []
+    @State var prices: [DTOv2.PriceStructure] = []
 
     var body: some View {
         HStack(spacing: -25) {
@@ -166,7 +166,7 @@ struct CheckoutPricesView: View {
     func load() {
         let url = api.urlForPath(apiVersion: .v2, "stripe", "prices")
 
-        api.get(url, defaultValue: []) { (result: Result<[DTOsWithIdentifiers.PriceStructure], TransferError>) in
+        api.get(url, defaultValue: []) { (result: Result<[DTOv2.PriceStructure], TransferError>) in
             switch result {
             case .failure:
                 break

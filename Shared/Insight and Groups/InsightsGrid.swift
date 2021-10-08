@@ -9,10 +9,10 @@ import SwiftUI
 
 struct InsightsGrid: View {
     @EnvironmentObject var insightService: InsightService
-    @Binding var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
+    @Binding var selectedInsightID: DTOv2.Insight.ID?
     @Binding var sidebarVisible: Bool
 
-    let insightGroup: DTOsWithIdentifiers.Group
+    let insightGroup: DTOv2.Group
     let showBottomSondrine: Bool?
     let isSelectable: Bool
 

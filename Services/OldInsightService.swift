@@ -18,15 +18,15 @@ class OldInsightService: ObservableObject {
     }
     
     /// Retrieve insight groups for the specified app. Will automatically load groups if none is present, or the data is outdated
-    func insightGroups(for appID: UUID) -> [DTO.InsightGroup]? {
+    func insightGroups(for appID: UUID) -> [DTOv1.InsightGroup]? {
         return []
     }
     
-    func insightGroup(id insightGroupID: UUID, in appID: UUID) -> DTO.InsightGroup? {
+    func insightGroup(id insightGroupID: UUID, in appID: UUID) -> DTOv1.InsightGroup? {
         return nil
     }
     
-    func insight(id insightID: UUID, in insightGroupID: UUID, in appID: UUID) -> DTO.InsightDTO? {
+    func insight(id insightID: UUID, in insightGroupID: UUID, in appID: UUID) -> DTOv1.InsightDTO? {
         return nil
     }
     
@@ -38,7 +38,7 @@ class OldInsightService: ObservableObject {
     // MARK: - Refreshing
     
 
-    private func getInsightGroups(for appID: UUID, callback: ((Result<[DTO.InsightGroup], TransferError>) -> Void)? = nil) {
+    private func getInsightGroups(for appID: UUID, callback: ((Result<[DTOv1.InsightGroup], TransferError>) -> Void)? = nil) {
 //        guard !appIDsLoadingInsightGroups.contains(appID) else { return }
 //
 //        appIDsLoadingInsightGroups.insert(appID)
@@ -69,30 +69,30 @@ class OldInsightService: ObservableObject {
     
     
     // MARK: - CRUD
-    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups")
 
-        api.post(["title": insightGroupNamed], to: url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+        api.post(["title": insightGroupNamed], to: url) { [unowned self] (result: Result<DTOv1.InsightGroup, TransferError>) in
             self.getInsightGroups(for: appID) { _ in
                 callback?(result)
             }
         }
     }
 
-    func update(insightGroup: DTO.InsightGroup, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func update(insightGroup: DTOv1.InsightGroup, in appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroup.id.uuidString)
 
-        api.patch(insightGroup, to: url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+        api.patch(insightGroup, to: url) { [unowned self] (result: Result<DTOv1.InsightGroup, TransferError>) in
             self.invalidateInsightGroups(forAppID: appID)
             self.getInsightGroups(for: appID)
             callback?(result)
         }
     }
 
-    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString)
 
-        api.delete(url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+        api.delete(url) { [unowned self] (result: Result<DTOv1.InsightGroup, TransferError>) in
             self.getInsightGroups(for: appID) { _ in
                 self.selectedInsightGroupID = nil
             }
@@ -100,24 +100,24 @@ class OldInsightService: ObservableObject {
         }
     }
 
-    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroupID: UUID, for appID: UUID, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroupID: UUID, for appID: UUID, callback: ((Result<DTOv1.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights")
 
-        api.post(requestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+        api.post(requestBody, to: url) { [unowned self] (result: Result<DTOv1.InsightCalculationResult, TransferError>) in
             self.getInsightGroups(for: appID) { _ in
                 callback?(result)
             }
         }
     }
 
-    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<DTOv1.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
 
         let oldGroupID = insight(id: insightID, in: insightGroupID, in: appID)?.group["id"]
         let newGroupID = insightUpdateRequestBody.groupID
         let insightGroupHasChanged = oldGroupID != newGroupID
 
-        api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+        api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTOv1.InsightCalculationResult, TransferError>) in
             if insightGroupHasChanged {
                 self.invalidateInsightGroups(forAppID: appID)
                 self.getInsightGroups(for: appID)
@@ -139,7 +139,7 @@ class OldInsightService: ObservableObject {
 class OlderInsightService: ObservableObject {
     let api: APIClient
 
-    @Published var insightGroupsByAppID: [UUID: [DTO.InsightGroup]] = [:]
+    @Published var insightGroupsByAppID: [UUID: [DTOv1.InsightGroup]] = [:]
 
     /// A set of App IDs that are currently loading for an insight group
     ///
@@ -165,7 +165,7 @@ class OlderInsightService: ObservableObject {
     }
 
     /// Retrieve insight groups for the specified app. Will automatically load groups if none is present, or the data is outdated
-    func insightGroups(for appID: UUID) -> [DTO.InsightGroup]? {
+    func insightGroups(for appID: UUID) -> [DTOv1.InsightGroup]? {
         let insightGroups = insightGroupsByAppID[appID]
 
         if insightGroups == nil {
@@ -183,7 +183,7 @@ class OlderInsightService: ObservableObject {
         return insightGroups
     }
 
-    func insightGroup(id insightGroupID: UUID, in appID: UUID) -> DTO.InsightGroup? {
+    func insightGroup(id insightGroupID: UUID, in appID: UUID) -> DTOv1.InsightGroup? {
         guard let insightGroups = insightGroups(for: appID) else { return nil }
 
         guard let insightGroup = insightGroups.first(where: { $0.id == insightGroupID }) else {
@@ -193,19 +193,19 @@ class OlderInsightService: ObservableObject {
         return insightGroup
     }
 
-    func insight(id insightID: UUID, in insightGroupID: UUID, in appID: UUID) -> DTO.InsightDTO? {
+    func insight(id insightID: UUID, in insightGroupID: UUID, in appID: UUID) -> DTOv1.InsightDTO? {
         guard let insightGroup = insightGroup(id: insightGroupID, in: appID) else { return nil }
 
         return insightGroup.insights.first { $0.id == insightID }
     }
 
-    func getInsightGroups(for appID: UUID, callback: ((Result<[DTO.InsightGroup], TransferError>) -> Void)? = nil) {
+    func getInsightGroups(for appID: UUID, callback: ((Result<[DTOv1.InsightGroup], TransferError>) -> Void)? = nil) {
         guard !appIDsLoadingInsightGroups.contains(appID) else { return }
 
         appIDsLoadingInsightGroups.insert(appID)
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups")
 
-        api.get(url) { [unowned self] (result: Result<[DTO.InsightGroup], TransferError>) in
+        api.get(url) { [unowned self] (result: Result<[DTOv1.InsightGroup], TransferError>) in
             switch result {
             case let .success(foundInsightGroups):
                 self.insightGroupsByAppID[appID] = foundInsightGroups.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
@@ -228,30 +228,30 @@ class OlderInsightService: ObservableObject {
         }
     }
 
-    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups")
 
-        api.post(["title": insightGroupNamed], to: url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+        api.post(["title": insightGroupNamed], to: url) { [unowned self] (result: Result<DTOv1.InsightGroup, TransferError>) in
             self.getInsightGroups(for: appID) { _ in
                 callback?(result)
             }
         }
     }
 
-    func update(insightGroup: DTO.InsightGroup, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func update(insightGroup: DTOv1.InsightGroup, in appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroup.id.uuidString)
 
-        api.patch(insightGroup, to: url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+        api.patch(insightGroup, to: url) { [unowned self] (result: Result<DTOv1.InsightGroup, TransferError>) in
             self.invalidateInsightGroups(forAppID: appID)
             self.getInsightGroups(for: appID)
             callback?(result)
         }
     }
 
-    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString)
 
-        api.delete(url) { [unowned self] (result: Result<DTO.InsightGroup, TransferError>) in
+        api.delete(url) { [unowned self] (result: Result<DTOv1.InsightGroup, TransferError>) in
             self.getInsightGroups(for: appID) { _ in
                 self.selectedInsightGroupID = nil
             }
@@ -259,24 +259,24 @@ class OlderInsightService: ObservableObject {
         }
     }
 
-    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroupID: UUID, for appID: UUID, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func create(insightWith requestBody: InsightDefinitionRequestBody, in insightGroupID: UUID, for appID: UUID, callback: ((Result<DTOv1.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights")
 
-        api.post(requestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+        api.post(requestBody, to: url) { [unowned self] (result: Result<DTOv1.InsightCalculationResult, TransferError>) in
             self.getInsightGroups(for: appID) { _ in
                 callback?(result)
             }
         }
     }
 
-    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightUpdateRequestBody: InsightDefinitionRequestBody, callback: ((Result<DTOv1.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString, "insights", insightID.uuidString)
 
         let oldGroupID = insight(id: insightID, in: insightGroupID, in: appID)?.group["id"]
         let newGroupID = insightUpdateRequestBody.groupID
         let insightGroupHasChanged = oldGroupID != newGroupID
 
-        api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+        api.patch(insightUpdateRequestBody, to: url) { [unowned self] (result: Result<DTOv1.InsightCalculationResult, TransferError>) in
             if insightGroupHasChanged {
                 self.invalidateInsightGroups(forAppID: appID)
                 self.getInsightGroups(for: appID)

@@ -13,7 +13,7 @@ class GroupService: ObservableObject {
     private let cache: CacheLayer
     private let errorService: ErrorService
     
-    private let loadingState = Cache<DTOsWithIdentifiers.Group.ID, LoadingState>()
+    private let loadingState = Cache<DTOv2.Group.ID, LoadingState>()
     
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
@@ -27,7 +27,7 @@ class GroupService: ObservableObject {
         cacheCancellable = cache.groupCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
     }
     
-    func loadingState(for groupID: DTOsWithIdentifiers.Group.ID) -> LoadingState {
+    func loadingState(for groupID: DTOv2.Group.ID) -> LoadingState {
         let loadingState = loadingState[groupID] ?? .idle
         
         // after 60 seconds, clear the error, allowing another load
@@ -44,7 +44,7 @@ class GroupService: ObservableObject {
         return loadingState
     }
     
-    func group(withID groupID: DTOsWithIdentifiers.Group.ID) -> DTOsWithIdentifiers.Group? {
+    func group(withID groupID: DTOv2.Group.ID) -> DTOv2.Group? {
         guard let group = cache.groupCache[groupID] else {
             retrieveGroup(with: groupID)
             return nil
@@ -57,32 +57,32 @@ class GroupService: ObservableObject {
         return group
     }
     
-    func retrieveGroup(with groupID: DTOsWithIdentifiers.Group.ID) {
+    func retrieveGroup(with groupID: DTOv2.Group.ID) {
         cache.queue.async { [weak self] in
             self?.performRetrieval(ofGroupWithID: groupID)
         }
     }
     
-    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups")
 
-        api.post(["title": insightGroupNamed], to: url) { (result: Result<DTO.InsightGroup, TransferError>) in
+        api.post(["title": insightGroupNamed], to: url) { (result: Result<DTOv1.InsightGroup, TransferError>) in
             callback?(result)
         }
     }
 
-    func update(insightGroup: DTO.InsightGroup, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func update(insightGroup: DTOv1.InsightGroup, in appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroup.id.uuidString)
 
-        api.patch(insightGroup, to: url) { (result: Result<DTO.InsightGroup, TransferError>) in
+        api.patch(insightGroup, to: url) { (result: Result<DTOv1.InsightGroup, TransferError>) in
             callback?(result)
         }
     }
 
-    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTO.InsightGroup, TransferError>) -> Void)? = nil) {
+    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString)
 
-        api.delete(url) { (result: Result<DTO.InsightGroup, TransferError>) in
+        api.delete(url) { (result: Result<DTOv1.InsightGroup, TransferError>) in
             // TODO:
             callback?(result)
         }
@@ -99,7 +99,7 @@ class GroupService: ObservableObject {
 }
 
 private extension GroupService {
-    func performRetrieval(ofGroupWithID groupID: DTOsWithIdentifiers.Group.ID) {
+    func performRetrieval(ofGroupWithID groupID: DTOv2.Group.ID) {
         switch loadingState(for: groupID) {
         case .loading, .error:
             return
@@ -111,7 +111,7 @@ private extension GroupService {
         
         let url = api.urlForPath(apiVersion: .v2, "groups", groupID.uuidString)
         
-        api.get(url) { [weak self] (result: Result<DTOsWithIdentifiers.Group, TransferError>) in
+        api.get(url) { [weak self] (result: Result<DTOv2.Group, TransferError>) in
             self?.cache.queue.async { [weak self] in
                 switch result {
                 case let .success(group):

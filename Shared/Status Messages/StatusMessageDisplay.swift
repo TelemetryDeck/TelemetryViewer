@@ -11,7 +11,7 @@ struct StatusMessageDisplay: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var errorService: ErrorService
 
-    @State var statusMessages: [DTOsWithIdentifiers.StatusMessage] = []
+    @State var statusMessages: [DTOv2.StatusMessage] = []
 
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
@@ -45,7 +45,7 @@ struct StatusMessageDisplay: View {
     }
 
     func load(url: URL) {
-        api.get(url) { (result: Result<[DTOsWithIdentifiers.StatusMessage], TransferError>) in
+        api.get(url) { (result: Result<[DTOv2.StatusMessage], TransferError>) in
             switch result {
             case let .success(msgs):
                 DispatchQueue.main.async {

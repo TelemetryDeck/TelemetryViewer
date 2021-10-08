@@ -10,7 +10,7 @@ import SwiftUI
 @available(macOS 12, *)
 struct MacOs12PayloadKeysView: View {
     @EnvironmentObject var lexiconService: LexiconService
-    @State private var sortOrder: [KeyPathComparator<DTO.LexiconPayloadKey>] = [
+    @State private var sortOrder: [KeyPathComparator<DTOv1.LexiconPayloadKey>] = [
         .init(\.payloadKey, order: SortOrder.forward)
     ]
     @State var searchText: String = ""
@@ -56,7 +56,7 @@ struct MacOs12PayloadKeysView: View {
         }
     }
 
-    var payloadTypes: [DTO.LexiconPayloadKey] {
+    var payloadTypes: [DTOv1.LexiconPayloadKey] {
         return lexiconService.payloadKeys(for: appID)
             .filter {
                 searchText.isEmpty ? true : $0.payloadKey.localizedCaseInsensitiveContains(searchText)

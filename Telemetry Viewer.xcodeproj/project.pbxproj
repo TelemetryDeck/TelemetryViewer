@@ -35,8 +35,8 @@
 		2B19DEBF26444B2B0086F70E /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
 		2B19DEC026444B2B0086F70E /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
 		2B19DEC126444B2B0086F70E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
-		2B1D468626CC0A28008814A9 /* DTOsWithIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOsWithIdentifiers.swift */; };
-		2B1D468726CC0A28008814A9 /* DTOsWithIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOsWithIdentifiers.swift */; };
+		2B1D468626CC0A28008814A9 /* DTOv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOv2.swift */; };
+		2B1D468726CC0A28008814A9 /* DTOv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOv2.swift */; };
 		2B1D468926CC4423008814A9 /* OrgService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468826CC4423008814A9 /* OrgService.swift */; };
 		2B1D468A26CC4423008814A9 /* OrgService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468826CC4423008814A9 /* OrgService.swift */; };
 		2B1D469026CC471A008814A9 /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468F26CC471A008814A9 /* Caching.swift */; };
@@ -383,7 +383,7 @@
 		2B19DE9C26444B0C0086F70E /* UserDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightCalculationResult.swift; sourceTree = "<group>"; };
 		2B19DE9F26444B0C0086F70E /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		2B1D468526CC0A28008814A9 /* DTOsWithIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOsWithIdentifiers.swift; sourceTree = "<group>"; };
+		2B1D468526CC0A28008814A9 /* DTOv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOv2.swift; sourceTree = "<group>"; };
 		2B1D468826CC4423008814A9 /* OrgService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgService.swift; sourceTree = "<group>"; };
 		2B1D468E26CC471A008814A9 /* CacheLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheLayer.swift; sourceTree = "<group>"; };
 		2B1D468F26CC471A008814A9 /* Caching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching.swift; sourceTree = "<group>"; };
@@ -650,7 +650,7 @@
 				2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */,
 				2B61B951264C3061003F62C4 /* SignalDTO.swift */,
 				2B19DE9C26444B0C0086F70E /* UserDTO.swift */,
-				2B1D468526CC0A28008814A9 /* DTOsWithIdentifiers.swift */,
+				2B1D468526CC0A28008814A9 /* DTOv2.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -1428,7 +1428,7 @@
 				2BC522EA2625FCEF00E643AC /* FeedbackView.swift in Sources */,
 				DCB5F9F625F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
 				2B1D469826CC4C5D008814A9 /* ErrorService.swift in Sources */,
-				2B1D468626CC0A28008814A9 /* DTOsWithIdentifiers.swift in Sources */,
+				2B1D468626CC0A28008814A9 /* DTOv2.swift in Sources */,
 				2B21FCE226FDD28700A8A55B /* BottomSondrine.swift in Sources */,
 				2B19DEA426444B0C0086F70E /* InsightData.swift in Sources */,
 				2BBFCA01267D05E40013DC74 /* DashedCardView.swift in Sources */,
@@ -1660,7 +1660,7 @@
 				2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				2B1D469926CC4C5D008814A9 /* ErrorService.swift in Sources */,
-				2B1D468726CC0A28008814A9 /* DTOsWithIdentifiers.swift in Sources */,
+				2B1D468726CC0A28008814A9 /* DTOv2.swift in Sources */,
 				2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */,
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2BBFCA2E267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */,

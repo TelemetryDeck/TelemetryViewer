@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ExpandedInsightCalculationResult {
-    let insightData: DTO.InsightCalculationResult
+    let insightData: DTOv1.InsightCalculationResult
     let chartDataSet: ChartDataSet
 }
 
@@ -99,7 +99,7 @@ class InsightCalculationService: ObservableObject {
         calculationResultsByInsightID = [:]
     }
 
-    func getCalculationResult(for insightID: UUID, in insightGroupID: UUID, in appID: UUID, callback: ((Result<DTO.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func getCalculationResult(for insightID: UUID, in insightGroupID: UUID, in appID: UUID, callback: ((Result<DTOv1.InsightCalculationResult, TransferError>) -> Void)? = nil) {
         guard !loadingInsightIDs.contains(insightID) else { return }
         errorInsightIDs.remove(insightID)
         loadingInsightIDs.insert(insightID)
@@ -111,7 +111,7 @@ class InsightCalculationService: ObservableObject {
                                  Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
                                  Formatter.iso8601noFS.string(from: timeWindowEndIsToday ? Date() : timeWindowEndDate))
 
-        api.get(url) { [unowned self] (result: Result<DTO.InsightCalculationResult, TransferError>) in
+        api.get(url) { [unowned self] (result: Result<DTOv1.InsightCalculationResult, TransferError>) in
             if let insightDTO = try? result.get() {
                 DispatchQueue.global(qos: .userInitiated).async {
                     let chartDataSet = ChartDataSet(

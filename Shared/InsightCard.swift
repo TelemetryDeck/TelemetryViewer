@@ -11,14 +11,14 @@ struct InsightCard: View {
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var insightResultService: InsightResultService
     
-    @Binding var selectedInsightID: DTOsWithIdentifiers.Insight.ID?
+    @Binding var selectedInsightID: DTOv2.Insight.ID?
     @Binding var sidebarVisible: Bool
     
     private var isSelected: Bool {
         selectedInsightID == insightID
     }
     
-    let insightID: DTOsWithIdentifiers.Insight.ID
+    let insightID: DTOv2.Insight.ID
     let isSelectable: Bool
     
     private let refreshTimer = Timer.publish(

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class SignalsService: ObservableObject {
-    @Published var signalsForAppID: [UUID: [DTO.IdentifiableSignal]] = [:]
+    @Published var signalsForAppID: [UUID: [DTOv1.IdentifiableSignal]] = [:]
     @Published var loadingAppIDs = Set<UUID>()
     
     let api: APIClient
@@ -18,7 +18,7 @@ class SignalsService: ObservableObject {
         self.api = api
     }
     
-    func signals(for appID: UUID) -> [DTO.IdentifiableSignal] {
+    func signals(for appID: UUID) -> [DTOv1.IdentifiableSignal] {
         signalsForAppID[appID] ?? []
     }
     
@@ -31,7 +31,7 @@ class SignalsService: ObservableObject {
         
         loadingAppIDs.insert(appID)
 
-        api.get(url) { [unowned self] (result: Result<[DTO.Signal], TransferError>) in
+        api.get(url) { [unowned self] (result: Result<[DTOv1.Signal], TransferError>) in
             DispatchQueue.global(qos: .userInitiated).async {
                 switch result {
                 case let .success(signals):

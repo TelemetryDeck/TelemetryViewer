@@ -14,7 +14,7 @@ struct UserSettingsView: View {
     @State private var showChangePasswordForm: Bool = false
     @State private var showingAlert = false
     @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")
-    @State var userDTO: DTO.UserDTO
+    @State var userDTO: DTOv1.UserDTO
     
     func save() {
         api.updateUser(with: userDTO)
