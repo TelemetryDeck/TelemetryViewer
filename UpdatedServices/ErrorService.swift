@@ -17,7 +17,9 @@ class ErrorService: ObservableObject {
     @Published var errors: [DisplayableError] = []
     
     func handle(transferError: TransferError) {
-        errors.append(DisplayableError(occurredAt: Date(), title: "Transfer Error", description: transferError.localizedDescription))
+        DispatchQueue.main.async {
+            self.errors.append(DisplayableError(occurredAt: Date(), title: "Transfer Error", description: transferError.localizedDescription))
+        }
         
         #if DEBUG
         print(transferError)
@@ -25,7 +27,9 @@ class ErrorService: ObservableObject {
     }
     
     func handle(error: Error) {
-        errors.append(DisplayableError(occurredAt: Date(), title: "General Error", description: error.localizedDescription))
+        DispatchQueue.main.async {
+            self.errors.append(DisplayableError(occurredAt: Date(), title: "General Error", description: error.localizedDescription))
+        }
         
         #if DEBUG
         print(error)
