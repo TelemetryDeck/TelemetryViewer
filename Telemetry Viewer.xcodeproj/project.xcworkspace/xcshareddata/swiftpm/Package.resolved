@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "BottomSheet",
-        "repositoryURL": "https://github.com/LucasMucGH/BottomSheet",
-        "state": {
-          "branch": null,
-          "revision": "953c9a53d05ed7b61ae50a476758a97b7291da0a",
-          "version": "2.4.0"
-        }
-      },
-      {
         "package": "TelemetryClient",
         "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
         "state": {

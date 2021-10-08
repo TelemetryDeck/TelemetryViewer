@@ -92,7 +92,6 @@
 		2B781B8426F4A5E30062DBDC /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8226F4A5E30062DBDC /* StatusMessage.swift */; };
 		2B781B8626F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */; };
 		2B781B8726F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */; };
-		2B85640626E6699D00AC99B0 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 2B85640526E6699D00AC99B0 /* BottomSheet */; };
 		2BA0397E26AAE19B004A9E48 /* MacOs12SignalTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */; };
 		2BA5D50226CD05CC008FBF8F /* InsightGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */; };
 		2BA5D50526CD0E5B008FBF8F /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50326CD0E5B008FBF8F /* GroupView.swift */; };
@@ -563,7 +562,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */,
-				2B85640626E6699D00AC99B0 /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,7 +1102,6 @@
 			name = "Telemetry Viewer (iOS)";
 			packageProductDependencies = (
 				DC9C0830252CD622001C0F94 /* TelemetryClient */,
-				2B85640526E6699D00AC99B0 /* BottomSheet */,
 			);
 			productName = "Telemetry Viewer (iOS)";
 			productReference = DCE23A0324D3687D00053370 /* Telemetry Viewer.app */;
@@ -1170,7 +1167,6 @@
 			packageReferences = (
 				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
 				2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
-				2B85640426E6699D00AC99B0 /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
 			projectDirPath = "";
@@ -2108,14 +2104,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		2B85640426E6699D00AC99B0 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LucasMucGH/BottomSheet";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
@@ -2131,11 +2119,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
-		};
-		2B85640526E6699D00AC99B0 /* BottomSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B85640426E6699D00AC99B0 /* XCRemoteSwiftPackageReference "BottomSheet" */;
-			productName = BottomSheet;
 		};
 		DC9C0830252CD622001C0F94 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;

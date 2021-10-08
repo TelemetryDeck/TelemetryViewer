@@ -13,7 +13,6 @@ struct InsightsGrid: View {
     @Binding var sidebarVisible: Bool
 
     let insightGroup: DTOv2.Group
-    let showBottomSondrine: Bool?
     let isSelectable: Bool
 
     var body: some View {
@@ -44,11 +43,6 @@ struct InsightsGrid: View {
                     InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID, isSelectable: isSelectable)
                         .id(insightID)
                 }
-            }
-
-            if showBottomSondrine == true {
-                BottomSondrine()
-                    .padding(.vertical, 100)
             }
         }
     }
