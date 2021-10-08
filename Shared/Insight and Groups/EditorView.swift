@@ -469,13 +469,6 @@ struct EditorView: View {
         Form {
             formContent
         }
-        .background(Color.clear)
-        .onAppear {
-            UITableView.appearance().backgroundColor = .clear
-        }
-        .onDisappear {
-            UITableView.appearance().backgroundColor = .systemGroupedBackground
-        }
         #endif
     }
 }

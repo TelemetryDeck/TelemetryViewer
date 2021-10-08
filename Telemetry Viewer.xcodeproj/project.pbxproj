@@ -162,6 +162,7 @@
 		2BC522EB2625FCEF00E643AC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* FeedbackView.swift */; };
 		2BDBB75E264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
 		2BDBB75F264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
+		2BDD35062710727900CB2AA5 /* EditorModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD35052710727900CB2AA5 /* EditorModeView.swift */; };
 		2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BDD8E722653C14C00C6E51D /* InsightCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */; };
@@ -455,6 +456,7 @@
 		2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		2BDBB75C264551890013FC39 /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
+		2BDD35052710727900CB2AA5 /* EditorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModeView.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
 		2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCalculationService.swift; sourceTree = "<group>"; };
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPickerForCalculationService.swift; sourceTree = "<group>"; };
@@ -989,6 +991,7 @@
 				DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */,
 				DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
+				2BDD35052710727900CB2AA5 /* EditorModeView.swift */,
 				DCE23A0624D3687D00053370 /* Info.plist */,
 			);
 			path = iOS;
@@ -1389,6 +1392,7 @@
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				2B1D469E26CC51A8008814A9 /* GroupService.swift in Sources */,
 				2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift in Sources */,
+				2BDD35062710727900CB2AA5 /* EditorModeView.swift in Sources */,
 				2BB23B2C26567222003DDE5E /* OldAppService.swift in Sources */,
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
 				2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */,

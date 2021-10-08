@@ -17,6 +17,7 @@ struct InsightGroupsView: View {
     @State var selectedInsightGroupID: DTOv2.Group.ID?
     @State var selectedInsightID: DTOv2.Insight.ID?
     @State private var showDatePicker: Bool = false
+    @State private var showEditMode: Bool = false
     
     @Environment(\.horizontalSizeClass) var sizeClass
     
@@ -34,21 +35,9 @@ struct InsightGroupsView: View {
         VStack(alignment: .leading, spacing: 0) {
             StatusMessageDisplay()
             
-            HStack {
-                groupSelector
-                
-                Menu {
-                    newGroupButton
-                    if let selectedInsightGroupID = selectedInsightGroupID, sizeClass == .compact {
-                        NewInsightMenu(appID: self.appID, selectedInsightGroupID: selectedInsightGroupID)
-                    }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                        .padding(.horizontal)
-                }
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
+            groupSelector
+                .padding(.horizontal)
+                .padding(.bottom)
             
             Divider()
             
@@ -65,6 +54,10 @@ struct InsightGroupsView: View {
                 }
             }
         }
+        .background(
+            NavigationLink(destination: EditorModeView(appID: appID), isActive: $showEditMode) {
+                EmptyView()
+            })
         .onAppear {
             selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
             TelemetryManager.send("InsightGroupsAppear")
@@ -78,12 +71,22 @@ struct InsightGroupsView: View {
         .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
         .toolbar {
             ToolbarItem {
-                Button(insightResultService.timeIntervalDescription) {
-                    self.showDatePicker = true
-                }.popover(
-                    isPresented: self.$showDatePicker,
-                    arrowEdge: .bottom
-                ) { InsightDataTimeIntervalPicker().padding() }
+                Menu {
+                    editModeButton
+                    
+                    newGroupButton
+                    
+                    if let selectedInsightGroupID = selectedInsightGroupID, sizeClass == .compact {
+                        NewInsightMenu(appID: self.appID, selectedInsightGroupID: selectedInsightGroupID)
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .padding(.horizontal)
+                }
+            }
+            
+            ToolbarItem(placement: .bottomBar) {
+                datePickerButton
             }
         }
     }
@@ -108,6 +111,15 @@ struct InsightGroupsView: View {
         .pickerStyle(SegmentedPickerStyle())
     }
     
+    private var datePickerButton: some View {
+        Button(insightResultService.timeIntervalDescription) {
+            self.showDatePicker = true
+        }.popover(
+            isPresented: self.$showDatePicker,
+            arrowEdge: .bottom
+        ) { InsightDataTimeIntervalPicker().padding() }
+    }
+    
     private var newGroupButton: some View {
         Button {
             groupService.create(insightGroupNamed: "New Group", for: appID) { _ in
@@ -115,6 +127,14 @@ struct InsightGroupsView: View {
             }
         } label: {
             Label("New Group", systemImage: "plus")
+        }
+    }
+    
+    private var editModeButton: some View {
+        Button {
+            self.showEditMode = true
+        } label: {
+            Label("Edit Insights", systemImage: "pencil")
         }
     }
 }
