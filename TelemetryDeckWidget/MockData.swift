@@ -803,5 +803,5 @@ let insightCalculationResults = [
         $0.data(using: .utf8)!
     }
     .map {
-        try! JSONDecoder.druidDecoder.decode(DTOsWithIdentifiers.InsightCalculationResult.self, from: $0)
+        try! JSONDecoder.druidDecoder.decode(DTOv2.InsightCalculationResult.self, from: $0)
     }
