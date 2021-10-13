@@ -14,6 +14,9 @@ struct InsightCard: View {
     @Binding var selectedInsightID: DTOv2.Insight.ID?
     @Binding var sidebarVisible: Bool
     
+    @State var insightWrap: InsightResultWrap?
+    @State var loadingState: LoadingState = .idle
+    
     private var isSelected: Bool {
         selectedInsightID == insightID
     }
@@ -40,7 +43,7 @@ struct InsightCard: View {
             cardContent
         }
         .frame(idealHeight: 200)
-        .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insightID, customAccentColor: Color.init(hex: insightService.insight(withID: insightID)?.accentColor ?? "")))
+        .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insightID, customAccentColor: Color(hex: insightService.insight(withID: insightID)?.accentColor ?? "")))
     }
     
     var cardContent: some View {
@@ -51,7 +54,7 @@ struct InsightCard: View {
                 .padding(.leading)
             
             Group {
-                if let insightWrap = insightResultService.insightCalculationResult(withID: insightID) {
+                if let insightWrap = insightWrap {
                     switch insightWrap.calculationResult.insight.displayMode {
                     case .raw:
                         RawChartView(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
@@ -72,17 +75,30 @@ struct InsightCard: View {
                     }
                     
                 } else {
-                    IconOnlyLoadingStateIndicator(loadingState: insightResultService.loadingState(for: insightID))
+                    IconOnlyLoadingStateIndicator(loadingState: loadingState)
                 }
             }
+            .onAppear(perform: retrieve)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-//            .accentColor(Color.init(hex: insightService.insight(withID: insightID)?.accentColor ?? "") ?? (isSelected ? Color.cardBackground : Color.telemetryOrange ))
         }
         .padding(.top)
         .onReceive(refreshTimer) { _ in
-            // This check will hopefully prevent the insight loading away under the user's fingers
-            if selectedInsightID == nil {
-                _ = insightResultService.insightCalculationResult(withID: insightID)
+            retrieve()
+        }
+    }
+    
+    func retrieve() {
+        guard selectedInsightID == nil else { return }
+        
+        if let insight = insightService.insight(withID: insightID) {
+            insightResultService.calculate(insight) { loadingState in
+                DispatchQueue.main.async {
+                    self.loadingState = loadingState
+                }
+            } onFinish: { wrap in
+                DispatchQueue.main.async {
+                    self.insightWrap = wrap
+                }
             }
         }
     }

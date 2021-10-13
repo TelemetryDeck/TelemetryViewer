@@ -163,6 +163,11 @@
 		2BDBB75E264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
 		2BDBB75F264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
 		2BDD35062710727900CB2AA5 /* EditorModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD35052710727900CB2AA5 /* EditorModeView.swift */; };
+		2BDD41BD2717365600B3CB33 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */; };
+		2BDD41BE2717365600B3CB33 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */; };
+		2BDD41BF2717365600B3CB33 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */; };
+		2BDD41C02717365600B3CB33 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */; };
+		2BDD41C12717365600B3CB33 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */; };
 		2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BDD8E722653C14C00C6E51D /* InsightCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */; };
@@ -457,6 +462,7 @@
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		2BDBB75C264551890013FC39 /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
 		2BDD35052710727900CB2AA5 /* EditorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModeView.swift; sourceTree = "<group>"; };
+		2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
 		2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCalculationService.swift; sourceTree = "<group>"; };
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPickerForCalculationService.swift; sourceTree = "<group>"; };
@@ -719,6 +725,7 @@
 				2BC1427426656DEF009BCB3B /* APIClient.swift */,
 				2B1D468F26CC471A008814A9 /* Caching.swift */,
 				2B1D468E26CC471A008814A9 /* CacheLayer.swift */,
+				2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */,
 			);
 			path = APIClient;
 			sourceTree = "<group>";
@@ -1293,6 +1300,7 @@
 				C5A8D89F270C68AB0032560A /* InsightData.swift in Sources */,
 				C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */,
 				C5A8D89C270C68AB0032560A /* OrganisationJoinRequest.swift in Sources */,
+				2BDD41BF2717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				C5A8D891270C682E0032560A /* ChartDataSet.swift in Sources */,
 				C5A8D886270C66E90032560A /* DateExtensions.swift in Sources */,
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
@@ -1328,6 +1336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */,
+				2BDD41C02717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1336,6 +1345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BDD41C12717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				C5A8D8BC270C821B0032560A /* IntentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1431,6 +1441,7 @@
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				2B69B541264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				2B1D469026CC471A008814A9 /* Caching.swift in Sources */,
+				2BDD41BD2717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */,
 				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
@@ -1599,6 +1610,7 @@
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
+				2BDD41BE2717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				2BEDE6FB26A728CF007247B0 /* ChartBottomView.swift in Sources */,
 				2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,

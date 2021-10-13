@@ -8,10 +8,69 @@
 import Combine
 import Foundation
 
+final class InsightRetrievalOperation: AsyncOperation {
+    private let cache: CacheLayer
+    private let cacheKey: String
+    private let targetURL: URL
+    private let api: APIClient
+    private let onFinish: (InsightResultWrap) -> ()
+    private let onStatusChange: (LoadingState) -> ()
+
+    init(apiClient: APIClient, targetURL: URL, cache: CacheLayer, cacheKey: String, onStatusChange: @escaping (LoadingState) -> (), onFinish: @escaping (InsightResultWrap) -> ()) {
+        api = apiClient
+        self.targetURL = targetURL
+        self.onFinish = onFinish
+        self.onStatusChange = onStatusChange
+        self.cacheKey = cacheKey
+        self.cache = cache
+    }
+
+    override func main() {
+        // If the result is already cached, return the cached result
+        if let insightCalculationResult = cache.insightCalculationResultCache[cacheKey], !cache.insightCalculationResultCache.needsUpdate(forKey: cacheKey) {
+            onFinish(insightCalculationResult)
+            finish()
+            return
+        }
+        
+        onStatusChange(.loading)
+        
+        // Otherwise, retrieve the result from the API
+        api.get(targetURL) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
+            
+            switch result {
+            case .success(let insightCalculationResult):
+                let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
+                let resultWrap = InsightResultWrap(chartDataSet: chartDataSet, calculationResult: insightCalculationResult)
+                self.cache.insightCalculationResultCache[self.cacheKey] = resultWrap
+                self.onStatusChange(.finished(Date()))
+                self.onFinish(resultWrap)
+                
+            case .failure(let transferError):
+                self.onStatusChange(.error(transferError.localizedDescription, Date()))
+            }
+            
+            self.finish()
+        }
+    }
+
+    override func cancel() {
+        // urlTask?.cancel()
+        super.cancel()
+    }
+}
+
 class InsightResultService: ObservableObject {
     private let api: APIClient
     private let cache: CacheLayer
     private let errorService: ErrorService
+    
+    lazy var insightResultRetrievalQueue: OperationQueue = {
+        var queue = OperationQueue()
+        queue.name = "Insight Result Retrieval queue"
+        queue.maxConcurrentOperationCount = 3
+        return queue
+    }()
     
     private let loadingState = Cache<DTOv2.Insight.ID, LoadingState>()
     
@@ -101,6 +160,24 @@ class InsightResultService: ObservableObject {
         let insightHash = insight.hashValue
         return "\(uuidString)/\(earlierDateString)/\(laterDateString)/\(insightHash)/v1"
     }
+    
+    func calculate(_ insight: DTOv2.Insight, onStatusChange: @escaping (LoadingState) -> (), onFinish: @escaping (InsightResultWrap) -> ()) {
+        let url = api.urlForPath(apiVersion: .v2, "insights", insight.id.uuidString, "result",
+                                 Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
+                                 Formatter.iso8601noFS.string(from: timeWindowEndDate))
+        
+        let op = InsightRetrievalOperation(apiClient: api, targetURL: url, cache: cache, cacheKey: cacheKey(insight: insight), onStatusChange: onStatusChange, onFinish: onFinish)
+        
+        // Set the newest operation to the highest priority, LIFO style
+        op.queuePriority = .high
+        insightResultRetrievalQueue.operations.forEach { o in
+            o.queuePriority = .normal
+        }
+        
+        insightResultRetrievalQueue.addOperation(op)
+    }
+    
+    
     
     func insightCalculationResult(withID insightID: DTOv2.Insight.ID) -> InsightResultWrap? {
         guard let insight = cache.insightCache[insightID],
