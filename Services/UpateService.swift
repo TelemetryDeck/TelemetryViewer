@@ -64,7 +64,7 @@ class UpateService: ObservableObject {
                     print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
                 #endif
 
-                if let decoded = try? JSONDecoder.telemetryDecoder.decode([GitHubRelease].self, from: data) {
+                if let decoded = try? JSONDecoder.druidDecoder.decode([GitHubRelease].self, from: data) {
                     var releases = decoded.sorted(
                         by: { $0.tag_name.compare($1.tag_name, options: .numeric) == .orderedDescending })
 

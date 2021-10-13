@@ -16,7 +16,7 @@ struct InsightDetailView: View {
     let app: TelemetryApp
 
     private var encoder: JSONEncoder {
-        let encoder = JSONEncoder.telemetryEncoder
+        let encoder = JSONEncoder.druidEncoder
         encoder.outputFormatting = .prettyPrinted
         return encoder
     }
