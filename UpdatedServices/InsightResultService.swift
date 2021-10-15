@@ -162,11 +162,18 @@ class InsightResultService: ObservableObject {
     }
     
     func calculate(_ insight: DTOv2.Insight, onStatusChange: @escaping (LoadingState) -> (), onFinish: @escaping (InsightResultWrap) -> ()) {
+        // If the result is already cached, return the cached result
+        let cacheKey = cacheKey(insight: insight)
+        if let insightCalculationResult = cache.insightCalculationResultCache[cacheKey], !cache.insightCalculationResultCache.needsUpdate(forKey: cacheKey) {
+            onFinish(insightCalculationResult)
+            return
+        }
+        
         let url = api.urlForPath(apiVersion: .v2, "insights", insight.id.uuidString, "result",
                                  Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
                                  Formatter.iso8601noFS.string(from: timeWindowEndDate))
         
-        let op = InsightRetrievalOperation(apiClient: api, targetURL: url, cache: cache, cacheKey: cacheKey(insight: insight), onStatusChange: onStatusChange, onFinish: onFinish)
+        let op = InsightRetrievalOperation(apiClient: api, targetURL: url, cache: cache, cacheKey: cacheKey, onStatusChange: onStatusChange, onFinish: onFinish)
         
         // Set the newest operation to the highest priority, LIFO style
         op.queuePriority = .high
@@ -176,8 +183,6 @@ class InsightResultService: ObservableObject {
         
         insightResultRetrievalQueue.addOperation(op)
     }
-    
-    
     
     func insightCalculationResult(withID insightID: DTOv2.Insight.ID) -> InsightResultWrap? {
         guard let insight = cache.insightCache[insightID],
