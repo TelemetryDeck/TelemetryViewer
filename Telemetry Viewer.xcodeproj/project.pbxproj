@@ -208,8 +208,8 @@
 		C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */; platformFilter = maccatalyst; };
 		C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */; };
 		C5A8D86B270C5D800032560A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A8D86A270C5D800032560A /* Assets.xcassets */; };
-		C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
-		C5A8D86E270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
+		C5A8D86D270C5D800032560A /* SelectInsightIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* SelectInsightIntent.intentdefinition */; settings = {ATTRIBUTES = (codegen, ); }; };
+		C5A8D86E270C5D800032560A /* SelectInsightIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* SelectInsightIntent.intentdefinition */; settings = {ATTRIBUTES = (codegen, ); }; };
 		C5A8D871270C5D800032560A /* TelemetryDeckWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
 		C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
@@ -248,7 +248,7 @@
 		C5A8D8BF270C821B0032560A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5A8D8BD270C821B0032560A /* MainInterface.storyboard */; };
 		C5A8D8C3270C821B0032560A /* TelemetryDeckIntentsUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8B7270C821B0032560A /* TelemetryDeckIntentsUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
+		C5A8D8CD270C84430032560A /* SelectInsightIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* SelectInsightIntent.intentdefinition */; settings = {ATTRIBUTES = (codegen, ); }; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* AppInfoView.swift */; };
@@ -475,7 +475,7 @@
 		2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12PayloadKeysView.swift; sourceTree = "<group>"; };
 		C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidget.swift; sourceTree = "<group>"; };
-		C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TelemetryDeckWidget.intentdefinition; sourceTree = "<group>"; };
+		C5A8D869270C5D7B0032560A /* SelectInsightIntent.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = SelectInsightIntent.intentdefinition; sourceTree = "<group>"; };
 		C5A8D86A270C5D800032560A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A8D86C270C5D800032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StartEnd.swift"; sourceTree = "<group>"; };
@@ -776,7 +776,6 @@
 			children = (
 				C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */,
 				C5A8D8A4270C6FB70032560A /* MockData.swift */,
-				C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */,
 				C5A8D86A270C5D800032560A /* Assets.xcassets */,
 				C5A8D86C270C5D800032560A /* Info.plist */,
 			);
@@ -955,6 +954,7 @@
 		DCE239FB24D3687C00053370 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C5A8D869270C5D7B0032560A /* SelectInsightIntent.intentdefinition */,
 				2B781B8126F4A5D60062DBDC /* Status Messages */,
 				2BEDE6DF26A72731007247B0 /* LocalCharts */,
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
@@ -1311,7 +1311,7 @@
 				C5A8D87F270C65F90032560A /* APIClient.swift in Sources */,
 				C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */,
 				C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */,
-				C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
+				C5A8D86D270C5D800032560A /* SelectInsightIntent.intentdefinition in Sources */,
 				C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */,
 				C5A8D89A270C68AB0032560A /* RegistrationRequestBody.swift in Sources */,
 				C5A8D87C270C65F90032560A /* InsightResultService.swift in Sources */,
@@ -1336,8 +1336,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */,
+<<<<<<< Updated upstream
 				2BDD41C02717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
+=======
+				C5A8D8CD270C84430032560A /* SelectInsightIntent.intentdefinition in Sources */,
+>>>>>>> Stashed changes
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1384,7 +1388,7 @@
 				2B21FCE226FDD28700A8A55B /* BottomSondrine.swift in Sources */,
 				2B19DEA426444B0C0086F70E /* InsightData.swift in Sources */,
 				2BBFCA01267D05E40013DC74 /* DashedCardView.swift in Sources */,
-				C5A8D86E270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
+				C5A8D86E270C5D800032560A /* SelectInsightIntent.intentdefinition in Sources */,
 				2B19DEA726444B0C0086F70E /* OrganizationDTO.swift in Sources */,
 				2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2BBFCA37267D05E40013DC74 /* SingleKeyValueView.swift in Sources */,
@@ -1671,7 +1675,7 @@
 				INFOPLIST_FILE = TelemetryDeckWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1702,7 +1706,7 @@
 				INFOPLIST_FILE = TelemetryDeckWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1725,13 +1729,13 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntentsUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntentsUI;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1753,13 +1757,13 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntentsUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntentsUI;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1782,13 +1786,13 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntents;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1810,13 +1814,13 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntents;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
