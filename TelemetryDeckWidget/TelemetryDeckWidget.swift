@@ -41,7 +41,7 @@ struct Provider: IntentTimelineProvider {
             // get InsightCalculationResult from API
 
             let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
-                                     Formatter.iso8601noFS.string(from: Date() - 30 * 24 * 3600),
+                                     Formatter.iso8601noFS.string(from: Date().beginning(of: .month) ?? Date() - 30 * 24 * 3600),
                                      Formatter.iso8601noFS.string(from: Date()))
 
             api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
