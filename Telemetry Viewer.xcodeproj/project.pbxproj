@@ -518,6 +518,10 @@
 		2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		2BD21EC7271B3CDA00AE52DD /* TelemetryDeckIntentsDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsDebug.entitlements; sourceTree = "<group>"; };
+		2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntentsRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsRelease.entitlements; sourceTree = "<group>"; };
+		2BD21EC9271B3CF500AE52DD /* TelemetryDeckIntentsUIRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsUIRelease.entitlements; sourceTree = "<group>"; };
+		2BD21ECA271B3CFB00AE52DD /* TelemetryDeckIntentsUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsUI.entitlements; sourceTree = "<group>"; };
 		2BDBB75C264551890013FC39 /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
 		2BDD35052710727900CB2AA5 /* EditorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModeView.swift; sourceTree = "<group>"; };
 		2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
@@ -845,6 +849,8 @@
 		C5A8D8AF270C821A0032560A /* TelemetryDeckIntents */ = {
 			isa = PBXGroup;
 			children = (
+				2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntentsRelease.entitlements */,
+				2BD21EC7271B3CDA00AE52DD /* TelemetryDeckIntentsDebug.entitlements */,
 				C5A8D8B0270C821A0032560A /* IntentHandler.swift */,
 				C5A8D8B2270C821A0032560A /* Info.plist */,
 			);
@@ -854,6 +860,8 @@
 		C5A8D8BA270C821B0032560A /* TelemetryDeckIntentsUI */ = {
 			isa = PBXGroup;
 			children = (
+				2BD21ECA271B3CFB00AE52DD /* TelemetryDeckIntentsUI.entitlements */,
+				2BD21EC9271B3CF500AE52DD /* TelemetryDeckIntentsUIRelease.entitlements */,
 				C5A8D8BB270C821B0032560A /* IntentViewController.swift */,
 				C5A8D8BD270C821B0032560A /* MainInterface.storyboard */,
 				C5A8D8C0270C821B0032560A /* Info.plist */,
@@ -1840,6 +1848,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntentsUI/TelemetryDeckIntentsUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1868,6 +1877,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntentsUI/TelemetryDeckIntentsUIRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1897,6 +1907,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1925,6 +1936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
