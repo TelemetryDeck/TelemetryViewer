@@ -40,9 +40,14 @@ struct Provider: IntentTimelineProvider {
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         insightService.widgetableInsights { insights in
+                        
+            guard insights.first?.id != nil else { return }
+
+            var insightID = insights.first!.id
             
-            
-            guard let insightID = insights.first?.id else { return }
+            if configuration.Insight?.identifier != nil {
+                insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
+            }
 
             // get InsightCalculationResult from API
             let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
@@ -55,7 +60,7 @@ struct Provider: IntentTimelineProvider {
                     let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
                     // construct simple entry from InsightCalculationResult
                     let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet)
-                    let timeline = Timeline(entries: [entry], policy: .atEnd)
+                    let timeline = Timeline(entries: [entry], policy: .after(Date() + 5 * 60))
                     completion(timeline)
                 case .failure:
                     return
@@ -88,20 +93,20 @@ struct TelemetryDeckWidgetEntryView: View {
                 .foregroundColor(.grayColor)
             
             switch entry.insightCalculationResult.insight.displayMode {
-                case .raw:
-                    RawTableView(insightData: entry.chartDataSet, isSelected: false)
-                case .pieChart:
-                    DonutChartView(chartDataset: entry.chartDataSet, isSelected: false)
-                case .lineChart:
-                    LineChart(chartDataSet: entry.chartDataSet, isSelected: false)
-                case .barChart:
-                    BarChartContentView(chartDataSet: entry.chartDataSet, isSelected: false)
-                default:
-                    Text("This is not supported in this version.")
-                        .font(.footnote)
-                        .foregroundColor(.grayColor)
-                        .padding(.vertical)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            case .raw:
+                RawTableView(insightData: entry.chartDataSet, isSelected: false)
+            case .pieChart:
+                DonutChartView(chartDataset: entry.chartDataSet, isSelected: false)
+            case .lineChart:
+                LineChart(chartDataSet: entry.chartDataSet, isSelected: false)
+            case .barChart:
+                BarChartContentView(chartDataSet: entry.chartDataSet, isSelected: false)
+            default:
+                Text("This is not supported in this version.")
+                    .font(.footnote)
+                    .foregroundColor(.grayColor)
+                    .padding(.vertical)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
         }
         .accentColor(Color(hex: entry.insightCalculationResult.insight.accentColor ?? "") ?? Color.telemetryOrange)
