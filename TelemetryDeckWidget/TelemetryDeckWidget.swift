@@ -40,16 +40,16 @@ struct Provider: IntentTimelineProvider {
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         insightService.widgetableInsights { insights in
-            let insightID = insights.first!.id
+            
+            
+            guard let insightID = insights.first?.id else { return }
 
             // get InsightCalculationResult from API
-
             let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
                                      Formatter.iso8601noFS.string(from: Date().beginning(of: .month) ?? Date() - 30 * 24 * 3600),
                                      Formatter.iso8601noFS.string(from: Date()))
 
             api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
-
                 switch result {
                 case .success(let insightCalculationResult):
                     let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
@@ -81,7 +81,12 @@ struct TelemetryDeckWidgetEntryView: View {
     let entry: Provider.Entry
 
     var body: some View {
-        Group {
+        VStack {
+            Text(entry.insightCalculationResult.insight.title.uppercased())
+                .padding(.top)
+                .font(.footnote)
+                .foregroundColor(.grayColor)
+            
             switch entry.insightCalculationResult.insight.displayMode {
                 case .raw:
                     RawTableView(insightData: entry.chartDataSet, isSelected: false)
@@ -99,7 +104,6 @@ struct TelemetryDeckWidgetEntryView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
         }
-        .padding(.top)
         .accentColor(Color(hex: entry.insightCalculationResult.insight.accentColor ?? "") ?? Color.telemetryOrange)
     }
 }
