@@ -35,8 +35,8 @@ struct Provider: IntentTimelineProvider {
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        insightService.widgetableInsightIDs { uuids in
-            let insightID = uuids.first!
+        insightService.widgetableInsights { insights in
+            let insightID = insights.first!.id
 
             // get InsightCalculationResult from API
 
@@ -77,25 +77,26 @@ struct TelemetryDeckWidgetEntryView: View {
     let entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text(entry.insightCalculationResult.insight.displayMode.rawValue)
-//            switch entry.insightCalculationResult.insight.displayMode {
-//                case .raw:
-//                    RawTableView(insightData: insightData.chartDataSet, isSelected: false)
-//                case .pieChart:
-//                    DonutChartView(chartDataset: insightData.chartDataSet, isSelected: false)
-//                case .lineChart:
-//                    LineChart(chartDataSet: insightData.chartDataSet, isSelected: false)
-//                case .barChart:
-//                    BarChartContentView(chartDataSet: insightData.chartDataSet, isSelected: false)
-//                default:
-//                    Text("This is not supported in this version.")
-//                        .font(.footnote)
-//                        .foregroundColor(.grayColor)
-//                        .padding(.vertical)
-//                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-//            }
+        Group {
+            switch entry.insightCalculationResult.insight.displayMode {
+                case .raw:
+                    RawTableView(insightData: entry.chartDataSet, isSelected: false)
+                case .pieChart:
+                    DonutChartView(chartDataset: entry.chartDataSet, isSelected: false)
+                case .lineChart:
+                    LineChart(chartDataSet: entry.chartDataSet, isSelected: false)
+                case .barChart:
+                    BarChartContentView(chartDataSet: entry.chartDataSet, isSelected: false)
+                default:
+                    Text("This is not supported in this version.")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            }
         }
+        .padding(.top)
+        .accentColor(Color(hex: entry.insightCalculationResult.insight.accentColor ?? "") ?? Color.telemetryOrange)
     }
 }
 

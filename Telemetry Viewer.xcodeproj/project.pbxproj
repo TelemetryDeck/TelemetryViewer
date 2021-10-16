@@ -204,6 +204,34 @@
 		2BEDE70226A728CF007247B0 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35A26A5E25600606527 /* DonutChart.swift */; };
 		2BEDE71026A73EA9007247B0 /* MacOS12RecentSignalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */; };
 		2BF2754626AAC5C10051591C /* MacOs12PayloadKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */; };
+		C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
+		C581F4E1271B25B20031E99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
+		C581F4E2271B292A0031E99C /* CacheLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468E26CC471A008814A9 /* CacheLayer.swift */; };
+		C581F4E3271B292A0031E99C /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468F26CC471A008814A9 /* Caching.swift */; };
+		C581F4E4271B292A0031E99C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1427426656DEF009BCB3B /* APIClient.swift */; };
+		C581F4E5271B29470031E99C /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
+		C581F4E6271B29780031E99C /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D469726CC4C5D008814A9 /* ErrorService.swift */; };
+		C581F4E7271B2AF10031E99C /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
+		C581F4E8271B2AF10031E99C /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
+		C581F4E9271B2AF10031E99C /* InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */; };
+		C581F4EA271B2AF10031E99C /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
+		C581F4EB271B2AF10031E99C /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
+		C581F4EC271B2AF10031E99C /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
+		C581F4ED271B2AF10031E99C /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
+		C581F4EE271B2AF10031E99C /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
+		C581F4EF271B2AF10031E99C /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
+		C581F4F0271B2AF10031E99C /* DTOv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOv2.swift */; };
+		C581F4F1271B2AF10031E99C /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
+		C581F4F2271B2B150031E99C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
+		C581F4F3271B2B3B0031E99C /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
+		C581F4F4271B2B440031E99C /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
+		C581F4F5271B2B6B0031E99C /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
+		C581F4F6271B2BB50031E99C /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
+		C581F4F7271B2BC30031E99C /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
+		C581F4F8271B2BCC0031E99C /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
+		C581F4F9271B2BDC0031E99C /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
+		C581F4FA271B2C350031E99C /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */; };
+		C581F4FB271B2C6A0031E99C /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */; };
 		C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */; platformFilter = maccatalyst; };
 		C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */; platformFilter = maccatalyst; };
 		C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */; };
@@ -1226,6 +1254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C581F4E1271B25B20031E99C /* Assets.xcassets in Resources */,
 				C5A8D86B270C5D800032560A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1388,6 +1417,7 @@
 				C5CE3D57271AFCE2005232EC /* Buttonstyles.swift in Sources */,
 				C5A8D89E270C68AB0032560A /* OrganizationDTO.swift in Sources */,
 				C5A8D89B270C68AB0032560A /* SignalDTO.swift in Sources */,
+				C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1395,9 +1425,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C581F4EF271B2AF10031E99C /* InsightData.swift in Sources */,
+				C581F4F0271B2AF10031E99C /* DTOv2.swift in Sources */,
+				C581F4E6271B29780031E99C /* ErrorService.swift in Sources */,
+				C581F4E2271B292A0031E99C /* CacheLayer.swift in Sources */,
+				C581F4F5271B2B6B0031E99C /* Telemetry.swift in Sources */,
+				C581F4E9271B2AF10031E99C /* InsightCalculationResult.swift in Sources */,
+				C581F4E8271B2AF10031E99C /* LexiconSignalDTO.swift in Sources */,
+				C581F4F7271B2BC30031E99C /* JSONDecoder.swift in Sources */,
+				C581F4EA271B2AF10031E99C /* OrganizationDTO.swift in Sources */,
+				C581F4ED271B2AF10031E99C /* AppAdminEntry.swift in Sources */,
+				C581F4F9271B2BDC0031E99C /* ChartDataPoint.swift in Sources */,
+				C581F4F1271B2AF10031E99C /* RegistrationRequestBody.swift in Sources */,
+				C581F4F8271B2BCC0031E99C /* ChartDataSet.swift in Sources */,
+				C581F4EC271B2AF10031E99C /* Aggregate.swift in Sources */,
+				C581F4E7271B2AF10031E99C /* OrganisationJoinRequest.swift in Sources */,
+				C581F4F6271B2BB50031E99C /* UUID+Empty.swift in Sources */,
+				C581F4FA271B2C350031E99C /* Date+StartEnd.swift in Sources */,
 				C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */,
 				2BDD41C02717365600B3CB33 /* AsyncOperation.swift in Sources */,
+				C581F4EB271B2AF10031E99C /* SignalDTO.swift in Sources */,
+				C581F4E3271B292A0031E99C /* Caching.swift in Sources */,
 				C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
+				C581F4FB271B2C6A0031E99C /* DateExtensions.swift in Sources */,
+				C581F4F3271B2B3B0031E99C /* Formatter+ISO.swift in Sources */,
+				C581F4E4271B292A0031E99C /* APIClient.swift in Sources */,
+				C581F4F4271B2B440031E99C /* DruidCustomQuery.swift in Sources */,
+				C581F4EE271B2AF10031E99C /* UserDTO.swift in Sources */,
+				C581F4E5271B29470031E99C /* InsightService.swift in Sources */,
+				C581F4F2271B2B150031E99C /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
