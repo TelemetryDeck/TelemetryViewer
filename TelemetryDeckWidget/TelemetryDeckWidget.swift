@@ -7,8 +7,8 @@
 
 import Intents
 import SwiftUI
-import WidgetKit
 import TelemetryClient
+import WidgetKit
 
 struct Provider: IntentTimelineProvider {
     let api: APIClient
@@ -20,7 +20,7 @@ struct Provider: IntentTimelineProvider {
     init() {
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
-        
+
         self.api = APIClient()
         self.cacheLayer = CacheLayer()
         self.errors = ErrorService()
@@ -30,21 +30,27 @@ struct Provider: IntentTimelineProvider {
     }
 
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: .init(id: UUID.empty, insight: DTOv2.Insight(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0), chartDataSet: .init(data: [DTOv2.InsightCalculationResultRow]()))
+        let integer = Int.random(in: 0...4)
+        let result: DTOv2.InsightCalculationResult = insightCalculationResults[integer]
+        let dataSet = ChartDataSet(data: result.data, groupBy: result.insight.groupBy)
+        return SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: dataSet)
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration, insightCalculationResult: .init(id: UUID.empty, insight: DTOv2.Insight(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0), chartDataSet: ChartDataSet(data: [DTOv2.InsightCalculationResultRow](), groupBy: .day))
+        let integer = Int.random(in: 0...4)
+        let result: DTOv2.InsightCalculationResult = insightCalculationResults[integer]
+        let dataSet = ChartDataSet(data: result.data, groupBy: result.insight.groupBy)
+        let entry = SimpleEntry(date: Date(), configuration: configuration, insightCalculationResult: result, chartDataSet: dataSet)
         completion(entry)
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         insightService.widgetableInsights { insights in
-                        
+
             guard insights.first?.id != nil else { return }
 
             var insightID = insights.first!.id
-            
+
             if configuration.Insight?.identifier != nil {
                 insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
             }
@@ -60,7 +66,7 @@ struct Provider: IntentTimelineProvider {
                     let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
                     // construct simple entry from InsightCalculationResult
                     let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet)
-                    let timeline = Timeline(entries: [entry], policy: .after(Date() + 5 * 60))
+                    let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
                     completion(timeline)
                 case .failure:
                     return
@@ -91,12 +97,14 @@ struct TelemetryDeckWidgetEntryView: View {
                 .padding(.top)
                 .font(.footnote)
                 .foregroundColor(.grayColor)
-            
+
             switch entry.insightCalculationResult.insight.displayMode {
             case .raw:
                 RawTableView(insightData: entry.chartDataSet, isSelected: false)
             case .pieChart:
                 DonutChartView(chartDataset: entry.chartDataSet, isSelected: false)
+                    .padding(.horizontal)
+                    .padding(.bottom)
             case .lineChart:
                 LineChart(chartDataSet: entry.chartDataSet, isSelected: false)
             case .barChart:

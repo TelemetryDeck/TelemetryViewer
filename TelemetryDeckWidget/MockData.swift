@@ -798,7 +798,6 @@ let insightCalculationResults = [
 }
 """
 ]
-
     .map {
         $0.data(using: .utf8)!
     }
