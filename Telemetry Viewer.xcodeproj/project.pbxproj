@@ -249,6 +249,36 @@
 		C5A8D8C3270C821B0032560A /* TelemetryDeckIntentsUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8B7270C821B0032560A /* TelemetryDeckIntentsUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
+		C5CE3D3F271AFA66005232EC /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35426A5E25500606527 /* LineChartView.swift */; };
+		C5CE3D40271AFA66005232EC /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35226A5E25500606527 /* RawChartView.swift */; };
+		C5CE3D41271AFA66005232EC /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35526A5E25600606527 /* BarChartView.swift */; };
+		C5CE3D42271AFA66005232EC /* LineChartCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */; };
+		C5CE3D43271AFA6A005232EC /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35B26A5E25600606527 /* DonutChartView.swift */; };
+		C5CE3D44271AFA6A005232EC /* ChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35926A5E25600606527 /* ChartLegend.swift */; };
+		C5CE3D45271AFA6A005232EC /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35A26A5E25600606527 /* DonutChart.swift */; };
+		C5CE3D46271AFA6E005232EC /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35326A5E25500606527 /* ChartRangeView.swift */; };
+		C5CE3D47271AFA6E005232EC /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35726A5E25600606527 /* ChartBottomView.swift */; };
+		C5CE3D48271AFA6E005232EC /* ChartHoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35626A5E25600606527 /* ChartHoverLabel.swift */; };
+		C5CE3D49271AFC3C005232EC /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F6267D05E30013DC74 /* ValueUnitAndTitleView.swift */; };
+		C5CE3D4A271AFC69005232EC /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DB267D05E30013DC74 /* RoundedCorners.swift */; };
+		C5CE3D4B271AFC96005232EC /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EE267D05E30013DC74 /* BigNumberFormatter.swift */; };
+		C5CE3D4C271AFCAE005232EC /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E5267D05E30013DC74 /* TextModifiers.swift */; };
+		C5CE3D4D271AFCB6005232EC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E1267D05E30013DC74 /* Color.swift */; };
+		C5CE3D4E271AFCE2005232EC /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E6267D05E30013DC74 /* DetailSidebar.swift */; };
+		C5CE3D4F271AFCE2005232EC /* OptionalToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E0267D05E30013DC74 /* OptionalToggle.swift */; };
+		C5CE3D50271AFCE2005232EC /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DE267D05E30013DC74 /* CardView.swift */; };
+		C5CE3D51271AFCE2005232EC /* SingleKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9FA267D05E40013DC74 /* SingleKeyValueView.swift */; };
+		C5CE3D52271AFCE2005232EC /* LoadingStateIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A326CCF9CB008814A9 /* LoadingStateIndicator.swift */; };
+		C5CE3D53271AFCE2005232EC /* DashedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DD267D05E30013DC74 /* DashedCardView.swift */; };
+		C5CE3D54271AFCE2005232EC /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E7267D05E30013DC74 /* ListItemView.swift */; };
+		C5CE3D55271AFCE2005232EC /* OrderSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DC267D05E30013DC74 /* OrderSetter.swift */; };
+		C5CE3D56271AFCE2005232EC /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F4267D05E30013DC74 /* MacNavigationView.swift */; };
+		C5CE3D57271AFCE2005232EC /* Buttonstyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9EA267D05E30013DC74 /* Buttonstyles.swift */; };
+		C5CE3D59271AFCE2005232EC /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F8267D05E30013DC74 /* AdaptiveStack.swift */; };
+		C5CE3D5A271AFCE2005232EC /* Binding+OnUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F3267D05E30013DC74 /* Binding+OnUpdate.swift */; };
+		C5CE3D5C271AFCE2005232EC /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
+		C5CE3D5D271AFCE2005232EC /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E2267D05E30013DC74 /* CustomSection.swift */; };
+		C5CE3D5E271AFD0C005232EC /* ProgressView+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F1267D05E30013DC74 /* ProgressView+Scale.swift */; };
 		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* AppInfoView.swift */; };
@@ -1299,33 +1329,63 @@
 			files = (
 				C5A8D89F270C68AB0032560A /* InsightData.swift in Sources */,
 				C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */,
+				C5CE3D4B271AFC96005232EC /* BigNumberFormatter.swift in Sources */,
+				C5CE3D43271AFA6A005232EC /* DonutChartView.swift in Sources */,
+				C5CE3D52271AFCE2005232EC /* LoadingStateIndicator.swift in Sources */,
+				C5CE3D40271AFA66005232EC /* RawChartView.swift in Sources */,
+				C5CE3D5A271AFCE2005232EC /* Binding+OnUpdate.swift in Sources */,
 				C5A8D89C270C68AB0032560A /* OrganisationJoinRequest.swift in Sources */,
+				C5CE3D49271AFC3C005232EC /* ValueUnitAndTitleView.swift in Sources */,
+				C5CE3D45271AFA6A005232EC /* DonutChart.swift in Sources */,
+				C5CE3D3F271AFA66005232EC /* LineChartView.swift in Sources */,
 				2BDD41BF2717365600B3CB33 /* AsyncOperation.swift in Sources */,
+				C5CE3D44271AFA6A005232EC /* ChartLegend.swift in Sources */,
 				C5A8D891270C682E0032560A /* ChartDataSet.swift in Sources */,
+				C5CE3D41271AFA66005232EC /* BarChartView.swift in Sources */,
+				C5CE3D4C271AFCAE005232EC /* TextModifiers.swift in Sources */,
+				C5CE3D55271AFCE2005232EC /* OrderSetter.swift in Sources */,
 				C5A8D886270C66E90032560A /* DateExtensions.swift in Sources */,
+				C5CE3D46271AFA6E005232EC /* ChartRangeView.swift in Sources */,
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
 				C5A8D899270C68AB0032560A /* AppAdminEntry.swift in Sources */,
+				C5CE3D56271AFCE2005232EC /* MacNavigationView.swift in Sources */,
 				C5A8D892270C68790032560A /* Telemetry.swift in Sources */,
+				C5CE3D42271AFA66005232EC /* LineChartCanvas.swift in Sources */,
 				C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */,
+				C5CE3D47271AFA6E005232EC /* ChartBottomView.swift in Sources */,
+				C5CE3D51271AFCE2005232EC /* SingleKeyValueView.swift in Sources */,
 				C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */,
+				C5CE3D53271AFCE2005232EC /* DashedCardView.swift in Sources */,
 				C5A8D87F270C65F90032560A /* APIClient.swift in Sources */,
 				C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */,
+				C5CE3D4D271AFCB6005232EC /* Color.swift in Sources */,
 				C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */,
 				C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
+				C5CE3D50271AFCE2005232EC /* CardView.swift in Sources */,
 				C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */,
+				C5CE3D4E271AFCE2005232EC /* DetailSidebar.swift in Sources */,
 				C5A8D89A270C68AB0032560A /* RegistrationRequestBody.swift in Sources */,
+				C5CE3D48271AFA6E005232EC /* ChartHoverLabel.swift in Sources */,
 				C5A8D87C270C65F90032560A /* InsightResultService.swift in Sources */,
+				C5CE3D5C271AFCE2005232EC /* Helpers.swift in Sources */,
+				C5CE3D5E271AFD0C005232EC /* ProgressView+Scale.swift in Sources */,
+				C5CE3D54271AFCE2005232EC /* ListItemView.swift in Sources */,
 				C5A8D890270C682E0032560A /* ChartDataPoint.swift in Sources */,
+				C5CE3D4A271AFC69005232EC /* RoundedCorners.swift in Sources */,
 				C5A8D87E270C65F90032560A /* CacheLayer.swift in Sources */,
 				C5A8D897270C68AB0032560A /* Aggregate.swift in Sources */,
 				C5A8D898270C68AB0032560A /* DTOv2.swift in Sources */,
+				C5CE3D59271AFCE2005232EC /* AdaptiveStack.swift in Sources */,
 				C5A8D89D270C68AB0032560A /* UserDTO.swift in Sources */,
+				C5CE3D4F271AFCE2005232EC /* OptionalToggle.swift in Sources */,
 				C5A8D881270C65F90032560A /* Caching.swift in Sources */,
 				C5A8D87D270C65F90032560A /* InsightService.swift in Sources */,
 				C5A8D893270C68970032560A /* JSONDecoder.swift in Sources */,
 				C5A8D88C270C67C10032560A /* Date+StartEnd.swift in Sources */,
 				C5A8D882270C66190032560A /* ErrorService.swift in Sources */,
 				C5A8D883270C66400032560A /* Models.swift in Sources */,
+				C5CE3D5D271AFCE2005232EC /* CustomSection.swift in Sources */,
+				C5CE3D57271AFCE2005232EC /* Buttonstyles.swift in Sources */,
 				C5A8D89E270C68AB0032560A /* OrganizationDTO.swift in Sources */,
 				C5A8D89B270C68AB0032560A /* SignalDTO.swift in Sources */,
 			);
