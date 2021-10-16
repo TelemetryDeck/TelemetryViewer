@@ -20,7 +20,7 @@ struct Telemetry_ViewerApp: App {
     let insightResultService: InsightResultService
     let iconFinderService: IconFinderService
         
-    let updateService: UpateService
+    let updateService: UpdateService
     let signalsService: SignalsService
     let lexiconService: LexiconService
     let oldappService: OldAppService
@@ -85,7 +85,7 @@ struct Telemetry_ViewerApp: App {
         self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
         self.iconFinderService = IconFinderService(api: api)
         
-        self.updateService = UpateService()
+        self.updateService = UpdateService()
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
         self.oldappService = OldAppService(api: api)

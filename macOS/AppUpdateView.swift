@@ -23,15 +23,15 @@ struct AppUpdateView: View {
 
 struct AppUpdateView_Previews: PreviewProvider {
     static var previews: some View {
-        let customAppUpdater = UpateService()
+        let customAppUpdater = UpdateService()
         customAppUpdater.shouldShowUpdateNowScreen = false
-        customAppUpdater.latestVersionOnServer = UpateService.GitHubRelease(id: 3, name: "1.0.0b1227", tag_name: "1.0.0b1227", body: "hello world lorem ipsum", draft: false, prerelease: false, published_at: Date(), assets: [UpateService.GitHubReleaseAssets(id: 4, content_type: "application/zip", size: 928_158, download_count: 345, browser_download_url: URL(string: "https://github.com/TelemetryDeck/Viewer/releases/download/1b14/TelemetryViewer-1b14.zip")!)])
+        customAppUpdater.latestVersionOnServer = UpdateService.GitHubRelease(id: 3, name: "1.0.0b1227", tag_name: "1.0.0b1227", body: "hello world lorem ipsum", draft: false, prerelease: false, published_at: Date(), assets: [UpdateService.GitHubReleaseAssets(id: 4, content_type: "application/zip", size: 928_158, download_count: 345, browser_download_url: URL(string: "https://github.com/TelemetryDeck/Viewer/releases/download/1b14/TelemetryViewer-1b14.zip")!)])
         return AppUpdateView().environmentObject(customAppUpdater)
     }
 }
 
 struct AppUpdateViewTop: View {
-    @EnvironmentObject var updateService: UpateService
+    @EnvironmentObject var updateService: UpdateService
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -49,7 +49,7 @@ struct AppUpdateViewTop: View {
 }
 
 struct ReleaseNotesView: View {
-    @EnvironmentObject var updateService: UpateService
+    @EnvironmentObject var updateService: UpdateService
 
     var body: some View {
         if let latestVersion = updateService.latestVersionOnServer {
@@ -67,7 +67,7 @@ struct ReleaseNotesView: View {
 }
 
 struct AppUpdateViewDownloadButton: View {
-    @EnvironmentObject var updateService: UpateService
+    @EnvironmentObject var updateService: UpdateService
 
     let byteCountFormatter: ByteCountFormatter = {
         let formatter = ByteCountFormatter()

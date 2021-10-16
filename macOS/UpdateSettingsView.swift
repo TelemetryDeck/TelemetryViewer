@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UpdateSettingsView: View {
-    @EnvironmentObject var updateService: UpateService
+    @EnvironmentObject var updateService: UpdateService
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

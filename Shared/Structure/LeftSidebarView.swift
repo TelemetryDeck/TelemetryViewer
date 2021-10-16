@@ -11,6 +11,10 @@ struct LeftSidebarView: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
+    
+    #if os(macOS)
+    @EnvironmentObject var updateService: UpdateService
+    #endif
 
     @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOv2.App.ID: Bool]? = nil
     @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection? = nil

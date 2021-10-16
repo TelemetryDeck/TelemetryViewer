@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class UpateService: ObservableObject {
+class UpdateService: ObservableObject {
     @Published var shouldShowUpdateNowScreen: Bool = false
     @Published var latestVersionOnServer: GitHubRelease?
 

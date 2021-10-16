@@ -314,7 +314,7 @@
 		DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
 		DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
 		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
-		DC3472EB258A720500BEEDE0 /* UpateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */; };
+		DC3472EB258A720500BEEDE0 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEAB258A3B9B00BEA712 /* UpdateService.swift */; };
 		DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
 		DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1B24E27F12004E6392 /* SignalView.swift */; };
 		DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1B24E27F12004E6392 /* SignalView.swift */; };
@@ -556,7 +556,7 @@
 		DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyInsightGroupView.swift; sourceTree = "<group>"; };
 		DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAppView.swift; sourceTree = "<group>"; };
 		DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
-		DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpateService.swift; sourceTree = "<group>"; };
+		DC7DEEAB258A3B9B00BEA712 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateView.swift; sourceTree = "<group>"; };
 		DC815F3B24E283640095A047 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
 		DC8FAD6B257E84BC0019A186 /* OrganizationAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationAdmin.swift; sourceTree = "<group>"; };
@@ -712,6 +712,7 @@
 				2B1D46A026CC52DD008814A9 /* InsightService.swift */,
 				2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */,
 				2B379D2026FBC3A300714BE6 /* IconFinderService.swift */,
+				DC7DEEAB258A3B9B00BEA712 /* UpdateService.swift */,
 			);
 			path = UpdatedServices;
 			sourceTree = "<group>";
@@ -927,7 +928,6 @@
 				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
 				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
 				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
-				DC7DEEAB258A3B9B00BEA712 /* UpateService.swift */,
 				2BDD8E772655049700C6E51D /* OldInsightService.swift */,
 				2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */,
 			);
@@ -1657,7 +1657,7 @@
 				2BC1427826656DEF009BCB3B /* APIClient.swift in Sources */,
 				2B21FCD826FDC38500A8A55B /* NewInsightMenu.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
-				DC3472EB258A720500BEEDE0 /* UpateService.swift in Sources */,
+				DC3472EB258A720500BEEDE0 /* UpdateService.swift in Sources */,
 				2BBFCA04267D05E40013DC74 /* CardView.swift in Sources */,
 				2BBFCA20267D05E40013DC74 /* BigNumberFormatter.swift in Sources */,
 				2B21FCE026FDCAE200A8A55B /* InsightsList.swift in Sources */,
