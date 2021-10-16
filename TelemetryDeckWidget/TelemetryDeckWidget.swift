@@ -26,15 +26,15 @@ struct Provider: IntentTimelineProvider {
     }
 
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: SelectInsightIntent(), insightCalculationResult: .init(id: UUID.empty, insight: DTOv2.Insight.init(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0))
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: .init(id: UUID.empty, insight: DTOv2.Insight.init(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0))
     }
 
-    func getSnapshot(for configuration: SelectInsightIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date(), configuration: configuration, insightCalculationResult: .init(id: UUID.empty, insight: DTOv2.Insight.init(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0))
         completion(entry)
     }
 
-    func getTimeline(for configuration: SelectInsightIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
         
         insightService.widgetableInsightIDs { uuids in
@@ -63,7 +63,7 @@ struct Provider: IntentTimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let configuration: SelectInsightIntent
+    let configuration: ConfigurationIntent
     let insightCalculationResult: DTOv2.InsightCalculationResult
 }
 
@@ -80,7 +80,7 @@ struct TelemetryDeckWidget: Widget {
     let kind: String = "TelemetryDeckWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: SelectInsightIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             TelemetryDeckWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("My Widget")
@@ -90,7 +90,7 @@ struct TelemetryDeckWidget: Widget {
 
 struct TelemetryDeckWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TelemetryDeckWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: SelectInsightIntent(), insightCalculationResult: .init(id: UUID.empty, insight: DTOv2.Insight.init(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0)))
+        TelemetryDeckWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: .init(id: UUID.empty, insight: DTOv2.Insight.init(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0)))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

@@ -28,7 +28,7 @@
 			<key>INIntentLastParameterTag</key>
 			<integer>5</integer>
 			<key>INIntentName</key>
-			<string>SelectInsight</string>
+			<string>Configuration</string>
 			<key>INIntentParameters</key>
 			<array>
 				<dict>
@@ -105,6 +105,26 @@
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Primary</string>
 						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>There are ${count} options matching ‘${Insight}’.</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>s9UGup</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Just to confirm, you wanted ‘${Insight}’?</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>RcYieO</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Confirmation</string>
+						</dict>
 					</array>
 					<key>INIntentParameterSupportsDynamicEnumeration</key>
 					<true/>
@@ -133,7 +153,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>SelectInsight</string>
+			<string>Configuration</string>
 			<key>INIntentTitleID</key>
 			<string>gpCwrM</string>
 			<key>INIntentType</key>

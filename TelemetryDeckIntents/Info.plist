@@ -12,7 +12,9 @@
 			<array/>
 			<key>IntentsSupported</key>
 			<array>
-				<string>SelectInsightIntent</string>
+				<string>ConfigurationIntent</string>
+				<string>Intent</string>
+				<string>TelemetryDeckWidget</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
