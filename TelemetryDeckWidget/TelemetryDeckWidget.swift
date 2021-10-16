@@ -8,6 +8,7 @@
 import Intents
 import SwiftUI
 import WidgetKit
+import TelemetryClient
 
 struct Provider: IntentTimelineProvider {
     let api: APIClient
@@ -17,6 +18,9 @@ struct Provider: IntentTimelineProvider {
     let insightResultService: InsightResultService
 
     init() {
+        let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
+        TelemetryManager.initialize(with: configuration)
+        
         self.api = APIClient()
         self.cacheLayer = CacheLayer()
         self.errors = ErrorService()

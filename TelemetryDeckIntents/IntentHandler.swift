@@ -6,6 +6,7 @@
 //
 
 import Intents
+import TelemetryClient
 
 class IntentHandler: INExtension, ConfigurationIntentHandling {
     let api: APIClient
@@ -14,6 +15,9 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
     let insightService: InsightService
 
     override init() {
+        let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
+        TelemetryManager.initialize(with: configuration)
+        
         self.api = APIClient()
         self.cacheLayer = CacheLayer()
         self.errors = ErrorService()

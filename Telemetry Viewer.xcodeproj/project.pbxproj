@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B0050922703617B009C609C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
 		2B0050932703617B009C609C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
+		2B043C34271B491B00DDB255 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B043C33271B491B00DDB255 /* TelemetryClient */; };
+		2B043C36271B492900DDB255 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B043C35271B492900DDB255 /* TelemetryClient */; };
 		2B135E0C26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
 		2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
 		2B135E0F26E0E7B900CC0A40 /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
@@ -607,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */,
+				2B043C34271B491B00DDB255 /* TelemetryClient in Frameworks */,
 				C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +619,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D8AE270C821A0032560A /* Intents.framework in Frameworks */,
+				2B043C36271B492900DDB255 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1119,6 +1123,7 @@
 			);
 			name = TelemetryDeckWidgetExtension;
 			packageProductDependencies = (
+				2B043C33271B491B00DDB255 /* TelemetryClient */,
 			);
 			productName = TelemetryDeckWidgetExtension;
 			productReference = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */;
@@ -1137,6 +1142,9 @@
 			dependencies = (
 			);
 			name = TelemetryDeckIntents;
+			packageProductDependencies = (
+				2B043C35271B492900DDB255 /* TelemetryClient */,
+			);
 			productName = TelemetryDeckIntents;
 			productReference = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -2259,6 +2267,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B043C33271B491B00DDB255 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
+		};
+		2B043C35271B492900DDB255 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
+		};
 		2B25EAE826D3EEE700BBBB1B /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
