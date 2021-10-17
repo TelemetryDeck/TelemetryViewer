@@ -279,6 +279,7 @@
 		C5A8D8C3270C821B0032560A /* TelemetryDeckIntentsUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8B7270C821B0032560A /* TelemetryDeckIntentsUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
+		C5AF677C271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AF677B271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift */; };
 		C5CE3D3F271AFA66005232EC /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35426A5E25500606527 /* LineChartView.swift */; };
 		C5CE3D40271AFA66005232EC /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35226A5E25500606527 /* RawChartView.swift */; };
 		C5CE3D41271AFA66005232EC /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35526A5E25600606527 /* BarChartView.swift */; };
@@ -553,6 +554,7 @@
 		C5A8D8BB270C821B0032560A /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		C5A8D8BE270C821B0032560A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C5A8D8C0270C821B0032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5AF677B271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidgetEntryViews.swift; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 			isa = PBXGroup;
 			children = (
 				C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */,
+				C5AF677B271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift */,
 				C5A8D8A4270C6FB70032560A /* MockData.swift */,
 				C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */,
 				C5A8D86A270C5D800032560A /* Assets.xcassets */,
@@ -1410,6 +1413,7 @@
 				C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */,
 				C5CE3D4E271AFCE2005232EC /* DetailSidebar.swift in Sources */,
 				C5A8D89A270C68AB0032560A /* RegistrationRequestBody.swift in Sources */,
+				C5AF677C271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift in Sources */,
 				C5CE3D48271AFA6E005232EC /* ChartHoverLabel.swift in Sources */,
 				C5A8D87C270C65F90032560A /* InsightResultService.swift in Sources */,
 				C5CE3D5C271AFCE2005232EC /* Helpers.swift in Sources */,

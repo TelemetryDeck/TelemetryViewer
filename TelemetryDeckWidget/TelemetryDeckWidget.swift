@@ -44,8 +44,7 @@ struct Provider: IntentTimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         guard configuration.Insight?.identifier != nil else { return }
 
         let insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
@@ -82,39 +81,6 @@ struct SimpleEntry: TimelineEntry {
     let chartDataSet: ChartDataSet
 }
 
-struct TelemetryDeckWidgetEntryView: View {
-    let entry: Provider.Entry
-
-    var body: some View {
-        VStack {
-            Text(entry.insightCalculationResult.insight.title.uppercased())
-                .padding(.top)
-                .font(.footnote)
-                .foregroundColor(.grayColor)
-
-            switch entry.insightCalculationResult.insight.displayMode {
-            case .raw:
-                RawTableView(insightData: entry.chartDataSet, isSelected: false)
-            case .pieChart:
-                DonutChartView(chartDataset: entry.chartDataSet, isSelected: false)
-                    .padding(.horizontal)
-                    .padding(.bottom)
-            case .lineChart:
-                LineChart(chartDataSet: entry.chartDataSet, isSelected: false)
-            case .barChart:
-                BarChartContentView(chartDataSet: entry.chartDataSet, isSelected: false)
-            default:
-                Text("This is not supported in this version.")
-                    .font(.footnote)
-                    .foregroundColor(.grayColor)
-                    .padding(.vertical)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            }
-        }
-        .accentColor(Color(hex: entry.insightCalculationResult.insight.accentColor ?? "") ?? Color.telemetryOrange)
-    }
-}
-
 @main
 struct TelemetryDeckWidget: Widget {
     let kind: String = "TelemetryDeckWidget"
@@ -130,7 +96,7 @@ struct TelemetryDeckWidget: Widget {
 
 struct TelemetryDeckWidget_Previews: PreviewProvider {
     static var previews: some View {
-        let result: DTOv2.InsightCalculationResult = insightCalculationResults[4]
+        let result: DTOv2.InsightCalculationResult = insightCalculationResults[3]
         let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy))
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
@@ -138,5 +104,9 @@ struct TelemetryDeckWidget_Previews: PreviewProvider {
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
+        if #available(iOSApplicationExtension 15.0, *) {
+            TelemetryDeckWidgetEntryView(entry: entry)
+                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+        }
     }
 }
