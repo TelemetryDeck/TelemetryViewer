@@ -134,9 +134,11 @@ struct TelemetryDeckWidget: Widget {
     }
 }
 
-// struct TelemetryDeckWidget_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TelemetryDeckWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: .init(id: UUID.empty, insight: DTOv2.Insight(id: UUID.empty, groupID: UUID.empty, title: "foo", uniqueUser: true, filters: [:], displayMode: .raw, isExpanded: false), data: [], calculatedAt: Date(), calculationDuration: 0)))
-//            .previewContext(WidgetPreviewContext(family: .systemSmall))
-//    }
-// }
+ struct TelemetryDeckWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        let result: DTOv2.InsightCalculationResult = insightCalculationResults[1]
+        let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy))
+        TelemetryDeckWidgetEntryView(entry: entry)
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
+ }
