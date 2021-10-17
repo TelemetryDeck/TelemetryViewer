@@ -45,38 +45,32 @@ struct Provider: IntentTimelineProvider {
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        insightService.widgetableInsights { insights in
+        
+        guard configuration.Insight?.identifier != nil else { return }
 
-            guard insights.first?.id != nil else { return }
+        let insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
 
-            var insightID = insights.first!.id
+        // get InsightCalculationResult from API
+        let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
+                                 Formatter.iso8601noFS.string(from: Date().beginning(of: .month) ?? Date() - 30 * 24 * 3600),
+                                 Formatter.iso8601noFS.string(from: Date()))
 
-            if configuration.Insight?.identifier != nil {
-                insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
-            }
-
-            // get InsightCalculationResult from API
-            let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
-                                     Formatter.iso8601noFS.string(from: Date().beginning(of: .month) ?? Date() - 30 * 24 * 3600),
-                                     Formatter.iso8601noFS.string(from: Date()))
-
-            api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
-                switch result {
-                case .success(let insightCalculationResult):
-                    let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
-                    // construct simple entry from InsightCalculationResult
-                    let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet)
-                    let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
-                    completion(timeline)
-                case .failure:
-                    return
-                }
+        api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
+            switch result {
+            case .success(let insightCalculationResult):
+                let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
+                // construct simple entry from InsightCalculationResult
+                let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet)
+                let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
+                completion(timeline)
+            case .failure:
+                return
             }
         }
 
-        // TODO: dynamic configuration that asks for list of vegetable insights from the api
-        // TODO: get selected InsightID from configuration
-        // TODO: tell the timeline to reload
+        // done: dynamic configuration that asks for list of vegetable insights from the api
+        // done: get selected InsightID from configuration
+        // done: tell the timeline to reload
         // TODO: construct a real InsightCalculationResult UI similar to the main app
     }
 }
@@ -134,7 +128,7 @@ struct TelemetryDeckWidget: Widget {
     }
 }
 
- struct TelemetryDeckWidget_Previews: PreviewProvider {
+struct TelemetryDeckWidget_Previews: PreviewProvider {
     static var previews: some View {
         let result: DTOv2.InsightCalculationResult = insightCalculationResults[4]
         let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy))
@@ -145,4 +139,4 @@ struct TelemetryDeckWidget: Widget {
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
- }
+}
