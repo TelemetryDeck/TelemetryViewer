@@ -27,7 +27,9 @@ final class InsightRetrievalOperation: AsyncOperation {
 
     override func main() {
         // If the result is already cached, return the cached result
-        if let insightCalculationResult = cache.insightCalculationResultCache[cacheKey], !cache.insightCalculationResultCache.needsUpdate(forKey: cacheKey) {
+        if let insightCalculationResult = cache.insightCalculationResultCache[cacheKey],
+           !cache.insightCalculationResultCache.needsUpdate(forKey: cacheKey)
+        {
             onFinish(insightCalculationResult)
             finish()
             return
@@ -77,7 +79,7 @@ class InsightResultService: ObservableObject {
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
     
-    @Published var timeWindowBeginning: RelativeDateDescription = .beginning(of: .previous(.month))
+    @Published var timeWindowBeginning: RelativeDateDescription = .beginning(of: .current(.month))
     @Published var timeWindowEnd: RelativeDateDescription = .end(of: .current(.month))
     
     var timeWindowBeginningDate: Date { resolvedDate(from: timeWindowBeginning, defaultDate: Date() - 30 * 24 * 3600) }
