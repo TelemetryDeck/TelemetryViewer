@@ -8,6 +8,7 @@
 import SwiftUI
 import TelemetryClient
 import DataTransferObjects
+import SwiftUICharts
 
 struct OrganizationSignalNumbersView: View {
     @EnvironmentObject var api: APIClient

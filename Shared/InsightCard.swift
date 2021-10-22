@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DataTransferObjects
+import SwiftUICharts
 
 struct InsightCard: View {
     @EnvironmentObject var insightService: InsightService

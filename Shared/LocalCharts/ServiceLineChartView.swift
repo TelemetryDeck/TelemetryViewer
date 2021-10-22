@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct LineChartView: View {
     @EnvironmentObject var insightCalculationService: InsightCalculationService

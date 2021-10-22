@@ -10,6 +10,7 @@ import SwiftUI
 import TelemetryClient
 import WidgetKit
 import DataTransferObjects
+import SwiftUICharts
 
 struct Provider: IntentTimelineProvider {
     let api: APIClient

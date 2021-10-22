@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import DataTransferObjects
+import SwiftUICharts
 
 struct ExpandedInsightCalculationResult {
     let insightData: DTOv1.InsightCalculationResult

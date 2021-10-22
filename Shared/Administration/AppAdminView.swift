@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DataTransferObjects
+import SwiftUICharts
 
 private enum DisplayMode: Hashable {
     case users, signals

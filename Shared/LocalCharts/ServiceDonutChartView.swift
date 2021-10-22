@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct ServiceDonutChartView: View {
     @EnvironmentObject var insightCalculationService: InsightCalculationService

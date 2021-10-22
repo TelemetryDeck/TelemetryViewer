@@ -8,6 +8,7 @@
 import Intents
 import SwiftUI
 import DataTransferObjects
+import SwiftUICharts
 
 struct TelemetryDeckWidgetEntryView: View {
     let entry: SimpleEntry

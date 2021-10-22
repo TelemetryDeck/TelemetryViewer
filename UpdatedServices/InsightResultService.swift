@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import DataTransferObjects
+import SwiftUICharts
 
 final class InsightRetrievalOperation: AsyncOperation {
     private let cache: CacheLayer
