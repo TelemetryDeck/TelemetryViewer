@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct NewInsightMenu: View {
     @EnvironmentObject var groupService: GroupService

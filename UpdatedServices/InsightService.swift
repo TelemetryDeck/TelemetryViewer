@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import DataTransferObjects
 
 class InsightService: ObservableObject {
     private let api: APIClient

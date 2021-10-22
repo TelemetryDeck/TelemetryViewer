@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DataTransferObjects
 
 struct ItunesSearchResult: Codable {
     let screenshotUrls: [URL]

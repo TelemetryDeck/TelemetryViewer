@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import DataTransferObjects
 
 class LexiconService: ObservableObject {
     enum LexiconSortKey {

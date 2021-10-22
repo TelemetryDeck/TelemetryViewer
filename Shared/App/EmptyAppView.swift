@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct EmptyAppView: View {
     @EnvironmentObject var appService: OldAppService

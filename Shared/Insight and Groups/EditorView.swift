@@ -7,6 +7,7 @@
 
 import SwiftUI
 import TelemetryClient
+import DataTransferObjects
 
 class EditorViewModel: ObservableObject {
     enum InsightType {

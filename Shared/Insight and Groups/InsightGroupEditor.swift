@@ -7,6 +7,7 @@
 
 import SwiftUI
 import TelemetryClient
+import DataTransferObjects
 
 struct InsightGroupEditor: View {
     @Environment(\.presentationMode) var presentationMode

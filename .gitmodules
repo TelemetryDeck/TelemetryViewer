@@ -1,9 +1,9 @@
-[submodule "Models"]
-	path = Models
-	url = git@github.com:AppTelemetry/models.git
 [submodule "APIClient"]
 	path = APIClient
 	url = git@github.com:AppTelemetry/APIClient.git
 [submodule "UIComponents"]
 	path = UIComponents
 	url = git@github.com:AppTelemetry/UIComponents.git
+[submodule "Packages/DataTransferObjects"]
+	path = Packages/DataTransferObjects
+	url = git@github.com:AppTelemetry/models.git

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct WelcomeView: View {
     enum DisplayMode {

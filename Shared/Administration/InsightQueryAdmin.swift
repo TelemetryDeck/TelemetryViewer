@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct InsightQueryDetailView: View {
     let entry: DTOv1.InsightDTO

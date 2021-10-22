@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct SignalTypeView: View {
     let lexiconItem: DTOv1.LexiconSignalDTO

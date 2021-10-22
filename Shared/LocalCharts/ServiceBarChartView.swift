@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct BarChartView: View {
     let chartDataSet: ChartDataSet

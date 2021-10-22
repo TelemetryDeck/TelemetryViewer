@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct LoginView: View {
     @EnvironmentObject var api: APIClient

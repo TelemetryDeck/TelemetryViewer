@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 private enum DisplayMode: Hashable {
     case users, signals

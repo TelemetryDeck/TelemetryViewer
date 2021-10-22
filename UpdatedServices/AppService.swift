@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import DataTransferObjects
 
 class AppService: ObservableObject {
     private let api: APIClient

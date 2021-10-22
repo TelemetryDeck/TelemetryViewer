@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import DataTransferObjects
 
 class GroupService: ObservableObject {
     private let api: APIClient

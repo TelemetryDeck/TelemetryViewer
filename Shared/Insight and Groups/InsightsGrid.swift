@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct InsightsGrid: View {
     @EnvironmentObject var insightService: InsightService

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct InsightDetailView: View {
     @EnvironmentObject var api: APIClient

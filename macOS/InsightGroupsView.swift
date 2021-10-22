@@ -7,6 +7,7 @@
 
 import SwiftUI
 import TelemetryClient
+import DataTransferObjects
 
 struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService

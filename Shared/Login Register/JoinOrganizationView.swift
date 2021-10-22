@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct JoinOrganizationView: View {
     @EnvironmentObject var api: APIClient

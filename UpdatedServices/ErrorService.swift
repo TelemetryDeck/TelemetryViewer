@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DataTransferObjects
 
 class ErrorService: ObservableObject {
     struct DisplayableError {

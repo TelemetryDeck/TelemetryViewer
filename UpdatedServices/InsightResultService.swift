@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import DataTransferObjects
 
 final class InsightRetrievalOperation: AsyncOperation {
     private let cache: CacheLayer

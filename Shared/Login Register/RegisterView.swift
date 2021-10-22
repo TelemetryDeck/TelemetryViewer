@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct RegisterView: View {
     @EnvironmentObject var api: APIClient

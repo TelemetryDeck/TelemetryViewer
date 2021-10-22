@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct LeftSidebarView: View {
     @EnvironmentObject var api: APIClient

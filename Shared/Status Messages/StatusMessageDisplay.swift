@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct StatusMessageDisplay: View {
     @EnvironmentObject var api: APIClient

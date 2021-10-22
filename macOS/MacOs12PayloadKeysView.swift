@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 @available(macOS 12, *)
 struct MacOs12PayloadKeysView: View {

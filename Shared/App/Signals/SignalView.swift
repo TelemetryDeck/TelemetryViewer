@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct SignalView: View {
     var signal: DTOv1.Signal

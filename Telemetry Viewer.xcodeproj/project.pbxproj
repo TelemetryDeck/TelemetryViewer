@@ -11,34 +11,12 @@
 		2B0050932703617B009C609C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
 		2B043C34271B491B00DDB255 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B043C33271B491B00DDB255 /* TelemetryClient */; };
 		2B043C36271B492900DDB255 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B043C35271B492900DDB255 /* TelemetryClient */; };
-		2B135E0C26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
-		2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
-		2B135E0F26E0E7B900CC0A40 /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
-		2B135E1026E0E7B900CC0A40 /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
-		2B135E1226E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */; };
-		2B135E1326E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */; };
+		2B0769D82722EA260024D8A7 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0769D72722EA260024D8A7 /* DataTransferObjects */; };
+		2B0769DA2722EA2F0024D8A7 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0769D92722EA2F0024D8A7 /* DataTransferObjects */; };
+		2B0769DC2722EA350024D8A7 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0769DB2722EA350024D8A7 /* DataTransferObjects */; };
+		2B0769DE2722EA3B0024D8A7 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */; };
 		2B135E1626E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
 		2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
-		2B19DEA026444B0C0086F70E /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
-		2B19DEA126444B0C0086F70E /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
-		2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
-		2B19DEA326444B0C0086F70E /* String+CamelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9626444B0C0086F70E /* String+CamelCase.swift */; };
-		2B19DEA426444B0C0086F70E /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
-		2B19DEA726444B0C0086F70E /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
-		2B19DEA826444B0C0086F70E /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
-		2B19DEA926444B0C0086F70E /* InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */; };
-		2B19DEAB26444B0C0086F70E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
-		2B19DEB726444B2B0086F70E /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
-		2B19DEB826444B2B0086F70E /* InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */; };
-		2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9626444B0C0086F70E /* String+CamelCase.swift */; };
-		2B19DEBB26444B2B0086F70E /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
-		2B19DEBC26444B2B0086F70E /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
-		2B19DEBE26444B2B0086F70E /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
-		2B19DEBF26444B2B0086F70E /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
-		2B19DEC026444B2B0086F70E /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
-		2B19DEC126444B2B0086F70E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
-		2B1D468626CC0A28008814A9 /* DTOv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOv2.swift */; };
-		2B1D468726CC0A28008814A9 /* DTOv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOv2.swift */; };
 		2B1D468926CC4423008814A9 /* OrgService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468826CC4423008814A9 /* OrgService.swift */; };
 		2B1D468A26CC4423008814A9 /* OrgService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468826CC4423008814A9 /* OrgService.swift */; };
 		2B1D469026CC471A008814A9 /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468F26CC471A008814A9 /* Caching.swift */; };
@@ -74,19 +52,11 @@
 		2B2C4EDE26C2DA6400A4F32B /* LineChartCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */; };
 		2B379D2126FBC3A300714BE6 /* IconFinderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B379D2026FBC3A300714BE6 /* IconFinderService.swift */; };
 		2B379D2226FBCC4B00714BE6 /* IconFinderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B379D2026FBC3A300714BE6 /* IconFinderService.swift */; };
-		2B3CC0D9264D4A570038B528 /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
-		2B3CC0DA264D4A570038B528 /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
 		2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
 		2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
 		2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
-		2B61B952264C3061003F62C4 /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
-		2B61B953264C3061003F62C4 /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
 		2B670C0026BD8BF7005DA07E /* SidebarSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B670BFF26BD8BF7005DA07E /* SidebarSplitView.swift */; };
-		2B69B53D264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
-		2B69B53E264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
-		2B69B541264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
-		2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
 		2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43D26512414003D3965 /* UpdateSettingsView.swift */; };
 		2B781B7C26F28C320062DBDC /* PricingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */; };
 		2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */; };
@@ -103,8 +73,6 @@
 		2BA5D50B26CDAA58008FBF8F /* InsightResultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */; };
 		2BB23B2C26567222003DDE5E /* OldAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* OldAppService.swift */; };
 		2BB23B2D26567222003DDE5E /* OldAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* OldAppService.swift */; };
-		2BB4737E26950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
-		2BB4737F26950731004DA1DC /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
 		2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE475B2629ABC80028DABB /* AppAdminView.swift */; };
 		2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
@@ -162,8 +130,6 @@
 		2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */; };
 		2BC522EA2625FCEF00E643AC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* FeedbackView.swift */; };
 		2BC522EB2625FCEF00E643AC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* FeedbackView.swift */; };
-		2BDBB75E264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
-		2BDBB75F264551890013FC39 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
 		2BDD35062710727900CB2AA5 /* EditorModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD35052710727900CB2AA5 /* EditorModeView.swift */; };
 		2BDD41BD2717365600B3CB33 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */; };
 		2BDD41BE2717365600B3CB33 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */; };
@@ -213,26 +179,8 @@
 		C581F4E4271B292A0031E99C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1427426656DEF009BCB3B /* APIClient.swift */; };
 		C581F4E5271B29470031E99C /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
 		C581F4E6271B29780031E99C /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D469726CC4C5D008814A9 /* ErrorService.swift */; };
-		C581F4E7271B2AF10031E99C /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
-		C581F4E8271B2AF10031E99C /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
-		C581F4E9271B2AF10031E99C /* InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */; };
-		C581F4EA271B2AF10031E99C /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
-		C581F4EB271B2AF10031E99C /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
-		C581F4EC271B2AF10031E99C /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
-		C581F4ED271B2AF10031E99C /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
-		C581F4EE271B2AF10031E99C /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
-		C581F4EF271B2AF10031E99C /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
-		C581F4F0271B2AF10031E99C /* DTOv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOv2.swift */; };
-		C581F4F1271B2AF10031E99C /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
-		C581F4F2271B2B150031E99C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
-		C581F4F3271B2B3B0031E99C /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
-		C581F4F4271B2B440031E99C /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
 		C581F4F5271B2B6B0031E99C /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
-		C581F4F6271B2BB50031E99C /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
 		C581F4F7271B2BC30031E99C /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
-		C581F4F8271B2BCC0031E99C /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
-		C581F4F9271B2BDC0031E99C /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
-		C581F4FA271B2C350031E99C /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */; };
 		C581F4FB271B2C6A0031E99C /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */; };
 		C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */; platformFilter = maccatalyst; };
 		C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */; platformFilter = maccatalyst; };
@@ -241,35 +189,15 @@
 		C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C5A8D86E270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C5A8D871270C5D800032560A /* TelemetryDeckWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */; };
-		C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */; };
-		C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */; };
 		C5A8D87C270C65F90032560A /* InsightResultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */; };
 		C5A8D87D270C65F90032560A /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
 		C5A8D87E270C65F90032560A /* CacheLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468E26CC471A008814A9 /* CacheLayer.swift */; };
 		C5A8D87F270C65F90032560A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1427426656DEF009BCB3B /* APIClient.swift */; };
 		C5A8D881270C65F90032560A /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468F26CC471A008814A9 /* Caching.swift */; };
 		C5A8D882270C66190032560A /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D469726CC4C5D008814A9 /* ErrorService.swift */; };
-		C5A8D883270C66400032560A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9F26444B0C0086F70E /* Models.swift */; };
 		C5A8D886270C66E90032560A /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F0267D05E30013DC74 /* DateExtensions.swift */; };
-		C5A8D88C270C67C10032560A /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */; };
-		C5A8D88D270C67D90032560A /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */; };
-		C5A8D88E270C67DA0032560A /* Date+StartEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */; };
-		C5A8D890270C682E0032560A /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */; };
-		C5A8D891270C682E0032560A /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9326444B0C0086F70E /* ChartDataSet.swift */; };
 		C5A8D892270C68790032560A /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* Telemetry.swift */; };
 		C5A8D893270C68970032560A /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */; };
-		C5A8D897270C68AB0032560A /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDBB75C264551890013FC39 /* Aggregate.swift */; };
-		C5A8D898270C68AB0032560A /* DTOv2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468526CC0A28008814A9 /* DTOv2.swift */; };
-		C5A8D899270C68AB0032560A /* AppAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4737D26950731004DA1DC /* AppAdminEntry.swift */; };
-		C5A8D89A270C68AB0032560A /* RegistrationRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */; };
-		C5A8D89B270C68AB0032560A /* SignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B951264C3061003F62C4 /* SignalDTO.swift */; };
-		C5A8D89C270C68AB0032560A /* OrganisationJoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */; };
-		C5A8D89D270C68AB0032560A /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9C26444B0C0086F70E /* UserDTO.swift */; };
-		C5A8D89E270C68AB0032560A /* OrganizationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */; };
-		C5A8D89F270C68AB0032560A /* InsightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9826444B0C0086F70E /* InsightData.swift */; };
-		C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */; };
-		C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */; };
 		C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8A4270C6FB70032560A /* MockData.swift */; };
 		C5A8D8AE270C821A0032560A /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8AD270C821A0032560A /* Intents.framework */; platformFilter = maccatalyst; };
 		C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
@@ -279,7 +207,6 @@
 		C5A8D8C3270C821B0032560A /* TelemetryDeckIntentsUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8B7270C821B0032560A /* TelemetryDeckIntentsUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
-		C5AF677C271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AF677B271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift */; };
 		C5CE3D3F271AFA66005232EC /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35426A5E25500606527 /* LineChartView.swift */; };
 		C5CE3D40271AFA66005232EC /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35226A5E25500606527 /* RawChartView.swift */; };
 		C5CE3D41271AFA66005232EC /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B65C35526A5E25600606527 /* BarChartView.swift */; };
@@ -427,20 +354,8 @@
 
 /* Begin PBXFileReference section */
 		2B00509027035C85009C609C /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
-		2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UUID+Empty.swift"; sourceTree = "<group>"; };
-		2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DruidCustomQuery.swift; sourceTree = "<group>"; };
-		2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DruidSQLQuery.swift; sourceTree = "<group>"; };
+		2B0769D62722EA0E0024D8A7 /* DataTransferObjects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DataTransferObjects; path = Packages/DataTransferObjects; sourceTree = "<group>"; };
 		2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+RawRepresentable.swift"; sourceTree = "<group>"; };
-		2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataPoint.swift; sourceTree = "<group>"; };
-		2B19DE9326444B0C0086F70E /* ChartDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataSet.swift; sourceTree = "<group>"; };
-		2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ISO.swift"; sourceTree = "<group>"; };
-		2B19DE9626444B0C0086F70E /* String+CamelCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CamelCase.swift"; sourceTree = "<group>"; };
-		2B19DE9826444B0C0086F70E /* InsightData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightData.swift; sourceTree = "<group>"; };
-		2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDTO.swift; sourceTree = "<group>"; };
-		2B19DE9C26444B0C0086F70E /* UserDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
-		2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightCalculationResult.swift; sourceTree = "<group>"; };
-		2B19DE9F26444B0C0086F70E /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		2B1D468526CC0A28008814A9 /* DTOv2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOv2.swift; sourceTree = "<group>"; };
 		2B1D468826CC4423008814A9 /* OrgService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgService.swift; sourceTree = "<group>"; };
 		2B1D468E26CC471A008814A9 /* CacheLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheLayer.swift; sourceTree = "<group>"; };
 		2B1D468F26CC471A008814A9 /* Caching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching.swift; sourceTree = "<group>"; };
@@ -460,13 +375,11 @@
 		2B2C4EDC26C2DA6400A4F32B /* LineChartCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartCanvas.swift; sourceTree = "<group>"; };
 		2B379D2026FBC3A300714BE6 /* IconFinderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconFinderService.swift; sourceTree = "<group>"; };
 		2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconService.swift; sourceTree = "<group>"; };
-		2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexiconSignalDTO.swift; sourceTree = "<group>"; };
 		2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS)Release.entitlements"; sourceTree = "<group>"; };
 		2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS).entitlements"; sourceTree = "<group>"; };
 		2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckWidgetExtension.entitlements; sourceTree = "<group>"; };
 		2B4DB011270CF37C002A4743 /* TelemetryDeckWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
 		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
-		2B61B951264C3061003F62C4 /* SignalDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalDTO.swift; sourceTree = "<group>"; };
 		2B65C35226A5E25500606527 /* RawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
 		2B65C35326A5E25500606527 /* ChartRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRangeView.swift; sourceTree = "<group>"; };
 		2B65C35426A5E25500606527 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
@@ -477,8 +390,6 @@
 		2B65C35A26A5E25600606527 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		2B65C35B26A5E25600606527 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
 		2B670BFF26BD8BF7005DA07E /* SidebarSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSplitView.swift; sourceTree = "<group>"; };
-		2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequestBody.swift; sourceTree = "<group>"; };
-		2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationJoinRequest.swift; sourceTree = "<group>"; };
 		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingSettingsView.swift; sourceTree = "<group>"; };
 		2B781B8226F4A5E30062DBDC /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
@@ -490,7 +401,6 @@
 		2BA5D50626CD1403008FBF8F /* InsightCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCard.swift; sourceTree = "<group>"; };
 		2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightResultService.swift; sourceTree = "<group>"; };
 		2BB23B2B26567222003DDE5E /* OldAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAppService.swift; sourceTree = "<group>"; };
-		2BB4737D26950731004DA1DC /* AppAdminEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAdminEntry.swift; sourceTree = "<group>"; };
 		2BBE475B2629ABC80028DABB /* AppAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAdminView.swift; sourceTree = "<group>"; };
 		2BBFC9DA267D05E30013DC74 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		2BBFC9DB267D05E30013DC74 /* RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
@@ -525,7 +435,6 @@
 		2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntentsRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsRelease.entitlements; sourceTree = "<group>"; };
 		2BD21EC9271B3CF500AE52DD /* TelemetryDeckIntentsUIRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsUIRelease.entitlements; sourceTree = "<group>"; };
 		2BD21ECA271B3CFB00AE52DD /* TelemetryDeckIntentsUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsUI.entitlements; sourceTree = "<group>"; };
-		2BDBB75C264551890013FC39 /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
 		2BDD35052710727900CB2AA5 /* EditorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModeView.swift; sourceTree = "<group>"; };
 		2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
@@ -543,7 +452,6 @@
 		C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TelemetryDeckWidget.intentdefinition; sourceTree = "<group>"; };
 		C5A8D86A270C5D800032560A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A8D86C270C5D800032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StartEnd.swift"; sourceTree = "<group>"; };
 		C5A8D8A4270C6FB70032560A /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8D8AD270C821A0032560A /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -554,7 +462,6 @@
 		C5A8D8BB270C821B0032560A /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		C5A8D8BE270C821B0032560A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C5A8D8C0270C821B0032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5AF677B271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidgetEntryViews.swift; sourceTree = "<group>"; };
 		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -610,6 +517,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0769DA2722EA2F0024D8A7 /* DataTransferObjects in Frameworks */,
 				C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */,
 				2B043C34271B491B00DDB255 /* TelemetryClient in Frameworks */,
 				C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */,
@@ -621,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D8AE270C821A0032560A /* Intents.framework in Frameworks */,
+				2B0769D82722EA260024D8A7 /* DataTransferObjects in Frameworks */,
 				2B043C36271B492900DDB255 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,6 +546,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0769DE2722EA3B0024D8A7 /* DataTransferObjects in Frameworks */,
 				DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B25EAE926D3EEE700BBBB1B /* Shimmer in Frameworks */,
+				2B0769DC2722EA350024D8A7 /* DataTransferObjects in Frameworks */,
 				DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,65 +564,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B135E0926E0E7B900CC0A40 /* DruidDTOs */ = {
-			isa = PBXGroup;
-			children = (
-				2B135E0A26E0E7B900CC0A40 /* DruidCustomQuery.swift */,
-				2B135E0B26E0E7B900CC0A40 /* DruidSQLQuery.swift */,
-			);
-			path = DruidDTOs;
-			sourceTree = "<group>";
-		};
-		2B19DE9026444B0C0086F70E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2B135E0926E0E7B900CC0A40 /* DruidDTOs */,
-				2B19DE9126444B0C0086F70E /* Derived Structs */,
-				2B19DE9426444B0C0086F70E /* Extensions */,
-				2B19DE9726444B0C0086F70E /* DTOs */,
-				2B19DE9F26444B0C0086F70E /* Models.swift */,
-				2B135E0826E0E7B900CC0A40 /* UUID+Empty.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		2B19DE9126444B0C0086F70E /* Derived Structs */ = {
-			isa = PBXGroup;
-			children = (
-				2B19DE9226444B0C0086F70E /* ChartDataPoint.swift */,
-				2B19DE9326444B0C0086F70E /* ChartDataSet.swift */,
-			);
-			path = "Derived Structs";
-			sourceTree = "<group>";
-		};
-		2B19DE9426444B0C0086F70E /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2B19DE9526444B0C0086F70E /* Formatter+ISO.swift */,
-				2B19DE9626444B0C0086F70E /* String+CamelCase.swift */,
-				C5A8D88B270C67BE0032560A /* Date+StartEnd.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2B19DE9726444B0C0086F70E /* DTOs */ = {
-			isa = PBXGroup;
-			children = (
-				2BDBB75C264551890013FC39 /* Aggregate.swift */,
-				2BB4737D26950731004DA1DC /* AppAdminEntry.swift */,
-				2B19DE9D26444B0C0086F70E /* InsightCalculationResult.swift */,
-				2B19DE9826444B0C0086F70E /* InsightData.swift */,
-				2B3CC0D8264D4A570038B528 /* LexiconSignalDTO.swift */,
-				2B69B540264EAA3F002CD171 /* OrganisationJoinRequest.swift */,
-				2B19DE9B26444B0C0086F70E /* OrganizationDTO.swift */,
-				2B69B53C264E9F3E002CD171 /* RegistrationRequestBody.swift */,
-				2B61B951264C3061003F62C4 /* SignalDTO.swift */,
-				2B19DE9C26444B0C0086F70E /* UserDTO.swift */,
-				2B1D468526CC0A28008814A9 /* DTOv2.swift */,
-			);
-			path = DTOs;
-			sourceTree = "<group>";
-		};
 		2B1D469626CC484D008814A9 /* UpdatedServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,7 +696,6 @@
 			isa = PBXGroup;
 			children = (
 				C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */,
-				C5AF677B271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift */,
 				C5A8D8A4270C6FB70032560A /* MockData.swift */,
 				C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */,
 				C5A8D86A270C5D800032560A /* Assets.xcassets */,
@@ -1008,11 +859,11 @@
 				2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */,
 				2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */,
 				2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */,
+				2B0769D62722EA0E0024D8A7 /* DataTransferObjects */,
 				2BD189F6267BCEA900DFDE4D /* UIComponents */,
 				2BC1427326656DEF009BCB3B /* APIClient */,
 				2B1D469626CC484D008814A9 /* UpdatedServices */,
 				DCB02B65250027C700304964 /* Services */,
-				2B19DE9026444B0C0086F70E /* Models */,
 				DCE239FB24D3687C00053370 /* Shared */,
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
@@ -1127,6 +978,7 @@
 			name = TelemetryDeckWidgetExtension;
 			packageProductDependencies = (
 				2B043C33271B491B00DDB255 /* TelemetryClient */,
+				2B0769D92722EA2F0024D8A7 /* DataTransferObjects */,
 			);
 			productName = TelemetryDeckWidgetExtension;
 			productReference = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */;
@@ -1147,6 +999,7 @@
 			name = TelemetryDeckIntents;
 			packageProductDependencies = (
 				2B043C35271B492900DDB255 /* TelemetryClient */,
+				2B0769D72722EA260024D8A7 /* DataTransferObjects */,
 			);
 			productName = TelemetryDeckIntents;
 			productReference = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */;
@@ -1189,6 +1042,7 @@
 			name = "Telemetry Viewer (iOS)";
 			packageProductDependencies = (
 				DC9C0830252CD622001C0F94 /* TelemetryClient */,
+				2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */,
 			);
 			productName = "Telemetry Viewer (iOS)";
 			productReference = DCE23A0324D3687D00053370 /* Telemetry Viewer.app */;
@@ -1211,6 +1065,7 @@
 			packageProductDependencies = (
 				DC9C0841252CEAC9001C0F94 /* TelemetryClient */,
 				2B25EAE826D3EEE700BBBB1B /* Shimmer */,
+				2B0769DB2722EA350024D8A7 /* DataTransferObjects */,
 			);
 			productName = "Telemetry Viewer (macOS)";
 			productReference = DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */;
@@ -1375,68 +1230,49 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5A8D89F270C68AB0032560A /* InsightData.swift in Sources */,
-				C5A8D879270C61FB0032560A /* UUID+Empty.swift in Sources */,
 				C5CE3D4B271AFC96005232EC /* BigNumberFormatter.swift in Sources */,
 				C5CE3D43271AFA6A005232EC /* DonutChartView.swift in Sources */,
 				C5CE3D52271AFCE2005232EC /* LoadingStateIndicator.swift in Sources */,
 				C5CE3D40271AFA66005232EC /* RawChartView.swift in Sources */,
 				C5CE3D5A271AFCE2005232EC /* Binding+OnUpdate.swift in Sources */,
-				C5A8D89C270C68AB0032560A /* OrganisationJoinRequest.swift in Sources */,
 				C5CE3D49271AFC3C005232EC /* ValueUnitAndTitleView.swift in Sources */,
 				C5CE3D45271AFA6A005232EC /* DonutChart.swift in Sources */,
 				C5CE3D3F271AFA66005232EC /* LineChartView.swift in Sources */,
 				2BDD41BF2717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				C5CE3D44271AFA6A005232EC /* ChartLegend.swift in Sources */,
-				C5A8D891270C682E0032560A /* ChartDataSet.swift in Sources */,
 				C5CE3D41271AFA66005232EC /* BarChartView.swift in Sources */,
 				C5CE3D4C271AFCAE005232EC /* TextModifiers.swift in Sources */,
 				C5CE3D55271AFCE2005232EC /* OrderSetter.swift in Sources */,
 				C5A8D886270C66E90032560A /* DateExtensions.swift in Sources */,
 				C5CE3D46271AFA6E005232EC /* ChartRangeView.swift in Sources */,
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
-				C5A8D899270C68AB0032560A /* AppAdminEntry.swift in Sources */,
 				C5CE3D56271AFCE2005232EC /* MacNavigationView.swift in Sources */,
 				C5A8D892270C68790032560A /* Telemetry.swift in Sources */,
 				C5CE3D42271AFA66005232EC /* LineChartCanvas.swift in Sources */,
 				C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */,
 				C5CE3D47271AFA6E005232EC /* ChartBottomView.swift in Sources */,
 				C5CE3D51271AFCE2005232EC /* SingleKeyValueView.swift in Sources */,
-				C5A8D87A270C638D0032560A /* DruidCustomQuery.swift in Sources */,
 				C5CE3D53271AFCE2005232EC /* DashedCardView.swift in Sources */,
 				C5A8D87F270C65F90032560A /* APIClient.swift in Sources */,
-				C5A8D8A0270C68AB0032560A /* InsightCalculationResult.swift in Sources */,
 				C5CE3D4D271AFCB6005232EC /* Color.swift in Sources */,
-				C5A8D8A1270C68AB0032560A /* LexiconSignalDTO.swift in Sources */,
 				C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
 				C5CE3D50271AFCE2005232EC /* CardView.swift in Sources */,
-				C5A8D87B270C63D60032560A /* Formatter+ISO.swift in Sources */,
 				C5CE3D4E271AFCE2005232EC /* DetailSidebar.swift in Sources */,
-				C5A8D89A270C68AB0032560A /* RegistrationRequestBody.swift in Sources */,
-				C5AF677C271C33110028F500 /* TelemetryDeckWidgetEntryViews.swift in Sources */,
 				C5CE3D48271AFA6E005232EC /* ChartHoverLabel.swift in Sources */,
 				C5A8D87C270C65F90032560A /* InsightResultService.swift in Sources */,
 				C5CE3D5C271AFCE2005232EC /* Helpers.swift in Sources */,
 				C5CE3D5E271AFD0C005232EC /* ProgressView+Scale.swift in Sources */,
 				C5CE3D54271AFCE2005232EC /* ListItemView.swift in Sources */,
-				C5A8D890270C682E0032560A /* ChartDataPoint.swift in Sources */,
 				C5CE3D4A271AFC69005232EC /* RoundedCorners.swift in Sources */,
 				C5A8D87E270C65F90032560A /* CacheLayer.swift in Sources */,
-				C5A8D897270C68AB0032560A /* Aggregate.swift in Sources */,
-				C5A8D898270C68AB0032560A /* DTOv2.swift in Sources */,
 				C5CE3D59271AFCE2005232EC /* AdaptiveStack.swift in Sources */,
-				C5A8D89D270C68AB0032560A /* UserDTO.swift in Sources */,
 				C5CE3D4F271AFCE2005232EC /* OptionalToggle.swift in Sources */,
 				C5A8D881270C65F90032560A /* Caching.swift in Sources */,
 				C5A8D87D270C65F90032560A /* InsightService.swift in Sources */,
 				C5A8D893270C68970032560A /* JSONDecoder.swift in Sources */,
-				C5A8D88C270C67C10032560A /* Date+StartEnd.swift in Sources */,
 				C5A8D882270C66190032560A /* ErrorService.swift in Sources */,
-				C5A8D883270C66400032560A /* Models.swift in Sources */,
 				C5CE3D5D271AFCE2005232EC /* CustomSection.swift in Sources */,
 				C5CE3D57271AFCE2005232EC /* Buttonstyles.swift in Sources */,
-				C5A8D89E270C68AB0032560A /* OrganizationDTO.swift in Sources */,
-				C5A8D89B270C68AB0032560A /* SignalDTO.swift in Sources */,
 				C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1445,35 +1281,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C581F4EF271B2AF10031E99C /* InsightData.swift in Sources */,
-				C581F4F0271B2AF10031E99C /* DTOv2.swift in Sources */,
 				C581F4E6271B29780031E99C /* ErrorService.swift in Sources */,
 				C581F4E2271B292A0031E99C /* CacheLayer.swift in Sources */,
 				C581F4F5271B2B6B0031E99C /* Telemetry.swift in Sources */,
-				C581F4E9271B2AF10031E99C /* InsightCalculationResult.swift in Sources */,
-				C581F4E8271B2AF10031E99C /* LexiconSignalDTO.swift in Sources */,
 				C581F4F7271B2BC30031E99C /* JSONDecoder.swift in Sources */,
-				C581F4EA271B2AF10031E99C /* OrganizationDTO.swift in Sources */,
-				C581F4ED271B2AF10031E99C /* AppAdminEntry.swift in Sources */,
-				C581F4F9271B2BDC0031E99C /* ChartDataPoint.swift in Sources */,
-				C581F4F1271B2AF10031E99C /* RegistrationRequestBody.swift in Sources */,
-				C581F4F8271B2BCC0031E99C /* ChartDataSet.swift in Sources */,
-				C581F4EC271B2AF10031E99C /* Aggregate.swift in Sources */,
-				C581F4E7271B2AF10031E99C /* OrganisationJoinRequest.swift in Sources */,
-				C581F4F6271B2BB50031E99C /* UUID+Empty.swift in Sources */,
-				C581F4FA271B2C350031E99C /* Date+StartEnd.swift in Sources */,
 				C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */,
 				2BDD41C02717365600B3CB33 /* AsyncOperation.swift in Sources */,
-				C581F4EB271B2AF10031E99C /* SignalDTO.swift in Sources */,
 				C581F4E3271B292A0031E99C /* Caching.swift in Sources */,
 				C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
 				C581F4FB271B2C6A0031E99C /* DateExtensions.swift in Sources */,
-				C581F4F3271B2B3B0031E99C /* Formatter+ISO.swift in Sources */,
 				C581F4E4271B292A0031E99C /* APIClient.swift in Sources */,
-				C581F4F4271B2B440031E99C /* DruidCustomQuery.swift in Sources */,
-				C581F4EE271B2AF10031E99C /* UserDTO.swift in Sources */,
 				C581F4E5271B29470031E99C /* InsightService.swift in Sources */,
-				C581F4F2271B2B150031E99C /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1511,30 +1329,23 @@
 				DCF8978625C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				DCB5F9F225F294C6004C4922 /* FavouritesView.swift in Sources */,
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
-				2B61B952264C3061003F62C4 /* SignalDTO.swift in Sources */,
 				DC7C540C250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
 				2BC522EA2625FCEF00E643AC /* FeedbackView.swift in Sources */,
 				DCB5F9F625F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
 				2B1D469826CC4C5D008814A9 /* ErrorService.swift in Sources */,
-				2B1D468626CC0A28008814A9 /* DTOv2.swift in Sources */,
 				2B21FCE226FDD28700A8A55B /* BottomSondrine.swift in Sources */,
-				2B19DEA426444B0C0086F70E /* InsightData.swift in Sources */,
 				2BBFCA01267D05E40013DC74 /* DashedCardView.swift in Sources */,
 				C5A8D86E270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
-				2B19DEA726444B0C0086F70E /* OrganizationDTO.swift in Sources */,
 				2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2BBFCA37267D05E40013DC74 /* SingleKeyValueView.swift in Sources */,
 				2B1D46A126CC52DD008814A9 /* InsightService.swift in Sources */,
 				2BBFCA07267D05E40013DC74 /* OptionalToggle.swift in Sources */,
-				2B19DEA826444B0C0086F70E /* UserDTO.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
 				2BEDE6E926A72853007247B0 /* ServiceLineChartView.swift in Sources */,
-				2BB4737E26950731004DA1DC /* AppAdminEntry.swift in Sources */,
 				2B781B8326F4A5E30062DBDC /* StatusMessage.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
-				C5A8D88E270C67DA0032560A /* Date+StartEnd.swift in Sources */,
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				2B1D469E26CC51A8008814A9 /* GroupService.swift in Sources */,
 				2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift in Sources */,
@@ -1556,7 +1367,6 @@
 				DC24DF3325DD54090003ADCB /* AppInfoView.swift in Sources */,
 				2B781B8626F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */,
 				2BEDE6F626A728CF007247B0 /* ChartHoverLabel.swift in Sources */,
-				2BDBB75E264551890013FC39 /* Aggregate.swift in Sources */,
 				2BEDE6ED26A72879007247B0 /* ServiceDonutChartView.swift in Sources */,
 				2BBFCA1D267D05E40013DC74 /* URL+Open.swift in Sources */,
 				DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */,
@@ -1570,16 +1380,11 @@
 				2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */,
 				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				2B1D469326CC471A008814A9 /* CacheLayer.swift in Sources */,
-				2B135E0F26E0E7B900CC0A40 /* DruidCustomQuery.swift in Sources */,
 				2BBE475D2629AC600028DABB /* AppAdminView.swift in Sources */,
-				2B135E1226E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */,
-				2B19DEA026444B0C0086F70E /* ChartDataPoint.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
-				2B69B541264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				2B1D469026CC471A008814A9 /* Caching.swift in Sources */,
 				2BDD41BD2717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
-				2B19DEA226444B0C0086F70E /* Formatter+ISO.swift in Sources */,
 				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
 				2BDD8E782655049700C6E51D /* OldInsightService.swift in Sources */,
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
@@ -1593,10 +1398,7 @@
 				2BBFCA29267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */,
 				2BC2720226207D710045A2FE /* MockData.swift in Sources */,
 				2BEDE6F026A728C6007247B0 /* RawChartView.swift in Sources */,
-				2B135E0C26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
-				2B19DEAB26444B0C0086F70E /* Models.swift in Sources */,
-				2B3CC0D9264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
 				DC5F3A8925A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				2BBFCA03267D05E40013DC74 /* CardView.swift in Sources */,
@@ -1611,11 +1413,7 @@
 				2BBFCA2B267D05E40013DC74 /* MacNavigationView.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				2B21FCD726FDC38500A8A55B /* NewInsightMenu.swift in Sources */,
-				2B69B53D264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
-				2B19DEA126444B0C0086F70E /* ChartDataSet.swift in Sources */,
 				2BC1427726656DEF009BCB3B /* APIClient.swift in Sources */,
-				2B19DEA926444B0C0086F70E /* InsightCalculationResult.swift in Sources */,
-				2B19DEA326444B0C0086F70E /* String+CamelCase.swift in Sources */,
 				2B781B7C26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1624,10 +1422,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B69B53E264E9F3E002CD171 /* RegistrationRequestBody.swift in Sources */,
 				2BBFCA26267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				2BBFCA10267D05E40013DC74 /* TextModifiers.swift in Sources */,
-				2B3CC0DA264D4A570038B528 /* LexiconSignalDTO.swift in Sources */,
 				2BEDE6E426A7281E007247B0 /* ServiceBarChartView.swift in Sources */,
 				DC23286E2522725A00DB6145 /* InsightView.swift in Sources */,
 				2BEDE70226A728CF007247B0 /* DonutChart.swift in Sources */,
@@ -1639,7 +1435,6 @@
 				DCB5F9F325F294C6004C4922 /* FavouritesView.swift in Sources */,
 				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
 				2BEDE70026A728CF007247B0 /* DonutChartView.swift in Sources */,
-				2BDBB75F264551890013FC39 /* Aggregate.swift in Sources */,
 				2BBFCA1E267D05E40013DC74 /* URL+Open.swift in Sources */,
 				2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */,
 				DCB5F9F725F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
@@ -1658,9 +1453,6 @@
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
 				DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */,
 				2BEDE6EE26A72879007247B0 /* ServiceDonutChartView.swift in Sources */,
-				2B19DEBE26444B2B0086F70E /* Formatter+ISO.swift in Sources */,
-				2BB4737F26950731004DA1DC /* AppAdminEntry.swift in Sources */,
-				2B135E1326E0E7B900CC0A40 /* DruidSQLQuery.swift in Sources */,
 				2BEDE6FD26A728CF007247B0 /* BarChartView.swift in Sources */,
 				DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F14253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
@@ -1681,9 +1473,7 @@
 				2BBFCA04267D05E40013DC74 /* CardView.swift in Sources */,
 				2BBFCA20267D05E40013DC74 /* BigNumberFormatter.swift in Sources */,
 				2B21FCE026FDCAE200A8A55B /* InsightsList.swift in Sources */,
-				2B69B542264EAA3F002CD171 /* OrganisationJoinRequest.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
-				2B19DEB826444B2B0086F70E /* InsightCalculationResult.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
 				2B1D468A26CC4423008814A9 /* OrgService.swift in Sources */,
@@ -1703,7 +1493,6 @@
 				2BA5D50526CD0E5B008FBF8F /* GroupView.swift in Sources */,
 				2B2C4EDE26C2DA6400A4F32B /* LineChartCanvas.swift in Sources */,
 				2B1D469C26CC4F45008814A9 /* AppService.swift in Sources */,
-				2B19DEBF26444B2B0086F70E /* ChartDataPoint.swift in Sources */,
 				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				2BBFCA12267D05E40013DC74 /* DetailSidebar.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
@@ -1717,9 +1506,6 @@
 				2BEDE6F126A728C7007247B0 /* RawChartView.swift in Sources */,
 				2BEDE6EA26A72853007247B0 /* ServiceLineChartView.swift in Sources */,
 				2BDD8E732653C14C00C6E51D /* InsightCalculationService.swift in Sources */,
-				C5A8D88D270C67D90032560A /* Date+StartEnd.swift in Sources */,
-				2B61B953264C3061003F62C4 /* SignalDTO.swift in Sources */,
-				2B19DEBC26444B2B0086F70E /* InsightData.swift in Sources */,
 				2BEDE6FE26A728CF007247B0 /* ChartHoverLabel.swift in Sources */,
 				2BEDE6FC26A728CF007247B0 /* LineChartView.swift in Sources */,
 				2BB23B2D26567222003DDE5E /* OldAppService.swift in Sources */,
@@ -1730,33 +1516,25 @@
 				2B781B8426F4A5E30062DBDC /* StatusMessage.swift in Sources */,
 				2BA0397E26AAE19B004A9E48 /* MacOs12SignalTypesView.swift in Sources */,
 				2BF2754626AAC5C10051591C /* MacOs12PayloadKeysView.swift in Sources */,
-				2B19DEB726444B2B0086F70E /* ChartDataSet.swift in Sources */,
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
 				2B1D469426CC471A008814A9 /* CacheLayer.swift in Sources */,
 				DCF8978225C8345E00E0BE57 /* InsightQueryAdmin.swift in Sources */,
 				2B1D469F26CC51A8008814A9 /* GroupService.swift in Sources */,
-				2B135E1026E0E7B900CC0A40 /* DruidCustomQuery.swift in Sources */,
 				2BBFCA2A267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */,
 				2BBFCA0C267D05E40013DC74 /* CustomSection.swift in Sources */,
-				2B19DEC026444B2B0086F70E /* OrganizationDTO.swift in Sources */,
 				2BA5D50A26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
 				2BBE475C2629AC5F0028DABB /* AppAdminView.swift in Sources */,
 				2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */,
-				2B19DEC126444B2B0086F70E /* Models.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
 				2BDD41BE2717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				2BEDE6FB26A728CF007247B0 /* ChartBottomView.swift in Sources */,
-				2B135E0D26E0E7B900CC0A40 /* UUID+Empty.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				2B1D469926CC4C5D008814A9 /* ErrorService.swift in Sources */,
-				2B1D468726CC0A28008814A9 /* DTOv2.swift in Sources */,
-				2B19DEBA26444B2B0086F70E /* String+CamelCase.swift in Sources */,
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2BBFCA2E267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */,
 				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
-				2B19DEBB26444B2B0086F70E /* UserDTO.swift in Sources */,
 				2BA5D50226CD05CC008FBF8F /* InsightGroupsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1807,7 +1585,7 @@
 				INFOPLIST_FILE = TelemetryDeckWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1838,7 +1616,7 @@
 				INFOPLIST_FILE = TelemetryDeckWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1862,19 +1640,19 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntentsUI/TelemetryDeckIntentsUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntentsUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntentsUI;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckIntentsUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1891,19 +1669,19 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntentsUI/TelemetryDeckIntentsUIRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntentsUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntentsUI;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckIntentsUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1921,19 +1699,19 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntents;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1950,19 +1728,19 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntents;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2280,6 +2058,22 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
 			productName = TelemetryClient;
+		};
+		2B0769D72722EA260024D8A7 /* DataTransferObjects */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataTransferObjects;
+		};
+		2B0769D92722EA2F0024D8A7 /* DataTransferObjects */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataTransferObjects;
+		};
+		2B0769DB2722EA350024D8A7 /* DataTransferObjects */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataTransferObjects;
+		};
+		2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataTransferObjects;
 		};
 		2B25EAE826D3EEE700BBBB1B /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;

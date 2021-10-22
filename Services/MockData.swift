@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DataTransferObjects
 
 struct MockData {
     static let exampleOrganization: DTOv1.Organization = .init(id: UUID(), name: "breakthesystem", isSuperOrg: true, createdAt: Date(), updatedAt: Date())

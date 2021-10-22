@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct StatusMessage: View {
     let statusMessage: DTOv2.StatusMessage

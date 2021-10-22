@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct InsightsList: View {
     let groupID: DTOv2.Group.ID

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct OrganizationAdmin: View {
     @EnvironmentObject var api: APIClient
