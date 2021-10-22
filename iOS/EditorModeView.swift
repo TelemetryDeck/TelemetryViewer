@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DataTransferObjects
 
 struct EditorModeView: View {
     @EnvironmentObject var appService: AppService

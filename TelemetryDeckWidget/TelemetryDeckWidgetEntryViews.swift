@@ -7,7 +7,7 @@
 
 import Intents
 import SwiftUI
-import WidgetKit
+import DataTransferObjects
 
 struct TelemetryDeckWidgetEntryView: View {
     let entry: SimpleEntry

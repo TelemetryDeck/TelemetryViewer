@@ -9,6 +9,7 @@ import Intents
 import SwiftUI
 import TelemetryClient
 import WidgetKit
+import DataTransferObjects
 
 struct Provider: IntentTimelineProvider {
     let api: APIClient

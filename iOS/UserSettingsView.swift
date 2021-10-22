@@ -7,6 +7,7 @@
 
 import SwiftUI
 import TelemetryClient
+import DataTransferObjects
 
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIClient
