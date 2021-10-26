@@ -18,7 +18,8 @@ struct StatusMessageContainer<Content>: View where Content: View {
 
     var body: some View {
         content
-            .padding()
+            .padding(.horizontal)
+            .padding(.vertical, 5)
             .background(backgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             .padding()

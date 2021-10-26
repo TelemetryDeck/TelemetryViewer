@@ -5,8 +5,8 @@
 //  Created by Daniel Jilg on 18.08.21.
 //
 
-import SwiftUI
 import DataTransferObjects
+import SwiftUI
 import SwiftUICharts
 
 struct InsightCard: View {
@@ -50,10 +50,17 @@ struct InsightCard: View {
     
     var cardContent: some View {
         VStack(alignment: .leading) {
-            TinyLoadingStateIndicator(loadingState: insightService.loadingState(for: insightID), title: insightService.insight(withID: insightID)?.title)
-                .font(.footnote)
-                .foregroundColor(isSelected ? .cardBackground : .grayColor)
-                .padding(.leading)
+            HStack {
+                TinyLoadingStateIndicator(loadingState: insightService.loadingState(for: insightID), title: insightService.insight(withID: insightID)?.title)
+                    .font(.footnote)
+                    .foregroundColor(isSelected ? .cardBackground : .grayColor)
+                    .padding(.leading)
+                
+                Spacer()
+                
+                UnobtrusiveIconOnlyLoadingStateIndicator(loadingState: loadingState)
+                    .padding(.trailing)
+            }
             
             Group {
                 if let insightWrap = insightWrap {
@@ -81,6 +88,9 @@ struct InsightCard: View {
                 }
             }
             .onAppear(perform: retrieve)
+            .onChange(of: insightResultService.isTestingMode) { _ in retrieve() }
+            .onChange(of: insightResultService.timeWindowBeginning) { _ in retrieve() }
+            .onChange(of: insightResultService.timeWindowEnd) { _ in retrieve() }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
         .padding(.top)

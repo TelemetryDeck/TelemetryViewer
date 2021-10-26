@@ -12,7 +12,7 @@ struct StatusMessage: View {
     let statusMessage: DTOv2.StatusMessage
     
     var body: some View {
-        StatusMessageContainer(backgroundColor: .telemetryOrange) {
+        StatusMessageContainer(backgroundColor: .telemetryOrange.opacity(0.3)) {
             HStack(alignment: .top) {
                 Image(systemName: statusMessage.systemImageName ?? "info.circle")
                     .font(.system(size: 18))

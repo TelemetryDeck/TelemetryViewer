@@ -17,14 +17,18 @@ final class InsightRetrievalOperation: AsyncOperation {
     private let api: APIClient
     private let onFinish: (InsightResultWrap) -> ()
     private let onStatusChange: (LoadingState) -> ()
+    private let insightResultService: InsightResultService
+    private let insightID: DTOv2.Insight.ID
 
-    init(apiClient: APIClient, targetURL: URL, cache: CacheLayer, cacheKey: String, onStatusChange: @escaping (LoadingState) -> (), onFinish: @escaping (InsightResultWrap) -> ()) {
+    init(apiClient: APIClient, insightID: DTOv2.Insight.ID, targetURL: URL, cache: CacheLayer, cacheKey: String, resultService: InsightResultService, onStatusChange: @escaping (LoadingState) -> (), onFinish: @escaping (InsightResultWrap) -> ()) {
         api = apiClient
         self.targetURL = targetURL
         self.onFinish = onFinish
         self.onStatusChange = onStatusChange
         self.cacheKey = cacheKey
         self.cache = cache
+        self.insightResultService = resultService
+        self.insightID = insightID
     }
 
     override func main() {
@@ -37,6 +41,7 @@ final class InsightRetrievalOperation: AsyncOperation {
             return
         }
         
+        insightResultService.loadingState[insightID] = .loading
         onStatusChange(.loading)
         
         // Otherwise, retrieve the result from the API
@@ -48,9 +53,11 @@ final class InsightRetrievalOperation: AsyncOperation {
                 let resultWrap = InsightResultWrap(chartDataSet: chartDataSet, calculationResult: insightCalculationResult)
                 self.cache.insightCalculationResultCache[self.cacheKey] = resultWrap
                 self.onStatusChange(.finished(Date()))
+                self.insightResultService.loadingState[self.insightID] = .finished(Date())
                 self.onFinish(resultWrap)
                 
             case .failure(let transferError):
+                self.insightResultService.loadingState[self.insightID] = .error(transferError.localizedDescription, Date())
                 self.onStatusChange(.error(transferError.localizedDescription, Date()))
             }
             
@@ -76,7 +83,7 @@ class InsightResultService: ObservableObject {
         return queue
     }()
     
-    private let loadingState = Cache<DTOv2.Insight.ID, LoadingState>()
+    fileprivate let loadingState = Cache<DTOv2.Insight.ID, LoadingState>()
     
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
@@ -184,7 +191,7 @@ class InsightResultService: ObservableObject {
                                  "\(isTestingMode ? "true" : "live")"
         )
         
-        let op = InsightRetrievalOperation(apiClient: api, targetURL: url, cache: cache, cacheKey: cacheKey, onStatusChange: onStatusChange, onFinish: onFinish)
+        let op = InsightRetrievalOperation(apiClient: api, insightID: insight.id, targetURL: url, cache: cache, cacheKey: cacheKey, resultService: self, onStatusChange: onStatusChange, onFinish: onFinish)
         
         // Set the newest operation to the highest priority, LIFO style
         op.queuePriority = .high
