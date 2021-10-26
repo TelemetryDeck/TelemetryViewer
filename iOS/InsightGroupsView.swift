@@ -72,18 +72,7 @@ struct InsightGroupsView: View {
         .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
         .toolbar {
             ToolbarItem {
-                Menu {
-                    editModeButton
-                    
-                    newGroupButton
-                    
-                    if let selectedInsightGroupID = selectedInsightGroupID, sizeClass == .compact {
-                        NewInsightMenu(appID: self.appID, selectedInsightGroupID: selectedInsightGroupID)
-                    }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                        .padding(.horizontal)
-                }
+                editModeButton
             }
             
             ToolbarItem(placement: .bottomBar) {
@@ -135,7 +124,7 @@ struct InsightGroupsView: View {
         Button {
             self.showEditMode = true
         } label: {
-            Label("Edit Insights", systemImage: "pencil")
+            Label("Edit Insights", systemImage: "ellipsis.circle")
         }
     }
 }

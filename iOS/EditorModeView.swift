@@ -13,6 +13,13 @@ struct EditorModeView: View {
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var lexiconService: LexiconService
+    
+    #warning("TODO: Add new Insight")
+    #warning("TODO: Add new Insight Group")
+    #warning("TODO: Delete Insight")
+    #warning("TODO: Edit Insight Group")
+    #warning("TODO: Delete Insight Group")
+    #warning("TODO: Rearrange Insights")
 
     // Unused, this is just here for API compatibility with EditorView
     @State var selectedInsightID: UUID?
@@ -28,6 +35,8 @@ struct EditorModeView: View {
                             linkToEditor(insight: insight)
                         }
                     }
+                    
+                    Button("New Insight in \(groupService.group(withID: insightGroupID)?.title ?? "this Group")") {}
 
                 } header: {
                     TinyLoadingStateIndicator(
@@ -36,6 +45,8 @@ struct EditorModeView: View {
                     )
                 }
             }
+            
+            Button("New Insight Group") {}
         }
         .navigationTitle("Edit Insights")
     }
