@@ -83,6 +83,11 @@ class InsightResultService: ObservableObject {
     
     @Published var timeWindowBeginning: RelativeDateDescription = .beginning(of: .current(.month))
     @Published var timeWindowEnd: RelativeDateDescription = .end(of: .current(.month))
+    @Published var isTestingMode: Bool = UserDefaults.standard.bool(forKey: "isTestingMode") {
+        didSet {
+            UserDefaults.standard.set(isTestingMode, forKey: "isTestingMode")
+        }
+    }
     
     var timeWindowBeginningDate: Date { resolvedDate(from: timeWindowBeginning, defaultDate: Date() - 30 * 24 * 3600) }
     var timeWindowEndDate: Date { resolvedDate(from: timeWindowEnd, defaultDate: Date()) }
@@ -162,7 +167,7 @@ class InsightResultService: ObservableObject {
         let earlierDateString = Formatter.iso8601.string(from: timeWindowBeginningDate)
         let laterDateString = Formatter.iso8601.string(from: timeWindowEndDate.startOfHour)
         let insightHash = insight.hashValue
-        return "\(uuidString)/\(earlierDateString)/\(laterDateString)/\(insightHash)/v1"
+        return "\(uuidString)/\(earlierDateString)/\(laterDateString)/\(isTestingMode ? "testingMode" : "liveMode")/\(insightHash)/v1"
     }
     
     func calculate(_ insight: DTOv2.Insight, onStatusChange: @escaping (LoadingState) -> (), onFinish: @escaping (InsightResultWrap) -> ()) {
@@ -175,7 +180,9 @@ class InsightResultService: ObservableObject {
         
         let url = api.urlForPath(apiVersion: .v2, "insights", insight.id.uuidString, "result",
                                  Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
-                                 Formatter.iso8601noFS.string(from: timeWindowEndDate))
+                                 Formatter.iso8601noFS.string(from: timeWindowEndDate),
+                                 "\(isTestingMode ? "true" : "live")"
+        )
         
         let op = InsightRetrievalOperation(apiClient: api, targetURL: url, cache: cache, cacheKey: cacheKey, onStatusChange: onStatusChange, onFinish: onFinish)
         

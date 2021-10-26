@@ -5,9 +5,9 @@
 //  Created by Daniel Jilg on 18.08.21.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
 
 struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService
@@ -28,6 +28,8 @@ struct InsightGroupsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             StatusMessageDisplay()
+            
+            TestModeIndicator()
             
             Group {
                 if selectedInsightGroupID == nil {
@@ -65,6 +67,10 @@ struct InsightGroupsView: View {
                     isPresented: self.$showDatePicker,
                     arrowEdge: .bottom
                 ) { InsightDataTimeIntervalPicker().padding() }
+            }
+            
+            ToolbarItem {
+                TestingModeToggle()
             }
             
             ToolbarItem {

@@ -17,12 +17,11 @@ struct StatusMessageDisplay: View {
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        VStack(spacing: 1) {
+        VStack(spacing: 0) {
             ForEach(statusMessages) { message in
                 StatusMessage(statusMessage: message)
             }
         }
-        .background(Color.cardBackground)
         .onAppear(perform: loadMessages)
         .onReceive(timer) { _ in
             loadMessages()

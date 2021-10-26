@@ -5,49 +5,53 @@
 //  Created by Daniel Jilg on 17.09.21.
 //
 
-import SwiftUI
 import DataTransferObjects
+import SwiftUI
 
 struct StatusMessage: View {
     let statusMessage: DTOv2.StatusMessage
     
     var body: some View {
-        HStack(alignment: .top) {
-            Image(systemName: statusMessage.systemImageName ?? "info.circle")
-                .font(.system(size: 18))
-                .padding(.horizontal, 4)
-                .padding(.vertical, 10)
-            
-            VStack(alignment: .leading) {
-                HStack(spacing: 0) {
-                    Text(statusMessage.validFrom, style: .date)
+        StatusMessageContainer(backgroundColor: .telemetryOrange) {
+            HStack(alignment: .top) {
+                Image(systemName: statusMessage.systemImageName ?? "info.circle")
+                    .font(.system(size: 18))
+                    .padding(.horizontal, 4)
+                    .padding(.vertical, 10)
+                    .foregroundColor(Color.secondary)
                 
-                    statusMessage.validUntil.map {
-                        Text(" – ") + Text($0, style: .date)
+                VStack(alignment: .leading) {
+                    HStack(spacing: 0) {
+                        Text(statusMessage.validFrom, style: .date)
+                    
+                        statusMessage.validUntil.map {
+                            Text(" – ") + Text($0, style: .date)
+                        }
                     }
-                }
-                .font(.footnote)
-                .foregroundColor(.grayColor)
+                    .font(.footnote)
+                    .foregroundColor(Color.secondary)
+                    
+                    Text(statusMessage.title)
+                        .font(.headline)
+                        .fixedSize(horizontal: false, vertical: true)
                 
-                Text(statusMessage.title).font(.headline)
-            
-                statusMessage.description.map {
-                    Text($0).foregroundColor(.grayColor)
-                }
-                
-                #if os(macOS)
-                if statusMessage.id == "restricted-mode-notification" {
-                    Button("Open Settings") {
-                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                    statusMessage.description.map {
+                        Text($0)
+                            .foregroundColor(Color.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
+                    
+                    #if os(macOS)
+                    if statusMessage.id == "restricted-mode-notification" {
+                        Button("Open Settings") {
+                            NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                        }
+                    }
+                    #endif
                 }
-                #endif
+                
+                Spacer()
             }
-            
-            Spacer()
         }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color.telemetryOrange.opacity(0.1))
     }
 }

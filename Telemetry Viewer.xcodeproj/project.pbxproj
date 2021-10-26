@@ -52,6 +52,11 @@
 		2B379D2226FBCC4B00714BE6 /* IconFinderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B379D2026FBC3A300714BE6 /* IconFinderService.swift */; };
 		2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
 		2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
+		2B462808272868DC00515530 /* TestModeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B462807272868DC00515530 /* TestModeIndicator.swift */; };
+		2B462809272868DC00515530 /* TestModeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B462807272868DC00515530 /* TestModeIndicator.swift */; };
+		2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46280A2728699E00515530 /* StatusMessageContainer.swift */; };
+		2B46280C2728699E00515530 /* StatusMessageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46280A2728699E00515530 /* StatusMessageContainer.swift */; };
+		2B46280F27286D2500515530 /* TestingModeToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46280E27286D2500515530 /* TestingModeToggle.swift */; };
 		2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B670C0026BD8BF7005DA07E /* SidebarSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B670BFF26BD8BF7005DA07E /* SidebarSplitView.swift */; };
@@ -335,6 +340,9 @@
 		2B25EAEA26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPicker.swift; sourceTree = "<group>"; };
 		2B379D2026FBC3A300714BE6 /* IconFinderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconFinderService.swift; sourceTree = "<group>"; };
 		2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconService.swift; sourceTree = "<group>"; };
+		2B462807272868DC00515530 /* TestModeIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModeIndicator.swift; sourceTree = "<group>"; };
+		2B46280A2728699E00515530 /* StatusMessageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageContainer.swift; sourceTree = "<group>"; };
+		2B46280E27286D2500515530 /* TestingModeToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingModeToggle.swift; sourceTree = "<group>"; };
 		2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS)Release.entitlements"; sourceTree = "<group>"; };
 		2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS).entitlements"; sourceTree = "<group>"; };
 		2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -547,6 +555,8 @@
 			children = (
 				2B781B8226F4A5E30062DBDC /* StatusMessage.swift */,
 				2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */,
+				2B462807272868DC00515530 /* TestModeIndicator.swift */,
+				2B46280A2728699E00515530 /* StatusMessageContainer.swift */,
 			);
 			path = "Status Messages";
 			sourceTree = "<group>";
@@ -872,6 +882,7 @@
 				2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */,
 				2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */,
 				2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */,
+				2B46280E27286D2500515530 /* TestingModeToggle.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1280,6 +1291,7 @@
 				DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */,
 				2BBFCA0B267D05E40013DC74 /* CustomSection.swift in Sources */,
 				2B25EAEB26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift in Sources */,
+				2B462808272868DC00515530 /* TestModeIndicator.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* Telemetry.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				2BBFCA2D267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */,
@@ -1290,6 +1302,7 @@
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				2B1D469026CC471A008814A9 /* Caching.swift in Sources */,
 				2BDD41BD2717365600B3CB33 /* AsyncOperation.swift in Sources */,
+				2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
 				2BDD8E782655049700C6E51D /* OldInsightService.swift in Sources */,
@@ -1333,6 +1346,7 @@
 				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				DCB5F9F325F294C6004C4922 /* FavouritesView.swift in Sources */,
 				DC8FAD6D257E84BC0019A186 /* OrganizationAdmin.swift in Sources */,
+				2B46280C2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				2BBFCA1E267D05E40013DC74 /* URL+Open.swift in Sources */,
 				2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */,
 				DCB5F9F725F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
@@ -1344,6 +1358,7 @@
 				2BEDE71026A73EA9007247B0 /* MacOS12RecentSignalsView.swift in Sources */,
 				2B1D46A526CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
 				2BBFCA2C267D05E40013DC74 /* MacNavigationView.swift in Sources */,
+				2B462809272868DC00515530 /* TestModeIndicator.swift in Sources */,
 				2BBFCA0A267D05E40013DC74 /* Color.swift in Sources */,
 				DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
@@ -1419,6 +1434,7 @@
 				2BDD41BE2717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				2B745563272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
+				2B46280F27286D2500515530 /* TestingModeToggle.swift in Sources */,
 				2B1D469926CC4C5D008814A9 /* ErrorService.swift in Sources */,
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2BBFCA2E267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */,
