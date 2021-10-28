@@ -14,7 +14,7 @@ struct TestModeIndicator: View {
         if insightResultService.isTestingMode {
             StatusMessageContainer(backgroundColor: Color.grayColor.opacity(0.2)) {
                 HStack {
-                    Text("You are in Testing Mode, so you are only seeing signals sent while running development builds in XCode.")
+                    Text("You are in Testing Mode, so you are only seeing signals sent while running development builds in Xcode.")
                         .foregroundColor(Color.secondary)
 
                     Spacer()
