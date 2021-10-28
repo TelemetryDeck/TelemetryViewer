@@ -21,12 +21,8 @@ struct Telemetry_ViewerApp: App {
     let insightService: InsightService
     let insightResultService: InsightResultService
     let iconFinderService: IconFinderService
-        
     let signalsService: SignalsService
     let lexiconService: LexiconService
-    let oldappService: OldAppService
-    let oldinsightService: OldInsightService
-    let insightCalculationService: InsightCalculationService
 
     var body: some Scene {
         WindowGroup {
@@ -40,9 +36,6 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(insightResultService)
                 .environmentObject(signalsService)
                 .environmentObject(lexiconService)
-                .environmentObject(oldappService)
-                .environmentObject(oldinsightService)
-                .environmentObject(insightCalculationService)
                 .environmentObject(orgService)
                 .environmentObject(iconFinderService)
         }
@@ -66,9 +59,6 @@ struct Telemetry_ViewerApp: App {
         
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
-        self.oldappService = OldAppService(api: api)
-        self.oldinsightService = OldInsightService(api: api)
-        self.insightCalculationService = InsightCalculationService(api: api)
         
         self.iconFinderService = IconFinderService(api: api)
         

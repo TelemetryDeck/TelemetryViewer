@@ -31,7 +31,7 @@ struct TelemetryDeckWidgetEntryView: View {
             case .lineChart:
                 LineChart(chartDataSet: entry.chartDataSet, isSelected: false)
             case .barChart:
-                BarChartContentView(chartDataSet: entry.chartDataSet, isSelected: false)
+                BarChartView(chartDataSet: entry.chartDataSet, isSelected: false)
             default:
                 Text("This is not supported in this version.")
                     .font(.footnote)

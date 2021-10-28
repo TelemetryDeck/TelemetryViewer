@@ -79,8 +79,6 @@
 		2BA5D50826CD1403008FBF8F /* InsightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50626CD1403008FBF8F /* InsightCard.swift */; };
 		2BA5D50A26CDAA58008FBF8F /* InsightResultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */; };
 		2BA5D50B26CDAA58008FBF8F /* InsightResultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */; };
-		2BB23B2C26567222003DDE5E /* OldAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* OldAppService.swift */; };
-		2BB23B2D26567222003DDE5E /* OldAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB23B2B26567222003DDE5E /* OldAppService.swift */; };
 		2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
 		2BBFC9FC267D05E40013DC74 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
 		2BBFC9FF267D05E40013DC74 /* OrderSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DC267D05E30013DC74 /* OrderSetter.swift */; };
@@ -111,8 +109,6 @@
 		2BBFCA2A267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F3267D05E30013DC74 /* Binding+OnUpdate.swift */; };
 		2BBFCA2B267D05E40013DC74 /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F4267D05E30013DC74 /* MacNavigationView.swift */; };
 		2BBFCA2C267D05E40013DC74 /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F4267D05E30013DC74 /* MacNavigationView.swift */; };
-		2BBFCA2D267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F5267D05E30013DC74 /* InsightReloadButtonView.swift */; };
-		2BBFCA2E267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F5267D05E30013DC74 /* InsightReloadButtonView.swift */; };
 		2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F8267D05E30013DC74 /* AdaptiveStack.swift */; };
 		2BBFCA34267D05E40013DC74 /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F8267D05E30013DC74 /* AdaptiveStack.swift */; };
 		2BC1375C27230EBD008AE9BC /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC1375B27230EBD008AE9BC /* SwiftUICharts */; };
@@ -136,20 +132,6 @@
 		2BDD41C12717365600B3CB33 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */; };
 		2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
-		2BDD8E722653C14C00C6E51D /* InsightCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */; };
-		2BDD8E732653C14C00C6E51D /* InsightCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */; };
-		2BDD8E752653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */; };
-		2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */; };
-		2BDD8E782655049700C6E51D /* OldInsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E772655049700C6E51D /* OldInsightService.swift */; };
-		2BDD8E792655049700C6E51D /* OldInsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E772655049700C6E51D /* OldInsightService.swift */; };
-		2BEDE6E126A727E3007247B0 /* ServiceRawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E026A727E3007247B0 /* ServiceRawChartView.swift */; };
-		2BEDE6E326A7281E007247B0 /* ServiceBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E226A7281E007247B0 /* ServiceBarChartView.swift */; };
-		2BEDE6E426A7281E007247B0 /* ServiceBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E226A7281E007247B0 /* ServiceBarChartView.swift */; };
-		2BEDE6E626A7282B007247B0 /* ServiceRawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E026A727E3007247B0 /* ServiceRawChartView.swift */; };
-		2BEDE6E926A72853007247B0 /* ServiceLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E826A72853007247B0 /* ServiceLineChartView.swift */; };
-		2BEDE6EA26A72853007247B0 /* ServiceLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6E826A72853007247B0 /* ServiceLineChartView.swift */; };
-		2BEDE6ED26A72879007247B0 /* ServiceDonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6EC26A72879007247B0 /* ServiceDonutChartView.swift */; };
-		2BEDE6EE26A72879007247B0 /* ServiceDonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE6EC26A72879007247B0 /* ServiceDonutChartView.swift */; };
 		2BEDE71026A73EA9007247B0 /* MacOS12RecentSignalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */; };
 		2BF2754626AAC5C10051591C /* MacOs12PayloadKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */; };
 		C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
@@ -200,8 +182,6 @@
 		C5CE3D5C271AFCE2005232EC /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
 		C5CE3D5D271AFCE2005232EC /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E2267D05E30013DC74 /* CustomSection.swift */; };
 		C5CE3D5E271AFD0C005232EC /* ProgressView+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F1267D05E30013DC74 /* ProgressView+Scale.swift */; };
-		DC23286D2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
-		DC23286E2522725A00DB6145 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23286C2522725A00DB6145 /* InsightView.swift */; };
 		DC24DF3325DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3425DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
@@ -265,8 +245,6 @@
 		DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD3F254A08B900BFA23B /* LexiconView.swift */; };
 		DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
 		DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */; };
-		DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
-		DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,7 +329,6 @@
 		2BA5D50326CD0E5B008FBF8F /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
 		2BA5D50626CD1403008FBF8F /* InsightCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCard.swift; sourceTree = "<group>"; };
 		2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightResultService.swift; sourceTree = "<group>"; };
-		2BB23B2B26567222003DDE5E /* OldAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAppService.swift; sourceTree = "<group>"; };
 		2BBFC9DA267D05E30013DC74 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		2BBFC9DC267D05E30013DC74 /* OrderSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSetter.swift; sourceTree = "<group>"; };
 		2BBFC9DD267D05E30013DC74 /* DashedCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedCardView.swift; sourceTree = "<group>"; };
@@ -384,13 +361,7 @@
 		2BDD35052710727900CB2AA5 /* EditorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModeView.swift; sourceTree = "<group>"; };
 		2BDD41BC2717365600B3CB33 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
-		2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCalculationService.swift; sourceTree = "<group>"; };
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPickerForCalculationService.swift; sourceTree = "<group>"; };
-		2BDD8E772655049700C6E51D /* OldInsightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldInsightService.swift; sourceTree = "<group>"; };
-		2BEDE6E026A727E3007247B0 /* ServiceRawChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRawChartView.swift; sourceTree = "<group>"; };
-		2BEDE6E226A7281E007247B0 /* ServiceBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBarChartView.swift; sourceTree = "<group>"; };
-		2BEDE6E826A72853007247B0 /* ServiceLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLineChartView.swift; sourceTree = "<group>"; };
-		2BEDE6EC26A72879007247B0 /* ServiceDonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDonutChartView.swift; sourceTree = "<group>"; };
 		2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOS12RecentSignalsView.swift; sourceTree = "<group>"; };
 		2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12PayloadKeysView.swift; sourceTree = "<group>"; };
 		C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -408,7 +379,6 @@
 		C5A8D8BB270C821B0032560A /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		C5A8D8BE270C821B0032560A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C5A8D8C0270C821B0032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC23286C2522725A00DB6145 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAppSelectedView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
 		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
@@ -452,7 +422,6 @@
 		DCEC64AF26025AAF00BEF69C /* PasswordResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetView.swift; sourceTree = "<group>"; };
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
-		DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Validation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,6 +491,10 @@
 				2BA5D50926CDAA58008FBF8F /* InsightResultService.swift */,
 				2B379D2026FBC3A300714BE6 /* IconFinderService.swift */,
 				DC7DEEAB258A3B9B00BEA712 /* UpdateService.swift */,
+				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
+				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
+				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
+				2BC2720126207D710045A2FE /* MockData.swift */,
 			);
 			path = UpdatedServices;
 			sourceTree = "<group>";
@@ -627,17 +600,6 @@
 			path = UIComponents;
 			sourceTree = "<group>";
 		};
-		2BEDE6DF26A72731007247B0 /* Service Chart Wrappers */ = {
-			isa = PBXGroup;
-			children = (
-				2BEDE6E026A727E3007247B0 /* ServiceRawChartView.swift */,
-				2BEDE6E226A7281E007247B0 /* ServiceBarChartView.swift */,
-				2BEDE6E826A72853007247B0 /* ServiceLineChartView.swift */,
-				2BEDE6EC26A72879007247B0 /* ServiceDonutChartView.swift */,
-			);
-			path = "Service Chart Wrappers";
-			sourceTree = "<group>";
-		};
 		C5A8D866270C5D7A0032560A /* TelemetryDeckWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,7 +649,6 @@
 			isa = PBXGroup;
 			children = (
 				2BA5D50626CD1403008FBF8F /* InsightCard.swift */,
-				DC23286C2522725A00DB6145 /* InsightView.swift */,
 				DCB5F9F525F29BF4004C4922 /* InsightGroupEditor.swift */,
 				2B25EAE426D3EA4D00BBBB1B /* EditorView.swift */,
 				2B21FCD626FDC38500A8A55B /* NewInsightMenu.swift */,
@@ -733,14 +694,6 @@
 		DCB02B65250027C700304964 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				2BB23B2B26567222003DDE5E /* OldAppService.swift */,
-				2BC2720126207D710045A2FE /* MockData.swift */,
-				DC7C540B250FB0BA0027D6A5 /* JSONDecoder.swift */,
-				DCFD9CCF252A344F002BD29F /* Publisher+Validation.swift */,
-				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
-				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
-				2BDD8E772655049700C6E51D /* OldInsightService.swift */,
-				2BDD8E712653C14B00C6E51D /* InsightCalculationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -815,7 +768,6 @@
 				DC53393E25222C0900D9C889 /* Insight and Groups */,
 				DCB02B692502764200304964 /* Login + Register */,
 				DC24DF3125DD53E50003ADCB /* Navigational Structure */,
-				2BEDE6DF26A72731007247B0 /* Service Chart Wrappers */,
 				DC90D08925063A5700634B72 /* Settings */,
 				2B781B8126F4A5D60062DBDC /* Status Banners */,
 				2B462811272AF08500515530 /* Supporting Files */,
@@ -1223,13 +1175,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BDD8E722653C14C00C6E51D /* InsightCalculationService.swift in Sources */,
 				2B21FCDD26FDCA6A00A8A55B /* GroupView.swift in Sources */,
 				2BBFCA09267D05E40013DC74 /* Color.swift in Sources */,
 				2B1D469B26CC4F45008814A9 /* AppService.swift in Sources */,
-				DC23286D2522725A00DB6145 /* InsightView.swift in Sources */,
 				DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */,
-				2BEDE6E126A727E3007247B0 /* ServiceRawChartView.swift in Sources */,
 				2BA5D50B26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
 				2B21FCD526FDC33F00A8A55B /* InsightGroupsView.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
@@ -1249,21 +1198,17 @@
 				2BBFCA07267D05E40013DC74 /* OptionalToggle.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
-				2BEDE6E926A72853007247B0 /* ServiceLineChartView.swift in Sources */,
 				2B781B8326F4A5E30062DBDC /* StatusMessageBanner.swift in Sources */,
 				DCE23A0F24D3687D00053370 /* Telemetry_ViewerApp_iOS.swift in Sources */,
 				DCF7CD40254A08B900BFA23B /* LexiconView.swift in Sources */,
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				2B1D469E26CC51A8008814A9 /* GroupService.swift in Sources */,
-				2BDD8E762653C79400C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift in Sources */,
 				2BDD35062710727900CB2AA5 /* EditorModeView.swift in Sources */,
-				2BB23B2C26567222003DDE5E /* OldAppService.swift in Sources */,
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
 				2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */,
 				2BBFCA11267D05E40013DC74 /* DetailSidebar.swift in Sources */,
 				2B25EAE526D3EA4D00BBBB1B /* EditorView.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
-				2BEDE6E326A7281E007247B0 /* ServiceBarChartView.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				2B0050932703617B009C609C /* Color+Hex.swift in Sources */,
 				2B1D46A426CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
@@ -1271,7 +1216,6 @@
 				DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				DC24DF3325DD54090003ADCB /* NoAppSelectedView.swift in Sources */,
 				2B781B8626F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */,
-				2BEDE6ED26A72879007247B0 /* ServiceDonutChartView.swift in Sources */,
 				2BBFCA1D267D05E40013DC74 /* URL+Open.swift in Sources */,
 				DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */,
 				2BBFCA0B267D05E40013DC74 /* CustomSection.swift in Sources */,
@@ -1279,7 +1223,6 @@
 				2B462808272868DC00515530 /* TestModeIndicator.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* TelemetrySignalTypes.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
-				2BBFCA2D267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */,
 				2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */,
 				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				2B1D469326CC471A008814A9 /* CacheLayer.swift in Sources */,
@@ -1289,7 +1232,6 @@
 				2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
-				2BDD8E782655049700C6E51D /* OldInsightService.swift in Sources */,
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				2BBFCA25267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
@@ -1306,7 +1248,6 @@
 				2BBFCA13267D05E40013DC74 /* ListItemView.swift in Sources */,
 				DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */,
 				2BBFCA19267D05E40013DC74 /* Buttonstyles.swift in Sources */,
-				DCFD9CD0252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				2B135E1626E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
 				2BBFCA2B267D05E40013DC74 /* MacNavigationView.swift in Sources */,
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
@@ -1321,8 +1262,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BBFCA26267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
-				2BEDE6E426A7281E007247B0 /* ServiceBarChartView.swift in Sources */,
-				DC23286E2522725A00DB6145 /* InsightView.swift in Sources */,
 				2B0050922703617B009C609C /* Color+Hex.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BC522EB2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */,
@@ -1344,18 +1283,15 @@
 				DC7C540D250FB0BA0027D6A5 /* JSONDecoder.swift in Sources */,
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
 				DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */,
-				2BEDE6EE26A72879007247B0 /* ServiceDonutChartView.swift in Sources */,
 				DCDC6EF9253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				DCDC6F14253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				2B781B8726F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */,
 				2BBFCA02267D05E40013DC74 /* DashedCardView.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
-				2BEDE6E626A7282B007247B0 /* ServiceRawChartView.swift in Sources */,
 				2B21FCDB26FDC9F900A8A55B /* InsightsGrid.swift in Sources */,
 				2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
 				2BC2720326207D710045A2FE /* MockData.swift in Sources */,
 				DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */,
-				2BDD8E792655049700C6E51D /* OldInsightService.swift in Sources */,
 				2BC1427826656DEF009BCB3B /* APIClient.swift in Sources */,
 				2B21FCD826FDC38500A8A55B /* NewInsightMenu.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
@@ -1371,7 +1307,6 @@
 				DC98AABD250BC30200FF26FD /* TelemetrySignalTypes.swift in Sources */,
 				2BBFCA34267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				2B1D46A226CC52DD008814A9 /* InsightService.swift in Sources */,
-				2BDD8E752653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift in Sources */,
 				2BBFCA00267D05E40013DC74 /* OrderSetter.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */,
@@ -1388,9 +1323,6 @@
 				DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */,
 				2B25EAE626D3EA4D00BBBB1B /* EditorView.swift in Sources */,
 				2BBFCA08267D05E40013DC74 /* OptionalToggle.swift in Sources */,
-				2BEDE6EA26A72853007247B0 /* ServiceLineChartView.swift in Sources */,
-				2BDD8E732653C14C00C6E51D /* InsightCalculationService.swift in Sources */,
-				2BB23B2D26567222003DDE5E /* OldAppService.swift in Sources */,
 				2B1D469126CC471A008814A9 /* Caching.swift in Sources */,
 				2BBFCA1A267D05E40013DC74 /* Buttonstyles.swift in Sources */,
 				2BBFCA14267D05E40013DC74 /* ListItemView.swift in Sources */,
@@ -1407,7 +1339,6 @@
 				2BA5D50A26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
 				2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
-				DCFD9CD1252A344F002BD29F /* Publisher+Validation.swift in Sources */,
 				2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
 				2BDD41BE2717365600B3CB33 /* AsyncOperation.swift in Sources */,
 				2B745563272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
@@ -1415,7 +1346,6 @@
 				2B46280F27286D2500515530 /* TestingModeToggle.swift in Sources */,
 				2B1D469926CC4C5D008814A9 /* ErrorService.swift in Sources */,
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
-				2BBFCA2E267D05E40013DC74 /* InsightReloadButtonView.swift in Sources */,
 				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				2BA5D50226CD05CC008FBF8F /* InsightGroupsView.swift in Sources */,
 			);

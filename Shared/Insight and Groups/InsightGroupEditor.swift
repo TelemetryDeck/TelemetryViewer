@@ -13,7 +13,7 @@ struct InsightGroupEditor: View {
     @Environment(\.presentationMode) var presentationMode
 
     @EnvironmentObject var api: APIClient
-    @EnvironmentObject var insightService: OldInsightService
+    @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var appService: AppService
 
@@ -34,13 +34,13 @@ struct InsightGroupEditor: View {
     }
 
     func save() {
-        insightService.update(insightGroup: DTOv1.InsightGroup(id: id, title: title, order: order), in: appID) { _ in
+        groupService.update(insightGroup: DTOv1.InsightGroup(id: id, title: title, order: order), in: appID) { _ in
             groupService.retrieveGroup(with: self.id)
         }
     }
 
     func delete() {
-        insightService.delete(insightGroupID: id, in: appID) { _ in
+        groupService.delete(insightGroupID: id, in: appID) { _ in
             #if os(iOS)
                 presentationMode.wrappedValue.dismiss()
             #endif

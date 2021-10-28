@@ -19,14 +19,9 @@ struct Telemetry_ViewerApp: App {
     let insightService: InsightService
     let insightResultService: InsightResultService
     let iconFinderService: IconFinderService
-        
     let updateService: UpdateService
     let signalsService: SignalsService
     let lexiconService: LexiconService
-    let oldappService: OldAppService
-    let oldinsightService: OldInsightService
-    let insightCalculationService: InsightCalculationService
-    
 
     var body: some Scene {
         WindowGroup {
@@ -39,14 +34,9 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(insightService)
                 .environmentObject(insightResultService)
                 .environmentObject(iconFinderService)
-            
                 .environmentObject(updateService)
                 .environmentObject(signalsService)
                 .environmentObject(lexiconService)
-                .environmentObject(oldappService)
-                .environmentObject(oldinsightService)
-                .environmentObject(insightCalculationService)
-                .environmentObject(orgService)
         }
         .windowToolbarStyle(UnifiedCompactWindowToolbarStyle())
         .commands {
@@ -77,25 +67,21 @@ struct Telemetry_ViewerApp: App {
         self.api = APIClient()
         self.cacheLayer = CacheLayer()
         self.errors = ErrorService()
-        
+
         self.orgService = OrgService(api: api, cache: cacheLayer, errors: errors)
         self.appService = AppService(api: api, cache: cacheLayer, errors: errors)
         self.groupService = GroupService(api: api, cache: cacheLayer, errors: errors)
         self.insightService = InsightService(api: api, cache: cacheLayer, errors: errors)
         self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
         self.iconFinderService = IconFinderService(api: api)
-        
         self.updateService = UpdateService()
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
-        self.oldappService = OldAppService(api: api)
-        self.oldinsightService = OldInsightService(api: api)
-        self.insightCalculationService = InsightCalculationService(api: api)
-        
+
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
         updateService.checkForUpdate()
-        
-        UserDefaults.standard.register(defaults: ["isTestingMode" : true])
+
+        UserDefaults.standard.register(defaults: ["isTestingMode": true])
     }
 }
