@@ -64,10 +64,10 @@ class AppService: ObservableObject {
         }
     }
     
-    func create(appNamed name: String, callback: ((Result<TelemetryApp, TransferError>) -> Void)? = nil) {
+    func create(appNamed name: String, callback: ((Result<DTOv2.App, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps")
 
-        api.post(["name": name], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
+        api.post(["name": name], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
             callback?(result)
             
             if let userToken = api.userToken?.bearerTokenAuthString {
@@ -76,10 +76,10 @@ class AppService: ObservableObject {
         }
     }
 
-    func update(appID: UUID, newName: String, callback: ((Result<TelemetryApp, TransferError>) -> Void)? = nil) {
+    func update(appID: UUID, newName: String, callback: ((Result<DTOv2.App, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString)
 
-        api.patch(["name": newName], to: url) { [unowned self] (result: Result<TelemetryApp, TransferError>) in
+        api.patch(["name": newName], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
 //            if let userToken = api.userToken?.bearerTokenAuthString {
 //                cache.organizationCache.removeValue(forKey: userToken)
 //            }

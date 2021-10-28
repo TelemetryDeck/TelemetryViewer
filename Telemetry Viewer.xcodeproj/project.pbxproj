@@ -186,7 +186,6 @@
 		DC24DF3425DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
 		DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
-		DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC340E5D2531C23800514FD6 /* InsightDetailView.swift */; };
 		DC3472EB258A720500BEEDE0 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEAB258A3B9B00BEA712 /* UpdateService.swift */; };
 		DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA10F7A24DA722700A62C26 /* RegisterView.swift */; };
 		DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC45BB1B24E27F12004E6392 /* SignalView.swift */; };
@@ -381,7 +380,6 @@
 		C5A8D8C0270C821B0032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAppSelectedView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
-		DC340E5D2531C23800514FD6 /* InsightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDetailView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
 		DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationSettingsView.swift; sourceTree = "<group>"; };
 		DC5F3A8825A364C00057AA59 /* EmptyInsightGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyInsightGroupView.swift; sourceTree = "<group>"; };
@@ -815,7 +813,6 @@
 				DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */,
 				DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */,
 				DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */,
-				DC340E5D2531C23800514FD6 /* InsightDetailView.swift */,
 				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
 				DCE23A0D24D3687D00053370 /* Info.plist */,
 				DCE23A0E24D3687D00053370 /* macOS.entitlements */,
@@ -1313,7 +1310,6 @@
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				2BA5D50526CD0E5B008FBF8F /* GroupView.swift in Sources */,
 				2B1D469C26CC4F45008814A9 /* AppService.swift in Sources */,
-				DC340E602531C23800514FD6 /* InsightDetailView.swift in Sources */,
 				2BBFCA12267D05E40013DC74 /* DetailSidebar.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
 				2B670C0026BD8BF7005DA07E /* SidebarSplitView.swift in Sources */,
