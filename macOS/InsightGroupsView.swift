@@ -27,10 +27,6 @@ struct InsightGroupsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            StatusMessageDisplay()
-            
-            TestModeIndicator()
-            
             Group {
                 if selectedInsightGroupID == nil {
                     EmptyAppView(appID: appID)

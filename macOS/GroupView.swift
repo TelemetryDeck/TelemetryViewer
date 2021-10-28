@@ -5,9 +5,9 @@
 //  Created by Daniel Jilg on 18.08.21.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
 
 let spacing: CGFloat = 1
 
@@ -20,14 +20,18 @@ struct GroupView: View {
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var lexiconService: LexiconService
-    
+
     var editorPanelEdge: Edge {
         return .trailing
     }
 
     var body: some View {
-        AdaptiveStack(spacing: 0) {
+        HStack(spacing: 0) {
             ScrollView(.vertical) {
+                StatusMessageDisplay()
+
+                TestModeIndicator()
+
                 insightsList
             }
             .frame(idealWidth: 600, maxWidth: .infinity, maxHeight: .infinity)
