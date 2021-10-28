@@ -27,7 +27,9 @@ struct TestModeIndicator: View {
                             Image(systemName: "chevron.right")
                         }
                     }
+                    #if os(macOS)
                     .buttonStyle(.link)
+                    #endif
                     .foregroundColor(Color.secondary)
                 }
             }
