@@ -35,6 +35,8 @@ struct InsightGroupsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             StatusMessageDisplay()
+
+            TestModeIndicator()
             
             groupSelector
                 .padding(.horizontal)
@@ -76,7 +78,13 @@ struct InsightGroupsView: View {
             }
             
             ToolbarItem(placement: .bottomBar) {
-                datePickerButton
+                HStack {
+                    Toggle("Test Mode", isOn: $insightResultService.isTestingMode.animation())
+                    
+                    Spacer()
+                    
+                    datePickerButton
+                }
             }
         }
     }

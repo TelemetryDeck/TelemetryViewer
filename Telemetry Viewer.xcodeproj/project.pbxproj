@@ -50,11 +50,11 @@
 		2B379D2226FBCC4B00714BE6 /* IconFinderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B379D2026FBC3A300714BE6 /* IconFinderService.swift */; };
 		2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
 		2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */; };
-		2B462808272868DC00515530 /* TestModeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B462807272868DC00515530 /* TestModeIndicator.swift */; };
 		2B462809272868DC00515530 /* TestModeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B462807272868DC00515530 /* TestModeIndicator.swift */; };
 		2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46280A2728699E00515530 /* StatusMessageContainer.swift */; };
 		2B46280C2728699E00515530 /* StatusMessageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46280A2728699E00515530 /* StatusMessageContainer.swift */; };
 		2B46280F27286D2500515530 /* TestingModeToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46280E27286D2500515530 /* TestingModeToggle.swift */; };
+		2B462817272B272300515530 /* TestModeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B462816272B272300515530 /* TestModeIndicator.swift */; };
 		2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B94D264C08D4003F62C4 /* SignalsService.swift */; };
 		2B670C0026BD8BF7005DA07E /* SidebarSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B670BFF26BD8BF7005DA07E /* SidebarSplitView.swift */; };
@@ -309,6 +309,7 @@
 		2B462807272868DC00515530 /* TestModeIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModeIndicator.swift; sourceTree = "<group>"; };
 		2B46280A2728699E00515530 /* StatusMessageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageContainer.swift; sourceTree = "<group>"; };
 		2B46280E27286D2500515530 /* TestingModeToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingModeToggle.swift; sourceTree = "<group>"; };
+		2B462816272B272300515530 /* TestModeIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModeIndicator.swift; sourceTree = "<group>"; };
 		2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS)Release.entitlements"; sourceTree = "<group>"; };
 		2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS).entitlements"; sourceTree = "<group>"; };
 		2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -539,7 +540,6 @@
 			children = (
 				2B781B8226F4A5E30062DBDC /* StatusMessageBanner.swift */,
 				2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */,
-				2B462807272868DC00515530 /* TestModeIndicator.swift */,
 				2B46280A2728699E00515530 /* StatusMessageContainer.swift */,
 			);
 			path = "Status Banners";
@@ -781,6 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
+				2B462816272B272300515530 /* TestModeIndicator.swift */,
 				2B21FCDC26FDCA6A00A8A55B /* GroupView.swift */,
 				2B21FCD426FDC33F00A8A55B /* InsightGroupsView.swift */,
 				2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */,
@@ -796,6 +797,7 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				2B462807272868DC00515530 /* TestModeIndicator.swift */,
 				DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */,
 				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
 				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
@@ -1169,6 +1171,7 @@
 				2B1D469B26CC4F45008814A9 /* AppService.swift in Sources */,
 				DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BA5D50B26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
+				2B462817272B272300515530 /* TestModeIndicator.swift in Sources */,
 				2B21FCD526FDC33F00A8A55B /* InsightGroupsView.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				2B379D2126FBC3A300714BE6 /* IconFinderService.swift in Sources */,
@@ -1209,7 +1212,6 @@
 				DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */,
 				2BBFCA0B267D05E40013DC74 /* CustomSection.swift in Sources */,
 				2B25EAEB26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift in Sources */,
-				2B462808272868DC00515530 /* TestModeIndicator.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* TelemetrySignalTypes.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */,
