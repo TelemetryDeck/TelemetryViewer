@@ -23,7 +23,8 @@ struct InsightsList: View {
                     InsightsGrid(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightGroup: insightGroup, isSelectable: isSelectable)
                 } else {
                     EmptyInsightGroupView()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        .frame(maxWidth: 400)
+                        .padding()
                 }
 
             } else {
