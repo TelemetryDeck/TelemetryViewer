@@ -689,13 +689,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DCB02B65250027C700304964 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		DCB02B67250027E400304964 /* Signals */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,7 +736,6 @@
 				2BD189F6267BCEA900DFDE4D /* UIComponents */,
 				2BC1427326656DEF009BCB3B /* APIClient */,
 				2B1D469626CC484D008814A9 /* UpdatedServices */,
-				DCB02B65250027C700304964 /* Services */,
 				DCE239FB24D3687C00053370 /* Shared */,
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
