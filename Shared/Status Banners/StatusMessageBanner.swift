@@ -1,6 +1,6 @@
 //
-//  StatusMessage.swift
-//  StatusMessage
+//  StatusMessageBanner.swift
+//  StatusMessageBanner
 //
 //  Created by Daniel Jilg on 17.09.21.
 //
@@ -8,7 +8,7 @@
 import DataTransferObjects
 import SwiftUI
 
-struct StatusMessage: View {
+struct StatusMessageBanner: View {
     let statusMessage: DTOv2.StatusMessage
     
     var body: some View {

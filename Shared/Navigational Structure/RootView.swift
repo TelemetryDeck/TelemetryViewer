@@ -28,7 +28,7 @@ struct RootView: View {
         } else {
             NavigationView {
                 LeftSidebarView()
-                AppInfoView()
+                NoAppSelectedView()
             }
         }
     }

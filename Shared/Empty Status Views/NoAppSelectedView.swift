@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AppInfoView: View {
+struct NoAppSelectedView: View {
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
 

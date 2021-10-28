@@ -19,7 +19,7 @@ struct StatusMessageDisplay: View {
     var body: some View {
         VStack(spacing: 0) {
             ForEach(statusMessages) { message in
-                StatusMessage(statusMessage: message)
+                StatusMessageBanner(statusMessage: message)
             }
         }
         .onAppear(perform: loadMessages)

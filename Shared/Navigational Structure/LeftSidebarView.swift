@@ -40,7 +40,7 @@ struct LeftSidebarView: View {
 
                     if organization.appIDs.isEmpty {
                         NavigationLink(tag: Selection.getStarted, selection: $sidebarSelection) {
-                            AppInfoView()
+                            NoAppSelectedView()
                         } label: {
                             Label("Get Started", systemImage: "mustache.fill")
                         }
