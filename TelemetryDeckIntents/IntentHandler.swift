@@ -28,13 +28,15 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
     }
 
     func provideInsightOptionsCollection(for intent: ConfigurationIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<InsightIDSelection>?, Error?) -> Void) {
-        insightService.widgetableInsights { insights in
-            let selectableInsights: [InsightIDSelection] = insights.map {
-                // TODO: make 'display' include the app name so that insights with the same name in different apps are identifiable, and so that all of this is generally less confusing? I think it was also possible to somehow create sections in the options menu, maybe that is what we should do. 
-                let selectableInsight = InsightIDSelection(identifier: $0.id.uuidString, display: $0.title)
-                return selectableInsight
+        insightService.widgetableInsights { apps in
+            let appSections: [INObjectSection<InsightIDSelection>] = apps.map {
+                let appSection = INObjectSection(title: $0.name, items: $0.insights.map { insight in
+                    InsightIDSelection(identifier: insight.id.uuidString, display: insight.title)
+                })
+                return appSection
             }
-            let collection = INObjectCollection(items: selectableInsights)
+
+            let collection = INObjectCollection(sections: appSections)
             completion(collection, nil)
         }
     }

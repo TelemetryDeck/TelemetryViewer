@@ -97,13 +97,13 @@ class InsightService: ObservableObject {
     ///
     /// Should the server return an error, or should a communication error occur, this method will call
     /// the callback black with an empty array and inform the APIClient error service about the error.
-    func widgetableInsights(callback: @escaping (([DTOv2.Insight]) -> Void)) {
+    func widgetableInsights(callback: @escaping (([DTOv2.AppWithInsights]) -> Void)) {
         let url = api.urlForPath(apiVersion: .v2, "insights", "widgetableInsights")
         
-        api.get(url) { (result: Result<[DTOv2.Insight], TransferError>) in
+        api.get(url) { (result: Result<[DTOv2.AppWithInsights], TransferError>) in
             switch result {
-            case let .success(insightList):
-                callback(insightList)
+            case let .success(appWithInsightList):
+                callback(appWithInsightList)
             case let .failure(transferError):
                 callback([])
                 self.api.handleError(transferError)
