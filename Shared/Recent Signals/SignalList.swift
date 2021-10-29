@@ -5,9 +5,9 @@
 //  Created by Daniel Jilg on 11.08.20.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
 
 struct SignalList: View {
     @EnvironmentObject var signalsService: SignalsService
@@ -48,7 +48,7 @@ struct SignalList: View {
                     #endif
                 }
             }
-            
+
             #if os(macOS)
             Divider()
             if let selectedSignal = selectedSignal {
@@ -88,11 +88,15 @@ struct SignalListCell: View {
     let signal: DTOv1.Signal
 
     var body: some View {
-        HStack {
+        AdaptiveStack(horizontalAlignment: .leading) {
+            HStack {
+                Text(signal.receivedAt, style: .date)
+                Text(signal.receivedAt, style: .time)
+            }
+            .font(.footnote)
+            .foregroundColor(.secondary)
+
             Text(signal.type).bold()
-            Spacer()
-            Text(signal.receivedAt, style: .date).opacity(0.6)
-            Text(signal.receivedAt, style: .time).opacity(0.6)
         }
     }
 }

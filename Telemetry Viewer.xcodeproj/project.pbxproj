@@ -662,8 +662,6 @@
 				DC98AAB6250A671900FF26FD /* AppEditor.swift */,
 				2B25EAEA26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift */,
 				2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */,
-				DCB02B67250027E400304964 /* Signals */,
-				DCF7CD3E254A068500BFA23B /* Lexicon */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -689,14 +687,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DCB02B67250027E400304964 /* Signals */ = {
+		DCB02B67250027E400304964 /* Recent Signals */ = {
 			isa = PBXGroup;
 			children = (
 				DC815F3B24E283640095A047 /* SignalList.swift */,
 				DC45BB1B24E27F12004E6392 /* SignalView.swift */,
 				DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */,
 			);
-			path = Signals;
+			path = "Recent Signals";
 			sourceTree = "<group>";
 		};
 		DCB02B692502764200304964 /* Login + Register */ = {
@@ -756,8 +754,10 @@
 				2B462813272AF22200515530 /* Help + Feedback */,
 				DCD52C4E2541FFF0003F12C6 /* Helpers + Extensions */,
 				DC53393E25222C0900D9C889 /* Insight and Groups */,
+				DCF7CD3E254A068500BFA23B /* Lexicon */,
 				DCB02B692502764200304964 /* Login + Register */,
 				DC24DF3125DD53E50003ADCB /* Navigational Structure */,
+				DCB02B67250027E400304964 /* Recent Signals */,
 				DC90D08925063A5700634B72 /* Settings */,
 				2B781B8126F4A5D60062DBDC /* Status Banners */,
 				2B462811272AF08500515530 /* Supporting Files */,
