@@ -526,6 +526,15 @@
 			path = "Help + Feedback";
 			sourceTree = "<group>";
 		};
+		2B462818272C7FFF00515530 /* Test Mode */ = {
+			isa = PBXGroup;
+			children = (
+				2B462807272868DC00515530 /* TestModeIndicator.swift */,
+				2B46280E27286D2500515530 /* TestingModeToggle.swift */,
+			);
+			path = "Test Mode";
+			sourceTree = "<group>";
+		};
 		2B74555C27230626002CBB45 /* SwiftUIChartsExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,7 +806,7 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				2B462807272868DC00515530 /* TestModeIndicator.swift */,
+				2B462818272C7FFF00515530 /* Test Mode */,
 				DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */,
 				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
 				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
@@ -813,7 +822,6 @@
 				2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */,
 				2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */,
 				2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */,
-				2B46280E27286D2500515530 /* TestingModeToggle.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
