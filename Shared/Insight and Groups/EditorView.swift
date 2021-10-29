@@ -419,7 +419,7 @@ struct EditorView: View {
     var widgetSection: some View {
         let widgetText = viewModel.widgetable ? ", available as Widget" : ""
 
-        return CustomSection(header: Text("Widget"), summary: Text(widgetText), footer: Text("If you want, you can make this insight available as a Widget option"), startCollapsed: true) {
+        return CustomSection(header: Text("Widget"), summary: Text(widgetText), footer: Text("You can make this insight available as a Widget option."), startCollapsed: true) {
 
             Toggle(isOn: $viewModel.widgetable) {
                 HStack {

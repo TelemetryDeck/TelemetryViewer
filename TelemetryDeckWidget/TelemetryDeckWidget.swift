@@ -72,7 +72,7 @@ struct Provider: IntentTimelineProvider {
         // done: dynamic configuration that asks for list of vegetable insights from the api
         // done: get selected InsightID from configuration
         // done: tell the timeline to reload
-        // TODO: construct a real InsightCalculationResult UI similar to the main app
+        // done: construct a real InsightCalculationResult UI similar to the main app
     }
 }
 
@@ -91,8 +91,8 @@ struct TelemetryDeckWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             TelemetryDeckWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Telemetry Deck Widget")
+        .description("Go to the app's insight editor to make an insight available for this widget.")
     }
 }
 
