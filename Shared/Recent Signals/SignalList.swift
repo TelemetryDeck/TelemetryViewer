@@ -97,6 +97,12 @@ struct SignalListCell: View {
             .foregroundColor(.secondary)
 
             Text(signal.type).bold()
+
+            if signal.isTestMode {
+                Text("Test Signal")
+                    .foregroundColor(Color.secondary)
+                    .font(.footnote)
+            }
         }
     }
 }

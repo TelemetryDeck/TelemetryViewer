@@ -19,12 +19,12 @@ struct MockData {
     ]
 
     static let signals: [DTOv1.Signal] = [
-        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
-        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: true),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false),
     ]
 
     static let lexiconPayloadKeys: [DTOv1.LexiconPayloadKey] = [
