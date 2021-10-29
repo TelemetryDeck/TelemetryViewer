@@ -18,7 +18,7 @@ struct TelemetryDeckWidgetEntryView: View {
             Text(entry.insightCalculationResult.insight.title.uppercased())
                 .padding(.top)
                 .padding(.horizontal)
-                .font(.footnote)
+                .font(Font.system(size: 9))
                 .foregroundColor(.grayColor)
 
             switch entry.insightCalculationResult.insight.displayMode {
