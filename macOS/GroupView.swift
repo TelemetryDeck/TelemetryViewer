@@ -21,22 +21,16 @@ struct GroupView: View {
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var lexiconService: LexiconService
 
-    var editorPanelEdge: Edge {
-        return .trailing
-    }
-
     var body: some View {
         HStack(spacing: 0) {
-            VStack {
+            ScrollView(.vertical) {
                 StatusMessageDisplay()
                 TestModeIndicator()
-                ScrollView(.vertical) {
-                    insightsList
-                }
-                .frame(idealWidth: 600, maxWidth: .infinity, maxHeight: .infinity)
-                .onTapGesture {
-                    selectedInsightID = nil
-                }
+                insightsList
+            }
+            .frame(idealWidth: 600, maxWidth: .infinity, maxHeight: .infinity)
+            .onTapGesture {
+                selectedInsightID = nil
             }
 
             if sidebarVisible {
@@ -56,7 +50,7 @@ struct GroupView: View {
                     }
                 }
                 .frame(maxWidth: 250, maxHeight: .infinity)
-                .transition(.move(edge: editorPanelEdge))
+                .transition(.move(edge: .trailing))
                 .onChange(of: groupID) { _ in
                     sidebarVisible = false
                 }
