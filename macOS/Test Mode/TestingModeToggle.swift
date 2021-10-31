@@ -13,7 +13,7 @@ struct TestingModeToggle: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            Text("Testing")
+            Text("Test Mode")
                 .foregroundColor(Color.secondary)
                 .padding(.leading, 8)
                 .onTapGesture {
@@ -21,7 +21,7 @@ struct TestingModeToggle: View {
                         insightResultService.isTestingMode.toggle()
                     }
                 }
-            Toggle("Testing Mode is \(insightResultService.isTestingMode ? "ON" : "OFF")", isOn: $insightResultService.isTestingMode.animation())
+            Toggle("Test Mode is \(insightResultService.isTestingMode ? "ON" : "OFF")", isOn: $insightResultService.isTestingMode.animation())
                 .toggleStyle(.switch)
                 .scaleEffect(0.5)
         }

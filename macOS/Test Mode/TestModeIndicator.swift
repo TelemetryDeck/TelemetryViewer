@@ -14,13 +14,13 @@ struct TestModeIndicator: View {
         if insightResultService.isTestingMode {
             StatusMessageContainer(backgroundColor: Color.grayColor.opacity(0.2)) {
                 HStack {
-                    Text("You are in Testing Mode, so you are only seeing signals sent while running development builds in Xcode.")
+                    Text("You are in Test Mode, so you are only seeing signals sent while running development builds in Xcode.")
                         .foregroundColor(Color.secondary)
 
                     Spacer()
 
                     Button {
-                        URL(string: "https://telemetrydeck.com/pages/testing-mode.html")?.open()
+                        URL(string: "https://telemetrydeck.com/pages/test-mode.html")?.open()
                     } label: {
                         HStack(spacing: 4) {
                             Text("Learn More")
