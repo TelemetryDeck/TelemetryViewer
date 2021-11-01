@@ -5,9 +5,9 @@
 //  Created by Daniel Jilg on 07.09.20.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
 
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIClient
@@ -29,11 +29,17 @@ struct UserSettingsView: View {
                     TextField("Last Name", text: $userDTO.lastName)
                 }
                 
-                Section(header: Text("Email"), footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding TelemetryDeck. Can we also send you our low volume newsletter please?")) {
+                Section(header: Text("Email"), footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding TelemetryDeck. \(userDTO.receiveMarketingEmails != true ? "Can we also send you our low volume newsletter please?" : "")")) {
                     TextField("Email", text: $userDTO.email)
                     
-                    OptionalToggle(description: "Receive the newsletter?", isOn: $userDTO.receiveMarketingEmails)
-                        .onChange(of: userDTO.receiveMarketingEmails) { _ in save() }
+                    if userDTO.receiveMarketingEmails != true {
+                        OptionalToggle(description: "Receive the newsletter?", isOn: $userDTO.receiveMarketingEmails)
+                            .onChange(of: userDTO.receiveMarketingEmails) { _ in save() }
+                    } else {
+                        Text("Please use the link at the bottom of each newsletter email to manage your preferences.")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    }
                 }
                 
                 Section {
