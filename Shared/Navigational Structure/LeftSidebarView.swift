@@ -78,6 +78,9 @@ struct LeftSidebarView: View {
                 Text("Meta")
             }
         }
+        .sheet(isPresented: $updateService.shouldShowUpdateNowScreen) {
+            AppUpdateView()
+        }
         .navigationTitle("TelemetryDeck")
         .listStyle(.sidebar)
         .toolbar {
