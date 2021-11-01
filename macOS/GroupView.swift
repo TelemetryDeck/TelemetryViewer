@@ -23,14 +23,16 @@ struct GroupView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            ScrollView(.vertical) {
-                StatusMessageDisplay()
+            VStack {
                 TestModeIndicator()
-                insightsList
-            }
-            .frame(idealWidth: 600, maxWidth: .infinity, maxHeight: .infinity)
-            .onTapGesture {
-                selectedInsightID = nil
+                ScrollView(.vertical) {
+                    StatusMessageDisplay()
+                    insightsList
+                }
+                .frame(idealWidth: 600, maxWidth: .infinity, maxHeight: .infinity)
+                .onTapGesture {
+                    selectedInsightID = nil
+                }
             }
 
             if sidebarVisible {
