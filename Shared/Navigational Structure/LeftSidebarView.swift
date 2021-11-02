@@ -5,16 +5,16 @@
 //  Created by Daniel Jilg on 17.02.21.
 //
 
-import SwiftUI
 import DataTransferObjects
+import SwiftUI
 
 struct LeftSidebarView: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
-    
+
     #if os(macOS)
-    @EnvironmentObject var updateService: UpdateService
+        @EnvironmentObject var updateService: UpdateService
     #endif
 
     @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOv2.App.ID: Bool]? = nil
@@ -78,38 +78,40 @@ struct LeftSidebarView: View {
                 Text("Meta")
             }
         }
-        .sheet(isPresented: $updateService.shouldShowUpdateNowScreen) {
-            AppUpdateView()
-        }
-        .navigationTitle("TelemetryDeck")
-        .listStyle(.sidebar)
-        .toolbar {
-            ToolbarItemGroup {
-                #if os(macOS)
-                    Button(action: toggleSidebar) {
-                        Image(systemName: "sidebar.left")
-                            .help("Toggle Sidebar")
-                    }
-                    .help("Toggle the left sidebar")
-
-                    Spacer()
-                #endif
-
-                Button(action: {
-                    appService.create(appNamed: "New App") { result in
-                        switch result {
-                        case .failure(let error):
-                            print(error)
-                        case .success:
-                            print("done")
-                        }
-                    }
-                }) {
-                    Label("New App", systemImage: "plus.app.fill")
-                }
-                .help("Create a New App")
+        #if os(macOS)
+            .sheet(isPresented: $updateService.shouldShowUpdateNowScreen) {
+                AppUpdateView()
             }
-        }
+        #endif
+        .navigationTitle("TelemetryDeck")
+            .listStyle(.sidebar)
+            .toolbar {
+                ToolbarItemGroup {
+                    #if os(macOS)
+                        Button(action: toggleSidebar) {
+                            Image(systemName: "sidebar.left")
+                                .help("Toggle Sidebar")
+                        }
+                        .help("Toggle the left sidebar")
+
+                        Spacer()
+                    #endif
+
+                    Button(action: {
+                        appService.create(appNamed: "New App") { result in
+                            switch result {
+                            case .failure(let error):
+                                print(error)
+                            case .success:
+                                print("done")
+                            }
+                        }
+                    }) {
+                        Label("New App", systemImage: "plus.app.fill")
+                    }
+                    .help("Create a New App")
+                }
+            }
     }
 
     private func binding(for key: DTOv2.App.ID) -> Binding<Bool> {
