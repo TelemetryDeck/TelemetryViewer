@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryDeckClient
 
 struct RootView: View {
     @EnvironmentObject var api: APIClient

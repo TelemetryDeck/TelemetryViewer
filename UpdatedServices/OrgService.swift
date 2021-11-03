@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import DataTransferObjects
+import TelemetryDeckClient
 
 class OrgService: ObservableObject {
     private let api: APIClient
