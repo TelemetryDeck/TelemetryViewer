@@ -7,6 +7,7 @@
 
 import SwiftUI
 import TelemetryClient
+import TelemetryDeckClient
 
 @main
 struct Telemetry_ViewerApp: App {

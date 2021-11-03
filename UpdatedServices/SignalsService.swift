@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import DataTransferObjects
+import TelemetryDeckClient
 
 class SignalsService: ObservableObject {
     @Published var signalsForAppID: [UUID: [DTOv1.IdentifiableSignal]] = [:]
