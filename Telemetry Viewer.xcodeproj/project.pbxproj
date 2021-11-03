@@ -17,6 +17,10 @@
 		2B0769DE2722EA3B0024D8A7 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */; };
 		2B135E1626E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
 		2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
+		2B151FF82732A7E2002083FD /* TelemetryDeckClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B151FF72732A7E2002083FD /* TelemetryDeckClient */; };
+		2B151FFA2732A7E9002083FD /* TelemetryDeckClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B151FF92732A7E9002083FD /* TelemetryDeckClient */; };
+		2B151FFC2732A7EF002083FD /* TelemetryDeckClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B151FFB2732A7EF002083FD /* TelemetryDeckClient */; };
+		2B151FFE2732A7F5002083FD /* TelemetryDeckClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B151FFD2732A7F5002083FD /* TelemetryDeckClient */; };
 		2B1D468926CC4423008814A9 /* OrgService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468826CC4423008814A9 /* OrgService.swift */; };
 		2B1D468A26CC4423008814A9 /* OrgService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468826CC4423008814A9 /* OrgService.swift */; };
 		2B1D469026CC471A008814A9 /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468F26CC471A008814A9 /* Caching.swift */; };
@@ -289,6 +293,7 @@
 /* Begin PBXFileReference section */
 		2B00509027035C85009C609C /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+RawRepresentable.swift"; sourceTree = "<group>"; };
+		2B151FF62732A7A8002083FD /* TelemetryDeckClient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TelemetryDeckClient; path = Packages/TelemetryDeckClient; sourceTree = "<group>"; };
 		2B1D468826CC4423008814A9 /* OrgService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgService.swift; sourceTree = "<group>"; };
 		2B1D468E26CC471A008814A9 /* CacheLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheLayer.swift; sourceTree = "<group>"; };
 		2B1D468F26CC471A008814A9 /* Caching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching.swift; sourceTree = "<group>"; };
@@ -432,6 +437,7 @@
 				C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */,
 				2B043C34271B491B00DDB255 /* TelemetryClient in Frameworks */,
 				C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */,
+				2B151FFC2732A7EF002083FD /* TelemetryDeckClient in Frameworks */,
 				2BC137602723115E008AE9BC /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +450,7 @@
 				2BC13762272311BD008AE9BC /* SwiftUICharts in Frameworks */,
 				2B0769D82722EA260024D8A7 /* DataTransferObjects in Frameworks */,
 				2B043C36271B492900DDB255 /* TelemetryClient in Frameworks */,
+				2B151FFE2732A7F5002083FD /* TelemetryDeckClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +466,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B151FF82732A7E2002083FD /* TelemetryDeckClient in Frameworks */,
 				2BC1375E27230EC4008AE9BC /* SwiftUICharts in Frameworks */,
 				2B0769DE2722EA3B0024D8A7 /* DataTransferObjects in Frameworks */,
 				DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */,
@@ -473,6 +481,7 @@
 				2BC1375C27230EBD008AE9BC /* SwiftUICharts in Frameworks */,
 				2B0769DC2722EA350024D8A7 /* DataTransferObjects in Frameworks */,
 				DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */,
+				2B151FFA2732A7E9002083FD /* TelemetryDeckClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +746,7 @@
 				2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */,
 				2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */,
 				2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */,
+				2B151FF62732A7A8002083FD /* TelemetryDeckClient */,
 				2BC1375927230E0D008AE9BC /* DataTransferObjects */,
 				2BC1375A27230E0D008AE9BC /* SwiftUICharts */,
 				2B74555C27230626002CBB45 /* SwiftUIChartsExtensions */,
@@ -856,6 +866,7 @@
 				2B043C33271B491B00DDB255 /* TelemetryClient */,
 				2B0769D92722EA2F0024D8A7 /* DataTransferObjects */,
 				2BC1375F2723115E008AE9BC /* SwiftUICharts */,
+				2B151FFB2732A7EF002083FD /* TelemetryDeckClient */,
 			);
 			productName = TelemetryDeckWidgetExtension;
 			productReference = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */;
@@ -878,6 +889,7 @@
 				2B043C35271B492900DDB255 /* TelemetryClient */,
 				2B0769D72722EA260024D8A7 /* DataTransferObjects */,
 				2BC13761272311BD008AE9BC /* SwiftUICharts */,
+				2B151FFD2732A7F5002083FD /* TelemetryDeckClient */,
 			);
 			productName = TelemetryDeckIntents;
 			productReference = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */;
@@ -922,6 +934,7 @@
 				DC9C0830252CD622001C0F94 /* TelemetryClient */,
 				2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */,
 				2BC1375D27230EC4008AE9BC /* SwiftUICharts */,
+				2B151FF72732A7E2002083FD /* TelemetryDeckClient */,
 			);
 			productName = "Telemetry Viewer (iOS)";
 			productReference = DCE23A0324D3687D00053370 /* Telemetry Viewer.app */;
@@ -946,6 +959,7 @@
 				2B25EAE826D3EEE700BBBB1B /* Shimmer */,
 				2B0769DB2722EA350024D8A7 /* DataTransferObjects */,
 				2BC1375B27230EBD008AE9BC /* SwiftUICharts */,
+				2B151FF92732A7E9002083FD /* TelemetryDeckClient */,
 			);
 			productName = "Telemetry Viewer (macOS)";
 			productReference = DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */;
@@ -1884,6 +1898,22 @@
 		2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DataTransferObjects;
+		};
+		2B151FF72732A7E2002083FD /* TelemetryDeckClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TelemetryDeckClient;
+		};
+		2B151FF92732A7E9002083FD /* TelemetryDeckClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TelemetryDeckClient;
+		};
+		2B151FFB2732A7EF002083FD /* TelemetryDeckClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TelemetryDeckClient;
+		};
+		2B151FFD2732A7F5002083FD /* TelemetryDeckClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TelemetryDeckClient;
 		};
 		2B25EAE826D3EEE700BBBB1B /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;
