@@ -38,14 +38,6 @@ struct LeftSidebarView: View {
                     ForEach(organization.appIDs, id: \.self) { appID in
                         section(for: appID)
                     }
-
-                    if organization.appIDs.isEmpty {
-                        NavigationLink(tag: Selection.getStarted, selection: $sidebarSelection) {
-                            NoAppSelectedView()
-                        } label: {
-                            Label("Get Started", systemImage: "mustache.fill")
-                        }
-                    }
                 }
             } header: {
                 Text("Apps")
@@ -135,24 +127,28 @@ struct LeftSidebarView: View {
                 } label: {
                     Label("Insights", systemImage: "chart.bar.xaxis")
                 }
+                .tag(Selection.insights(app: appID))
 
                 NavigationLink(tag: Selection.signalTypes(app: app.id), selection: $sidebarSelection) {
                     LexiconView(appID: app.id)
                 } label: {
                     Label("Signal Types", systemImage: "book")
                 }
+                .tag(Selection.signalTypes(app: appID))
 
                 NavigationLink(tag: Selection.recentSignals(app: app.id), selection: $sidebarSelection) {
                     SignalList(appID: app.id)
                 } label: {
                     Label("Recent Signals", systemImage: "list.triangle")
                 }
+                .tag(Selection.recentSignals(app: appID))
 
                 NavigationLink(tag: Selection.editApp(app: app.id), selection: $sidebarSelection) {
                     AppEditor(appID: app.id, appName: app.name)
                 } label: {
                     Label("Edit App", systemImage: "square.and.pencil")
                 }
+                .tag(Selection.editApp(app: appID))
 
             } else {
                 TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Insights")
