@@ -17,7 +17,7 @@ struct TelemetryDeckWidgetEntryView: View {
         GeometryReader { geometry in
             ZStack() {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(entry.configuration.Insight?.appName ?? "" + " string" + entry.insightCalculationResult.insight.title.uppercased())
+                    Text((entry.configuration.Insight?.appName ?? "").uppercased() + " • " + entry.insightCalculationResult.insight.title.uppercased())
                         .padding(.top)
                         .padding(.horizontal)
                         .font(Font.system(size: 12))
@@ -43,10 +43,10 @@ struct TelemetryDeckWidgetEntryView: View {
                     }
                 }
                 .accentColor(Color(hex: entry.insightCalculationResult.insight.accentColor ?? "") ?? Color.telemetryOrange)
-                if entry.configuration.Insight?.identifier == "00000000-0000-0000-0000-000000000000" {
+                if entry.widgetDisplayMode == .chooseInsightView {
                     
                     Rectangle()
-                        .fill(Color.grayColor.opacity(0.5))
+                        .fill(Color.secondary.opacity(0.3))
                         .frame(width: geometry.size.width, height: geometry.size.height)
 
 
@@ -57,6 +57,7 @@ struct TelemetryDeckWidgetEntryView: View {
                         .foregroundColor(Color.primary)
                 }
             }
+            .if(entry.widgetDisplayMode == .chooseInsightView || entry.widgetDisplayMode == .placeholderView) { $0.redacted(reason: .placeholder) }
         }
     }
 }

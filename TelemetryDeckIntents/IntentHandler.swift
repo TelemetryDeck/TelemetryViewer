@@ -47,7 +47,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 // This function returns the default card that is used when the widget is dragged on the screen
     func defaultInsight(for intent: ConfigurationIntent) -> InsightIDSelection? {
         let defaultInsight = InsightIDSelection(identifier: "00000000-0000-0000-0000-000000000000", display: "Please select an Insight")
-        defaultInsight.appName = "Default App Name"
+        defaultInsight.appName = ""
         return defaultInsight
     }
 

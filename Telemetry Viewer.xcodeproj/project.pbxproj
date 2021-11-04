@@ -180,6 +180,9 @@
 		C5CE3D5C271AFCE2005232EC /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9DA267D05E30013DC74 /* Helpers.swift */; };
 		C5CE3D5D271AFCE2005232EC /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E2267D05E30013DC74 /* CustomSection.swift */; };
 		C5CE3D5E271AFD0C005232EC /* ProgressView+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F1267D05E30013DC74 /* ProgressView+Scale.swift */; };
+		C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
+		C5D1421A273471F00029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
+		C5D1421B273471F00029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
 		DC24DF3325DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3425DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
@@ -375,6 +378,7 @@
 		C5A8D8BB270C821B0032560A /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		C5A8D8BE270C821B0032560A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C5A8D8C0270C821B0032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalViewModifier.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAppSelectedView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
@@ -565,6 +569,7 @@
 			children = (
 				2BBFC9ED267D05E30013DC74 /* URL+Open.swift */,
 				2BBFC9F1267D05E30013DC74 /* ProgressView+Scale.swift */,
+				C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */,
 			);
 			path = "Helpers+Extensions";
 			sourceTree = "<group>";
@@ -1116,6 +1121,7 @@
 				C5CE3D5A271AFCE2005232EC /* Binding+OnUpdate.swift in Sources */,
 				2B78C82C2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift in Sources */,
 				2BDD41BF2717365600B3CB33 /* AsyncOperation.swift in Sources */,
+				C5D1421B273471F00029CA03 /* ConditionalViewModifier.swift in Sources */,
 				C5CE3D55271AFCE2005232EC /* OrderSetter.swift in Sources */,
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
 				C5CE3D56271AFCE2005232EC /* MacNavigationView.swift in Sources */,
@@ -1230,6 +1236,7 @@
 				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
+				C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */,
 				2BBFCA25267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
 				2BBFCA29267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */,
@@ -1300,6 +1307,7 @@
 				DC98AABD250BC30200FF26FD /* TelemetrySignalTypes.swift in Sources */,
 				2BBFCA34267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				2B1D46A226CC52DD008814A9 /* InsightService.swift in Sources */,
+				C5D1421A273471F00029CA03 /* ConditionalViewModifier.swift in Sources */,
 				2BBFCA00267D05E40013DC74 /* OrderSetter.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */,

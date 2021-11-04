@@ -56,7 +56,7 @@ struct Provider: IntentTimelineProvider {
             let integer = Int.random(in: 0...4)
             let result: DTOv2.InsightCalculationResult = insightCalculationResults[integer]
             let dataSet = ChartDataSet(data: result.data, groupBy: result.insight.groupBy)
-            let entry = SimpleEntry(date: Date(), configuration: configuration, insightCalculationResult: result, chartDataSet: dataSet)
+            let entry = SimpleEntry(date: Date(), configuration: configuration, insightCalculationResult: result, chartDataSet: dataSet, widgetDisplayMode: .chooseInsightView)
             let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
             completion(timeline)
             return
@@ -74,7 +74,7 @@ struct Provider: IntentTimelineProvider {
             case .success(let insightCalculationResult):
                 let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
                 // construct simple entry from InsightCalculationResult
-                let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet)
+                let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet, widgetDisplayMode: .normalView)
                 let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
                 completion(timeline)
             case .failure:
@@ -94,6 +94,13 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationIntent
     let insightCalculationResult: DTOv2.InsightCalculationResult
     let chartDataSet: ChartDataSet
+    var widgetDisplayMode: widgetDisplayMode = .placeholderView
+}
+
+enum widgetDisplayMode {
+    case placeholderView
+    case chooseInsightView
+    case normalView
 }
 
 @main
