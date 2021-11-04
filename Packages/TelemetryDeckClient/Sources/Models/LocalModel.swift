@@ -6,6 +6,7 @@ class LocalModel: Codable, Identifiable, ObservableObject {
     let type: String
     let lastUpdateAt: Date
     let isDirty: Bool
+    let isHydrated: Bool
     var loadingState: LoadingState
     
     static var maxAgeBeforeRefresh: TimeInterval { return 3600 }
