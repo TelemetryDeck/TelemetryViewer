@@ -5,9 +5,9 @@
 //  Created by Daniel Jilg on 17.08.21.
 //
 
-import Foundation
 import Combine
 import DataTransferObjects
+import Foundation
 import TelemetryDeckClient
 
 class OrgService: ObservableObject {
@@ -22,30 +22,33 @@ class OrgService: ObservableObject {
     init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
         self.api = api
         self.cache = cache
-        self.errorService = errors
+        errorService = errors
         
         cacheCancellable = cache.organizationCache.objectWillChange.receive(on: DispatchQueue.main).sink { _ in self.objectWillChange.send() }
     }
     
     var organization: DTOv2.Organization? {
-        guard let userToken = api.userToken?.bearerTokenAuthString, let organization = cache.organizationCache[userToken] else {
+        let locallyCachedOrganization = retrieveFromDisk()
+        
+        if let userToken = api.userToken?.bearerTokenAuthString, let organization = cache.organizationCache[userToken] {
+            if cache.organizationCache.needsUpdate(forKey: userToken) {
+                retrieveOrganization()
+            }
+            
+            return organization
+        } else {
             retrieveOrganization()
-            return nil
         }
         
-        if cache.organizationCache.needsUpdate(forKey: userToken) {
-            retrieveOrganization()
-        }
-        
-        return organization
+        return locallyCachedOrganization
     }
     
     func retrieveOrganization() {
         // after 60 seconds, clear the error, allowing another load
         switch loadingState {
-        case .error(_, let date):
+        case let .error(_, date):
             if date < Date() - 60 {
-                self.loadingState = .idle
+                loadingState = .idle
             }
         default:
             break
@@ -60,7 +63,7 @@ class OrgService: ObservableObject {
 private extension OrgService {
     func performRetrieval() {
         switch loadingState {
-        case .loading, .error(_, _):
+        case .loading, .error:
             return
         default:
             break
@@ -79,6 +82,7 @@ private extension OrgService {
             case let .success(organization):
                 self?.cache.queue.async {
                     self?.cache.organizationCache[userToken] = organization
+                    self?.saveToDisk(org: organization)
                     
                     DispatchQueue.main.async { [weak self] in
                         self?.loadingState = .finished(Date())
@@ -92,5 +96,32 @@ private extension OrgService {
                 }
             }
         }
+    }
+}
+
+private extension OrgService {
+    var organizationCacheFilePath: URL {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
+        let cachesDirectoryUrl = urls[0]
+        let fileUrl = cachesDirectoryUrl.appendingPathComponent("telemetrydeck.organization.json")
+        let filePath = fileUrl.path
+        
+        if !fileManager.fileExists(atPath: filePath) {
+            let contents = Data()
+            fileManager.createFile(atPath: filePath, contents: contents)
+        }
+        
+        return fileUrl
+    }
+    
+    func saveToDisk(org: DTOv2.Organization) {
+        guard let data = try? JSONEncoder.druidEncoder.encode(org) else { return }
+        try? data.write(to: organizationCacheFilePath, options: .atomic)
+    }
+    
+    func retrieveFromDisk() -> DTOv2.Organization? {
+        guard let data = try? Data(contentsOf: organizationCacheFilePath) else { return nil }
+        return try? JSONDecoder.druidDecoder.decode(DTOv2.Organization.self, from: data)
     }
 }
