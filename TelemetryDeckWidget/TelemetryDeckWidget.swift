@@ -48,13 +48,25 @@ struct Provider: IntentTimelineProvider {
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
+        
+        //TODO: instead of this guard statement, (or under), maybe some kind of return value for the default insight so that the view can react to that
         guard configuration.Insight?.identifier != nil else { return }
+        
+        guard configuration.Insight?.identifier != "00000000-0000-0000-0000-000000000000" else {
+            let integer = Int.random(in: 0...4)
+            let result: DTOv2.InsightCalculationResult = insightCalculationResults[integer]
+            let dataSet = ChartDataSet(data: result.data, groupBy: result.insight.groupBy)
+            let entry = SimpleEntry(date: Date(), configuration: configuration, insightCalculationResult: result, chartDataSet: dataSet)
+            let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
+            completion(timeline)
+            return
+        }
 
         let insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
 
         // get InsightCalculationResult from API
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
-                                 Formatter.iso8601noFS.string(from: Date().beginning(of: .month) ?? Date() - 30 * 24 * 3600),
+                                 Formatter.iso8601noFS.string(from: Date() - 30 * 24 * 3600),
                                  Formatter.iso8601noFS.string(from: Date()))
 
         api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
@@ -99,7 +111,7 @@ struct TelemetryDeckWidget: Widget {
 
 struct TelemetryDeckWidget_Previews: PreviewProvider {
     static var previews: some View {
-        let result: DTOv2.InsightCalculationResult = insightCalculationResults[4]
+        let result: DTOv2.InsightCalculationResult = insightCalculationResults[0]
         let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy))
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))

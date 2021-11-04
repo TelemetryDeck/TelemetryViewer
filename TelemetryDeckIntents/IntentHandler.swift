@@ -30,9 +30,11 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 
     func provideInsightOptionsCollection(for intent: ConfigurationIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<InsightIDSelection>?, Error?) -> Void) {
         insightService.widgetableInsights { apps in
-            let appSections: [INObjectSection<InsightIDSelection>] = apps.map {
-                let appSection = INObjectSection(title: $0.name, items: $0.insights.map { insight in
-                    InsightIDSelection(identifier: insight.id.uuidString, display: insight.title)
+            let appSections: [INObjectSection<InsightIDSelection>] = apps.map { app in
+                let appSection = INObjectSection(title: app.name, items: app.insights.map { insight -> InsightIDSelection in
+                    let selectedInsight = InsightIDSelection(identifier: insight.id.uuidString, display: insight.title)
+                    selectedInsight.appName = app.name
+                    return selectedInsight
                 })
                 return appSection
             }
@@ -40,6 +42,13 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
             let collection = INObjectCollection(sections: appSections)
             completion(collection, nil)
         }
+    }
+    
+// This function returns the default card that is used when the widget is dragged on the screen
+    func defaultInsight(for intent: ConfigurationIntent) -> InsightIDSelection? {
+        let defaultInsight = InsightIDSelection(identifier: "00000000-0000-0000-0000-000000000000", display: "Please select an Insight")
+        defaultInsight.appName = "Default App Name"
+        return defaultInsight
     }
 
     override func handler(for intent: INIntent) -> Any {

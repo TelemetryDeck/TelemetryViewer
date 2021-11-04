@@ -7,6 +7,7 @@
 
 import SwiftUI
 import TelemetryDeckClient
+import WidgetKit
 
 struct RootView: View {
     @EnvironmentObject var api: APIClient
@@ -30,6 +31,9 @@ struct RootView: View {
             NavigationView {
                 LeftSidebarView()
                 NoAppSelectedView()
+            }
+            .onAppear {
+                WidgetCenter.shared.reloadAllTimelines()
             }
         }
     }

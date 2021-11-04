@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21A5304g</string>
+	<string>21A558</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>13A5212g</string>
+	<string>13A1030d</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>13.0</string>
+	<string>13.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -51,6 +51,10 @@
 						<dict>
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>${Insight}.${displayName}</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>l3pqG6</string>
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Configuration</string>
 						</dict>
@@ -105,7 +109,7 @@
 			<key>INTypeDisplayNameID</key>
 			<string>A3ZvdW</string>
 			<key>INTypeLastPropertyTag</key>
-			<integer>99</integer>
+			<integer>101</integer>
 			<key>INTypeName</key>
 			<string>InsightIDSelection</string>
 			<key>INTypeProperties</key>
@@ -159,6 +163,20 @@
 					<integer>4</integer>
 					<key>INTypePropertyType</key>
 					<string>SpeakableString</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>App Name</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>EnVZ4p</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>5</integer>
+					<key>INTypePropertyName</key>
+					<string>appName</string>
+					<key>INTypePropertyTag</key>
+					<integer>101</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
 				</dict>
 			</array>
 		</dict>
