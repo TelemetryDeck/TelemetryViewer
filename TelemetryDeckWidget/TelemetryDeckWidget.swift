@@ -5,13 +5,13 @@
 //  Created by Charlotte Böhm on 05.10.21.
 //
 
+import DataTransferObjects
 import Intents
 import SwiftUI
-import TelemetryClient
-import WidgetKit
-import DataTransferObjects
 import SwiftUICharts
+import TelemetryClient
 import TelemetryDeckClient
+import WidgetKit
 
 struct Provider: IntentTimelineProvider {
     let api: APIClient
@@ -48,10 +48,8 @@ struct Provider: IntentTimelineProvider {
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
-        
-        //TODO: instead of this guard statement, (or under), maybe some kind of return value for the default insight so that the view can react to that
         guard configuration.Insight?.identifier != nil else { return }
-        
+
         guard configuration.Insight?.identifier != "00000000-0000-0000-0000-000000000000" else {
             let integer = Int.random(in: 0...4)
             let result: DTOv2.InsightCalculationResult = insightCalculationResults[integer]
@@ -81,11 +79,6 @@ struct Provider: IntentTimelineProvider {
                 return
             }
         }
-
-        // done: dynamic configuration that asks for list of vegetable insights from the api
-        // done: get selected InsightID from configuration
-        // done: tell the timeline to reload
-        // done: construct a real InsightCalculationResult UI similar to the main app
     }
 }
 
@@ -112,7 +105,7 @@ struct TelemetryDeckWidget: Widget {
             TelemetryDeckWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Telemetry Deck Widget")
-        .description("Go to the app's insight editor to make an insight available for this widget.")
+        .description("If no Insights are available here, make sure you are logged in. You can search for Insights by name, app, or display type")
     }
 }
 

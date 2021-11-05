@@ -63,7 +63,6 @@ class EditorViewModel: ObservableObject {
         self.order = insight.order ?? 0
         self.title = insight.title
         self.accentColor = insight.accentColor ?? ""
-        self.widgetable = insight.widgetable ?? false
         self.displayMode = insight.displayMode
         self.isExpanded = insight.isExpanded
         self.signalType = insight.signalType ?? ""
@@ -98,7 +97,6 @@ class EditorViewModel: ObservableObject {
             order: order,
             title: title,
             accentColor: accentColor != "" ? accentColor : nil,
-            widgetable: widgetable,
             signalType: signalType.isEmpty ? nil : signalType,
             uniqueUser: uniqueUser,
             filters: filters,
@@ -189,9 +187,6 @@ class EditorViewModel: ObservableObject {
             save()
         }
     }
-    
-    /// If true, the insight can be selected in the widget options
-    @Published var widgetable: Bool { didSet { save() }}
     
     var filterAutocompletionOptions: [String] {
         return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey)
@@ -415,32 +410,10 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-    
-    var widgetSection: some View {
-        let widgetText = viewModel.widgetable ? ", available as Widget" : ""
 
-        return CustomSection(header: Text("Widget"), summary: Text(widgetText), footer: Text("You can make this insight available as a Widget option."), startCollapsed: true) {
-
-            Toggle(isOn: $viewModel.widgetable) {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Widgetable")
-                        Text("Check to make available for Widgets")
-                            .font(.footnote)
-                            .foregroundColor(.grayColor)
-                    }
-                    Spacer()
-                }
-            }
-        }
-        .padding(.horizontal)
-    }
-    
     var formContent: some View {
         Group {
             nameAndGroupSection
-            
-            widgetSection
             
             colorSelectionSection
 

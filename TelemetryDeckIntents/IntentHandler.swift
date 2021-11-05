@@ -18,7 +18,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
     override init() {
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
-        
+
         self.api = APIClient()
         self.cacheLayer = CacheLayer()
         self.errors = ErrorService()
@@ -30,21 +30,42 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 
     func provideInsightOptionsCollection(for intent: ConfigurationIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<InsightIDSelection>?, Error?) -> Void) {
         insightService.widgetableInsights { apps in
-            let appSections: [INObjectSection<InsightIDSelection>] = apps.map { app in
-                let appSection = INObjectSection(title: app.name, items: app.insights.map { insight -> InsightIDSelection in
-                    let selectedInsight = InsightIDSelection(identifier: insight.id.uuidString, display: insight.title)
-                    selectedInsight.appName = app.name
-                    return selectedInsight
-                })
-                return appSection
-            }
+            if searchTerm == nil {
+                let appSections: [INObjectSection<InsightIDSelection>] = apps.map { app in
+                    let appSection = INObjectSection(title: app.name, items: app.insights.map { insight -> InsightIDSelection in
+                        let selectedInsight = InsightIDSelection(identifier: insight.id.uuidString, display: insight.title, subtitle: insight.displayMode.rawValue.uppercased(), image: nil)
+                        selectedInsight.appName = app.name
+                        return selectedInsight
+                    })
+                    return appSection
+                }
 
-            let collection = INObjectCollection(sections: appSections)
-            completion(collection, nil)
+                let collection = INObjectCollection(sections: appSections)
+                completion(collection, nil)
+            } else {
+                var appSections: [INObjectSection<InsightIDSelection>] = []
+                apps.forEach { app in
+                    var filteredInsights: [InsightIDSelection] = []
+                    app.insights.forEach { insight in
+                        if insight.title.lowercased().contains(searchTerm!.lowercased()) || app.name.lowercased().contains(searchTerm!.lowercased()) || insight.displayMode.rawValue.lowercased().contains(searchTerm!.lowercased()) {
+                            let filteredInsight = InsightIDSelection(identifier: insight.id.uuidString, display: insight.title, subtitle: insight.displayMode.rawValue.uppercased(), image: nil)
+                            filteredInsight.appName = app.name
+                            filteredInsights.append(filteredInsight)
+                        }
+                    }
+                    if filteredInsights != [] {
+                        let appSection = INObjectSection(title: app.name, items: filteredInsights)
+                        appSections.append(appSection)
+                    }
+                }
+
+                let collection = INObjectCollection(sections: appSections)
+                completion(collection, nil)
+            }
         }
     }
-    
-// This function returns the default card that is used when the widget is dragged on the screen
+
+    // This function returns the default card that is used when the widget is dragged on the screen
     func defaultInsight(for intent: ConfigurationIntent) -> InsightIDSelection? {
         let defaultInsight = InsightIDSelection(identifier: "00000000-0000-0000-0000-000000000000", display: "Please select an Insight")
         defaultInsight.appName = ""
