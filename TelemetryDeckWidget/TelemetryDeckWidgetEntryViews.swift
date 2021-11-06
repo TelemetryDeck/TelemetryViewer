@@ -9,9 +9,12 @@ import DataTransferObjects
 import Intents
 import SwiftUI
 import SwiftUICharts
+import WidgetKit
 
 struct TelemetryDeckWidgetEntryView: View {
     let entry: SimpleEntry
+    
+    @Environment(\.widgetFamily) var family: WidgetFamily
 
     var body: some View {
         GeometryReader { geometry in
@@ -20,7 +23,7 @@ struct TelemetryDeckWidgetEntryView: View {
                     Text((entry.configuration.Insight?.appName ?? "Example App").uppercased() + " • " + entry.insightCalculationResult.insight.title.uppercased())
                         .padding(.top)
                         .padding(.horizontal)
-                        .font(Font.system(size: 12))
+                        .font(Font.system(size: family == .systemSmall ? 10 : 12))
                         .foregroundColor(.grayColor)
 
                     switch entry.insightCalculationResult.insight.displayMode {
