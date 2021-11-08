@@ -5,10 +5,10 @@
 //  Created by Daniel Jilg on 15.09.21.
 //
 
-import SwiftUI
-import TelemetryClient
 import DataTransferObjects
+import SwiftUI
 import SwiftUICharts
+import TelemetryClient
 
 struct OrganizationSignalNumbersView: View {
     @EnvironmentObject var api: APIClient
@@ -274,54 +274,54 @@ struct PricingSettingsView: View {
     }
 
     var body: some View {
-        VStack(spacing: 16) {
-            OrganizationSignalNumbersView().padding(.top)
+        ScrollView {
+            VStack(spacing: 16) {
+                OrganizationSignalNumbersView().padding(.top)
 
-            Divider()
+                Divider()
 
-            if showCheckoutPrices {
-                CheckoutPricesContainerView(showCheckoutPrices: $showCheckoutPrices)
-            } else {
-                VStack(spacing: 24) {
-                    VStack {
-                        Text("Subscription Status")
-                            .font(.footnote)
-                            .foregroundColor(.grayColor)
-                        Text(orgService.organization?.stripeMaxSignals == nil ? "Free" : "Subscription Active").valueStyle()
-                    }
+                if showCheckoutPrices {
+                    CheckoutPricesContainerView(showCheckoutPrices: $showCheckoutPrices)
+                } else {
+                    VStack(spacing: 24) {
+                        VStack {
+                            Text("Subscription Status")
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
+                            Text(orgService.organization?.stripeMaxSignals == nil ? "Free" : "Subscription Active").valueStyle()
+                        }
 
-                    VStack {
-                        if orgService.organization?.stripeMaxSignals == -1 {
-                            HStack {
-                                Text("∞").valueStyle()
-                                Text("signals/mo").unitStyle()
-                            }
-                        } else {
-                            ValueAndUnitView(value: Double(orgService.organization?.resolvedMaxSignals ?? 0), unit: "signals/mo", shouldFormatBigNumbers: false)
+                        VStack {
+                            if orgService.organization?.stripeMaxSignals == -1 {
+                                HStack {
+                                    Text("∞").valueStyle()
+                                    Text("signals/mo").unitStyle()
+                                }
+                            } else {
+                                ValueAndUnitView(value: Double(orgService.organization?.resolvedMaxSignals ?? 0), unit: "signals/mo", shouldFormatBigNumbers: false)
 
-                            if let multiplier = orgService.organization?.maxSignalsMultiplier {
-                                Text(multiplierDescription(multiplier: multiplier))
-                                    .font(.footnote)
-                                    .foregroundColor(.grayColor)
+                                if let multiplier = orgService.organization?.maxSignalsMultiplier {
+                                    Text(multiplierDescription(multiplier: multiplier))
+                                        .font(.footnote)
+                                        .foregroundColor(.grayColor)
+                                }
                             }
                         }
-                    }
 
-                    if orgService.organization?.isInRestrictedMode == true {
-                        VStack(spacing: 10) {
-                            Text("Restricted Mode").font(.title)
-                            Text("Your apps have sent more signals to TelemetryDeck in the current month than are currently included in your plan. We will continue to accept all signals your applications send to us, and store them safely, but we ask you to please upgrade your plan to a higher tier.")
-                                .fixedSize(horizontal: false, vertical: true)
-                                .frame(maxWidth: .infinity)
+                        if orgService.organization?.isInRestrictedMode == true {
+                            VStack(spacing: 10) {
+                                Text("Restricted Mode").font(.title)
+                                Text("Your apps have sent more signals to TelemetryDeck in the current month than are currently included in your plan. We will continue to accept all signals your applications send to us, and store them safely, but we ask you to please upgrade your plan to a higher tier.")
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.red)
+                            .cornerRadius(15)
+                            .padding(.horizontal)
                         }
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.red)
-                        .cornerRadius(15)
-                        .padding(.horizontal)
-                    }
 
-                    if orgService.organization?.stripeMaxSignals == nil {
                         Button("Show Plans") {
                             withAnimation {
                                 showCheckoutPrices = true
@@ -329,32 +329,34 @@ struct PricingSettingsView: View {
                         }
                         .buttonStyle(PrimaryButtonStyle())
                         .padding(.horizontal)
-                    } else {
-                        OpenBillingPortalButton()
+                        
+                        if orgService.organization?.stripeMaxSignals != nil {
+                            OpenBillingPortalButton()
+                        }
                     }
+                    .transition(.slide)
                 }
-                .transition(.slide)
-            }
-            
-            HStack {
-                Button("Terms of Service") {
-                    URL(string: "https://telemetrydeck.com/pages/termsofservice.html")?.open()
-                }
-                .buttonStyle(.borderless)
-                
-                Button("Privacy Policy") {
-                    URL(string: "https://telemetrydeck.com/pages/privacy-policy.html")?.open()
-                }
-                .buttonStyle(.borderless)
-            }
 
-            Spacer()
-        }
-        .onAppear {
-            TelemetryManager.send("PricingSettingsShown")
-        }
-        .onReceive(timer) { _ in
-            orgService.retrieveOrganization()
+                HStack {
+                    Button("Terms of Service") {
+                        URL(string: "https://telemetrydeck.com/pages/termsofservice.html")?.open()
+                    }
+                    .buttonStyle(.borderless)
+
+                    Button("Privacy Policy") {
+                        URL(string: "https://telemetrydeck.com/pages/privacy-policy.html")?.open()
+                    }
+                    .buttonStyle(.borderless)
+                }
+
+                Spacer()
+            }
+            .onAppear {
+                TelemetryManager.send("PricingSettingsShown")
+            }
+            .onReceive(timer) { _ in
+                orgService.retrieveOrganization()
+            }
         }
     }
 }

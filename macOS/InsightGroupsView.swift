@@ -87,11 +87,12 @@ struct InsightGroupsView: View {
             
             withAnimation {
                 sidebarVisible.toggle()
+                selectedInsightID = nil
             }
         } label: {
             Image(systemName: "sidebar.right")
         }
-        .help("Toggle right right sidebar")
+        .help("Toggle right sidebar")
     }
     
     private var groupSelector: some View {
