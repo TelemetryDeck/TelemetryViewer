@@ -7,7 +7,6 @@
 
 import Foundation
 import DataTransferObjects
-import TelemetryDeckClient
 
 struct ItunesSearchResult: Codable {
     let screenshotUrls: [URL]

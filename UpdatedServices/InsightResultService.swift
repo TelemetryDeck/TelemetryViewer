@@ -9,7 +9,6 @@ import Combine
 import Foundation
 import DataTransferObjects
 import SwiftUICharts
-import TelemetryDeckClient
 
 final class InsightRetrievalOperation: AsyncOperation {
     private let cache: CacheLayer

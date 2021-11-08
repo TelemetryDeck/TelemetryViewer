@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryDeckClient
 
 struct AskForMarketingEmailsView: View {
     @EnvironmentObject var api: APIClient

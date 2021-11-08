@@ -7,7 +7,6 @@
 
 import Intents
 import TelemetryClient
-import TelemetryDeckClient
 
 class IntentHandler: INExtension, ConfigurationIntentHandling {
     let api: APIClient

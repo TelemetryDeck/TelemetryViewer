@@ -1,6 +1,3 @@
-[submodule "APIClient"]
-	path = APIClient
-	url = git@github.com:AppTelemetry/APIClient.git
 [submodule "UIComponents"]
 	path = UIComponents
 	url = git@github.com:AppTelemetry/UIComponents.git

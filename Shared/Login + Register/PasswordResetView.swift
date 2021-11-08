@@ -7,7 +7,6 @@
 
 import SwiftUI
 import DataTransferObjects
-import TelemetryDeckClient
 
 struct PasswordResetView: View {
     enum ProgressStatus {

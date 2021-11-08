@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryDeckClient
 import WidgetKit
 
 struct RootView: View {

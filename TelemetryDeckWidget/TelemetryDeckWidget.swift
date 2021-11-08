@@ -10,7 +10,6 @@ import Intents
 import SwiftUI
 import SwiftUICharts
 import TelemetryClient
-import TelemetryDeckClient
 import WidgetKit
 
 struct Provider: IntentTimelineProvider {

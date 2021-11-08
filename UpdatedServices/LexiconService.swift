@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import DataTransferObjects
-import TelemetryDeckClient
 
 class LexiconService: ObservableObject {
     enum LexiconSortKey {

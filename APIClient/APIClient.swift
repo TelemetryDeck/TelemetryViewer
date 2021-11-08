@@ -10,8 +10,12 @@ import Foundation
 import SwiftUI
 import DataTransferObjects
 
-public final class APIClient: ObservableObject {
-    public enum ApiVersion: String {
+#if canImport(TelemetryClient)
+    import TelemetryClient
+#endif
+
+final class APIClient: ObservableObject {
+    enum ApiVersion: String {
         case v1
         case v2
     }
@@ -24,7 +28,7 @@ public final class APIClient: ObservableObject {
 
     private let userDefaults = UserDefaults(suiteName: "group.org.breakthesystem.telemetry.shared")
 
-    public init() {
+    init() {
         // Old storage location for user token, if its in there, remove it afterwards
         if let encodedUserToken = UserDefaults.standard.data(forKey: APIClient.userTokenStandardsKey),
            let userToken = try? JSONDecoder.druidDecoder.decode(UserTokenDTO.self, from: encodedUserToken)
@@ -43,9 +47,9 @@ public final class APIClient: ObservableObject {
         }
     }
 
-    @Published public var registrationStatus: RegistrationStatus?
+    @Published var registrationStatus: RegistrationStatus?
 
-    @Published public var userToken: UserTokenDTO? {
+    @Published var userToken: UserTokenDTO? {
         didSet {
             let encodedUserToken = try! JSONEncoder.druidEncoder.encode(userToken)
             userDefaults?.set(encodedUserToken, forKey: APIClient.userTokenStandardsKey)
@@ -55,31 +59,31 @@ public final class APIClient: ObservableObject {
     }
 
     /// The beginning of the time window. If nil, defaults to current Date minus 30 days
-    @Published public var timeWindowBeginning: Date? = nil
+    @Published var timeWindowBeginning: Date? = nil
 
     /// The end of the currently displayed time window. If nil, defaults to date()
-    @Published public var timeWindowEnd: Date? = nil
+    @Published var timeWindowEnd: Date? = nil
 
-    @Published public var user: DTOv1.UserDTO?
-    @Published public var userNotLoggedIn: Bool = true
-    @Published public var userLoginFailed: Bool = false
+    @Published var user: DTOv1.UserDTO?
+    @Published var userNotLoggedIn: Bool = true
+    @Published var userLoginFailed: Bool = false
 
-    @Published public var totalNumberOfSignals: Int = 0
-    @Published public var numberOfSignalsThisMonth: Int = 0
+    @Published var totalNumberOfSignals: Int = 0
+    @Published var numberOfSignalsThisMonth: Int = 0
 
-    @Published public var betaRequests: [BetaRequestEmailDTO] = []
-    @Published public var organizationAdminListEntries: [OrganizationAdminListEntry] = []
-    @Published public var insightQueryAdminListEntries: [DTOv1.InsightDTO] = []
-    @Published public var insightQueryAdminAggregate: DTOv1.Aggregate?
-    @Published public var appAdminSignalCounts: [DTOv1.AppAdminEntry] = []
+    @Published var betaRequests: [BetaRequestEmailDTO] = []
+    @Published var organizationAdminListEntries: [OrganizationAdminListEntry] = []
+    @Published var insightQueryAdminListEntries: [DTOv1.InsightDTO] = []
+    @Published var insightQueryAdminAggregate: DTOv1.Aggregate?
+    @Published var appAdminSignalCounts: [DTOv1.AppAdminEntry] = []
 
-    @Published public var organizationUsers: [DTOv1.UserDTO] = []
-    @Published public var organizationJoinRequests: [DTOv1.OrganizationJoinRequest] = []
+    @Published var organizationUsers: [DTOv1.UserDTO] = []
+    @Published var organizationJoinRequests: [DTOv1.OrganizationJoinRequest] = []
 
-    @Published public var needsDecisionForMarketingEmails: Bool = false
+    @Published var needsDecisionForMarketingEmails: Bool = false
 }
 
-public extension APIClient {
+extension APIClient {
     func login(loginRequestBody: LoginRequestBody, callback: @escaping (Bool) -> Void) {
         let url = urlForPath("users", "login")
 
@@ -109,7 +113,10 @@ public extension APIClient {
     }
 
     func logout() {
-        #warning("TODO: Send NSNotification or similar on logout")
+        #if canImport(TelemetryClient)
+            TelemetryManager.send(TelemetrySignal.userLogout.rawValue)
+        #endif
+
         userToken = nil
         user = nil
     }
@@ -182,7 +189,11 @@ public extension APIClient {
         get(url) { [unowned self] (result: Result<DTOv1.UserDTO, TransferError>) in
             switch result {
             case let .success(userDTO):
-                #warning("TODO: Send NSNotification or similar on user login")
+                #if canImport(TelemetryClient)
+                    TelemetryManager.updateDefaultUser(to: self.user?.email)
+                    TelemetryManager.send(TelemetrySignal.userLogin.rawValue)
+                #endif
+
                 DispatchQueue.main.async {
                     self.user = userDTO
                     if self.user?.receiveMarketingEmails == nil {
@@ -373,7 +384,7 @@ public extension APIClient {
 
 // MARK: - Generic Methods
 
-public extension APIClient {
+extension APIClient {
     /// Generate an API URL for the given Path
     ///
     /// Path should be supplied as a series of strings, e.g.

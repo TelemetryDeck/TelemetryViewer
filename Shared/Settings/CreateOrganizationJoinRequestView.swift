@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryDeckClient
 
 struct CreateOrganizationJoinRequestView: View {
     @EnvironmentObject var api: APIClient
