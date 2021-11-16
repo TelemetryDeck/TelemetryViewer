@@ -403,7 +403,7 @@ struct EditorView: View {
                 Text("Giant Goldfish").tag("F38630")
                 Text("Post Office").tag("FDBD33")
                 Text("Urgent!").tag("EB2727")
-                Text("Gandalf").tag("C2CBCE")
+                Text("Schmandalf").tag("C2CBCE")
                 Text("Inked").tag("2A363B")
                 Text("Not Sitting Straight").tag("E0A4C3")
             }
