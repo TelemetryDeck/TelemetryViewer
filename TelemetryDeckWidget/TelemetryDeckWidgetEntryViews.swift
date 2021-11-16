@@ -28,7 +28,7 @@ struct TelemetryDeckWidgetEntryView: View {
 
                     switch entry.insightCalculationResult.insight.displayMode {
                     case .raw:
-                        RawTableView(insightData: entry.chartDataSet, isSelected: false)
+                        RawChartView(chartDataSet: entry.chartDataSet, isSelected: false)
                     case .pieChart:
                         DonutChartView(chartDataset: entry.chartDataSet, isSelected: false)
                             .padding(.horizontal)
@@ -49,18 +49,19 @@ struct TelemetryDeckWidgetEntryView: View {
                 if entry.widgetDisplayMode == .chooseInsightView {
                     
                     Rectangle()
-                        .fill(Color.secondary.opacity(0.3))
+                        .fill(Color.cardBackground.opacity(0.3))
                         .frame(width: geometry.size.width, height: geometry.size.height)
 
 
                     Text("Please select an Insight in this Widget's options".uppercased())
                         .multilineTextAlignment(.center)
                         .unredacted()
-                        .font(Font.system(size: 20))
+                        .font(Font.system(size: 15))
                         .foregroundColor(Color.primary)
+                        .padding()
                 }
             }
-//            .if(entry.widgetDisplayMode == .chooseInsightView || entry.widgetDisplayMode == .placeholderView) { $0.redacted(reason: .placeholder) }
+            .if(entry.widgetDisplayMode == .chooseInsightView || entry.widgetDisplayMode == .placeholderView) { $0.redacted(reason: .placeholder) }
         }
     }
 }
