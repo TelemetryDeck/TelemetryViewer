@@ -24,7 +24,7 @@ let insightCalculationResults = [
     "lastRunAt" : "2021-10-05T11:30:36Z",
     "order" : 1,
     "lastRunTime" : 0.47125601768493652,
-    "displayMode" : "barChart",
+    "displayMode" : "raw",
     "isExpanded" : false
   },
   "calculationDuration" : 0.47125601768493652,

@@ -20,7 +20,8 @@ struct TelemetryDeckWidgetEntryView: View {
         GeometryReader { geometry in
             ZStack() {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text((entry.configuration.Insight?.appName ?? "Example App").uppercased() + " • " + entry.insightCalculationResult.insight.title.uppercased())
+                    Text((entry.configuration.ShowAppName?.boolValue ?? false) ?
+                         (entry.configuration.Insight?.appName ?? "Example App").uppercased() + " • " + entry.insightCalculationResult.insight.title.uppercased() : entry.insightCalculationResult.insight.title.uppercased())
                         .padding(.top)
                         .padding(.horizontal)
                         .font(Font.system(size: family == .systemSmall ? 10 : 12))
@@ -46,11 +47,13 @@ struct TelemetryDeckWidgetEntryView: View {
                     }
                 }
                 .accentColor(Color(hex: entry.insightCalculationResult.insight.accentColor ?? "") ?? Color.telemetryOrange)
+                .if(entry.widgetDisplayMode == .chooseInsightView) {$0.blur(radius: 1.5)}
                 if entry.widgetDisplayMode == .chooseInsightView {
                     
                     Rectangle()
-                        .fill(Color.cardBackground.opacity(0.3))
+                        .fill(Color.cardBackground.opacity(0.1))
                         .frame(width: geometry.size.width, height: geometry.size.height)
+//                        .background(.ultraThinMaterial)
 
 
                     Text("Please select an Insight in this Widget's options".uppercased())

@@ -60,10 +60,12 @@ struct Provider: IntentTimelineProvider {
         }
 
         let insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
+        
+        let interval = TimeInterval(configuration.Interval?.intValue ?? 30)
 
         // get InsightCalculationResult from API
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
-                                 Formatter.iso8601noFS.string(from: Date() - 30 * 24 * 3600),
+                                 Formatter.iso8601noFS.string(from: Date() - interval * 24 * 3600),
                                  Formatter.iso8601noFS.string(from: Date()))
 
         api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
@@ -110,8 +112,8 @@ struct TelemetryDeckWidget: Widget {
 
 struct TelemetryDeckWidget_Previews: PreviewProvider {
     static var previews: some View {
-        let result: DTOv2.InsightCalculationResult = insightCalculationResults[0]
-        let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy))
+        let result: DTOv2.InsightCalculationResult = insightCalculationResults[2]
+        let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy), widgetDisplayMode: .chooseInsightView)
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
         TelemetryDeckWidgetEntryView(entry: entry)
