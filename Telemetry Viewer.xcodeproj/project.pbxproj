@@ -162,10 +162,6 @@
 		C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8A4270C6FB70032560A /* MockData.swift */; };
 		C5A8D8AE270C821A0032560A /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8AD270C821A0032560A /* Intents.framework */; platformFilter = maccatalyst; };
 		C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
-		C5A8D8B9270C821B0032560A /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8B8270C821B0032560A /* IntentsUI.framework */; platformFilter = maccatalyst; };
-		C5A8D8BC270C821B0032560A /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8BB270C821B0032560A /* IntentViewController.swift */; };
-		C5A8D8BF270C821B0032560A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5A8D8BD270C821B0032560A /* MainInterface.storyboard */; };
-		C5A8D8C3270C821B0032560A /* TelemetryDeckIntentsUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8B7270C821B0032560A /* TelemetryDeckIntentsUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C5CE3D4D271AFCB6005232EC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E1267D05E30013DC74 /* Color.swift */; };
@@ -256,13 +252,6 @@
 			remoteGlobalIDString = C5A8D862270C5D7A0032560A;
 			remoteInfo = TelemetryDeckWidgetExtension;
 		};
-		C5A8D8C1270C821B0032560A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DCE239F724D3687C00053370 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C5A8D8B6270C821B0032560A;
-			remoteInfo = TelemetryDeckIntentsUI;
-		};
 		C5A8D8C4270C821B0032560A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DCE239F724D3687C00053370 /* Project object */;
@@ -281,7 +270,6 @@
 			files = (
 				C5A8D871270C5D800032560A /* TelemetryDeckWidgetExtension.appex in Embed App Extensions */,
 				C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */,
-				C5A8D8C3270C821B0032560A /* TelemetryDeckIntentsUI.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,8 +348,6 @@
 		2BC522E92625FCEF00E643AC /* HelpAndFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackView.swift; sourceTree = "<group>"; };
 		2BD21EC7271B3CDA00AE52DD /* TelemetryDeckIntentsDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsDebug.entitlements; sourceTree = "<group>"; };
 		2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntentsRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsRelease.entitlements; sourceTree = "<group>"; };
-		2BD21EC9271B3CF500AE52DD /* TelemetryDeckIntentsUIRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsUIRelease.entitlements; sourceTree = "<group>"; };
-		2BD21ECA271B3CFB00AE52DD /* TelemetryDeckIntentsUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsUI.entitlements; sourceTree = "<group>"; };
 		2BDD35052710727900CB2AA5 /* EditorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModeView.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPickerForCalculationService.swift; sourceTree = "<group>"; };
@@ -377,11 +363,7 @@
 		C5A8D8AD270C821A0032560A /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		C5A8D8B0270C821A0032560A /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		C5A8D8B2270C821A0032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5A8D8B7270C821B0032560A /* TelemetryDeckIntentsUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckIntentsUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8D8B8270C821B0032560A /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		C5A8D8BB270C821B0032560A /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
-		C5A8D8BE270C821B0032560A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		C5A8D8C0270C821B0032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalViewModifier.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAppSelectedView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -447,14 +429,6 @@
 				2BC13762272311BD008AE9BC /* SwiftUICharts in Frameworks */,
 				2B0769D82722EA260024D8A7 /* DataTransferObjects in Frameworks */,
 				2B043C36271B492900DDB255 /* TelemetryClient in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C5A8D8B4270C821B0032560A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C5A8D8B9270C821B0032560A /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,18 +609,6 @@
 			path = TelemetryDeckIntents;
 			sourceTree = "<group>";
 		};
-		C5A8D8BA270C821B0032560A /* TelemetryDeckIntentsUI */ = {
-			isa = PBXGroup;
-			children = (
-				2BD21ECA271B3CFB00AE52DD /* TelemetryDeckIntentsUI.entitlements */,
-				2BD21EC9271B3CF500AE52DD /* TelemetryDeckIntentsUIRelease.entitlements */,
-				C5A8D8BB270C821B0032560A /* IntentViewController.swift */,
-				C5A8D8BD270C821B0032560A /* MainInterface.storyboard */,
-				C5A8D8C0270C821B0032560A /* Info.plist */,
-			);
-			path = TelemetryDeckIntentsUI;
-			sourceTree = "<group>";
-		};
 		DC24DF3125DD53E50003ADCB /* Navigational Structure */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,7 +715,6 @@
 				2B7E2BA326AF19560059CE34 /* Telemetry Viewer Mac UITests */,
 				C5A8D866270C5D7A0032560A /* TelemetryDeckWidget */,
 				C5A8D8AF270C821A0032560A /* TelemetryDeckIntents */,
-				C5A8D8BA270C821B0032560A /* TelemetryDeckIntentsUI */,
 				DCE23A0424D3687D00053370 /* Products */,
 				DC9C0840252CEAC9001C0F94 /* Frameworks */,
 			);
@@ -785,7 +746,6 @@
 				DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */,
 				C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */,
 				C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */,
-				C5A8D8B7270C821B0032560A /* TelemetryDeckIntentsUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -887,23 +847,6 @@
 			productReference = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		C5A8D8B6270C821B0032560A /* TelemetryDeckIntentsUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C5A8D8C7270C821B0032560A /* Build configuration list for PBXNativeTarget "TelemetryDeckIntentsUI" */;
-			buildPhases = (
-				C5A8D8B3270C821B0032560A /* Sources */,
-				C5A8D8B4270C821B0032560A /* Frameworks */,
-				C5A8D8B5270C821B0032560A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TelemetryDeckIntentsUI;
-			productName = TelemetryDeckIntentsUI;
-			productReference = C5A8D8B7270C821B0032560A /* TelemetryDeckIntentsUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		DCE23A0224D3687D00053370 /* Telemetry Viewer (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCE23A1724D3687D00053370 /* Build configuration list for PBXNativeTarget "Telemetry Viewer (iOS)" */;
@@ -918,7 +861,6 @@
 			);
 			dependencies = (
 				C5A8D870270C5D800032560A /* PBXTargetDependency */,
-				C5A8D8C2270C821B0032560A /* PBXTargetDependency */,
 				C5A8D8C5270C821B0032560A /* PBXTargetDependency */,
 			);
 			name = "Telemetry Viewer (iOS)";
@@ -970,9 +912,6 @@
 					C5A8D8AB270C821A0032560A = {
 						CreatedOnToolsVersion = 13.0;
 					};
-					C5A8D8B6270C821B0032560A = {
-						CreatedOnToolsVersion = 13.0;
-					};
 					DCE23A0224D3687D00053370 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -1002,7 +941,6 @@
 				DCE23A0A24D3687D00053370 /* Telemetry Viewer (macOS) */,
 				C5A8D862270C5D7A0032560A /* TelemetryDeckWidgetExtension */,
 				C5A8D8AB270C821A0032560A /* TelemetryDeckIntents */,
-				C5A8D8B6270C821B0032560A /* TelemetryDeckIntentsUI */,
 			);
 		};
 /* End PBXProject section */
@@ -1021,14 +959,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C5A8D8B5270C821B0032560A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C5A8D8BF270C821B0032560A /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1163,14 +1093,6 @@
 				2B6431A82739A5BB009A33C4 /* AsyncOperation.swift in Sources */,
 				2B64319C2739A5BB009A33C4 /* Data+JSONPrettyPrint.swift in Sources */,
 				2B6431AC2739A5BB009A33C4 /* Caching.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C5A8D8B3270C821B0032560A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C5A8D8BC270C821B0032560A /* IntentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1363,28 +1285,12 @@
 			target = C5A8D862270C5D7A0032560A /* TelemetryDeckWidgetExtension */;
 			targetProxy = C5A8D86F270C5D800032560A /* PBXContainerItemProxy */;
 		};
-		C5A8D8C2270C821B0032560A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C5A8D8B6270C821B0032560A /* TelemetryDeckIntentsUI */;
-			targetProxy = C5A8D8C1270C821B0032560A /* PBXContainerItemProxy */;
-		};
 		C5A8D8C5270C821B0032560A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C5A8D8AB270C821A0032560A /* TelemetryDeckIntents */;
 			targetProxy = C5A8D8C4270C821B0032560A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		C5A8D8BD270C821B0032560A /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C5A8D8BE270C821B0032560A /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C5A8D873270C5D800032560A /* Debug */ = {
@@ -1395,7 +1301,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = TelemetryDeckWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 520;
+				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckWidget/Info.plist;
@@ -1426,7 +1332,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = TelemetryDeckWidgetExtensionRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 520;
+				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckWidget/Info.plist;
@@ -1450,72 +1356,13 @@
 			};
 			name = Release;
 		};
-		C5A8D8C8270C821B0032560A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntentsUI/TelemetryDeckIntentsUI.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 520;
-				DEVELOPMENT_TEAM = FL4V655A94;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TelemetryDeckIntentsUI/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntentsUI;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckIntentsUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C5A8D8C9270C821B0032560A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntentsUI/TelemetryDeckIntentsUIRelease.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 520;
-				DEVELOPMENT_TEAM = FL4V655A94;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TelemetryDeckIntentsUI/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TelemetryDeckIntentsUI;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckIntentsUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		C5A8D8CB270C821B0032560A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 520;
+				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntents/Info.plist;
@@ -1544,7 +1391,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 520;
+				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TelemetryDeckIntents/Info.plist;
@@ -1687,7 +1534,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Telemetry Viewer (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 520;
+				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -1713,7 +1560,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Telemetry Viewer (iOS)Release.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 520;
+				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -1741,7 +1588,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1768,7 +1615,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1794,15 +1641,6 @@
 			buildConfigurations = (
 				C5A8D873270C5D800032560A /* Debug */,
 				C5A8D874270C5D800032560A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C5A8D8C7270C821B0032560A /* Build configuration list for PBXNativeTarget "TelemetryDeckIntentsUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C5A8D8C8270C821B0032560A /* Debug */,
-				C5A8D8C9270C821B0032560A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

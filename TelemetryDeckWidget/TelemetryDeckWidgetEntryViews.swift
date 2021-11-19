@@ -59,6 +59,7 @@ struct TelemetryDeckWidgetEntryView: View {
                         .unredacted()
                         .font(Font.system(size: 15))
                         .foregroundColor(Color.primary)
+                        .shadow(color: Color.cardBackground, radius: 16)
                         .padding()
                 }
             }
