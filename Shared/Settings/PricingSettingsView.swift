@@ -174,22 +174,28 @@ struct CheckoutPricesView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Picker("Billing Period", selection: $selectedBillingPeriod) {
-                    ForEach(availableBillingPeriods, id: \.self) {
-                        Text($0)
+            if availableCurrencies.count > 1 || availableBillingPeriods.count > 1 {
+                HStack {
+                    if availableBillingPeriods.count > 1 {
+                        Picker("Billing Period", selection: $selectedBillingPeriod) {
+                            ForEach(availableBillingPeriods, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                    }
+
+                    if availableCurrencies.count > 1 {
+                        Picker("Currency", selection: $selectedCurrency) {
+                            ForEach(availableCurrencies, id: \.self) {
+                                Text($0)
+                            }
+                        }
                     }
                 }
-                .pickerStyle(.segmented)
-                
-                Picker("Currency", selection: $selectedCurrency) {
-                    ForEach(availableCurrencies, id: \.self) {
-                        Text($0)
-                    }
-                }
+
+                Divider()
             }
-            
-            Divider()
 
             HStack(spacing: -25) {
                 ForEach(filteredPrices) { priceStructure in
