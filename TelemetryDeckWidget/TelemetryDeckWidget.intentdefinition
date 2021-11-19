@@ -26,7 +26,7 @@
 			<key>INIntentIneligibleForSuggestions</key>
 			<true/>
 			<key>INIntentLastParameterTag</key>
-			<integer>14</integer>
+			<integer>16</integer>
 			<key>INIntentName</key>
 			<string>Configuration</string>
 			<key>INIntentParameters</key>
@@ -78,21 +78,27 @@
 					<key>INIntentParameterConfigurable</key>
 					<true/>
 					<key>INIntentParameterDisplayName</key>
-					<string>Interval</string>
+					<string>Range</string>
 					<key>INIntentParameterDisplayNameID</key>
 					<string>dQn1Y3</string>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
 					<key>INIntentParameterMetadata</key>
 					<dict>
+						<key>INIntentParameterMetadataDefaultUnit</key>
+						<string>Seconds</string>
 						<key>INIntentParameterMetadataDefaultValue</key>
-						<integer>30</integer>
+						<real>2592000</real>
+						<key>INIntentParameterMetadataMaximumUnit</key>
+						<string>Days</string>
 						<key>INIntentParameterMetadataMaximumValue</key>
-						<integer>800</integer>
+						<real>25920000</real>
+						<key>INIntentParameterMetadataMinimumUnit</key>
+						<string>Days</string>
 						<key>INIntentParameterMetadataMinimumValue</key>
-						<integer>1</integer>
-						<key>INIntentParameterMetadataType</key>
-						<string>Field</string>
+						<real>86400</real>
+						<key>INIntentParameterMetadataUnit</key>
+						<string>Days</string>
 					</dict>
 					<key>INIntentParameterName</key>
 					<string>Interval</string>
@@ -112,9 +118,9 @@
 						</dict>
 					</array>
 					<key>INIntentParameterTag</key>
-					<integer>14</integer>
+					<integer>16</integer>
 					<key>INIntentParameterType</key>
-					<string>Integer</string>
+					<string>TimeInterval</string>
 				</dict>
 				<dict>
 					<key>INIntentParameterConfigurable</key>

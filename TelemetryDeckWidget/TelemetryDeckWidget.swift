@@ -61,12 +61,19 @@ struct Provider: IntentTimelineProvider {
 
         let insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
         
-        let interval = TimeInterval(configuration.Interval?.intValue ?? 30)
+        var interval = TimeInterval(configuration.Interval?.intValue ?? 30 * 24 * 3600)
+        
+        if interval == 0 { interval = 30 * 24 * 3600 }
+        if interval < (24 * 3600) { interval = 24 * 3600 }
+        if interval > (300 * 24 * 3600) { interval = 300 * 24 * 3600}
+        
+        let endDate =  Date().beginning(of: .day) ?? Date()
+        let beginDate = (endDate - interval).beginning(of: .day) ?? (endDate - interval)
 
         // get InsightCalculationResult from API
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
-                                 Formatter.iso8601noFS.string(from: Date() - interval * 24 * 3600),
-                                 Formatter.iso8601noFS.string(from: Date()))
+                                 Formatter.iso8601noFS.string(from: beginDate),
+                                 Formatter.iso8601noFS.string(from: endDate))
 
         api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
             switch result {
