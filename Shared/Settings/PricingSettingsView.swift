@@ -151,16 +151,55 @@ struct CheckoutPricesView: View {
     @EnvironmentObject var api: APIClient
     @Binding var showCheckoutPrices: Bool
     @State var prices: [DTOv2.PriceStructure] = []
+    @State var selectedCurrency = "EUR"
+    @State var selectedBillingPeriod = "month"
+
+    var availableCurrencies: [String] {
+        var currencies = Set<String>()
+        prices.forEach { price in currencies.insert(price.currency) }
+        return currencies.sorted()
+    }
+
+    var availableBillingPeriods: [String] {
+        var billingPeriods = Set<String>()
+        prices.forEach { price in billingPeriods.insert(price.billingPeriod) }
+        return billingPeriods.sorted()
+    }
+
+    var filteredPrices: [DTOv2.PriceStructure] {
+        prices.filter { price in
+            price.currency == selectedCurrency && price.billingPeriod == selectedBillingPeriod
+        }
+    }
 
     var body: some View {
-        HStack(spacing: -25) {
-            ForEach(prices) { priceStructure in
-                PriceButton(showCheckoutPrices: $showCheckoutPrices, priceStructure: priceStructure)
-                    .scaleEffect((priceStructure == prices.last || priceStructure == prices.first) ? 0.85 : 1.0)
-                    .zIndex((priceStructure == prices.last || priceStructure == prices.first) ? -1 : 1)
+        VStack {
+            HStack {
+                Picker("Billing Period", selection: $selectedBillingPeriod) {
+                    ForEach(availableBillingPeriods, id: \.self) {
+                        Text($0)
+                    }
+                }
+                .pickerStyle(.segmented)
+                
+                Picker("Currency", selection: $selectedCurrency) {
+                    ForEach(availableCurrencies, id: \.self) {
+                        Text($0)
+                    }
+                }
             }
+            
+            Divider()
+
+            HStack(spacing: -25) {
+                ForEach(filteredPrices) { priceStructure in
+                    PriceButton(showCheckoutPrices: $showCheckoutPrices, priceStructure: priceStructure)
+                        .scaleEffect((priceStructure == filteredPrices.last || priceStructure == filteredPrices.first) ? 0.85 : 1.0)
+                        .zIndex((priceStructure == filteredPrices.last || priceStructure == filteredPrices.first) ? -1 : 1)
+                }
+            }
+            .frame(minHeight: 200)
         }
-        .frame(minHeight: 200)
         .padding()
         .onAppear(perform: load)
     }
@@ -329,7 +368,7 @@ struct PricingSettingsView: View {
                         }
                         .buttonStyle(PrimaryButtonStyle())
                         .padding(.horizontal)
-                        
+
                         if orgService.organization?.stripeMaxSignals != nil {
                             OpenBillingPortalButton()
                         }
