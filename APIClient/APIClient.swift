@@ -186,7 +186,7 @@ extension APIClient {
 
         let url = urlForPath("users", "me")
 
-        get(url) { [unowned self] (result: Result<DTOv1.UserDTO, TransferError>) in
+        get(url) { (result: Result<DTOv1.UserDTO, TransferError>) in
             switch result {
             case let .success(userDTO):
                 #if canImport(TelemetryClient)
@@ -197,11 +197,11 @@ extension APIClient {
                 DispatchQueue.main.async {
                     self.user = userDTO
                     if self.user?.receiveMarketingEmails == nil {
-                        needsDecisionForMarketingEmails = true
+                        self.needsDecisionForMarketingEmails = true
                     }
                 }
             case let .failure(error):
-                userLoginFailed = true
+                self.userLoginFailed = true
                 self.handleError(error)
             }
 

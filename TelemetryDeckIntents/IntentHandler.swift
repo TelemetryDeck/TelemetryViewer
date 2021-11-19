@@ -29,9 +29,14 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 
     func provideInsightOptionsCollection(for intent: ConfigurationIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<InsightIDSelection>?, Error?) -> Void) {
         insightService.widgetableInsights { apps in
+            
+            let sortedApps = apps.sorted {
+                $0.name < $1.name
+            }
+            
             if searchTerm == nil {
-                let appSections: [INObjectSection<InsightIDSelection>] = apps.map { app in
-                    let appSection = INObjectSection(title: app.name, items: app.insights.map { insight -> InsightIDSelection in
+                let appSections: [INObjectSection<InsightIDSelection>] = sortedApps.map { app in
+                    let appSection = INObjectSection(title: app.name, items: app.insights.sorted(by: { $0.title < $1.title }).map { insight -> InsightIDSelection in
                         let selectedInsight = InsightIDSelection(identifier: insight.id.uuidString, display: insight.title, subtitle: insight.displayMode.rawValue.uppercased(), image: nil)
                         selectedInsight.appName = app.name
                         return selectedInsight
@@ -43,9 +48,9 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
                 completion(collection, nil)
             } else {
                 var appSections: [INObjectSection<InsightIDSelection>] = []
-                apps.forEach { app in
+                sortedApps.forEach { app in
                     var filteredInsights: [InsightIDSelection] = []
-                    app.insights.forEach { insight in
+                    app.insights.sorted(by: { $0.title < $1.title }).forEach { insight in
                         if insight.title.lowercased().contains(searchTerm!.lowercased()) || app.name.lowercased().contains(searchTerm!.lowercased()) || insight.displayMode.rawValue.lowercased().contains(searchTerm!.lowercased()) {
                             let filteredInsight = InsightIDSelection(identifier: insight.id.uuidString, display: insight.title, subtitle: insight.displayMode.rawValue.uppercased(), image: nil)
                             filteredInsight.appName = app.name

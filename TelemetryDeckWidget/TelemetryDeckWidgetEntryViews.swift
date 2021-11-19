@@ -53,8 +53,6 @@ struct TelemetryDeckWidgetEntryView: View {
                     Rectangle()
                         .fill(Color.cardBackground.opacity(0.1))
                         .frame(width: geometry.size.width, height: geometry.size.height)
-//                        .background(.ultraThinMaterial)
-
 
                     Text("Please select an Insight in this Widget's options".uppercased())
                         .multilineTextAlignment(.center)
