@@ -67,6 +67,7 @@ final class APIClient: ObservableObject {
     @Published var user: DTOv1.UserDTO?
     @Published var userNotLoggedIn: Bool = true
     @Published var userLoginFailed: Bool = false
+    var userLoginErrorMessage: String?
 
     @Published var totalNumberOfSignals: Int = 0
     @Published var numberOfSignalsThisMonth: Int = 0
@@ -201,8 +202,11 @@ extension APIClient {
                     }
                 }
             case let .failure(error):
-                self.userLoginFailed = true
-                self.handleError(error)
+                DispatchQueue.main.async {
+                    self.userLoginFailed = true
+                    self.userLoginErrorMessage = error.localizedDescription
+                    self.handleError(error)
+                }
             }
 
             callback?(result)

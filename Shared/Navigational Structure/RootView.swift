@@ -14,26 +14,29 @@ struct RootView: View {
     var body: some View {
         if api.userNotLoggedIn {
             WelcomeView()
-                .alert(isPresented: $api.userLoginFailed, content: {
-                    Alert(
-                        title: Text("Login Failed"),
-                        message: Text("TelemetryDeck could not connect to the server. Please check your internet connection."),
-                        primaryButton: .default(Text("Reload")) {
-                            api.getUserInformation()
-                        },
-                        secondaryButton: .destructive(Text("Log Out")) {
-                            api.logout()
-                        }
-                    )
-                })
+                .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
         } else {
             NavigationView {
                 LeftSidebarView()
                 NoAppSelectedView()
             }
+            .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
             .onAppear {
                 WidgetCenter.shared.reloadAllTimelines()
             }
         }
+    }
+    
+    func loginFailedView() -> Alert {
+        Alert(
+            title: Text("Login Failed"),
+            message: Text("TelemetryDeck could not connect to the server. Please check your internet connection. \(api.userLoginErrorMessage != nil ? api.userLoginErrorMessage! : "")"),
+            primaryButton: .default(Text("Reload")) {
+                api.getUserInformation()
+            },
+            secondaryButton: .destructive(Text("Log Out")) {
+                api.logout()
+            }
+        )
     }
 }
