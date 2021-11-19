@@ -156,7 +156,7 @@ struct LeftSidebarView: View {
                 TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Edit App")
             }
         } label: {
-            LabelLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name, systemImage: "app")
+            LabelLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name, systemImage: "sensor.tag.radiowaves.forward")
         }
     }
 
