@@ -132,7 +132,7 @@ struct InsightGroupsView: View {
         Button {
             self.showEditMode = true
         } label: {
-            Label("Edit Insights", systemImage: "ellipsis.circle")
+            Label("Edit Insights", systemImage: "square.and.pencil")
         }
     }
 }

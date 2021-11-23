@@ -89,7 +89,7 @@ struct EditorModeGroupEditor: View {
         NavigationLink {
             InsightGroupEditor(groupID: group.id, appID: group.appID, title: group.title, order: group.order ?? 0)
         } label: {
-            Label("Edit \(group.title)", systemImage: "pencil")
+            Label("Edit \(group.title)", systemImage: "square.and.pencil")
         }
     }
 

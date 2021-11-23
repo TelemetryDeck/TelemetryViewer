@@ -216,11 +216,11 @@ extension InsightDisplayMode {
     var chartImage: Image {
         switch self {
         case .raw:
-            return Image(systemName: "number.square.fill")
+            return Image(systemName: "list.dash.header.rectangle")
         case .barChart:
             return Image(systemName: "chart.bar.fill")
         case .lineChart:
-            return Image(systemName: "squares.below.rectangle")
+            return Image(systemName: "chart.xyaxis.line")
         case .pieChart:
             return Image(systemName: "chart.pie.fill")
         default:
@@ -268,9 +268,9 @@ struct EditorView: View {
     var chartTypeSection: some View {
         CustomSection(header: Text("Chart Type"), summary: viewModel.displayMode.chartImage, footer: Text(viewModel.displayMode.chartTypeExplanationText), startCollapsed: true) {
             Picker(selection: $viewModel.displayMode, label: Text("")) {
-                Image(systemName: "number.square.fill").tag(InsightDisplayMode.raw)
+                Image(systemName: "list.dash.header.rectangle").tag(InsightDisplayMode.raw)
                 Image(systemName: "chart.bar.fill").tag(InsightDisplayMode.barChart)
-                Image(systemName: "squares.below.rectangle").tag(InsightDisplayMode.lineChart)
+                Image(systemName: "chart.xyaxis.line").tag(InsightDisplayMode.lineChart)
                 Image(systemName: "chart.pie.fill").tag(InsightDisplayMode.pieChart)
             }
             .pickerStyle(SegmentedPickerStyle())
