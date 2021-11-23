@@ -67,7 +67,7 @@ struct Provider: IntentTimelineProvider {
         if interval < (24 * 3600) { interval = 24 * 3600 }
         if interval > (300 * 24 * 3600) { interval = 300 * 24 * 3600}
         
-        let endDate =  Date().beginning(of: .day) ?? Date()
+        let endDate =  Date().endOfDay
         let beginDate = (endDate - interval).beginning(of: .day) ?? (endDate - interval)
 
         // get InsightCalculationResult from API
