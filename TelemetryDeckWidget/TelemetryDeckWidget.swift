@@ -18,7 +18,7 @@ struct Provider: IntentTimelineProvider {
     let errors: ErrorService
     let insightService: InsightService
     let insightResultService: InsightResultService
-
+    
     init() {
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
@@ -30,6 +30,8 @@ struct Provider: IntentTimelineProvider {
         self.insightService = InsightService(api: api, cache: cacheLayer, errors: errors)
         self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
     }
+    
+    @Environment(\.widgetFamily) var family: WidgetFamily
 
     func placeholder(in context: Context) -> SimpleEntry {
         let integer = Int.random(in: 0...4)
@@ -55,6 +57,7 @@ struct Provider: IntentTimelineProvider {
             let dataSet = ChartDataSet(data: result.data, groupBy: result.insight.groupBy)
             let entry = SimpleEntry(date: Date(), configuration: configuration, insightCalculationResult: result, chartDataSet: dataSet, widgetDisplayMode: .chooseInsightView)
             let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
+            TelemetryManager.send("NewWidgetCreated")
             completion(timeline)
             return
         }
@@ -82,6 +85,7 @@ struct Provider: IntentTimelineProvider {
                 // construct simple entry from InsightCalculationResult
                 let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet, widgetDisplayMode: .normalView)
                 let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
+                TelemetryManager.send("WidgetReloaded", with: ["WidgetChartType": entry.insightCalculationResult.insight.displayMode.rawValue, "WidgetSize": family.description])
                 completion(timeline)
             case .failure:
                 return
