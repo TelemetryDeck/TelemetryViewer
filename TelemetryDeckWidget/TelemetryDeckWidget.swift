@@ -123,11 +123,17 @@ struct TelemetryDeckWidget: Widget {
 
 struct TelemetryDeckWidget_Previews: PreviewProvider {
     static var previews: some View {
-        let result: DTOv2.InsightCalculationResult = insightCalculationResults[2]
-        let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy), widgetDisplayMode: .chooseInsightView)
+        let result: DTOv2.InsightCalculationResult = insightCalculationResults[3]
+        let result2: DTOv2.InsightCalculationResult = insightCalculationResults[2]
+        let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy), widgetDisplayMode: .normalView)
+        let entry2 = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result2, chartDataSet: ChartDataSet(data: result2.data, groupBy: result2.insight.groupBy), widgetDisplayMode: .normalView)
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
+        TelemetryDeckWidgetEntryView(entry: entry2)
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
         TelemetryDeckWidgetEntryView(entry: entry)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+        TelemetryDeckWidgetEntryView(entry: entry2)
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
