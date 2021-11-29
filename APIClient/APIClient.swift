@@ -502,3 +502,20 @@ extension APIClient {
 
     func handleError(_: TransferError) {}
 }
+
+public enum TransferError: Error {
+    case transferFailed
+    case decodeFailed
+    case serverError(message: String)
+
+    public var localizedDescription: String {
+        switch self {
+        case .transferFailed:
+            return "There was a communication error with the server. Please check your internet connection and try again later."
+        case .decodeFailed:
+            return "The server returned a message that this version of the app could not decode. Please check if there is an update to the app, or contact the developer."
+        case let .serverError(message: message):
+            return "The server returned this error message: \(message)"
+        }
+    }
+}
