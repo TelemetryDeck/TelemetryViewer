@@ -18,7 +18,7 @@ struct Provider: IntentTimelineProvider {
     let errors: ErrorService
     let insightService: InsightService
     let insightResultService: InsightResultService
-    
+
     init() {
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
@@ -30,8 +30,7 @@ struct Provider: IntentTimelineProvider {
         self.insightService = InsightService(api: api, cache: cacheLayer, errors: errors)
         self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
     }
-    
-    @Environment(\.widgetFamily) var family: WidgetFamily
+
 
     func placeholder(in context: Context) -> SimpleEntry {
         let integer = Int.random(in: 0...4)
@@ -63,14 +62,14 @@ struct Provider: IntentTimelineProvider {
         }
 
         let insightID = UUID(uuidString: (configuration.Insight!.identifier)!)!
-        
+
         var interval = TimeInterval(configuration.Interval?.intValue ?? 30 * 24 * 3600)
-        
+
         if interval == 0 { interval = 30 * 24 * 3600 }
         if interval < (24 * 3600) { interval = 24 * 3600 }
-        if interval > (300 * 24 * 3600) { interval = 300 * 24 * 3600}
-        
-        let endDate =  Date().endOfDay
+        if interval > (300 * 24 * 3600) { interval = 300 * 24 * 3600 }
+
+        let endDate = Date().endOfDay
         let beginDate = (endDate - interval).beginning(of: .day) ?? (endDate - interval)
 
         // get InsightCalculationResult from API
@@ -85,7 +84,7 @@ struct Provider: IntentTimelineProvider {
                 // construct simple entry from InsightCalculationResult
                 let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet, widgetDisplayMode: .normalView)
                 let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
-                TelemetryManager.send("WidgetReloaded", with: ["WidgetChartType": entry.insightCalculationResult.insight.displayMode.rawValue, "WidgetSize": family.description])
+                TelemetryManager.send("WidgetReloaded", with: ["WidgetChartType": entry.insightCalculationResult.insight.displayMode.rawValue, "WidgetSize": context.family.description])
                 completion(timeline)
             case .failure:
                 return
@@ -137,9 +136,11 @@ struct TelemetryDeckWidget_Previews: PreviewProvider {
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
+        #if os(iOS)
         if #available(iOSApplicationExtension 15.0, *) {
             TelemetryDeckWidgetEntryView(entry: entry)
                 .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
         }
+        #endif
     }
 }
