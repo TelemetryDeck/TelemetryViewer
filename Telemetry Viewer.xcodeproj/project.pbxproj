@@ -383,10 +383,9 @@
 		2B46280A2728699E00515530 /* StatusMessageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageContainer.swift; sourceTree = "<group>"; };
 		2B46280E27286D2500515530 /* TestingModeToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingModeToggle.swift; sourceTree = "<group>"; };
 		2B462816272B272300515530 /* TestModeIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModeIndicator.swift; sourceTree = "<group>"; };
-		2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS)Release.entitlements"; sourceTree = "<group>"; };
 		2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (iOS).entitlements"; sourceTree = "<group>"; };
-		2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckWidgetExtension.entitlements; sourceTree = "<group>"; };
-		2B4DB011270CF37C002A4743 /* TelemetryDeckWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
+		2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TelemetryDeckWidgetExtension (iOS).entitlements"; sourceTree = "<group>"; };
+		2B4DB011270CF37C002A4743 /* TelemetryDeckWidgetExtension (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TelemetryDeckWidgetExtension (macOS).entitlements"; sourceTree = "<group>"; };
 		2B61B94D264C08D4003F62C4 /* SignalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalsService.swift; sourceTree = "<group>"; };
 		2B64318D2739A5BB009A33C4 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		2B64318E2739A5BB009A33C4 /* Data+JSONPrettyPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+JSONPrettyPrint.swift"; sourceTree = "<group>"; };
@@ -431,8 +430,8 @@
 		2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* HelpAndFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackView.swift; sourceTree = "<group>"; };
-		2BD21EC7271B3CDA00AE52DD /* TelemetryDeckIntentsDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsDebug.entitlements; sourceTree = "<group>"; };
-		2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntentsRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelemetryDeckIntentsRelease.entitlements; sourceTree = "<group>"; };
+		2BD21EC7271B3CDA00AE52DD /* TelemetryDeckIntents (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TelemetryDeckIntents (iOS).entitlements"; sourceTree = "<group>"; };
+		2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntents (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TelemetryDeckIntents (macOS).entitlements"; sourceTree = "<group>"; };
 		2BDD35052710727900CB2AA5 /* EditorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModeView.swift; sourceTree = "<group>"; };
 		2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForMarketingEmailsView.swift; sourceTree = "<group>"; };
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPickerForCalculationService.swift; sourceTree = "<group>"; };
@@ -440,7 +439,7 @@
 		2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12PayloadKeysView.swift; sourceTree = "<group>"; };
 		C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS)Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (macOS)Release.entitlements"; sourceTree = "<group>"; };
+		C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (macOS).entitlements"; sourceTree = "<group>"; };
 		C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidget.swift; sourceTree = "<group>"; };
 		C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TelemetryDeckWidget.intentdefinition; sourceTree = "<group>"; };
@@ -490,7 +489,6 @@
 		DCE23A0624D3687D00053370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE23A0D24D3687D00053370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCE23A0E24D3687D00053370 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		DCEC64AF26025AAF00BEF69C /* PasswordResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetView.swift; sourceTree = "<group>"; };
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		DCF7CD46254A0DB300BFA23B /* LexiconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconItemView.swift; sourceTree = "<group>"; };
@@ -700,6 +698,8 @@
 		C5A8D866270C5D7A0032560A /* TelemetryDeckWidget */ = {
 			isa = PBXGroup;
 			children = (
+				2B4DB011270CF37C002A4743 /* TelemetryDeckWidgetExtension (macOS).entitlements */,
+				2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension (iOS).entitlements */,
 				C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */,
 				2B78C82B2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift */,
 				C5A8D8A4270C6FB70032560A /* MockData.swift */,
@@ -713,8 +713,8 @@
 		C5A8D8AF270C821A0032560A /* TelemetryDeckIntents */ = {
 			isa = PBXGroup;
 			children = (
-				2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntentsRelease.entitlements */,
-				2BD21EC7271B3CDA00AE52DD /* TelemetryDeckIntentsDebug.entitlements */,
+				2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntents (macOS).entitlements */,
+				2BD21EC7271B3CDA00AE52DD /* TelemetryDeckIntents (iOS).entitlements */,
 				C5A8D8B0270C821A0032560A /* IntentHandler.swift */,
 				C5A8D8B2270C821A0032560A /* Info.plist */,
 			);
@@ -811,11 +811,6 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
-				C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS)Release.entitlements */,
-				2B4DB011270CF37C002A4743 /* TelemetryDeckWidgetExtensionRelease.entitlements */,
-				2B4DB010270CF364002A4743 /* TelemetryDeckWidgetExtension.entitlements */,
-				2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */,
-				2B4DB00E270CF342002A4743 /* Telemetry Viewer (iOS)Release.entitlements */,
 				2BC1375927230E0D008AE9BC /* DataTransferObjects */,
 				2BC1375A27230E0D008AE9BC /* SwiftUICharts */,
 				2B74555C27230626002CBB45 /* SwiftUIChartsExtensions */,
@@ -868,6 +863,7 @@
 		DCE23A0524D3687D00053370 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */,
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
 				2B462816272B272300515530 /* TestModeIndicator.swift */,
 				2B21FCDC26FDCA6A00A8A55B /* GroupView.swift */,
@@ -886,6 +882,7 @@
 			isa = PBXGroup;
 			children = (
 				2B462818272C7FFF00515530 /* Test Mode */,
+				C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS).entitlements */,
 				DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */,
 				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
 				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
@@ -897,7 +894,6 @@
 				DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */,
 				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
 				DCE23A0D24D3687D00053370 /* Info.plist */,
-				DCE23A0E24D3687D00053370 /* macOS.entitlements */,
 				2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */,
 				2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */,
 				2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */,
@@ -922,6 +918,7 @@
 			buildConfigurationList = C51CB74427565F76005A3FB9 /* Build configuration list for PBXNativeTarget "TelemetryDeckMacIntents" */;
 			buildPhases = (
 				C51CB73727565F76005A3FB9 /* Sources */,
+				C5B917EF2757B6CC004A842B /* ShellScript */,
 				C51CB73827565F76005A3FB9 /* Frameworks */,
 				C51CB73927565F76005A3FB9 /* Resources */,
 			);
@@ -1191,6 +1188,23 @@
 			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\necho \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
 		};
 		C51CB799275665FC005A3FB9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n\necho \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		C5B917EF2757B6CC004A842B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1571,7 +1585,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TelemetryDeckIntents/TelemetryDeckIntents (macOS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 553;
@@ -1601,7 +1615,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsRelease.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TelemetryDeckIntents/TelemetryDeckIntents (macOS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 553;
@@ -1633,7 +1647,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TelemetryDeckWidget/TelemetryDeckWidgetExtension (macOS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 553;
@@ -1665,7 +1679,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckWidgetExtensionRelease.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TelemetryDeckWidget/TelemetryDeckWidgetExtension (macOS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 553;
@@ -1697,7 +1711,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TelemetryDeckWidget/TelemetryDeckWidgetExtension (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1729,7 +1743,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckWidgetExtensionRelease.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TelemetryDeckWidget/TelemetryDeckWidgetExtension (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1760,7 +1774,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TelemetryDeckIntents/TelemetryDeckIntents (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1789,7 +1803,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = TelemetryDeckIntents/TelemetryDeckIntentsRelease.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "TelemetryDeckIntents/TelemetryDeckIntents (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1932,7 +1946,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Telemetry Viewer (iOS).entitlements";
+				CODE_SIGN_ENTITLEMENTS = "iOS/Telemetry Viewer (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1958,7 +1972,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Telemetry Viewer (iOS)Release.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "iOS/Telemetry Viewer (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 545;
 				DEVELOPMENT_TEAM = FL4V655A94;
@@ -1985,7 +1999,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "macOS/Telemetry Viewer (macOS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2013,7 +2027,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Telemetry Viewer (macOS)Release.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "macOS/Telemetry Viewer (macOS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
