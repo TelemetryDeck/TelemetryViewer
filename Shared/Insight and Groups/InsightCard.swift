@@ -97,11 +97,10 @@ struct InsightCard: View {
         .onReceive(refreshTimer) { _ in
             retrieve()
         }
+        .onReceive(insightService.objectWillChange, perform: { retrieve() })
     }
     
     func retrieve() {
-        guard selectedInsightID == nil else { return }
-        
         if let insight = insightService.insight(withID: insightID) {
             insightResultService.calculate(insight) { loadingState in
                 DispatchQueue.main.async {

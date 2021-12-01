@@ -72,10 +72,10 @@ class InsightService: ObservableObject {
         }
     }
     
-    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightDTO: DTOv2.Insight, callback: ((Result<DTOv1.InsightCalculationResult, TransferError>) -> Void)? = nil) {
+    func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightDTO: DTOv2.Insight, callback: ((Result<DTOv2.Insight, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
 
-        api.patch(insightDTO, to: url) { [unowned self] (result: Result<DTOv1.InsightCalculationResult, TransferError>) in
+        api.patch(insightDTO, to: url) { [unowned self] (result: Result<DTOv2.Insight, TransferError>) in
             retrieveInsight(with: insightID)
             
             callback?(result)
