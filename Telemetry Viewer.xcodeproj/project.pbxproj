@@ -223,6 +223,8 @@
 		C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
+		C5B917F12757C9EB004A842B /* CreateNewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B917F02757C9EB004A842B /* CreateNewAppView.swift */; };
+		C5B917F22757C9EB004A842B /* CreateNewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B917F02757C9EB004A842B /* CreateNewAppView.swift */; };
 		C5CE3D4D271AFCB6005232EC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E1267D05E30013DC74 /* Color.swift */; };
 		C5CE3D4E271AFCE2005232EC /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E6267D05E30013DC74 /* DetailSidebar.swift */; };
 		C5CE3D4F271AFCE2005232EC /* OptionalToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E0267D05E30013DC74 /* OptionalToggle.swift */; };
@@ -451,6 +453,7 @@
 		C5A8D8B0270C821A0032560A /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		C5A8D8B2270C821A0032560A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5A8D8B8270C821B0032560A /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		C5B917F02757C9EB004A842B /* CreateNewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppView.swift; sourceTree = "<group>"; };
 		C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalViewModifier.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAppSelectedView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
@@ -749,6 +752,7 @@
 				DC98AAB6250A671900FF26FD /* AppEditor.swift */,
 				2B25EAEA26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift */,
 				2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */,
+				C5B917F02757C9EB004A842B /* CreateNewAppView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1434,6 +1438,7 @@
 				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
+				C5B917F12757C9EB004A842B /* CreateNewAppView.swift in Sources */,
 				C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */,
 				2BBFCA25267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
@@ -1482,6 +1487,7 @@
 				2BEDE71026A73EA9007247B0 /* MacOS12RecentSignalsView.swift in Sources */,
 				2B1D46A526CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
 				2BBFCA2C267D05E40013DC74 /* MacNavigationView.swift in Sources */,
+				C5B917F22757C9EB004A842B /* CreateNewAppView.swift in Sources */,
 				2B462809272868DC00515530 /* TestModeIndicator.swift in Sources */,
 				2BBFCA0A267D05E40013DC74 /* Color.swift in Sources */,
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,

@@ -12,6 +12,7 @@ struct LeftSidebarView: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
+    @State var newAppViewShown: Bool = false
 
     #if os(macOS)
         @EnvironmentObject var updateService: UpdateService
@@ -88,20 +89,12 @@ struct LeftSidebarView: View {
 
                         Spacer()
                     #endif
-
-                    Button(action: {
-                        appService.create(appNamed: "New App") { result in
-                            switch result {
-                            case .failure(let error):
-                                print(error)
-                            case .success:
-                                print("done")
-                            }
-                        }
-                    }) {
-                        Label("New App", systemImage: "plus.app.fill")
-                    }
-                    .help("Create a New App")
+                    
+                    NavigationLink(destination: CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown)), isActive: $newAppViewShown, label: {
+                        Text("Add app")
+                        Image(systemName: "plus.square.dashed")
+                            .help("Add App")
+                    })
                 }
             }
     }
