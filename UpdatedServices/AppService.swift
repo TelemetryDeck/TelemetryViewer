@@ -65,7 +65,7 @@ class AppService: ObservableObject {
     }
     
     func create(appNamed name: String, callback: ((Result<DTOv2.App, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps")
+        let url = api.urlForPath(apiVersion: .v2, "apps")
 
         api.post(["name": name], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
             callback?(result)
