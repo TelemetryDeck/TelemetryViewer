@@ -25,6 +25,7 @@ struct LeftSidebarView: View {
         case getStarted
         case plansAndPricing
         case feedback
+        case newApp
         case insights(app: UUID)
         case signalTypes(app: UUID)
         case recentSignals(app: UUID)
@@ -39,6 +40,17 @@ struct LeftSidebarView: View {
                         section(for: appID)
                     }
                 }
+                Button {
+                    newAppViewShown.toggle()
+                } label: {
+                    Label("Add a new app", systemImage: "plus.square.dashed")
+                }
+                .sheet(isPresented: $newAppViewShown) {
+                    CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
+                        .frame(minWidth: 400, maxWidth: 600, minHeight: 500, maxHeight: 700)
+                        .padding()
+                }
+                
             } header: {
                 Text("Apps")
             }
@@ -90,11 +102,11 @@ struct LeftSidebarView: View {
                         Spacer()
                     #endif
                     
-                    NavigationLink(destination: CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown)), isActive: $newAppViewShown, label: {
-                        Text("Add app")
-                        Image(systemName: "plus.square.dashed")
-                            .help("Add App")
-                    })
+//                    NavigationLink(destination: CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown)), isActive: $newAppViewShown, label: {
+//                        Text("Add app")
+//                        Image(systemName: "plus.square.dashed")
+//                            .help("Add App")
+//                    })
                 }
             }
     }

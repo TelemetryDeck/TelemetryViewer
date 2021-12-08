@@ -38,7 +38,8 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(signalsService)
                 .environmentObject(lexiconService)
         }
-        .windowToolbarStyle(UnifiedCompactWindowToolbarStyle())
+        .windowStyle(.titleBar)
+        .windowToolbarStyle(.unified)
         .commands {
             SidebarCommands()
 

@@ -102,6 +102,10 @@ struct CreateNewAppView: View {
 
     var body: some View {
         VStack {
+            Image("sidebarBackground").resizable().scaledToFit()
+
+            Spacer()
+
             Form {
                 Section {
                     TextField("App Name", text: $createNewAppViewModel.appName)
@@ -128,23 +132,28 @@ struct CreateNewAppView: View {
                     }
                 }
             }
+            .padding()
 
             Spacer()
 
-            Image("sidebarBackground").resizable().scaledToFit()
-        }
-        .navigationTitle("Create a new App")
-        .toolbar {
-            ToolbarItemGroup {
-                Button(action: createNewAppViewModel.createNewApp) {
-                    Text("Create App")
-                    Image(systemName: "plus.app")
-                        .help("Create App")
+            HStack {
+                Button("Create App", action: createNewAppViewModel.createNewApp)
+                    .buttonStyle(SmallPrimaryButtonStyle())
+                    .help("Create App")
+                    .disabled(createNewAppViewModel.isValid == .nameEmpty)
+
+                #if os(macOS)
+                Button {
+                    createNewAppViewModel.newAppViewShown.toggle()
+                } label: {
+                    Text("Cancel")
+                        .help("Cancel")
                 }
-                .disabled(createNewAppViewModel.isValid == .nameEmpty)
-                .help("Create App")
-                .foregroundColor(createNewAppViewModel.isValid == .nameEmpty ? Color.secondary : Color.telemetryOrange)
+                .buttonStyle(SmallSecondaryButtonStyle())
+
+                #endif
             }
         }
+        .navigationTitle("Create a new App")
     }
 }
