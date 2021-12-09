@@ -102,20 +102,25 @@ struct CreateNewAppView: View {
 
     var body: some View {
         VStack {
-            Image("sidebarBackground").resizable().scaledToFit()
+            Image("sidebarBackground")
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight: 200)
 
+            #if os(iOS)
             Spacer()
+            #endif
 
             Form {
                 Section {
-                    TextField("App Name", text: $createNewAppViewModel.appName)
+                    TextField("New App Name", text: $createNewAppViewModel.appName)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
 
                     Toggle(isOn: $createNewAppViewModel.createDefaultInsights) {
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("Create default Insights")
-                                Text("Check to have some default Insights created for you.")
+                                Text("Add Default Insights")
+                                Text("We'll automatically create a number of Groups and Insights for you, that will fit most apps. You can change or delete these later, but they're usually a good starting point.")
                                     .font(.footnote)
                                     .foregroundColor(.grayColor)
                             }
@@ -125,35 +130,26 @@ struct CreateNewAppView: View {
                 }
 
                 Section {
-                    if createNewAppViewModel.isValid.string != nil {
-                        Text(createNewAppViewModel.isValid.string!)
-                            .font(.footnote)
-                            .foregroundColor(.grayColor)
-                    }
+                    Text(createNewAppViewModel.isValid.string ?? "")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
                 }
             }
             .padding()
-
-            Spacer()
-
-            HStack {
-                Button("Create App", action: createNewAppViewModel.createNewApp)
-                    .buttonStyle(SmallPrimaryButtonStyle())
-                    .help("Create App")
-                    .disabled(createNewAppViewModel.isValid == .nameEmpty)
-
-                #if os(macOS)
-                Button {
-                    createNewAppViewModel.newAppViewShown.toggle()
-                } label: {
-                    Text("Cancel")
-                        .help("Cancel")
-                }
-                .buttonStyle(SmallSecondaryButtonStyle())
-
-                #endif
-            }
         }
         .navigationTitle("Create a new App")
+        .toolbar {
+            ToolbarItemGroup(placement: .cancellationAction) {
+                Button("Cancel") { createNewAppViewModel.newAppViewShown.toggle() }
+                    .keyboardShortcut(.cancelAction)
+            }
+
+            ToolbarItemGroup(placement: .confirmationAction) {
+                Button("Create App") { createNewAppViewModel.createNewApp() }
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(createNewAppViewModel.isValid == .nameEmpty)
+                    .help("Create App")
+            }
+        }
     }
 }
