@@ -145,11 +145,9 @@
 		2BF2754626AAC5C10051591C /* MacOs12PayloadKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */; };
 		C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C51CB73C27565F76005A3FB9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8AD270C821A0032560A /* Intents.framework */; platformFilter = maccatalyst; };
-		C51CB74327565F76005A3FB9 /* TelemetryDeckMacIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C51CB7472756609E005A3FB9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
 		C51CB74D275660E0005A3FB9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */; platformFilter = maccatalyst; };
 		C51CB74E275660E0005A3FB9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */; platformFilter = maccatalyst; };
-		C51CB758275660E2005A3FB9 /* TelemetryDeckMacWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C51CB75C275660F5005A3FB9 /* TelemetryDeckWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */; };
 		C51CB75D275660F9005A3FB9 /* TelemetryDeckWidgetEntryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78C82B2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift */; };
 		C51CB75E275660FC005A3FB9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8A4270C6FB70032560A /* MockData.swift */; };
@@ -306,20 +304,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C51CB74127565F76005A3FB9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DCE239F724D3687C00053370 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C51CB73A27565F76005A3FB9;
-			remoteInfo = TelemetryDeckMacIntents;
-		};
-		C51CB756275660E2005A3FB9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DCE239F724D3687C00053370 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C51CB74B275660E0005A3FB9;
-			remoteInfo = TelemetryDeckMacWidgetExtension;
-		};
 		C5A8D86F270C5D800032560A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DCE239F724D3687C00053370 /* Project object */;
@@ -337,18 +321,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C51CB73227565E33005A3FB9 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				C51CB74327565F76005A3FB9 /* TelemetryDeckMacIntents.appex in Embed App Extensions */,
-				C51CB758275660E2005A3FB9 /* TelemetryDeckMacWidgetExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C5A8D875270C5D800032560A /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1043,13 +1015,10 @@
 				DCE23A0824D3687D00053370 /* Frameworks */,
 				DCE23A0924D3687D00053370 /* Resources */,
 				DC7DEE8A258A334900BEA712 /* ShellScript */,
-				C51CB73227565E33005A3FB9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C51CB74227565F76005A3FB9 /* PBXTargetDependency */,
-				C51CB757275660E2005A3FB9 /* PBXTargetDependency */,
 			);
 			name = "Telemetry Viewer (macOS)";
 			packageProductDependencies = (
@@ -1564,16 +1533,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C51CB74227565F76005A3FB9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C51CB73A27565F76005A3FB9 /* TelemetryDeckMacIntents */;
-			targetProxy = C51CB74127565F76005A3FB9 /* PBXContainerItemProxy */;
-		};
-		C51CB757275660E2005A3FB9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C51CB74B275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension */;
-			targetProxy = C51CB756275660E2005A3FB9 /* PBXContainerItemProxy */;
-		};
 		C5A8D870270C5D800032560A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C5A8D862270C5D7A0032560A /* TelemetryDeckWidgetExtension */;
@@ -2002,7 +1961,6 @@
 		DCE23A1B24D3687D00053370 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "macOS/Telemetry Viewer (macOS).entitlements";
@@ -2030,7 +1988,6 @@
 		DCE23A1C24D3687D00053370 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "macOS/Telemetry Viewer (macOS).entitlements";
