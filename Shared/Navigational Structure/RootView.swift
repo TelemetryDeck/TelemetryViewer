@@ -13,8 +13,19 @@ struct RootView: View {
 
     var body: some View {
         if api.userNotLoggedIn {
+            
+            #if os(iOS)
             WelcomeView()
-                .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
+                
+            #else
+            HStack {
+                Spacer()
+            WelcomeView()
+            .frame(maxWidth: 600)
+            .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
+                Spacer()
+            }
+            #endif
         } else {
             NavigationView {
                 LeftSidebarView()
