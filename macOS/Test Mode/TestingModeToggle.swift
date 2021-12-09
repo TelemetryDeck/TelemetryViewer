@@ -16,6 +16,7 @@ struct TestingModeToggle: View {
             Text("Test Mode")
                 .foregroundColor(Color.secondary)
                 .padding(.leading, 8)
+                .padding(.vertical, 5.5)
                 .onTapGesture {
                     withAnimation {
                         insightResultService.isTestingMode.toggle()
