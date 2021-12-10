@@ -46,9 +46,13 @@ struct LeftSidebarView: View {
                     Label("Add a new app", systemImage: "plus.square.dashed")
                 }
                 .sheet(isPresented: $newAppViewShown) {
+                    #if os(macOS)
                     CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
-                        .frame(minWidth: 400, maxWidth: 600, minHeight: 500, maxHeight: 700)
-                        .padding()
+                    #else
+                    NavigationView {
+                        CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
+                    }
+                    #endif
                 }
                 
             } header: {

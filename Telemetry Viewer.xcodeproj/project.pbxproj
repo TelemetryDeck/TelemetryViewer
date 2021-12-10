@@ -143,6 +143,9 @@
 		2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD8E6E2651BCB800C6E51D /* AskForMarketingEmailsView.swift */; };
 		2BEDE71026A73EA9007247B0 /* MacOS12RecentSignalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */; };
 		2BF2754626AAC5C10051591C /* MacOs12PayloadKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */; };
+		2BF2BE422763918E00A79531 /* CreateNewAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2BE412763918E00A79531 /* CreateNewAppViewModel.swift */; };
+		2BF2BE432763918E00A79531 /* CreateNewAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2BE412763918E00A79531 /* CreateNewAppViewModel.swift */; };
+		2BF2BE452763921400A79531 /* CreateNewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2BE442763921400A79531 /* CreateNewAppView.swift */; };
 		C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C51CB73C27565F76005A3FB9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8AD270C821A0032560A /* Intents.framework */; platformFilter = maccatalyst; };
 		C51CB7472756609E005A3FB9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
@@ -222,7 +225,6 @@
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C5B917F12757C9EB004A842B /* CreateNewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B917F02757C9EB004A842B /* CreateNewAppView.swift */; };
-		C5B917F22757C9EB004A842B /* CreateNewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B917F02757C9EB004A842B /* CreateNewAppView.swift */; };
 		C5CE3D4D271AFCB6005232EC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E1267D05E30013DC74 /* Color.swift */; };
 		C5CE3D4E271AFCE2005232EC /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E6267D05E30013DC74 /* DetailSidebar.swift */; };
 		C5CE3D4F271AFCE2005232EC /* OptionalToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E0267D05E30013DC74 /* OptionalToggle.swift */; };
@@ -411,6 +413,8 @@
 		2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightDataTimeIntervalPickerForCalculationService.swift; sourceTree = "<group>"; };
 		2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOS12RecentSignalsView.swift; sourceTree = "<group>"; };
 		2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12PayloadKeysView.swift; sourceTree = "<group>"; };
+		2BF2BE412763918E00A79531 /* CreateNewAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppViewModel.swift; sourceTree = "<group>"; };
+		2BF2BE442763921400A79531 /* CreateNewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppView.swift; sourceTree = "<group>"; };
 		C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (macOS).entitlements"; sourceTree = "<group>"; };
@@ -724,7 +728,7 @@
 				DC98AAB6250A671900FF26FD /* AppEditor.swift */,
 				2B25EAEA26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift */,
 				2BDD8E742653C76000C6E51D /* InsightDataTimeIntervalPickerForCalculationService.swift */,
-				C5B917F02757C9EB004A842B /* CreateNewAppView.swift */,
+				2BF2BE412763918E00A79531 /* CreateNewAppViewModel.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -839,17 +843,18 @@
 		DCE23A0524D3687D00053370 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				DCE23A0624D3687D00053370 /* Info.plist */,
 				2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */,
-				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
-				2B462816272B272300515530 /* TestModeIndicator.swift */,
+				DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */,
+				C5B917F02757C9EB004A842B /* CreateNewAppView.swift */,
+				2BDD35052710727900CB2AA5 /* EditorModeView.swift */,
+				DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */,
 				2B21FCDC26FDCA6A00A8A55B /* GroupView.swift */,
 				2B21FCD426FDC33F00A8A55B /* InsightGroupsView.swift */,
+				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
+				2B462816272B272300515530 /* TestModeIndicator.swift */,
 				2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */,
-				DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */,
-				DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
-				2BDD35052710727900CB2AA5 /* EditorModeView.swift */,
-				DCE23A0624D3687D00053370 /* Info.plist */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -857,22 +862,23 @@
 		DCE23A0C24D3687D00053370 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				2B462818272C7FFF00515530 /* Test Mode */,
+				DCE23A0D24D3687D00053370 /* Info.plist */,
 				C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS).entitlements */,
-				DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */,
-				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
-				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
-				2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */,
-				2B77A43D26512414003D3965 /* UpdateSettingsView.swift */,
-				2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */,
+				2B462818272C7FFF00515530 /* Test Mode */,
 				DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */,
 				DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */,
+				2BF2BE442763921400A79531 /* CreateNewAppView.swift */,
 				DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */,
-				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
-				DCE23A0D24D3687D00053370 /* Info.plist */,
+				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
+				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
 				2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */,
-				2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */,
 				2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */,
+				2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */,
+				2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */,
+				DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */,
+				2B77A43D26512414003D3965 /* UpdateSettingsView.swift */,
+				2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */,
+				DCD67BCE252DB40900A00C5B /* WelcomeView.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1391,6 +1397,7 @@
 				DCB02B762502809200304964 /* RootView.swift in Sources */,
 				DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				DC24DF3325DD54090003ADCB /* NoAppSelectedView.swift in Sources */,
+				2BF2BE422763918E00A79531 /* CreateNewAppViewModel.swift in Sources */,
 				2B6431A92739A5BB009A33C4 /* Caching.swift in Sources */,
 				2B781B8626F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */,
 				2BBFCA1D267D05E40013DC74 /* URL+Open.swift in Sources */,
@@ -1447,6 +1454,7 @@
 				2B46280C2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				2BBFCA1E267D05E40013DC74 /* URL+Open.swift in Sources */,
 				2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */,
+				2BF2BE432763918E00A79531 /* CreateNewAppViewModel.swift in Sources */,
 				DCB5F9F725F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
 				DCB02B732502781A00304964 /* LoginView.swift in Sources */,
 				2BBFC9FC267D05E40013DC74 /* Helpers.swift in Sources */,
@@ -1456,7 +1464,6 @@
 				2BEDE71026A73EA9007247B0 /* MacOS12RecentSignalsView.swift in Sources */,
 				2B1D46A526CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
 				2BBFCA2C267D05E40013DC74 /* MacNavigationView.swift in Sources */,
-				C5B917F22757C9EB004A842B /* CreateNewAppView.swift in Sources */,
 				2B462809272868DC00515530 /* TestModeIndicator.swift in Sources */,
 				2BBFCA0A267D05E40013DC74 /* Color.swift in Sources */,
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
@@ -1477,6 +1484,7 @@
 				DC3472EB258A720500BEEDE0 /* UpdateService.swift in Sources */,
 				2BBFCA04267D05E40013DC74 /* CardView.swift in Sources */,
 				2B21FCE026FDCAE200A8A55B /* InsightsList.swift in Sources */,
+				2BF2BE452763921400A79531 /* CreateNewAppView.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
