@@ -82,7 +82,7 @@ struct LexiconView: View {
                         }
                     }
                 }, footer:
-                Text("This list contains all Signal Types seen by to TelemetryDeck in the last month.")
+                Text("This list contains all Signal Types seen by TelemetryDeck in the last month.")
                     .font(.footnote)
                     .foregroundColor(.grayColor)
                     .multilineTextAlignment(.center)) {
