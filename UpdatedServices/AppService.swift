@@ -58,9 +58,9 @@ class AppService: ObservableObject {
         return app
     }
     
-    func retrieveApp(with appID: DTOv2.App.ID) {
+    func retrieveApp(with appID: DTOv2.App.ID, callback: ((Result<DTOv2.App, TransferError>) -> Void)? = nil) {
         cache.queue.async { [weak self] in
-            self?.performRetrieval(ofAppWithID: appID)
+            self?.performRetrieval(ofAppWithID: appID, callback: callback)
         }
     }
     
@@ -70,6 +70,7 @@ class AppService: ObservableObject {
         api.post(["name": name], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
             callback?(result)
             
+            // Force reload the organization 
             if let userToken = api.userToken?.bearerTokenAuthString {
                 cache.organizationCache.removeValue(forKey: userToken)
             }
@@ -102,7 +103,7 @@ class AppService: ObservableObject {
 }
 
 private extension AppService {
-    func performRetrieval(ofAppWithID appID: DTOv2.App.ID) {
+    func performRetrieval(ofAppWithID appID: DTOv2.App.ID, callback: ((Result<DTOv2.App, TransferError>) -> Void)? = nil) {
         switch loadingState(for: appID) {
         case .loading, .error:
             return
@@ -124,6 +125,8 @@ private extension AppService {
                     self?.errorService.handle(transferError: error)
                     self?.loadingState[appID] = .error(error.localizedDescription, Date())
                 }
+                
+                callback?(result)
             }
         }
     }

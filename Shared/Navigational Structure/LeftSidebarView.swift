@@ -41,18 +41,18 @@ struct LeftSidebarView: View {
                     }
                 }
                 Button {
-                    newAppViewShown.toggle()
+                    newAppViewShown = true
                 } label: {
                     Label("Add a new app", systemImage: "plus.square.dashed")
-                }
-                .sheet(isPresented: $newAppViewShown) {
-                    CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
-                        .frame(minWidth: 400, maxWidth: 600, minHeight: 500, maxHeight: 700)
-                        .padding()
                 }
                 
             } header: {
                 Text("Apps")
+            }
+            .sheet(isPresented: $newAppViewShown) {
+                CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
+                    .frame(minWidth: 400, maxWidth: 600, minHeight: 500, maxHeight: 700)
+                    .padding()
             }
 
             Section {

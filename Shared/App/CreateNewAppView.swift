@@ -16,6 +16,8 @@ class CreateNewAppViewModel: ObservableObject {
     @Published var appName: String = "New App"
     @Published var existingApps: [DTOv2.App] = []
     @Published var createDefaultInsights: Bool = true
+    @Published var appCreated: Bool = false
+    @Published var createdApp: DTOv2.App? = nil
 
     @Binding var newAppViewShown: Bool
 
@@ -56,20 +58,26 @@ class CreateNewAppViewModel: ObservableObject {
     }
 
     func createNewApp() {
-        appService.create(appNamed: appName) { result in
+        let url = api.urlForPath(apiVersion: .v2, "apps")
+
+        api.post(["name": appName], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(newApp):
-
                 if self.createDefaultInsights {
                     let url = self.api.urlForPath(apiVersion: .v2, "apps", newApp.id.uuidString, "createDefaultInsights")
 
-                    self.api.post("", to: url, defaultValue: nil) { (_: Result<String, TransferError>) in
-                        self.appService.retrieveApp(with: newApp.id)
+                    self.api.post("", to: url, defaultValue: nil) { (_: Result<Data, TransferError>) in
                         DispatchQueue.main.async {
-                            self.newAppViewShown = false
+                            self.createdApp = newApp
+                            self.appCreated = true
                         }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.createdApp = newApp
+                        self.appCreated = true
                     }
                 }
             }
@@ -100,7 +108,7 @@ enum AppCreationValidationState {
 struct CreateNewAppView: View {
     @StateObject var createNewAppViewModel: CreateNewAppViewModel
 
-    var body: some View {
+    var formContent: some View {
         VStack {
             Image("sidebarBackground")
                 .resizable()
@@ -140,7 +148,7 @@ struct CreateNewAppView: View {
         .navigationTitle("Create a new App")
         .toolbar {
             ToolbarItemGroup(placement: .cancellationAction) {
-                Button("Cancel") { createNewAppViewModel.newAppViewShown.toggle() }
+                Button("Cancel") { createNewAppViewModel.newAppViewShown = false }
                     .keyboardShortcut(.cancelAction)
             }
 
@@ -149,6 +157,81 @@ struct CreateNewAppView: View {
                     .keyboardShortcut(.defaultAction)
                     .disabled(createNewAppViewModel.isValid == .nameEmpty)
                     .help("Create App")
+            }
+        }
+    }
+
+    var appCreatedView: some View {
+        Group {
+            if let newApp = createNewAppViewModel.createdApp {
+                VStack(spacing: 20) {
+                    Spacer()
+                    Text("You have created a new App! Awesome!")
+                        .font(.title)
+                        .foregroundColor(.grayColor)
+
+                    if !createNewAppViewModel.createDefaultInsights {
+                        Text("An app contains Insight Groups, which in turn contain Insights.")
+                            .foregroundColor(.grayColor)
+
+                        Image(systemName: "square.grid.2x2.fill")
+                            .font(.system(size: 60))
+                            .foregroundColor(.grayColor)
+
+                        #if os(macOS)
+                        Text("Create your first Insight Group now by clicking the New Group button in the top left.")
+                            .foregroundColor(.grayColor)
+                        #else
+                        Text("Create your first Insight Group now by tapping 'New Insight Group' in the toolbar.")
+                            .foregroundColor(.grayColor)
+                        #endif
+                    }
+
+                    Text("Create your first Insight Group now by clicking the New Group button in the top left.")
+                        .foregroundColor(.grayColor)
+
+                    Button("Documentation: Sending Signals") {
+                        URL(string: "https://telemetrydeck.com/pages/quickstart.html")?.open()
+                    }
+                    .buttonStyle(SmallSecondaryButtonStyle())
+
+                    Spacer()
+
+                    CustomSection(header: Text("Unique Identifier"), summary: EmptyView(), footer: EmptyView()) {
+                        VStack(alignment: .leading) {
+                            Button(newApp.id.uuidString) {
+                                saveToClipBoard(newApp.id.uuidString)
+                            }
+                            .buttonStyle(SmallPrimaryButtonStyle())
+                            #if os(macOS)
+                            Text("Click to copy this UUID into your apps for tracking.").font(.footnote)
+                            #else
+                            Text("Tap to copy this UUID into your apps for tracking.").font(.footnote)
+                            #endif
+                        }
+                    }
+
+                    .toolbar {
+                        ToolbarItemGroup(placement: .confirmationAction) {
+                            Button("Dismiss") { createNewAppViewModel.newAppViewShown = false }
+                                .keyboardShortcut(.defaultAction)
+                        }
+                    }
+                }
+            } else {
+                Text("Something went wrong.")
+            }
+        }
+    }
+
+    var body: some View {
+        HStack {
+            if createNewAppViewModel.appCreated {
+                appCreatedView
+                    .padding()
+            } else {
+                formContent
+                    .padding()
             }
         }
     }
