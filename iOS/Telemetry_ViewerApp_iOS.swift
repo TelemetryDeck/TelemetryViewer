@@ -27,6 +27,9 @@ struct Telemetry_ViewerApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .onOpenURL(perform: { url in
+                    handleIncomingURL(url: url)
+                })
                 .environmentObject(api)
                 .environmentObject(errors)
                 .environmentObject(orgService)
@@ -66,5 +69,18 @@ struct Telemetry_ViewerApp: App {
         TelemetryManager.initialize(with: configuration)
         
         UserDefaults.standard.register(defaults: ["isTestingMode" : true])
+    }
+    
+    // telemetryviewer://login/<bearertoken>
+    func handleIncomingURL(url: URL) {
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+              let host = components.host,
+              let path = components.path
+        else { return }
+
+        if host == "login" {
+            guard let bearerToken = path.split(separator: "/", maxSplits: 1).last else { return }
+            api.login(bearerToken: String(bearerToken))
+        }
     }
 }

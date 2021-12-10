@@ -25,20 +25,21 @@ struct Telemetry_ViewerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView().onOpenURL(perform: { url in
-                handleIncomingURL(url: url)
-            })
-            .environmentObject(api)
-            .environmentObject(errors)
-            .environmentObject(orgService)
-            .environmentObject(appService)
-            .environmentObject(groupService)
-            .environmentObject(insightService)
-            .environmentObject(insightResultService)
-            .environmentObject(iconFinderService)
-            .environmentObject(updateService)
-            .environmentObject(signalsService)
-            .environmentObject(lexiconService)
+            RootView()
+                .onOpenURL(perform: { url in
+                    handleIncomingURL(url: url)
+                })
+                .environmentObject(api)
+                .environmentObject(errors)
+                .environmentObject(orgService)
+                .environmentObject(appService)
+                .environmentObject(groupService)
+                .environmentObject(insightService)
+                .environmentObject(insightResultService)
+                .environmentObject(iconFinderService)
+                .environmentObject(updateService)
+                .environmentObject(signalsService)
+                .environmentObject(lexiconService)
         }
         .windowStyle(.titleBar)
         .windowToolbarStyle(.unified)
