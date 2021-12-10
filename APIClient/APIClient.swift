@@ -114,6 +114,8 @@ extension APIClient {
     }
     
     func login(bearerToken: String) {
+        guard self.userToken == nil else { return }
+        
         self.userToken = UserTokenDTO(id: nil, value: bearerToken, user: [:])
         self.getUserInformation()
     }
