@@ -8,6 +8,7 @@
 import DataTransferObjects
 import SwiftUI
 import SwiftUICharts
+import TelemetryClient
 
 struct InsightCard: View {
     @EnvironmentObject var insightService: InsightService
@@ -88,6 +89,7 @@ struct InsightCard: View {
                 }
             }
             .onAppear(perform: retrieve)
+            .onAppear(perform: sendTelemetry)
             .onChange(of: insightResultService.isTestingMode) { _ in retrieve() }
             .onChange(of: insightResultService.timeWindowBeginning) { _ in retrieve() }
             .onChange(of: insightResultService.timeWindowEnd) { _ in retrieve() }
@@ -98,6 +100,12 @@ struct InsightCard: View {
             retrieve()
         }
         .onReceive(insightService.objectWillChange, perform: { retrieve() })
+    }
+    
+    func sendTelemetry() {
+        if let displayMode = insightWrap?.calculationResult.insight.displayMode {
+            TelemetryManager.send("InsightShown", with: ["insightDisplayMode": displayMode.rawValue])
+        }
     }
     
     func retrieve() {
