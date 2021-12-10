@@ -22,7 +22,7 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<string>None</string>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>org.breakthesystem.telemetry</string>
 			<key>CFBundleURLSchemes</key>

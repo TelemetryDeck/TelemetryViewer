@@ -22,7 +22,9 @@ struct WelcomeView: View {
                 NavigationLink("Login to Your Account", destination: LoginView())
                     .buttonStyle(PrimaryButtonStyle())
                     .padding(.horizontal)
-                NavigationLink("Create a New Organization", destination: RegisterView())
+                Button("Register Your Account") {
+                    URL(string: "https://dashboard.telemetrydeck.com/registration/organization")!.open()
+                }
                     .buttonStyle(SecondaryButtonStyle())
                     .padding(.horizontal)
                 NavigationLink("Join an Organization", destination: JoinOrganizationView())

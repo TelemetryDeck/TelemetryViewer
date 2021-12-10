@@ -40,8 +40,8 @@ struct WelcomeView: View {
             .buttonStyle(PrimaryButtonStyle())
             .padding(.horizontal)
 
-            Button("Create a New Organization") {
-                displayMode = .registerView
+            Button("Register Your Account") {
+                URL(string: "https://dashboard.telemetrydeck.com/registration/organization")!.open()
             }
             .buttonStyle(SecondaryButtonStyle())
             .padding(.horizontal)

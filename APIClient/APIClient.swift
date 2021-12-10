@@ -112,6 +112,11 @@ extension APIClient {
             }
         }.resume()
     }
+    
+    func login(bearerToken: String) {
+        self.userToken = UserTokenDTO(id: nil, value: bearerToken, user: [:])
+        self.getUserInformation()
+    }
 
     func logout() {
         #if canImport(TelemetryClient)
