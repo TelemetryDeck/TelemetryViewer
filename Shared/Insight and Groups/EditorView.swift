@@ -189,11 +189,11 @@ class EditorViewModel: ObservableObject {
     }
     
     var filterAutocompletionOptions: [String] {
-        return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey)
+        return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey).sorted(by: { $0.lowercased() < $1.lowercased() })
     }
 
     var signalTypeAutocompletionOptions: [String] {
-        return lexiconService.signalTypes(for: appID).map(\.type)
+        return lexiconService.signalTypes(for: appID).map(\.type).sorted(by: { $0.lowercased() < $1.lowercased() })
     }
 }
 
