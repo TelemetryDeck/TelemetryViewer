@@ -111,6 +111,7 @@ struct InsightGroupsView: View {
     
     private var datePickerButton: some View {
         Button(insightResultService.timeIntervalDescription) {
+            TelemetryManager.send("showDatePicker")
             self.showDatePicker = true
         }.popover(
             isPresented: self.$showDatePicker,
