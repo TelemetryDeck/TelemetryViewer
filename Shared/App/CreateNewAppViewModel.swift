@@ -58,9 +58,7 @@ class CreateNewAppViewModel: ObservableObject {
     }
 
     func createNewApp() {
-        let url = api.urlForPath(apiVersion: .v2, "apps")
-
-        api.post(["name": appName], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
+        appService.create(appNamed: appName) { (result: Result<DTOv2.App, TransferError>) in
             switch result {
             case let .failure(error):
                 print(error)
