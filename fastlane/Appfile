@@ -1,0 +1,8 @@
+app_identifier("org.breakthesystem.telemetry") # The bundle identifier of your app
+apple_id("winsmith@winsmith.de") # Your Apple email address
+
+itc_team_id("161778") # App Store Connect Team ID
+team_id("FL4V655A94") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
