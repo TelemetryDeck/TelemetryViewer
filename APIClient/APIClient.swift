@@ -421,6 +421,16 @@ extension APIClient {
         return request
     }
 
+    @available(macOS 12.0, *)
+    func get<Output: Decodable>(url: URL) async throws -> Output {
+        #if DEBUG
+            print("🌍 GET", url)
+        #endif
+        
+        let request = authenticatedURLRequest(for: url, httpMethod: "GET")
+        return try await runAsyncTask(with: request)
+    }
+    
     func get<Output: Decodable>(_ url: URL, defaultValue _: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
             print("🌍 GET", url)
@@ -507,5 +517,35 @@ extension APIClient {
         }.resume()
     }
 
+    @available(macOS 12.0, *)
+    private func runAsyncTask<Output: Decodable>(with request: URLRequest) async throws -> Output {
+        let data: Data
+        do {
+            (data, _) = try await URLSession.shared.data(for: request, delegate: nil)
+            #if DEBUG
+                print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
+            #endif
+        }
+        catch {
+            print("🛑 Transfer Failed")
+            throw TransferError.transferFailed
+        }
+        if let decodedErrorMessage = try? JSONDecoder.druidDecoder.decode(ServerErrorDetailMessage.self, from: data) {
+            print("🛑 \(decodedErrorMessage.detail)")
+            throw TransferError.serverError(message: decodedErrorMessage.detail)
+        } else if let decodedErrorMessage = try? JSONDecoder.druidDecoder.decode(ServerErrorReasonMessage.self, from: data) {
+            print("🛑 \(decodedErrorMessage.reason)")
+            throw TransferError.serverError(message: decodedErrorMessage.reason)
+        }
+        var decoded: Output
+        do {
+            decoded = try JSONDecoder.druidDecoder.decode(Output.self, from: data)
+        } catch {
+            print("🛑 Decode Failed: ", error)
+            throw TransferError.decodeFailed
+        }
+        return decoded
+    }
+    
     func handleError(_: TransferError) {}
 }

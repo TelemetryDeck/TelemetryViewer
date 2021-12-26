@@ -50,4 +50,16 @@ class SignalsService: ObservableObject {
             }
         }
     }
+    
+    @available(macOS 12.0, *)
+    @MainActor
+    func getSignalsAsync(for appID: UUID) async {
+        let url = api.urlForPath("apps", appID.uuidString, "signals")
+        do {
+            let signals: [DTOv1.Signal] = try await api.get(url: url)
+            signalsForAppID[appID] = signals.map{ $0.toIdentifiableSignal() }
+        } catch {
+            print(error)
+        }
+    }
 }
