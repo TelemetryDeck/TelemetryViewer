@@ -21,8 +21,10 @@ struct SignalList: View {
     var body: some View {
         TestModeIndicator()
         List(selection: $selectedSignal) {
-            TextField("Search", text: $filterText)
-            SignalListExplanationView()
+            Section {
+                TextField("Search", text: $filterText)
+                SignalListExplanationView()
+            }
             
             Section {
                 if signalsService.signals(for: appID).isEmpty && !signalsService.isLoading(appID: appID) {
@@ -34,8 +36,8 @@ struct SignalList: View {
                     .filter {
                         $0.isTestMode == insightResultService.isTestingMode &&
                         (filterText.isEmpty ||
-                        $0.type.lowercased().contains(filterText.lowercased()) ||
-                        $0.clientUser.lowercased().contains(filterText.lowercased()))
+                         $0.type.lowercased().contains(filterText.lowercased()) ||
+                         $0.clientUser.lowercased().contains(filterText.lowercased()))
                     }
                 ForEach(signals, id: \.id) { signal in
                     NavigationLink(
@@ -48,19 +50,20 @@ struct SignalList: View {
         .refreshable{
             await signalsService.getSignalsAsync(for: appID)
         }
+        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Recent Signals")
         .onAppear {
             signalsService.getSignals(for: appID)
         }
         .toolbar {
-            ToolbarItem(placement: .automatic){
-                Toggle("Test Mode", isOn: $insightResultService.isTestingMode.animation())
-                
-            }
-            ToolbarItem(placement: .principal) {
+            ToolbarItem(placement: .navigationBarLeading) {
                 if signalsService.isLoading(appID: appID) {
                     ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
                 }
+            }
+            ToolbarItem(placement: .automatic){
+                Toggle("Test Mode", isOn: $insightResultService.isTestingMode.animation())
+                
             }
         }
     }
