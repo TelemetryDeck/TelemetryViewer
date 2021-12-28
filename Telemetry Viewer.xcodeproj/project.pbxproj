@@ -146,6 +146,11 @@
 		2BF2BE422763918E00A79531 /* CreateNewAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2BE412763918E00A79531 /* CreateNewAppViewModel.swift */; };
 		2BF2BE432763918E00A79531 /* CreateNewAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2BE412763918E00A79531 /* CreateNewAppViewModel.swift */; };
 		2BF2BE452763921400A79531 /* CreateNewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF2BE442763921400A79531 /* CreateNewAppView.swift */; };
+		63C4E9522778C00000344E20 /* SignalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E9512778C00000344E20 /* SignalList.swift */; };
+		63C4E9552778C4CE00344E20 /* SignalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E9542778C4CE00344E20 /* SignalListCell.swift */; };
+		63C4E9562778C4D100344E20 /* SignalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E9542778C4CE00344E20 /* SignalListCell.swift */; };
+		63C4E9582778C54D00344E20 /* SignalListExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E9572778C54D00344E20 /* SignalListExplanationView.swift */; };
+		63C4E9592778D0D100344E20 /* SignalListExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E9572778C54D00344E20 /* SignalListExplanationView.swift */; };
 		C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C51CB73C27565F76005A3FB9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8AD270C821A0032560A /* Intents.framework */; platformFilter = maccatalyst; };
 		C51CB7472756609E005A3FB9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
@@ -258,7 +263,6 @@
 		DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */; };
 		DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC627EEE25A35B6A00C1DF33 /* EmptyAppView.swift */; };
 		DC7DEEB6258A3C2800BEA712 /* AppUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */; };
-		DC815F3C24E283640095A047 /* SignalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC815F3B24E283640095A047 /* SignalList.swift */; };
 		DC815F3D24E283640095A047 /* SignalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC815F3B24E283640095A047 /* SignalList.swift */; };
 		DC92395B25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC92395A25E5B5D600D1729C /* Telemetry_ViewerApp_macOS.swift */; };
 		DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AAB6250A671900FF26FD /* AppEditor.swift */; };
@@ -415,6 +419,9 @@
 		2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12PayloadKeysView.swift; sourceTree = "<group>"; };
 		2BF2BE412763918E00A79531 /* CreateNewAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppViewModel.swift; sourceTree = "<group>"; };
 		2BF2BE442763921400A79531 /* CreateNewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppView.swift; sourceTree = "<group>"; };
+		63C4E9512778C00000344E20 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
+		63C4E9542778C4CE00344E20 /* SignalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalListCell.swift; sourceTree = "<group>"; };
+		63C4E9572778C54D00344E20 /* SignalListExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalListExplanationView.swift; sourceTree = "<group>"; };
 		C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (macOS).entitlements"; sourceTree = "<group>"; };
@@ -674,6 +681,22 @@
 			path = UIComponents;
 			sourceTree = "<group>";
 		};
+		63C4E9502778BFE900344E20 /* Recent Signals */ = {
+			isa = PBXGroup;
+			children = (
+				63C4E9512778C00000344E20 /* SignalList.swift */,
+			);
+			path = "Recent Signals";
+			sourceTree = "<group>";
+		};
+		63C4E9532778C4A400344E20 /* Recent Signals */ = {
+			isa = PBXGroup;
+			children = (
+				DC815F3B24E283640095A047 /* SignalList.swift */,
+			);
+			path = "Recent Signals";
+			sourceTree = "<group>";
+		};
 		C5A8D866270C5D7A0032560A /* TelemetryDeckWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,8 +780,9 @@
 		DCB02B67250027E400304964 /* Recent Signals */ = {
 			isa = PBXGroup;
 			children = (
-				DC815F3B24E283640095A047 /* SignalList.swift */,
 				DC45BB1B24E27F12004E6392 /* SignalView.swift */,
+				63C4E9542778C4CE00344E20 /* SignalListCell.swift */,
+				63C4E9572778C54D00344E20 /* SignalListExplanationView.swift */,
 				DCDC6EF7253ECA7E0012D9A7 /* KeyValueView.swift */,
 			);
 			path = "Recent Signals";
@@ -845,6 +869,7 @@
 			children = (
 				DCE23A0624D3687D00053370 /* Info.plist */,
 				2B4DB00F270CF34B002A4743 /* Telemetry Viewer (iOS).entitlements */,
+				63C4E9502778BFE900344E20 /* Recent Signals */,
 				DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */,
 				C5B917F02757C9EB004A842B /* CreateNewAppView.swift */,
 				2BDD35052710727900CB2AA5 /* EditorModeView.swift */,
@@ -865,6 +890,7 @@
 				DCE23A0D24D3687D00053370 /* Info.plist */,
 				C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS).entitlements */,
 				2B462818272C7FFF00515530 /* Test Mode */,
+				63C4E9532778C4A400344E20 /* Recent Signals */,
 				DC7DEEB4258A3C2800BEA712 /* AppUpdateView.swift */,
 				DCD49406255BFD3000925F5D /* AutoCompletingTextField.swift */,
 				2BF2BE442763921400A79531 /* CreateNewAppView.swift */,
@@ -1390,6 +1416,7 @@
 				2BBFCA11267D05E40013DC74 /* DetailSidebar.swift in Sources */,
 				2B25EAE526D3EA4D00BBBB1B /* EditorView.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
+				63C4E9552778C4CE00344E20 /* SignalListCell.swift in Sources */,
 				2B6431992739A5BB009A33C4 /* Data+JSONPrettyPrint.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				2B0050932703617B009C609C /* Color+Hex.swift in Sources */,
@@ -1407,6 +1434,7 @@
 				DC98AABC250BC30200FF26FD /* TelemetrySignalTypes.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */,
+				63C4E9522778C00000344E20 /* SignalList.swift in Sources */,
 				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */,
@@ -1416,8 +1444,8 @@
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				C5B917F12757C9EB004A842B /* CreateNewAppView.swift in Sources */,
 				C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */,
+				63C4E9582778C54D00344E20 /* SignalListExplanationView.swift in Sources */,
 				2BBFCA25267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
-				DC815F3C24E283640095A047 /* SignalList.swift in Sources */,
 				2BBFCA29267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */,
 				2BC2720226207D710045A2FE /* MockData.swift in Sources */,
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
@@ -1486,6 +1514,7 @@
 				2B21FCE026FDCAE200A8A55B /* InsightsList.swift in Sources */,
 				2BF2BE452763921400A79531 /* CreateNewAppView.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
+				63C4E9562778C4D100344E20 /* SignalListCell.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
 				2BDD8E702651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
 				2B1D468A26CC4423008814A9 /* OrgService.swift in Sources */,
@@ -1526,6 +1555,7 @@
 				2BBFCA0C267D05E40013DC74 /* CustomSection.swift in Sources */,
 				2BA5D50A26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
 				2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */,
+				63C4E9592778D0D100344E20 /* SignalListExplanationView.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
 				2B745563272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
