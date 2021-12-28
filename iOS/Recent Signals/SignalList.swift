@@ -14,13 +14,12 @@ struct SignalList: View {
     @EnvironmentObject var insightResultService: InsightResultService
     
     @State var filterText: String = ""
-    @State var selectedSignal: DTOv1.IdentifiableSignal?
     
     let appID: UUID
     
     var body: some View {
         TestModeIndicator()
-        List(selection: $selectedSignal) {
+        List {
             Section {
                 TextField("Search", text: $filterText)
                 SignalListExplanationView()
@@ -39,13 +38,14 @@ struct SignalList: View {
                          $0.type.lowercased().contains(filterText.lowercased()) ||
                          $0.clientUser.lowercased().contains(filterText.lowercased()))
                     }
-                ForEach(signals, id: \.id) { signal in
+                ForEach(signals) { signal in
                     NavigationLink(
                         destination: SignalView(signal: signal.signal),
                         label: { SignalListCell(signal: signal.signal) }
                     )
                 }
             }
+            .id(UUID())
         }
         .refreshable{
             await signalsService.getSignalsAsync(for: appID)
@@ -63,7 +63,6 @@ struct SignalList: View {
             }
             ToolbarItem(placement: .automatic){
                 Toggle("Test Mode", isOn: $insightResultService.isTestingMode.animation())
-                
             }
         }
     }
