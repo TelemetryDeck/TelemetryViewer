@@ -93,58 +93,70 @@ struct JoinOrganizationView: View {
                 }
             }
         } else {
-            Group {
+            List {
                 Text("Hi! You're invited to an organization on Telemetry. This means you can see and edit all apps and insights that belong to the organization.")
-
-                Spacer()
-
-                if let error = error {
-                    Text(error.localizedDescription)
-                        .bold()
-                }
-
+                    .fixedSize(horizontal: false, vertical: true)
+                    .listRowBackground(Color.clear)
+                
                 Section(header: Text("Please enter your registration Token")) {
                     TextField("Registration Token", text: $organizationJoinRequestToken)
+                        #if os(macOS)
+                        .textFieldStyle(.roundedBorder)
+                        #endif
                 }
-
-                Spacer()
-                Button("Continue") {
-                    isLoading = true
-
-                    api.getOrganizationJoinRequest(with: organizationJoinRequestToken) { result in
-                        switch result {
-                        case let .success(joinRequest):
-                            organizationJoinRequest = DTOv1.OrganizationJoinRequestDTO(
-                                email: joinRequest.email,
-                                receiveMarketingEmails: false,
-                                firstName: "",
-                                lastName: "",
-                                password: "",
-                                organizationID: joinRequest.organization["id"]!,
-                                registrationToken: joinRequest.registrationToken
-                            )
-                            organizationJoinRequestPresent = true
-                        case let .failure(error):
-                            self.error = error
+                
+                Section{
+                    Button("Continue") {
+                        isLoading = true
+                        
+                        api.getOrganizationJoinRequest(with: organizationJoinRequestToken) { result in
+                            switch result {
+                            case let .success(joinRequest):
+                                organizationJoinRequest = DTOv1.OrganizationJoinRequestDTO(
+                                    email: joinRequest.email,
+                                    receiveMarketingEmails: false,
+                                    firstName: "",
+                                    lastName: "",
+                                    password: "",
+                                    organizationID: joinRequest.organization["id"]!,
+                                    registrationToken: joinRequest.registrationToken
+                                )
+                                organizationJoinRequestPresent = true
+                            case let .failure(error):
+                                self.error = error
+                            }
+                            
+                            isLoading = false
                         }
-
-                        isLoading = false
+                    }
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(organizationJoinRequestToken.isEmpty)
+                    .saturation(organizationJoinRequestToken.isEmpty ? 0 : 1)
+                    .buttonStyle(PrimaryButtonStyle())
+                    .animation(.easeOut, value: organizationJoinRequestToken.isEmpty)
+                } footer: {
+                    if organizationJoinRequestToken.isEmpty {
+                        Text("Please enter a valid registration token")
+                            .font(.footnote)
+                            .foregroundColor(.grayColor)
+                            .animation(.easeOut, value: organizationJoinRequestToken.isEmpty)
                     }
                 }
-                .keyboardShortcut(.defaultAction)
-                .disabled(organizationJoinRequestToken.isEmpty)
-                .saturation(organizationJoinRequestToken.isEmpty ? 0 : 1)
-                .buttonStyle(PrimaryButtonStyle())
-                .animation(.easeOut)
-
-                if organizationJoinRequestToken.isEmpty {
-                    Text("Please enter a valid registration token")
-                        .font(.footnote)
-                        .foregroundColor(.grayColor)
-                        .animation(.easeOut)
+                
+                if let error = error {
+                    Section{
+                        Text(error.localizedDescription)
+                            .bold()
+                            .foregroundColor(.red)
+                    }
                 }
+                
+                #if os(macOS)
+                Spacer()
+                #endif
             }
-            .animation(.easeOut)
         }
     }
 }
