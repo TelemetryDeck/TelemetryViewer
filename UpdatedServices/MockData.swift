@@ -54,4 +54,23 @@ struct MockData {
         data: [DTOv1.InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
         calculatedAt: Date(), calculationDuration: 1
     )
+    
+    static let exampleInsightVersion2 = DTOv2.Insight(
+        id: UUID(),
+        groupID: UUID(),
+        order: 0,
+        title: "Preview",
+        accentColor: nil,
+        widgetable: false,
+        druidCustomQuery: nil,
+        signalType: nil,
+        uniqueUser: true,
+        filters: [:],
+        breakdownKey: nil,
+        groupBy: nil,
+        displayMode: InsightDisplayMode.pieChart,
+        isExpanded: false,
+        lastRunTime: 1,
+        lastRunAt: Date()
+    )
 }
