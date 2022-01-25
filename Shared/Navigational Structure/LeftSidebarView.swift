@@ -47,31 +47,32 @@ struct LeftSidebarView: View {
                 }
                 .sheet(isPresented: $newAppViewShown) {
                     #if os(macOS)
-                    CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
-                    #else
-                    NavigationView {
                         CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
-                    }
+                    #else
+                        NavigationView {
+                            CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
+                        }
                     #endif
                 }
-                
+
             } header: {
                 Text("Apps")
             }
 
             Section {
                 #if os(iOS)
-                    NavigationLink(destination: OrganizationSettingsView(), label: {
-                        Label(api.user?.organization?.name ?? "Organization Settings", systemImage: "app.badge")
-                    })
+                    Button {
+                        URL(string: "https://dashboard.telemetrydeck.com/user/profile")!.open()
+                    } label: {
+                        Label("Organization Settings", systemImage: "app.badge")
+                    }
 
-                    if let user = api.user {
-                        NavigationLink(
-                            destination: UserSettingsView(userDTO: user),
-                            label: {
-                                Label("\(api.user?.firstName ?? "User") \(api.user?.lastName ?? "Settings")", systemImage: "gear")
-                            }
-                        )
+                    if api.user != nil {
+                        Button {
+                            URL(string: "https://dashboard.telemetrydeck.com/user/organization")!.open()
+                        } label: {
+                            Label("User Settings", systemImage: "gear")
+                        }
                     }
                 #endif
 
@@ -105,7 +106,7 @@ struct LeftSidebarView: View {
 
                         Spacer()
                     #endif
-                    
+
 //                    NavigationLink(destination: CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown)), isActive: $newAppViewShown, label: {
 //                        Text("Add app")
 //                        Image(systemName: "plus.square.dashed")
