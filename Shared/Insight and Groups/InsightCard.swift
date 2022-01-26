@@ -20,6 +20,10 @@ struct InsightCard: View {
     @State var insightWrap: InsightResultWrap?
     @State var loadingState: LoadingState = .idle
     
+    @State var insightCalculationResult: DTOv2.InsightCalculationResult?
+    @State var chartDataSet: ChartDataSet?
+
+    
     private var isSelected: Bool {
         selectedInsightID == insightID
     }
@@ -28,7 +32,7 @@ struct InsightCard: View {
     let isSelectable: Bool
     
     private let refreshTimer = Timer.publish(
-        every: 5, // seconds
+        every: 60, // seconds
         on: .main,
         in: .common
     ).autoconnect()
@@ -64,20 +68,20 @@ struct InsightCard: View {
             }
             
             Group {
-                if let insightWrap = insightWrap {
-                    switch insightWrap.calculationResult.insight.displayMode {
+                if let insightCalculationResult = insightCalculationResult {
+                    switch insightCalculationResult.insight.displayMode {
                     case .raw:
-                        RawChartView(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
+                        RawChartView(chartDataSet: chartDataSet!, isSelected: isSelected)
                     case .pieChart:
-                        DonutChartView(chartDataset: insightWrap.chartDataSet, isSelected: isSelected)
+                        DonutChartView(chartDataset: chartDataSet!, isSelected: isSelected)
                             .padding(.bottom)
                             .padding(.horizontal)
                     case .lineChart:
-                        LineChart(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
+                        LineChart(chartDataSet: chartDataSet!, isSelected: isSelected)
                     case .barChart:
-                        BarChartView(chartDataSet: insightWrap.chartDataSet, isSelected: isSelected)
+                        BarChartView(chartDataSet: chartDataSet!, isSelected: isSelected)
                     default:
-                        Text("\(insightWrap.calculationResult.insight.displayMode.rawValue.capitalized) is not supported in this version.")
+                        Text("\(insightCalculationResult.insight.displayMode.rawValue.capitalized) is not supported in this version.")
                             .font(.footnote)
                             .foregroundColor(.grayColor)
                             .padding(.vertical)
@@ -88,11 +92,11 @@ struct InsightCard: View {
                     IconOnlyLoadingStateIndicator(loadingState: loadingState)
                 }
             }
-            .onAppear(perform: retrieve)
-            .onAppear(perform: sendTelemetry)
-            .onChange(of: insightResultService.isTestingMode) { _ in retrieve() }
-            .onChange(of: insightResultService.timeWindowBeginning) { _ in retrieve() }
-            .onChange(of: insightResultService.timeWindowEnd) { _ in retrieve() }
+//            .onAppear(perform: retrieve)
+//            .onAppear(perform: sendTelemetry)
+//            .onChange(of: insightResultService.isTestingMode) { _ in retrieve() }
+//            .onChange(of: insightResultService.timeWindowBeginning) { _ in retrieve() }
+//            .onChange(of: insightResultService.timeWindowEnd) { _ in retrieve() }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
         .padding(.top)
@@ -100,6 +104,15 @@ struct InsightCard: View {
             retrieve()
         }
         .onReceive(insightService.objectWillChange, perform: { retrieve() })
+        .task {
+            do {
+                let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
+                insightCalculationResult = result
+                chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
+            } catch {
+                print("Error", error)
+            }
+        }
     }
     
     func sendTelemetry() {

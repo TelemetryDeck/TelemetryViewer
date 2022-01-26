@@ -222,6 +222,33 @@ class InsightResultService: ObservableObject {
             self?.performRetrieval(ofInsightWithID: insightID)
         }
     }
+    
+    func retrieveInsightCalculationResult(with insightID: DTOv2.Insight.ID) async {
+        cache.queue.async { [weak self] in
+            self?.performRetrieval(ofInsightWithID: insightID)
+        }
+    }
+    
+    func performRetrieval(ofInsightWithID insightID: DTOv2.Insight.ID) async throws -> DTOv2.InsightCalculationResult {
+        
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.InsightCalculationResult, Error>) in
+            let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
+                                     Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
+                                     Formatter.iso8601noFS.string(from: timeWindowEndDate))
+            api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
+                switch result {
+                case .success(let insightCalculationResult):
+//                    let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
+
+                    continuation.resume(returning: insightCalculationResult)
+
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
 }
 
 private extension InsightResultService {
