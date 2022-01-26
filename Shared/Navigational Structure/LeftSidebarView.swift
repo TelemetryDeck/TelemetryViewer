@@ -13,6 +13,7 @@ struct LeftSidebarView: View {
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
     @State var newAppViewShown: Bool = false
+    @State private var showingAlert = false
 
     #if os(macOS)
         @EnvironmentObject var updateService: UpdateService
@@ -60,6 +61,9 @@ struct LeftSidebarView: View {
             }
 
             Section {
+                
+                LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
+                
                 #if os(iOS)
                     Button {
                         URL(string: "https://dashboard.telemetrydeck.com/user/profile")!.open()
@@ -82,8 +86,21 @@ struct LeftSidebarView: View {
                     Label("Help & Feedback", systemImage: "ladybug.fill")
                 }
 
-                LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
-
+                Button {
+                    showingAlert = true
+                } label: {
+                    Label("Log Out \(api.user?.firstName ?? "User")", systemImage: "rectangle.portrait.and.arrow.right")
+                }
+                .alert(isPresented: $showingAlert) {
+                    Alert(
+                        title: Text("Really Log Out?"),
+                        message: Text("You can log back in again later"),
+                        primaryButton: .destructive(Text("Log Out")) {
+                            api.logout()
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
             } header: {
                 Text("Meta")
             }

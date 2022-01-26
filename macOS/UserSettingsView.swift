@@ -12,29 +12,8 @@ import TelemetryClient
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIClient
     
-    @State private var showChangePasswordForm: Bool = false
-    @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")
     @State private var showingAlert = false
     @State private var userDTO = DTOv1.UserDTO(id: UUID(), organization: nil, firstName: "", lastName: "", email: "", emailIsVerified: false, receiveMarketingEmails: nil, isFoundingUser: false, receiveReports: .never)
-    @State var isShowingSaveButtons: Bool = false
-    
-    func boolToString(value: Bool?) -> String {
-        if let value = value {
-            return value ? "Yes" : "No"
-        } else {
-            return "Not decided yet"
-        }
-    }
-    
-    func showSaveButtons() {
-        withAnimation {
-            isShowingSaveButtons = true
-        }
-    }
-    
-    func save() {
-        api.updateUser(with: userDTO)
-    }
     
     var body: some View {
         if api.user != nil {
@@ -45,26 +24,31 @@ struct UserSettingsView: View {
                         .padding(.bottom, 4)
                     
                     CustomSection(
-                        header: Text("Name"),
-                        summary: Text("\(userDTO.firstName) \(userDTO.lastName)"),
-                        footer: Text("Your first and last name. If you only have one name, please use the First Name field."),
-                        startCollapsed: true
+                        header: Text("Online Settings"),
+                        summary: EmptyView(),
+                        footer: Text("Change your user or organization settings online."),
+                        startCollapsed: false
                     ) {
                         HStack {
-                            TextField("First Name", text: $userDTO.firstName)
-                                .onChange(of: userDTO.firstName) { _ in showSaveButtons() }
-                            TextField("Last Name", text: $userDTO.lastName)
-                                .onChange(of: userDTO.lastName) { _ in showSaveButtons() }
-                            
-                            if isShowingSaveButtons {
-                                Button("Save") { save() }
+                            Button {
+                                URL(string: "https://dashboard.telemetrydeck.com/user/profile")!.open()
+                            } label: {
+                                Label("Organization Settings", systemImage: "app.badge")
+                            }
+
+                            if api.user != nil {
+                                Button {
+                                    URL(string: "https://dashboard.telemetrydeck.com/user/organization")!.open()
+                                } label: {
+                                    Label("User Settings", systemImage: "gear")
+                                }
                             }
                         }
                     }
                     
                     #if DEBUG
                     if let bearerTokenString = api.userToken?.bearerTokenAuthString {
-                        CustomSection(header: Text("Token"), summary: Text(bearerTokenString), footer: EmptyView(), startCollapsed: true) {
+                        CustomSection(header: Text("Token"), summary: Text(bearerTokenString), footer: EmptyView(), startCollapsed: false) {
                             Button(bearerTokenString) {
                                 saveToClipBoard(bearerTokenString)
                             }
@@ -73,67 +57,10 @@ struct UserSettingsView: View {
                     #endif
                     
                     CustomSection(
-                        header: Text("Email"),
-                        summary: Text(userDTO.email),
-                        footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding TelemetryDeck. \(userDTO.receiveMarketingEmails != true ? "Can we also send you our low volume newsletter please?" : "")"),
-                        startCollapsed: true
-                    ) {
-                        HStack {
-                            TextField("Email", text: $userDTO.email)
-                                .onChange(of: userDTO.email) { _ in showSaveButtons() }
-                            if isShowingSaveButtons {
-                                Button("Save") { save() }
-                            }
-                        }
-                        
-                        if userDTO.receiveMarketingEmails != true {
-                            OptionalToggle(description: "Receive the newsletter?", isOn: $userDTO.receiveMarketingEmails)
-                                .onChange(of: userDTO.receiveMarketingEmails) { _ in save() }
-                        } else {
-                            Text("Please use the link at the bottom of each newsletter email to manage your preferences.")
-                                .font(.footnote)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    
-                    CustomSection(
-                        header: Text("Receive Reports"),
-                        summary: Text(userDTO.receiveReports.rawValue),
-                        footer: Text("How often should we send you an email update on how your organization's apps are doing?"),
-                        startCollapsed: true
-                    ) {
-                        Picker("", selection: $userDTO.receiveReports) {
-                            ForEach([ReportSendingRate.daily, .weekly, .monthly, .never], id: \.self) {
-                                Text($0.rawValue)
-                            }
-                        }
-                        .onChange(of: userDTO.receiveReports) { _ in save() }
-                    }
-                    
-                    CustomSection(
-                        header: Text("Change Password"),
-                        summary: EmptyView(),
-                        footer: EmptyView(),
-                        startCollapsed: true
-                    ) {
-                        SecureField("Old Password", text: $passwordChangeRequest.oldPassword)
-                        SecureField("New Password", text: $passwordChangeRequest.newPassword)
-                        SecureField("Confirm New Password", text: $passwordChangeRequest.newPasswordConfirm)
-                        
-                        Button("Save New Password") {
-                            api.updatePassword(with: passwordChangeRequest) { _ in
-                                withAnimation {
-                                    showChangePasswordForm = false
-                                }
-                            }
-                        }
-                    }
-                    
-                    CustomSection(
                         header: Text("Log Out"),
                         summary: EmptyView(),
                         footer: EmptyView(),
-                        startCollapsed: true
+                        startCollapsed: false
                     ) {
                         Button("Log Out \(api.user?.firstName ?? "User")") {
                             showingAlert = true

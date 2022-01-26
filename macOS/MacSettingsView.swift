@@ -14,16 +14,6 @@ struct MacSettingsView: View {
     
     var body: some View {
         TabView {
-            OrganizationSettingsView()
-                .tabItem {
-                    Label("Organization", systemImage: "star")
-                }
-                .tag(Tabs.organization)
-            PricingSettingsView()
-                .tabItem {
-                    Label("Plans & Pricing", systemImage: "creditcard")
-                }
-                .tag(Tabs.pricing)
             UserSettingsView()
                 .tabItem {
                     Label("User", systemImage: "person")
