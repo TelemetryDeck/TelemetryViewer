@@ -47,9 +47,9 @@ class EditorViewModel: ObservableObject {
         self.insightService = insightService
         self.lexiconService = lexiconService
         
-        self.druidCustomQueryString = Self.string(from: insight.druidCustomQuery)
-        self.druidCustomQuery = insight.druidCustomQuery
-        if insight.druidCustomQuery != nil {
+        self.customQueryString = Self.string(from: insight.customQuery)
+        self.customQuery = insight.customQuery
+        if insight.customQuery != nil {
             self.insightType = .customQuery
         } else if insight.breakdownKey != nil {
             self.insightType = .breakdown
@@ -74,13 +74,13 @@ class EditorViewModel: ObservableObject {
         self.isSettingUp = false
     }
     
-    static func string(from druidCustomQuery: DruidCustomQuery?) -> String {
-        guard let druidCustomQuery = druidCustomQuery else { return "" }
+    static func string(from customQuery: CustomQuery?) -> String {
+        guard let customQuery = customQuery else { return "" }
         
-        let encoder = JSONEncoder.druidEncoder
+        let encoder = JSONEncoder.telemetryEncoder
         encoder.outputFormatting = .prettyPrinted
         
-        guard let data = try? JSONEncoder.druidEncoder.encode(druidCustomQuery),
+        guard let data = try? JSONEncoder.telemetryEncoder.encode(customQuery),
               let stringValue  = String(data: data, encoding: .utf8) else {
                   return ""
               }
@@ -153,9 +153,9 @@ class EditorViewModel: ObservableObject {
     
     @Published var accentColor: String { didSet { save() }}
     
-    @Published var druidCustomQuery: DruidCustomQuery?
+    @Published var customQuery: CustomQuery?
     
-    @Published var druidCustomQueryString: String
+    @Published var customQueryString: String
     
     @Published var insightType: InsightType
     
@@ -350,9 +350,9 @@ struct EditorView: View {
         .padding(.horizontal)
     }
     
-    var druidCustomQuerySection: some View {
+    var customQuerySection: some View {
         CustomSection(header: Text("Custom Query"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
-            Text(viewModel.druidCustomQueryString)
+            Text(viewModel.customQueryString)
                 .lineLimit(nil)
                 .font(.system(.footnote, design: .monospaced))
         }
@@ -400,7 +400,7 @@ struct EditorView: View {
                     breakdownSection
                 }
             } else if viewModel.insightType == .customQuery {
-                druidCustomQuerySection
+                customQuerySection
             }
             
             metaSection

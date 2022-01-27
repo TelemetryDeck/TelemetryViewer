@@ -115,12 +115,12 @@ private extension OrgService {
     }
     
     func saveToDisk(org: DTOv2.Organization) {
-        guard let data = try? JSONEncoder.druidEncoder.encode(org) else { return }
+        guard let data = try? JSONEncoder.telemetryEncoder.encode(org) else { return }
         try? data.write(to: organizationCacheFilePath, options: .atomic)
     }
     
     func retrieveFromDisk() -> DTOv2.Organization? {
         guard let data = try? Data(contentsOf: organizationCacheFilePath) else { return nil }
-        return try? JSONDecoder.druidDecoder.decode(DTOv2.Organization.self, from: data)
+        return try? JSONDecoder.telemetryDecoder.decode(DTOv2.Organization.self, from: data)
     }
 }
