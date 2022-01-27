@@ -62,7 +62,7 @@ struct MockData {
         title: "Preview",
         accentColor: nil,
         widgetable: false,
-        druidCustomQuery: nil,
+        customQuery: nil,
         signalType: nil,
         uniqueUser: true,
         filters: [:],

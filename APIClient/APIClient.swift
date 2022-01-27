@@ -23,7 +23,7 @@ final class APIClient: ObservableObject {
     private static let baseURLString =
         ProcessInfo.processInfo.environment["API_URL"] == "local"
             ? "http://localhost:8080/api/"
-            : "https://telemetrydeck.com/api/"
+            : "https://api.telemetrydeck.com/api/"
     private static let userTokenStandardsKey = "org.breakthesystem.telemetry.viewer.userToken"
 
     private let userDefaults = UserDefaults(suiteName: "group.org.breakthesystem.telemetry.shared")
@@ -31,7 +31,7 @@ final class APIClient: ObservableObject {
     init() {
         // Old storage location for user token, if its in there, remove it afterwards
         if let encodedUserToken = UserDefaults.standard.data(forKey: APIClient.userTokenStandardsKey),
-           let userToken = try? JSONDecoder.druidDecoder.decode(UserTokenDTO.self, from: encodedUserToken)
+           let userToken = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: encodedUserToken)
         {
             self.userToken = userToken
             getUserInformation()
@@ -40,7 +40,7 @@ final class APIClient: ObservableObject {
         
         // New storage location for user token, shared with widgets
         if let encodedUserToken = userDefaults?.data(forKey: APIClient.userTokenStandardsKey),
-           let userToken = try? JSONDecoder.druidDecoder.decode(UserTokenDTO.self, from: encodedUserToken)
+           let userToken = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: encodedUserToken)
         {
             self.userToken = userToken
             getUserInformation()
@@ -51,7 +51,7 @@ final class APIClient: ObservableObject {
 
     @Published var userToken: UserTokenDTO? {
         didSet {
-            let encodedUserToken = try! JSONEncoder.druidEncoder.encode(userToken)
+            let encodedUserToken = try! JSONEncoder.telemetryEncoder.encode(userToken)
             userDefaults?.set(encodedUserToken, forKey: APIClient.userTokenStandardsKey)
 
             userNotLoggedIn = userToken == nil
@@ -96,7 +96,7 @@ extension APIClient {
             if let data = data {
                 print(String(decoding: data, as: UTF8.self))
 
-                if let decodedResponse = try? JSONDecoder.druidDecoder.decode(UserTokenDTO.self, from: data) {
+                if let decodedResponse = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: data) {
                     DispatchQueue.main.async {
                         self.userToken = decodedResponse
 
@@ -379,10 +379,10 @@ extension APIClient {
     }
 
     /// sending a native druid query to the api
-    func druidCustomQuery(query: DruidCustomQuery, callback: @escaping ([DruidTimeSeriesResult]) -> Void) {
+    func customQuery(query: CustomQuery, callback: @escaping ([TimeSeriesQueryResult]) -> Void) {
         let url = urlForPath(apiVersion: .v2, "query", "timeSeries")
 
-        post(query, to: url) { [unowned self] (result: Result<[DruidTimeSeriesResult], TransferError>) in
+        post(query, to: url) { [unowned self] (result: Result<[TimeSeriesQueryResult], TransferError>) in
             switch result {
             case let .success(data):
                 callback(data)
@@ -446,7 +446,7 @@ extension APIClient {
         #endif
 
         var request = authenticatedURLRequest(for: url, httpMethod: "POST")
-        request.httpBody = try? JSONEncoder.druidEncoder.encode(data)
+        request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
         runTask(with: request, completion: completion)
     }
 
@@ -456,7 +456,7 @@ extension APIClient {
         #endif
 
         var request = authenticatedURLRequest(for: url, httpMethod: "PATCH")
-        request.httpBody = try? JSONEncoder.druidEncoder.encode(data)
+        request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
         runTask(with: request, completion: completion)
     }
 
@@ -483,17 +483,17 @@ extension APIClient {
                 #endif
 
                 do {
-                    let decoded = try JSONDecoder.druidDecoder.decode(Output.self, from: data)
+                    let decoded = try JSONDecoder.telemetryDecoder.decode(Output.self, from: data)
                     DispatchQueue.main.async {
                         completion(.success(decoded))
                     }
                 } catch {
-                    if let decodedErrorMessage = try? JSONDecoder.druidDecoder.decode(ServerErrorDetailMessage.self, from: data) {
+                    if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorDetailMessage.self, from: data) {
                         DispatchQueue.main.async {
                             completion(.failure(TransferError.serverError(message: decodedErrorMessage.detail)))
                             print("🛑 \(decodedErrorMessage.detail)")
                         }
-                    } else if let decodedErrorMessage = try? JSONDecoder.druidDecoder.decode(ServerErrorReasonMessage.self, from: data) {
+                    } else if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorReasonMessage.self, from: data) {
                         DispatchQueue.main.async {
                             completion(.failure(TransferError.serverError(message: decodedErrorMessage.reason)))
                             print("🛑 \(decodedErrorMessage.reason)")
@@ -530,16 +530,16 @@ extension APIClient {
             print("🛑 Transfer Failed")
             throw TransferError.transferFailed
         }
-        if let decodedErrorMessage = try? JSONDecoder.druidDecoder.decode(ServerErrorDetailMessage.self, from: data) {
+        if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorDetailMessage.self, from: data) {
             print("🛑 \(decodedErrorMessage.detail)")
             throw TransferError.serverError(message: decodedErrorMessage.detail)
-        } else if let decodedErrorMessage = try? JSONDecoder.druidDecoder.decode(ServerErrorReasonMessage.self, from: data) {
+        } else if let decodedErrorMessage = try? JSONDecoder.telemetryDecoder.decode(ServerErrorReasonMessage.self, from: data) {
             print("🛑 \(decodedErrorMessage.reason)")
             throw TransferError.serverError(message: decodedErrorMessage.reason)
         }
         var decoded: Output
         do {
-            decoded = try JSONDecoder.druidDecoder.decode(Output.self, from: data)
+            decoded = try JSONDecoder.telemetryDecoder.decode(Output.self, from: data)
         } catch {
             print("🛑 Decode Failed: ", error)
             throw TransferError.decodeFailed
