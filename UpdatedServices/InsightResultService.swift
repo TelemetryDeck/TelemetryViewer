@@ -231,6 +231,15 @@ class InsightResultService: ObservableObject {
     
     func performRetrieval(ofInsightWithID insightID: DTOv2.Insight.ID) async throws -> DTOv2.InsightCalculationResult {
         
+//        switch loadingState(for: insightID) {
+//        case .loading, .error:
+//            return
+//        default:
+//            break
+//        }
+
+        loadingState[insightID] = .loading
+        
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.InsightCalculationResult, Error>) in
             let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
                                      Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
@@ -239,10 +248,12 @@ class InsightResultService: ObservableObject {
                 switch result {
                 case .success(let insightCalculationResult):
 //                    let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
-
+                    self.loadingState[insightID] = .finished(Date())
                     continuation.resume(returning: insightCalculationResult)
 
                 case .failure(let error):
+                    self.errorService.handle(transferError: error)
+                    self.loadingState[insightID] = .error(error.localizedDescription, Date())
                     continuation.resume(throwing: error)
                 }
             }

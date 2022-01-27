@@ -22,6 +22,7 @@ struct InsightCard: View {
     
     @State var insightCalculationResult: DTOv2.InsightCalculationResult?
     @State var chartDataSet: ChartDataSet?
+    @State var error: Error?
 
     
     private var isSelected: Bool {
@@ -89,30 +90,42 @@ struct InsightCard: View {
                     }
                     
                 } else {
-                    IconOnlyLoadingStateIndicator(loadingState: loadingState)
+                    LoadingStateIndicator(loadingState: loadingState)
                 }
             }
 //            .onAppear(perform: retrieve)
-//            .onAppear(perform: sendTelemetry)
+            .onAppear(perform: sendTelemetry)
 //            .onChange(of: insightResultService.isTestingMode) { _ in retrieve() }
 //            .onChange(of: insightResultService.timeWindowBeginning) { _ in retrieve() }
 //            .onChange(of: insightResultService.timeWindowEnd) { _ in retrieve() }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
         .padding(.top)
-        .onReceive(refreshTimer) { _ in
-            retrieve()
-        }
-        .onReceive(insightService.objectWillChange, perform: { retrieve() })
+//        .onReceive(refreshTimer) { _ in
+//            retrieve()
+//        }
+//        .onReceive(insightService.objectWillChange, perform: { retrieve() })
         .task {
             do {
                 let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
                 insightCalculationResult = result
                 chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
             } catch {
-                print("Error", error)
+                print(error.localizedDescription)
+                self.error = error
             }
         }
+        /// I think this might need to be on the list, not the card?
+//        .refreshable {
+//            do {
+//                let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
+//                insightCalculationResult = result
+//                chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
+//            } catch {
+//                print(error.localizedDescription)
+//                self.error = error
+//            }
+//        }
     }
     
     func sendTelemetry() {

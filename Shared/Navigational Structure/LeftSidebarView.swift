@@ -124,11 +124,6 @@ struct LeftSidebarView: View {
                         Spacer()
                     #endif
 
-//                    NavigationLink(destination: CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown)), isActive: $newAppViewShown, label: {
-//                        Text("Add app")
-//                        Image(systemName: "plus.square.dashed")
-//                            .help("Add App")
-//                    })
                 }
             }
     }
