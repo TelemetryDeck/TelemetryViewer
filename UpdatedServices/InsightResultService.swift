@@ -243,7 +243,9 @@ class InsightResultService: ObservableObject {
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.InsightCalculationResult, Error>) in
             let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
                                      Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
-                                     Formatter.iso8601noFS.string(from: timeWindowEndDate))
+                                     Formatter.iso8601noFS.string(from: timeWindowEndDate),
+                                     "\(isTestingMode ? "true" : "live")"
+            )
             api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
                 switch result {
                 case .success(let insightCalculationResult):

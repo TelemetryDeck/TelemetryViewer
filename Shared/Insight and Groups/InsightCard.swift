@@ -67,39 +67,37 @@ struct InsightCard: View {
             }
             
             Group {
-                if let insightCalculationResult = insightCalculationResult {
-                    if let chartDataSet = chartDataSet {
-                        switch insightCalculationResult.insight.displayMode {
-                        case .raw:
-                            RawChartView(chartDataSet: chartDataSet, isSelected: isSelected)
-                        case .pieChart:
-                            DonutChartView(chartDataset: chartDataSet, isSelected: isSelected)
-                                .padding(.bottom)
-                                .padding(.horizontal)
-                        case .lineChart:
-                            LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
-                        case .barChart:
-                            BarChartView(chartDataSet: chartDataSet, isSelected: isSelected)
-                        default:
-                            Text("\(insightCalculationResult.insight.displayMode.rawValue.capitalized) is not supported in this version.")
-                                .font(.footnote)
-                                .foregroundColor(.grayColor)
-                                .padding(.vertical)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                        }
-                    } else {
-                        LoadingStateIndicator(loadingState: loadingState)
+                if let chartDataSet = chartDataSet {
+                    switch insightCalculationResult!.insight.displayMode {
+                    case .raw:
+                        RawChartView(chartDataSet: chartDataSet, isSelected: isSelected)
+                    case .pieChart:
+                        DonutChartView(chartDataset: chartDataSet, isSelected: isSelected)
+                            .padding(.bottom)
+                            .padding(.horizontal)
+                    case .lineChart:
+                        LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
+                    case .barChart:
+                        BarChartView(chartDataSet: chartDataSet, isSelected: isSelected)
+                    default:
+                        Text("\(insightCalculationResult!.insight.displayMode.rawValue.capitalized) is not supported in this version.")
+                            .font(.footnote)
+                            .foregroundColor(.grayColor)
+                            .padding(.vertical)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     }
-                    
                 } else {
                     LoadingStateIndicator(loadingState: loadingState)
+                        .onTapGesture {
+                            retrieveResultsOnChange()
+                        }
                 }
             }
 //            .onAppear(perform: retrieve)
             .onAppear(perform: sendTelemetry)
-//            .onChange(of: insightResultService.isTestingMode) { _ in retrieve() }
-//            .onChange(of: insightResultService.timeWindowBeginning) { _ in retrieve() }
-//            .onChange(of: insightResultService.timeWindowEnd) { _ in retrieve() }
+            .onChange(of: insightResultService.isTestingMode) { _ in retrieveResultsOnChange() }
+            .onChange(of: insightResultService.timeWindowBeginning) { _ in retrieveResultsOnChange() }
+            .onChange(of: insightResultService.timeWindowEnd) { _ in retrieveResultsOnChange() }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
         .padding(.top)
@@ -130,6 +128,8 @@ struct InsightCard: View {
     }
     
     func retrieveResultsOnChange() {
+        chartDataSet = nil
+        insightCalculationResult = nil
         Task {
             await retrieveResults()
         }
