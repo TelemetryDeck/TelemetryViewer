@@ -251,6 +251,18 @@
 		C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
 		C5D1421A273471F00029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
 		C5D1421B273471F00029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
+		C5D2657127A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2656D27A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift */; };
+		C5D2657227A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2656D27A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift */; };
+		C5D2657327A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2656D27A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift */; };
+		C5D2657427A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2656D27A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift */; };
+		C5D2657527A43BAC00A06F84 /* AnimatedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2656E27A43BAC00A06F84 /* AnimatedCircle.swift */; };
+		C5D2657627A43BAC00A06F84 /* AnimatedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2656E27A43BAC00A06F84 /* AnimatedCircle.swift */; };
+		C5D2657727A43BAC00A06F84 /* AnimatedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2656E27A43BAC00A06F84 /* AnimatedCircle.swift */; };
+		C5D2657827A43BAC00A06F84 /* AnimatedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2656E27A43BAC00A06F84 /* AnimatedCircle.swift */; };
+		C5D2657D27A43BAC00A06F84 /* SondrineAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2657027A43BAC00A06F84 /* SondrineAnimation.swift */; };
+		C5D2657E27A43BAC00A06F84 /* SondrineAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2657027A43BAC00A06F84 /* SondrineAnimation.swift */; };
+		C5D2657F27A43BAC00A06F84 /* SondrineAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2657027A43BAC00A06F84 /* SondrineAnimation.swift */; };
+		C5D2658027A43BAC00A06F84 /* SondrineAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2657027A43BAC00A06F84 /* SondrineAnimation.swift */; };
 		DC24DF3325DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3425DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
@@ -444,6 +456,9 @@
 		C5A8D8B8270C821B0032560A /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		C5B917F02757C9EB004A842B /* CreateNewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppView.swift; sourceTree = "<group>"; };
 		C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalViewModifier.swift; sourceTree = "<group>"; };
+		C5D2656D27A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeCirclesInATrenchcode.swift; sourceTree = "<group>"; };
+		C5D2656E27A43BAC00A06F84 /* AnimatedCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedCircle.swift; sourceTree = "<group>"; };
+		C5D2657027A43BAC00A06F84 /* SondrineAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SondrineAnimation.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAppSelectedView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
@@ -589,6 +604,7 @@
 		2B462811272AF08500515530 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C5D2656C27A43BAC00A06F84 /* Sondrine Animation */,
 				DC98AABB250BC30200FF26FD /* TelemetrySignalTypes.swift */,
 				DCC8CB752563103E0019267A /* Illustrations.xcassets */,
 				DCE239FE24D3687D00053370 /* Assets.xcassets */,
@@ -759,6 +775,16 @@
 				C5A8D8B2270C821A0032560A /* Info.plist */,
 			);
 			path = TelemetryDeckIntents;
+			sourceTree = "<group>";
+		};
+		C5D2656C27A43BAC00A06F84 /* Sondrine Animation */ = {
+			isa = PBXGroup;
+			children = (
+				C5D2656D27A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift */,
+				C5D2656E27A43BAC00A06F84 /* AnimatedCircle.swift */,
+				C5D2657027A43BAC00A06F84 /* SondrineAnimation.swift */,
+			);
+			path = "Sondrine Animation";
 			sourceTree = "<group>";
 		};
 		DC24DF3125DD53E50003ADCB /* Navigational Structure */ = {
@@ -1331,7 +1357,9 @@
 				C51CB78127566248005A3FB9 /* Buttonstyles.swift in Sources */,
 				C51CB77A27566232005A3FB9 /* ListItemView.swift in Sources */,
 				C51CB794275664B2005A3FB9 /* AsyncOperation.swift in Sources */,
+				C5D2658027A43BAC00A06F84 /* SondrineAnimation.swift in Sources */,
 				C51CB77627566226005A3FB9 /* LoadingStateIndicator.swift in Sources */,
+				C5D2657427A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift in Sources */,
 				C51CB77427566209005A3FB9 /* Data+JSONPrettyPrint.swift in Sources */,
 				C51CB77727566228005A3FB9 /* OrderSetter.swift in Sources */,
 				C51CB78C2756627C005A3FB9 /* InsightResultService.swift in Sources */,
@@ -1348,6 +1376,7 @@
 				C51CB75C275660F5005A3FB9 /* TelemetryDeckWidget.swift in Sources */,
 				C51CB76E275661EF005A3FB9 /* APIClient.swift in Sources */,
 				C51CB78827566275005A3FB9 /* ErrorService.swift in Sources */,
+				C5D2657827A43BAC00A06F84 /* AnimatedCircle.swift in Sources */,
 				C51CB78427566255005A3FB9 /* ProgressView+Scale.swift in Sources */,
 				C51CB7782756622C005A3FB9 /* OptionalToggle.swift in Sources */,
 				C51CB78727566264005A3FB9 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
@@ -1370,7 +1399,9 @@
 				C5CE3D5A271AFCE2005232EC /* Binding+OnUpdate.swift in Sources */,
 				2B78C82C2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift in Sources */,
 				C5D1421B273471F00029CA03 /* ConditionalViewModifier.swift in Sources */,
+				C5D2657F27A43BAC00A06F84 /* SondrineAnimation.swift in Sources */,
 				C5CE3D55271AFCE2005232EC /* OrderSetter.swift in Sources */,
+				C5D2657327A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift in Sources */,
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
 				C5CE3D56271AFCE2005232EC /* MacNavigationView.swift in Sources */,
 				C5A8D892270C68790032560A /* TelemetrySignalTypes.swift in Sources */,
@@ -1387,6 +1418,7 @@
 				2B745564272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
 				2B6431A32739A5BB009A33C4 /* CacheLayer.swift in Sources */,
 				2B6431AB2739A5BB009A33C4 /* Caching.swift in Sources */,
+				C5D2657727A43BAC00A06F84 /* AnimatedCircle.swift in Sources */,
 				C5CE3D5E271AFD0C005232EC /* ProgressView+Scale.swift in Sources */,
 				C5CE3D54271AFCE2005232EC /* ListItemView.swift in Sources */,
 				C5CE3D59271AFCE2005232EC /* AdaptiveStack.swift in Sources */,
@@ -1425,6 +1457,7 @@
 			files = (
 				2B21FCDD26FDCA6A00A8A55B /* GroupView.swift in Sources */,
 				2BBFCA09267D05E40013DC74 /* Color.swift in Sources */,
+				C5D2657127A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift in Sources */,
 				2B1D469B26CC4F45008814A9 /* AppService.swift in Sources */,
 				DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BA5D50B26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
@@ -1444,6 +1477,7 @@
 				2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2B1D46A126CC52DD008814A9 /* InsightService.swift in Sources */,
 				2BBFCA07267D05E40013DC74 /* OptionalToggle.swift in Sources */,
+				C5D2657D27A43BAC00A06F84 /* SondrineAnimation.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
 				2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
 				2B781B8326F4A5E30062DBDC /* StatusMessageBanner.swift in Sources */,
@@ -1458,6 +1492,7 @@
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				63C4E9552778C4CE00344E20 /* SignalListCell.swift in Sources */,
 				2B6431992739A5BB009A33C4 /* Data+JSONPrettyPrint.swift in Sources */,
+				C5D2657527A43BAC00A06F84 /* AnimatedCircle.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				2B0050932703617B009C609C /* Color+Hex.swift in Sources */,
 				2B1D46A426CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
@@ -1518,6 +1553,7 @@
 			files = (
 				2BBFCA26267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				2B0050922703617B009C609C /* Color+Hex.swift in Sources */,
+				C5D2657227A43BAC00A06F84 /* ThreeCirclesInATrenchcode.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */,
 				2BC522EB2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */,
@@ -1599,9 +1635,11 @@
 				2BA5D50A26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
 				2B3CC0DD264D4AFF0038B528 /* LexiconService.swift in Sources */,
 				63C4E9592778D0D100344E20 /* SignalListExplanationView.swift in Sources */,
+				C5D2657627A43BAC00A06F84 /* AnimatedCircle.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
 				2B745563272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
+				C5D2657E27A43BAC00A06F84 /* SondrineAnimation.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				2B46280F27286D2500515530 /* TestingModeToggle.swift in Sources */,
 				2B1D469926CC4C5D008814A9 /* ErrorService.swift in Sources */,

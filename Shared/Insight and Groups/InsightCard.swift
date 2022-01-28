@@ -87,7 +87,7 @@ struct InsightCard: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     }
                 } else {
-                    LoadingStateIndicator(loadingState: loadingState)
+                    SondrineLoadingStateIndicator(loadingState: loadingState)
                         .onTapGesture {
                             retrieveResultsOnChange()
                         }
@@ -147,7 +147,12 @@ struct InsightCard: View {
             
         } catch {
             print(error.localizedDescription)
-            loadingState = .error(error.localizedDescription, Date())
+            
+            if let transferError = error as? TransferError {
+                loadingState = .error(transferError.localizedDescription, Date())
+            } else {
+                loadingState = .error(error.localizedDescription, Date())
+            }
         }
     }
     

@@ -18,6 +18,7 @@ final class APIClient: ObservableObject {
     enum ApiVersion: String {
         case v1
         case v2
+        case v3
     }
 
     private static let baseURLString =
