@@ -22,9 +22,7 @@ struct InsightCard: View {
     
     @State var insightCalculationResult: DTOv2.InsightCalculationResult?
     @State var chartDataSet: ChartDataSet?
-    @State var error: Error?
 
-    
     private var isSelected: Bool {
         selectedInsightID == insightID
     }
@@ -70,23 +68,27 @@ struct InsightCard: View {
             
             Group {
                 if let insightCalculationResult = insightCalculationResult {
-                    switch insightCalculationResult.insight.displayMode {
-                    case .raw:
-                        RawChartView(chartDataSet: chartDataSet!, isSelected: isSelected)
-                    case .pieChart:
-                        DonutChartView(chartDataset: chartDataSet!, isSelected: isSelected)
-                            .padding(.bottom)
-                            .padding(.horizontal)
-                    case .lineChart:
-                        LineChart(chartDataSet: chartDataSet!, isSelected: isSelected)
-                    case .barChart:
-                        BarChartView(chartDataSet: chartDataSet!, isSelected: isSelected)
-                    default:
-                        Text("\(insightCalculationResult.insight.displayMode.rawValue.capitalized) is not supported in this version.")
-                            .font(.footnote)
-                            .foregroundColor(.grayColor)
-                            .padding(.vertical)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    if let chartDataSet = chartDataSet {
+                        switch insightCalculationResult.insight.displayMode {
+                        case .raw:
+                            RawChartView(chartDataSet: chartDataSet, isSelected: isSelected)
+                        case .pieChart:
+                            DonutChartView(chartDataset: chartDataSet, isSelected: isSelected)
+                                .padding(.bottom)
+                                .padding(.horizontal)
+                        case .lineChart:
+                            LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
+                        case .barChart:
+                            BarChartView(chartDataSet: chartDataSet, isSelected: isSelected)
+                        default:
+                            Text("\(insightCalculationResult.insight.displayMode.rawValue.capitalized) is not supported in this version.")
+                                .font(.footnote)
+                                .foregroundColor(.grayColor)
+                                .padding(.vertical)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        }
+                    } else {
+                        LoadingStateIndicator(loadingState: loadingState)
                     }
                     
                 } else {
@@ -106,14 +108,7 @@ struct InsightCard: View {
 //        }
 //        .onReceive(insightService.objectWillChange, perform: { retrieve() })
         .task {
-            do {
-                let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
-                insightCalculationResult = result
-                chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
-            } catch {
-                print(error.localizedDescription)
-                self.error = error
-            }
+            await retrieveResults()
         }
         /// I think this might need to be on the list, not the card?
 //        .refreshable {
@@ -131,6 +126,28 @@ struct InsightCard: View {
     func sendTelemetry() {
         if let displayMode = insightWrap?.calculationResult.insight.displayMode {
             TelemetryManager.send("InsightShown", with: ["insightDisplayMode": displayMode.rawValue])
+        }
+    }
+    
+    func retrieveResultsOnChange() {
+        Task {
+            await retrieveResults()
+        }
+    }
+    
+    func retrieveResults() async {
+        loadingState = .loading
+        
+        do {
+            let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
+            insightCalculationResult = result
+            chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
+            
+            loadingState = .finished(Date())
+            
+        } catch {
+            print(error.localizedDescription)
+            loadingState = .error(error.localizedDescription, Date())
         }
     }
     
