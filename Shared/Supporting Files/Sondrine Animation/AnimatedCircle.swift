@@ -19,7 +19,7 @@ struct AnimatedCircle: View {
         Circle()
             .stroke(Color.gray, lineWidth: 10*scale/200)
 //            .padding(60)
-            .scaleEffect(isAtMaxScale ? maxScale*scale/200 : 0.05*scale/200)
+            .scaleEffect(isAtMaxScale ? maxScale*scale/200 : 0.005)
             .opacity(isAtMaxScale ? 0 : 0.75)
             .onAppear {
                 withAnimation(self.animation.delay(delay), {
