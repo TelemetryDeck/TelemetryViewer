@@ -22,15 +22,12 @@ struct SondrineAnimation: View {
                         .scaledToFit()
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .position(x: 0.163*min(geometry.size.width, geometry.size.height), y: 0.185*min(geometry.size.width, geometry.size.height))
-                    Image("sondrine_flat_no_circle").resizable().scaledToFit().frame(width: min(geometry.size.width, geometry.size.height), height: min(geometry.size.width, geometry.size.height), alignment: .center)
+                    Image("sondrine_flat_no_circle_td").resizable().scaledToFit().frame(width: min(geometry.size.width, geometry.size.height), height: min(geometry.size.width, geometry.size.height))
                 }
                 .frame(width: min(geometry.size.width, geometry.size.height), height: min(geometry.size.width, geometry.size.height), alignment: .center)
-                
                 Spacer()
-            }
-            .frame(maxWidth: .infinity)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
-        .frame(maxWidth: .infinity, maxHeight: 450)
     }
 }
 

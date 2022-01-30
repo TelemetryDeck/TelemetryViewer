@@ -107,10 +107,10 @@ struct LexiconView: View {
             list
                 .listRowBackground(Color.clear)
                 .navigationTitle("Signal Types")
-//                .onAppear {
+                .onAppear {
 //                    lexiconService.getPayloadKeys(for: appID)
-//                    lexiconService.getSignalTypes(for: appID)
-//                }
+                    lexiconService.getSignalTypes(for: appID)
+                }
                 .task {
                     await retrievePayloadKeys()
                 }
