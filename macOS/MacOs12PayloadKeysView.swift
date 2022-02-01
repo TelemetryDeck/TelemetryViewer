@@ -11,8 +11,8 @@ import DataTransferObjects
 @available(macOS 12, *)
 struct MacOs12PayloadKeysView: View {
     @EnvironmentObject var lexiconService: LexiconService
-    @State private var sortOrder: [KeyPathComparator<DTOv1.LexiconPayloadKey>] = [
-        .init(\.payloadKey, order: SortOrder.forward)
+    @State private var sortOrder: [KeyPathComparator<DTOv2.LexiconPayloadKey>] = [
+        .init(\.name, order: SortOrder.forward)
     ]
     @State var searchText: String = ""
 
@@ -20,8 +20,8 @@ struct MacOs12PayloadKeysView: View {
 
     var table: some View {
         Table(payloadTypes, sortOrder: $sortOrder) {
-            TableColumn("Key", value: \.payloadKey)
-            TableColumn("First Seen", value: \.firstSeenAt) { x in Text("\(x.firstSeenAt, style: .date)") }
+            TableColumn("Key", value: \.name)
+            TableColumn("Count", value: \.count) { x in Text("\(x.count)") }
         }
     }
 
@@ -57,10 +57,10 @@ struct MacOs12PayloadKeysView: View {
         }
     }
 
-    var payloadTypes: [DTOv1.LexiconPayloadKey] {
+    var payloadTypes: [DTOv2.LexiconPayloadKey] {
         return lexiconService.payloadKeys(for: appID)
             .filter {
-                searchText.isEmpty ? true : $0.payloadKey.localizedCaseInsensitiveContains(searchText)
+                searchText.isEmpty ? true : $0.name.localizedCaseInsensitiveContains(searchText)
             }
             .sorted(using: sortOrder)
     }

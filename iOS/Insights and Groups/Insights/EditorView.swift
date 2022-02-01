@@ -57,13 +57,13 @@ class EditorViewModel: ObservableObject {
         print("init: \(insight.title)")
     }
     
-    static func string(from customQuery: customQuery?) -> String {
+    static func string(from customQuery: CustomQuery?) -> String {
         guard let customQuery = customQuery else { return "" }
         
-        let encoder = JSONEncoder.druidEncoder
+        let encoder = JSONEncoder.telemetryEncoder
         encoder.outputFormatting = .prettyPrinted
         
-        guard let data = try? JSONEncoder.druidEncoder.encode(customQuery),
+        guard let data = try? JSONEncoder.telemetryEncoder.encode(customQuery),
               let stringValue  = String(data: data, encoding: .utf8) else {
                   return ""
               }
@@ -126,7 +126,7 @@ class EditorViewModel: ObservableObject {
     
     @Published var accentColor: String
     
-    @Published var customQuery: customQuery?
+    @Published var customQuery: CustomQuery?
     
     @Published var customQueryString: String
     
@@ -159,7 +159,7 @@ class EditorViewModel: ObservableObject {
     }
     
     var filterAutocompletionOptions: [String] {
-        return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey).sorted(by: { $0.lowercased() < $1.lowercased() })
+        return lexiconService.payloadKeys(for: appID).map(\.name).sorted(by: { $0.lowercased() < $1.lowercased() })
     }
     
     var signalTypeAutocompletionOptions: [String] {

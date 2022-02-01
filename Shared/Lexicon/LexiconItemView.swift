@@ -38,27 +38,22 @@ struct SignalTypeView: View {
 }
 
 struct PayloadKeyView: View {
-    let lexiconItem: DTOv1.LexiconPayloadKey
+    let lexiconItem: DTOv2.LexiconPayloadKey
 
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        return formatter
-    }()
+
 
     var body: some View {
         HStack {
-            Text(lexiconItem.payloadKey)
+            Text(lexiconItem.name)
                 .bold()
 
             Spacer()
 
-            Text("First seen ")
+            Text("Count ")
                 .foregroundColor(.grayColor)
                 +
 
-                Text(lexiconItem.firstSeenAt, style: .date)
+                Text(String(lexiconItem.count))
                 .foregroundColor(.grayColor)
         }
     }
