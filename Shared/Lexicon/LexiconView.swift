@@ -126,11 +126,6 @@ struct LexiconView: View {
         } catch {
             print(error.localizedDescription)
             
-//            if let transferError = error as? TransferError {
-//                loadingState = .error(transferError.localizedDescription, Date())
-//            } else {
-//                loadingState = .error(error.localizedDescription, Date())
-//            }
         }
     }
     

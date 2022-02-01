@@ -48,7 +48,7 @@ struct PayloadKeyView: View {
 
             Spacer()
 
-            Text("First seen ")
+            Text("Count ")
                 .foregroundColor(.grayColor)
                 +
 

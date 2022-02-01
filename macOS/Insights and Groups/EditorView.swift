@@ -5,9 +5,9 @@
 //  Created by Daniel Jilg on 23.08.21.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
 
 class EditorViewModel: ObservableObject {
     enum InsightType {
@@ -81,9 +81,10 @@ class EditorViewModel: ObservableObject {
         encoder.outputFormatting = .prettyPrinted
         
         guard let data = try? JSONEncoder.telemetryEncoder.encode(customQuery),
-              let stringValue  = String(data: data, encoding: .utf8) else {
-                  return ""
-              }
+              let stringValue = String(data: data, encoding: .utf8)
+        else {
+            return ""
+        }
         
         encoder.outputFormatting = .sortedKeys
         
@@ -188,12 +189,23 @@ class EditorViewModel: ObservableObject {
         }
     }
     
+    var lexiconPayloadKeys: [DTOv2.LexiconPayloadKey] = []
+    
     var filterAutocompletionOptions: [String] {
-        return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey).sorted(by: { $0.lowercased() < $1.lowercased() })
+        return lexiconPayloadKeys.map(\.name).sorted(by: { $0.lowercased() < $1.lowercased() })
     }
 
-    var signalTypeAutocompletionOptions: [String] {
-        return lexiconService.signalTypes(for: appID).map(\.type).sorted(by: { $0.lowercased() < $1.lowercased() })
+    @Published var signalTypeAutocompletionOptions: [String] = []
+    
+    func retrievePayloadKeys() async {
+        do {
+            let results = try await lexiconService.getPayloadKeysv2(for: appID)
+            lexiconPayloadKeys = results
+            signalTypeAutocompletionOptions = lexiconService.signalTypes(for: appID).map(\.type).sorted(by: { $0.lowercased() < $1.lowercased() })
+            
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -419,7 +431,6 @@ struct EditorView: View {
         .onAppear {
             TelemetryManager.send("EditorViewAppear")
             
-            viewModel.lexiconService.getPayloadKeys(for: viewModel.appID)
             viewModel.lexiconService.getSignalTypes(for: viewModel.appID)
         }
         .onDisappear {
@@ -430,6 +441,9 @@ struct EditorView: View {
     var body: some View {
         ScrollView {
             formContent
+        }
+        .task {
+            await viewModel.retrievePayloadKeys()
         }
     }
 }
