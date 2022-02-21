@@ -158,26 +158,12 @@ class EditorViewModel: ObservableObject {
         }
     }
     
-    var lexiconPayloadKeys: [DTOv2.LexiconPayloadKey] = []
-    
     var filterAutocompletionOptions: [String] {
-        return lexiconPayloadKeys.map(\.name).sorted(by: { $0.lowercased() < $1.lowercased() })
+        return lexiconService.payloadKeys(for: appID).filter { !$0.isHidden }.map(\.payloadKey).sorted(by: { $0.lowercased() < $1.lowercased() })
     }
     
     var signalTypeAutocompletionOptions: [String] {
         return lexiconService.signalTypes(for: appID).map(\.type).sorted(by: { $0.lowercased() < $1.lowercased() })
-    }
-    
-    func retrievePayloadKeys() async {
-        
-        do {
-            let results = try await lexiconService.getPayloadKeysv2(for: appID)
-            lexiconPayloadKeys = results
-            
-        } catch {
-            print(error.localizedDescription)
-            
-        }
     }
 }
 
@@ -399,10 +385,8 @@ struct EditorView: View {
         .onAppear {
             TelemetryManager.send("EditorViewAppear")
             
+            viewModel.lexiconService.getPayloadKeys(for: viewModel.appID)
             viewModel.lexiconService.getSignalTypes(for: viewModel.appID)
-        }
-        .task {
-            await viewModel.retrievePayloadKeys()
         }
         .toolbar{
             ToolbarItem(placement: .automatic){
