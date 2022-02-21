@@ -18,7 +18,7 @@ class LexiconService: ObservableObject {
     }
     
     @Published var lexiconSignals: [UUID: [DTOv1.LexiconSignalDTO]] = [:]
-    @Published var lexiconPayloadKeys: [UUID: [DTOv1.LexiconPayloadKey]] = [:]
+    @Published var lexiconPayloadKeys: [UUID: [DTOv2.LexiconPayloadKey]] = [:]
     @Published var loadingAppIDs: Set<UUID> = Set<UUID>()
     
     let api: APIClient
@@ -46,7 +46,7 @@ class LexiconService: ObservableObject {
         lexiconSignals[appID] ?? []
     }
     
-    func payloadKeys(for appID: UUID) -> [DTOv1.LexiconPayloadKey] {
+    func payloadKeys(for appID: UUID) -> [DTOv2.LexiconPayloadKey] {
         lexiconPayloadKeys[appID] ?? []
     }
     
@@ -72,12 +72,12 @@ class LexiconService: ObservableObject {
         }
     }
     
-    func getPayloadKeys(for appID: UUID, callback: ((Result<[DTOv1.LexiconPayloadKey], TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString, "lexicon", "payloadkeys")
+    func getPayloadKeys(for appID: UUID, callback: ((Result<[DTOv2.LexiconPayloadKey], TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath(apiVersion: .v3, "apps", appID.uuidString, "lexicon", "payloadkeys")
         
         loadingAppIDs.insert(appID)
 
-        api.get(url) { [unowned self] (result: Result<[DTOv1.LexiconPayloadKey], TransferError>) in
+        api.get(url) { [unowned self] (result: Result<[DTOv2.LexiconPayloadKey], TransferError>) in
             switch result {
             case let .success(lexiconItems):
                 self.lexiconPayloadKeys[appID] = lexiconItems
