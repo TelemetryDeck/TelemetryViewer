@@ -89,24 +89,6 @@ class LexiconService: ObservableObject {
             callback?(result)
         }
     }
-    
-    func getPayloadKeysv2(for appID: UUID, callback: ((Result<[DTOv1.LexiconPayloadKey], TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString, "lexicon", "payloadkeys")
-        
-        loadingAppIDs.insert(appID)
-
-        api.get(url) { [unowned self] (result: Result<[DTOv1.LexiconPayloadKey], TransferError>) in
-            switch result {
-            case let .success(lexiconItems):
-                self.lexiconPayloadKeys[appID] = lexiconItems
-            case let .failure(error):
-                api.handleError(error)
-            }
-
-            loadingAppIDs.remove(appID)
-            callback?(result)
-        }
-    }
 }
 
 class MockLexiconService: LexiconService {
