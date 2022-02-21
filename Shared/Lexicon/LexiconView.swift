@@ -7,14 +7,12 @@
 
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
 
 
 struct LexiconView: View {
     @EnvironmentObject var lexiconService: LexiconService
 
     @State private var sortKey: LexiconService.LexiconSortKey = .signalCount
-    @State var lexiconPayloadKeys: [DTOv2.LexiconPayloadKey] = []
     
 
     #if os(iOS)
@@ -98,7 +96,7 @@ struct LexiconView: View {
                         .font(.footnote)
                         .foregroundColor(.grayColor)
                         .multilineTextAlignment(.center)) {
-                    ForEach(lexiconPayloadKeys, id: \.self) { lexiconItem in
+                        ForEach(lexiconService.payloadKeys(for: appID)) { lexiconItem in
                             PayloadKeyView(lexiconItem: lexiconItem)
                         }
                 }
@@ -108,26 +106,10 @@ struct LexiconView: View {
                 .listRowBackground(Color.clear)
                 .navigationTitle("Signal Types")
                 .onAppear {
-//                    lexiconService.getPayloadKeys(for: appID)
+                    lexiconService.getPayloadKeys(for: appID)
                     lexiconService.getSignalTypes(for: appID)
                 }
-                .task {
-                    await retrievePayloadKeys()
-                }
         }
-    
-    
-    func retrievePayloadKeys() async {
-        
-        do {
-            let results = try await lexiconService.getPayloadKeysv2(for: appID)
-            lexiconPayloadKeys = results
-            
-        } catch {
-            print(error.localizedDescription)
-            
-        }
-    }
     
 }
 

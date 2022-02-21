@@ -5,9 +5,9 @@
 //  Created by Daniel Jilg on 12.05.21.
 //
 
-import DataTransferObjects
 import Foundation
 import SwiftUI
+import DataTransferObjects
 
 class LexiconService: ObservableObject {
     enum LexiconSortKey {
@@ -19,7 +19,7 @@ class LexiconService: ObservableObject {
     
     @Published var lexiconSignals: [UUID: [DTOv1.LexiconSignalDTO]] = [:]
     @Published var lexiconPayloadKeys: [UUID: [DTOv1.LexiconPayloadKey]] = [:]
-    @Published var loadingAppIDs = Set<UUID>()
+    @Published var loadingAppIDs: Set<UUID> = Set<UUID>()
     
     let api: APIClient
     
@@ -90,27 +90,27 @@ class LexiconService: ObservableObject {
         }
     }
     
-   // /api/v3/app/<ID>/lexicon/payloadkeys
-    
-    func getPayloadKeysv2(for appID: UUID) async throws -> [DTOv2.LexiconPayloadKey] {
-        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[DTOv2.LexiconPayloadKey], Error>) in
-            let url = api.urlForPath(apiVersion: .v3, "apps", appID.uuidString, "lexicon", "payloadkeys")
-            api.get(url) { (result: Result<[DTOv2.LexiconPayloadKey], TransferError>) in
-                switch result {
-                case let .success(lexiconPayloadKeys):
-                    continuation.resume(returning: lexiconPayloadKeys)
+    func getPayloadKeysv2(for appID: UUID, callback: ((Result<[DTOv1.LexiconPayloadKey], TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath("apps", appID.uuidString, "lexicon", "payloadkeys")
+        
+        loadingAppIDs.insert(appID)
 
-                case let .failure(error):
-                    // self.errorService.handle(transferError: error)
-
-                    continuation.resume(throwing: error)
-                }
+        api.get(url) { [unowned self] (result: Result<[DTOv1.LexiconPayloadKey], TransferError>) in
+            switch result {
+            case let .success(lexiconItems):
+                self.lexiconPayloadKeys[appID] = lexiconItems
+            case let .failure(error):
+                api.handleError(error)
             }
+
+            loadingAppIDs.remove(appID)
+            callback?(result)
         }
     }
 }
 
 class MockLexiconService: LexiconService {
+    
     convenience init() {
         self.init(api: APIClient())
     }
