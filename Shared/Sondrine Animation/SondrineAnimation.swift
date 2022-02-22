@@ -22,7 +22,7 @@ struct SondrineAnimation: View {
                         .scaledToFit()
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .position(x: 0.163*min(geometry.size.width, geometry.size.height), y: 0.185*min(geometry.size.width, geometry.size.height))
-                    Image("sondrine_flat_no_circle_gs2").resizable().scaledToFit().frame(width: min(geometry.size.width, geometry.size.height), height: min(geometry.size.width, geometry.size.height))
+                    Image("sondrine_loading").resizable().scaledToFit().frame(width: min(geometry.size.width, geometry.size.height), height: min(geometry.size.width, geometry.size.height))
                 }
                 .frame(width: min(geometry.size.width, geometry.size.height), height: min(geometry.size.width, geometry.size.height), alignment: .center)
                 Spacer()
