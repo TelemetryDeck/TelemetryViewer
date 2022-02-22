@@ -5,9 +5,10 @@
 //  Created by Daniel Jilg on 23.08.21.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
+import WidgetKit
 
 class EditorViewModel: ObservableObject {
     enum InsightType {
@@ -81,9 +82,10 @@ class EditorViewModel: ObservableObject {
         encoder.outputFormatting = .prettyPrinted
         
         guard let data = try? JSONEncoder.telemetryEncoder.encode(customQuery),
-              let stringValue  = String(data: data, encoding: .utf8) else {
-                  return ""
-              }
+              let stringValue = String(data: data, encoding: .utf8)
+        else {
+            return ""
+        }
         
         encoder.outputFormatting = .sortedKeys
         
@@ -132,7 +134,9 @@ class EditorViewModel: ObservableObject {
                 self.needsSaving = false
             }
         }
+        #warning("TODO: The InsightCard View does not update after saving.")
         
+        WidgetCenter.shared.reloadAllTimelines()
         TelemetryManager.send("EditorViewSave")
     }
     

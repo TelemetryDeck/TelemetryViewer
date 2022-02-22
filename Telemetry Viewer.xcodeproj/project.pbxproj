@@ -211,6 +211,10 @@
 		C51CB795275664B3005A3FB9 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6431912739A5BB009A33C4 /* AsyncOperation.swift */; };
 		C51CB79627566504005A3FB9 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
 		C51CB79827566548005A3FB9 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = C51CB79727566548005A3FB9 /* Shimmer */; };
+		C5551E5227C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
+		C5551E5327C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
+		C5551E5427C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
+		C5551E5527C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
 		C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
 		C581F4E1271B25B20031E99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
 		C581F4E5271B29470031E99C /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
@@ -443,6 +447,10 @@
 		C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (macOS).entitlements"; sourceTree = "<group>"; };
+		C5551E5127C3CBEB005847B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5551E5727C3CC78005847B6 /* ThreeCirclesInATrenchcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeCirclesInATrenchcode.swift; sourceTree = "<group>"; };
+		C5551E5827C3CC78005847B6 /* SondrineAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SondrineAnimation.swift; sourceTree = "<group>"; };
+		C5551E5927C3CC78005847B6 /* AnimatedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCircle.swift; sourceTree = "<group>"; };
 		C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidget.swift; sourceTree = "<group>"; };
 		C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TelemetryDeckWidget.intentdefinition; sourceTree = "<group>"; };
@@ -604,7 +612,6 @@
 		2B462811272AF08500515530 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C5D2656C27A43BAC00A06F84 /* Sondrine Animation */,
 				DC98AABB250BC30200FF26FD /* TelemetrySignalTypes.swift */,
 				DCC8CB752563103E0019267A /* Illustrations.xcassets */,
 				DCE239FE24D3687D00053370 /* Assets.xcassets */,
@@ -683,6 +690,8 @@
 			children = (
 				2BBFC9EB267D05E30013DC74 /* Helpers+Extensions */,
 				2BBFC9DF267D05E30013DC74 /* README.md */,
+				C5551E5127C3CBEB005847B6 /* Assets.xcassets */,
+				C5551E5627C3CC78005847B6 /* Sondrine Animation */,
 				2BBFC9F8267D05E30013DC74 /* AdaptiveStack.swift */,
 				2BBFC9F3267D05E30013DC74 /* Binding+OnUpdate.swift */,
 				2BBFC9EA267D05E30013DC74 /* Buttonstyles.swift */,
@@ -749,6 +758,16 @@
 				DC815F3B24E283640095A047 /* SignalList.swift */,
 			);
 			path = "Recent Signals";
+			sourceTree = "<group>";
+		};
+		C5551E5627C3CC78005847B6 /* Sondrine Animation */ = {
+			isa = PBXGroup;
+			children = (
+				C5551E5727C3CC78005847B6 /* ThreeCirclesInATrenchcode.swift */,
+				C5551E5927C3CC78005847B6 /* AnimatedCircle.swift */,
+				C5551E5827C3CC78005847B6 /* SondrineAnimation.swift */,
+			);
+			path = "Sondrine Animation";
 			sourceTree = "<group>";
 		};
 		C5A8D866270C5D7A0032560A /* TelemetryDeckWidget */ = {
@@ -905,6 +924,7 @@
 				DCD52C4E2541FFF0003F12C6 /* Helpers + Extensions */,
 				DC53393E25222C0900D9C889 /* Insight and Groups */,
 				DCF7CD3E254A068500BFA23B /* Lexicon */,
+				C5D2656C27A43BAC00A06F84 /* Sondrine Animation */,
 				DCB02B692502764200304964 /* Login + Register */,
 				DC24DF3125DD53E50003ADCB /* Navigational Structure */,
 				DCB02B67250027E400304964 /* Recent Signals */,
@@ -1199,6 +1219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C51CB79327566482005A3FB9 /* Assets.xcassets in Resources */,
+				C5551E5527C3CBEB005847B6 /* Assets.xcassets in Resources */,
 				C51CB76127566107005A3FB9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1208,6 +1229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C581F4E1271B25B20031E99C /* Assets.xcassets in Resources */,
+				C5551E5427C3CBEB005847B6 /* Assets.xcassets in Resources */,
 				C5A8D86B270C5D800032560A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1225,6 +1247,7 @@
 			files = (
 				2BBFCA05267D05E40013DC74 /* README.md in Resources */,
 				DCC8CB762563103E0019267A /* Illustrations.xcassets in Resources */,
+				C5551E5227C3CBEB005847B6 /* Assets.xcassets in Resources */,
 				DCE23A1324D3687D00053370 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1235,6 +1258,7 @@
 			files = (
 				2BBFCA06267D05E40013DC74 /* README.md in Resources */,
 				DCC8CB772563103E0019267A /* Illustrations.xcassets in Resources */,
+				C5551E5327C3CBEB005847B6 /* Assets.xcassets in Resources */,
 				DCE23A1424D3687D00053370 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

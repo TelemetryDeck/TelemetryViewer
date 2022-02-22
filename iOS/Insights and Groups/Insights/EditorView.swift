@@ -5,9 +5,10 @@
 //  Created by Martin Václavík on 29.12.2021.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
+import WidgetKit
 
 class EditorViewModel: ObservableObject {
     struct InsightType: PickerItem {
@@ -64,9 +65,10 @@ class EditorViewModel: ObservableObject {
         encoder.outputFormatting = .prettyPrinted
         
         guard let data = try? JSONEncoder.telemetryEncoder.encode(customQuery),
-              let stringValue  = String(data: data, encoding: .utf8) else {
-                  return ""
-              }
+              let stringValue = String(data: data, encoding: .utf8)
+        else {
+            return ""
+        }
         
         encoder.outputFormatting = .sortedKeys
         
@@ -114,11 +116,15 @@ class EditorViewModel: ObservableObject {
             }
         }
         
+        WidgetCenter.shared.reloadAllTimelines()
+        
         TelemetryManager.send("EditorViewSave")
     }
     
     let id: DTOv2.Insight.ID
     let appID: DTOv2.App.ID
+    
+    #warning("TODO: Save changes automatically? Or warn on dismiss?")
     
     @Published var order: Double
     
@@ -169,26 +175,22 @@ class EditorViewModel: ObservableObject {
 
 extension InsightDisplayMode: PickerItem {
     var name: String {
-        get {
-            switch self {
-            case .raw:
-                return "Raw"
-            case .barChart:
-                return "Bar chart"
-            case .lineChart:
-                return "Line chart"
-            case .pieChart:
-                return "Pie chart"
-            default:
-                return "number.square"
-            }
+        switch self {
+        case .raw:
+            return "Raw"
+        case .barChart:
+            return "Bar chart"
+        case .lineChart:
+            return "Line chart"
+        case .pieChart:
+            return "Pie chart"
+        default:
+            return "number.square"
         }
     }
     
     var explanation: String {
-        get {
-            chartTypeExplanationText
-        }
+        chartTypeExplanationText
     }
     
     public var id: UUID {
@@ -217,7 +219,7 @@ struct EditorView: View {
                         loadingState: groupService.loadingState(for: insightGroupID),
                         title: groupService.group(withID: insightGroupID)?.title
                     )
-                        .tag(insightGroupID)
+                    .tag(insightGroupID)
                 }
             }
             Picker(selection: $viewModel.accentColor, label: Text("Color")) {
@@ -241,29 +243,29 @@ struct EditorView: View {
                            summary: viewModel.displayMode.chartImage,
                            selectedItem: $viewModel.displayMode,
                            options: [
-                                InsightDisplayMode.raw,
-                                InsightDisplayMode.barChart,
-                                InsightDisplayMode.lineChart,
-                                InsightDisplayMode.pieChart
+                               InsightDisplayMode.raw,
+                               InsightDisplayMode.barChart,
+                               InsightDisplayMode.lineChart,
+                               InsightDisplayMode.pieChart
                            ])
             DetailedPicker(title: "Insight Type",
                            summary: Text(viewModel.insightType.name),
                            selectedItem: $viewModel.insightType,
                            options: [
-                EditorViewModel.InsightType.timeSeries,
-                EditorViewModel.InsightType.breakdown,
-                EditorViewModel.InsightType.customQuery
-            ])
+                               EditorViewModel.InsightType.timeSeries,
+                               EditorViewModel.InsightType.breakdown,
+                               EditorViewModel.InsightType.customQuery
+                           ])
             if viewModel.insightType == .timeSeries {
                 GroupByPicker(title: "Group Values by",
-                               selection: $viewModel.groupBy,
-                               options: [
-                                InsightGroupByInterval.hour,
-                                InsightGroupByInterval.day,
-                                InsightGroupByInterval.week,
-                                InsightGroupByInterval.month
-                               ],
-                description: "Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive.")
+                              selection: $viewModel.groupBy,
+                              options: [
+                                  InsightGroupByInterval.hour,
+                                  InsightGroupByInterval.day,
+                                  InsightGroupByInterval.week,
+                                  InsightGroupByInterval.month
+                              ],
+                              description: "Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive.")
             }
         }
     }
@@ -277,7 +279,7 @@ struct EditorView: View {
                 Text("Month").tag(InsightGroupByInterval.month)
             }
             .pickerStyle(SegmentedPickerStyle())
-            .listRowInsets(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .listRowBackground(Color.clear)
         }
     }
@@ -388,8 +390,8 @@ struct EditorView: View {
             viewModel.lexiconService.getPayloadKeys(for: viewModel.appID)
             viewModel.lexiconService.getSignalTypes(for: viewModel.appID)
         }
-        .toolbar{
-            ToolbarItem(placement: .automatic){
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
                 Button("Save", action: viewModel.save)
             }
         }
