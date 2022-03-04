@@ -67,31 +67,33 @@ struct InsightCard: View {
             }
             
             Group {
-                if let chartDataSet = chartDataSet {
-                    switch insightCalculationResult!.insight.displayMode {
-                    case .raw:
-                        RawChartView(chartDataSet: chartDataSet, isSelected: isSelected)
-                    case .pieChart:
-                        DonutChartView(chartDataset: chartDataSet, isSelected: isSelected)
-                            .padding(.bottom)
-                            .padding(.horizontal)
-                    case .lineChart:
-                        LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
-                    case .barChart:
-                        BarChartView(chartDataSet: chartDataSet, isSelected: isSelected)
-                    default:
-                        Text("\(insightCalculationResult!.insight.displayMode.rawValue.capitalized) is not supported in this version.")
-                            .font(.footnote)
-                            .foregroundColor(.grayColor)
-                            .padding(.vertical)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    }
-                } else {
-                    SondrineLoadingStateIndicator(loadingState: loadingState)
-                        .onTapGesture {
-                            retrieveResultsOnChange()
-                        }
-                }
+                QueryView(insightID: insightID)
+                
+//                if let chartDataSet = chartDataSet {
+//                    switch insightCalculationResult!.insight.displayMode {
+//                    case .raw:
+//                        RawChartView(chartDataSet: chartDataSet, isSelected: isSelected)
+//                    case .pieChart:
+//                        DonutChartView(chartDataset: chartDataSet, isSelected: isSelected)
+//                            .padding(.bottom)
+//                            .padding(.horizontal)
+//                    case .lineChart:
+//                        LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
+//                    case .barChart:
+//                        BarChartView(chartDataSet: chartDataSet, isSelected: isSelected)
+//                    default:
+//                        Text("\(insightCalculationResult!.insight.displayMode.rawValue.capitalized) is not supported in this version.")
+//                            .font(.footnote)
+//                            .foregroundColor(.grayColor)
+//                            .padding(.vertical)
+//                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+//                    }
+//                } else {
+//                    SondrineLoadingStateIndicator(loadingState: loadingState)
+//                        .onTapGesture {
+//                            retrieveResultsOnChange()
+//                        }
+//                }
             }
 //            .onAppear(perform: retrieve)
             .onAppear(perform: sendTelemetry)

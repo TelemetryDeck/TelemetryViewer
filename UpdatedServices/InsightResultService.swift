@@ -6,8 +6,8 @@
 //
 
 import Combine
-import Foundation
 import DataTransferObjects
+import Foundation
 import SwiftUICharts
 
 final class InsightRetrievalOperation: AsyncOperation {
@@ -27,7 +27,7 @@ final class InsightRetrievalOperation: AsyncOperation {
         self.onStatusChange = onStatusChange
         self.cacheKey = cacheKey
         self.cache = cache
-        self.insightResultService = resultService
+        insightResultService = resultService
         self.insightID = insightID
     }
 
@@ -188,8 +188,7 @@ class InsightResultService: ObservableObject {
         let url = api.urlForPath(apiVersion: .v2, "insights", insight.id.uuidString, "result",
                                  Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
                                  Formatter.iso8601noFS.string(from: timeWindowEndDate),
-                                 "\(isTestingMode ? "true" : "live")"
-        )
+                                 "\(isTestingMode ? "true" : "live")")
         
         let op = InsightRetrievalOperation(apiClient: api, insightID: insight.id, targetURL: url, cache: cache, cacheKey: cacheKey, resultService: self, onStatusChange: onStatusChange, onFinish: onFinish)
         
@@ -230,19 +229,87 @@ class InsightResultService: ObservableObject {
     }
     
     func performRetrieval(ofInsightWithID insightID: DTOv2.Insight.ID) async throws -> DTOv2.InsightCalculationResult {
-
-        
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.InsightCalculationResult, Error>) in
             let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString, "result",
                                      Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
                                      Formatter.iso8601noFS.string(from: timeWindowEndDate),
-                                     "\(isTestingMode ? "true" : "live")"
-            )
+                                     "\(isTestingMode ? "true" : "live")")
             api.get(url) { (result: Result<DTOv2.InsightCalculationResult, TransferError>) in
                 switch result {
                 case .success(let insightCalculationResult):
 
                     continuation.resume(returning: insightCalculationResult)
+
+                case .failure(let error):
+                    self.errorService.handle(transferError: error)
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    func getInsightQuery(ofInsightWithID insightID: DTOv2.Insight.ID) async throws -> CustomQuery {
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<CustomQuery, Error>) in
+            let url = api.urlForPath(apiVersion: .v3, "insights", insightID.uuidString, "query",
+                                     Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
+                                     Formatter.iso8601noFS.string(from: timeWindowEndDate),
+                                     "\(isTestingMode ? "true" : "live")")
+            api.get(url) { (result: Result<CustomQuery, TransferError>) in
+                switch result {
+                case .success(let query):
+
+                    continuation.resume(returning: query)
+
+                case .failure(let error):
+                    self.errorService.handle(transferError: error)
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    func createTask(forQuery query: CustomQuery) async throws -> [String: String] {
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[String: String], Error>) in
+            let url = api.urlForPath(apiVersion: .v3, "query", "calculate-async")
+            api.post(query, to: url) { (result: Result<[String: String], TransferError>) in
+                switch result {
+                case .success(let taskID):
+
+                    continuation.resume(returning: taskID)
+
+                case .failure(let error):
+                    self.errorService.handle(transferError: error)
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+   
+    func getTaskResult(forTaskID taskID: String) async throws -> QueryResultWrapper {
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<QueryResultWrapper, Error>) in
+            let url = api.urlForPath(apiVersion: .v3, "task", taskID, "lastSuccessfulValue")
+            api.get(url) { (result: Result<QueryResultWrapper, TransferError>) in
+                switch result {
+                case .success(let queryResult):
+
+                    continuation.resume(returning: queryResult)
+
+                case .failure(let error):
+                    self.errorService.handle(transferError: error)
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    func getTaskStatus(forTaskID taskID: String) async throws -> QueryTaskStatus {
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<QueryTaskStatus, Error>) in
+            let url = api.urlForPath(apiVersion: .v3, "task", taskID, "status")
+            api.get(url) { (result: Result<QueryTaskStatus, TransferError>) in
+                switch result {
+                case .success(let queryStatus):
+
+                    continuation.resume(returning: queryStatus)
 
                 case .failure(let error):
                     self.errorService.handle(transferError: error)

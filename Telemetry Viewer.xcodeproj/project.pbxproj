@@ -215,11 +215,15 @@
 		C5551E5327C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
 		C5551E5427C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
 		C5551E5527C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
+		C56B91F927C536D60085839A /* QueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B91F827C536D60085839A /* QueryView.swift */; };
+		C56B91FA27C536D60085839A /* QueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B91F827C536D60085839A /* QueryView.swift */; };
 		C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
 		C581F4E1271B25B20031E99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
 		C581F4E5271B29470031E99C /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
 		C581F4E6271B29780031E99C /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D469726CC4C5D008814A9 /* ErrorService.swift */; };
 		C581F4F5271B2B6B0031E99C /* TelemetrySignalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* TelemetrySignalTypes.swift */; };
+		C598487727CFBB7A00026772 /* QueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C598487627CFBB7A00026772 /* QueryService.swift */; };
+		C598487827CFBB7A00026772 /* QueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C598487627CFBB7A00026772 /* QueryService.swift */; };
 		C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AE8254EF0B5008F63CB /* WidgetKit.framework */; platformFilter = maccatalyst; };
 		C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD86AEA254EF0B5008F63CB /* SwiftUI.framework */; platformFilter = maccatalyst; };
 		C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */; };
@@ -451,6 +455,8 @@
 		C5551E5727C3CC78005847B6 /* ThreeCirclesInATrenchcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeCirclesInATrenchcode.swift; sourceTree = "<group>"; };
 		C5551E5827C3CC78005847B6 /* SondrineAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SondrineAnimation.swift; sourceTree = "<group>"; };
 		C5551E5927C3CC78005847B6 /* AnimatedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCircle.swift; sourceTree = "<group>"; };
+		C56B91F827C536D60085839A /* QueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryView.swift; sourceTree = "<group>"; };
+		C598487627CFBB7A00026772 /* QueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryService.swift; sourceTree = "<group>"; };
 		C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidget.swift; sourceTree = "<group>"; };
 		C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TelemetryDeckWidget.intentdefinition; sourceTree = "<group>"; };
@@ -595,6 +601,7 @@
 				2B61B94D264C08D4003F62C4 /* SignalsService.swift */,
 				2B3CC0D7264D4A2A0038B528 /* LexiconService.swift */,
 				2BC2720126207D710045A2FE /* MockData.swift */,
+				C598487627CFBB7A00026772 /* QueryService.swift */,
 			);
 			path = UpdatedServices;
 			sourceTree = "<group>";
@@ -824,6 +831,7 @@
 				2B21FCD926FDC9F900A8A55B /* InsightsGrid.swift */,
 				2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */,
 				6351A788277C9ED8003AF559 /* InsightDisplayMode+Extensions.swift */,
+				C56B91F827C536D60085839A /* QueryView.swift */,
 			);
 			path = "Insight and Groups";
 			sourceTree = "<group>";
@@ -1510,6 +1518,7 @@
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				2B1D469E26CC51A8008814A9 /* GroupService.swift in Sources */,
 				2BDD35062710727900CB2AA5 /* EditorModeView.swift in Sources */,
+				C56B91F927C536D60085839A /* QueryView.swift in Sources */,
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
 				2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */,
 				2BBFCA11267D05E40013DC74 /* DetailSidebar.swift in Sources */,
@@ -1517,6 +1526,7 @@
 				63C4E9552778C4CE00344E20 /* SignalListCell.swift in Sources */,
 				2B6431992739A5BB009A33C4 /* Data+JSONPrettyPrint.swift in Sources */,
 				C5D2657527A43BAC00A06F84 /* AnimatedCircle.swift in Sources */,
+				C598487727CFBB7A00026772 /* QueryService.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				2B0050932703617B009C609C /* Color+Hex.swift in Sources */,
 				2B1D46A426CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
@@ -1581,6 +1591,7 @@
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */,
 				2BC522EB2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */,
+				C56B91FA27C536D60085839A /* QueryView.swift in Sources */,
 				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				2B46280C2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				2BBFCA1E267D05E40013DC74 /* URL+Open.swift in Sources */,
@@ -1662,6 +1673,7 @@
 				C5D2657627A43BAC00A06F84 /* AnimatedCircle.swift in Sources */,
 				2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */,
 				2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */,
+				C598487827CFBB7A00026772 /* QueryService.swift in Sources */,
 				2B745563272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
 				C5D2657E27A43BAC00A06F84 /* SondrineAnimation.swift in Sources */,
 				DC9A92BC255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
