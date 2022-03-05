@@ -13,6 +13,7 @@ import TelemetryClient
 struct InsightCard: View {
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var insightResultService: InsightResultService
+    @EnvironmentObject var queryService: QueryService
     
     @Binding var selectedInsightID: DTOv2.Insight.ID?
     @Binding var sidebarVisible: Bool
@@ -67,7 +68,7 @@ struct InsightCard: View {
             }
             
             Group {
-                QueryView(insightID: insightID)
+                QueryView(viewModel: QueryViewModel(queryService: queryService, insightID: insightID))
                 
 //                if let chartDataSet = chartDataSet {
 //                    switch insightCalculationResult!.insight.displayMode {
