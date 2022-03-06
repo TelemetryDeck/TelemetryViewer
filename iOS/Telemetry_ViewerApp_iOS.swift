@@ -23,6 +23,7 @@ struct Telemetry_ViewerApp: App {
     let iconFinderService: IconFinderService
     let signalsService: SignalsService
     let lexiconService: LexiconService
+    let queryService: QueryService
 
     var body: some Scene {
         WindowGroup {
@@ -41,6 +42,7 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(lexiconService)
                 .environmentObject(orgService)
                 .environmentObject(iconFinderService)
+                .environmentObject(queryService)
         }
         .onChange(of: scenePhase) { newScenePhase in
             if newScenePhase == .active {
@@ -62,6 +64,8 @@ struct Telemetry_ViewerApp: App {
         
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
+        
+        self.queryService = QueryService(api: api, errors: errors)
         
         self.iconFinderService = IconFinderService(api: api)
         

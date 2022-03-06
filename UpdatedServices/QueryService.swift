@@ -130,10 +130,10 @@ class QueryService: ObservableObject {
     func getTaskStatus(forTaskID taskID: String) async throws -> QueryTaskStatus {
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<QueryTaskStatus, Error>) in
             let url = api.urlForPath(apiVersion: .v3, "task", taskID, "status")
-            api.get(url) { (result: Result<QueryTaskStatus, TransferError>) in
+            api.get(url) { (result: Result<QueryTaskStatusStruct, TransferError>) in
                 switch result {
-                case .success(let queryStatus):
-
+                case .success(let queryStatusStruct):
+                    let queryStatus = queryStatusStruct.status
                     continuation.resume(returning: queryStatus)
 
                 case .failure(let error):

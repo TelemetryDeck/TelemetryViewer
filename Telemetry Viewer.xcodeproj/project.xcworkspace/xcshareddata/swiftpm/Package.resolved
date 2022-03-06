@@ -2,12 +2,30 @@
   "object": {
     "pins": [
       {
+        "package": "DataTransferObjects",
+        "repositoryURL": "https://github.com/TelemetryDeck/models",
+        "state": {
+          "branch": "main",
+          "revision": "3a6728d1280f5183d1642da40b5f1061728d2bc3",
+          "version": null
+        }
+      },
+      {
         "package": "TelemetryClient",
         "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
         "state": {
           "branch": null,
-          "revision": "7b3f4369c4e18904b94253538585a583755eae24",
-          "version": "1.1.5"
+          "revision": "fb518b5acb02aa6ca41be7018bb1619aaef3dc13",
+          "version": "1.1.6"
+        }
+      },
+      {
+        "package": "DateOperations",
+        "repositoryURL": "git@github.com:TelemetryDeck/SwiftDateOperations.git",
+        "state": {
+          "branch": null,
+          "revision": "1e7d156746b12fa01c8965a8474d0fc145fb533a",
+          "version": "1.0.2"
         }
       },
       {
@@ -17,6 +35,15 @@
           "branch": null,
           "revision": "61411771350a5a4e96666a8a202ae4b2be327a2b",
           "version": "1.0.1"
+        }
+      },
+      {
+        "package": "SwiftUICharts",
+        "repositoryURL": "git@github.com:TelemetryDeck/SwiftUICharts.git",
+        "state": {
+          "branch": "main",
+          "revision": "4e238dd60fa8efd9ab0b86d796719df79a7e9f5e",
+          "version": null
         }
       }
     ]

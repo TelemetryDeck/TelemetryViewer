@@ -22,7 +22,7 @@ struct InsightCard: View {
     @State var loadingState: LoadingState = .idle
     
     @State var insightCalculationResult: DTOv2.InsightCalculationResult?
-    @State var chartDataSet: ChartDataSet?
+    @State var customQuery: CustomQuery?
 
     private var isSelected: Bool {
         selectedInsightID == insightID
@@ -68,7 +68,9 @@ struct InsightCard: View {
             }
             
             Group {
-                QueryView(viewModel: QueryViewModel(queryService: queryService, insightID: insightID))
+                if let displaymode = insightCalculationResult?.insight.displayMode, let query = customQuery  {
+                    QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: query, displayMode: displaymode, isSelected: isSelected))
+                }
                 
 //                if let chartDataSet = chartDataSet {
 //                    switch insightCalculationResult!.insight.displayMode {
@@ -98,9 +100,20 @@ struct InsightCard: View {
             }
 //            .onAppear(perform: retrieve)
             .onAppear(perform: sendTelemetry)
-            .onChange(of: insightResultService.isTestingMode) { _ in retrieveResultsOnChange() }
-            .onChange(of: insightResultService.timeWindowBeginning) { _ in retrieveResultsOnChange() }
-            .onChange(of: insightResultService.timeWindowEnd) { _ in retrieveResultsOnChange() }
+            .onChange(of: insightResultService.isTestingMode) { _ in
+                // is this the best way to do this?
+                queryService.isTestingMode = insightResultService.isTestingMode
+                retrieveResultsOnChange()
+            }
+            .onChange(of: insightResultService.timeWindowBeginning) { _ in
+                queryService.timeWindowBeginning = insightResultService.timeWindowBeginning
+                retrieveResultsOnChange()
+            
+            }
+            .onChange(of: insightResultService.timeWindowEnd) { _ in
+                queryService.timeWindowEnd = insightResultService.timeWindowEnd
+                retrieveResultsOnChange()
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
         .padding(.top)
@@ -124,6 +137,7 @@ struct InsightCard: View {
 //        }
     }
     
+    // needs to be updated. like everything I guess
     func sendTelemetry() {
         if let displayMode = insightWrap?.calculationResult.insight.displayMode {
             TelemetryManager.send("InsightShown", with: ["insightDisplayMode": displayMode.rawValue])
@@ -131,7 +145,6 @@ struct InsightCard: View {
     }
     
     func retrieveResultsOnChange() {
-        chartDataSet = nil
         insightCalculationResult = nil
         Task {
             await retrieveResults()
@@ -142,9 +155,12 @@ struct InsightCard: View {
         loadingState = .loading
         
         do {
+            // this is of course bullshit, I get the insightresult just to get the display mode, and then I do all of it again?!
             let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
-            insightCalculationResult = result
-            chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
+            let query = try await queryService.getInsightQuery(ofInsightWithID: insightID)
+            insightCalculationResult = result // this should be dispatchmain
+            customQuery = query
+//            chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
             
             loadingState = .finished(Date())
             

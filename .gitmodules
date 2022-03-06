@@ -1,9 +1,3 @@
 [submodule "UIComponents"]
 	path = UIComponents
 	url = git@github.com:AppTelemetry/UIComponents.git
-[submodule "Packages/DataTransferObjects"]
-	path = Packages/DataTransferObjects
-	url = git@github.com:AppTelemetry/models.git
-[submodule "Packages/SwiftUICharts"]
-	path = Packages/SwiftUICharts
-	url = git@github.com:TelemetryDeck/SwiftUICharts.git

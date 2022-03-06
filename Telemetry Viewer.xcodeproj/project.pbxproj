@@ -126,10 +126,6 @@
 		2BBFCA2C267D05E40013DC74 /* MacNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F4267D05E30013DC74 /* MacNavigationView.swift */; };
 		2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F8267D05E30013DC74 /* AdaptiveStack.swift */; };
 		2BBFCA34267D05E40013DC74 /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9F8267D05E30013DC74 /* AdaptiveStack.swift */; };
-		2BC1375C27230EBD008AE9BC /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC1375B27230EBD008AE9BC /* SwiftUICharts */; };
-		2BC1375E27230EC4008AE9BC /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC1375D27230EC4008AE9BC /* SwiftUICharts */; };
-		2BC137602723115E008AE9BC /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC1375F2723115E008AE9BC /* SwiftUICharts */; };
-		2BC13762272311BD008AE9BC /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2BC13761272311BD008AE9BC /* SwiftUICharts */; };
 		2BC2720226207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
 		2BC2720326207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
 		2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */; };
@@ -166,10 +162,8 @@
 		C51CB76027566103005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C51CB76127566107005A3FB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A8D86A270C5D800032560A /* Assets.xcassets */; };
 		C51CB76327566148005A3FB9 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = C51CB76227566148005A3FB9 /* DataTransferObjects */; };
-		C51CB76527566153005A3FB9 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C51CB76427566153005A3FB9 /* SwiftUICharts */; };
 		C51CB76727566158005A3FB9 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = C51CB76627566158005A3FB9 /* TelemetryClient */; };
 		C51CB76927566199005A3FB9 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = C51CB76827566199005A3FB9 /* DataTransferObjects */; };
-		C51CB76B27566199005A3FB9 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C51CB76A27566199005A3FB9 /* SwiftUICharts */; };
 		C51CB76D27566199005A3FB9 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = C51CB76C27566199005A3FB9 /* TelemetryClient */; };
 		C51CB76E275661EF005A3FB9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64318D2739A5BB009A33C4 /* APIClient.swift */; };
 		C51CB76F275661F0005A3FB9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64318D2739A5BB009A33C4 /* APIClient.swift */; };
@@ -240,6 +234,13 @@
 		C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
+		C5AD4B6127D3926900CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6027D3926900CD7E4C /* SwiftUICharts */; };
+		C5AD4B6427D3928600CD7E4C /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6327D3928600CD7E4C /* DataTransferObjects */; };
+		C5AD4B6627D392CF00CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6527D392CF00CD7E4C /* SwiftUICharts */; };
+		C5AD4B6827D3B4F300CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6727D3B4F300CD7E4C /* SwiftUICharts */; };
+		C5AD4B6A27D3B4FA00CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6927D3B4FA00CD7E4C /* SwiftUICharts */; };
+		C5AD4B6C27D3B62000CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6B27D3B62000CD7E4C /* SwiftUICharts */; };
+		C5AD4B6E27D3B62700CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6D27D3B62700CD7E4C /* SwiftUICharts */; };
 		C5B917F12757C9EB004A842B /* CreateNewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B917F02757C9EB004A842B /* CreateNewAppView.swift */; };
 		C5CE3D4D271AFCB6005232EC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E1267D05E30013DC74 /* Color.swift */; };
 		C5CE3D4E271AFCE2005232EC /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFC9E6267D05E30013DC74 /* DetailSidebar.swift */; };
@@ -426,8 +427,6 @@
 		2BBFC9F4267D05E30013DC74 /* MacNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacNavigationView.swift; sourceTree = "<group>"; };
 		2BBFC9F5267D05E30013DC74 /* InsightReloadButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightReloadButtonView.swift; sourceTree = "<group>"; };
 		2BBFC9F8267D05E30013DC74 /* AdaptiveStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveStack.swift; sourceTree = "<group>"; };
-		2BC1375927230E0D008AE9BC /* DataTransferObjects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DataTransferObjects; path = Packages/DataTransferObjects; sourceTree = "<group>"; };
-		2BC1375A27230E0D008AE9BC /* SwiftUICharts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftUICharts; path = Packages/SwiftUICharts; sourceTree = "<group>"; };
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
 		2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
@@ -520,8 +519,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C51CB76527566153005A3FB9 /* SwiftUICharts in Frameworks */,
 				C51CB76727566158005A3FB9 /* TelemetryClient in Frameworks */,
+				C5AD4B6E27D3B62700CD7E4C /* SwiftUICharts in Frameworks */,
 				C51CB76327566148005A3FB9 /* DataTransferObjects in Frameworks */,
 				C51CB73C27565F76005A3FB9 /* Intents.framework in Frameworks */,
 			);
@@ -534,7 +533,7 @@
 				C51CB79827566548005A3FB9 /* Shimmer in Frameworks */,
 				C51CB76D27566199005A3FB9 /* TelemetryClient in Frameworks */,
 				C51CB74E275660E0005A3FB9 /* SwiftUI.framework in Frameworks */,
-				C51CB76B27566199005A3FB9 /* SwiftUICharts in Frameworks */,
+				C5AD4B6A27D3B4FA00CD7E4C /* SwiftUICharts in Frameworks */,
 				C51CB76927566199005A3FB9 /* DataTransferObjects in Frameworks */,
 				C51CB74D275660E0005A3FB9 /* WidgetKit.framework in Frameworks */,
 			);
@@ -548,7 +547,7 @@
 				C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */,
 				2B043C34271B491B00DDB255 /* TelemetryClient in Frameworks */,
 				C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */,
-				2BC137602723115E008AE9BC /* SwiftUICharts in Frameworks */,
+				C5AD4B6827D3B4F300CD7E4C /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D8AE270C821A0032560A /* Intents.framework in Frameworks */,
-				2BC13762272311BD008AE9BC /* SwiftUICharts in Frameworks */,
+				C5AD4B6C27D3B62000CD7E4C /* SwiftUICharts in Frameworks */,
 				2B0769D82722EA260024D8A7 /* DataTransferObjects in Frameworks */,
 				2B043C36271B492900DDB255 /* TelemetryClient in Frameworks */,
 			);
@@ -567,7 +566,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BC1375E27230EC4008AE9BC /* SwiftUICharts in Frameworks */,
+				C5AD4B6427D3928600CD7E4C /* DataTransferObjects in Frameworks */,
+				C5AD4B6127D3926900CD7E4C /* SwiftUICharts in Frameworks */,
 				2B0769DE2722EA3B0024D8A7 /* DataTransferObjects in Frameworks */,
 				DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */,
 			);
@@ -578,7 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B25EAE926D3EEE700BBBB1B /* Shimmer in Frameworks */,
-				2BC1375C27230EBD008AE9BC /* SwiftUICharts in Frameworks */,
+				C5AD4B6627D392CF00CD7E4C /* SwiftUICharts in Frameworks */,
 				2B0769DC2722EA350024D8A7 /* DataTransferObjects in Frameworks */,
 				DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */,
 			);
@@ -906,8 +906,6 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
-				2BC1375927230E0D008AE9BC /* DataTransferObjects */,
-				2BC1375A27230E0D008AE9BC /* SwiftUICharts */,
 				2B74555C27230626002CBB45 /* SwiftUIChartsExtensions */,
 				2BD189F6267BCEA900DFDE4D /* UIComponents */,
 				2BC1427326656DEF009BCB3B /* APIClient */,
@@ -1032,8 +1030,8 @@
 			name = TelemetryDeckMacIntents;
 			packageProductDependencies = (
 				C51CB76227566148005A3FB9 /* DataTransferObjects */,
-				C51CB76427566153005A3FB9 /* SwiftUICharts */,
 				C51CB76627566158005A3FB9 /* TelemetryClient */,
+				C5AD4B6D27D3B62700CD7E4C /* SwiftUICharts */,
 			);
 			productName = TelemetryDeckMacIntents;
 			productReference = C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */;
@@ -1055,9 +1053,9 @@
 			name = TelemetryDeckMacWidgetExtension;
 			packageProductDependencies = (
 				C51CB76827566199005A3FB9 /* DataTransferObjects */,
-				C51CB76A27566199005A3FB9 /* SwiftUICharts */,
 				C51CB76C27566199005A3FB9 /* TelemetryClient */,
 				C51CB79727566548005A3FB9 /* Shimmer */,
+				C5AD4B6927D3B4FA00CD7E4C /* SwiftUICharts */,
 			);
 			productName = TelemetryDeckMacWidgetExtension;
 			productReference = C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */;
@@ -1080,7 +1078,7 @@
 			packageProductDependencies = (
 				2B043C33271B491B00DDB255 /* TelemetryClient */,
 				2B0769D92722EA2F0024D8A7 /* DataTransferObjects */,
-				2BC1375F2723115E008AE9BC /* SwiftUICharts */,
+				C5AD4B6727D3B4F300CD7E4C /* SwiftUICharts */,
 			);
 			productName = TelemetryDeckWidgetExtension;
 			productReference = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */;
@@ -1102,7 +1100,7 @@
 			packageProductDependencies = (
 				2B043C35271B492900DDB255 /* TelemetryClient */,
 				2B0769D72722EA260024D8A7 /* DataTransferObjects */,
-				2BC13761272311BD008AE9BC /* SwiftUICharts */,
+				C5AD4B6B27D3B62000CD7E4C /* SwiftUICharts */,
 			);
 			productName = TelemetryDeckIntents;
 			productReference = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */;
@@ -1128,7 +1126,8 @@
 			packageProductDependencies = (
 				DC9C0830252CD622001C0F94 /* TelemetryClient */,
 				2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */,
-				2BC1375D27230EC4008AE9BC /* SwiftUICharts */,
+				C5AD4B6027D3926900CD7E4C /* SwiftUICharts */,
+				C5AD4B6327D3928600CD7E4C /* DataTransferObjects */,
 			);
 			productName = "Telemetry Viewer (iOS)";
 			productReference = DCE23A0324D3687D00053370 /* Telemetry Viewer.app */;
@@ -1152,7 +1151,7 @@
 				DC9C0841252CEAC9001C0F94 /* TelemetryClient */,
 				2B25EAE826D3EEE700BBBB1B /* Shimmer */,
 				2B0769DB2722EA350024D8A7 /* DataTransferObjects */,
-				2BC1375B27230EBD008AE9BC /* SwiftUICharts */,
+				C5AD4B6527D392CF00CD7E4C /* SwiftUICharts */,
 			);
 			productName = "Telemetry Viewer (macOS)";
 			productReference = DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */;
@@ -1199,6 +1198,8 @@
 			packageReferences = (
 				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
 				2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */,
 			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
 			projectDirPath = "";
@@ -2245,6 +2246,22 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:TelemetryDeck/SwiftUICharts.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/models";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
@@ -2287,29 +2304,9 @@
 			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
 		};
-		2BC1375B27230EBD008AE9BC /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftUICharts;
-		};
-		2BC1375D27230EC4008AE9BC /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftUICharts;
-		};
-		2BC1375F2723115E008AE9BC /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftUICharts;
-		};
-		2BC13761272311BD008AE9BC /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftUICharts;
-		};
 		C51CB76227566148005A3FB9 /* DataTransferObjects */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DataTransferObjects;
-		};
-		C51CB76427566153005A3FB9 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftUICharts;
 		};
 		C51CB76627566158005A3FB9 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2320,10 +2317,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = DataTransferObjects;
 		};
-		C51CB76A27566199005A3FB9 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftUICharts;
-		};
 		C51CB76C27566199005A3FB9 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
@@ -2333,6 +2326,41 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
+		};
+		C5AD4B6027D3926900CD7E4C /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+		C5AD4B6327D3928600CD7E4C /* DataTransferObjects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */;
+			productName = DataTransferObjects;
+		};
+		C5AD4B6527D392CF00CD7E4C /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+		C5AD4B6727D3B4F300CD7E4C /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+		C5AD4B6927D3B4FA00CD7E4C /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+		C5AD4B6B27D3B62000CD7E4C /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+		C5AD4B6D27D3B62700CD7E4C /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
 		};
 		DC9C0830252CD622001C0F94 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;

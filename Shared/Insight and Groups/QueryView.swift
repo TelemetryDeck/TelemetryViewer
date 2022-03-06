@@ -13,7 +13,9 @@ import SwiftUICharts
 
 class QueryViewModel: ObservableObject {
     let queryService: QueryService
-    let insightID: DTOv2.Insight.ID
+    let customQuery: CustomQuery
+    let displayMode: InsightDisplayMode
+    let isSelected: Bool
     
     public let runningTimer = Timer.publish(
         every: 0.5, // seconds
@@ -27,18 +29,19 @@ class QueryViewModel: ObservableObject {
         in: .common
     ).autoconnect()
     
-    init(queryService: QueryService, insightID: DTOv2.Insight.ID) {
+    init(queryService: QueryService, customQuery: CustomQuery, displayMode: InsightDisplayMode, isSelected: Bool) {
         self.queryService = queryService
-        self.insightID = insightID
+        self.customQuery = customQuery
+        self.displayMode = displayMode
+        self.isSelected = isSelected
     }
     
-    @Published var loadingState: LoadingState = .idle
+    @Published var loadingState: LoadingState = .loading
     @Published var queryTaskStatus: QueryTaskStatus = .running
     
-    var customQuery: CustomQuery?
     var taskID: [String: String] = ["queryTaskID": ""]
     @Published var queryResult: QueryResultWrapper? = nil
-    @Published var chartDataset: ChartDataSet? = nil
+    @Published var chartDataSet: ChartDataSet? = nil
      
     // func that posts the query on load and loads the last result
     
@@ -46,26 +49,37 @@ class QueryViewModel: ObservableObject {
         loadingState = .loading
         
         do {
-            customQuery = try await queryService.getInsightQuery(ofInsightWithID: insightID) // this belongs in the insight view
-            if customQuery != nil {
-                taskID = try await queryService.createTask(forQuery: customQuery!)
-                let result = try await queryService.getTaskResult(forTaskID: taskID["queryTaskID"]!)
-                if result.result != nil {
-                    queryResult = result
-                    chartDataset = try ChartDataSet(fromQueryResultWrapper: queryResult)
-                    loadingState = .finished(Date())
+            taskID = try await queryService.createTask(forQuery: customQuery)
+            let result = try await queryService.getTaskResult(forTaskID: taskID["queryTaskID"]!)
+            if result.result != nil {
+                let chartDataSet = try ChartDataSet(fromQueryResultWrapper: result)
+                DispatchQueue.main.async {
+                    self.queryResult = result
+                    self.chartDataSet = chartDataSet
+                    self.loadingState = .finished(Date())
                 }
             }
             
         } catch {
             print(error.localizedDescription)
             
-            if let transferError = error as? TransferError {
-                loadingState = .error(transferError.localizedDescription, Date())
-            } else if let chartDataSetError = error as? ChartDataSetError {
-                loadingState = .error(chartDataSetError.localizedDescription, Date())
-            } else {
-                loadingState = .error(error.localizedDescription, Date())
+            DispatchQueue.main.async {
+                if let transferError = error as? TransferError {
+                    switch transferError {
+                    case .transferFailed, .decodeFailed:
+                        self.loadingState = .error(transferError.localizedDescription, Date())
+                    case .serverError(let message):
+                        if message == "Not Found" {
+                            self.loadingState = .loading
+                        } else {
+                            self.loadingState = .error(transferError.localizedDescription, Date())
+                        }
+                    }
+                } else if let chartDataSetError = error as? ChartDataSetError {
+                    self.loadingState = .error(chartDataSetError.localizedDescription, Date())
+                } else {
+                    self.loadingState = .error(error.localizedDescription, Date())
+                }
             }
         }
     }
@@ -73,33 +87,62 @@ class QueryViewModel: ObservableObject {
     // func that asks for the status every 0.5 seconds if current status is running and loads the result if status is successful
     
     func checkIfStillRunning() async {
+        switch loadingState {
+        case .idle, .loading, .finished:
+            break
+        case .error:
+            return
+        }
+        
         if queryTaskStatus == .running {
             loadingState = .loading
         
             do {
-                queryTaskStatus = try await queryService.getTaskStatus(forTaskID: taskID["queryTaskID"]!)
-                if queryTaskStatus == .successful {
+                let taskStatus = try await queryService.getTaskStatus(forTaskID: taskID["queryTaskID"]!)
+                
+                switch taskStatus {
+                case .successful:
+                    DispatchQueue.main.async {
+                        self.queryTaskStatus = taskStatus
+                    }
                     let result = try await queryService.getTaskResult(forTaskID: taskID["queryTaskID"]!)
-                    queryResult = result
-                    chartDataset = try ChartDataSet(fromQueryResultWrapper: queryResult)
-                    print(queryResult ?? "oop")
-            
-                    loadingState = .finished(Date())
-                } else if queryTaskStatus == .error {
-                    loadingState = .error("Query Task Status error.", Date())
-                } else {
-                    loadingState = .finished(Date())
+                    let chartDataSet = try ChartDataSet(fromQueryResultWrapper: result)
+                    DispatchQueue.main.async {
+                        self.queryResult = result
+                        self.chartDataSet = chartDataSet
+                        self.loadingState = .finished(Date())
+                    }
+                case .error:
+                    DispatchQueue.main.async {
+                        self.loadingState = .error("string", Date())
+                        self.queryTaskStatus = taskStatus
+                    }
+
+                case .running:
+                    DispatchQueue.main.async {
+                        self.loadingState = .finished(Date())
+                        self.queryTaskStatus = taskStatus
+                    }
                 }
-            
             } catch {
                 print(error.localizedDescription)
-            
-                if let transferError = error as? TransferError {
-                    loadingState = .error(transferError.localizedDescription, Date())
-                } else if let chartDataSetError = error as? ChartDataSetError {
-                    loadingState = .error(chartDataSetError.localizedDescription, Date())
-                } else {
-                    loadingState = .error(error.localizedDescription, Date())
+                DispatchQueue.main.async {
+                    if let transferError = error as? TransferError {
+                        switch transferError {
+                        case .transferFailed, .decodeFailed:
+                            self.loadingState = .error(transferError.localizedDescription, Date())
+                        case .serverError(let message):
+                            if message == "Not Found" {
+                                self.loadingState = .loading
+                            } else {
+                                self.loadingState = .error(transferError.localizedDescription, Date())
+                            }
+                        }
+                    } else if let chartDataSetError = error as? ChartDataSetError {
+                        self.loadingState = .error(chartDataSetError.localizedDescription, Date())
+                    } else {
+                        self.loadingState = .error(error.localizedDescription, Date())
+                    }
                 }
             }
         }
@@ -107,28 +150,58 @@ class QueryViewModel: ObservableObject {
     
     // func that asks for the status every 10 seconds
     
+    // this function doesn't make any sense as is, as it probably doesn't notice that the status changed? I think we should do something else that makes more sense, like changing the task status to running and resubmitting the task?
+    
     func checkStatus() async {
+        switch loadingState {
+        case .idle, .loading, .finished:
+            break
+        case .error:
+            return
+        }
+        
         if queryTaskStatus == .successful {
             loadingState = .loading
             do {
-                queryTaskStatus = try await queryService.getTaskStatus(forTaskID: taskID["queryTaskID"]!)
-                if queryTaskStatus == .successful {
-                    loadingState = .finished(Date())
-                } else if queryTaskStatus == .error {
-                    loadingState = .error("Query Task Status error.", Date())
-                } else {
-                    loadingState = .finished(Date())
+                let taskStatus = try await queryService.getTaskStatus(forTaskID: taskID["queryTaskID"]!)
+                switch taskStatus {
+                case .successful:
+                    DispatchQueue.main.async {
+                        self.loadingState = .finished(Date())
+                        self.queryTaskStatus = taskStatus
+                    }
+                case .error:
+                    DispatchQueue.main.async {
+                        self.loadingState = .error("string", Date())
+                        self.queryTaskStatus = taskStatus
+                    }
+
+                case .running:
+                    DispatchQueue.main.async {
+                        self.loadingState = .finished(Date())
+                        self.queryTaskStatus = taskStatus
+                    }
                 }
-            
             } catch {
                 print(error.localizedDescription)
             
-                if let transferError = error as? TransferError {
-                    loadingState = .error(transferError.localizedDescription, Date())
-                } else if let chartDataSetError = error as? ChartDataSetError {
-                    loadingState = .error(chartDataSetError.localizedDescription, Date())
-                } else {
-                    loadingState = .error(error.localizedDescription, Date())
+                DispatchQueue.main.async {
+                    if let transferError = error as? TransferError {
+                        switch transferError {
+                        case .transferFailed, .decodeFailed:
+                            self.loadingState = .error(transferError.localizedDescription, Date())
+                        case .serverError(let message):
+                            if message == "Not Found" {
+                                self.loadingState = .loading
+                            } else {
+                                self.loadingState = .error(transferError.localizedDescription, Date())
+                            }
+                        }
+                    } else if let chartDataSetError = error as? ChartDataSetError {
+                        self.loadingState = .error(chartDataSetError.localizedDescription, Date())
+                    } else {
+                        self.loadingState = .error(error.localizedDescription, Date())
+                    }
                 }
             }
         }
@@ -140,9 +213,36 @@ struct QueryView: View {
     
     var body: some View {
         VStack {
-            Text("lalal")
-            viewModel.chartDataset.map {
-                LineChart(chartDataSet: $0, isSelected: false)
+//            Text("asdf")
+//            viewModel.chartDataSet.map {
+//                LineChart(chartDataSet: $0, isSelected: false)
+//            }
+            if let chartDataSet = viewModel.chartDataSet {
+                switch viewModel.displayMode {
+                case .raw:
+                    RawChartView(chartDataSet: chartDataSet, isSelected: viewModel.isSelected)
+                case .pieChart:
+                    DonutChartView(chartDataset: chartDataSet, isSelected: viewModel.isSelected)
+                        .padding(.bottom)
+                        .padding(.horizontal)
+                case .lineChart:
+                    LineChart(chartDataSet: chartDataSet, isSelected: viewModel.isSelected)
+                case .barChart:
+                    BarChartView(chartDataSet: chartDataSet, isSelected: viewModel.isSelected)
+                default:
+                    Text("\(viewModel.displayMode.rawValue.capitalized) is not supported in this version.")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+            } else {
+                SondrineLoadingStateIndicator(loadingState: viewModel.loadingState)
+                    .onTapGesture {
+                        Task {
+                            await viewModel.retrieveResults()
+                        }
+                    }
             }
         }
         .task {

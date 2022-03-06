@@ -7,6 +7,7 @@
 
 import Intents
 import TelemetryClient
+import DataTransferObjects
 
 class IntentHandler: INExtension, ConfigurationIntentHandling {
     let api: APIClient
