@@ -21,9 +21,18 @@ struct InsightCard: View {
     @State var insightWrap: InsightResultWrap?
     @State var loadingState: LoadingState = .idle
     
-    @State var insightCalculationResult: DTOv2.InsightCalculationResult?
     @State var customQuery: CustomQuery?
-
+    
+    /// ok, for some reason I broke some things, and I don't understand it?
+    /// like, the app seems to not know which insights are selected anymore?
+    /// also, some results are not retrieved ever for some reason?
+    /// Decode Failed:  dataCorrupted(Swift.DecodingError.Context(codingPath: [], debugDescription: "The given data was not valid JSON.", underlyingError: Optional(Error Domain=NSCocoaErrorDomain Code=3840 "Unable to parse empty data." UserInfo={NSDebugDescription=Unable to parse empty data.})))
+    /// weird error? the respone was nil? I should handle that somehow? probably lol
+    ///
+    /// also I should totally fix the applist, it makes a million api requests lol
+    ///
+    /// oh, maybe due to no dispatch main!
+    
     private var isSelected: Bool {
         selectedInsightID == insightID
     }
@@ -31,6 +40,7 @@ struct InsightCard: View {
     let insightID: DTOv2.Insight.ID
     let isSelectable: Bool
     
+    // make this a timer that retrieves insight occasionally?
     private let refreshTimer = Timer.publish(
         every: 60, // seconds
         on: .main,
@@ -68,7 +78,8 @@ struct InsightCard: View {
             }
             
             Group {
-                if let displaymode = insightCalculationResult?.insight.displayMode, let query = customQuery  {
+                // currently, if there is no internet connection, there will be no error sondrine, because the display mode and query are empty. this is not good. maybe there should be always something given to the queryview, so that it can handle showing the loading/error state, or the loading state needs to be shown in this view here, and both views use the same loading state, or this views loading state is given to the query view? or something like it?
+                if let displaymode = insightService.insightDictionary[insightID]?.displayMode, let query = customQuery {
                     QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: query, displayMode: displaymode, isSelected: isSelected))
                 }
                 
@@ -108,11 +119,16 @@ struct InsightCard: View {
             .onChange(of: insightResultService.timeWindowBeginning) { _ in
                 queryService.timeWindowBeginning = insightResultService.timeWindowBeginning
                 retrieveResultsOnChange()
-            
             }
             .onChange(of: insightResultService.timeWindowEnd) { _ in
                 queryService.timeWindowEnd = insightResultService.timeWindowEnd
                 retrieveResultsOnChange()
+            }
+            .onChange(of: insightService.insightDictionary[insightID]) { _ in
+                customQuery = nil
+                Task {
+                    await retrieveResults()
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
@@ -122,6 +138,7 @@ struct InsightCard: View {
 //        }
 //        .onReceive(insightService.objectWillChange, perform: { retrieve() })
         .task {
+            await retrieveInsight()
             await retrieveResults()
         }
         /// I think this might need to be on the list, not the card?
@@ -139,15 +156,39 @@ struct InsightCard: View {
     
     // needs to be updated. like everything I guess
     func sendTelemetry() {
-        if let displayMode = insightWrap?.calculationResult.insight.displayMode {
+        if let displayMode = insightService.insightDictionary[insightID]?.displayMode {
             TelemetryManager.send("InsightShown", with: ["insightDisplayMode": displayMode.rawValue])
         }
     }
     
     func retrieveResultsOnChange() {
-        insightCalculationResult = nil
+        insightService.insightDictionary[insightID] = nil
+        customQuery = nil
         Task {
+            await retrieveInsight()
             await retrieveResults()
+        }
+    }
+    
+    func retrieveInsight() async {
+        loadingState = .loading
+        
+        do {
+            let insight = try await insightService.getInsight(withID: insightID)
+            DispatchQueue.main.async {
+                insightService.insightDictionary[insightID] = insight // this should be dispatchmain. or should it?
+                
+                self.loadingState = .finished(Date())
+            }
+            
+        } catch {
+            print(error.localizedDescription)
+            
+            if let transferError = error as? TransferError {
+                loadingState = .error(transferError.localizedDescription, Date())
+            } else {
+                loadingState = .error(error.localizedDescription, Date())
+            }
         }
     }
     
@@ -155,13 +196,9 @@ struct InsightCard: View {
         loadingState = .loading
         
         do {
-            // this is of course bullshit, I get the insightresult just to get the display mode, and then I do all of it again?!
-            let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
             let query = try await queryService.getInsightQuery(ofInsightWithID: insightID)
-            insightCalculationResult = result // this should be dispatchmain
             customQuery = query
-//            chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
-            
+
             loadingState = .finished(Date())
             
         } catch {

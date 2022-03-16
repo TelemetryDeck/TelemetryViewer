@@ -6,8 +6,8 @@
 //
 
 import Combine
-import Foundation
 import DataTransferObjects
+import Foundation
 
 class InsightService: ObservableObject {
     private let api: APIClient
@@ -19,13 +19,18 @@ class InsightService: ObservableObject {
     var loadingCancellable: AnyCancellable?
     var cacheCancellable: AnyCancellable?
     
+    @Published var insightDictionary: [DTOv2.Insight.ID: DTOv2.Insight]
+    
     init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
         self.api = api
         self.cache = cache
         errorService = errors
         
+        insightDictionary = [:]
+        
         loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
         cacheCancellable = cache.insightCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
+
     }
     
     func loadingState(for insightID: DTOv2.Insight.ID) -> LoadingState {
@@ -107,6 +112,23 @@ class InsightService: ObservableObject {
             case let .failure(transferError):
                 callback([])
                 self.api.handleError(transferError)
+            }
+        }
+    }
+    
+    func getInsight(withID insightID: DTOv2.Insight.ID) async throws -> DTOv2.Insight {
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.Insight, Error>) in
+            let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
+            api.get(url) { (result: Result<DTOv2.Insight, TransferError>) in
+                switch result {
+                case let .success(insight):
+
+                    continuation.resume(returning: insight)
+
+                case let .failure(error):
+                    self.errorService.handle(transferError: error)
+                    continuation.resume(throwing: error)
+                }
             }
         }
     }

@@ -380,6 +380,7 @@ extension APIClient {
     }
 
     /// sending a native druid query to the api
+#warning("TODO: Is this function used? Why does it not give back any type of QueryResult?")
     func customQuery(query: CustomQuery, callback: @escaping ([TimeSeriesQueryResult]) -> Void) {
         let url = urlForPath(apiVersion: .v2, "query", "timeSeries")
 

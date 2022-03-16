@@ -116,6 +116,8 @@ class EditorViewModel: ObservableObject {
     private var isSettingUp = false
     private var oldGroupID: UUID?
     
+    
+    /// this function makes an api call to post the new insight to the server
     func save() {
         insightService.update(
             insightID: id,
@@ -135,7 +137,7 @@ class EditorViewModel: ObservableObject {
             }
         }
         #warning("TODO: The InsightCard View does not update after saving.")
-        
+        insightService.insightDictionary[id] = generatedInsight 
         WidgetCenter.shared.reloadAllTimelines()
         TelemetryManager.send("EditorViewSave")
     }

@@ -24,7 +24,7 @@ class QueryViewModel: ObservableObject {
     ).autoconnect()
     
     public let successTimer = Timer.publish(
-        every: 10, // seconds
+        every: 60, // seconds
         on: .main,
         in: .common
     ).autoconnect()
@@ -151,6 +151,10 @@ class QueryViewModel: ObservableObject {
     // func that asks for the status every 10 seconds
     
     // this function doesn't make any sense as is, as it probably doesn't notice that the status changed? I think we should do something else that makes more sense, like changing the task status to running and resubmitting the task?
+    
+    // load new data every 60 seconds
+    // if new data = nil, don't overwrite existing data
+    // if error, show!
     
     func checkStatus() async {
         switch loadingState {

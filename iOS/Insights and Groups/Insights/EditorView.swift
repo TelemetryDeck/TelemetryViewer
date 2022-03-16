@@ -116,6 +116,8 @@ class EditorViewModel: ObservableObject {
             }
         }
         
+        insightService.insightDictionary[id] = generatedInsight 
+        
         WidgetCenter.shared.reloadAllTimelines()
         
         TelemetryManager.send("EditorViewSave")
