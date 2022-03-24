@@ -40,6 +40,9 @@ struct InsightGroupsView: View {
             }
         }
         .onAppear {
+            appService.app(withID: appID)?.insightGroupIDs.forEach({ groupID in
+                groupService.retrieveGroup(with: groupID)
+            })
             selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
             TelemetryManager.send("InsightGroupsAppear")
         }

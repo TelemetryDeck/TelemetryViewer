@@ -5,24 +5,26 @@
 //  Created by Daniel Jilg on 04.09.20.
 //
 
+import DataTransferObjects
 import SwiftUI
 import WidgetKit
 
 struct RootView: View {
     @EnvironmentObject var api: APIClient
+    @EnvironmentObject var orgService: OrgService
+    @EnvironmentObject var appService: AppService
 
     var body: some View {
         if api.userNotLoggedIn {
-            
             #if os(iOS)
             WelcomeView()
-                
+
             #else
             HStack {
                 Spacer()
-            WelcomeView()
-            .frame(maxWidth: 600)
-            .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
+                WelcomeView()
+                    .frame(maxWidth: 600)
+                    .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
                 Spacer()
             }
             #endif
@@ -35,9 +37,28 @@ struct RootView: View {
             .onAppear {
                 WidgetCenter.shared.reloadAllTimelines()
             }
+            .task {
+                if let organization = try? await orgService.retrieveOrganisation() {
+                    var apps = [DTOv2.App.ID: DTOv2.App]()
+
+                    for appID in organization.appIDs {
+                        if let app = try? await appService.retrieveApp(withID: appID) {
+                            apps[app.id] = app
+                        }
+                    }
+                    
+                    let appsDict = apps
+                    let loadedOrganization = organization
+
+                    DispatchQueue.main.async {
+                        appService.appDictionary = appsDict
+                        orgService.organization = loadedOrganization
+                    }
+                }
+            }
         }
     }
-    
+
     func loginFailedView() -> Alert {
         Alert(
             title: Text("Login Failed"),

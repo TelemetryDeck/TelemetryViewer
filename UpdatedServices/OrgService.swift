@@ -16,6 +16,8 @@ class OrgService: ObservableObject {
     
     @Published private(set) var loadingState: LoadingState = .idle
     
+    @Published var organization: DTOv2.Organization?
+
     var cacheCancellable: AnyCancellable?
     
     init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
@@ -24,22 +26,6 @@ class OrgService: ObservableObject {
         errorService = errors
         
         cacheCancellable = cache.organizationCache.objectWillChange.receive(on: DispatchQueue.main).sink { _ in self.objectWillChange.send() }
-    }
-    
-    var organization: DTOv2.Organization? {
-        let locallyCachedOrganization = retrieveFromDisk()
-        
-        if let userToken = api.userToken?.bearerTokenAuthString, let organization = cache.organizationCache[userToken] {
-            if cache.organizationCache.needsUpdate(forKey: userToken) {
-                retrieveOrganization()
-            }
-            
-            return organization
-        } else {
-            retrieveOrganization()
-        }
-        
-        return locallyCachedOrganization
     }
     
     func retrieveOrganization() {
@@ -55,6 +41,54 @@ class OrgService: ObservableObject {
         
         cache.queue.async { [weak self] in
             self?.performRetrieval()
+        }
+    }
+    
+    func getOrganisation() {
+        let locallyCachedOrganization = retrieveFromDisk()
+        self.organization = locallyCachedOrganization
+        
+        self.loadingState = .loading
+        
+        Task {
+            do {
+                let org = try await self.retrieveOrganisation()
+                DispatchQueue.main.async {
+                    self.organization = org // this should be dispatchmain. or should it?
+                        
+                    self.loadingState = .finished(Date())
+                }
+            } catch {
+                print(error.localizedDescription)
+                        
+                if let transferError = error as? TransferError {
+                    self.loadingState = .error(transferError.localizedDescription, Date())
+                } else {
+                    self.loadingState = .error(error.localizedDescription, Date())
+                }
+            }
+        }
+
+    }
+    
+    func retrieveOrganisation() async throws -> DTOv2.Organization {
+//        guard (api.userToken?.bearerTokenAuthString) != nil else { let error: Error = ; throw error } // make this an error type? also, is this guard needed? why? did daniel use this just due to caching stuff?
+        
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.Organization, Error>) in
+            let url = api.urlForPath(apiVersion: .v2, "organization")
+            api.get(url) { (result: Result<DTOv2.Organization, TransferError>) in
+                switch result {
+                case let .success(org):
+                    
+                    self.saveToDisk(org: org)
+
+                    continuation.resume(returning: org)
+
+                case let .failure(error):
+                    self.errorService.handle(transferError: error)
+                    continuation.resume(throwing: error)
+                }
+            }
         }
     }
 }
@@ -98,6 +132,7 @@ private extension OrgService {
     }
 }
 
+/// this is interesting, do we want this for more than the org?
 private extension OrgService {
     var organizationCacheFilePath: URL {
         let fileManager = FileManager.default

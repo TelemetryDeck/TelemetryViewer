@@ -6,26 +6,25 @@
 //
 
 import Combine
-import Foundation
 import DataTransferObjects
+import Foundation
 
 class AppService: ObservableObject {
     private let api: APIClient
-    private let cache: CacheLayer
     private let errorService: ErrorService
     
     private let loadingState = Cache<DTOv2.App.ID, LoadingState>()
         
     var loadingCancellable: AnyCancellable?
-    var cacheCancellable: AnyCancellable?
     
-    init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
+    @Published var appDictionary: [DTOv2.App.ID: DTOv2.App] = [:]
+    @Published var loadingStateDictionary: [DTOv2.App.ID: LoadingState] = [:]
+    
+    init(api: APIClient, errors: ErrorService) {
         self.api = api
-        self.cache = cache
         errorService = errors
         
         loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
-        cacheCancellable = cache.appCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
     }
     
     func loadingState(for appID: DTOv2.App.ID) -> LoadingState {
@@ -46,21 +45,32 @@ class AppService: ObservableObject {
     }
     
     func app(withID appID: DTOv2.App.ID) -> DTOv2.App? {
-        guard let app = cache.appCache[appID] else {
-            retrieveApp(with: appID)
-            return nil
-        }
-        
-        if cache.appCache.needsUpdate(forKey: appID) {
-            retrieveApp(with: appID)
-        }
-        
-        return app
+        return appDictionary[appID]
     }
     
     func retrieveApp(with appID: DTOv2.App.ID, callback: ((Result<DTOv2.App, TransferError>) -> Void)? = nil) {
-        cache.queue.async { [weak self] in
-            self?.performRetrieval(ofAppWithID: appID, callback: callback)
+        let url = api.urlForPath(apiVersion: .v2, "apps", appID.uuidString)
+        api.get(url) { (result: Result<DTOv2.App, TransferError>) in
+            callback?(result)
+        }
+    }
+    
+    func retrieveApp(withID appID: DTOv2.App.ID) async throws -> DTOv2.App {
+//        guard loadingStateDictionary[appID] != .loading else { let error: TransferError = .transferFailed; throw error }
+//        loadingStateDictionary[appID] = .loading
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.App, Error>) in
+            let url = api.urlForPath(apiVersion: .v2, "apps", appID.uuidString)
+            api.get(url) { (result: Result<DTOv2.App, TransferError>) in
+                switch result {
+                case let .success(app):
+
+                    continuation.resume(returning: app)
+
+                case let .failure(error):
+                    self.errorService.handle(transferError: error)
+                    continuation.resume(throwing: error)
+                }
+            }
         }
     }
     
@@ -68,12 +78,12 @@ class AppService: ObservableObject {
         let url = api.urlForPath(apiVersion: .v2, "apps")
 
         api.post(["name": name], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
-            callback?(result)
             
-            // Force reload the organization 
-            if let userToken = api.userToken?.bearerTokenAuthString {
-                cache.organizationCache.removeValue(forKey: userToken)
+            if let app = try? result.get() {
+                appDictionary[app.id] = app
             }
+            
+            callback?(result)
         }
     }
 
@@ -81,10 +91,11 @@ class AppService: ObservableObject {
         let url = api.urlForPath("apps", appID.uuidString)
 
         api.patch(["name": newName], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
-//            if let userToken = api.userToken?.bearerTokenAuthString {
-//                cache.organizationCache.removeValue(forKey: userToken)
-//            }
-            cache.appCache.removeValue(forKey: appID)
+            
+            if let app = try? result.get() {
+                appDictionary[app.id] = app
+            }
+            
             callback?(result)
         }
     }
@@ -93,41 +104,9 @@ class AppService: ObservableObject {
         let url = api.urlForPath("apps", appID.uuidString)
 
         api.delete(url) { [unowned self] (result: Result<String, TransferError>) in
-            if let userToken = api.userToken?.bearerTokenAuthString {
-                cache.organizationCache.removeValue(forKey: userToken)
-            }
-            cache.appCache.removeValue(forKey: appID)
+
+            appDictionary[appID] = nil
             callback?(result)
-        }
-    }
-}
-
-private extension AppService {
-    func performRetrieval(ofAppWithID appID: DTOv2.App.ID, callback: ((Result<DTOv2.App, TransferError>) -> Void)? = nil) {
-        switch loadingState(for: appID) {
-        case .loading, .error:
-            return
-        default:
-            break
-        }
-
-        loadingState[appID] = .loading
-        
-        let url = api.urlForPath(apiVersion: .v2, "apps", appID.uuidString)
-        
-        api.get(url) { [weak self] (result: Result<DTOv2.App, TransferError>) in
-            self?.cache.queue.async { [weak self] in
-                switch result {
-                case let .success(app):
-                    self?.cache.appCache[appID] = app
-                    self?.loadingState[appID] = .finished(Date())
-                case let .failure(error):
-                    self?.errorService.handle(transferError: error)
-                    self?.loadingState[appID] = .error(error.localizedDescription, Date())
-                }
-                
-                callback?(result)
-            }
         }
     }
 }

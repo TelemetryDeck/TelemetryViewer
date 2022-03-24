@@ -6,31 +6,29 @@
 //
 
 import Combine
-import Foundation
 import DataTransferObjects
+import Foundation
 
 class GroupService: ObservableObject {
     private let api: APIClient
-    private let cache: CacheLayer
     private let errorService: ErrorService
-    
+
     private let loadingState = Cache<DTOv2.Group.ID, LoadingState>()
-    
+
     var loadingCancellable: AnyCancellable?
-    var cacheCancellable: AnyCancellable?
-    
-    init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
+
+    @Published var groupsDictionary = [DTOv2.Group.ID: DTOv2.Group]()
+
+    init(api: APIClient, errors: ErrorService) {
         self.api = api
-        self.cache = cache
         errorService = errors
-        
+
         loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
-        cacheCancellable = cache.groupCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
     }
-    
+
     func loadingState(for groupID: DTOv2.Group.ID) -> LoadingState {
         let loadingState = loadingState[groupID] ?? .idle
-        
+
         // after 60 seconds, clear the error, allowing another load
         switch loadingState {
         case let .error(_, date):
@@ -41,29 +39,18 @@ class GroupService: ObservableObject {
         default:
             break
         }
-        
+
         return loadingState
     }
-    
+
     func group(withID groupID: DTOv2.Group.ID) -> DTOv2.Group? {
-        guard let group = cache.groupCache[groupID] else {
-            retrieveGroup(with: groupID)
-            return nil
-        }
-        
-        if cache.groupCache.needsUpdate(forKey: groupID) {
-            retrieveGroup(with: groupID)
-        }
-        
-        return group
+        return groupsDictionary[groupID]
     }
-    
+
     func retrieveGroup(with groupID: DTOv2.Group.ID) {
-        cache.queue.async { [weak self] in
-            self?.performRetrieval(ofGroupWithID: groupID)
-        }
+        performRetrieval(ofGroupWithID: groupID)
     }
-    
+
     func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath("apps", appID.uuidString, "insightgroups")
 
@@ -100,19 +87,21 @@ private extension GroupService {
         }
 
         loadingState[groupID] = .loading
-        
+
         let url = api.urlForPath(apiVersion: .v2, "groups", groupID.uuidString)
-        
+
         api.get(url) { [weak self] (result: Result<DTOv2.Group, TransferError>) in
-            self?.cache.queue.async { [weak self] in
-                switch result {
-                case let .success(group):
-                    self?.cache.groupCache[groupID] = group
+
+            switch result {
+            case let .success(group):
+                DispatchQueue.main.async {
+                    self?.groupsDictionary[groupID] = group
                     self?.loadingState[groupID] = .finished(Date())
-                case let .failure(error):
-                    self?.errorService.handle(transferError: error)
-                    self?.loadingState[groupID] = .error(error.localizedDescription, Date())
                 }
+
+            case let .failure(error):
+                self?.errorService.handle(transferError: error)
+                self?.loadingState[groupID] = .error(error.localizedDescription, Date())
             }
         }
     }

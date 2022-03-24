@@ -112,7 +112,7 @@ struct InsightCard: View {
 //            .onAppear(perform: retrieve)
             .onAppear(perform: sendTelemetry)
             .onChange(of: insightResultService.isTestingMode) { _ in
-                // is this the best way to do this?
+                // is this the best way to do this? no, insightResultService should become deprecated, only queryService should remain
                 queryService.isTestingMode = insightResultService.isTestingMode
                 retrieveResultsOnChange()
             }
@@ -129,6 +129,7 @@ struct InsightCard: View {
                 Task {
                     await retrieveResults()
                 }
+                /// wait. if the insight is first loaded, this makes us load the query two times, right? so we do not need to load the query on load and on change?
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
@@ -138,8 +139,8 @@ struct InsightCard: View {
 //        }
 //        .onReceive(insightService.objectWillChange, perform: { retrieve() })
         .task {
+            insightService.insightDictionary[insightID] = nil
             await retrieveInsight()
-            await retrieveResults()
         }
         /// I think this might need to be on the list, not the card?
 //        .refreshable {
@@ -162,11 +163,9 @@ struct InsightCard: View {
     }
     
     func retrieveResultsOnChange() {
-        insightService.insightDictionary[insightID] = nil
-        customQuery = nil
+        // change of insightDict makes us load query anyway. so that's redundant, right?
         Task {
             await retrieveInsight()
-            await retrieveResults()
         }
     }
     

@@ -15,6 +15,9 @@ struct LeftSidebarView: View {
     @State var newAppViewShown: Bool = false
     @State private var showingAlert = false
 
+    /// I think I need to mainly touch the appservice, not the orgservice, right now, since that's where the bugs are, apparently.
+    ///  further testing has lead me to the conclusion that I do need to update the orgservice as well lol
+
     #if os(macOS)
         @EnvironmentObject var updateService: UpdateService
     #endif
@@ -61,9 +64,8 @@ struct LeftSidebarView: View {
             }
 
             Section {
-                
                 LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
-                
+
                 #if os(iOS)
                     Button {
                         URL(string: "https://dashboard.telemetrydeck.com/user/profile")!.open()
@@ -123,7 +125,6 @@ struct LeftSidebarView: View {
 
                         Spacer()
                     #endif
-
                 }
             }
     }
@@ -142,7 +143,7 @@ struct LeftSidebarView: View {
 
     func section(for appID: DTOv2.App.ID) -> some View {
         DisclosureGroup(isExpanded: self.binding(for: appID)) {
-            if let app = appService.app(withID: appID) {
+            if let app = appService.appDictionary[appID] {
                 NavigationLink(tag: Selection.insights(app: app.id), selection: $sidebarSelection) {
                     InsightGroupsView(appID: app.id)
                 } label: {
@@ -172,13 +173,13 @@ struct LeftSidebarView: View {
                 .tag(Selection.editApp(app: appID))
 
             } else {
-                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Insights")
-                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Signal Types")
-                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Recent Signals")
-                TinyLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: "Edit App")
+                TinyLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: "Insights")
+                TinyLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: "Signal Types")
+                TinyLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: "Recent Signals")
+                TinyLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: "Edit App")
             }
         } label: {
-            LabelLoadingStateIndicator(loadingState: appService.loadingState(for: appID), title: appService.app(withID: appID)?.name, systemImage: "sensor.tag.radiowaves.forward")
+            LabelLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: appService.appDictionary[appID]?.name, systemImage: "sensor.tag.radiowaves.forward")
         }
     }
 

@@ -75,8 +75,8 @@ struct Telemetry_ViewerApp: App {
         self.errors = ErrorService()
 
         self.orgService = OrgService(api: api, cache: cacheLayer, errors: errors)
-        self.appService = AppService(api: api, cache: cacheLayer, errors: errors)
-        self.groupService = GroupService(api: api, cache: cacheLayer, errors: errors)
+        self.appService = AppService(api: api, errors: errors)
+        self.groupService = GroupService(api: api, errors: errors)
         self.insightService = InsightService(api: api, cache: cacheLayer, errors: errors)
         self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
         self.iconFinderService = IconFinderService(api: api)
