@@ -407,14 +407,12 @@ struct EditorView_Previews: PreviewProvider {
             EditorView(viewModel: EditorViewModel(insight: MockData.exampleInsightVersion2,
                                                   appID: MockData.app1.id,
                                                   insightService: InsightService(api: apiClientPreview,
-                                                                                 cache: CacheLayer(),
                                                                                  errors: ErrorService()),
                                                   groupService: GroupService(api: apiClientPreview,
-                                                                             cache: CacheLayer(),
                                                                              errors: ErrorService()),
                                                   lexiconService: LexiconService(api: APIClient())),
                        selectedInsightID: .constant(MockData.exampleInsightVersion2.id))
-                .environmentObject(AppService(api: apiClientPreview, cache: CacheLayer(), errors: ErrorService()))
+                .environmentObject(AppService(api: apiClientPreview, errors: ErrorService()))
                 .navigationBarTitleDisplayMode(.inline)
         }
     }

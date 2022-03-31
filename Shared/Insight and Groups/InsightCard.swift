@@ -92,15 +92,24 @@ struct InsightCard: View {
             .onChange(of: insightResultService.isTestingMode) { _ in
                 // is this the best way to do this? no, insightResultService should become deprecated, only queryService should remain
                 queryService.isTestingMode = insightResultService.isTestingMode
-                insightService.retrieveInsight(with: insightID)
+                customQuery = nil
+                Task {
+                    await retrieveResults()
+                }
             }
             .onChange(of: insightResultService.timeWindowBeginning) { _ in
                 queryService.timeWindowBeginning = insightResultService.timeWindowBeginning
-                insightService.retrieveInsight(with: insightID)
+                customQuery = nil
+                Task {
+                    await retrieveResults()
+                }
             }
             .onChange(of: insightResultService.timeWindowEnd) { _ in
                 queryService.timeWindowEnd = insightResultService.timeWindowEnd
-                insightService.retrieveInsight(with: insightID)
+                customQuery = nil
+                Task {
+                    await retrieveResults()
+                }
             }
             .onChange(of: insightService.insightDictionary[insightID]) { _ in
                 customQuery = nil

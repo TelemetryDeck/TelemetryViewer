@@ -27,7 +27,7 @@ struct Provider: IntentTimelineProvider {
         self.cacheLayer = CacheLayer()
         self.errors = ErrorService()
 
-        self.insightService = InsightService(api: api, cache: cacheLayer, errors: errors)
+        self.insightService = InsightService(api: api, errors: errors)
         self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
     }
 
