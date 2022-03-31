@@ -11,62 +11,49 @@ import Foundation
 
 class InsightService: ObservableObject {
     private let api: APIClient
-    private let cache: CacheLayer
     private let errorService: ErrorService
     
-    private let loadingState = Cache<DTOv2.Insight.ID, LoadingState>()
-    
-    var loadingCancellable: AnyCancellable?
-    var cacheCancellable: AnyCancellable?
- 
-    /// I think this is what I want, probably? like, a published object that can be updated from anywhere, basically a local observable object cache
-    @Published var insightDictionary: [DTOv2.Insight.ID: DTOv2.Insight]
-    
-    init(api: APIClient, cache: CacheLayer, errors: ErrorService) {
-        self.api = api
-        self.cache = cache
-        errorService = errors
-        
-        insightDictionary = [:]
-        
-        loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
-        cacheCancellable = cache.insightCache.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
+    @Published var loadingState = [DTOv2.Insight.ID: LoadingState]()
 
-    }
+    /// I think this is what I want, probably? like, a published object that can be updated from anywhere, basically a local observable object cache
+    @Published var insightDictionary = [DTOv2.Insight.ID: DTOv2.Insight]()
     
-    func loadingState(for insightID: DTOv2.Insight.ID) -> LoadingState {
-        let loadingState = loadingState[insightID] ?? .idle
-        
-        // after 60 seconds, clear the error, allowing another load
-        switch loadingState {
-        case let .error(_, date):
-            if date < Date() - 60 {
-                self.loadingState[insightID] = .idle
-                return .idle
-            }
-        default:
-            break
-        }
-        
-        return loadingState
+    init(api: APIClient, errors: ErrorService) {
+        self.api = api
+        errorService = errors
     }
     
     func insight(withID insightID: DTOv2.Insight.ID) -> DTOv2.Insight? {
-        guard let object = cache.insightCache[insightID] else {
-            retrieveInsight(with: insightID)
-            return nil
+        return insightDictionary[insightID]
+    }
+
+    func retrieveInsight(with insightID: DTOv2.Insight.ID) {
+        Task {
+            await retrieveInsight(with: insightID)
         }
-        
-        if cache.insightCache.needsUpdate(forKey: insightID) {
-            retrieveInsight(with: insightID)
-        }
-        
-        return object
     }
     
-    func retrieveInsight(with insightID: DTOv2.Insight.ID) {
-        cache.queue.async { [weak self] in
-            self?.performRetrieval(ofInsightWithID: insightID)
+    func retrieveInsight(with insightID: DTOv2.Insight.ID) async {
+        DispatchQueue.main.async {
+            self.loadingState[insightID] = .loading
+        }
+        do {
+            let insight = try await getInsight(withID: insightID)
+            DispatchQueue.main.async {
+                self.insightDictionary[insightID] = insight
+                        
+                self.loadingState[insightID] = .finished(Date())
+            }
+                    
+        } catch {
+            print(error.localizedDescription)
+            DispatchQueue.main.async {
+                if let transferError = error as? TransferError {
+                    self.loadingState[insightID] = .error(transferError.localizedDescription, Date())
+                } else {
+                    self.loadingState[insightID] = .error(error.localizedDescription, Date())
+                }
+            }
         }
     }
     
@@ -117,7 +104,6 @@ class InsightService: ObservableObject {
         }
     }
 
-    
     // should this function automatically update the insight dictionary? probably better to do it here, right? but also I think it might not work to update it in an async func? no, it should work with DispatchQueue.main.async. hmm. I think for error handling it might be more convenient to do it like I'm doing it right now
     func getInsight(withID insightID: DTOv2.Insight.ID) async throws -> DTOv2.Insight {
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.Insight, Error>) in
@@ -131,34 +117,6 @@ class InsightService: ObservableObject {
                 case let .failure(error):
                     self.errorService.handle(transferError: error)
                     continuation.resume(throwing: error)
-                }
-            }
-        }
-    }
-}
-
-private extension InsightService {
-    func performRetrieval(ofInsightWithID insightID: DTOv2.Insight.ID) {
-        switch loadingState(for: insightID) {
-        case .loading, .error:
-            return
-        default:
-            break
-        }
-
-        loadingState[insightID] = .loading
-        
-        let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
-        
-        api.get(url) { [weak self] (result: Result<DTOv2.Insight, TransferError>) in
-            self?.cache.queue.async { [weak self] in
-                switch result {
-                case let .success(insight):
-                    self?.cache.insightCache[insightID] = insight
-                    self?.loadingState[insightID] = .finished(Date())
-                case let .failure(error):
-                    self?.errorService.handle(transferError: error)
-                    self?.loadingState[insightID] = .error(error.localizedDescription, Date())
                 }
             }
         }

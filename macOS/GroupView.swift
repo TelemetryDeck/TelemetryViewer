@@ -39,10 +39,10 @@ struct GroupView: View {
                 Divider()
                 Group {
                     if let selectedInsightID = selectedInsightID {
-                        if let insight = insightService.insight(withID: selectedInsightID), let group = groupService.group(withID: groupID) {
+                        if let insight = insightService.insightDictionary[selectedInsightID], let group = groupService.group(withID: groupID) {
                             EditorView(viewModel: EditorViewModel(insight: insight, appID: group.appID, insightService: insightService, groupService: groupService, lexiconService: lexiconService), selectedInsightID: $selectedInsightID)
                         } else {
-                            IconOnlyLoadingStateIndicator(loadingState: insightService.loadingState(for: selectedInsightID))
+                            IconOnlyLoadingStateIndicator(loadingState: insightService.loadingState[selectedInsightID] ?? .idle)
                         }
 
                     } else if let group = groupService.group(withID: groupID) {
@@ -61,6 +61,7 @@ struct GroupView: View {
         .onAppear {
             TelemetryManager.send("GroupViewAppear")
         }
+        
     }
 
     var insightsList: some View {

@@ -66,7 +66,7 @@ struct InsightCard: View {
     var cardContent: some View {
         VStack(alignment: .leading) {
             HStack {
-                TinyLoadingStateIndicator(loadingState: insightService.loadingState(for: insightID), title: insightService.insight(withID: insightID)?.title)
+                TinyLoadingStateIndicator(loadingState: insightService.loadingState[insightID] ?? .idle, title: insightService.insight(withID: insightID)?.title)
                     .font(.footnote)
                     .foregroundColor(isSelected ? .cardBackground : .grayColor)
                     .padding(.leading)
@@ -81,48 +81,26 @@ struct InsightCard: View {
                 // currently, if there is no internet connection, there will be no error sondrine, because the display mode and query are empty. this is not good. maybe there should be always something given to the queryview, so that it can handle showing the loading/error state, or the loading state needs to be shown in this view here, and both views use the same loading state, or this views loading state is given to the query view? or something like it?
                 if let displaymode = insightService.insightDictionary[insightID]?.displayMode, let query = customQuery {
                     QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: query, displayMode: displaymode, isSelected: isSelected))
+                } else {
+                    SondrineLoadingStateIndicator(loadingState: loadingState)
                 }
                 
-//                if let chartDataSet = chartDataSet {
-//                    switch insightCalculationResult!.insight.displayMode {
-//                    case .raw:
-//                        RawChartView(chartDataSet: chartDataSet, isSelected: isSelected)
-//                    case .pieChart:
-//                        DonutChartView(chartDataset: chartDataSet, isSelected: isSelected)
-//                            .padding(.bottom)
-//                            .padding(.horizontal)
-//                    case .lineChart:
-//                        LineChart(chartDataSet: chartDataSet, isSelected: isSelected)
-//                    case .barChart:
-//                        BarChartView(chartDataSet: chartDataSet, isSelected: isSelected)
-//                    default:
-//                        Text("\(insightCalculationResult!.insight.displayMode.rawValue.capitalized) is not supported in this version.")
-//                            .font(.footnote)
-//                            .foregroundColor(.grayColor)
-//                            .padding(.vertical)
-//                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-//                    }
-//                } else {
-//                    SondrineLoadingStateIndicator(loadingState: loadingState)
-//                        .onTapGesture {
-//                            retrieveResultsOnChange()
-//                        }
-//                }
+//                QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: customQuery, displayMode: insightService.insightDictionary[insightID]?.displayMode, isSelected: isSelected))
             }
-//            .onAppear(perform: retrieve)
+
             .onAppear(perform: sendTelemetry)
             .onChange(of: insightResultService.isTestingMode) { _ in
                 // is this the best way to do this? no, insightResultService should become deprecated, only queryService should remain
                 queryService.isTestingMode = insightResultService.isTestingMode
-                retrieveResultsOnChange()
+                insightService.retrieveInsight(with: insightID)
             }
             .onChange(of: insightResultService.timeWindowBeginning) { _ in
                 queryService.timeWindowBeginning = insightResultService.timeWindowBeginning
-                retrieveResultsOnChange()
+                insightService.retrieveInsight(with: insightID)
             }
             .onChange(of: insightResultService.timeWindowEnd) { _ in
                 queryService.timeWindowEnd = insightResultService.timeWindowEnd
-                retrieveResultsOnChange()
+                insightService.retrieveInsight(with: insightID)
             }
             .onChange(of: insightService.insightDictionary[insightID]) { _ in
                 customQuery = nil
@@ -139,8 +117,9 @@ struct InsightCard: View {
 //        }
 //        .onReceive(insightService.objectWillChange, perform: { retrieve() })
         .task {
-            insightService.insightDictionary[insightID] = nil
-            await retrieveInsight()
+//            insightService.insightDictionary[insightID] = nil
+            await insightService.retrieveInsight(with: insightID)
+            await retrieveResults()
         }
         /// I think this might need to be on the list, not the card?
 //        .refreshable {
@@ -155,72 +134,30 @@ struct InsightCard: View {
 //        }
     }
     
-    // needs to be updated. like everything I guess
     func sendTelemetry() {
         if let displayMode = insightService.insightDictionary[insightID]?.displayMode {
             TelemetryManager.send("InsightShown", with: ["insightDisplayMode": displayMode.rawValue])
         }
     }
     
-    func retrieveResultsOnChange() {
-        // change of insightDict makes us load query anyway. so that's redundant, right?
-        Task {
-            await retrieveInsight()
-        }
-    }
-    
-    func retrieveInsight() async {
-        loadingState = .loading
-        
-        do {
-            let insight = try await insightService.getInsight(withID: insightID)
-            DispatchQueue.main.async {
-                insightService.insightDictionary[insightID] = insight // this should be dispatchmain. or should it?
-                
-                self.loadingState = .finished(Date())
-            }
-            
-        } catch {
-            print(error.localizedDescription)
-            
-            if let transferError = error as? TransferError {
-                loadingState = .error(transferError.localizedDescription, Date())
-            } else {
-                loadingState = .error(error.localizedDescription, Date())
-            }
-        }
-    }
-    
     func retrieveResults() async {
+        guard loadingState != .loading else { return } // not sufficient
         loadingState = .loading
         
         do {
             let query = try await queryService.getInsightQuery(ofInsightWithID: insightID)
+
             customQuery = query
 
             loadingState = .finished(Date())
             
         } catch {
             print(error.localizedDescription)
-            
+
             if let transferError = error as? TransferError {
                 loadingState = .error(transferError.localizedDescription, Date())
             } else {
                 loadingState = .error(error.localizedDescription, Date())
-            }
-        }
-    }
-    
-    func retrieve() {
-        if let insight = insightService.insight(withID: insightID) {
-            insightResultService.calculate(insight) { loadingState in
-                DispatchQueue.main.async {
-                    self.loadingState = loadingState
-                }
-            } onFinish: { wrap in
-                DispatchQueue.main.async {
-                    self.insightWrap = wrap
-                }
             }
         }
     }

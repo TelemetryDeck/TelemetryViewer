@@ -42,6 +42,13 @@ struct LeftSidebarView: View {
                 if let organization = orgService.organization {
                     ForEach(organization.appIDs, id: \.self) { appID in
                         section(for: appID)
+                            .task {
+                                if let app = try? await appService.retrieveApp(withID: appID) {
+                                    DispatchQueue.main.async {
+                                        appService.appDictionary[app.id] = app
+                                    }
+                                }
+                            }
                     }
                 }
                 Button {
@@ -105,6 +112,13 @@ struct LeftSidebarView: View {
                 }
             } header: {
                 Text("Meta")
+            }
+        }
+        .task {
+            if let organization = try? await orgService.retrieveOrganisation() {
+                DispatchQueue.main.async {
+                    orgService.organization = organization
+                }
             }
         }
         #if os(macOS)

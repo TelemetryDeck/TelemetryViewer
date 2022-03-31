@@ -37,25 +37,6 @@ struct RootView: View {
             .onAppear {
                 WidgetCenter.shared.reloadAllTimelines()
             }
-            .task {
-                if let organization = try? await orgService.retrieveOrganisation() {
-                    var apps = [DTOv2.App.ID: DTOv2.App]()
-
-                    for appID in organization.appIDs {
-                        if let app = try? await appService.retrieveApp(withID: appID) {
-                            apps[app.id] = app
-                        }
-                    }
-                    
-                    let appsDict = apps
-                    let loadedOrganization = organization
-
-                    DispatchQueue.main.async {
-                        appService.appDictionary = appsDict
-                        orgService.organization = loadedOrganization
-                    }
-                }
-            }
         }
     }
 
