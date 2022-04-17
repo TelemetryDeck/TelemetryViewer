@@ -11,7 +11,7 @@ import TelemetryClient
 
 struct SignalList: View {
     @EnvironmentObject var signalsService: SignalsService
-    @EnvironmentObject var insightResultService: InsightResultService
+    @EnvironmentObject var queryService: QueryService
 
     @State var filterText: String = ""
     @State var selectedSignal: DTOv1.IdentifiableSignal?
@@ -39,7 +39,7 @@ struct SignalList: View {
                                     $0.clientUser.lowercased().contains(filterText.lowercased())
                             }
                             .filter {
-                                $0.isTestMode == insightResultService.isTestingMode
+                                $0.isTestMode == queryService.isTestingMode
                             }
 
                         ForEach(signals, id: \.id) { signal in

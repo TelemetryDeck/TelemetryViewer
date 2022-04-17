@@ -14,21 +14,23 @@ import WidgetKit
 
 struct Provider: IntentTimelineProvider {
     let api: APIClient
-    let cacheLayer: CacheLayer
-    let errors: ErrorService
-    let insightService: InsightService
-    let insightResultService: InsightResultService
+    
+    // I think I can remove all of these except api?!
+//    let cacheLayer: CacheLayer
+//    let errors: ErrorService
+//    let insightService: InsightService
+//    let insightResultService: InsightResultService
 
     init() {
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
 
         self.api = APIClient()
-        self.cacheLayer = CacheLayer()
-        self.errors = ErrorService()
-
-        self.insightService = InsightService(api: api, errors: errors)
-        self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
+//        self.cacheLayer = CacheLayer()
+//        self.errors = ErrorService()
+//
+//        self.insightService = InsightService(api: api, errors: errors)
+//        self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
     }
 
 

@@ -12,7 +12,6 @@ import TelemetryClient
 
 struct InsightCard: View {
     @EnvironmentObject var insightService: InsightService
-    @EnvironmentObject var insightResultService: InsightResultService
     @EnvironmentObject var queryService: QueryService
     
     @Binding var selectedInsightID: DTOv2.Insight.ID?
@@ -89,23 +88,19 @@ struct InsightCard: View {
             }
 
             .onAppear(perform: sendTelemetry)
-            .onChange(of: insightResultService.isTestingMode) { _ in
-                // is this the best way to do this? no, insightResultService should become deprecated, only queryService should remain
-                queryService.isTestingMode = insightResultService.isTestingMode
+            .onChange(of: queryService.isTestingMode) { _ in
                 customQuery = nil
                 Task {
                     await retrieveResults()
                 }
             }
-            .onChange(of: insightResultService.timeWindowBeginning) { _ in
-                queryService.timeWindowBeginning = insightResultService.timeWindowBeginning
+            .onChange(of: queryService.timeWindowBeginning) { _ in
                 customQuery = nil
                 Task {
                     await retrieveResults()
                 }
             }
-            .onChange(of: insightResultService.timeWindowEnd) { _ in
-                queryService.timeWindowEnd = insightResultService.timeWindowEnd
+            .onChange(of: queryService.timeWindowEnd) { _ in
                 customQuery = nil
                 Task {
                     await retrieveResults()

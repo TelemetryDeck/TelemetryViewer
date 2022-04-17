@@ -12,7 +12,7 @@ import DataTransferObjects
 struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
-    @EnvironmentObject var insightResultService: InsightResultService
+    @EnvironmentObject var queryService: QueryService
     
     @State var sidebarVisible = false
     @State var selectedInsightGroupID: DTOv2.Group.ID?
@@ -83,7 +83,7 @@ struct InsightGroupsView: View {
             
             ToolbarItem(placement: .bottomBar) {
                 HStack {
-                    Toggle("Test Mode", isOn: $insightResultService.isTestingMode.animation())
+                    Toggle("Test Mode", isOn: $queryService.isTestingMode.animation())
                     
                     Spacer()
                     
@@ -114,7 +114,7 @@ struct InsightGroupsView: View {
     }
     
     private var datePickerButton: some View {
-        Button(insightResultService.timeIntervalDescription) {
+        Button(queryService.timeIntervalDescription) {
             TelemetryManager.send("showDatePicker")
             self.showDatePicker = true
         }.popover(

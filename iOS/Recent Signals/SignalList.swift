@@ -11,7 +11,7 @@ import TelemetryClient
 
 struct SignalList: View {
     @EnvironmentObject var signalsService: SignalsService
-    @EnvironmentObject var insightResultService: InsightResultService
+    @EnvironmentObject var queryService: QueryService
     
     @State var filterText: String = ""
     
@@ -33,7 +33,7 @@ struct SignalList: View {
                 }
                 let signals = signalsService.signals(for: appID)
                     .filter {
-                        $0.isTestMode == insightResultService.isTestingMode &&
+                        $0.isTestMode == queryService.isTestingMode &&
                         (filterText.isEmpty ||
                          $0.type.lowercased().contains(filterText.lowercased()) ||
                          $0.clientUser.lowercased().contains(filterText.lowercased()))
@@ -62,7 +62,7 @@ struct SignalList: View {
                 }
             }
             ToolbarItem(placement: .automatic){
-                Toggle("Test Mode", isOn: $insightResultService.isTestingMode.animation())
+                Toggle("Test Mode", isOn: $queryService.isTestingMode.animation())
             }
         }
     }

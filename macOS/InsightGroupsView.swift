@@ -12,7 +12,7 @@ import TelemetryClient
 struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
-    @EnvironmentObject var insightResultService: InsightResultService
+    @EnvironmentObject var queryService: QueryService
     
     @State var sidebarVisible = false
     @State var selectedInsightGroupID: DTOv2.Group.ID?
@@ -60,7 +60,7 @@ struct InsightGroupsView: View {
             }
                 
             ToolbarItem {
-                Button(insightResultService.timeIntervalDescription) {
+                Button(queryService.timeIntervalDescription) {
                     TelemetryManager.send("showDatePicker")
                     self.showDatePicker = true
                 }.popover(

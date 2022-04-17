@@ -17,7 +17,6 @@ struct Telemetry_ViewerApp: App {
     let appService: AppService
     let groupService: GroupService
     let insightService: InsightService
-    let insightResultService: InsightResultService
     let iconFinderService: IconFinderService
     let updateService: UpdateService
     let signalsService: SignalsService
@@ -36,7 +35,6 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(appService)
                 .environmentObject(groupService)
                 .environmentObject(insightService)
-                .environmentObject(insightResultService)
                 .environmentObject(iconFinderService)
                 .environmentObject(updateService)
                 .environmentObject(signalsService)
@@ -78,7 +76,6 @@ struct Telemetry_ViewerApp: App {
         self.appService = AppService(api: api, errors: errors)
         self.groupService = GroupService(api: api, errors: errors)
         self.insightService = InsightService(api: api, errors: errors)
-        self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
         self.iconFinderService = IconFinderService(api: api)
         self.updateService = UpdateService()
         self.signalsService = SignalsService(api: api)

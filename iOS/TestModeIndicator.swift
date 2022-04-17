@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct TestModeIndicator: View {
-    @EnvironmentObject var insightResultService: InsightResultService
+    @EnvironmentObject var queryService: QueryService
 
     var body: some View {
-        if insightResultService.isTestingMode {
+        if queryService.isTestingMode {
             StatusMessageContainer(backgroundColor: Color.grayColor.opacity(0.2)) {
                 HStack(alignment: .bottom) {
                     Text("You are in Test Mode, so you are only seeing signals sent while running development builds in Xcode.")

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TestingModeToggle: View {
-    @EnvironmentObject var insightResultService: InsightResultService
+    @EnvironmentObject var queryService: QueryService
     @State private var isHovering = false
 
     var body: some View {
@@ -19,10 +19,10 @@ struct TestingModeToggle: View {
                 .padding(.vertical, 5.5)
                 .onTapGesture {
                     withAnimation {
-                        insightResultService.isTestingMode.toggle()
+                        queryService.isTestingMode.toggle()
                     }
                 }
-            Toggle("Test Mode is \(insightResultService.isTestingMode ? "ON" : "OFF")", isOn: $insightResultService.isTestingMode.animation())
+            Toggle("Test Mode is \(queryService.isTestingMode ? "ON" : "OFF")", isOn: $queryService.isTestingMode.animation())
                 .toggleStyle(.switch)
                 .scaleEffect(0.5)
         }
