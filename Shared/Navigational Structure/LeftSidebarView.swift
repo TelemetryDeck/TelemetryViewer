@@ -12,6 +12,8 @@ struct LeftSidebarView: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var orgService: OrgService
     @EnvironmentObject var appService: AppService
+    @EnvironmentObject var groupService: GroupService
+    @EnvironmentObject var insightService: InsightService
     @State var newAppViewShown: Bool = false
     @State private var showingAlert = false
 
@@ -106,6 +108,10 @@ struct LeftSidebarView: View {
                         message: Text("You can log back in again later"),
                         primaryButton: .destructive(Text("Log Out")) {
                             api.logout()
+                            orgService.organization = nil
+                            appService.appDictionary = [:]
+                            groupService.groupsDictionary = [:]
+                            insightService.insightDictionary = [:]
                         },
                         secondaryButton: .cancel()
                     )

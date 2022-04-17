@@ -400,7 +400,7 @@ struct PricingSettingsView: View {
                 TelemetryManager.send("PricingSettingsShown")
             }
             .onReceive(timer) { _ in
-                orgService.retrieveOrganization()
+                orgService.getOrganisation()
             }
         }
     }
