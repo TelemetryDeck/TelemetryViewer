@@ -88,7 +88,7 @@ class AppService: ObservableObject {
     }
 
     func update(appID: UUID, newName: String, callback: ((Result<DTOv2.App, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString)
+        let url = api.urlForPath(apiVersion: .v2, "apps", appID.uuidString)
 
         api.patch(["name": newName], to: url) { [unowned self] (result: Result<DTOv2.App, TransferError>) in
             
@@ -101,7 +101,7 @@ class AppService: ObservableObject {
     }
 
     func delete(appID: UUID, callback: ((Result<String, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString)
+        let url = api.urlForPath(apiVersion: .v2, "apps", appID.uuidString)
 
         api.delete(url) { [unowned self] (result: Result<String, TransferError>) in
 
