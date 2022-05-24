@@ -50,7 +50,9 @@ struct LeftSidebarView: View {
                             if let app = try? await appService.retrieveApp(withID: appID) {
                                 DispatchQueue.main.async {
                                     app.insightGroupIDs.forEach { groupID in
-                                        groupService.retrieveGroup(with: groupID)
+                                        if !(groupService.groupsDictionary.keys.contains(groupID)) {
+                                            groupService.retrieveGroup(with: groupID)
+                                        }
                                     }
                                     appService.appDictionary[app.id] = app
                                 }

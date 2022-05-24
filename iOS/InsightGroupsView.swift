@@ -73,7 +73,9 @@ struct InsightGroupsView: View {
         .task {
             for groupID in groupService.groupsDictionary.keys {
                 for insightID in groupService.groupsDictionary[groupID]?.insightIDs ?? [] {
-                    await insightService.retrieveInsight(with: insightID)
+                    if !(insightService.insightDictionary.keys.contains(insightID)) {
+                        await insightService.retrieveInsight(with: insightID)
+                    }
                 }
             }
         }
