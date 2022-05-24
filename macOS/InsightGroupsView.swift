@@ -40,15 +40,19 @@ struct InsightGroupsView: View {
             }
         }
         .onAppear {
-            appService.app(withID: appID)?.insightGroupIDs.forEach({ groupID in
+            appService.appDictionary[appID]?.insightGroupIDs.forEach { groupID in
                 groupService.retrieveGroup(with: groupID)
-            })
-            selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
+            }
+            selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
             TelemetryManager.send("InsightGroupsAppear")
         }
-        .onReceive(appService.objectWillChange) { _ in
-            if selectedInsightGroupID == nil {
-                selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
+        .onReceive(groupService.objectWillChange) { _ in
+            if let groupID = selectedInsightGroupID {
+                if !(groupService.groupsDictionary.keys.contains(groupID)) {
+                    selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
+                }
+            } else {
+                selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
             }
         }
         
@@ -101,10 +105,10 @@ struct InsightGroupsView: View {
     
     private var groupSelector: some View {
         Picker("Group", selection: $selectedInsightGroupID) {
-            if let app = appService.app(withID: appID) {
+            if let app = appService.appDictionary[appID] {
                 ForEach(
                     app.insightGroupIDs
-                        .map { ($0, groupService.group(withID: $0)?.order ?? 0) }
+                        .map { ($0, groupService.groupsDictionary[$0]?.order ?? 0) }
                         .sorted(by: { $0.1 < $1.1 }),
                     id: \.0
                 ) { idTuple in
@@ -122,7 +126,16 @@ struct InsightGroupsView: View {
     private var newGroupButton: some View {
         Button(action: {
             groupService.create(insightGroupNamed: "New Group", for: appID) { _ in
-                appService.retrieveApp(with: appID)
+                Task {
+                    if let app = try? await appService.retrieveApp(withID: appID) {
+                        DispatchQueue.main.async {
+                            appService.appDictionary[appID] = app
+                            appService.app(withID: appID)?.insightGroupIDs.forEach { groupID in
+                                groupService.retrieveGroup(with: groupID)
+                            }
+                        }
+                    }
+                }
             }
         }) {
             HStack {

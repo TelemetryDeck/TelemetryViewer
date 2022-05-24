@@ -5,9 +5,9 @@
 //  Created by Daniel Jilg on 18.08.21.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
 
 let spacing: CGFloat = 0.5
 

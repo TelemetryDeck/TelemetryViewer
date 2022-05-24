@@ -5,14 +5,15 @@
 //  Created by Daniel Jilg on 18.08.21.
 //
 
+import DataTransferObjects
 import SwiftUI
 import TelemetryClient
-import DataTransferObjects
 
 struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var queryService: QueryService
+    @EnvironmentObject var insightService: InsightService
     
     @State var sidebarVisible = false
     @State var selectedInsightGroupID: DTOv2.Group.ID?
@@ -62,16 +63,27 @@ struct InsightGroupsView: View {
                 EmptyView()
             })
         .onAppear {
-            appService.app(withID: appID)?.insightGroupIDs.forEach({ groupID in
-                groupService.retrieveGroup(with: groupID)
-            })
+//            appService.app(withID: appID)?.insightGroupIDs.forEach { groupID in
+//                groupService.retrieveGroup(with: groupID)
+//            }
             
             selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
             TelemetryManager.send("InsightGroupsAppear")
         }
-        .onReceive(appService.objectWillChange) { _ in
-            if selectedInsightGroupID == nil {
-                selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
+        .task {
+            for groupID in groupService.groupsDictionary.keys {
+                for insightID in groupService.groupsDictionary[groupID]?.insightIDs ?? [] {
+                    await insightService.retrieveInsight(with: insightID)
+                }
+            }
+        }
+        .onReceive(groupService.objectWillChange) { _ in
+            if let groupID = selectedInsightGroupID {
+                if !(groupService.groupsDictionary.keys.contains(groupID)) {
+                    selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
+                }
+            } else {
+                selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -126,7 +138,16 @@ struct InsightGroupsView: View {
     private var newGroupButton: some View {
         Button {
             groupService.create(insightGroupNamed: "New Group", for: appID) { _ in
-                appService.retrieveApp(with: appID)
+                Task {
+                    if let app = try? await appService.retrieveApp(withID: appID) {
+                        DispatchQueue.main.async {
+                            appService.appDictionary[appID] = app
+                            appService.app(withID: appID)?.insightGroupIDs.forEach { groupID in
+                                groupService.retrieveGroup(with: groupID)
+                            }
+                        }
+                    }
+                }
             }
         } label: {
             Label("New Group", systemImage: "plus")

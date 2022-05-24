@@ -74,6 +74,7 @@ class GroupService: ObservableObject {
             // TODO:
             callback?(result)
         }
+        groupsDictionary = groupsDictionary.filter() { $0.key != insightGroupID }
     }
 }
 

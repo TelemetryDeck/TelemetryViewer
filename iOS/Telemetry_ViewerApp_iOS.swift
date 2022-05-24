@@ -55,7 +55,7 @@ struct Telemetry_ViewerApp: App {
         self.errors = ErrorService()
         
         self.orgService = OrgService(api: api, errors: errors)
-        self.appService = AppService(api: api, errors: errors)
+        self.appService = AppService(api: api, errors: errors, orgService: orgService)
         self.groupService = GroupService(api: api, errors: errors)
         self.insightService = InsightService(api: api, errors: errors)
         

@@ -45,7 +45,16 @@ struct InsightGroupEditor: View {
                 presentationMode.wrappedValue.dismiss()
             #endif
 
-            appService.retrieveApp(with: appID)
+            Task {
+                if let app = try? await appService.retrieveApp(withID: appID) {
+                    DispatchQueue.main.async {
+                        appService.appDictionary[appID] = app
+                        appService.app(withID: appID)?.insightGroupIDs.forEach({ groupID in
+                            groupService.retrieveGroup(with: groupID)
+                        })
+                    }
+                }
+            }
         }
     }
 
@@ -69,12 +78,14 @@ struct InsightGroupEditor: View {
         .onAppear {
             TelemetryManager.send("InsightGroupEditorAppear")
         }
+
         .alert(isPresented: $showingAlert) {
             Alert(
                 title: Text("Are you sure you want to delete the group \(title)?"),
                 message: Text("This will delete the Insight Group and all its Insights. Your signals are not affected."),
                 primaryButton: .destructive(Text("Delete")) {
                     delete()
+                    
                 },
                 secondaryButton: .cancel()
             )

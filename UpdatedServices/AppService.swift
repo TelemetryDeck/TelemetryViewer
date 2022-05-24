@@ -12,6 +12,7 @@ import Foundation
 class AppService: ObservableObject {
     private let api: APIClient
     private let errorService: ErrorService
+    private let orgService: OrgService
     
     private let loadingState = Cache<DTOv2.App.ID, LoadingState>()
         
@@ -20,9 +21,10 @@ class AppService: ObservableObject {
     @Published var appDictionary: [DTOv2.App.ID: DTOv2.App] = [:]
     @Published var loadingStateDictionary: [DTOv2.App.ID: LoadingState] = [:]
     
-    init(api: APIClient, errors: ErrorService) {
+    init(api: APIClient, errors: ErrorService, orgService: OrgService) {
         self.api = api
-        errorService = errors
+        self.errorService = errors
+        self.orgService = orgService
         
         loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
     }
@@ -81,6 +83,7 @@ class AppService: ObservableObject {
             
             if let app = try? result.get() {
                 appDictionary[app.id] = app
+                orgService.organization?.appIDs.append(app.id)
             }
             
             callback?(result)
@@ -106,6 +109,7 @@ class AppService: ObservableObject {
         api.delete(url) { [unowned self] (result: Result<String, TransferError>) in
 
             appDictionary[appID] = nil
+            orgService.organization?.appIDs = (orgService.organization?.appIDs.filter() { $0 != appID })!
             callback?(result)
         }
     }

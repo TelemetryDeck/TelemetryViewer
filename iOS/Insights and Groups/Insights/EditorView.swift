@@ -400,20 +400,20 @@ struct EditorView: View {
     }
 }
 
-struct EditorView_Previews: PreviewProvider {
-    static var apiClientPreview = APIClient()
-    static var previews: some View {
-        NavigationView {
-            EditorView(viewModel: EditorViewModel(insight: MockData.exampleInsightVersion2,
-                                                  appID: MockData.app1.id,
-                                                  insightService: InsightService(api: apiClientPreview,
-                                                                                 errors: ErrorService()),
-                                                  groupService: GroupService(api: apiClientPreview,
-                                                                             errors: ErrorService()),
-                                                  lexiconService: LexiconService(api: APIClient())),
-                       selectedInsightID: .constant(MockData.exampleInsightVersion2.id))
-                .environmentObject(AppService(api: apiClientPreview, errors: ErrorService()))
-                .navigationBarTitleDisplayMode(.inline)
-        }
-    }
-}
+//struct EditorView_Previews: PreviewProvider {
+//    static var apiClientPreview = APIClient()
+//    static var previews: some View {
+//        NavigationView {
+//            EditorView(viewModel: EditorViewModel(insight: MockData.exampleInsightVersion2,
+//                                                  appID: MockData.app1.id,
+//                                                  insightService: InsightService(api: apiClientPreview,
+//                                                                                 errors: ErrorService()),
+//                                                  groupService: GroupService(api: apiClientPreview,
+//                                                                             errors: ErrorService()),
+//                                                  lexiconService: LexiconService(api: APIClient())),
+//                       selectedInsightID: .constant(MockData.exampleInsightVersion2.id))
+//                .environmentObject(AppService(api: apiClientPreview, errors: ErrorService(), orgService: OrgService()))
+//                .navigationBarTitleDisplayMode(.inline)
+//        }
+//    }
+//}

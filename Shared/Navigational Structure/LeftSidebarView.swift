@@ -44,13 +44,18 @@ struct LeftSidebarView: View {
                 if let organization = orgService.organization {
                     ForEach(organization.appIDs, id: \.self) { appID in
                         section(for: appID)
-                            .task {
-                                if let app = try? await appService.retrieveApp(withID: appID) {
-                                    DispatchQueue.main.async {
-                                        appService.appDictionary[app.id] = app
+                    }
+                    .task {
+                        for appID in organization.appIDs {
+                            if let app = try? await appService.retrieveApp(withID: appID) {
+                                DispatchQueue.main.async {
+                                    app.insightGroupIDs.forEach { groupID in
+                                        groupService.retrieveGroup(with: groupID)
                                     }
+                                    appService.appDictionary[app.id] = app
                                 }
                             }
+                        }
                     }
                 }
                 Button {
@@ -127,6 +132,7 @@ struct LeftSidebarView: View {
                 }
             }
         }
+
         #if os(macOS)
             .sheet(isPresented: $updateService.shouldShowUpdateNowScreen) {
                 AppUpdateView()

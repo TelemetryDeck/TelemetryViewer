@@ -118,9 +118,9 @@ struct AppEditor: View {
     }
 }
 
-struct AppEditor_Previews: PreviewProvider {
-    static var previews: some View {
-        AppEditor(appID: UUID.empty, appName: "test")
-            .environmentObject(AppService(api: APIClient(), errors: ErrorService()))
-    }
-}
+//struct AppEditor_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AppEditor(appID: UUID.empty, appName: "test")
+//            .environmentObject(AppService(api: APIClient(), errors: ErrorService(), orgService: OrgService()))
+//    }
+//}
