@@ -34,7 +34,7 @@ class OrgService: ObservableObject {
             do {
                 let org = try await self.retrieveOrganisation()
                 DispatchQueue.main.async {
-                    self.organization = org // this should be dispatchmain. or should it?
+                    self.organization = org
                         
                     self.loadingState = .finished(Date())
                 }

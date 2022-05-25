@@ -5,8 +5,8 @@
 //  Created by Daniel Jilg on 24.09.21.
 //
 
-import SwiftUI
 import DataTransferObjects
+import SwiftUI
 
 struct InsightsGrid: View {
     @EnvironmentObject var insightService: InsightService

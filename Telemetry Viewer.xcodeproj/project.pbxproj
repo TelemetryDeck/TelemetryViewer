@@ -33,7 +33,6 @@
 		2B21FCD726FDC38500A8A55B /* NewInsightMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCD626FDC38500A8A55B /* NewInsightMenu.swift */; };
 		2B21FCD826FDC38500A8A55B /* NewInsightMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCD626FDC38500A8A55B /* NewInsightMenu.swift */; };
 		2B21FCDA26FDC9F900A8A55B /* InsightsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCD926FDC9F900A8A55B /* InsightsGrid.swift */; };
-		2B21FCDB26FDC9F900A8A55B /* InsightsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCD926FDC9F900A8A55B /* InsightsGrid.swift */; };
 		2B21FCDD26FDCA6A00A8A55B /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCDC26FDCA6A00A8A55B /* GroupView.swift */; };
 		2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */; };
 		2B21FCE026FDCAE200A8A55B /* InsightsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */; };
@@ -150,6 +149,7 @@
 		63C4E9562778C4D100344E20 /* SignalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E9542778C4CE00344E20 /* SignalListCell.swift */; };
 		63C4E9582778C54D00344E20 /* SignalListExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E9572778C54D00344E20 /* SignalListExplanationView.swift */; };
 		63C4E9592778D0D100344E20 /* SignalListExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4E9572778C54D00344E20 /* SignalListExplanationView.swift */; };
+		C5173B41283D52E40018CE9F /* InsightsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5173B40283D52E40018CE9F /* InsightsGrid.swift */; };
 		C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C51CB73C27565F76005A3FB9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8AD270C821A0032560A /* Intents.framework */; platformFilter = maccatalyst; };
 		C51CB7472756609E005A3FB9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
@@ -447,6 +447,7 @@
 		63C4E9512778C00000344E20 /* SignalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalList.swift; sourceTree = "<group>"; };
 		63C4E9542778C4CE00344E20 /* SignalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalListCell.swift; sourceTree = "<group>"; };
 		63C4E9572778C54D00344E20 /* SignalListExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalListExplanationView.swift; sourceTree = "<group>"; };
+		C5173B40283D52E40018CE9F /* InsightsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsGrid.swift; sourceTree = "<group>"; };
 		C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB79C27567AD6005A3FB9 /* Telemetry Viewer (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telemetry Viewer (macOS).entitlements"; sourceTree = "<group>"; };
@@ -815,7 +816,6 @@
 				2BA5D50626CD1403008FBF8F /* InsightCard.swift */,
 				DCB5F9F525F29BF4004C4922 /* InsightGroupEditor.swift */,
 				2B21FCD626FDC38500A8A55B /* NewInsightMenu.swift */,
-				2B21FCD926FDC9F900A8A55B /* InsightsGrid.swift */,
 				2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */,
 				6351A788277C9ED8003AF559 /* InsightDisplayMode+Extensions.swift */,
 				C56B91F827C536D60085839A /* QueryView.swift */,
@@ -949,6 +949,7 @@
 				63C4E9502778BFE900344E20 /* Recent Signals */,
 				6351A77E277C5E3C003AF559 /* Insights and Groups */,
 				DC9A92AF255C1CD100E92C89 /* AutoCompletingTextField.swift */,
+				2B21FCD926FDC9F900A8A55B /* InsightsGrid.swift */,
 				C5B917F02757C9EB004A842B /* CreateNewAppView.swift */,
 				2BDD35052710727900CB2AA5 /* EditorModeView.swift */,
 				DCDC6EFE253EDA4C0012D9A7 /* FilterEditView.swift */,
@@ -975,6 +976,7 @@
 				2BF2BE442763921400A79531 /* CreateNewAppView.swift */,
 				DCDC6F05253EE0620012D9A7 /* FilterEditView.swift */,
 				2BA5D50326CD0E5B008FBF8F /* GroupView.swift */,
+				C5173B40283D52E40018CE9F /* InsightsGrid.swift */,
 				2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */,
 				2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */,
 				2BEDE70F26A73EA9007247B0 /* MacOS12RecentSignalsView.swift */,
@@ -1572,6 +1574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5173B41283D52E40018CE9F /* InsightsGrid.swift in Sources */,
 				2BBFCA26267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				2B0050922703617B009C609C /* Color+Hex.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
@@ -1603,7 +1606,6 @@
 				2BBFCA02267D05E40013DC74 /* DashedCardView.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
 				2B6431A22739A5BB009A33C4 /* CacheLayer.swift in Sources */,
-				2B21FCDB26FDC9F900A8A55B /* InsightsGrid.swift in Sources */,
 				2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
 				2BC2720326207D710045A2FE /* MockData.swift in Sources */,
 				DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */,
