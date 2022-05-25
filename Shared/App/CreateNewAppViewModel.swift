@@ -66,7 +66,7 @@ class CreateNewAppViewModel: ObservableObject {
                 if self.createDefaultInsights {
                     let url = self.api.urlForPath(apiVersion: .v2, "apps", newApp.id.uuidString, "createDefaultInsights")
 
-                    self.api.post("", to: url, defaultValue: nil) { (_: Result<Data, TransferError>) in
+                    self.api.post("", to: url, defaultValue: nil) { (_: Result<[String: String], TransferError>) in
                         DispatchQueue.main.async {
                             self.createdApp = newApp
                         }

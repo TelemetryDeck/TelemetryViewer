@@ -23,7 +23,7 @@ class AppService: ObservableObject {
     
     init(api: APIClient, errors: ErrorService, orgService: OrgService) {
         self.api = api
-        self.errorService = errors
+        errorService = errors
         self.orgService = orgService
         
         loadingCancellable = loadingState.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.objectWillChange.send() }
@@ -103,13 +103,13 @@ class AppService: ObservableObject {
         }
     }
 
-    func delete(appID: UUID, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+    func delete(appID: UUID, callback: ((Result<[String: String], TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "apps", appID.uuidString)
 
-        api.delete(url) { [unowned self] (result: Result<String, TransferError>) in
+        api.delete(url) { [unowned self] (result: Result<[String: String], TransferError>) in
 
             appDictionary[appID] = nil
-            orgService.organization?.appIDs = (orgService.organization?.appIDs.filter() { $0 != appID })!
+            orgService.organization?.appIDs = (orgService.organization?.appIDs.filter { $0 != appID })!
             callback?(result)
         }
     }

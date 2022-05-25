@@ -34,7 +34,7 @@ struct InsightGroupEditor: View {
     }
 
     func save() {
-        groupService.update(insightGroup: DTOv1.InsightGroup(id: id, title: title, order: order), in: appID) { _ in
+        groupService.update(insightGroup: DTOv2.Group(id: id, title: title, order: order, appID: appID, insightIDs: []), in: appID) { _ in
             groupService.retrieveGroup(with: self.id)
         }
     }

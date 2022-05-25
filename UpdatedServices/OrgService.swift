@@ -17,11 +17,9 @@ class OrgService: ObservableObject {
     
     @Published var organization: DTOv2.Organization?
 
-    
     init(api: APIClient, errors: ErrorService) {
         self.api = api
-        errorService = errors
-        
+        self.errorService = errors
     }
         
     func getOrganisation() {
@@ -48,7 +46,6 @@ class OrgService: ObservableObject {
                 }
             }
         }
-
     }
     
     func retrieveOrganisation() async throws -> DTOv2.Organization {
@@ -92,7 +89,7 @@ private extension OrgService {
     
     func saveToDisk(org: DTOv2.Organization) {
         guard let data = try? JSONEncoder.telemetryEncoder.encode(org) else { return }
-        try? data.write(to: organizationCacheFilePath, options: .atomic)
+        try? data.write(to: self.organizationCacheFilePath, options: .atomic)
     }
     
     func retrieveFromDisk() -> DTOv2.Organization? {

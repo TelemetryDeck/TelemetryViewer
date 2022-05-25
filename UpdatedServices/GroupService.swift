@@ -51,30 +51,30 @@ class GroupService: ObservableObject {
         performRetrieval(ofGroupWithID: groupID)
     }
 
-    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString, "insightgroups")
+    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTOv2.Group, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath(apiVersion: .v2, "groups")
 
-        api.post(["title": insightGroupNamed], to: url) { (result: Result<DTOv1.InsightGroup, TransferError>) in
+        api.post(["title": insightGroupNamed, "appID": appID.uuidString], to: url) { (result: Result<DTOv2.Group, TransferError>) in
             callback?(result)
         }
     }
 
-    func update(insightGroup: DTOv1.InsightGroup, in appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroup.id.uuidString)
+    func update(insightGroup: DTOv2.Group, in appID: UUID, callback: ((Result<DTOv2.Group, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath(apiVersion: .v2, "groups", insightGroup.id.uuidString)
 
-        api.patch(insightGroup, to: url) { (result: Result<DTOv1.InsightGroup, TransferError>) in
+        api.patch(insightGroup, to: url) { (result: Result<DTOv2.Group, TransferError>) in
             callback?(result)
         }
     }
 
-    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<DTOv1.InsightGroup, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath("apps", appID.uuidString, "insightgroups", insightGroupID.uuidString)
+    func delete(insightGroupID: UUID, in appID: UUID, callback: ((Result<[String: String], TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath(apiVersion: .v2, "groups", insightGroupID.uuidString)
 
-        api.delete(url) { (result: Result<DTOv1.InsightGroup, TransferError>) in
+        api.delete(url) { (result: Result<[String: String], TransferError>) in
             // TODO:
             callback?(result)
         }
-        groupsDictionary = groupsDictionary.filter() { $0.key != insightGroupID }
+        groupsDictionary = groupsDictionary.filter { $0.key != insightGroupID }
     }
 }
 

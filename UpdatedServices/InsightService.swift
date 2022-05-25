@@ -57,10 +57,10 @@ class InsightService: ObservableObject {
         }
     }
     
-    func create(insightWith: DTOv2.Insight, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+    func create(insightWith: DTOv2.Insight, callback: ((Result<DTOv2.Insight, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "insights")
         
-        api.post(insightWith, to: url, defaultValue: nil) { (result: Result<String, TransferError>) in
+        api.post(insightWith, to: url, defaultValue: nil) { (result: Result<DTOv2.Insight, TransferError>) in
             callback?(result)
         }
     }
@@ -75,10 +75,10 @@ class InsightService: ObservableObject {
         }
     }
 
-    func delete(insightID: UUID, callback: ((Result<String, TransferError>) -> Void)? = nil) {
+    func delete(insightID: UUID, callback: ((Result<[String: String], TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
         
-        api.delete(url) { (result: Result<String, TransferError>) in
+        api.delete(url) { (result: Result<[String: String], TransferError>) in
             callback?(result)
         }
     }

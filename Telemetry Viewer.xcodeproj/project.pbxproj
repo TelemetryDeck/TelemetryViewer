@@ -2238,16 +2238,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:TelemetryDeck/SwiftUICharts.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
 			};
 		};
 		C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TelemetryDeck/models";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
 			};
 		};
 		DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
