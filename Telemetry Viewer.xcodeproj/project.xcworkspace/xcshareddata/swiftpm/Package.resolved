@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/TelemetryDeck/models",
         "state": {
           "branch": null,
-          "revision": "c7bf76683a2da8205fcc9e75ec0fe67037653da7",
-          "version": "1.1.3"
+          "revision": "bd714dd524d15a473e0bdafcf66dfe8ba50abf7b",
+          "version": "1.2.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
         "state": {
           "branch": null,
-          "revision": "fb518b5acb02aa6ca41be7018bb1619aaef3dc13",
-          "version": "1.1.6"
+          "revision": "87b866ea6a7c573f3f22176fc0f2529e81e4a247",
+          "version": "1.2.0"
         }
       },
       {

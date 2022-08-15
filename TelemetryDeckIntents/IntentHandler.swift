@@ -11,7 +11,6 @@ import DataTransferObjects
 
 class IntentHandler: INExtension, ConfigurationIntentHandling {
     let api: APIClient
-    let cacheLayer: CacheLayer
     let errors: ErrorService
     let insightService: InsightService
 
@@ -20,7 +19,6 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
         TelemetryManager.initialize(with: configuration)
 
         self.api = APIClient()
-        self.cacheLayer = CacheLayer()
         self.errors = ErrorService()
 
         self.insightService = InsightService(api: api, errors: errors)
