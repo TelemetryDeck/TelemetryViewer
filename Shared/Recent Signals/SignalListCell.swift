@@ -5,12 +5,13 @@
 //  Created by Martin Václavík on 26.12.2021.
 //
 
-import SwiftUI
 import DataTransferObjects
+import SwiftUI
 
 struct SignalListCell: View {
     let signal: DTOv1.Signal
-    
+    let defaultPayloads = ["platform", "systemVersion", "majorSystemVersion", "majorMinorSystemVersion", "appVersion", "buildNumber", "isSimulator", "isDebug", "isTestFlight", "isAppStore", "modelName", "architecture", "operatingSystem", "targetEnvironment", "locale", "telemetryClientVersion"]
+
     var body: some View {
         AdaptiveStack(horizontalAlignment: .leading) {
             HStack {
@@ -19,8 +20,13 @@ struct SignalListCell: View {
             }
             .font(.footnote)
             .foregroundColor(.secondary)
-            
-            Text(signal.type).bold()
+            HStack {
+                Text(signal.type).bold()
+                Text("custom payload")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .if(signal.payload?.filter { !defaultPayloads.contains($0.key) }.isEmpty ?? true) { $0.hidden() }
+            }
         }
     }
 }

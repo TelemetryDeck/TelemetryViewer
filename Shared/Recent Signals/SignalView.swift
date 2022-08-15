@@ -5,11 +5,12 @@
 //  Created by Daniel Jilg on 11.08.20.
 //
 
-import SwiftUI
 import DataTransferObjects
+import SwiftUI
 
 struct SignalView: View {
     var signal: DTOv1.Signal
+    let defaultPayloads = ["platform", "systemVersion", "majorSystemVersion", "majorMinorSystemVersion", "appVersion", "buildNumber", "isSimulator", "isDebug", "isTestFlight", "isAppStore", "modelName", "architecture", "operatingSystem", "targetEnvironment", "locale", "telemetryClientVersion"]
 
     @State private var showPayload: Bool = false
 
@@ -25,22 +26,35 @@ struct SignalView: View {
                         Text(signal.receivedAt, style: .time)
                     }
                 }
-                
+
                 KVView(key: "User", value: signal.clientUser)
-                
+
                 signal.sessionID.map {
                     KVView(key: "Session", value: String($0))
                 }
-                
+
                 signal.count.map {
                     KVView(key: "Count", value: String($0))
                 }
             }
 
-            Section(header: Text("Payload")) {
+            Section(header: Text("Custom Payload")) {
                 ForEach(keys.sorted(), id: \.self) { payloadKey in
-                    signal.payload?[payloadKey].map {
-                        KVView(key: payloadKey, value: $0)
+                    if !defaultPayloads.contains(payloadKey) {
+                        signal.payload?[payloadKey].map {
+                            KVView(key: payloadKey, value: $0)
+                        }
+                    }
+                }
+            }
+            .if(signal.payload?.filter { !defaultPayloads.contains($0.key) }.isEmpty ?? true) { $0.hidden() }
+
+            Section(header: Text("Default Payload")) {
+                ForEach(keys.sorted(), id: \.self) { payloadKey in
+                    if defaultPayloads.contains(payloadKey) {
+                        signal.payload?[payloadKey].map {
+                            KVView(key: payloadKey, value: $0)
+                        }
                     }
                 }
             }
@@ -67,7 +81,7 @@ struct SignalView_Previews: PreviewProvider {
 struct KVView: View {
     let key: String
     let value: String
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(key).bold()
