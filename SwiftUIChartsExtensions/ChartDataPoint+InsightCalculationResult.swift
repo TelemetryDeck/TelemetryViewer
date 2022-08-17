@@ -7,7 +7,6 @@
 
 import DataTransferObjects
 import Foundation
-import SwiftUICharts
 
 extension ChartDataPoint {
     init(insightCalculationResultRow: DTOv2.InsightCalculationResultRow) {

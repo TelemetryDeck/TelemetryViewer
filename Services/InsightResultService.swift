@@ -8,7 +8,6 @@
 import Combine
 import DataTransferObjects
 import Foundation
-import SwiftUICharts
 
 final class InsightRetrievalOperation: AsyncOperation {
     private let cache: CacheLayer
@@ -318,7 +317,6 @@ class InsightResultService: ObservableObject {
             }
         }
     }
-
 }
 
 private extension InsightResultService {

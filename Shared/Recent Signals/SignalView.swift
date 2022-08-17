@@ -37,17 +37,18 @@ struct SignalView: View {
                     KVView(key: "Count", value: String($0))
                 }
             }
-
-            Section(header: Text("Custom Payload")) {
-                ForEach(keys.sorted(), id: \.self) { payloadKey in
-                    if !defaultPayloads.contains(payloadKey) {
-                        signal.payload?[payloadKey].map {
-                            KVView(key: payloadKey, value: $0)
+            
+            if !(signal.payload?.filter { !defaultPayloads.contains($0.key) }.isEmpty ?? true) {
+                Section(header: Text("Custom Payload")) {
+                    ForEach(keys.sorted(), id: \.self) { payloadKey in
+                        if !defaultPayloads.contains(payloadKey) {
+                            signal.payload?[payloadKey].map {
+                                KVView(key: payloadKey, value: $0)
+                            }
                         }
                     }
                 }
             }
-            .if(signal.payload?.filter { !defaultPayloads.contains($0.key) }.isEmpty ?? true) { $0.hidden() }
 
             Section(header: Text("Default Payload")) {
                 ForEach(keys.sorted(), id: \.self) { payloadKey in
