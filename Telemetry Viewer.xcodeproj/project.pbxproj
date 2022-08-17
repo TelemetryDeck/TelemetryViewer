@@ -129,7 +129,6 @@
 		2BC2720326207D710045A2FE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2720126207D710045A2FE /* MockData.swift */; };
 		2BC29AB8263DEC1700CE6CEC /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */; };
 		2BC29ABA263DF01A00CE6CEC /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */; };
-		2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */; };
 		2BC522EA2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* HelpAndFeedbackView.swift */; };
 		2BC522EB2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC522E92625FCEF00E643AC /* HelpAndFeedbackView.swift */; };
 		2BDD35062710727900CB2AA5 /* EditorModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDD35052710727900CB2AA5 /* EditorModeView.swift */; };
@@ -492,7 +491,6 @@
 		2BC2720126207D710045A2FE /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2BC29AB7263DEC1700CE6CEC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
 		2BC29AB9263DF01A00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
-		2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		2BC522E92625FCEF00E643AC /* HelpAndFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackView.swift; sourceTree = "<group>"; };
 		2BD21EC7271B3CDA00AE52DD /* TelemetryDeckIntents (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TelemetryDeckIntents (iOS).entitlements"; sourceTree = "<group>"; };
 		2BD21EC8271B3CE500AE52DD /* TelemetryDeckIntents (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TelemetryDeckIntents (macOS).entitlements"; sourceTree = "<group>"; };
@@ -1093,7 +1091,6 @@
 				2B21FCD426FDC33F00A8A55B /* InsightGroupsView.swift */,
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
 				2B462816272B272300515530 /* TestModeIndicator.swift */,
-				2BC29ABB263DF01E00CE6CEC /* UserSettingsView.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
 			);
 			path = iOS;
@@ -1713,7 +1710,6 @@
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				DC9A92C1255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
-				2BC29ABC263DF01E00CE6CEC /* UserSettingsView.swift in Sources */,
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				C5B917F12757C9EB004A842B /* CreateNewAppView.swift in Sources */,
