@@ -585,7 +585,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B1D469626CC484D008814A9 /* UpdatedServices */ = {
+		2B1D469626CC484D008814A9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				2B1D469726CC4C5D008814A9 /* ErrorService.swift */,
@@ -601,7 +601,7 @@
 				2BC2720126207D710045A2FE /* MockData.swift */,
 				C598487627CFBB7A00026772 /* QueryService.swift */,
 			);
-			path = UpdatedServices;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		2B462810272AF06800515530 /* Empty Status Views */ = {
@@ -896,7 +896,7 @@
 				2B74555C27230626002CBB45 /* SwiftUIChartsExtensions */,
 				2BD189F6267BCEA900DFDE4D /* UIComponents */,
 				2BC1427326656DEF009BCB3B /* APIClient */,
-				2B1D469626CC484D008814A9 /* UpdatedServices */,
+				2B1D469626CC484D008814A9 /* Services */,
 				DCE239FB24D3687C00053370 /* Shared */,
 				DCE23A0524D3687D00053370 /* iOS */,
 				DCE23A0C24D3687D00053370 /* macOS */,
