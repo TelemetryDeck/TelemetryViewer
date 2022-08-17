@@ -7,9 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  test:
-    runs-on: macos-lates
-    name: Build
+  build:
+    runs-on: macos-latest
+    name: Build macOS
 
     steps:
       - name: Check out Source
