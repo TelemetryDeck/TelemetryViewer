@@ -7,7 +7,6 @@
 
 import DataTransferObjects
 import Foundation
-import SwiftUICharts
 
 class QueryService: ObservableObject {
     private let api: APIClient
@@ -144,4 +143,3 @@ class QueryService: ObservableObject {
         }
     }
 }
-

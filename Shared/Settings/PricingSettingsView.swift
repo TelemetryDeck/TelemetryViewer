@@ -7,7 +7,7 @@
 
 import DataTransferObjects
 import SwiftUI
-import SwiftUICharts
+
 import TelemetryClient
 
 struct OrganizationSignalNumbersView: View {

@@ -8,13 +8,13 @@
 import DataTransferObjects
 import Intents
 import SwiftUI
-import SwiftUICharts
+
 import TelemetryClient
 import WidgetKit
 
 struct Provider: IntentTimelineProvider {
     let api: APIClient
-    
+
     // I think I can remove all of these except api?!
 //    let cacheLayer: CacheLayer
 //    let errors: ErrorService
@@ -32,7 +32,6 @@ struct Provider: IntentTimelineProvider {
 //        self.insightService = InsightService(api: api, errors: errors)
 //        self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
     }
-
 
     func placeholder(in context: Context) -> SimpleEntry {
         let integer = Int.random(in: 0...4)

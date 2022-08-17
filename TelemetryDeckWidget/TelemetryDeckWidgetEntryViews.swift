@@ -8,20 +8,20 @@
 import DataTransferObjects
 import Intents
 import SwiftUI
-import SwiftUICharts
+
 import WidgetKit
 
 struct TelemetryDeckWidgetEntryView: View {
     let entry: SimpleEntry
-    
+
     @Environment(\.widgetFamily) var family: WidgetFamily
 
     var body: some View {
         GeometryReader { geometry in
-            ZStack() {
+            ZStack {
                 VStack(alignment: .leading, spacing: 6) {
                     Text((entry.configuration.ShowAppName?.boolValue ?? false) ?
-                         (entry.configuration.Insight?.appName ?? "Example App").uppercased() + " • " + entry.insightCalculationResult.insight.title.uppercased() : entry.insightCalculationResult.insight.title.uppercased())
+                        (entry.configuration.Insight?.appName ?? "Example App").uppercased() + " • " + entry.insightCalculationResult.insight.title.uppercased() : entry.insightCalculationResult.insight.title.uppercased())
                         .padding(.top)
                         .padding(.horizontal)
                         .font(Font.system(size: family == .systemSmall ? 10 : 12))
@@ -47,9 +47,8 @@ struct TelemetryDeckWidgetEntryView: View {
                     }
                 }
                 .accentColor(Color(hex: entry.insightCalculationResult.insight.accentColor ?? "") ?? Color.telemetryOrange)
-                .if(entry.widgetDisplayMode == .chooseInsightView) {$0.blur(radius: 1.5)}
+                .if(entry.widgetDisplayMode == .chooseInsightView) { $0.blur(radius: 1.5) }
                 if entry.widgetDisplayMode == .chooseInsightView {
-                    
                     Rectangle()
                         .fill(Color.cardBackground.opacity(0.1))
                         .frame(width: geometry.size.width, height: geometry.size.height)

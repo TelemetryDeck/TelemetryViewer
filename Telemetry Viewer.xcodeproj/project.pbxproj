@@ -234,13 +234,7 @@
 		C5A8D8B1270C821A0032560A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D8B0270C821A0032560A /* IntentHandler.swift */; };
 		C5A8D8C6270C821B0032560A /* TelemetryDeckIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5A8D8CD270C84430032560A /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
-		C5AD4B6127D3926900CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6027D3926900CD7E4C /* SwiftUICharts */; };
 		C5AD4B6427D3928600CD7E4C /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6327D3928600CD7E4C /* DataTransferObjects */; };
-		C5AD4B6627D392CF00CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6527D392CF00CD7E4C /* SwiftUICharts */; };
-		C5AD4B6827D3B4F300CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6727D3B4F300CD7E4C /* SwiftUICharts */; };
-		C5AD4B6A27D3B4FA00CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6927D3B4FA00CD7E4C /* SwiftUICharts */; };
-		C5AD4B6C27D3B62000CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6B27D3B62000CD7E4C /* SwiftUICharts */; };
-		C5AD4B6E27D3B62700CD7E4C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5AD4B6D27D3B62700CD7E4C /* SwiftUICharts */; };
 		C5B917F12757C9EB004A842B /* CreateNewAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B917F02757C9EB004A842B /* CreateNewAppView.swift */; };
 		C5CD58912810368100671359 /* ThreeCirclesInATrenchcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5551E5727C3CC78005847B6 /* ThreeCirclesInATrenchcode.swift */; };
 		C5CD58922810368100671359 /* SondrineAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5551E5827C3CC78005847B6 /* SondrineAnimation.swift */; };
@@ -272,6 +266,74 @@
 		C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
 		C5D1421A273471F00029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
 		C5D1421B273471F00029CA03 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
+		C5F4D32A28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31528ACF48000EBB667 /* ChartHoverLabel.swift */; };
+		C5F4D32B28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31528ACF48000EBB667 /* ChartHoverLabel.swift */; };
+		C5F4D32C28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31528ACF48000EBB667 /* ChartHoverLabel.swift */; };
+		C5F4D32D28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31528ACF48000EBB667 /* ChartHoverLabel.swift */; };
+		C5F4D32E28ACF48000EBB667 /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31628ACF48000EBB667 /* ChartBottomView.swift */; };
+		C5F4D32F28ACF48000EBB667 /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31628ACF48000EBB667 /* ChartBottomView.swift */; };
+		C5F4D33028ACF48000EBB667 /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31628ACF48000EBB667 /* ChartBottomView.swift */; };
+		C5F4D33128ACF48000EBB667 /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31628ACF48000EBB667 /* ChartBottomView.swift */; };
+		C5F4D33228ACF48000EBB667 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31728ACF48000EBB667 /* LineChartView.swift */; };
+		C5F4D33328ACF48000EBB667 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31728ACF48000EBB667 /* LineChartView.swift */; };
+		C5F4D33428ACF48000EBB667 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31728ACF48000EBB667 /* LineChartView.swift */; };
+		C5F4D33528ACF48000EBB667 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31728ACF48000EBB667 /* LineChartView.swift */; };
+		C5F4D33628ACF48000EBB667 /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31828ACF48000EBB667 /* ChartRangeView.swift */; };
+		C5F4D33728ACF48000EBB667 /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31828ACF48000EBB667 /* ChartRangeView.swift */; };
+		C5F4D33828ACF48000EBB667 /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31828ACF48000EBB667 /* ChartRangeView.swift */; };
+		C5F4D33928ACF48000EBB667 /* ChartRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31828ACF48000EBB667 /* ChartRangeView.swift */; };
+		C5F4D33A28ACF48000EBB667 /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31928ACF48000EBB667 /* RawChartView.swift */; };
+		C5F4D33B28ACF48000EBB667 /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31928ACF48000EBB667 /* RawChartView.swift */; };
+		C5F4D33C28ACF48000EBB667 /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31928ACF48000EBB667 /* RawChartView.swift */; };
+		C5F4D33D28ACF48000EBB667 /* RawChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31928ACF48000EBB667 /* RawChartView.swift */; };
+		C5F4D33E28ACF48000EBB667 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31A28ACF48000EBB667 /* RoundedCorners.swift */; };
+		C5F4D33F28ACF48000EBB667 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31A28ACF48000EBB667 /* RoundedCorners.swift */; };
+		C5F4D34028ACF48000EBB667 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31A28ACF48000EBB667 /* RoundedCorners.swift */; };
+		C5F4D34128ACF48000EBB667 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31A28ACF48000EBB667 /* RoundedCorners.swift */; };
+		C5F4D34228ACF48000EBB667 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31B28ACF48000EBB667 /* BarChartView.swift */; };
+		C5F4D34328ACF48000EBB667 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31B28ACF48000EBB667 /* BarChartView.swift */; };
+		C5F4D34428ACF48000EBB667 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31B28ACF48000EBB667 /* BarChartView.swift */; };
+		C5F4D34528ACF48000EBB667 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31B28ACF48000EBB667 /* BarChartView.swift */; };
+		C5F4D34628ACF48000EBB667 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31D28ACF48000EBB667 /* DonutChartView.swift */; };
+		C5F4D34728ACF48000EBB667 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31D28ACF48000EBB667 /* DonutChartView.swift */; };
+		C5F4D34828ACF48000EBB667 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31D28ACF48000EBB667 /* DonutChartView.swift */; };
+		C5F4D34928ACF48000EBB667 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31D28ACF48000EBB667 /* DonutChartView.swift */; };
+		C5F4D34A28ACF48000EBB667 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31E28ACF48000EBB667 /* DonutChart.swift */; };
+		C5F4D34B28ACF48000EBB667 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31E28ACF48000EBB667 /* DonutChart.swift */; };
+		C5F4D34C28ACF48000EBB667 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31E28ACF48000EBB667 /* DonutChart.swift */; };
+		C5F4D34D28ACF48000EBB667 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31E28ACF48000EBB667 /* DonutChart.swift */; };
+		C5F4D34E28ACF48000EBB667 /* DonutChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31F28ACF48000EBB667 /* DonutChartLegend.swift */; };
+		C5F4D34F28ACF48000EBB667 /* DonutChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31F28ACF48000EBB667 /* DonutChartLegend.swift */; };
+		C5F4D35028ACF48000EBB667 /* DonutChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31F28ACF48000EBB667 /* DonutChartLegend.swift */; };
+		C5F4D35128ACF48000EBB667 /* DonutChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D31F28ACF48000EBB667 /* DonutChartLegend.swift */; };
+		C5F4D35228ACF48000EBB667 /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32128ACF48000EBB667 /* ChartDataPoint.swift */; };
+		C5F4D35328ACF48000EBB667 /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32128ACF48000EBB667 /* ChartDataPoint.swift */; };
+		C5F4D35428ACF48000EBB667 /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32128ACF48000EBB667 /* ChartDataPoint.swift */; };
+		C5F4D35528ACF48000EBB667 /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32128ACF48000EBB667 /* ChartDataPoint.swift */; };
+		C5F4D35628ACF48000EBB667 /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32228ACF48000EBB667 /* ChartDataSet.swift */; };
+		C5F4D35728ACF48000EBB667 /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32228ACF48000EBB667 /* ChartDataSet.swift */; };
+		C5F4D35828ACF48000EBB667 /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32228ACF48000EBB667 /* ChartDataSet.swift */; };
+		C5F4D35928ACF48000EBB667 /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32228ACF48000EBB667 /* ChartDataSet.swift */; };
+		C5F4D35A28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32428ACF48000EBB667 /* ValueUnitAndTitleView.swift */; };
+		C5F4D35B28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32428ACF48000EBB667 /* ValueUnitAndTitleView.swift */; };
+		C5F4D35C28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32428ACF48000EBB667 /* ValueUnitAndTitleView.swift */; };
+		C5F4D35D28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32428ACF48000EBB667 /* ValueUnitAndTitleView.swift */; };
+		C5F4D35E28ACF48000EBB667 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32528ACF48000EBB667 /* BigNumberFormatter.swift */; };
+		C5F4D35F28ACF48000EBB667 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32528ACF48000EBB667 /* BigNumberFormatter.swift */; };
+		C5F4D36028ACF48000EBB667 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32528ACF48000EBB667 /* BigNumberFormatter.swift */; };
+		C5F4D36128ACF48000EBB667 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32528ACF48000EBB667 /* BigNumberFormatter.swift */; };
+		C5F4D36228ACF48000EBB667 /* SingleKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32628ACF48000EBB667 /* SingleKeyValueView.swift */; };
+		C5F4D36328ACF48000EBB667 /* SingleKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32628ACF48000EBB667 /* SingleKeyValueView.swift */; };
+		C5F4D36428ACF48000EBB667 /* SingleKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32628ACF48000EBB667 /* SingleKeyValueView.swift */; };
+		C5F4D36528ACF48000EBB667 /* SingleKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32628ACF48000EBB667 /* SingleKeyValueView.swift */; };
+		C5F4D36628ACF48000EBB667 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32828ACF48000EBB667 /* TextModifiers.swift */; };
+		C5F4D36728ACF48000EBB667 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32828ACF48000EBB667 /* TextModifiers.swift */; };
+		C5F4D36828ACF48000EBB667 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32828ACF48000EBB667 /* TextModifiers.swift */; };
+		C5F4D36928ACF48000EBB667 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32828ACF48000EBB667 /* TextModifiers.swift */; };
+		C5F4D36E28ACF64600EBB667 /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32228ACF48000EBB667 /* ChartDataSet.swift */; };
+		C5F4D36F28ACF64600EBB667 /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32128ACF48000EBB667 /* ChartDataPoint.swift */; };
+		C5F4D37028ACF64700EBB667 /* ChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32228ACF48000EBB667 /* ChartDataSet.swift */; };
+		C5F4D37128ACF64700EBB667 /* ChartDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4D32128ACF48000EBB667 /* ChartDataPoint.swift */; };
 		DC24DF3325DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3425DD54090003ADCB /* NoAppSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */; };
 		DC24DF3925DD54780003ADCB /* LeftSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */; };
@@ -470,6 +532,22 @@
 		C5A8D8B8270C821B0032560A /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		C5B917F02757C9EB004A842B /* CreateNewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppView.swift; sourceTree = "<group>"; };
 		C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalViewModifier.swift; sourceTree = "<group>"; };
+		C5F4D31528ACF48000EBB667 /* ChartHoverLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartHoverLabel.swift; sourceTree = "<group>"; };
+		C5F4D31628ACF48000EBB667 /* ChartBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBottomView.swift; sourceTree = "<group>"; };
+		C5F4D31728ACF48000EBB667 /* LineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		C5F4D31828ACF48000EBB667 /* ChartRangeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartRangeView.swift; sourceTree = "<group>"; };
+		C5F4D31928ACF48000EBB667 /* RawChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawChartView.swift; sourceTree = "<group>"; };
+		C5F4D31A28ACF48000EBB667 /* RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
+		C5F4D31B28ACF48000EBB667 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		C5F4D31D28ACF48000EBB667 /* DonutChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
+		C5F4D31E28ACF48000EBB667 /* DonutChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
+		C5F4D31F28ACF48000EBB667 /* DonutChartLegend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonutChartLegend.swift; sourceTree = "<group>"; };
+		C5F4D32128ACF48000EBB667 /* ChartDataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataPoint.swift; sourceTree = "<group>"; };
+		C5F4D32228ACF48000EBB667 /* ChartDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataSet.swift; sourceTree = "<group>"; };
+		C5F4D32428ACF48000EBB667 /* ValueUnitAndTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueUnitAndTitleView.swift; sourceTree = "<group>"; };
+		C5F4D32528ACF48000EBB667 /* BigNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigNumberFormatter.swift; sourceTree = "<group>"; };
+		C5F4D32628ACF48000EBB667 /* SingleKeyValueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleKeyValueView.swift; sourceTree = "<group>"; };
+		C5F4D32828ACF48000EBB667 /* TextModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		DC24DF3225DD54090003ADCB /* NoAppSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAppSelectedView.swift; sourceTree = "<group>"; };
 		DC24DF3825DD54780003ADCB /* LeftSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSidebarView.swift; sourceTree = "<group>"; };
 		DC45BB1B24E27F12004E6392 /* SignalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalView.swift; sourceTree = "<group>"; };
@@ -518,7 +596,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C51CB76727566158005A3FB9 /* TelemetryClient in Frameworks */,
-				C5AD4B6E27D3B62700CD7E4C /* SwiftUICharts in Frameworks */,
 				C51CB76327566148005A3FB9 /* DataTransferObjects in Frameworks */,
 				C51CB73C27565F76005A3FB9 /* Intents.framework in Frameworks */,
 			);
@@ -531,7 +608,6 @@
 				C51CB79827566548005A3FB9 /* Shimmer in Frameworks */,
 				C51CB76D27566199005A3FB9 /* TelemetryClient in Frameworks */,
 				C51CB74E275660E0005A3FB9 /* SwiftUI.framework in Frameworks */,
-				C5AD4B6A27D3B4FA00CD7E4C /* SwiftUICharts in Frameworks */,
 				C51CB76927566199005A3FB9 /* DataTransferObjects in Frameworks */,
 				C51CB74D275660E0005A3FB9 /* WidgetKit.framework in Frameworks */,
 			);
@@ -545,7 +621,6 @@
 				C5A8D865270C5D7A0032560A /* SwiftUI.framework in Frameworks */,
 				2B043C34271B491B00DDB255 /* TelemetryClient in Frameworks */,
 				C5A8D864270C5D7A0032560A /* WidgetKit.framework in Frameworks */,
-				C5AD4B6827D3B4F300CD7E4C /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +629,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5A8D8AE270C821A0032560A /* Intents.framework in Frameworks */,
-				C5AD4B6C27D3B62000CD7E4C /* SwiftUICharts in Frameworks */,
 				2B0769D82722EA260024D8A7 /* DataTransferObjects in Frameworks */,
 				2B043C36271B492900DDB255 /* TelemetryClient in Frameworks */,
 			);
@@ -565,7 +639,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5AD4B6427D3928600CD7E4C /* DataTransferObjects in Frameworks */,
-				C5AD4B6127D3926900CD7E4C /* SwiftUICharts in Frameworks */,
 				2B0769DE2722EA3B0024D8A7 /* DataTransferObjects in Frameworks */,
 				DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */,
 			);
@@ -576,7 +649,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B25EAE926D3EEE700BBBB1B /* Shimmer in Frameworks */,
-				C5AD4B6627D392CF00CD7E4C /* SwiftUICharts in Frameworks */,
 				2B0769DC2722EA350024D8A7 /* DataTransferObjects in Frameworks */,
 				DC9C0842252CEAC9001C0F94 /* TelemetryClient in Frameworks */,
 			);
@@ -801,6 +873,69 @@
 			path = TelemetryDeckIntents;
 			sourceTree = "<group>";
 		};
+		C5F4D31328ACF48000EBB667 /* SwiftUICharts */ = {
+			isa = PBXGroup;
+			children = (
+				C5F4D31428ACF48000EBB667 /* Charts */,
+				C5F4D32028ACF48000EBB667 /* Models */,
+				C5F4D32328ACF48000EBB667 /* ValueAndUnitViews */,
+				C5F4D32728ACF48000EBB667 /* Modifiers and Styles */,
+			);
+			path = SwiftUICharts;
+			sourceTree = "<group>";
+		};
+		C5F4D31428ACF48000EBB667 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				C5F4D31528ACF48000EBB667 /* ChartHoverLabel.swift */,
+				C5F4D31628ACF48000EBB667 /* ChartBottomView.swift */,
+				C5F4D31728ACF48000EBB667 /* LineChartView.swift */,
+				C5F4D31828ACF48000EBB667 /* ChartRangeView.swift */,
+				C5F4D31928ACF48000EBB667 /* RawChartView.swift */,
+				C5F4D31A28ACF48000EBB667 /* RoundedCorners.swift */,
+				C5F4D31B28ACF48000EBB667 /* BarChartView.swift */,
+				C5F4D31C28ACF48000EBB667 /* Donut Chart */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		C5F4D31C28ACF48000EBB667 /* Donut Chart */ = {
+			isa = PBXGroup;
+			children = (
+				C5F4D31D28ACF48000EBB667 /* DonutChartView.swift */,
+				C5F4D31E28ACF48000EBB667 /* DonutChart.swift */,
+				C5F4D31F28ACF48000EBB667 /* DonutChartLegend.swift */,
+			);
+			path = "Donut Chart";
+			sourceTree = "<group>";
+		};
+		C5F4D32028ACF48000EBB667 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C5F4D32128ACF48000EBB667 /* ChartDataPoint.swift */,
+				C5F4D32228ACF48000EBB667 /* ChartDataSet.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C5F4D32328ACF48000EBB667 /* ValueAndUnitViews */ = {
+			isa = PBXGroup;
+			children = (
+				C5F4D32428ACF48000EBB667 /* ValueUnitAndTitleView.swift */,
+				C5F4D32528ACF48000EBB667 /* BigNumberFormatter.swift */,
+				C5F4D32628ACF48000EBB667 /* SingleKeyValueView.swift */,
+			);
+			path = ValueAndUnitViews;
+			sourceTree = "<group>";
+		};
+		C5F4D32728ACF48000EBB667 /* Modifiers and Styles */ = {
+			isa = PBXGroup;
+			children = (
+				C5F4D32828ACF48000EBB667 /* TextModifiers.swift */,
+			);
+			path = "Modifiers and Styles";
+			sourceTree = "<group>";
+		};
 		DC24DF3125DD53E50003ADCB /* Navigational Structure */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,6 +1028,7 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
+				C5F4D31328ACF48000EBB667 /* SwiftUICharts */,
 				2B74555C27230626002CBB45 /* SwiftUIChartsExtensions */,
 				2BD189F6267BCEA900DFDE4D /* UIComponents */,
 				2BC1427326656DEF009BCB3B /* APIClient */,
@@ -1019,7 +1155,6 @@
 			packageProductDependencies = (
 				C51CB76227566148005A3FB9 /* DataTransferObjects */,
 				C51CB76627566158005A3FB9 /* TelemetryClient */,
-				C5AD4B6D27D3B62700CD7E4C /* SwiftUICharts */,
 			);
 			productName = TelemetryDeckMacIntents;
 			productReference = C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */;
@@ -1043,7 +1178,6 @@
 				C51CB76827566199005A3FB9 /* DataTransferObjects */,
 				C51CB76C27566199005A3FB9 /* TelemetryClient */,
 				C51CB79727566548005A3FB9 /* Shimmer */,
-				C5AD4B6927D3B4FA00CD7E4C /* SwiftUICharts */,
 			);
 			productName = TelemetryDeckMacWidgetExtension;
 			productReference = C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */;
@@ -1066,7 +1200,6 @@
 			packageProductDependencies = (
 				2B043C33271B491B00DDB255 /* TelemetryClient */,
 				2B0769D92722EA2F0024D8A7 /* DataTransferObjects */,
-				C5AD4B6727D3B4F300CD7E4C /* SwiftUICharts */,
 			);
 			productName = TelemetryDeckWidgetExtension;
 			productReference = C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */;
@@ -1088,7 +1221,6 @@
 			packageProductDependencies = (
 				2B043C35271B492900DDB255 /* TelemetryClient */,
 				2B0769D72722EA260024D8A7 /* DataTransferObjects */,
-				C5AD4B6B27D3B62000CD7E4C /* SwiftUICharts */,
 			);
 			productName = TelemetryDeckIntents;
 			productReference = C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */;
@@ -1114,7 +1246,6 @@
 			packageProductDependencies = (
 				DC9C0830252CD622001C0F94 /* TelemetryClient */,
 				2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */,
-				C5AD4B6027D3926900CD7E4C /* SwiftUICharts */,
 				C5AD4B6327D3928600CD7E4C /* DataTransferObjects */,
 			);
 			productName = "Telemetry Viewer (iOS)";
@@ -1139,7 +1270,6 @@
 				DC9C0841252CEAC9001C0F94 /* TelemetryClient */,
 				2B25EAE826D3EEE700BBBB1B /* Shimmer */,
 				2B0769DB2722EA350024D8A7 /* DataTransferObjects */,
-				C5AD4B6527D392CF00CD7E4C /* SwiftUICharts */,
 			);
 			productName = "Telemetry Viewer (macOS)";
 			productReference = DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */;
@@ -1186,7 +1316,6 @@
 			packageReferences = (
 				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
 				2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
-				C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 				C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */,
 			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
@@ -1365,8 +1494,10 @@
 				C51CB77327566206005A3FB9 /* Caching.swift in Sources */,
 				C51CB76F275661F0005A3FB9 /* APIClient.swift in Sources */,
 				C51CB78B27566279005A3FB9 /* InsightService.swift in Sources */,
+				C5F4D37028ACF64700EBB667 /* ChartDataSet.swift in Sources */,
 				C51CB78927566275005A3FB9 /* ErrorService.swift in Sources */,
 				C51CB7922756646E005A3FB9 /* TelemetrySignalTypes.swift in Sources */,
+				C5F4D37128ACF64700EBB667 /* ChartDataPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1378,37 +1509,53 @@
 				C51CB78127566248005A3FB9 /* Buttonstyles.swift in Sources */,
 				C51CB77A27566232005A3FB9 /* ListItemView.swift in Sources */,
 				C51CB794275664B2005A3FB9 /* AsyncOperation.swift in Sources */,
+				C5F4D36928ACF48000EBB667 /* TextModifiers.swift in Sources */,
+				C5F4D34128ACF48000EBB667 /* RoundedCorners.swift in Sources */,
 				C51CB77627566226005A3FB9 /* LoadingStateIndicator.swift in Sources */,
+				C5F4D35928ACF48000EBB667 /* ChartDataSet.swift in Sources */,
 				C51CB77427566209005A3FB9 /* Data+JSONPrettyPrint.swift in Sources */,
 				C5CD58932810368100671359 /* AnimatedCircle.swift in Sources */,
 				C51CB77727566228005A3FB9 /* OrderSetter.swift in Sources */,
 				C51CB78C2756627C005A3FB9 /* InsightResultService.swift in Sources */,
 				C51CB78A27566278005A3FB9 /* InsightService.swift in Sources */,
+				C5F4D34528ACF48000EBB667 /* BarChartView.swift in Sources */,
 				C51CB77227566205005A3FB9 /* Caching.swift in Sources */,
 				C51CB75D275660F9005A3FB9 /* TelemetryDeckWidgetEntryViews.swift in Sources */,
+				C5F4D33928ACF48000EBB667 /* ChartRangeView.swift in Sources */,
 				C51CB78027566246005A3FB9 /* CardView.swift in Sources */,
 				C51CB7792756622F005A3FB9 /* MacNavigationView.swift in Sources */,
 				C51CB77E27566241005A3FB9 /* CustomSection.swift in Sources */,
 				C51CB75E275660FC005A3FB9 /* MockData.swift in Sources */,
 				C51CB7832756624E005A3FB9 /* AdaptiveStack.swift in Sources */,
 				C51CB7822756624B005A3FB9 /* Binding+OnUpdate.swift in Sources */,
+				C5F4D36528ACF48000EBB667 /* SingleKeyValueView.swift in Sources */,
+				C5F4D34928ACF48000EBB667 /* DonutChartView.swift in Sources */,
 				C51CB77B27566238005A3FB9 /* DetailSidebar.swift in Sources */,
 				C51CB75C275660F5005A3FB9 /* TelemetryDeckWidget.swift in Sources */,
 				C51CB76E275661EF005A3FB9 /* APIClient.swift in Sources */,
 				C51CB78827566275005A3FB9 /* ErrorService.swift in Sources */,
+				C5F4D32D28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */,
+				C5F4D35128ACF48000EBB667 /* DonutChartLegend.swift in Sources */,
 				C51CB78427566255005A3FB9 /* ProgressView+Scale.swift in Sources */,
 				C51CB7782756622C005A3FB9 /* OptionalToggle.swift in Sources */,
 				C5CD58912810368100671359 /* ThreeCirclesInATrenchcode.swift in Sources */,
 				C51CB78727566264005A3FB9 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
+				C5F4D34D28ACF48000EBB667 /* DonutChart.swift in Sources */,
 				C51CB77D2756623E005A3FB9 /* DashedCardView.swift in Sources */,
+				C5F4D35D28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */,
 				C51CB79627566504005A3FB9 /* Color+Hex.swift in Sources */,
 				C51CB77C2756623B005A3FB9 /* Helpers.swift in Sources */,
 				C5CD58922810368100671359 /* SondrineAnimation.swift in Sources */,
+				C5F4D35528ACF48000EBB667 /* ChartDataPoint.swift in Sources */,
 				C51CB76027566103005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */,
 				C51CB78627566261005A3FB9 /* ChartDataSet+InsightCalculationResult.swift in Sources */,
+				C5F4D33528ACF48000EBB667 /* LineChartView.swift in Sources */,
 				C51CB78527566258005A3FB9 /* ConditionalViewModifier.swift in Sources */,
+				C5F4D33D28ACF48000EBB667 /* RawChartView.swift in Sources */,
 				C51CB77F27566243005A3FB9 /* Color.swift in Sources */,
+				C5F4D33128ACF48000EBB667 /* ChartBottomView.swift in Sources */,
 				C51CB7912756646D005A3FB9 /* TelemetrySignalTypes.swift in Sources */,
+				C5F4D36128ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1420,37 +1567,53 @@
 				C5CE3D5A271AFCE2005232EC /* Binding+OnUpdate.swift in Sources */,
 				2B78C82C2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift in Sources */,
 				C5D1421B273471F00029CA03 /* ConditionalViewModifier.swift in Sources */,
+				C5F4D36828ACF48000EBB667 /* TextModifiers.swift in Sources */,
+				C5F4D34028ACF48000EBB667 /* RoundedCorners.swift in Sources */,
 				C5CE3D55271AFCE2005232EC /* OrderSetter.swift in Sources */,
+				C5F4D35828ACF48000EBB667 /* ChartDataSet.swift in Sources */,
 				C5A8D868270C5D7B0032560A /* TelemetryDeckWidget.swift in Sources */,
 				C5CD58992810368300671359 /* AnimatedCircle.swift in Sources */,
 				C5CE3D56271AFCE2005232EC /* MacNavigationView.swift in Sources */,
 				C5A8D892270C68790032560A /* TelemetrySignalTypes.swift in Sources */,
 				C5A8D8A5270C6FB70032560A /* MockData.swift in Sources */,
+				C5F4D34428ACF48000EBB667 /* BarChartView.swift in Sources */,
 				C5CE3D53271AFCE2005232EC /* DashedCardView.swift in Sources */,
 				C5CE3D4D271AFCB6005232EC /* Color.swift in Sources */,
+				C5F4D33828ACF48000EBB667 /* ChartRangeView.swift in Sources */,
 				C5A8D86D270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
 				C5CE3D50271AFCE2005232EC /* CardView.swift in Sources */,
 				2B64319B2739A5BB009A33C4 /* Data+JSONPrettyPrint.swift in Sources */,
 				C5CE3D4E271AFCE2005232EC /* DetailSidebar.swift in Sources */,
 				C5A8D87C270C65F90032560A /* InsightResultService.swift in Sources */,
 				2B6431972739A5BB009A33C4 /* APIClient.swift in Sources */,
+				C5F4D36428ACF48000EBB667 /* SingleKeyValueView.swift in Sources */,
+				C5F4D34828ACF48000EBB667 /* DonutChartView.swift in Sources */,
 				C5CE3D5C271AFCE2005232EC /* Helpers.swift in Sources */,
 				2B745564272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
 				2B6431A32739A5BB009A33C4 /* CacheLayer.swift in Sources */,
 				2B6431AB2739A5BB009A33C4 /* Caching.swift in Sources */,
+				C5F4D32C28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */,
+				C5F4D35028ACF48000EBB667 /* DonutChartLegend.swift in Sources */,
 				C5CE3D5E271AFD0C005232EC /* ProgressView+Scale.swift in Sources */,
 				C5CE3D54271AFCE2005232EC /* ListItemView.swift in Sources */,
 				C5CD58972810368300671359 /* ThreeCirclesInATrenchcode.swift in Sources */,
 				C5CE3D59271AFCE2005232EC /* AdaptiveStack.swift in Sources */,
+				C5F4D34C28ACF48000EBB667 /* DonutChart.swift in Sources */,
 				C5CE3D4F271AFCE2005232EC /* OptionalToggle.swift in Sources */,
+				C5F4D35C28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */,
 				C5A8D87D270C65F90032560A /* InsightService.swift in Sources */,
 				C5A8D882270C66190032560A /* ErrorService.swift in Sources */,
 				C5CD58982810368300671359 /* SondrineAnimation.swift in Sources */,
+				C5F4D35428ACF48000EBB667 /* ChartDataPoint.swift in Sources */,
 				C5CE3D5D271AFCE2005232EC /* CustomSection.swift in Sources */,
 				2B74556027230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift in Sources */,
+				C5F4D33428ACF48000EBB667 /* LineChartView.swift in Sources */,
 				C5CE3D57271AFCE2005232EC /* Buttonstyles.swift in Sources */,
+				C5F4D33C28ACF48000EBB667 /* RawChartView.swift in Sources */,
 				2B6431A72739A5BB009A33C4 /* AsyncOperation.swift in Sources */,
+				C5F4D33028ACF48000EBB667 /* ChartBottomView.swift in Sources */,
 				C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */,
+				C5F4D36028ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1467,8 +1630,10 @@
 				2B6431982739A5BB009A33C4 /* APIClient.swift in Sources */,
 				2B6431A82739A5BB009A33C4 /* AsyncOperation.swift in Sources */,
 				2B64319C2739A5BB009A33C4 /* Data+JSONPrettyPrint.swift in Sources */,
+				C5F4D36E28ACF64600EBB667 /* ChartDataSet.swift in Sources */,
 				2B6431AC2739A5BB009A33C4 /* Caching.swift in Sources */,
 				C51CB78F27566296005A3FB9 /* ConditionalViewModifier.swift in Sources */,
+				C5F4D36F28ACF64600EBB667 /* ChartDataPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1482,6 +1647,8 @@
 				DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BA5D50B26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
 				2B462817272B272300515530 /* TestModeIndicator.swift in Sources */,
+				C5F4D35628ACF48000EBB667 /* ChartDataSet.swift in Sources */,
+				C5F4D33E28ACF48000EBB667 /* RoundedCorners.swift in Sources */,
 				2B21FCD526FDC33F00A8A55B /* InsightGroupsView.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				2B379D2126FBC3A300714BE6 /* IconFinderService.swift in Sources */,
@@ -1490,15 +1657,18 @@
 				2BA5D50726CD1403008FBF8F /* InsightCard.swift in Sources */,
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				2B745562272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
+				C5F4D34A28ACF48000EBB667 /* DonutChart.swift in Sources */,
 				2BC522EA2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */,
 				DCB5F9F625F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
 				2B1D469826CC4C5D008814A9 /* ErrorService.swift in Sources */,
 				2BBFCA01267D05E40013DC74 /* DashedCardView.swift in Sources */,
 				C5A8D86E270C5D800032560A /* TelemetryDeckWidget.intentdefinition in Sources */,
+				C5F4D36628ACF48000EBB667 /* TextModifiers.swift in Sources */,
 				2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				2B1D46A126CC52DD008814A9 /* InsightService.swift in Sources */,
 				2BBFCA07267D05E40013DC74 /* OptionalToggle.swift in Sources */,
 				DCA10F7B24DA722700A62C26 /* RegisterView.swift in Sources */,
+				C5F4D35228ACF48000EBB667 /* ChartDataPoint.swift in Sources */,
 				2BDD8E6F2651BCB800C6E51D /* AskForMarketingEmailsView.swift in Sources */,
 				C5CD589F2810368400671359 /* AnimatedCircle.swift in Sources */,
 				2B781B8326F4A5E30062DBDC /* StatusMessageBanner.swift in Sources */,
@@ -1511,13 +1681,16 @@
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
 				2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */,
 				2BBFCA11267D05E40013DC74 /* DetailSidebar.swift in Sources */,
+				C5F4D33628ACF48000EBB667 /* ChartRangeView.swift in Sources */,
 				DCDC6EF8253ECA7E0012D9A7 /* KeyValueView.swift in Sources */,
 				63C4E9552778C4CE00344E20 /* SignalListCell.swift in Sources */,
 				2B6431992739A5BB009A33C4 /* Data+JSONPrettyPrint.swift in Sources */,
 				C598487727CFBB7A00026772 /* QueryService.swift in Sources */,
+				C5F4D34E28ACF48000EBB667 /* DonutChartLegend.swift in Sources */,
 				DCDC6F13253EECA90012D9A7 /* Numbers+Bound.swift in Sources */,
 				2B0050932703617B009C609C /* Color+Hex.swift in Sources */,
 				2B1D46A426CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
+				C5F4D32A28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */,
 				DCB02B762502809200304964 /* RootView.swift in Sources */,
 				DCEC64B026025AAF00BEF69C /* PasswordResetView.swift in Sources */,
 				DC24DF3325DD54090003ADCB /* NoAppSelectedView.swift in Sources */,
@@ -1528,10 +1701,13 @@
 				DC98AAB7250A671900FF26FD /* AppEditor.swift in Sources */,
 				2BBFCA0B267D05E40013DC74 /* CustomSection.swift in Sources */,
 				2B25EAEB26D78C9C00BBBB1B /* InsightDataTimeIntervalPicker.swift in Sources */,
+				C5F4D35A28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */,
 				DC98AABC250BC30200FF26FD /* TelemetrySignalTypes.swift in Sources */,
+				C5F4D34628ACF48000EBB667 /* DonutChartView.swift in Sources */,
 				DC9A92B0255C1CD100E92C89 /* AutoCompletingTextField.swift in Sources */,
 				2BBFC9FB267D05E40013DC74 /* Helpers.swift in Sources */,
 				63C4E9522778C00000344E20 /* SignalList.swift in Sources */,
+				C5F4D33228ACF48000EBB667 /* LineChartView.swift in Sources */,
 				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				6351A784277C6431003AF559 /* CustomPickers.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
@@ -1541,7 +1717,10 @@
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
 				C5B917F12757C9EB004A842B /* CreateNewAppView.swift in Sources */,
+				C5F4D33A28ACF48000EBB667 /* RawChartView.swift in Sources */,
+				C5F4D35E28ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
 				C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */,
+				C5F4D36228ACF48000EBB667 /* SingleKeyValueView.swift in Sources */,
 				63C4E9582778C54D00344E20 /* SignalListExplanationView.swift in Sources */,
 				2BBFCA25267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				2BBFCA29267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */,
@@ -1549,6 +1728,7 @@
 				DCDC6F0C253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
 				DC5F3A8925A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				2B6431A12739A5BB009A33C4 /* CacheLayer.swift in Sources */,
+				C5F4D32E28ACF48000EBB667 /* ChartBottomView.swift in Sources */,
 				2B74555E27230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift in Sources */,
 				2B6431952739A5BB009A33C4 /* APIClient.swift in Sources */,
 				DCF7CD47254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
@@ -1565,6 +1745,7 @@
 				2B21FCD726FDC38500A8A55B /* NewInsightMenu.swift in Sources */,
 				2B6431A52739A5BB009A33C4 /* AsyncOperation.swift in Sources */,
 				2B781B7C26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
+				C5F4D34228ACF48000EBB667 /* BarChartView.swift in Sources */,
 				6351A789277C9ED8003AF559 /* InsightDisplayMode+Extensions.swift in Sources */,
 				6351A786277C927D003AF559 /* EditorView.swift in Sources */,
 			);
@@ -1574,10 +1755,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5F4D34F28ACF48000EBB667 /* DonutChartLegend.swift in Sources */,
 				C5173B41283D52E40018CE9F /* InsightsGrid.swift in Sources */,
 				2BBFCA26267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				2B0050922703617B009C609C /* Color+Hex.swift in Sources */,
 				DCD52C4B2541FFE3003F12C6 /* ColSpan.swift in Sources */,
+				C5F4D32B28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */,
 				C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */,
 				2BC522EB2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */,
 				C56B91FA27C536D60085839A /* QueryView.swift in Sources */,
@@ -1596,6 +1779,7 @@
 				2B1D46A526CCF9CB008814A9 /* LoadingStateIndicator.swift in Sources */,
 				2BBFCA2C267D05E40013DC74 /* MacNavigationView.swift in Sources */,
 				2B462809272868DC00515530 /* TestModeIndicator.swift in Sources */,
+				C5F4D35328ACF48000EBB667 /* ChartDataPoint.swift in Sources */,
 				2BBFCA0A267D05E40013DC74 /* Color.swift in Sources */,
 				DC45BB1724DFFB19004E6392 /* RegisterView.swift in Sources */,
 				DCF7CD43254A092100BFA23B /* LexiconView.swift in Sources */,
@@ -1605,16 +1789,23 @@
 				2B781B8726F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */,
 				2BBFCA02267D05E40013DC74 /* DashedCardView.swift in Sources */,
 				DCB02B772502809200304964 /* RootView.swift in Sources */,
+				C5F4D35F28ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
+				C5F4D34328ACF48000EBB667 /* BarChartView.swift in Sources */,
 				2B6431A22739A5BB009A33C4 /* CacheLayer.swift in Sources */,
 				2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
+				C5F4D34B28ACF48000EBB667 /* DonutChart.swift in Sources */,
 				2BC2720326207D710045A2FE /* MockData.swift in Sources */,
 				DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */,
 				2B21FCD826FDC38500A8A55B /* NewInsightMenu.swift in Sources */,
+				C5F4D34728ACF48000EBB667 /* DonutChartView.swift in Sources */,
+				C5F4D36728ACF48000EBB667 /* TextModifiers.swift in Sources */,
 				DCD49407255BFD3000925F5D /* AutoCompletingTextField.swift in Sources */,
 				DC3472EB258A720500BEEDE0 /* UpdateService.swift in Sources */,
+				C5F4D33728ACF48000EBB667 /* ChartRangeView.swift in Sources */,
 				2BBFCA04267D05E40013DC74 /* CardView.swift in Sources */,
 				2B21FCE026FDCAE200A8A55B /* InsightsList.swift in Sources */,
 				2BF2BE452763921400A79531 /* CreateNewAppView.swift in Sources */,
+				C5F4D33B28ACF48000EBB667 /* RawChartView.swift in Sources */,
 				DCD67BCF252DB40B00A00C5B /* WelcomeView.swift in Sources */,
 				63C4E9562778C4D100344E20 /* SignalListCell.swift in Sources */,
 				DC9A92C2255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift in Sources */,
@@ -1626,11 +1817,15 @@
 				2BBFCA34267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				2B1D46A226CC52DD008814A9 /* InsightService.swift in Sources */,
 				C5D1421A273471F00029CA03 /* ConditionalViewModifier.swift in Sources */,
+				C5F4D36328ACF48000EBB667 /* SingleKeyValueView.swift in Sources */,
 				2BBFCA00267D05E40013DC74 /* OrderSetter.swift in Sources */,
 				DC45BB1D24E27F12004E6392 /* SignalView.swift in Sources */,
 				2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */,
+				C5F4D33328ACF48000EBB667 /* LineChartView.swift in Sources */,
 				DCDC6F0D253EEB9B0012D9A7 /* Optional+Bound.swift in Sources */,
+				C5F4D35B28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */,
 				2BA5D50526CD0E5B008FBF8F /* GroupView.swift in Sources */,
+				C5F4D32F28ACF48000EBB667 /* ChartBottomView.swift in Sources */,
 				2B1D469C26CC4F45008814A9 /* AppService.swift in Sources */,
 				2BBFCA12267D05E40013DC74 /* DetailSidebar.swift in Sources */,
 				DCF7CD48254A0DB300BFA23B /* LexiconItemView.swift in Sources */,
@@ -1655,6 +1850,7 @@
 				DCDC6F06253EE0620012D9A7 /* FilterEditView.swift in Sources */,
 				2B64319A2739A5BB009A33C4 /* Data+JSONPrettyPrint.swift in Sources */,
 				2B1D469F26CC51A8008814A9 /* GroupService.swift in Sources */,
+				C5F4D35728ACF48000EBB667 /* ChartDataSet.swift in Sources */,
 				2BBFCA2A267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */,
 				2BBFCA0C267D05E40013DC74 /* CustomSection.swift in Sources */,
 				2BA5D50A26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
@@ -1669,6 +1865,7 @@
 				2B46280F27286D2500515530 /* TestingModeToggle.swift in Sources */,
 				2B1D469926CC4C5D008814A9 /* ErrorService.swift in Sources */,
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
+				C5F4D33F28ACF48000EBB667 /* RoundedCorners.swift in Sources */,
 				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				6351A78A277C9EDA003AF559 /* InsightDisplayMode+Extensions.swift in Sources */,
 				2BA5D50226CD05CC008FBF8F /* InsightGroupsView.swift in Sources */,
@@ -2234,14 +2431,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:TelemetryDeck/SwiftUICharts.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
 		C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TelemetryDeck/models";
@@ -2315,40 +2504,10 @@
 			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
 		};
-		C5AD4B6027D3926900CD7E4C /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
 		C5AD4B6327D3928600CD7E4C /* DataTransferObjects */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */;
 			productName = DataTransferObjects;
-		};
-		C5AD4B6527D392CF00CD7E4C /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
-		C5AD4B6727D3B4F300CD7E4C /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
-		C5AD4B6927D3B4FA00CD7E4C /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
-		C5AD4B6B27D3B62000CD7E4C /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
-		C5AD4B6D27D3B62700CD7E4C /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C5AD4B5F27D3926900CD7E4C /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
 		};
 		DC9C0830252CD622001C0F94 /* TelemetryClient */ = {
 			isa = XCSwiftPackageProductDependency;
