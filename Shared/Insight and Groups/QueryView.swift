@@ -7,7 +7,6 @@
 
 import DataTransferObjects
 import SwiftUI
-import SwiftUICharts
 
 // @State var customQuery: CustomQuery
 

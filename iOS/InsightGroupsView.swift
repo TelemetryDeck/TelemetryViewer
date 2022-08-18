@@ -63,9 +63,6 @@ struct InsightGroupsView: View {
                 EmptyView()
             })
         .onAppear {
-//            appService.app(withID: appID)?.insightGroupIDs.forEach { groupID in
-//                groupService.retrieveGroup(with: groupID)
-//            }
             
             selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
             TelemetryManager.send("InsightGroupsAppear")
@@ -92,7 +89,11 @@ struct InsightGroupsView: View {
         .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
         .toolbar {
             ToolbarItem {
+                // We're hiding all editors on iOS because we want the iOS app to be a
+                // Viewer App only. Remove the .hidden() modifier to show the button to
+                // toggle editor mode, but beware this is unsupported.
                 editModeButton
+                    .hidden()
             }
             
             ToolbarItem(placement: .bottomBar) {

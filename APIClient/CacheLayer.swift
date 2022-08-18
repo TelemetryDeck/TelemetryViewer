@@ -5,9 +5,8 @@
 //  Created by Daniel Jilg on 17.08.21.
 //
 
-import Foundation
 import DataTransferObjects
-import SwiftUICharts
+import Foundation
 
 struct InsightResultWrap {
     let chartDataSet: ChartDataSet
@@ -16,7 +15,7 @@ struct InsightResultWrap {
 
 class CacheLayer: ObservableObject {
     let queue: DispatchQueue = .init(label: "CacheLayer")
-    
+
     let organizationCache = Cache<String, DTOv2.Organization>(entryLifetime: 1200)
     let appCache = Cache<DTOv2.App.ID, DTOv2.App>(entryLifetime: 1200)
     let groupCache = Cache<DTOv2.Group.ID, DTOv2.Group>(entryLifetime: 600)

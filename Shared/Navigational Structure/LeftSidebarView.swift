@@ -84,14 +84,14 @@ struct LeftSidebarView: View {
 
                 #if os(iOS)
                     Button {
-                        URL(string: "https://dashboard.telemetrydeck.com/user/profile")!.open()
+                        URL(string: "https://dashboard.telemetrydeck.com/user/organization")!.open()
                     } label: {
                         Label("Organization Settings", systemImage: "app.badge")
                     }
 
                     if api.user != nil {
                         Button {
-                            URL(string: "https://dashboard.telemetrydeck.com/user/organization")!.open()
+                            URL(string: "https://dashboard.telemetrydeck.com/user/profile")!.open()
                         } label: {
                             Label("User Settings", systemImage: "gear")
                         }

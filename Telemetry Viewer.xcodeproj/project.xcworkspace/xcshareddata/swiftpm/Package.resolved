@@ -36,15 +36,6 @@
           "revision": "61411771350a5a4e96666a8a202ae4b2be327a2b",
           "version": "1.0.1"
         }
-      },
-      {
-        "package": "SwiftUICharts",
-        "repositoryURL": "git@github.com:TelemetryDeck/SwiftUICharts.git",
-        "state": {
-          "branch": null,
-          "revision": "ea6fe671d6cef5770b5dba85a4e32145b56ccf14",
-          "version": "1.1.0"
-        }
       }
     ]
   },
