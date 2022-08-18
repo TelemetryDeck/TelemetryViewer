@@ -81,6 +81,6 @@ struct InsightDataTimeIntervalPicker: View {
             }
         }
         .buttonStyle(SmallSecondaryButtonStyle())
-        
+
     }
 }

@@ -9,16 +9,16 @@ import SwiftUI
 
 struct UpdateSettingsView: View {
     @EnvironmentObject var updateService: UpdateService
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Current Version").font(.title)
 
             Group {
                 SettingsKeyView(key: "Your Version", value: updateService.internalVersion)
-                
+
                 SettingsKeyView(key: "Latest Version", value: "\(updateService.latestVersionOnServer?.tag_name ?? "–")")
-            
+
                 if updateService.isUpdateAvailable() {
                     Text("There is an update available. You should download it now.")
                         .foregroundColor(.grayColor)
@@ -27,18 +27,18 @@ struct UpdateSettingsView: View {
                         .foregroundColor(.grayColor)
                 }
             }
-            
+
             Divider()
-            
+
             Toggle("Include Pre-Releases", isOn: .constant(updateService.includePrereleases))
                 .disabled(true)
             Toggle("Include Draft Releases", isOn: .constant(updateService.includeDraftReleases))
                 .disabled(true)
             Text("These settings cannot be changed in the current open beta.")
                 .font(.footnote)
-            
+
             Divider()
-            
+
             if updateService.isUpdateAvailable() {
                 if let latestVersion = updateService.latestVersionOnServer, let asset = latestVersion.assets.first {
                     Button("Download Update") {
@@ -50,7 +50,7 @@ struct UpdateSettingsView: View {
                     updateService.checkForUpdate()
                 }
             }
-            
+
             Spacer()
         }
         .padding()

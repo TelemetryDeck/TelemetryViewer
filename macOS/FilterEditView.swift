@@ -28,13 +28,11 @@ struct FilterEditView: View {
                         Text(key)
                             .foregroundColor(.grayColor)
                             .frame(width: 70, alignment: .trailing)
-                            
 
                         Text("==")
 
                         TextField("Value", text: $keysAndValues[key].irreversiblyBound)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
 
                         Button(action: {
                             keysAndValues[key] = nil
@@ -42,10 +40,9 @@ struct FilterEditView: View {
                             Image(systemName: "minus.circle")
                         })
                     }.frame(height: 18)
-                
-                
+
             }
-            
+
             HStack {
                 if let autocompleteOptions = autocompleteOptions {
                     Picker(selection: $newKeyName.bound) {
@@ -84,7 +81,7 @@ struct FilterEditView_Previews: PreviewProvider {
             "buildNumber": "1",
             "systemVersion": "macOS 11.0.0",
             "isSimulator": "false",
-            "signalType": "insightUpdatedAutomatically",
+            "signalType": "insightUpdatedAutomatically"
         ]), autocompleteOptions: [])
     }
 }

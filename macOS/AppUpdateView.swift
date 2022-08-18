@@ -83,8 +83,7 @@ struct AppUpdateViewDownloadButton: View {
                 }
                 .buttonStyle(PrimaryButtonStyle())
             }
-            
-            
+
             Button(action: {
                 updateService.deferUpdate()
             }, label: {

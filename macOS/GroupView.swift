@@ -61,7 +61,7 @@ struct GroupView: View {
         .onAppear {
             TelemetryManager.send("GroupViewAppear")
         }
-        
+
     }
 
     var insightsList: some View {

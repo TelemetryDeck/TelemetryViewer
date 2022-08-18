@@ -16,38 +16,38 @@ class QueryViewModel: ObservableObject {
     let customQuery: CustomQuery
     let displayMode: InsightDisplayMode
     let isSelected: Bool
-    
+
     public let runningTimer = Timer.publish(
         every: 0.5, // seconds
         on: .main,
         in: .common
     ).autoconnect()
-    
+
     public let successTimer = Timer.publish(
         every: 60, // seconds
         on: .main,
         in: .common
     ).autoconnect()
-    
+
     init(queryService: QueryService, customQuery: CustomQuery, displayMode: InsightDisplayMode, isSelected: Bool) {
         self.queryService = queryService
         self.customQuery = customQuery
         self.displayMode = displayMode
         self.isSelected = isSelected
     }
-    
+
     @Published var loadingState: LoadingState = .loading
     @Published var queryTaskStatus: QueryTaskStatus = .running
-    
+
     var taskID: [String: String] = ["queryTaskID": ""]
-    @Published var queryResult: QueryResultWrapper? = nil
-    @Published var chartDataSet: ChartDataSet? = nil
-     
+    @Published var queryResult: QueryResultWrapper?
+    @Published var chartDataSet: ChartDataSet?
+
     // func that posts the query on load and loads the last result
-    
+
     func retrieveResults() async {
         loadingState = .loading
-        
+
         do {
             taskID = try await queryService.createTask(forQuery: customQuery)
             let result = try await queryService.getTaskResult(forTaskID: taskID["queryTaskID"]!)
@@ -59,10 +59,10 @@ class QueryViewModel: ObservableObject {
                     self.loadingState = .finished(Date())
                 }
             }
-            
+
         } catch {
             print(error.localizedDescription)
-            
+
             DispatchQueue.main.async {
                 if let transferError = error as? TransferError {
                     switch transferError {
@@ -83,9 +83,9 @@ class QueryViewModel: ObservableObject {
             }
         }
     }
-    
+
     // func that asks for the status every 0.5 seconds if current status is running and loads the result if status is successful
-    
+
     func checkIfStillRunning() async {
         switch loadingState {
         case .idle, .loading, .finished:
@@ -93,13 +93,13 @@ class QueryViewModel: ObservableObject {
         case .error:
             return
         }
-        
+
         if queryTaskStatus == .running {
             loadingState = .loading
-        
+
             do {
                 let taskStatus = try await queryService.getTaskStatus(forTaskID: taskID["queryTaskID"]!)
-                
+
                 switch taskStatus {
                 case .successful:
                     DispatchQueue.main.async {
@@ -147,15 +147,15 @@ class QueryViewModel: ObservableObject {
             }
         }
     }
-    
+
     // func that asks for the status every 10 seconds
-    
+
     // this function doesn't make any sense as is, as it probably doesn't notice that the status changed? I think we should do something else that makes more sense, like changing the task status to running and resubmitting the task?
-    
+
     // load new data every 60 seconds
     // if new data = nil, don't overwrite existing data
     // if error, show!
-    
+
     func checkStatus() async {
         switch loadingState {
         case .idle, .loading, .finished:
@@ -163,7 +163,7 @@ class QueryViewModel: ObservableObject {
         case .error:
             return
         }
-        
+
         if queryTaskStatus == .successful {
             loadingState = .loading
             do {
@@ -188,7 +188,7 @@ class QueryViewModel: ObservableObject {
                 }
             } catch {
                 print(error.localizedDescription)
-            
+
                 DispatchQueue.main.async {
                     if let transferError = error as? TransferError {
                         switch transferError {
@@ -214,7 +214,7 @@ class QueryViewModel: ObservableObject {
 
 struct QueryView: View {
     @StateObject var viewModel: QueryViewModel
-    
+
     var body: some View {
         VStack {
 //            Text("asdf")

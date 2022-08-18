@@ -144,4 +144,3 @@ class QueryService: ObservableObject {
         }
     }
 }
-

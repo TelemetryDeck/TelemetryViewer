@@ -16,7 +16,7 @@ struct UserSettingsView: View {
     @State private var showingAlert = false
     @State private var passwordChangeRequest = PasswordChangeRequestBody(oldPassword: "", newPassword: "", newPasswordConfirm: "")
     @State var userDTO: DTOv1.UserDTO
-    
+
     func save() {
         api.updateUser(with: userDTO)
     }
@@ -28,10 +28,10 @@ struct UserSettingsView: View {
                     TextField("First Name", text: $userDTO.firstName)
                     TextField("Last Name", text: $userDTO.lastName)
                 }
-                
+
                 Section(header: Text("Email"), footer: Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding TelemetryDeck. \(userDTO.receiveMarketingEmails != true ? "Can we also send you our low volume newsletter please?" : "")")) {
                     TextField("Email", text: $userDTO.email)
-                    
+
                     if userDTO.receiveMarketingEmails != true {
                         OptionalToggle(description: "Receive the newsletter?", isOn: $userDTO.receiveMarketingEmails)
                             .onChange(of: userDTO.receiveMarketingEmails) { _ in save() }
@@ -41,7 +41,7 @@ struct UserSettingsView: View {
                             .foregroundColor(.secondary)
                     }
                 }
-                
+
                 Section {
                     Button("Log Out") {
                         showingAlert = true
@@ -57,7 +57,7 @@ struct UserSettingsView: View {
                         )
                     }
                 }
-                
+
                 if showChangePasswordForm {
                     SecureField("Old Password", text: $passwordChangeRequest.oldPassword)
                     SecureField("New Password", text: $passwordChangeRequest.newPassword)
@@ -68,7 +68,7 @@ struct UserSettingsView: View {
                             showChangePasswordForm = false
                         }
                     }
-                        
+
                     Button("Save New Password") {
                         api.updatePassword(with: passwordChangeRequest) { _ in
                             withAnimation {

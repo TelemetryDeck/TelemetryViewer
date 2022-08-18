@@ -13,15 +13,15 @@ import TelemetryClient
 struct InsightCard: View {
     @EnvironmentObject var insightService: InsightService
     @EnvironmentObject var queryService: QueryService
-    
+
     @Binding var selectedInsightID: DTOv2.Insight.ID?
     @Binding var sidebarVisible: Bool
-    
+
     @State var insightWrap: InsightResultWrap?
     @State var loadingState: LoadingState = .idle
-    
+
     @State var customQuery: CustomQuery?
-    
+
     /// ok, for some reason I broke some things, and I don't understand it?
     /// like, the app seems to not know which insights are selected anymore?
     /// also, some results are not retrieved ever for some reason?
@@ -31,26 +31,26 @@ struct InsightCard: View {
     /// also I should totally fix the applist, it makes a million api requests lol
     ///
     /// oh, maybe due to no dispatch main!
-    
+
     private var isSelected: Bool {
         selectedInsightID == insightID
     }
-    
+
     let insightID: DTOv2.Insight.ID
     let isSelectable: Bool
-    
+
     // make this a timer that retrieves insight occasionally?
     private let refreshTimer = Timer.publish(
         every: 60, // seconds
         on: .main,
         in: .common
     ).autoconnect()
-    
+
     var body: some View {
         Button {
             if isSelectable {
                 selectedInsightID = insightID
-            
+
                 withAnimation {
                     sidebarVisible = true
                 }
@@ -61,7 +61,7 @@ struct InsightCard: View {
         .frame(idealHeight: 200)
         .buttonStyle(CardButtonStyle(isSelected: selectedInsightID == insightID, customAccentColor: Color(hex: insightService.insight(withID: insightID)?.accentColor ?? "")))
     }
-    
+
     var cardContent: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -69,13 +69,13 @@ struct InsightCard: View {
                     .font(.footnote)
                     .foregroundColor(isSelected ? .cardBackground : .grayColor)
                     .padding(.leading)
-                
+
                 Spacer()
-                
+
                 UnobtrusiveIconOnlyLoadingStateIndicator(loadingState: loadingState)
                     .padding(.trailing)
             }
-            
+
             Group {
                 // currently, if there is no internet connection, there will be no error sondrine, because the display mode and query are empty. this is not good. maybe there should be always something given to the queryview, so that it can handle showing the loading/error state, or the loading state needs to be shown in this view here, and both views use the same loading state, or this views loading state is given to the query view? or something like it?
                 if let displaymode = insightService.insightDictionary[insightID]?.displayMode, let query = customQuery {
@@ -83,7 +83,7 @@ struct InsightCard: View {
                 } else {
                     SondrineLoadingStateIndicator(loadingState: loadingState)
                 }
-                
+
 //                QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: customQuery, displayMode: insightService.insightDictionary[insightID]?.displayMode, isSelected: isSelected))
             }
 
@@ -137,24 +137,24 @@ struct InsightCard: View {
 //            }
 //        }
     }
-    
+
     func sendTelemetry() {
         if let displayMode = insightService.insightDictionary[insightID]?.displayMode {
             TelemetryManager.send("InsightShown", with: ["insightDisplayMode": displayMode.rawValue])
         }
     }
-    
+
     func retrieveResults() async {
         guard loadingState != .loading else { return } // not sufficient
         loadingState = .loading
-        
+
         do {
             let query = try await queryService.getInsightQuery(ofInsightWithID: insightID)
 
             customQuery = query
 
             loadingState = .finished(Date())
-            
+
         } catch {
             print(error.localizedDescription)
 

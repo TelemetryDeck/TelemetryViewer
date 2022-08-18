@@ -18,7 +18,6 @@ struct SignalListExplanationView: View {
     }
 }
 
-
 struct SignalListExplanationView_Previews: PreviewProvider {
     static var previews: some View {
         SignalListExplanationView()
