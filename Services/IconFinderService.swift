@@ -22,21 +22,21 @@ struct ItunesSearchResultGroup: Codable {
 }
 
 class IconFinderService: ObservableObject {
-    
+
     let api: APIClient
-    
+
     init(api: APIClient) {
         self.api = api
     }
-    
-    func findIcon(forAppName appName: String, completion: @escaping (URL?) -> ()) {
+
+    func findIcon(forAppName appName: String, completion: @escaping (URL?) -> Void) {
         let searchString = appName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? appName
         let urlTemplate = "http://itunes.apple.com/search?term=\(searchString)&entity=software"
-        
+
         guard let url = URL(string: urlTemplate) else { return }
-        
+
         let defaultV = ItunesSearchResultGroup.init(resultCount: 0, results: [])
-        
+
         api.get(url, defaultValue: defaultV) { (result: Result<ItunesSearchResultGroup, TransferError>) in
             switch result {
             case .success(let resultGroup):

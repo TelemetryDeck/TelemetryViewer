@@ -11,29 +11,29 @@ import TelemetryClient
 struct AppEditor: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var iconFinderService: IconFinderService
-    
+
     let appID: UUID
-    
+
     @State var appName: String
     @State private var showingAlert = false
     @State private var needsSaving = false
-    
+
     @State var appIconURL: URL?
-    
+
     func saveToAPI() {
         appService.update(appID: appID, newName: appName)
     }
-    
+
     func setNeedsSaving() {
         withAnimation {
             needsSaving = true
         }
     }
-    
+
     func getIconURL() {
         iconFinderService.findIcon(forAppName: appName) { appIconURL = $0 }
     }
-    
+
     var padding: CGFloat? {
         #if os(macOS)
         return nil
@@ -41,7 +41,7 @@ struct AppEditor: View {
         return 0
         #endif
     }
-    
+
     var body: some View {
         if let app = appService.app(withID: appID) {
             Form {
@@ -60,17 +60,17 @@ struct AppEditor: View {
 //                Button("Get Icon") {
 //                    getIconURL()
 //                }
-                
+
                 CustomSection(header: Text("App Name"), summary: EmptyView(), footer: EmptyView()) {
                     TextField("App Name", text: $appName, onEditingChanged: { _ in setNeedsSaving() }) { setNeedsSaving() }
-                    
+
                     if needsSaving {
                         Button("Save") {
                             saveToAPI()
                         }
                     }
                 }
-                
+
                 CustomSection(header: Text("Unique Identifier"), summary: EmptyView(), footer: EmptyView()) {
                     VStack(alignment: .leading) {
                         Button(app.id.uuidString) {
@@ -84,7 +84,7 @@ struct AppEditor: View {
                         #endif
                     }
                 }
-                
+
                 CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView()) {
                     Button("Delete App \"\(app.name)\"") {
                         showingAlert = true
@@ -92,7 +92,7 @@ struct AppEditor: View {
                     .buttonStyle(SmallSecondaryButtonStyle())
                     .accentColor(.red)
                 }
-                
+
                 #if os(macOS)
                 Spacer()
                 #endif
@@ -111,16 +111,16 @@ struct AppEditor: View {
                     secondaryButton: .cancel()
                 )
             }
-            
+
         } else {
             Text("No App Selected")
         }
     }
 }
 
-//struct AppEditor_Previews: PreviewProvider {
+// struct AppEditor_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AppEditor(appID: UUID.empty, appName: "test")
 //            .environmentObject(AppService(api: APIClient(), errors: ErrorService(), orgService: OrgService()))
 //    }
-//}
+// }

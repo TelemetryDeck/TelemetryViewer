@@ -10,7 +10,7 @@ import SwiftUI
 struct ThreeCirclesInATrenchcode: View {
     let scale: Double
     var body: some View {
-        ZStack{
+        ZStack {
             AnimatedCircle(delay: 0, scale: scale)
             AnimatedCircle(delay: -0.6, scale: scale)
             AnimatedCircle(delay: -1.2, scale: scale)

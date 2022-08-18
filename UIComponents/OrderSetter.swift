@@ -41,7 +41,7 @@ struct OrderSetter: View {
             })
 
             Text(String(format: "%.0f", order))
-            
+
             Button(action: {
                 order += 1
             }, label: {

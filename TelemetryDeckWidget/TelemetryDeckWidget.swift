@@ -40,7 +40,7 @@ struct Provider: IntentTimelineProvider {
         return SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: dataSet)
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> Void) {
         let integer = Int.random(in: 0...4)
         let result: DTOv2.InsightCalculationResult = insightCalculationResults[integer]
         let dataSet = ChartDataSet(data: result.data, groupBy: result.insight.groupBy)
@@ -48,7 +48,7 @@ struct Provider: IntentTimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         guard configuration.Insight?.identifier != nil else { return }
 
         guard configuration.Insight?.identifier != "00000000-0000-0000-0000-000000000000" else {

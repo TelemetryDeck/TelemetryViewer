@@ -11,10 +11,10 @@ struct AnimatedCircle: View {
     @State var isAtMaxScale = false
     let delay: CGFloat
     let scale: Double
- 
+
     private let maxScale: CGFloat = 1
     private let animation = Animation.easeInOut(duration: 3).repeatForever(autoreverses: false)
-    
+
     var body: some View {
         Circle()
             .stroke(Color("RingColor"), lineWidth: 10*scale/200)

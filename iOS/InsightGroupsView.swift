@@ -14,15 +14,15 @@ struct InsightGroupsView: View {
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var queryService: QueryService
     @EnvironmentObject var insightService: InsightService
-    
+
     @State var sidebarVisible = false
     @State var selectedInsightGroupID: DTOv2.Group.ID?
     @State var selectedInsightID: DTOv2.Insight.ID?
     @State private var showDatePicker: Bool = false
     @State private var showEditMode: Bool = false
-    
+
     @Environment(\.horizontalSizeClass) var sizeClass
-    
+
     private var groupsToolbarPlacement: ToolbarItemPlacement {
         if sizeClass == .compact {
             return .bottomBar
@@ -30,28 +30,28 @@ struct InsightGroupsView: View {
             return .navigation
         }
     }
-    
+
     let appID: DTOv2.App.ID
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             StatusMessageDisplay()
 
             TestModeIndicator()
-            
+
             groupSelector
                 .padding(.horizontal)
                 .padding(.bottom)
-            
+
             Divider()
-            
+
             Group {
                 if selectedInsightGroupID == nil {
                     EmptyAppView(appID: appID)
                         .frame(maxWidth: 400)
                         .padding()
                 }
-            
+
                 selectedInsightGroupID.map {
                     GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
                         .background(Color.separatorColor)
@@ -63,7 +63,7 @@ struct InsightGroupsView: View {
                 EmptyView()
             })
         .onAppear {
-            
+
             selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
             TelemetryManager.send("InsightGroupsAppear")
         }
@@ -95,19 +95,19 @@ struct InsightGroupsView: View {
                 editModeButton
                     .hidden()
             }
-            
+
             ToolbarItem(placement: .bottomBar) {
                 HStack {
                     Toggle("Test Mode", isOn: $queryService.isTestingMode.animation())
-                    
+
                     Spacer()
-                    
+
                     datePickerButton
                 }
             }
         }
     }
-    
+
     private var groupSelector: some View {
         Picker("Group", selection: $selectedInsightGroupID) {
             if let app = appService.app(withID: appID) {
@@ -127,7 +127,7 @@ struct InsightGroupsView: View {
         }
         .pickerStyle(SegmentedPickerStyle())
     }
-    
+
     private var datePickerButton: some View {
         Button(queryService.timeIntervalDescription) {
             TelemetryManager.send("showDatePicker")
@@ -137,7 +137,7 @@ struct InsightGroupsView: View {
             arrowEdge: .bottom
         ) { InsightDataTimeIntervalPicker().padding() }
     }
-    
+
     private var newGroupButton: some View {
         Button {
             groupService.create(insightGroupNamed: "New Group", for: appID) { _ in
@@ -156,7 +156,7 @@ struct InsightGroupsView: View {
             Label("New Group", systemImage: "plus")
         }
     }
-    
+
     private var editModeButton: some View {
         Button {
             self.showEditMode = true

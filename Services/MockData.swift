@@ -15,7 +15,7 @@ struct MockData {
     static let app2: DTOv2.App = .init(id: UUID(), name: "Other Test App", organizationID: UUID(), insightGroupIDs: [])
 
     static let examplePayload: [String: String] = [
-        "isTestFlight": "true",
+        "isTestFlight": "true"
     ]
 
     static let signals: [DTOv1.Signal] = [
@@ -24,7 +24,7 @@ struct MockData {
         .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false),
         .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: true),
         .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false),
-        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false),
+        .init(receivedAt: Date(), clientUser: "winsmith", type: "testSignal", payload: examplePayload, isTestMode: false)
     ]
 
     static let lexiconPayloadKeys: [DTOv1.LexiconPayloadKey] = [
@@ -37,7 +37,7 @@ struct MockData {
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "isSimulator"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "numberOfRestarts"),
         .init(id: UUID(), firstSeenAt: Date(), isHidden: true, payloadKey: "appVersion"),
-        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "systemVersion"),
+        .init(id: UUID(), firstSeenAt: Date(), isHidden: false, payloadKey: "systemVersion")
     ]
 
     static let exampleInsight1 = DTOv1.InsightCalculationResult(
@@ -54,7 +54,7 @@ struct MockData {
         data: [DTOv1.InsightData(xAxisValue: "Todat", yAxisValue: "12323")],
         calculatedAt: Date(), calculationDuration: 1
     )
-    
+
     static let exampleInsightVersion2 = DTOv2.Insight(
         id: UUID(),
         groupID: UUID(),

@@ -32,17 +32,15 @@ final class APIClient: ObservableObject {
     init() {
         // Old storage location for user token, if its in there, remove it afterwards
         if let encodedUserToken = UserDefaults.standard.data(forKey: APIClient.userTokenStandardsKey),
-           let userToken = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: encodedUserToken)
-        {
+           let userToken = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: encodedUserToken) {
             self.userToken = userToken
             getUserInformation()
             UserDefaults.standard.removeObject(forKey: APIClient.userTokenStandardsKey)
         }
-        
+
         // New storage location for user token, shared with widgets
         if let encodedUserToken = userDefaults?.data(forKey: APIClient.userTokenStandardsKey),
-           let userToken = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: encodedUserToken)
-        {
+           let userToken = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: encodedUserToken) {
             self.userToken = userToken
             getUserInformation()
         }
@@ -60,10 +58,10 @@ final class APIClient: ObservableObject {
     }
 
     /// The beginning of the time window. If nil, defaults to current Date minus 30 days
-    @Published var timeWindowBeginning: Date? = nil
+    @Published var timeWindowBeginning: Date?
 
     /// The end of the currently displayed time window. If nil, defaults to date()
-    @Published var timeWindowEnd: Date? = nil
+    @Published var timeWindowEnd: Date?
 
     @Published var user: DTOv1.UserDTO?
     @Published var userNotLoggedIn: Bool = true
@@ -113,10 +111,10 @@ extension APIClient {
             }
         }.resume()
     }
-    
+
     func login(bearerToken: String) {
         guard self.userToken == nil else { return }
-        
+
         self.userToken = UserTokenDTO(id: nil, value: bearerToken, user: [:])
         self.getUserInformation()
     }
@@ -428,11 +426,11 @@ extension APIClient {
         #if DEBUG
             print("🌍 GET", url)
         #endif
-        
+
         let request = authenticatedURLRequest(for: url, httpMethod: "GET")
         return try await runAsyncTask(with: request)
     }
-    
+
     func get<Output: Decodable>(_ url: URL, defaultValue _: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
             print("🌍 GET", url)
@@ -527,8 +525,7 @@ extension APIClient {
             #if DEBUG
                 print("⬅️", data.prettyPrintedJSONString ?? String(data: data, encoding: .utf8) ?? "Undecodable")
             #endif
-        }
-        catch {
+        } catch {
             print("🛑 Transfer Failed")
             throw TransferError.transferFailed
         }
@@ -548,6 +545,6 @@ extension APIClient {
         }
         return decoded
     }
-    
+
     func handleError(_: TransferError) {}
 }
