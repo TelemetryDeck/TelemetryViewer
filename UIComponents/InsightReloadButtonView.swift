@@ -13,13 +13,11 @@ struct InsightReloadButtonView: View {
     let insightID: UUID
     let insightGroupID: UUID
     let appID: UUID
-    
+
     private var isLoading: Bool { insightCalculationService.isInsightCalculating(id: insightID) }
-    
+
     private var isLoadingError: Bool { insightCalculationService.isInsightCalculationFailed(id: insightID) }
-    
-    
-    
+
     var body: some View {
         ZStack {
             if isLoading {

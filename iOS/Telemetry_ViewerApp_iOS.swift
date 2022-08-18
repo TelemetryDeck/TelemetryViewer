@@ -11,7 +11,7 @@ import TelemetryClient
 @main
 struct Telemetry_ViewerApp: App {
     @Environment(\.scenePhase) var scenePhase
-    
+
     let api: APIClient
     let cacheLayer: CacheLayer
     let errors: ErrorService
@@ -53,25 +53,25 @@ struct Telemetry_ViewerApp: App {
         self.api = APIClient()
         self.cacheLayer = CacheLayer()
         self.errors = ErrorService()
-        
+
         self.orgService = OrgService(api: api, errors: errors)
         self.appService = AppService(api: api, errors: errors, orgService: orgService)
         self.groupService = GroupService(api: api, errors: errors)
         self.insightService = InsightService(api: api, errors: errors)
-        
+
         self.signalsService = SignalsService(api: api)
         self.lexiconService = LexiconService(api: api)
-        
+
         self.queryService = QueryService(api: api, errors: errors)
-        
+
         self.iconFinderService = IconFinderService(api: api)
-        
+
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
-        
-        UserDefaults.standard.register(defaults: ["isTestingMode" : true])
+
+        UserDefaults.standard.register(defaults: ["isTestingMode": true])
     }
-    
+
     // telemetryviewer://login/<bearertoken>
     func handleIncomingURL(url: URL) {
         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),

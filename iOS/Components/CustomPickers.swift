@@ -16,19 +16,19 @@ protocol PickerItem: Identifiable, Equatable {
 struct DetailedPicker<Item: PickerItem, Summary: View>: View {
     let title: LocalizedStringKey?
     let summary: Summary
-    
+
     @Binding var selectedItem: Item
     let options: [Item]
-    
+
     var body: some View {
         NavigationLink {
-            List{
-                Section{
+            List {
+                Section {
                     ForEach(options) { item in
                         Button {
                             selectedItem = item
                         } label: {
-                            HStack{
+                            HStack {
                                 Text(item.name)
                                     .foregroundColor(.primary)
                                 Spacer()
@@ -44,7 +44,7 @@ struct DetailedPicker<Item: PickerItem, Summary: View>: View {
                 }
             }.listStyle(.grouped)
         } label: {
-            HStack{
+            HStack {
                 if let title = title {
                     Text(title)
                 }
@@ -57,20 +57,20 @@ struct DetailedPicker<Item: PickerItem, Summary: View>: View {
 
 struct GroupByPicker: View {
     let title: LocalizedStringKey?
-    
+
     @Binding var selection: InsightGroupByInterval
     let options: [InsightGroupByInterval]
     let description: String
-    
+
     var body: some View {
         NavigationLink {
-            List{
-                Section{
+            List {
+                Section {
                     ForEach(options, id: \.self) { item in
                         Button {
                             selection = item
                         } label: {
-                            HStack{
+                            HStack {
                                 Text(item.rawValue.capitalized)
                                     .foregroundColor(.primary)
                                 Spacer()
@@ -86,7 +86,7 @@ struct GroupByPicker: View {
                 }
             }.listStyle(.grouped)
         } label: {
-            HStack{
+            HStack {
                 if let title = title {
                     Text(title)
                 }
@@ -96,8 +96,6 @@ struct GroupByPicker: View {
         }
     }
 }
-
-
 
 struct PreviewPickerItem: PickerItem {
     var summary: String?
@@ -109,8 +107,8 @@ struct PreviewPickerItem: PickerItem {
 struct DetailedPicker_Previews: PreviewProvider {
     @State static var asd = PreviewPickerItem(explanation: "Picker", name: "Test")
     static var previews: some View {
-        NavigationView{
-            List{
+        NavigationView {
+            List {
                 DetailedPicker(title: "DetailedPicker", summary: Text(asd.name), selectedItem: $asd, options: [PreviewPickerItem(explanation: "Item 1", name: "First"), PreviewPickerItem(explanation: "Item 2", name: "Second")])
             }
         }

@@ -57,8 +57,8 @@ struct SmallSecondaryButtonStyle: ButtonStyle {
             .padding(4)
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
-                
-                    .strokeBorder(configuration.isPressed ? Color.grayColor.opacity(0.5) : Color.grayColor,lineWidth: 1)
+
+                    .strokeBorder(configuration.isPressed ? Color.grayColor.opacity(0.5) : Color.grayColor, lineWidth: 1)
                     .background(RoundedRectangle(cornerRadius: 15).foregroundColor(configuration.isPressed ? Color.grayColor.opacity(0.5) : Color.grayColor.opacity(0.05)))
             )
     }

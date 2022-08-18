@@ -12,7 +12,7 @@ struct SondrineAnimation: View {
         GeometryReader { geometry in
             HStack {
                 Spacer()
-                
+
                 ZStack {
                     ThreeCirclesInATrenchcode(scale: min(geometry.size.width, geometry.size.height))
                         .scaledToFit()

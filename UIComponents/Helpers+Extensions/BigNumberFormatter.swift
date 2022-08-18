@@ -26,13 +26,13 @@ class BigNumberFormatter {
             1000,
             1_000_000,
             1_000_000_000,
-            1_000_000_000_000,
+            1_000_000_000_000
         ]
         let unitPrefixes: [Double: String] = [
             1000: "K",
             1_000_000: "M",
             1_000_000_000: "B",
-            1_000_000_000_000: "T",
+            1_000_000_000_000: "T"
         ]
 
         // Find out the unit for the specified number

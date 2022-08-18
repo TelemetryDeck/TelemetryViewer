@@ -13,18 +13,18 @@ struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var queryService: QueryService
-    
+
     @State var sidebarVisible = false
     @State var selectedInsightGroupID: DTOv2.Group.ID?
     @State var selectedInsightID: DTOv2.Insight.ID?
     @State private var showDatePicker: Bool = false
-    
+
     private var groupsToolbarPlacement: ToolbarItemPlacement {
         return .navigation
     }
-    
+
     let appID: DTOv2.App.ID
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Group {
@@ -33,7 +33,7 @@ struct InsightGroupsView: View {
                         .frame(maxWidth: 400)
                         .padding()
                 }
-            
+
                 selectedInsightGroupID.map {
                     GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
                 }
@@ -55,14 +55,14 @@ struct InsightGroupsView: View {
                 selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
             }
         }
-        
+
         .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
         .toolbar {
             ToolbarItemGroup(placement: groupsToolbarPlacement) {
                 groupSelector
                 newGroupButton
             }
-                
+
             ToolbarItem {
                 Button(queryService.timeIntervalDescription) {
                     TelemetryManager.send("showDatePicker")
@@ -72,17 +72,17 @@ struct InsightGroupsView: View {
                     arrowEdge: .bottom
                 ) { InsightDataTimeIntervalPicker().padding() }
             }
-            
+
             ToolbarItem {
                 TestingModeToggle()
             }
-            
+
             ToolbarItem {
                 if let selectedInsightGroupID = selectedInsightGroupID {
                     NewInsightMenu(appID: appID, selectedInsightGroupID: selectedInsightGroupID)
                 }
             }
-               
+
             ToolbarItem {
                 sidebarToggleButton
             }
@@ -92,7 +92,7 @@ struct InsightGroupsView: View {
     private var sidebarToggleButton: some View {
         Button {
             TelemetryManager.send("InsightGroupsSidebarToggle")
-            
+
             withAnimation {
                 sidebarVisible.toggle()
                 selectedInsightID = nil
@@ -102,7 +102,7 @@ struct InsightGroupsView: View {
         }
         .help("Toggle right sidebar")
     }
-    
+
     private var groupSelector: some View {
         Picker("Group", selection: $selectedInsightGroupID) {
             if let app = appService.appDictionary[appID] {
@@ -122,7 +122,7 @@ struct InsightGroupsView: View {
         }
         .pickerStyle(SegmentedPickerStyle())
     }
-    
+
     private var newGroupButton: some View {
         Button(action: {
             groupService.create(insightGroupNamed: "New Group", for: appID) { _ in

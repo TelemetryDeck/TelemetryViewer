@@ -12,7 +12,7 @@ struct UserCountGroupView: View {
 
     let columns = [
         GridItem(.flexible()),
-        GridItem(.flexible()),
+        GridItem(.flexible())
     ]
 
     var body: some View {

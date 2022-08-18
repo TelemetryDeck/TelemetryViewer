@@ -28,13 +28,13 @@ struct LabelLoadingStateIndicator: View {
     let systemImage: String
     let title: String?
     let loadingState: LoadingState
-    
+
     init(loadingState: LoadingState, title: String? = nil, systemImage: String) {
         self.title = title
         self.loadingState = loadingState
         self.systemImage = systemImage
     }
-    
+
     private var resolvedText: String {
         guard let title = title else {
             switch loadingState {
@@ -51,7 +51,7 @@ struct LabelLoadingStateIndicator: View {
 
         return title
     }
-    
+
     private var resolvedSystemImage: String {
         switch loadingState {
         case .idle:
@@ -64,7 +64,7 @@ struct LabelLoadingStateIndicator: View {
             return "exclamationmark.triangle"
         }
     }
-    
+
     var body: some View {
         Group {
             if title == nil {
@@ -81,12 +81,12 @@ struct LabelLoadingStateIndicator: View {
 struct TinyLoadingStateIndicator: View {
     let title: String?
     let loadingState: LoadingState
-    
+
     init(loadingState: LoadingState, title: String? = nil) {
         self.title = title
         self.loadingState = loadingState
     }
-    
+
     private var resolvedText: String {
         guard let title = title else {
             switch loadingState {
@@ -103,7 +103,7 @@ struct TinyLoadingStateIndicator: View {
 
         return title
     }
-    
+
     var body: some View {
         Group {
             if title == nil {
@@ -120,12 +120,12 @@ struct TinyLoadingStateIndicator: View {
 struct LoadingStateIndicator: View {
     let title: String?
     let loadingState: LoadingState
-    
+
     init(loadingState: LoadingState, title: String? = nil) {
         self.title = title
         self.loadingState = loadingState
     }
-    
+
     var body: some View {
         Label {
             VStack(alignment: .leading) {
@@ -137,7 +137,7 @@ struct LoadingStateIndicator: View {
                         .bold()
                         .redacted(reason: .placeholder)
                 }
-                
+
                 Group {
                     switch loadingState {
                     case .idle:
@@ -172,12 +172,12 @@ struct LoadingStateIndicator: View {
 struct SondrineLoadingStateIndicator: View {
     let title: String?
     let loadingState: LoadingState
-    
+
     init(loadingState: LoadingState, title: String? = nil) {
         self.title = title
         self.loadingState = loadingState
     }
-    
+
     var body: some View {
         Group {
             switch loadingState {
@@ -212,11 +212,11 @@ struct SondrineLoadingStateIndicator: View {
 
 struct IconOnlyLoadingStateIndicator: View {
     let loadingState: LoadingState
-    
+
     init(loadingState: LoadingState) {
         self.loadingState = loadingState
     }
-    
+
     var body: some View {
         switch loadingState {
         case .idle:
@@ -234,11 +234,11 @@ struct IconOnlyLoadingStateIndicator: View {
 
 struct UnobtrusiveIconOnlyLoadingStateIndicator: View {
     let loadingState: LoadingState
-    
+
     init(loadingState: LoadingState) {
         self.loadingState = loadingState
     }
-    
+
     var body: some View {
         switch loadingState {
         case .idle:
