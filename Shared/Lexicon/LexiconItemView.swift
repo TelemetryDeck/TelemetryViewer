@@ -40,6 +40,8 @@ struct SignalTypeView: View {
 struct PayloadKeyView: View {
     let lexiconItem: DTOv2.LexiconPayloadKey
 
+
+
     var body: some View {
         HStack {
             Text(lexiconItem.name)

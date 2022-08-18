@@ -13,7 +13,7 @@ struct HelpAndFeedbackLink: View {
     let subtitle: String
     let link: String
     let systemImage: String
-
+    
     var body: some View {
         Button(action: {
             URL(string: link)?.open()
@@ -26,13 +26,13 @@ struct HelpAndFeedbackLink: View {
                         .font(.subheadline)
                         .foregroundColor(.grayColor)
                 }
-
+                
                 Spacer()
-
+                
                 Image(systemName: "chevron.right").foregroundColor(.grayColor)
             }
             .padding()
-
+            
             #if os(macOS)
             Divider()
             #endif
@@ -50,28 +50,28 @@ struct FeedbackView: View {
                 link: "https://telemetrydeck.com/pages/docs.html",
                 systemImage: "text.book.closed"
             )
-
+            
             HelpAndFeedbackLink(
                 title: "Swift Client",
                 subtitle: "The TelemetryDeck Swift Client for inclusion in your apps",
                 link: "https://github.com/TelemetryDeck/SwiftClient",
                 systemImage: "cloud"
             )
-
+            
             HelpAndFeedbackLink(
                 title: "GitHub Issues",
                 subtitle: "Create new tickets for features you'd like or bugs you found, or discuss existing tickets.",
                 link: "https://github.com/TelemetryDeck/Viewer/issues",
                 systemImage: "ladybug"
             )
-
+            
             HelpAndFeedbackLink(
                 title: "GitHub Discussions",
                 subtitle: "Ask and discuss questions regarding the app, the client, future development, etc.",
                 link: "https://github.com/TelemetryDeck/Viewer/discussions",
                 systemImage: "bubble.left.and.bubble.right"
             )
-
+            
             HelpAndFeedbackLink(
                 title: "Slack Workspace",
                 subtitle: "If you prefer real-time conversation, TelemetryDeck also has a Slack, come in and let's talk",

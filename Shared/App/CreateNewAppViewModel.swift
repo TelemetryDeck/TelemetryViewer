@@ -17,7 +17,7 @@ class CreateNewAppViewModel: ObservableObject {
     @Published var appName: String = "New App"
     @Published var existingApps: [DTOv2.App] = []
     @Published var createDefaultInsights: Bool = true
-    @Published var createdApp: DTOv2.App?
+    @Published var createdApp: DTOv2.App? = nil
 
     @Binding var newAppViewShown: Bool
 
@@ -79,7 +79,7 @@ class CreateNewAppViewModel: ObservableObject {
             }
         }
     }
-
+    
     enum AppCreationValidationState {
         case valid
         case nameEmpty

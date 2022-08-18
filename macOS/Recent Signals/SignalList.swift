@@ -66,7 +66,7 @@ struct SignalList: View {
                     .frame(minWidth: 120)
 
                 TestingModeToggle()
-
+                
                 if signalsService.isLoading(appID: appID) {
                     ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
                 } else {

@@ -71,7 +71,7 @@ struct SignalView_Previews: PreviewProvider {
             type: "ExampleSignal",
             payload: [
                 "appVersion": "1.0",
-                "systemVersion": "14.0"
+                "systemVersion": "14.0",
             ], isTestMode: false
         )
         SignalView(signal: signal)

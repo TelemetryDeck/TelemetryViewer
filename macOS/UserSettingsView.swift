@@ -11,10 +11,10 @@ import TelemetryClient
 
 struct UserSettingsView: View {
     @EnvironmentObject var api: APIClient
-
+    
     @State private var showingAlert = false
     @State private var userDTO = DTOv1.UserDTO(id: UUID(), organization: nil, firstName: "", lastName: "", email: "", emailIsVerified: false, receiveMarketingEmails: nil, isFoundingUser: false, receiveReports: .never)
-
+    
     var body: some View {
         if api.user != nil {
             ScrollView {
@@ -22,7 +22,7 @@ struct UserSettingsView: View {
                     Text("User Settings")
                         .font(.title)
                         .padding(.bottom, 4)
-
+                    
                     CustomSection(
                         header: Text("Online Settings"),
                         summary: EmptyView(),
@@ -45,7 +45,7 @@ struct UserSettingsView: View {
                             }
                         }
                     }
-
+                    
                     #if DEBUG
                     if let bearerTokenString = api.userToken?.bearerTokenAuthString {
                         CustomSection(header: Text("Token"), summary: Text(bearerTokenString), footer: EmptyView(), startCollapsed: false) {
@@ -55,7 +55,7 @@ struct UserSettingsView: View {
                         }
                     }
                     #endif
-
+                    
                     CustomSection(
                         header: Text("Log Out"),
                         summary: EmptyView(),
@@ -94,7 +94,7 @@ struct UserSettingsView: View {
 struct SettingsKeyView: View {
     let key: String
     let value: String
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(key).font(.footnote)

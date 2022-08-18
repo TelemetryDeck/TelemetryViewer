@@ -35,7 +35,7 @@ struct KeyValueView_Previews: PreviewProvider {
             "buildNumber": "1",
             "systemVersion": "macOS 11.0.0",
             "isSimulator": "false",
-            "signalType": "insightUpdatedAutomatically"
+            "signalType": "insightUpdatedAutomatically",
         ])
     }
 }

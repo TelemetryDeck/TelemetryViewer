@@ -9,7 +9,7 @@ import Foundation
 
 class CacheLayer: ObservableObject {
     private let queue: DispatchQueue = .init(label: "CacheLayer")
-
+    
     let organizationCache = Cache<String, DTOsWithIdentifiers.Organization>(entryLifetime: 15 * 60)
-
+    
 }

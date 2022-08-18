@@ -85,7 +85,7 @@ struct InsightGroupEditor: View {
                 message: Text("This will delete the Insight Group and all its Insights. Your signals are not affected."),
                 primaryButton: .destructive(Text("Delete")) {
                     delete()
-
+                    
                 },
                 secondaryButton: .cancel()
             )

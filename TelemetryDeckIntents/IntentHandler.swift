@@ -28,11 +28,11 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 
     func provideInsightOptionsCollection(for intent: ConfigurationIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<InsightIDSelection>?, Error?) -> Void) {
         insightService.widgetableInsights { apps in
-
+            
             let sortedApps = apps.sorted {
                 $0.name < $1.name
             }
-
+            
             if searchTerm == nil {
                 let appSections: [INObjectSection<InsightIDSelection>] = sortedApps.map { app in
                     let appSection = INObjectSection(title: app.name, items: app.insights.sorted(by: { $0.title < $1.title }).map { insight -> InsightIDSelection in

@@ -15,7 +15,7 @@ final class Cache<Key: Hashable, Value>: ObservableObject {
     func insert(_ value: Value, forKey key: Key) {
         let date = dateProvider().addingTimeInterval(entryLifetime)
         let entry = Entry(value: value, expirationDate: date)
-
+        
         objectWillChange.send()
         wrapped.setObject(entry, forKey: WrappedKey(key))
     }
@@ -27,16 +27,16 @@ final class Cache<Key: Hashable, Value>: ObservableObject {
 
         return entry.value
     }
-
+    
     func needsUpdate(forKey key: Key) -> Bool {
         guard let entry = wrapped.object(forKey: WrappedKey(key)) else {
             return true
         }
-
+        
         guard dateProvider() < entry.expirationDate else {
             return true
         }
-
+        
         return false
     }
 
@@ -44,7 +44,7 @@ final class Cache<Key: Hashable, Value>: ObservableObject {
         objectWillChange.send()
         wrapped.removeObject(forKey: WrappedKey(key))
     }
-
+    
     func invalidateAllObjects() {
         wrapped.removeAllObjects()
     }

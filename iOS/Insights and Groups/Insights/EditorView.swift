@@ -15,24 +15,24 @@ class EditorViewModel: ObservableObject {
         var name: String
         var explanation: String
         var id: UUID
-
+        
         static let timeSeries = InsightType(name: "Time Series", explanation: "A time series insight looks at discrete chunks of time and counts values in those times, for example 'Signal counts for each day'. These are awesome for displaying in line charts or bar charts.", id: UUID())
         static let breakdown = InsightType(name: "Breakdown", explanation: "A breakdown insights collects all signals, extracts a specific payload key from them, and then gives you a list of which possible values are inside the payload key, and how often they occurred. Ideal for seeing how many users use each version of your app for example, and well suited with donut charts.", id: UUID())
         static let customQuery = InsightType(name: "Custom Query", explanation: "Custom queries allow you to write your query in a JSON based language. We'll add filters for appID and your selected date range on the server. This is a very experimental early feature right now. Trust nothing. Trust no one. Everything you found out, you want to forget.", id: UUID())
     }
-
+    
     let groupService: GroupService
     let insightService: InsightService
     let lexiconService: LexiconService
-
+    
     init(insight: DTOv2.Insight, appID: UUID, insightService: InsightService, groupService: GroupService, lexiconService: LexiconService) {
         self.groupService = groupService
         self.insightService = insightService
         self.lexiconService = lexiconService
-
+        
         self.customQueryString = Self.string(from: insight.customQuery)
         self.customQuery = insight.customQuery
-
+        
         self.id = insight.id
         self.appID = appID
         self.groupID = insight.groupID
@@ -45,7 +45,7 @@ class EditorViewModel: ObservableObject {
         self.filters = insight.filters
         self.breakdownKey = insight.breakdownKey ?? ""
         self.groupBy = insight.groupBy ?? .day
-
+        
         if insight.customQuery != nil {
             self.insightType = .customQuery
         } else if insight.breakdownKey != nil {
@@ -53,28 +53,28 @@ class EditorViewModel: ObservableObject {
         } else {
             self.insightType = .timeSeries
         }
-
+        
         self.isSettingUp = false
         print("init: \(insight.title)")
     }
-
+    
     static func string(from customQuery: CustomQuery?) -> String {
         guard let customQuery = customQuery else { return "" }
-
+        
         let encoder = JSONEncoder.telemetryEncoder
         encoder.outputFormatting = .prettyPrinted
-
+        
         guard let data = try? JSONEncoder.telemetryEncoder.encode(customQuery),
               let stringValue = String(data: data, encoding: .utf8)
         else {
             return ""
         }
-
+        
         encoder.outputFormatting = .sortedKeys
-
+        
         return stringValue
     }
-
+    
     var generatedInsight: DTOv2.Insight {
         DTOv2.Insight(
             id: id,
@@ -93,12 +93,12 @@ class EditorViewModel: ObservableObject {
             lastRunAt: nil
         )
     }
-
+    
     private var lastSaveCallAt = Date.distantPast
     private let waitBeforeSave: TimeInterval = 1
     private var isSettingUp = false
     private var oldGroupID: UUID?
-
+    
     func save() {
         insightService.update(
             insightID: id,
@@ -108,56 +108,56 @@ class EditorViewModel: ObservableObject {
         ) { _ in
             if let oldGroupID = self.oldGroupID {
                 let newGroupID = self.groupID
-
+                
                 self.oldGroupID = nil
-
+                
                 self.groupService.retrieveGroup(with: oldGroupID)
                 self.groupService.retrieveGroup(with: newGroupID)
             }
         }
-
-        insightService.insightDictionary[id] = generatedInsight
-
+        
+        insightService.insightDictionary[id] = generatedInsight 
+        
         WidgetCenter.shared.reloadAllTimelines()
-
+        
         TelemetryManager.send("EditorViewSave")
     }
-
+    
     let id: DTOv2.Insight.ID
     let appID: DTOv2.App.ID
-
+    
     #warning("TODO: Save changes automatically? Or warn on dismiss?")
-
+    
     @Published var order: Double
-
+    
     @Published var title: String
-
+    
     @Published var accentColor: String
-
+    
     @Published var customQuery: CustomQuery?
-
+    
     @Published var customQueryString: String
-
+    
     @Published var insightType: InsightType
-
+    
     /// How should this insight's data be displayed?
     @Published var displayMode: InsightDisplayMode
-
+    
     /// Which signal types are we interested in? If empty, do not filter by signal type
     @Published var signalType: String
-
+    
     /// If true, only include at the newest signal from each user
     @Published var uniqueUser: Bool
-
+    
     /// Only include signals that match all of these key-values in the payload
     @Published var filters: [String: String]
-
+    
     /// If set, break down the values in this key
     @Published var breakdownKey: String
-
+    
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
     @Published var groupBy: InsightGroupByInterval
-
+    
     /// Which group should the insight belong to? (Only use this in update mode)
     @Published var groupID: UUID {
         didSet {
@@ -165,11 +165,11 @@ class EditorViewModel: ObservableObject {
             save()
         }
     }
-
+    
     var filterAutocompletionOptions: [String] {
         return lexiconService.payloadKeys(for: appID).map(\.name).sorted(by: { $0.lowercased() < $1.lowercased() })
     }
-
+    
     var signalTypeAutocompletionOptions: [String] {
         return lexiconService.signalTypes(for: appID).map(\.type).sorted(by: { $0.lowercased() < $1.lowercased() })
     }
@@ -190,11 +190,11 @@ extension InsightDisplayMode: PickerItem {
             return "number.square"
         }
     }
-
+    
     var explanation: String {
         chartTypeExplanationText
     }
-
+    
     public var id: UUID {
         UUID()
     }
@@ -204,17 +204,17 @@ struct EditorView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
-
+    
     @StateObject var viewModel: EditorViewModel
-
+    
     @State var showingAlert: Bool = false
-
+    
     @Binding var selectedInsightID: UUID?
-
+    
     var nameAndGroupSection: some View {
         Section(header: Text("General")) {
             TextField("Title e.g. 'Daily Active Users'", text: $viewModel.title)
-
+            
             Picker(selection: $viewModel.groupID, label: Text("Group")) {
                 ForEach(appService.app(withID: viewModel.appID)?.insightGroupIDs ?? [], id: \.self) { insightGroupID in
                     TinyLoadingStateIndicator(
@@ -238,7 +238,7 @@ struct EditorView: View {
             }
         }
     }
-
+    
     var insightTypeSection: some View {
         Section(header: Text("Insight Configuration")) {
             DetailedPicker(title: "Chart Type",
@@ -271,7 +271,7 @@ struct EditorView: View {
             }
         }
     }
-
+    
     var groupBySection: some View {
         CustomSection(header: Text("Group Values by"), summary: Text(viewModel.groupBy.rawValue), footer: Text(""), startCollapsed: true) {
             Picker(selection: $viewModel.groupBy, label: Text("")) {
@@ -285,30 +285,30 @@ struct EditorView: View {
             .listRowBackground(Color.clear)
         }
     }
-
+    
     var signalTypeSection: some View {
         let signalText = viewModel.signalType.isEmpty ? "All Signals" : viewModel.signalType
         let uniqueText = viewModel.uniqueUser ? ", unique" : ""
-
+        
         return CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text("If you want, only look at a single signal type for this insight."), startCollapsed: true) {
             Picker("Signal", selection: $viewModel.signalType) {
                 Text("All Signals").tag("")
-
+                
                 ForEach(viewModel.signalTypeAutocompletionOptions, id: \.self) { option in
                     Text(option).tag(option)
                 }
             }
-
+            
             if viewModel.insightType == .breakdown {
                 Picker("Breakdown by", selection: $viewModel.breakdownKey) {
                     Text("None").tag("")
-
+                    
                     ForEach(viewModel.filterAutocompletionOptions, id: \.self) { option in
                         Text(option).tag(option)
                     }
                 }
             }
-
+            
             Toggle(isOn: $viewModel.uniqueUser) {
                 HStack {
                     VStack(alignment: .leading) {
@@ -322,13 +322,13 @@ struct EditorView: View {
             }
         }
     }
-
+    
     var filtersSection: some View {
         CustomSection(header: Text("Filters"), summary: Text("\(viewModel.filters.count) filters"), footer: Text("Due to a server limitation, currently only one filter at a time is supported. This will change in the future."), startCollapsed: true) {
             FilterEditView(keysAndValues: $viewModel.filters, autocompleteOptions: viewModel.filterAutocompletionOptions)
         }
     }
-
+    
     var metaSection: some View {
         Section(header: Text("Meta Information")) {
             Button("Copy Insight ID") {
@@ -336,7 +336,7 @@ struct EditorView: View {
             }
         }
     }
-
+    
     var deleteSection: some View {
         Section(header: Text("Delete")) {
             Button("Delete this Insight", role: .destructive, action: {
@@ -358,7 +358,7 @@ struct EditorView: View {
                 }
         }
     }
-
+    
     var customQuerySection: some View {
         CustomSection(header: Text("Custom Query"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
             Text(viewModel.customQueryString)
@@ -366,29 +366,29 @@ struct EditorView: View {
                 .font(.system(.footnote, design: .monospaced))
         }
     }
-
+    
     var body: some View {
         Form {
             nameAndGroupSection
-
+            
             insightTypeSection
-
+            
             if [.timeSeries, .breakdown].contains(viewModel.insightType) {
                 signalTypeSection
-
+                
                 filtersSection
-
+                
             } else if viewModel.insightType == .customQuery {
                 customQuerySection
             }
-
+            
             metaSection
-
+            
             deleteSection
         }
         .onAppear {
             TelemetryManager.send("EditorViewAppear")
-
+            
             viewModel.lexiconService.getPayloadKeys(for: viewModel.appID)
             viewModel.lexiconService.getSignalTypes(for: viewModel.appID)
         }
@@ -400,7 +400,7 @@ struct EditorView: View {
     }
 }
 
-// struct EditorView_Previews: PreviewProvider {
+//struct EditorView_Previews: PreviewProvider {
 //    static var apiClientPreview = APIClient()
 //    static var previews: some View {
 //        NavigationView {
@@ -416,4 +416,4 @@ struct EditorView: View {
 //                .navigationBarTitleDisplayMode(.inline)
 //        }
 //    }
-// }
+//}

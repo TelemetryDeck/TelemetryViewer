@@ -15,7 +15,7 @@ class EditorViewModel: ObservableObject {
         case timeSeries
         case breakdown
         case customQuery
-
+        
         var stringValue: String {
             switch self {
             case .timeSeries:
@@ -26,7 +26,7 @@ class EditorViewModel: ObservableObject {
                 return "Custom Query"
             }
         }
-
+        
         var explanation: String {
             switch self {
             case .timeSeries:
@@ -38,16 +38,16 @@ class EditorViewModel: ObservableObject {
             }
         }
     }
-
+    
     let groupService: GroupService
     let insightService: InsightService
     let lexiconService: LexiconService
-
+    
     init(insight: DTOv2.Insight, appID: UUID, insightService: InsightService, groupService: GroupService, lexiconService: LexiconService) {
         self.groupService = groupService
         self.insightService = insightService
         self.lexiconService = lexiconService
-
+        
         self.customQueryString = Self.string(from: insight.customQuery)
         self.customQuery = insight.customQuery
         if insight.customQuery != nil {
@@ -57,7 +57,7 @@ class EditorViewModel: ObservableObject {
         } else {
             self.insightType = .timeSeries
         }
-
+        
         self.id = insight.id
         self.appID = appID
         self.groupID = insight.groupID
@@ -71,27 +71,27 @@ class EditorViewModel: ObservableObject {
         self.filters = insight.filters
         self.breakdownKey = insight.breakdownKey ?? ""
         self.groupBy = insight.groupBy ?? .day
-
+        
         self.isSettingUp = false
     }
-
+    
     static func string(from customQuery: CustomQuery?) -> String {
         guard let customQuery = customQuery else { return "" }
-
+        
         let encoder = JSONEncoder.telemetryEncoder
         encoder.outputFormatting = .prettyPrinted
-
+        
         guard let data = try? JSONEncoder.telemetryEncoder.encode(customQuery),
               let stringValue = String(data: data, encoding: .utf8)
         else {
             return ""
         }
-
+        
         encoder.outputFormatting = .sortedKeys
-
+        
         return stringValue
     }
-
+    
     var generatedInsight: DTOv2.Insight {
         DTOv2.Insight(
             id: id,
@@ -110,12 +110,13 @@ class EditorViewModel: ObservableObject {
             lastRunAt: nil
         )
     }
-
+    
     private var lastSaveCallAt = Date.distantPast
     private let waitBeforeSave: TimeInterval = 1
     private var isSettingUp = false
     private var oldGroupID: UUID?
-
+    
+    
     /// this function makes an api call to post the new insight to the server
     func save() {
         insightService.update(
@@ -126,50 +127,50 @@ class EditorViewModel: ObservableObject {
         ) { _ in
             if let oldGroupID = self.oldGroupID {
                 let newGroupID = self.groupID
-
+                
                 self.oldGroupID = nil
-
+                
                 self.groupService.retrieveGroup(with: oldGroupID)
                 self.groupService.retrieveGroup(with: newGroupID)
-
+                
                 self.needsSaving = false
             }
         }
         #warning("TODO: The InsightCard View does not update after saving.")
-        insightService.insightDictionary[id] = generatedInsight
+        insightService.insightDictionary[id] = generatedInsight 
         WidgetCenter.shared.reloadAllTimelines()
         TelemetryManager.send("EditorViewSave")
     }
-
+    
     func setNeedsSaving(_ newValue: Bool) {
         withAnimation {
             needsSaving = newValue
         }
     }
-
+    
     let id: DTOv2.Insight.ID
     let appID: DTOv2.App.ID
-
+    
     @Published var needsSaving: Bool = false
-
+    
     @Published var order: Double { didSet { save() }}
-
+    
     @Published var title: String { didSet { setNeedsSaving(true) }}
-
+    
     @Published var accentColor: String { didSet { save() }}
-
+    
     @Published var customQuery: CustomQuery?
-
+    
     @Published var customQueryString: String
-
+    
     @Published var insightType: InsightType
-
+    
     /// How should this insight's data be displayed?
     @Published var displayMode: InsightDisplayMode { didSet { save() }}
-
+    
     /// If true, the insight will be displayed bigger
     @Published var isExpanded: Bool { didSet { setNeedsSaving(true) }}
-
+    
     /// Which signal types are we interested in? If empty, do not filter by signal type
     @Published var signalType: String { didSet { save() }}
 
@@ -192,7 +193,7 @@ class EditorViewModel: ObservableObject {
             save()
         }
     }
-
+    
     var filterAutocompletionOptions: [String] {
         return lexiconService.payloadKeys(for: appID).map(\.name).sorted(by: { $0.lowercased() < $1.lowercased() })
     }
@@ -205,13 +206,13 @@ class EditorViewModel: ObservableObject {
 struct EditorView: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
-
+    
     @ObservedObject var viewModel: EditorViewModel
-
+    
     @State var showingAlert: Bool = false
-
+    
     @Binding var selectedInsightID: UUID?
-
+    
     var nameAndGroupSection: some View {
         CustomSection(header: Text("Name and Group"), summary: Text(viewModel.title), footer: Text("The Title of This Insight, and in which group it is located"), startCollapsed: true) {
             TextField("Title e.g. 'Daily Active Users'", text: $viewModel.title)
@@ -220,7 +221,7 @@ struct EditorView: View {
             Toggle(isOn: $viewModel.isExpanded, label: {
                 Text("Show Expanded")
             })
-
+                
             Picker(selection: $viewModel.groupID, label: Text("Group")) {
                 ForEach(appService.app(withID: viewModel.appID)?.insightGroupIDs ?? [], id: \.self) { insightGroupID in
                     TinyLoadingStateIndicator(
@@ -235,7 +236,7 @@ struct EditorView: View {
         .padding(.top)
         .padding(.horizontal)
     }
-
+        
     var chartTypeSection: some View {
         CustomSection(header: Text("Chart Type"), summary: viewModel.displayMode.chartImage, footer: Text(viewModel.displayMode.chartTypeExplanationText), startCollapsed: true) {
             Picker(selection: $viewModel.displayMode, label: Text("")) {
@@ -248,7 +249,7 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-
+    
     var insightTypeSection: some View {
         CustomSection(header: Text("Insight Type"), summary: Text(viewModel.insightType.stringValue), footer: Text(viewModel.insightType.explanation), startCollapsed: true) {
             Picker(selection: $viewModel.insightType, label: Text("")) {
@@ -259,7 +260,7 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-
+    
     var groupBySection: some View {
         CustomSection(header: Text("Group Values by"), summary: Text(viewModel.groupBy.rawValue), footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive."), startCollapsed: true) {
             Picker(selection: $viewModel.groupBy, label: Text("")) {
@@ -272,7 +273,7 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-
+    
     var signalTypeSection: some View {
         let signalText = viewModel.signalType.isEmpty ? "All Signals" : viewModel.signalType
         let uniqueText = viewModel.uniqueUser ? ", unique" : ""
@@ -280,7 +281,7 @@ struct EditorView: View {
         return CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text("If you want, only look at a single signal type for this insight."), startCollapsed: true) {
             Picker("Signal Type", selection: $viewModel.signalType) {
                 Text("All Signals").tag("")
-
+                
                 ForEach(viewModel.signalTypeAutocompletionOptions, id: \.self) { option in
                     Text(option).tag(option)
                 }
@@ -300,19 +301,19 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-
+    
     var filtersSection: some View {
         CustomSection(header: Text("Filters"), summary: Text("\(viewModel.filters.count) filters"), footer: Text("Due to a server limitation, currently only one filter at a time is supported. This will change in the future."), startCollapsed: true) {
             FilterEditView(keysAndValues: $viewModel.filters, autocompleteOptions: viewModel.filterAutocompletionOptions)
         }
         .padding(.horizontal)
     }
-
+    
     var breakdownSection: some View {
         CustomSection(header: Text("Breakdown"), summary: Text(viewModel.breakdownKey.isEmpty ? "No Breakdown" : viewModel.breakdownKey), footer: Text("Select a metadata payload key, you'll get a breakdown of its values."), startCollapsed: true) {
             Picker("Key", selection: $viewModel.breakdownKey) {
                 Text("None").tag("")
-
+                
                 ForEach(viewModel.filterAutocompletionOptions, id: \.self) { option in
                     Text(option).tag(option)
                 }
@@ -320,7 +321,7 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-
+    
     var metaSection: some View {
         CustomSection(header: Text("Meta Information"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
             Button("Copy Insight ID") {
@@ -330,7 +331,7 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-
+    
     var deleteSection: some View {
         CustomSection(header: Text("Delete"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
             Button("Delete this Insight", action: {
@@ -354,7 +355,7 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-
+    
     var customQuerySection: some View {
         CustomSection(header: Text("Custom Query"), summary: EmptyView(), footer: EmptyView(), startCollapsed: true) {
             Text(viewModel.customQueryString)
@@ -363,7 +364,7 @@ struct EditorView: View {
         }
         .padding(.horizontal)
     }
-
+    
     var colorSelectionSection: some View {
         CustomSection(header: Text("Accent Color"), summary: Text(viewModel.accentColor), footer: Text("If you want, you can set a custom color for this insight"), startCollapsed: true) {
             Picker(selection: $viewModel.accentColor, label: Text("")) {
@@ -385,33 +386,33 @@ struct EditorView: View {
     var formContent: some View {
         Group {
             nameAndGroupSection
-
+            
             colorSelectionSection
 
             chartTypeSection
 
             insightTypeSection
-
+            
             if [.timeSeries, .breakdown].contains(viewModel.insightType) {
                 if viewModel.insightType == .timeSeries {
                     groupBySection
                 }
-
+            
                 signalTypeSection
 
                 filtersSection
-
+            
                 if viewModel.insightType == .breakdown {
                     breakdownSection
                 }
             } else if viewModel.insightType == .customQuery {
                 customQuerySection
             }
-
+            
             metaSection
 
             deleteSection
-
+            
             if viewModel.needsSaving {
                 Button(action: viewModel.save) {
                     Text("Save")
@@ -423,7 +424,7 @@ struct EditorView: View {
         }
         .onAppear {
             TelemetryManager.send("EditorViewAppear")
-
+            
             viewModel.lexiconService.getPayloadKeys(for: viewModel.appID)
             viewModel.lexiconService.getSignalTypes(for: viewModel.appID)
         }
@@ -431,7 +432,7 @@ struct EditorView: View {
             viewModel.save()
         }
     }
-
+    
     var body: some View {
         ScrollView {
             formContent

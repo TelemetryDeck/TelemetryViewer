@@ -12,11 +12,11 @@ import TelemetryClient
 struct SignalList: View {
     @EnvironmentObject var signalsService: SignalsService
     @EnvironmentObject var queryService: QueryService
-
+    
     @State var filterText: String = ""
-
+    
     let appID: UUID
-
+    
     var body: some View {
         TestModeIndicator()
         List {
@@ -24,7 +24,7 @@ struct SignalList: View {
                 TextField("Search", text: $filterText)
                 SignalListExplanationView()
             }
-
+            
             Section {
                 if signalsService.signals(for: appID).isEmpty && !signalsService.isLoading(appID: appID) {
                     Text("You haven't received any Signals yet. Once your app is sending out signals, you'll find here a list of the latest ones.\n\nHint: Usually, apps using the Telemetry Swift Client will only send out Signals if they are compiled in the Release build configuration. If your schema is in Debug mode, no signals will be sent.")
@@ -47,7 +47,7 @@ struct SignalList: View {
             }
             .id(UUID())
         }
-        .refreshable {
+        .refreshable{
             await signalsService.getSignalsAsync(for: appID)
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -61,7 +61,7 @@ struct SignalList: View {
                     ProgressView().scaleEffect(progressViewScaleLarge, anchor: .center)
                 }
             }
-            ToolbarItem(placement: .automatic) {
+            ToolbarItem(placement: .automatic){
                 Toggle("Test Mode", isOn: $queryService.isTestingMode.animation())
             }
         }

@@ -8,10 +8,12 @@
 import SwiftUI
 import TelemetryClient
 
+
 struct LexiconView: View {
     @EnvironmentObject var lexiconService: LexiconService
 
     @State private var sortKey: LexiconService.LexiconSortKey = .signalCount
+    
 
     #if os(iOS)
         @Environment(\.horizontalSizeClass) var sizeClass
@@ -108,7 +110,7 @@ struct LexiconView: View {
                     lexiconService.getSignalTypes(for: appID)
                 }
         }
-
+    
 }
 
 struct LexiconView_Previews: PreviewProvider {

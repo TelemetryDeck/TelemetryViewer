@@ -136,7 +136,8 @@ struct PriceButton: View {
             switch result {
             case .success(let dict):
                 if let sessionURLString = dict["sessionURL"],
-                   let sessionURL = URL(string: sessionURLString) {
+                   let sessionURL = URL(string: sessionURLString)
+                {
                     sessionURL.open()
                 }
             case .failure(let transferError):
@@ -290,7 +291,8 @@ struct OpenBillingPortalButton: View {
             switch result {
             case .success(let dict):
                 if let sessionURLString = dict["sessionURL"],
-                   let sessionURL = URL(string: sessionURLString) {
+                   let sessionURL = URL(string: sessionURLString)
+                {
                     sessionURL.open()
                 }
             case .failure(let transferError):

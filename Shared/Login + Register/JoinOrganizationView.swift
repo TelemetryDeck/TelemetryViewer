@@ -43,7 +43,7 @@ struct JoinOrganizationView: View {
                     Text("In addition to emails like password reset requests and security alerts, we might inform you every now and then about news and best practices regarding TelemetryDeck. Can we also send you our low volume newsletter please?")
                         .font(.footnote)
                         .foregroundColor(.grayColor)
-
+                    
                     Toggle("Send me the newsletter", isOn: $organizationJoinRequest.receiveMarketingEmails)
                 }
 
@@ -97,18 +97,18 @@ struct JoinOrganizationView: View {
                 Text("Hi! You're invited to an organization on Telemetry. This means you can see and edit all apps and insights that belong to the organization.")
                     .fixedSize(horizontal: false, vertical: true)
                     .listRowBackground(Color.clear)
-
+                
                 Section(header: Text("Please enter your registration Token")) {
                     TextField("Registration Token", text: $organizationJoinRequestToken)
                         #if os(macOS)
                         .textFieldStyle(.roundedBorder)
                         #endif
                 }
-
-                Section {
+                
+                Section{
                     Button("Continue") {
                         isLoading = true
-
+                        
                         api.getOrganizationJoinRequest(with: organizationJoinRequestToken) { result in
                             switch result {
                             case let .success(joinRequest):
@@ -125,7 +125,7 @@ struct JoinOrganizationView: View {
                             case let .failure(error):
                                 self.error = error
                             }
-
+                            
                             isLoading = false
                         }
                     }
@@ -144,15 +144,15 @@ struct JoinOrganizationView: View {
                             .animation(.easeOut, value: organizationJoinRequestToken.isEmpty)
                     }
                 }
-
+                
                 if let error = error {
-                    Section {
+                    Section{
                         Text(error.localizedDescription)
                             .bold()
                             .foregroundColor(.red)
                     }
                 }
-
+                
                 #if os(macOS)
                 Spacer()
                 #endif

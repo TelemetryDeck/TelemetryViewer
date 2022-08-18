@@ -11,7 +11,7 @@ struct MacSettingsView: View {
     private enum Tabs: Hashable {
         case user, organization, updates, pricing
     }
-
+    
     var body: some View {
         TabView {
             UserSettingsView()

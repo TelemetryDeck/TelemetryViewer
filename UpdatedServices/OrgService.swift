@@ -12,33 +12,33 @@ import Foundation
 class OrgService: ObservableObject {
     private let api: APIClient
     private let errorService: ErrorService
-
+    
     @Published private(set) var loadingState: LoadingState = .idle
-
+    
     @Published var organization: DTOv2.Organization?
 
     init(api: APIClient, errors: ErrorService) {
         self.api = api
         self.errorService = errors
     }
-
+        
     func getOrganisation() {
         let locallyCachedOrganization = retrieveFromDisk()
         self.organization = locallyCachedOrganization
-
+        
         self.loadingState = .loading
-
+        
         Task {
             do {
                 let org = try await self.retrieveOrganisation()
                 DispatchQueue.main.async {
                     self.organization = org
-
+                        
                     self.loadingState = .finished(Date())
                 }
             } catch {
                 print(error.localizedDescription)
-
+                        
                 if let transferError = error as? TransferError {
                     self.loadingState = .error(transferError.localizedDescription, Date())
                 } else {
@@ -47,16 +47,16 @@ class OrgService: ObservableObject {
             }
         }
     }
-
+    
     func retrieveOrganisation() async throws -> DTOv2.Organization {
 //        guard (api.userToken?.bearerTokenAuthString) != nil else { let error: Error = ; throw error } // make this an error type? also, is this guard needed? why? did daniel use this just due to caching stuff?
-
+        
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.Organization, Error>) in
             let url = api.urlForPath(apiVersion: .v2, "organization")
             api.get(url) { (result: Result<DTOv2.Organization, TransferError>) in
                 switch result {
                 case let .success(org):
-
+                    
                     self.saveToDisk(org: org)
 
                     continuation.resume(returning: org)
@@ -78,20 +78,20 @@ private extension OrgService {
         let cachesDirectoryUrl = urls[0]
         let fileUrl = cachesDirectoryUrl.appendingPathComponent("telemetrydeck.organization.json")
         let filePath = fileUrl.path
-
+        
         if !fileManager.fileExists(atPath: filePath) {
             let contents = Data()
             fileManager.createFile(atPath: filePath, contents: contents)
         }
-
+        
         return fileUrl
     }
-
+    
     func saveToDisk(org: DTOv2.Organization) {
         guard let data = try? JSONEncoder.telemetryEncoder.encode(org) else { return }
         try? data.write(to: self.organizationCacheFilePath, options: .atomic)
     }
-
+    
     func retrieveFromDisk() -> DTOv2.Organization? {
         guard let data = try? Data(contentsOf: organizationCacheFilePath) else { return nil }
         return try? JSONDecoder.telemetryDecoder.decode(DTOv2.Organization.self, from: data)

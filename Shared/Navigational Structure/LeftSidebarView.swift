@@ -24,8 +24,8 @@ struct LeftSidebarView: View {
         @EnvironmentObject var updateService: UpdateService
     #endif
 
-    @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOv2.App.ID: Bool]?
-    @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection?
+    @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOv2.App.ID: Bool]? = nil
+    @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection? = nil
 
     enum Selection: Codable, Hashable {
         case getStarted

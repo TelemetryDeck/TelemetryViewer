@@ -11,10 +11,10 @@ import DataTransferObjects
 struct NewInsightMenu: View {
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var insightService: InsightService
-
+    
     let appID: UUID
     let selectedInsightGroupID: UUID
-
+    
     var body: some View {
         Menu {
             Section {
@@ -22,35 +22,35 @@ struct NewInsightMenu: View {
                     let definitionRequestBody = DTOv2.Insight.newTimeSeriesInsight(groupID: selectedInsightGroupID)
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
-
+                            
                 Button("Generic Breakdown Insight") {
                     let definitionRequestBody = DTOv2.Insight.newBreakdownInsight(groupID: selectedInsightGroupID)
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
             }
-
+                        
             Section {
                 Button("Daily Active Users") {
                     let definitionRequestBody = DTOv2.Insight.newDailyUserCountInsight(groupID: selectedInsightGroupID)
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
-
+                            
                 Button("Weekly Active Users") {
                     let definitionRequestBody = DTOv2.Insight.newWeeklyUserCountInsight(groupID: selectedInsightGroupID)
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
-
+                            
                 Button("Monthly Active Users") {
                     let definitionRequestBody = DTOv2.Insight.newMonthlyUserCountInsight(groupID: selectedInsightGroupID)
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
-
+                            
                 Button("Daily Signals") {
                     let definitionRequestBody = DTOv2.Insight.newSignalInsight(groupID: selectedInsightGroupID)
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
             }
-
+                        
             Section {
                 Button("App Versions Breakdown") {
                     let definitionRequestBody = DTOv2.Insight.newBreakdownInsight(
@@ -60,7 +60,7 @@ struct NewInsightMenu: View {
                     )
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
-
+                            
                 Button("Build Number Breakdown") {
                     let definitionRequestBody = DTOv2.Insight.newBreakdownInsight(
                         groupID: selectedInsightGroupID,
@@ -69,7 +69,7 @@ struct NewInsightMenu: View {
                     )
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
-
+                            
                 Button("Device Type Breakdown") {
                     let definitionRequestBody = DTOv2.Insight.newBreakdownInsight(
                         groupID: selectedInsightGroupID,
@@ -78,7 +78,7 @@ struct NewInsightMenu: View {
                     )
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
-
+                            
                 Button("OS Breakdown") {
                     let definitionRequestBody = DTOv2.Insight.newBreakdownInsight(
                         groupID: selectedInsightGroupID,
@@ -88,7 +88,7 @@ struct NewInsightMenu: View {
                     insightService.create(insightWith: definitionRequestBody) { _ in groupService.retrieveGroup(with: selectedInsightGroupID) }
                 }
             }
-
+            
             Section {
                 Button("Custom Query") {
                     let definitionRequestBody = DTOv2.Insight.newCustomQueryInsight(groupID: selectedInsightGroupID)

@@ -81,7 +81,7 @@ struct InsightDataTimeIntervalPickerForCalculationService: View {
             }
         }
         .buttonStyle(SmallSecondaryButtonStyle())
-
+        
     }
 }
 

@@ -12,17 +12,17 @@ import Foundation
 class InsightService: ObservableObject {
     private let api: APIClient
     private let errorService: ErrorService
-
+    
     @Published var loadingState = [DTOv2.Insight.ID: LoadingState]()
 
     /// I think this is what I want, probably? like, a published object that can be updated from anywhere, basically a local observable object cache
     @Published var insightDictionary = [DTOv2.Insight.ID: DTOv2.Insight]()
-
+    
     init(api: APIClient, errors: ErrorService) {
         self.api = api
         errorService = errors
     }
-
+    
     func insight(withID insightID: DTOv2.Insight.ID) -> DTOv2.Insight? {
         return insightDictionary[insightID]
     }
@@ -32,7 +32,7 @@ class InsightService: ObservableObject {
             await retrieveInsight(with: insightID)
         }
     }
-
+    
     func retrieveInsight(with insightID: DTOv2.Insight.ID) async {
         DispatchQueue.main.async {
             self.loadingState[insightID] = .loading
@@ -41,10 +41,10 @@ class InsightService: ObservableObject {
             let insight = try await getInsight(withID: insightID)
             DispatchQueue.main.async {
                 self.insightDictionary[insightID] = insight
-
+                        
                 self.loadingState[insightID] = .finished(Date())
             }
-
+                    
         } catch {
             print(error.localizedDescription)
             DispatchQueue.main.async {
@@ -56,33 +56,33 @@ class InsightService: ObservableObject {
             }
         }
     }
-
+    
     func create(insightWith: DTOv2.Insight, callback: ((Result<DTOv2.Insight, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "insights")
-
+        
         api.post(insightWith, to: url, defaultValue: nil) { (result: Result<DTOv2.Insight, TransferError>) in
             callback?(result)
         }
     }
-
+    
     func update(insightID: UUID, in insightGroupID: UUID, in appID: UUID, with insightDTO: DTOv2.Insight, callback: ((Result<DTOv2.Insight, TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
 
         api.patch(insightDTO, to: url) { [unowned self] (result: Result<DTOv2.Insight, TransferError>) in
             retrieveInsight(with: insightID)
-
+            
             callback?(result)
         }
     }
 
     func delete(insightID: UUID, callback: ((Result<[String: String], TransferError>) -> Void)? = nil) {
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
-
+        
         api.delete(url) { (result: Result<[String: String], TransferError>) in
             callback?(result)
         }
     }
-
+    
     /// Gets a list of all Insight IDs of Insights that have been marked as widgetable
     ///
     /// Since an HTTP request is involved, this method is asynchronous. Provide a callback that will be called
@@ -92,7 +92,7 @@ class InsightService: ObservableObject {
     /// the callback black with an empty array and inform the APIClient error service about the error.
     func widgetableInsights(callback: @escaping (([DTOv2.AppWithInsights]) -> Void)) {
         let url = api.urlForPath(apiVersion: .v2, "insights", "widgetableInsights")
-
+        
         api.get(url) { (result: Result<[DTOv2.AppWithInsights], TransferError>) in
             switch result {
             case let .success(appWithInsightList):

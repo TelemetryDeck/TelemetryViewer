@@ -38,7 +38,7 @@ class UpdateService: ObservableObject {
         let published_at: Date
         let assets: [GitHubReleaseAssets]
     }
-
+    
     func isUpdateAvailable() -> Bool {
         if let latestVersionOnServer = latestVersionOnServer {
             return latestVersionOnServer.tag_name.compare(internalVersion, options: .numeric) == .orderedDescending
@@ -46,7 +46,7 @@ class UpdateService: ObservableObject {
             return false
         }
     }
-
+    
     func deferUpdate() {
         shouldShowUpdateNowScreen = false
     }
