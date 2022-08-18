@@ -99,10 +99,10 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationIntent
     let insightCalculationResult: DTOv2.InsightCalculationResult
     let chartDataSet: ChartDataSet
-    var widgetDisplayMode: widgetDisplayMode = .placeholderView
+    var widgetDisplayMode: WidgetDisplayMode = .placeholderView
 }
 
-enum widgetDisplayMode {
+enum WidgetDisplayMode {
     case placeholderView
     case chooseInsightView
     case normalView
