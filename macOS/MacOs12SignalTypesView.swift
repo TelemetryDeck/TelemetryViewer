@@ -19,6 +19,10 @@ struct MacOs12SignalTypesView: View {
     let appID: UUID
 
     var table: some View {
+        // Every now and then, this table will fail to compile with
+        // "The compiler is unable to type-check this expression in reasonable time".
+        // The solution is to sigh, say "thanks SwiftUI" and comment out one of the table columns.
+        // Once the app has compiled, comment it back in.
         Table(signalTypes, sortOrder: $sortOrder) {
             TableColumn("Type", value: \.type)
             TableColumn("Signals", value: \.signalCount) { x in Text("\(x.signalCount)") }

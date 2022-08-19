@@ -17,15 +17,18 @@ struct LeftSidebarView: View {
     @State var newAppViewShown: Bool = false
     @State private var showingAlert = false
 
-    /// I think I need to mainly touch the appservice, not the orgservice, right now, since that's where the bugs are, apparently.
-    ///  further testing has lead me to the conclusion that I do need to update the orgservice as well lol
-
     #if os(macOS)
         @EnvironmentObject var updateService: UpdateService
     #endif
 
-    @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOv2.App.ID: Bool]?
-    @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection?
+    // The following two lines were created as "@AppStorage" properties
+    // however, in more recent Xcode versions they seem to not compile any more
+    // so we're moving them to a @State for now.
+    // The downside is that the State is no longer preserved between launches,
+    // even though this worked before.
+    // see https://github.com/TelemetryDeck/TelemetryViewer/issues/132
+    @State var expandedSections: [DTOv2.App.ID: Bool]?
+    @State var sidebarSelection: LeftSidebarView.Selection?
 
     enum Selection: Codable, Hashable {
         case getStarted

@@ -22,16 +22,6 @@ struct InsightCard: View {
 
     @State var customQuery: CustomQuery?
 
-    /// ok, for some reason I broke some things, and I don't understand it?
-    /// like, the app seems to not know which insights are selected anymore?
-    /// also, some results are not retrieved ever for some reason?
-    /// Decode Failed:  dataCorrupted(Swift.DecodingError.Context(codingPath: [], debugDescription: "The given data was not valid JSON.", underlyingError: Optional(Error Domain=NSCocoaErrorDomain Code=3840 "Unable to parse empty data." UserInfo={NSDebugDescription=Unable to parse empty data.})))
-    /// weird error? the respone was nil? I should handle that somehow? probably lol
-    ///
-    /// also I should totally fix the applist, it makes a million api requests lol
-    ///
-    /// oh, maybe due to no dispatch main!
-
     private var isSelected: Bool {
         selectedInsightID == insightID
     }
