@@ -99,31 +99,14 @@ struct InsightCard: View {
                 Task {
                     await retrieveResults()
                 }
-                /// wait. if the insight is first loaded, this makes us load the query two times, right? so we do not need to load the query on load and on change?
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
         .padding(.top)
-//        .onReceive(refreshTimer) { _ in
-//            retrieve()
-//        }
-//        .onReceive(insightService.objectWillChange, perform: { retrieve() })
         .task {
-//            insightService.insightDictionary[insightID] = nil
             await insightService.retrieveInsight(with: insightID)
             await retrieveResults()
         }
-        /// I think this might need to be on the list, not the card?
-//        .refreshable {
-//            do {
-//                let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
-//                insightCalculationResult = result
-//                chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
-//            } catch {
-//                print(error.localizedDescription)
-//                self.error = error
-//            }
-//        }
     }
 
     func sendTelemetry() {
