@@ -27,7 +27,7 @@ struct MacOs12SignalTypesView: View {
             TableColumn("Type", value: \.type)
             TableColumn("Signals", value: \.signalCount) { x in Text("\(x.signalCount)") }
             TableColumn("Users", value: \.userCount) { x in Text("\(x.userCount)") }
-            TableColumn("Sessions", value: \.sessionCount) { x in Text("\(x.sessionCount)") }
+            // TableColumn("Sessions", value: \.sessionCount) { x in Text("\(x.sessionCount)") }
         }
         .navigationTitle("Signal Types")
         .onAppear {

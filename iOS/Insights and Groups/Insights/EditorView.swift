@@ -16,9 +16,23 @@ class EditorViewModel: ObservableObject {
         var explanation: String
         var id: UUID
 
-        static let timeSeries = InsightType(name: "Time Series", explanation: "A time series insight looks at discrete chunks of time and counts values in those times, for example 'Signal counts for each day'. These are awesome for displaying in line charts or bar charts.", id: UUID())
-        static let breakdown = InsightType(name: "Breakdown", explanation: "A breakdown insights collects all signals, extracts a specific payload key from them, and then gives you a list of which possible values are inside the payload key, and how often they occurred. Ideal for seeing how many users use each version of your app for example, and well suited with donut charts.", id: UUID())
-        static let customQuery = InsightType(name: "Custom Query", explanation: "Custom queries allow you to write your query in a JSON based language. We'll add filters for appID and your selected date range on the server. This is a very experimental early feature right now. Trust nothing. Trust no one. Everything you found out, you want to forget.", id: UUID())
+        static let timeSeries = InsightType(
+            name: "Time Series",
+            explanation: "A time series insight looks at discrete chunks of time and counts values in those times, " +
+                "for example 'Signal counts for each day'. These are awesome for displaying in line charts or bar charts.",
+            id: UUID())
+        static let breakdown = InsightType(
+            name: "Breakdown",
+            explanation: "A breakdown insights collects all signals, extracts a specific payload key from them, and then " +
+                "gives you a list of which possible values are inside the payload key, and how often they occurred. " +
+                "Ideal for seeing how many users use each version of your app for example, and well suited with donut charts.",
+            id: UUID())
+        static let customQuery = InsightType(
+            name: "Custom Query",
+            explanation: "Custom queries allow you to write your query in a JSON based language. We'll add filters for " +
+                "appID and your selected date range on the server. This is a very experimental early feature right now. " +
+                "Trust nothing. Trust no one. Everything you found out, you want to forget.",
+            id: UUID())
     }
 
     let groupService: GroupService

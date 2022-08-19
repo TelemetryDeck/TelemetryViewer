@@ -79,8 +79,6 @@
 		2B745563272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B745561272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift */; };
 		2B745564272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B745561272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift */; };
 		2B77A43E26512414003D3965 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77A43D26512414003D3965 /* UpdateSettingsView.swift */; };
-		2B781B7C26F28C320062DBDC /* PricingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */; };
-		2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */; };
 		2B781B8326F4A5E30062DBDC /* StatusMessageBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8226F4A5E30062DBDC /* StatusMessageBanner.swift */; };
 		2B781B8426F4A5E30062DBDC /* StatusMessageBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8226F4A5E30062DBDC /* StatusMessageBanner.swift */; };
 		2B781B8626F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */; };
@@ -461,7 +459,6 @@
 		2B74555D27230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChartDataSet+InsightCalculationResult.swift"; sourceTree = "<group>"; };
 		2B745561272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChartDataPoint+InsightCalculationResult.swift"; sourceTree = "<group>"; };
 		2B77A43D26512414003D3965 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
-		2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingSettingsView.swift; sourceTree = "<group>"; };
 		2B781B8226F4A5E30062DBDC /* StatusMessageBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageBanner.swift; sourceTree = "<group>"; };
 		2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageDisplay.swift; sourceTree = "<group>"; };
 		2B78C82B2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidgetEntryViews.swift; sourceTree = "<group>"; };
@@ -972,7 +969,6 @@
 			children = (
 				DC4F7DB925067C3000B54561 /* OrganizationSettingsView.swift */,
 				DC9A92C0255C6A6900E92C89 /* CreateOrganizationJoinRequestView.swift */,
-				2B781B7B26F28C320062DBDC /* PricingSettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1740,7 +1736,6 @@
 				DC9A92BB255C3E8E00E92C89 /* JoinOrganizationView.swift in Sources */,
 				2B21FCD726FDC38500A8A55B /* NewInsightMenu.swift in Sources */,
 				2B6431A52739A5BB009A33C4 /* AsyncOperation.swift in Sources */,
-				2B781B7C26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
 				C5F4D34228ACF48000EBB667 /* BarChartView.swift in Sources */,
 				6351A789277C9ED8003AF559 /* InsightDisplayMode+Extensions.swift in Sources */,
 				6351A786277C927D003AF559 /* EditorView.swift in Sources */,
@@ -1788,7 +1783,6 @@
 				C5F4D35F28ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
 				C5F4D34328ACF48000EBB667 /* BarChartView.swift in Sources */,
 				2B6431A22739A5BB009A33C4 /* CacheLayer.swift in Sources */,
-				2B781B7D26F28C320062DBDC /* PricingSettingsView.swift in Sources */,
 				C5F4D34B28ACF48000EBB667 /* DonutChart.swift in Sources */,
 				2BC2720326207D710045A2FE /* MockData.swift in Sources */,
 				DC24DF3A25DD54780003ADCB /* LeftSidebarView.swift in Sources */,

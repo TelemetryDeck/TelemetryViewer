@@ -67,14 +67,12 @@ struct InsightCard: View {
             }
 
             Group {
-                // currently, if there is no internet connection, there will be no error sondrine, because the display mode and query are empty. this is not good. maybe there should be always something given to the queryview, so that it can handle showing the loading/error state, or the loading state needs to be shown in this view here, and both views use the same loading state, or this views loading state is given to the query view? or something like it?
+                // This shows an error Sondrine if no internet connection
                 if let displaymode = insightService.insightDictionary[insightID]?.displayMode, let query = customQuery {
                     QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: query, displayMode: displaymode, isSelected: isSelected))
                 } else {
                     SondrineLoadingStateIndicator(loadingState: loadingState)
                 }
-
-//                QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: customQuery, displayMode: insightService.insightDictionary[insightID]?.displayMode, isSelected: isSelected))
             }
 
             .onAppear(perform: sendTelemetry)
