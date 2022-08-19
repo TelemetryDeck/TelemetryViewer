@@ -17,9 +17,6 @@ struct LeftSidebarView: View {
     @State var newAppViewShown: Bool = false
     @State private var showingAlert = false
 
-    /// I think I need to mainly touch the appservice, not the orgservice, right now, since that's where the bugs are, apparently.
-    ///  further testing has lead me to the conclusion that I do need to update the orgservice as well lol
-
     #if os(macOS)
         @EnvironmentObject var updateService: UpdateService
     #endif
