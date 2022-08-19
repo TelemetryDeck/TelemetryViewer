@@ -71,7 +71,6 @@ class GroupService: ObservableObject {
         let url = api.urlForPath(apiVersion: .v2, "groups", insightGroupID.uuidString)
 
         api.delete(url) { (result: Result<[String: String], TransferError>) in
-            // TODO:
             callback?(result)
         }
         groupsDictionary = groupsDictionary.filter { $0.key != insightGroupID }
