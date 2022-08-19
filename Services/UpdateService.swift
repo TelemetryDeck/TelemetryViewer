@@ -52,7 +52,7 @@ class UpdateService: ObservableObject {
     }
 
     func checkForUpdate() {
-        let url = URL(string: "https://api.github.com/repos/TelemetryDeck/Viewer/releases")!
+        let url = URL(string: "https://api.github.com/repos/TelemetryDeck/TelemetryViewer/releases")!
 
         var request = URLRequest(url: url)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -67,7 +67,7 @@ class UpdateService: ObservableObject {
                     if !includeDraftReleases { releases = releases.filter { !$0.draft } }
                     if !includePrereleases { releases = releases.filter { !$0.prerelease } }
 
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
                         latestVersionOnServer = releases.first
 
                         if let latestVersionOnServer = latestVersionOnServer {
