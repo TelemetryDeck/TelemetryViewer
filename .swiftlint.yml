@@ -9,6 +9,10 @@ disabled_rules:
 opt_in_rules:
   - empty_count
 
+# excluded files
+excluded:
+  - "*/MockData.swift"
+
 # configurable rules can be customized from this configuration file
 
 force_cast: error
