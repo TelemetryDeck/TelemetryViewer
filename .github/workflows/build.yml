@@ -31,19 +31,9 @@ jobs:
           scheme: "Telemetry Viewer (iOS)"
           destination: platform=iOS
           action: build
-  LaxSwiftLint:
+  SwiftLint:
     runs-on: ubuntu-latest
-    name: Lax Swiftlint for the whole project
+    name: SwiftLint
     steps:
       - uses: actions/checkout@v1
       - uses: norio-nomura/action-swiftlint@3.2.1
-  StrictSwiftLint:
-    runs-on: ubuntu-latest
-    name: Strict Swiftlint for changes in this PR
-    steps:
-      - uses: actions/checkout@v1
-      - uses: norio-nomura/action-swiftlint@3.2.1
-        with:
-          args: --strict
-        env:
-          DIFF_BASE: ${{ github.base_ref }}
