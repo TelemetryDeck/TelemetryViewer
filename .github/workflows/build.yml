@@ -35,5 +35,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: GitHub Action for SwiftLint
+      - name: Lax Swiftlint for the whole project
         uses: norio-nomura/action-swiftlint@3.2.1
+      - name: Strict Swiftlint for changes in this PR
+        uses: norio-nomura/action-swiftlint@3.2.1
+        with:
+          args: --strict
+        env:
+          DIFF_BASE: ${{ github.base_ref }}

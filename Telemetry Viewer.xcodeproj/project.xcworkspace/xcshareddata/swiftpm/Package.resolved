@@ -1,43 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "DataTransferObjects",
-        "repositoryURL": "https://github.com/TelemetryDeck/models",
-        "state": {
-          "branch": null,
-          "revision": "bd714dd524d15a473e0bdafcf66dfe8ba50abf7b",
-          "version": "1.2.0"
-        }
-      },
-      {
-        "package": "TelemetryClient",
-        "repositoryURL": "https://github.com/AppTelemetry/SwiftClient",
-        "state": {
-          "branch": null,
-          "revision": "87b866ea6a7c573f3f22176fc0f2529e81e4a247",
-          "version": "1.2.0"
-        }
-      },
-      {
-        "package": "DateOperations",
-        "repositoryURL": "https://github.com/TelemetryDeck/SwiftDateOperations.git",
-        "state": {
-          "branch": null,
-          "revision": "9baf08c95057688deffe1f14dfcc871ba2ef38d2",
-          "version": "1.0.3"
-        }
-      },
-      {
-        "package": "SwiftUI-Shimmer",
-        "repositoryURL": "https://github.com/markiv/SwiftUI-Shimmer",
-        "state": {
-          "branch": null,
-          "revision": "61411771350a5a4e96666a8a202ae4b2be327a2b",
-          "version": "1.0.1"
-        }
+  "pins" : [
+    {
+      "identity" : "models",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TelemetryDeck/models",
+      "state" : {
+        "revision" : "bd714dd524d15a473e0bdafcf66dfe8ba50abf7b",
+        "version" : "1.2.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swiftclient",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AppTelemetry/SwiftClient",
+      "state" : {
+        "revision" : "209273d9557939f01cc8b83cb30593cbfb49cfe9",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swiftdateoperations",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TelemetryDeck/SwiftDateOperations.git",
+      "state" : {
+        "revision" : "9baf08c95057688deffe1f14dfcc871ba2ef38d2",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "swiftui-shimmer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/markiv/SwiftUI-Shimmer",
+      "state" : {
+        "revision" : "61411771350a5a4e96666a8a202ae4b2be327a2b",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 2
 }
