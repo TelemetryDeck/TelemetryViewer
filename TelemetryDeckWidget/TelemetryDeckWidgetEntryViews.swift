@@ -21,7 +21,9 @@ struct TelemetryDeckWidgetEntryView: View {
             ZStack {
                 VStack(alignment: .leading, spacing: 6) {
                     Text((entry.configuration.ShowAppName?.boolValue ?? false) ?
-                        (entry.configuration.Insight?.appName ?? "Example App").uppercased() + " • " + entry.insightCalculationResult.insight.title.uppercased() : entry.insightCalculationResult.insight.title.uppercased())
+                        (entry.configuration.Insight?.appName ?? "Example App").uppercased() +
+                            " • " + entry.insightCalculationResult.insight.title.uppercased() :
+                        entry.insightCalculationResult.insight.title.uppercased())
                         .padding(.top)
                         .padding(.horizontal)
                         .font(Font.system(size: family == .systemSmall ? 10 : 12))

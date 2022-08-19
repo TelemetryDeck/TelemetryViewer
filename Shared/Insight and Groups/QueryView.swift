@@ -83,8 +83,7 @@ class QueryViewModel: ObservableObject {
         }
     }
 
-    // func that asks for the status every 0.5 seconds if current status is running and loads the result if status is successful
-
+    /// Asks for the status every 0.5 seconds if current status is running and loads the result if status is successful
     func checkIfStillRunning() async {
         switch loadingState {
         case .idle, .loading, .finished:
@@ -147,14 +146,7 @@ class QueryViewModel: ObservableObject {
         }
     }
 
-    // func that asks for the status every 10 seconds
-
-    // this function doesn't make any sense as is, as it probably doesn't notice that the status changed? I think we should do something else that makes more sense, like changing the task status to running and resubmitting the task?
-
-    // load new data every 60 seconds
-    // if new data = nil, don't overwrite existing data
-    // if error, show!
-
+    /// Ask for the status every 10 seconds
     func checkStatus() async {
         switch loadingState {
         case .idle, .loading, .finished:

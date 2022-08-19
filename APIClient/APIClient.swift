@@ -4,6 +4,7 @@
 //
 //  Created by Daniel Jilg on 05.09.20.
 //
+// swiftlint:disable file_length
 
 import Combine
 import Foundation
@@ -50,6 +51,7 @@ final class APIClient: ObservableObject {
 
     @Published var userToken: UserTokenDTO? {
         didSet {
+            // swiftlint:disable:next force_try
             let encodedUserToken = try! JSONEncoder.telemetryEncoder.encode(userToken)
             userDefaults?.set(encodedUserToken, forKey: APIClient.userTokenStandardsKey)
 

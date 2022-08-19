@@ -49,8 +49,6 @@ class OrgService: ObservableObject {
     }
 
     func retrieveOrganisation() async throws -> DTOv2.Organization {
-//        guard (api.userToken?.bearerTokenAuthString) != nil else { let error: Error = ; throw error } // make this an error type? also, is this guard needed? why? did daniel use this just due to caching stuff?
-
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.Organization, Error>) in
             let url = api.urlForPath(apiVersion: .v2, "organization")
             api.get(url) { (result: Result<DTOv2.Organization, TransferError>) in

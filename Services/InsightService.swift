@@ -104,7 +104,6 @@ class InsightService: ObservableObject {
         }
     }
 
-    // should this function automatically update the insight dictionary? probably better to do it here, right? but also I think it might not work to update it in an async func? no, it should work with DispatchQueue.main.async. hmm. I think for error handling it might be more convenient to do it like I'm doing it right now
     func getInsight(withID insightID: DTOv2.Insight.ID) async throws -> DTOv2.Insight {
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<DTOv2.Insight, Error>) in
             let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)

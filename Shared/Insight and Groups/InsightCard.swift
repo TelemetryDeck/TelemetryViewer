@@ -67,14 +67,12 @@ struct InsightCard: View {
             }
 
             Group {
-                // currently, if there is no internet connection, there will be no error sondrine, because the display mode and query are empty. this is not good. maybe there should be always something given to the queryview, so that it can handle showing the loading/error state, or the loading state needs to be shown in this view here, and both views use the same loading state, or this views loading state is given to the query view? or something like it?
+                // This shows an error Sondrine if no internet connection
                 if let displaymode = insightService.insightDictionary[insightID]?.displayMode, let query = customQuery {
                     QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: query, displayMode: displaymode, isSelected: isSelected))
                 } else {
                     SondrineLoadingStateIndicator(loadingState: loadingState)
                 }
-
-//                QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: customQuery, displayMode: insightService.insightDictionary[insightID]?.displayMode, isSelected: isSelected))
             }
 
             .onAppear(perform: sendTelemetry)
@@ -101,31 +99,14 @@ struct InsightCard: View {
                 Task {
                     await retrieveResults()
                 }
-                /// wait. if the insight is first loaded, this makes us load the query two times, right? so we do not need to load the query on load and on change?
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
         .padding(.top)
-//        .onReceive(refreshTimer) { _ in
-//            retrieve()
-//        }
-//        .onReceive(insightService.objectWillChange, perform: { retrieve() })
         .task {
-//            insightService.insightDictionary[insightID] = nil
             await insightService.retrieveInsight(with: insightID)
             await retrieveResults()
         }
-        /// I think this might need to be on the list, not the card?
-//        .refreshable {
-//            do {
-//                let result = try await insightResultService.performRetrieval(ofInsightWithID: insightID)
-//                insightCalculationResult = result
-//                chartDataSet = ChartDataSet(data: insightCalculationResult!.data, groupBy: insightCalculationResult!.insight.groupBy)
-//            } catch {
-//                print(error.localizedDescription)
-//                self.error = error
-//            }
-//        }
     }
 
     func sendTelemetry() {

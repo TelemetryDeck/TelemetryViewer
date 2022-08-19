@@ -41,7 +41,8 @@ struct CreateNewAppView: View {
                 HStack {
                     VStack(alignment: .leading) {
                         Text("Add Default Insights")
-                        Text("We'll automatically create a number of Groups and Insights for you, that will fit most apps. You can change or delete these later, but they're usually a good starting point.")
+                        Text("We'll automatically create a number of Groups and Insights for you, that will fit most apps. " +
+                            "You can change or delete these later, but they're usually a good starting point.")
                             .fixedSize(horizontal: false, vertical: true)
                             .font(.footnote)
                             .foregroundColor(.grayColor)
@@ -72,7 +73,14 @@ struct CreateNewAppView: View {
                 .font(.title)
                 .foregroundColor(.grayColor)
 
-            Text("We've created your new app.\(createNewAppViewModel.createDefaultInsights ? " We also created a number of default Insights and Groups for you." : "You'll be able to create new Groups and Insights by navigating to the new app and using the buttons in the toolbar.")\n\nThe next step is implementing the TelemetryDeck SDK. Hit the Documentation button to read more.")
+            Text("We've created your new app")
+
+            if createNewAppViewModel.createDefaultInsights {
+                Text("We also created a number of default Insights and Groups for you.")
+            } else {
+                Text("You'll be able to create new Groups and Insights by navigating to the new app and using the buttons in the toolbar.")
+            }
+            Text("The next step is implementing the TelemetryDeck SDK. Hit the Documentation button to read more.")
 
             Button("Open Documentation") {
                 URL(string: "https://telemetrydeck.com/pages/quickstart.html")?.open()

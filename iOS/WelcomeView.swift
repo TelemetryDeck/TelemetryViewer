@@ -27,9 +27,6 @@ struct WelcomeView: View {
                 }
                     .buttonStyle(SecondaryButtonStyle())
                     .padding(.horizontal)
-                NavigationLink("Join an Organization", destination: JoinOrganizationView())
-                    .buttonStyle(SecondaryButtonStyle())
-                    .padding(.horizontal)
 
                 AdaptiveStack(spacing: 15) {
                     NavigationLink("Forgot Password?", destination: PasswordResetView())
