@@ -4,7 +4,6 @@
 //
 //  Created by Charlotte Böhm on 22.02.22.
 //
-// swiftlint:disable cyclomatic_complexity function_body_length
 
 import DataTransferObjects
 import SwiftUI
