@@ -13,7 +13,10 @@ struct UserSettingsView: View {
     @EnvironmentObject var api: APIClient
 
     @State private var showingAlert = false
-    @State private var userDTO = DTOv1.UserDTO(id: UUID(), organization: nil, firstName: "", lastName: "", email: "", emailIsVerified: false, receiveMarketingEmails: nil, isFoundingUser: false, receiveReports: .never)
+    @State private var userDTO = DTOv1.UserDTO(
+        id: UUID(), organization: nil, firstName: "", lastName: "", email: "", emailIsVerified: false,
+        receiveMarketingEmails: nil, isFoundingUser: false, receiveReports: .never
+    )
 
     var body: some View {
         if api.user != nil {

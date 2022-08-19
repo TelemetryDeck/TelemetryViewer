@@ -93,7 +93,16 @@ struct EditorModeGroupEditor: View {
 
     func linkToInsightEditor(insight: DTOv2.Insight) -> some View {
         NavigationLink(insight.title, destination: {
-            EditorView(viewModel: EditorViewModel(insight: insight, appID: appID, insightService: insightService, groupService: groupService, lexiconService: lexiconService), selectedInsightID: $selectedInsightID)
+            EditorView(
+                viewModel: EditorViewModel(
+                    insight: insight,
+                    appID: appID,
+                    insightService: insightService,
+                    groupService: groupService,
+                    lexiconService: lexiconService
+                ),
+                selectedInsightID: $selectedInsightID
+            )
 
         })
     }

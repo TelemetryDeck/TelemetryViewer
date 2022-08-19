@@ -10,7 +10,24 @@ import SwiftUI
 
 struct SignalView: View {
     var signal: DTOv1.Signal
-    let defaultPayloads = ["platform", "systemVersion", "majorSystemVersion", "majorMinorSystemVersion", "appVersion", "buildNumber", "isSimulator", "isDebug", "isTestFlight", "isAppStore", "modelName", "architecture", "operatingSystem", "targetEnvironment", "locale", "telemetryClientVersion"]
+    let defaultPayloads = [
+        "platform",
+        "systemVersion",
+        "majorSystemVersion",
+        "majorMinorSystemVersion",
+        "appVersion",
+        "buildNumber",
+        "isSimulator",
+        "isDebug",
+        "isTestFlight",
+        "isAppStore",
+        "modelName",
+        "architecture",
+        "operatingSystem",
+        "targetEnvironment",
+        "locale",
+        "telemetryClientVersion"
+    ]
 
     @State private var showPayload: Bool = false
 

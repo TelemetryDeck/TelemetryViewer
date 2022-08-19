@@ -266,7 +266,12 @@ struct EditorView: View {
     }
 
     var groupBySection: some View {
-        CustomSection(header: Text("Group Values by"), summary: Text(viewModel.groupBy.rawValue), footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive."), startCollapsed: true) {
+        CustomSection(
+            header: Text("Group Values by"),
+            summary: Text(viewModel.groupBy.rawValue),
+            footer: Text("Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive."),
+            startCollapsed: true)
+        {
             Picker(selection: $viewModel.groupBy, label: Text("")) {
                 Text("Hour").tag(InsightGroupByInterval.hour)
                 Text("Day").tag(InsightGroupByInterval.day)
@@ -282,7 +287,12 @@ struct EditorView: View {
         let signalText = viewModel.signalType.isEmpty ? "All Signals" : viewModel.signalType
         let uniqueText = viewModel.uniqueUser ? ", unique" : ""
 
-        return CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text("If you want, only look at a single signal type for this insight."), startCollapsed: true) {
+        return CustomSection(
+            header: Text("Signal Type"),
+            summary: Text(signalText + uniqueText),
+            footer: Text("If you want, only look at a single signal type for this insight."),
+            startCollapsed: true
+        ) {
             Picker("Signal Type", selection: $viewModel.signalType) {
                 Text("All Signals").tag("")
 
@@ -307,14 +317,24 @@ struct EditorView: View {
     }
 
     var filtersSection: some View {
-        CustomSection(header: Text("Filters"), summary: Text("\(viewModel.filters.count) filters"), footer: Text("Due to a server limitation, currently only one filter at a time is supported. This will change in the future."), startCollapsed: true) {
+        CustomSection(
+            header: Text("Filters"),
+            summary: Text("\(viewModel.filters.count) filters"),
+            footer: Text("Due to a server limitation, currently only one filter at a time is supported. This will change in the future."),
+            startCollapsed: true
+        ) {
             FilterEditView(keysAndValues: $viewModel.filters, autocompleteOptions: viewModel.filterAutocompletionOptions)
         }
         .padding(.horizontal)
     }
 
     var breakdownSection: some View {
-        CustomSection(header: Text("Breakdown"), summary: Text(viewModel.breakdownKey.isEmpty ? "No Breakdown" : viewModel.breakdownKey), footer: Text("Select a metadata payload key, you'll get a breakdown of its values."), startCollapsed: true) {
+        CustomSection(
+            header: Text("Breakdown"),
+            summary: Text(viewModel.breakdownKey.isEmpty ? "No Breakdown" : viewModel.breakdownKey),
+            footer: Text("Select a metadata payload key, you'll get a breakdown of its values."),
+            startCollapsed: true
+        ) {
             Picker("Key", selection: $viewModel.breakdownKey) {
                 Text("None").tag("")
 

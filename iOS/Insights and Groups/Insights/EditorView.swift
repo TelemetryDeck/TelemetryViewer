@@ -304,7 +304,12 @@ struct EditorView: View {
         let signalText = viewModel.signalType.isEmpty ? "All Signals" : viewModel.signalType
         let uniqueText = viewModel.uniqueUser ? ", unique" : ""
 
-        return CustomSection(header: Text("Signal Type"), summary: Text(signalText + uniqueText), footer: Text("If you want, only look at a single signal type for this insight."), startCollapsed: true) {
+        return CustomSection(
+            header: Text("Signal Type"),
+            summary: Text(signalText + uniqueText),
+            footer: Text("If you want, only look at a single signal type for this insight."),
+            startCollapsed: true
+        ) {
             Picker("Signal", selection: $viewModel.signalType) {
                 Text("All Signals").tag("")
 
@@ -338,7 +343,12 @@ struct EditorView: View {
     }
 
     var filtersSection: some View {
-        CustomSection(header: Text("Filters"), summary: Text("\(viewModel.filters.count) filters"), footer: Text("Due to a server limitation, currently only one filter at a time is supported. This will change in the future."), startCollapsed: true) {
+        CustomSection(
+            header: Text("Filters"),
+            summary: Text("\(viewModel.filters.count) filters"),
+            footer: Text("Due to a server limitation, currently only one filter at a time is supported. This will change in the future."),
+            startCollapsed: true
+        ) {
             FilterEditView(keysAndValues: $viewModel.filters, autocompleteOptions: viewModel.filterAutocompletionOptions)
         }
     }

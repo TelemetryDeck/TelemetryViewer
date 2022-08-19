@@ -40,7 +40,16 @@ struct GroupView: View {
                 Group {
                     if let selectedInsightID = selectedInsightID {
                         if let insight = insightService.insightDictionary[selectedInsightID], let group = groupService.group(withID: groupID) {
-                            EditorView(viewModel: EditorViewModel(insight: insight, appID: group.appID, insightService: insightService, groupService: groupService, lexiconService: lexiconService), selectedInsightID: $selectedInsightID)
+                            EditorView(
+                                viewModel: EditorViewModel(
+                                    insight: insight,
+                                    appID: group.appID,
+                                    insightService: insightService,
+                                    groupService: groupService,
+                                    lexiconService: lexiconService
+                                ),
+                                selectedInsightID: $selectedInsightID
+                            )
                         } else {
                             IconOnlyLoadingStateIndicator(loadingState: insightService.loadingState[selectedInsightID] ?? .idle)
                         }

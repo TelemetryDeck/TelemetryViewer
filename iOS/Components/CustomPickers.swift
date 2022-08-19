@@ -109,7 +109,15 @@ struct DetailedPicker_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             List {
-                DetailedPicker(title: "DetailedPicker", summary: Text(asd.name), selectedItem: $asd, options: [PreviewPickerItem(explanation: "Item 1", name: "First"), PreviewPickerItem(explanation: "Item 2", name: "Second")])
+                DetailedPicker(
+                    title: "DetailedPicker",
+                    summary: Text(asd.name),
+                    selectedItem: $asd,
+                    options: [
+                        PreviewPickerItem(explanation: "Item 1", name: "First"),
+                        PreviewPickerItem(explanation: "Item 2", name: "Second")
+                    ]
+                )
             }
         }
     }

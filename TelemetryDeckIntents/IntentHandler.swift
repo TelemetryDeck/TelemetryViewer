@@ -50,7 +50,9 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
                 sortedApps.forEach { app in
                     var filteredInsights: [InsightIDSelection] = []
                     app.insights.sorted(by: { $0.title < $1.title }).forEach { insight in
-                        if insight.title.lowercased().contains(searchTerm!.lowercased()) || app.name.lowercased().contains(searchTerm!.lowercased()) || insight.displayMode.rawValue.lowercased().contains(searchTerm!.lowercased()) {
+                        if insight.title.lowercased().contains(searchTerm!.lowercased()) ||
+                            app.name.lowercased().contains(searchTerm!.lowercased()) ||
+                            insight.displayMode.rawValue.lowercased().contains(searchTerm!.lowercased()) {
                             let filteredInsight = InsightIDSelection(identifier: insight.id.uuidString, display: insight.title, subtitle: insight.displayMode.rawValue.uppercased(), image: nil)
                             filteredInsight.appName = app.name
                             filteredInsights.append(filteredInsight)

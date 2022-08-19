@@ -19,7 +19,16 @@ final class InsightRetrievalOperation: AsyncOperation {
     private let insightResultService: InsightResultService
     private let insightID: DTOv2.Insight.ID
 
-    init(apiClient: APIClient, insightID: DTOv2.Insight.ID, targetURL: URL, cache: CacheLayer, cacheKey: String, resultService: InsightResultService, onStatusChange: @escaping (LoadingState) -> Void, onFinish: @escaping (InsightResultWrap) -> Void) {
+    init(
+        apiClient: APIClient,
+        insightID: DTOv2.Insight.ID,
+        targetURL: URL,
+        cache: CacheLayer,
+        cacheKey: String,
+        resultService: InsightResultService,
+        onStatusChange: @escaping (LoadingState) -> Void,
+        onFinish: @escaping (InsightResultWrap) -> Void
+    ) {
         api = apiClient
         self.targetURL = targetURL
         self.onFinish = onFinish
@@ -188,7 +197,16 @@ class InsightResultService: ObservableObject {
                                  Formatter.iso8601noFS.string(from: timeWindowEndDate),
                                  "\(isTestingMode ? "true" : "live")")
 
-        let op = InsightRetrievalOperation(apiClient: api, insightID: insight.id, targetURL: url, cache: cache, cacheKey: cacheKey, resultService: self, onStatusChange: onStatusChange, onFinish: onFinish)
+        let op = InsightRetrievalOperation(
+            apiClient: api,
+            insightID: insight.id,
+            targetURL: url,
+            cache: cache,
+            cacheKey: cacheKey,
+            resultService: self,
+            onStatusChange: onStatusChange,
+            onFinish: onFinish
+        )
 
         // Set the newest operation to the highest priority, LIFO style
         op.queuePriority = .high

@@ -83,7 +83,13 @@ struct Provider: IntentTimelineProvider {
             case .success(let insightCalculationResult):
                 let chartDataSet = ChartDataSet(data: insightCalculationResult.data, groupBy: insightCalculationResult.insight.groupBy)
                 // construct simple entry from InsightCalculationResult
-                let entry = SimpleEntry(date: insightCalculationResult.calculatedAt, configuration: configuration, insightCalculationResult: insightCalculationResult, chartDataSet: chartDataSet, widgetDisplayMode: .normalView)
+                let entry = SimpleEntry(
+                    date: insightCalculationResult.calculatedAt,
+                    configuration: configuration,
+                    insightCalculationResult: insightCalculationResult,
+                    chartDataSet: chartDataSet,
+                    widgetDisplayMode: .normalView
+                )
                 let timeline = Timeline(entries: [entry], policy: .after(Date() + 2 * 60 * 60))
                 TelemetryManager.send("WidgetReloaded", with: ["WidgetChartType": entry.insightCalculationResult.insight.displayMode.rawValue, "WidgetSize": context.family.description])
                 completion(timeline)
@@ -125,8 +131,20 @@ struct TelemetryDeckWidget_Previews: PreviewProvider {
     static var previews: some View {
         let result: DTOv2.InsightCalculationResult = insightCalculationResults[3]
         let result2: DTOv2.InsightCalculationResult = insightCalculationResults[2]
-        let entry = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result, chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy), widgetDisplayMode: .normalView)
-        let entry2 = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), insightCalculationResult: result2, chartDataSet: ChartDataSet(data: result2.data, groupBy: result2.insight.groupBy), widgetDisplayMode: .normalView)
+        let entry = SimpleEntry(
+            date: Date(),
+            configuration: ConfigurationIntent(),
+            insightCalculationResult: result,
+            chartDataSet: ChartDataSet(data: result.data, groupBy: result.insight.groupBy),
+            widgetDisplayMode: .normalView
+        )
+        let entry2 = SimpleEntry(
+            date: Date(),
+            configuration: ConfigurationIntent(),
+            insightCalculationResult: result2,
+            chartDataSet: ChartDataSet(data: result2.data, groupBy: result2.insight.groupBy),
+            widgetDisplayMode: .normalView
+        )
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
         TelemetryDeckWidgetEntryView(entry: entry2)

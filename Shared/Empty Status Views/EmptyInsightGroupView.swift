@@ -22,10 +22,12 @@ struct EmptyInsightGroupView: View {
                 .foregroundColor(.grayColor)
 
             #if os(macOS)
-            Text("Create your first insight by clicking the + button in the toolbar and selecting an Insight template to create. After creating the insight, you can click to edit it.")
+            Text("Create your first insight by clicking the + button in the toolbar and selecting an Insight template to create. " +
+                 "After creating the insight, you can click to edit it.")
                 .foregroundColor(.grayColor)
             #else
-            Text("Create your first insight by tapping the Menu Button in the top right corner, tapping 'New Insight', and selecting an Insight template to create. After creating the insight, you can tap to edit it.")
+            Text("Create your first insight by tapping the Menu Button in the top right corner, tapping 'New Insight'," +
+                 " and selecting an Insight template to create. After creating the insight, you can tap to edit it.")
                 .foregroundColor(.grayColor)
             #endif
 
