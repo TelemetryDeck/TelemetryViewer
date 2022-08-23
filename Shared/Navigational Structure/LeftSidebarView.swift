@@ -21,14 +21,8 @@ struct LeftSidebarView: View {
         @EnvironmentObject var updateService: UpdateService
     #endif
 
-    // The following two lines were created as "@AppStorage" properties
-    // however, in more recent Xcode versions they seem to not compile any more
-    // so we're moving them to a @State for now.
-    // The downside is that the State is no longer preserved between launches,
-    // even though this worked before.
-    // see https://github.com/TelemetryDeck/TelemetryViewer/issues/132
-    @State var expandedSections: [DTOv2.App.ID: Bool]?
-    @State var sidebarSelection: LeftSidebarView.Selection?
+    @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOv2.App.ID: Bool]? = nil
+    @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection? = nil
 
     enum Selection: Codable, Hashable {
         case getStarted
