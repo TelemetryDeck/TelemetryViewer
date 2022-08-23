@@ -48,7 +48,7 @@ struct InsightsGrid: View {
         }
         .refreshable {
             for insightID in insightGroup.insightIDs {
-                insightService.retrieveInsight(with: insightID)
+                insightService.taskRetrieveInsight(with: insightID)
             }
         }
     }

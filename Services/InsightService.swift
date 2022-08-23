@@ -27,7 +27,7 @@ class InsightService: ObservableObject {
         return insightDictionary[insightID]
     }
 
-    func retrieveInsight(with insightID: DTOv2.Insight.ID) {
+    func taskRetrieveInsight(with insightID: DTOv2.Insight.ID) {
         Task {
             await retrieveInsight(with: insightID)
         }
@@ -69,7 +69,7 @@ class InsightService: ObservableObject {
         let url = api.urlForPath(apiVersion: .v2, "insights", insightID.uuidString)
 
         api.patch(insightDTO, to: url) { [unowned self] (result: Result<DTOv2.Insight, TransferError>) in
-            retrieveInsight(with: insightID)
+            taskRetrieveInsight(with: insightID)
 
             callback?(result)
         }
