@@ -21,8 +21,10 @@ struct LeftSidebarView: View {
         @EnvironmentObject var updateService: UpdateService
     #endif
 
+    // swiftlint:disable redundant_optional_initialization
     @AppStorage("sidebarSelectionExpandedSections") var expandedSections: [DTOv2.App.ID: Bool]? = nil
     @AppStorage("sidebarSelection") var sidebarSelection: LeftSidebarView.Selection? = nil
+    // swiftlint:enable redundant_optional_initialization
 
     enum Selection: Codable, Hashable {
         case getStarted
