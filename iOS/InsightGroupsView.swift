@@ -9,6 +9,11 @@ import DataTransferObjects
 import SwiftUI
 import TelemetryClient
 
+/// Show insight groups and insights
+///
+/// This view contains a NavigationView despite being included in a navigation stack already. This is a workaround, because otherwise
+/// the bottom bar wouldn't get displayed correctly on iOS 16. To prevent the double Navigation Bar showing, we're hiding one of the
+/// bars using a newly created view modifier. We feel slightly dirty after writing this and hope to remove it at some glorious future day.
 struct InsightGroupsView: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
@@ -34,78 +39,76 @@ struct InsightGroupsView: View {
     let appID: DTOv2.App.ID
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            StatusMessageDisplay()
+        NavigationView {
+            VStack(alignment: .leading, spacing: 0) {
+                StatusMessageDisplay()
 
-            TestModeIndicator()
+                TestModeIndicator()
 
-            groupSelector
-                .padding(.horizontal)
-                .padding(.bottom)
+                groupSelector
+                    .padding(.horizontal)
+                    .padding(.bottom)
 
-            Divider()
+                Divider()
 
-            Group {
-                if selectedInsightGroupID == nil {
-                    EmptyAppView(appID: appID)
-                        .frame(maxWidth: 400)
-                        .padding()
-                }
+                Group {
+                    if selectedInsightGroupID == nil {
+                        EmptyAppView(appID: appID)
+                            .frame(maxWidth: 400)
+                            .padding()
+                    }
 
-                selectedInsightGroupID.map {
-                    GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
-                        .background(Color.separatorColor)
-                }
-            }
-        }
-        .background(
-            NavigationLink(destination: EditorModeView(appID: appID), isActive: $showEditMode) {
-                EmptyView()
-            })
-        .onAppear {
-
-            selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
-            TelemetryManager.send("InsightGroupsAppear")
-        }
-        .task {
-            for groupID in groupService.groupsDictionary.keys {
-                for insightID in groupService.groupsDictionary[groupID]?.insightIDs ?? [] {
-                    if !(insightService.insightDictionary.keys.contains(insightID)) {
-                        await insightService.retrieveInsight(with: insightID)
+                    selectedInsightGroupID.map {
+                        GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
+                            .background(Color.separatorColor)
                     }
                 }
             }
-        }
-        .onReceive(groupService.objectWillChange) { _ in
-            if let groupID = selectedInsightGroupID {
-                if !(groupService.groupsDictionary.keys.contains(groupID)) {
+
+            .alwaysHideNavigationBar()
+            .background(
+                NavigationLink(destination: EditorModeView(appID: appID), isActive: $showEditMode) {
+                    EmptyView()
+                })
+            .onAppear {
+                selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
+                TelemetryManager.send("InsightGroupsAppear")
+            }
+            .task {
+                for groupID in groupService.groupsDictionary.keys {
+                    for insightID in groupService.groupsDictionary[groupID]?.insightIDs ?? [] {
+                        if !(insightService.insightDictionary.keys.contains(insightID)) {
+                            await insightService.retrieveInsight(with: insightID)
+                        }
+                    }
+                }
+            }
+            .onReceive(groupService.objectWillChange) { _ in
+                if let groupID = selectedInsightGroupID {
+                    if !(groupService.groupsDictionary.keys.contains(groupID)) {
+                        selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
+                    }
+                } else {
                     selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
                 }
-            } else {
-                selectedInsightGroupID = appService.appDictionary[appID]?.insightGroupIDs.first
             }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
-        .toolbar {
-            ToolbarItem {
-                // We're hiding all editors on iOS because we want the iOS app to be a
-                // Viewer App only. Remove the .hidden() modifier to show the button to
-                // toggle editor mode, but beware this is unsupported.
-                editModeButton
-                    .hidden()
-            }
+            .toolbar {
+                ToolbarItem {
+                    // We're hiding all editors on iOS because we want the iOS app to be a
+                    // Viewer App only. Remove the .hidden() modifier to show the button to
+                    // toggle editor mode, but beware this is unsupported.
+                    editModeButton
+                        .hidden()
+                }
 
-            ToolbarItem(placement: .bottomBar) {
-                HStack {
+                ToolbarItemGroup(placement: .bottomBar) {
                     Toggle("Test Mode", isOn: $queryService.isTestingMode.animation())
-
-                    Spacer()
-
                     datePickerButton
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
     }
 
     private var groupSelector: some View {
@@ -162,6 +165,29 @@ struct InsightGroupsView: View {
             self.showEditMode = true
         } label: {
             Label("Edit Insights", systemImage: "square.and.pencil")
+        }
+    }
+}
+
+@available(iOS 16, *)
+struct WithoutNavigationBarIOS16: ViewModifier {
+    func body(content: Content) -> some View {
+        content.toolbar(.hidden, for: .navigationBar)
+    }
+}
+
+struct WithoutNavigationBarLegacy: ViewModifier {
+    func body(content: Content) -> some View {
+        content.navigationBarHidden(true)
+    }
+}
+
+extension View {
+    func alwaysHideNavigationBar() -> some View {
+        if #available(iOS 16, *) {
+            return modifier(WithoutNavigationBarIOS16())
+        } else {
+            return modifier(WithoutNavigationBarLegacy())
         }
     }
 }
