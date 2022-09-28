@@ -15,22 +15,11 @@ import WidgetKit
 struct Provider: IntentTimelineProvider {
     let api: APIClient
 
-    // I think I can remove all of these except api?!
-//    let cacheLayer: CacheLayer
-//    let errors: ErrorService
-//    let insightService: InsightService
-//    let insightResultService: InsightResultService
-
     init() {
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
         TelemetryManager.initialize(with: configuration)
 
         self.api = APIClient()
-//        self.cacheLayer = CacheLayer()
-//        self.errors = ErrorService()
-//
-//        self.insightService = InsightService(api: api, errors: errors)
-//        self.insightResultService = InsightResultService(api: api, cache: cacheLayer, errors: errors)
     }
 
     func placeholder(in context: Context) -> SimpleEntry {
@@ -117,6 +106,14 @@ enum WidgetDisplayMode {
 @main
 struct TelemetryDeckWidget: Widget {
     let kind: String = "TelemetryDeckWidget"
+    
+    func supportedFamilies() -> [WidgetFamily] {
+        if #available(iOSApplicationExtension 16.0, *) {
+            return [.accessoryRectangular, .systemSmall, .systemMedium, .systemLarge, .systemExtraLarge]
+        } else {
+            return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge]
+        }
+    }
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
@@ -124,6 +121,7 @@ struct TelemetryDeckWidget: Widget {
         }
         .configurationDisplayName("Telemetry Deck Widget")
         .description("If no Insights are available here, make sure you are logged in. You can search for Insights by name, app, or display type")
+        .supportedFamilies(supportedFamilies())
     }
 }
 
@@ -145,6 +143,12 @@ struct TelemetryDeckWidget_Previews: PreviewProvider {
             chartDataSet: ChartDataSet(data: result2.data, groupBy: result2.insight.groupBy),
             widgetDisplayMode: .normalView
         )
+        if #available(iOSApplicationExtension 16.0, *) {
+            TelemetryDeckWidgetEntryView(entry: entry)
+                .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+        } else {
+            // Fallback on earlier versions
+        }
         TelemetryDeckWidgetEntryView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
         TelemetryDeckWidgetEntryView(entry: entry2)

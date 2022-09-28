@@ -17,7 +17,7 @@ struct ChartBottomView: View {
 
     private var widthPerLabel: CGFloat {
         var width: CGFloat = 160
-        if family == .systemSmall {
+        if family.isSmall {
             width = 80
         }
         return width
@@ -27,7 +27,7 @@ struct ChartBottomView: View {
         GeometryReader { geometry in
             HStack {
                 if let firstDate = insightData?.data.first?.xAxisDate {
-                    if family == .systemSmall {
+                    if family.isSmall {
                         Text(firstDate.dateString(ofStyle: .short))
                     } else {
                         Text(firstDate, style: .date)
@@ -46,7 +46,7 @@ struct ChartBottomView: View {
                         let index: Int = (insightData?.data.count ?? 0) * number / numberOfLabels
                         let indexInsightData = insightData?.data[index]
                         if let indexDate: Date = indexInsightData?.xAxisDate {
-                            if family == .systemSmall {
+                            if family.isSmall {
                                 Text(indexDate.dateString(ofStyle: .short))
                             } else {
                                 Text(indexDate, style: .date)
@@ -59,7 +59,7 @@ struct ChartBottomView: View {
 
                 if geometry.size.width > widthPerLabel {
                     if let lastDate = insightData?.data.last?.xAxisDate {
-                        if family == .systemSmall {
+                        if family.isSmall {
                             Text(lastDate.dateString(ofStyle: .short))
                         } else {
                             Text(lastDate, style: .date)
@@ -71,7 +71,7 @@ struct ChartBottomView: View {
             }
         }
         .frame(maxHeight: 12)
-        .font(family == .systemSmall ? Font.system(size: 12, design: .default) : .footnote)
+        .font(family.isSmall ? Font.system(size: 12, design: .default) : .footnote)
         .foregroundColor(isSelected ? .cardBackground : .grayColor)
     }
 }

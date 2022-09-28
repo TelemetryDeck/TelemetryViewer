@@ -19,7 +19,11 @@ class BigNumberFormatter {
     }
 
     static func shortDisplay(for number: Double) -> String {
-        guard number >= 1000 else { return NumberFormatter().string(from: NSNumber(value: number)) ?? "—" }
+        let numberFormatter = NumberFormatter()
+        numberFormatter.generatesDecimalNumbers = true
+        numberFormatter.maximumFractionDigits = 1
+        
+        guard number >= 1000 else { return numberFormatter.string(from: NSNumber(value: number)) ?? "—" }
 
         // Available Units
         let units: [Double] = [
@@ -43,7 +47,10 @@ class BigNumberFormatter {
 
         // round to the nearest unit and add its prefix
         let unitPrefix = unitPrefixes[unit] ?? ""
-        return "\((number * 10 / unit).rounded() / 10)\(unitPrefix)"
+        
+        let roundedNumber = NSNumber(value: (number * 10 / unit).rounded() / 10)
+        
+        return "\(numberFormatter.string(from: roundedNumber) ?? "")\(unitPrefix)"
     }
 
     static func shortDisplay(for numberString: String) -> String {
