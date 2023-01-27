@@ -28,9 +28,14 @@ final class APIClient: ObservableObject {
             : "https://api.telemetrydeck.com/api/"
     private static let userTokenStandardsKey = "org.breakthesystem.telemetry.viewer.userToken"
 
-    private let userDefaults = UserDefaults(suiteName: "group.org.breakthesystem.telemetry.shared")
+    private let userDefaults: UserDefaults?
 
     init() {
+        let baseBundleID = Bundle.main.infoDictionary?["TELEMETRYDECK_DEVELOPER_BUNDLE_ID"] as! String
+        let appGroupID = "group.\(baseBundleID).shared"
+        let userDefaults = UserDefaults(suiteName: appGroupID)
+        self.userDefaults = userDefaults
+        
         // Old storage location for user token, if its in there, remove it afterwards
         if let encodedUserToken = UserDefaults.standard.data(forKey: APIClient.userTokenStandardsKey),
            let userToken = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: encodedUserToken) {
