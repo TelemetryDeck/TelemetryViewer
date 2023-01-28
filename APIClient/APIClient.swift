@@ -31,11 +31,13 @@ final class APIClient: ObservableObject {
     private let userDefaults: UserDefaults?
 
     init() {
-        let baseBundleID = Bundle.main.infoDictionary?["TELEMETRYDECK_DEVELOPER_BUNDLE_ID"] as! String
+        guard let baseBundleID = Bundle.main.infoDictionary?["TELEMETRYDECK_DEVELOPER_BUNDLE_ID"] as? String else {
+            fatalError("TELEMETRYDECK_DEVELOPER_BUNDLE_ID must be set in the Info.plist")
+        }
         let appGroupID = "group.\(baseBundleID).shared"
         let userDefaults = UserDefaults(suiteName: appGroupID)
         self.userDefaults = userDefaults
-        
+
         // Old storage location for user token, if its in there, remove it afterwards
         if let encodedUserToken = UserDefaults.standard.data(forKey: APIClient.userTokenStandardsKey),
            let userToken = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: encodedUserToken) {
