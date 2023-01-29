@@ -1,0 +1,5 @@
+
+// Change this to something that is unique, scoped to your developer account e.g. "com.yourdomain.TelemetryViewer".
+//
+// This will be applied to all the targets and shared App Group settings in all entitlements and Info.plists.
+DEVELOPER_BUNDLE_ID = org.breakthesystem.telemetry

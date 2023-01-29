@@ -42,5 +42,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>TELEMETRYDECK_DEVELOPER_BUNDLE_ID</key>
+	<string>$(DEVELOPER_BUNDLE_ID)</string>
 </dict>
 </plist>

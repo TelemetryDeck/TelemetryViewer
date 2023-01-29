@@ -493,6 +493,8 @@
 		2BF2754526AAC5C10051591C /* MacOs12PayloadKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12PayloadKeysView.swift; sourceTree = "<group>"; };
 		2BF2BE412763918E00A79531 /* CreateNewAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppViewModel.swift; sourceTree = "<group>"; };
 		2BF2BE442763921400A79531 /* CreateNewAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAppView.swift; sourceTree = "<group>"; };
+		4903E9712983EA1500EEDF5E /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		4903E9722983EDAA00EEDF5E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6351A780277C5F29003AF559 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		6351A783277C6431003AF559 /* CustomPickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickers.swift; sourceTree = "<group>"; };
 		6351A788277C9ED8003AF559 /* InsightDisplayMode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InsightDisplayMode+Extensions.swift"; sourceTree = "<group>"; };
@@ -1012,6 +1014,8 @@
 		DCE239F624D3687C00053370 = {
 			isa = PBXGroup;
 			children = (
+				4903E9722983EDAA00EEDF5E /* README.md */,
+				4903E9712983EA1500EEDF5E /* Common.xcconfig */,
 				C5F4D31328ACF48000EBB667 /* SwiftUICharts */,
 				2B74555C27230626002CBB45 /* SwiftUIChartsExtensions */,
 				2BD189F6267BCEA900DFDE4D /* UIComponents */,
@@ -1885,7 +1889,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckMacIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID).TelemetryDeckMacIntents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1915,7 +1919,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckMacIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID).TelemetryDeckMacIntents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1947,7 +1951,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckMacWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID).TelemetryDeckMacWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1979,7 +1983,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckMacWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID).TelemetryDeckMacWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2009,7 +2013,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID).TelemetryDeckWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2041,7 +2045,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID).TelemetryDeckWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2072,7 +2076,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID).TelemetryDeckIntents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2101,7 +2105,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry.TelemetryDeckIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID).TelemetryDeckIntents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2114,6 +2118,7 @@
 		};
 		DCE23A1524D3687D00053370 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4903E9712983EA1500EEDF5E /* Common.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2147,6 +2152,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPER_BUNDLE_ID = "$(inherited)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2173,6 +2179,7 @@
 		};
 		DCE23A1624D3687D00053370 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4903E9712983EA1500EEDF5E /* Common.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2206,6 +2213,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPER_BUNDLE_ID = "$(inherited)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2241,7 +2249,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID)";
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -2267,7 +2275,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID)";
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -2296,7 +2304,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID)";
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -2323,7 +2331,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.breakthesystem.telemetry;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID)";
 				PRODUCT_NAME = "Telemetry Viewer";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
