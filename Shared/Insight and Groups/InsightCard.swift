@@ -114,7 +114,8 @@ struct InsightCard: View {
             TelemetryManager.send("InsightShown", with: ["insightDisplayMode": displayMode.rawValue])
         }
     }
-
+    
+    @MainActor
     func retrieveResults() async {
         guard loadingState != .loading else { return } // not sufficient
         loadingState = .loading
