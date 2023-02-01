@@ -10,6 +10,7 @@ import SwiftUI
 
 // @State var customQuery: CustomQuery
 
+@MainActor
 class QueryViewModel: ObservableObject {
     let queryService: QueryService
     let customQuery: CustomQuery
@@ -49,7 +50,8 @@ class QueryViewModel: ObservableObject {
 
         do {
             taskID = try await queryService.createTask(forQuery: customQuery)
-            let result = try await queryService.getTaskResult(forTaskID: taskID["queryTaskID"]!)
+            let queryTaskID = taskID["queryTaskID"]
+            let result = try await queryService.getTaskResult(forTaskID: queryTaskID!)
             if result.result != nil {
                 let chartDataSet = try ChartDataSet(fromQueryResultWrapper: result)
                 DispatchQueue.main.async {
@@ -84,6 +86,7 @@ class QueryViewModel: ObservableObject {
     }
 
     /// Asks for the status every 0.5 seconds if current status is running and loads the result if status is successful
+    @MainActor
     func checkIfStillRunning() async {
         switch loadingState {
         case .idle, .loading, .finished:
@@ -96,14 +99,16 @@ class QueryViewModel: ObservableObject {
             loadingState = .loading
 
             do {
-                let taskStatus = try await queryService.getTaskStatus(forTaskID: taskID["queryTaskID"]!)
+                let queryTaskID = taskID["queryTaskID"]
+                let taskStatus = try await queryService.getTaskStatus(forTaskID: queryTaskID!)
 
                 switch taskStatus {
                 case .successful:
                     DispatchQueue.main.async {
                         self.queryTaskStatus = taskStatus
                     }
-                    let result = try await queryService.getTaskResult(forTaskID: taskID["queryTaskID"]!)
+                    let queryTaskID = taskID["queryTaskID"]
+                    let result = try await queryService.getTaskResult(forTaskID: queryTaskID!)
                     let chartDataSet = try ChartDataSet(fromQueryResultWrapper: result)
                     DispatchQueue.main.async {
                         self.queryResult = result
@@ -158,7 +163,8 @@ class QueryViewModel: ObservableObject {
         if queryTaskStatus == .successful {
             loadingState = .loading
             do {
-                let taskStatus = try await queryService.getTaskStatus(forTaskID: taskID["queryTaskID"]!)
+                let queryTaskID = taskID["queryTaskID"]
+                let taskStatus = try await queryService.getTaskStatus(forTaskID: queryTaskID!)
                 switch taskStatus {
                 case .successful:
                     DispatchQueue.main.async {
