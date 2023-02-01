@@ -63,27 +63,25 @@ struct InsightGroupsView: View {
                 newGroupButton
             }
 
-            ToolbarItem {
+            ToolbarItemGroup {
                 Button(queryService.timeIntervalDescription) {
                     TelemetryManager.send("showDatePicker")
                     self.showDatePicker = true
                 }.popover(
                     isPresented: self.$showDatePicker,
                     arrowEdge: .bottom
-                ) { InsightDataTimeIntervalPicker().padding() }
-            }
+                ) {
+                    InsightDataTimeIntervalPicker()
+                    .padding()
+                    .background(Material.regular)
+                }
 
-            ToolbarItem {
                 TestingModeToggle()
-            }
 
-            ToolbarItem {
                 if let selectedInsightGroupID = selectedInsightGroupID {
                     NewInsightMenu(appID: appID, selectedInsightGroupID: selectedInsightGroupID)
                 }
-            }
 
-            ToolbarItem {
                 sidebarToggleButton
             }
         }
