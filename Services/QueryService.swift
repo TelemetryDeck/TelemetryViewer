@@ -12,8 +12,8 @@ class QueryService: ObservableObject {
     private let api: APIClient
     private let errorService: ErrorService
 
-    @Published var timeWindowBeginning: RelativeDateDescription = .beginning(of: .current(.month))
-    @Published var timeWindowEnd: RelativeDateDescription = .end(of: .current(.month))
+    @Published var timeWindowBeginning: RelativeDateDescription = .goBack(days: 30)
+    @Published var timeWindowEnd: RelativeDateDescription = .end(of: .current(.day))
     @Published var isTestingMode: Bool = UserDefaults.standard.bool(forKey: "isTestingMode") {
         didSet {
             UserDefaults.standard.set(isTestingMode, forKey: "isTestingMode")
