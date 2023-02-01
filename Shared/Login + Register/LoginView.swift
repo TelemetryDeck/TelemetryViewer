@@ -19,7 +19,12 @@ struct LoginView: View {
             ZStack(alignment: .bottom) {
                 HStack {
                     Spacer()
-                    Image("authentication").resizable().scaledToFit()
+
+                    Image("authentication")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxHeight: 300)
+
                     Spacer()
                 }
 
@@ -37,7 +42,7 @@ struct LoginView: View {
                     .background(Color.telemetryOrange)
                     .cornerRadius(15)
                     .padding(.vertical)
-                    .animation(Animation.easeOut.speed(1.5))
+                    .animation(Animation.easeOut.speed(1.5), value: showLoginErrorMessage)
                     .transition(.move(edge: .top))
                 }
             }
@@ -68,7 +73,7 @@ struct LoginView: View {
                         .keyboardShortcut(.defaultAction)
                         .disabled(!loginRequestBody.isValid)
                         .saturation(loginRequestBody.isValid ? 1 : 0)
-                        .animation(.easeOut)
+                        .animation(.easeOut, value: loginRequestBody.isValid)
 
                     if !loginRequestBody.isValid {
                         Text("Waiting for you to fill out both fields")
