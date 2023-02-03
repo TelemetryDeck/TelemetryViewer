@@ -18,11 +18,11 @@ public struct ChartDataSet {
     public let data: [ChartDataPoint]
     public let highestValue: Int64
     public let lowestValue: Int64
-    public let groupBy: InsightGroupByInterval?
+    public let groupBy: QueryGranularity?
 
     public var isEmpty: Bool { data.isEmpty }
 
-    public init(data: [ChartDataPoint], groupBy: InsightGroupByInterval? = nil) {
+    public init(data: [ChartDataPoint], groupBy: QueryGranularity? = nil) {
         self.data = data
         self.groupBy = groupBy
 
@@ -30,7 +30,7 @@ public struct ChartDataSet {
         lowestValue = 0
     }
 
-    public init(fromQueryResultWrapper queryResultWrapper: QueryResultWrapper?, groupBy: InsightGroupByInterval? = nil) throws {
+    public init(fromQueryResultWrapper queryResultWrapper: QueryResultWrapper?, groupBy: QueryGranularity? = nil) throws {
         guard let queryResult = queryResultWrapper?.result else { throw ChartDataSetError.conversionError(message: "QueryResult is nil.") }
 
         switch queryResult {
@@ -42,7 +42,7 @@ public struct ChartDataSet {
             var data: [ChartDataPoint] = []
 
             for row in timeSeriesRows {
-                let yValue = row.result.values.first ?? 0
+                let yValue = row.result.values.first?.value ?? 0
                 let yInt = Int64(yValue)
                 data.append(ChartDataPoint(xAxisDate: row.timestamp, yAxisValue: yInt))
             }
@@ -95,6 +95,22 @@ public struct ChartDataSet {
             return date.isInCurrentWeek
         case .month:
             return date.isInCurrentMonth
+        case .all:
+            return true
+        case .none:
+            return false
+        case .second:
+            return false
+        case .minute:
+            return date.isInCurrent(.minute)
+        case .fifteen_minute:
+            return date.isInCurrent(.hour)
+        case .thirty_minute:
+            return date.isInCurrent(.hour)
+        case .quarter:
+            return date.isInCurrent(.quarter)
+        case .year:
+            return date.isInCurrentYear
         }
     }
 }

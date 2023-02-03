@@ -20,19 +20,22 @@ class EditorViewModel: ObservableObject {
             name: "Time Series",
             explanation: "A time series insight looks at discrete chunks of time and counts values in those times, " +
                 "for example 'Signal counts for each day'. These are awesome for displaying in line charts or bar charts.",
-            id: UUID())
+            id: UUID()
+        )
         static let breakdown = InsightType(
             name: "Breakdown",
             explanation: "A breakdown insights collects all signals, extracts a specific payload key from them, and then " +
                 "gives you a list of which possible values are inside the payload key, and how often they occurred. " +
                 "Ideal for seeing how many users use each version of your app for example, and well suited with donut charts.",
-            id: UUID())
+            id: UUID()
+        )
         static let customQuery = InsightType(
             name: "Custom Query",
             explanation: "Custom queries allow you to write your query in a JSON based language. We'll add filters for " +
                 "appID and your selected date range on the server. This is a very experimental early feature right now. " +
                 "Trust nothing. Trust no one. Everything you found out, you want to forget.",
-            id: UUID())
+            id: UUID()
+        )
     }
 
     let groupService: GroupService
@@ -95,6 +98,7 @@ class EditorViewModel: ObservableObject {
             groupID: groupID,
             order: order,
             title: title,
+            type: insightType != .breakdown ? .timeseries : .topN,
             accentColor: accentColor != "" ? accentColor : nil,
             signalType: signalType.isEmpty ? nil : signalType,
             uniqueUser: uniqueUser,
@@ -170,7 +174,7 @@ class EditorViewModel: ObservableObject {
     @Published var breakdownKey: String
 
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
-    @Published var groupBy: InsightGroupByInterval
+    @Published var groupBy: QueryGranularity
 
     /// Which group should the insight belong to? (Only use this in update mode)
     @Published var groupID: UUID {
@@ -276,10 +280,10 @@ struct EditorView: View {
                 GroupByPicker(title: "Group Values by",
                               selection: $viewModel.groupBy,
                               options: [
-                                  InsightGroupByInterval.hour,
-                                  InsightGroupByInterval.day,
-                                  InsightGroupByInterval.week,
-                                  InsightGroupByInterval.month
+                                  QueryGranularity.hour,
+                                  QueryGranularity.day,
+                                  QueryGranularity.week,
+                                  QueryGranularity.month
                               ],
                               description: "Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive.")
             }
@@ -289,10 +293,10 @@ struct EditorView: View {
     var groupBySection: some View {
         CustomSection(header: Text("Group Values by"), summary: Text(viewModel.groupBy.rawValue), footer: Text(""), startCollapsed: true) {
             Picker(selection: $viewModel.groupBy, label: Text("")) {
-                Text("Hour").tag(InsightGroupByInterval.hour)
-                Text("Day").tag(InsightGroupByInterval.day)
-                Text("Week").tag(InsightGroupByInterval.week)
-                Text("Month").tag(InsightGroupByInterval.month)
+                Text("Hour").tag(QueryGranularity.hour)
+                Text("Day").tag(QueryGranularity.day)
+                Text("Week").tag(QueryGranularity.week)
+                Text("Month").tag(QueryGranularity.month)
             }
             .pickerStyle(SegmentedPickerStyle())
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -366,20 +370,20 @@ struct EditorView: View {
             Button("Delete this Insight", role: .destructive, action: {
                 showingAlert = true
             })
-                .alert(isPresented: $showingAlert) {
-                    Alert(
-                        title: Text("Are you sure you want to delete the Insight \(viewModel.title)?"),
-                        message: Text("This will delete the Insight. Your signals are not affected."),
-                        primaryButton: .destructive(Text("Delete")) {
-                            viewModel.insightService.delete(insightID: viewModel.id) { _ in
-                                groupService.retrieveGroup(with: viewModel.groupID)
-                                selectedInsightID = nil
-                                dismiss()
-                            }
-                        },
-                        secondaryButton: .cancel()
-                    )
-                }
+            .alert(isPresented: $showingAlert) {
+                Alert(
+                    title: Text("Are you sure you want to delete the Insight \(viewModel.title)?"),
+                    message: Text("This will delete the Insight. Your signals are not affected."),
+                    primaryButton: .destructive(Text("Delete")) {
+                        viewModel.insightService.delete(insightID: viewModel.id) { _ in
+                            groupService.retrieveGroup(with: viewModel.groupID)
+                            selectedInsightID = nil
+                            dismiss()
+                        }
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
         }
     }
 
