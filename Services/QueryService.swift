@@ -103,6 +103,13 @@ class QueryService: ObservableObject {
 
     func createTask(forQuery query: CustomQuery) async throws -> [String: String] {
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[String: String], Error>) in
+            
+            // If the query has no specified interval, give it the default interval
+            var query = query
+            if query.relativeIntervals == nil && query.intervals == nil {
+                query.intervals = [.init(beginningDate: timeWindowBeginningDate, endDate: timeWindowEndDate)]
+            }
+            
             let url = api.urlForPath(apiVersion: .v3, "query", "calculate-async")
             api.post(query, to: url) { (result: Result<[String: String], TransferError>) in
                 switch result {
