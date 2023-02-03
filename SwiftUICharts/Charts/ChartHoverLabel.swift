@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartHoverLabel: View {
     let dataEntry: ChartDataPoint
-    let interval: InsightGroupByInterval
+    let interval: QueryGranularity
 
     var body: some View {
         VStack(alignment: .leading) {

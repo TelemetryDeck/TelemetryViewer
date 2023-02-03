@@ -170,7 +170,7 @@ class EditorViewModel: ObservableObject {
     @Published var breakdownKey: String
 
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
-    @Published var groupBy: InsightGroupByInterval
+    @Published var groupBy: QueryGranularity
 
     /// Which group should the insight belong to? (Only use this in update mode)
     @Published var groupID: UUID {
@@ -276,10 +276,10 @@ struct EditorView: View {
                 GroupByPicker(title: "Group Values by",
                               selection: $viewModel.groupBy,
                               options: [
-                                  InsightGroupByInterval.hour,
-                                  InsightGroupByInterval.day,
-                                  InsightGroupByInterval.week,
-                                  InsightGroupByInterval.month
+                                  QueryGranularity.hour,
+                                  QueryGranularity.day,
+                                  QueryGranularity.week,
+                                  QueryGranularity.month
                               ],
                               description: "Group signals by time interval. The more fine-grained the grouping, the more separate values you'll receive.")
             }
@@ -289,10 +289,10 @@ struct EditorView: View {
     var groupBySection: some View {
         CustomSection(header: Text("Group Values by"), summary: Text(viewModel.groupBy.rawValue), footer: Text(""), startCollapsed: true) {
             Picker(selection: $viewModel.groupBy, label: Text("")) {
-                Text("Hour").tag(InsightGroupByInterval.hour)
-                Text("Day").tag(InsightGroupByInterval.day)
-                Text("Week").tag(InsightGroupByInterval.week)
-                Text("Month").tag(InsightGroupByInterval.month)
+                Text("Hour").tag(QueryGranularity.hour)
+                Text("Day").tag(QueryGranularity.day)
+                Text("Week").tag(QueryGranularity.week)
+                Text("Month").tag(QueryGranularity.month)
             }
             .pickerStyle(SegmentedPickerStyle())
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))

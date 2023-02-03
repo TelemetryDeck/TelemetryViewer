@@ -9,9 +9,9 @@ import DataTransferObjects
 import Foundation
 
 public extension ChartDataSet {
-    init(data: [DTOv2.InsightCalculationResultRow], groupBy: DataTransferObjects.InsightGroupByInterval? = nil) {
+    init(data: [DTOv2.InsightCalculationResultRow], groupBy: DataTransferObjects.QueryGranularity? = nil) {
         if let groupBy = groupBy {
-            let groupBy: InsightGroupByInterval? = InsightGroupByInterval(rawValue: groupBy.rawValue)
+            let groupBy: QueryGranularity? = QueryGranularity(rawValue: groupBy.rawValue)
 
             self.init(
                 data: data.map { ChartDataPoint(insightCalculationResultRow: $0) },
@@ -25,9 +25,9 @@ public extension ChartDataSet {
         }
     }
 
-    init(data: [DTOv1.InsightData], groupBy: DataTransferObjects.InsightGroupByInterval? = nil) {
+    init(data: [DTOv1.InsightData], groupBy: DataTransferObjects.QueryGranularity? = nil) {
         if let groupBy = groupBy {
-            let groupBy: InsightGroupByInterval? = InsightGroupByInterval(rawValue: groupBy.rawValue)
+            let groupBy: QueryGranularity? = QueryGranularity(rawValue: groupBy.rawValue)
             self.init(
                 data: data.map { ChartDataPoint(insightData: $0) },
                 groupBy: groupBy

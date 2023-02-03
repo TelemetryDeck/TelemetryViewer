@@ -58,8 +58,8 @@ struct DetailedPicker<Item: PickerItem, Summary: View>: View {
 struct GroupByPicker: View {
     let title: LocalizedStringKey?
 
-    @Binding var selection: InsightGroupByInterval
-    let options: [InsightGroupByInterval]
+    @Binding var selection: QueryGranularity
+    let options: [QueryGranularity]
     let description: String
 
     var body: some View {

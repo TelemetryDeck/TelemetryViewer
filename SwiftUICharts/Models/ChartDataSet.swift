@@ -18,11 +18,11 @@ public struct ChartDataSet {
     public let data: [ChartDataPoint]
     public let highestValue: Int64
     public let lowestValue: Int64
-    public let groupBy: InsightGroupByInterval?
+    public let groupBy: QueryGranularity?
 
     public var isEmpty: Bool { data.isEmpty }
 
-    public init(data: [ChartDataPoint], groupBy: InsightGroupByInterval? = nil) {
+    public init(data: [ChartDataPoint], groupBy: QueryGranularity? = nil) {
         self.data = data
         self.groupBy = groupBy
 
@@ -30,7 +30,7 @@ public struct ChartDataSet {
         lowestValue = 0
     }
 
-    public init(fromQueryResultWrapper queryResultWrapper: QueryResultWrapper?, groupBy: InsightGroupByInterval? = nil) throws {
+    public init(fromQueryResultWrapper queryResultWrapper: QueryResultWrapper?, groupBy: QueryGranularity? = nil) throws {
         guard let queryResult = queryResultWrapper?.result else { throw ChartDataSetError.conversionError(message: "QueryResult is nil.") }
 
         switch queryResult {

@@ -91,7 +91,7 @@ public struct SingleValueView: View {
         }
     }
 
-    func xAxisDefinition(insightData: ChartDataPoint, groupBy: InsightGroupByInterval? = .day) -> Text {
+    func xAxisDefinition(insightData: ChartDataPoint, groupBy: QueryGranularity? = .day) -> Text {
         Text(dateString(from: insightData, groupedBy: groupBy))
     }
 
@@ -166,7 +166,7 @@ public struct RawTableView: View {
     }
 }
 
-func dateString(from chartDataPoint: ChartDataPoint, groupedBy groupByInterval: InsightGroupByInterval?) -> String {
+func dateString(from chartDataPoint: ChartDataPoint, groupedBy groupByInterval: QueryGranularity?) -> String {
     guard let date = chartDataPoint.xAxisDate else { return chartDataPoint.xAxisValue }
 
     let formatter = DateFormatter()

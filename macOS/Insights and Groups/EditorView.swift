@@ -188,7 +188,7 @@ class EditorViewModel: ObservableObject {
     @Published var breakdownKey: String { didSet { save() }}
 
     /// If set, group and count found signals by this time interval. Incompatible with breakdownKey
-    @Published var groupBy: InsightGroupByInterval { didSet { save() }}
+    @Published var groupBy: QueryGranularity { didSet { save() }}
 
     /// Which group should the insight belong to? (Only use this in update mode)
     @Published var groupID: UUID {
@@ -273,10 +273,10 @@ struct EditorView: View {
             startCollapsed: true)
         {
             Picker(selection: $viewModel.groupBy, label: Text("")) {
-                Text("Hour").tag(InsightGroupByInterval.hour)
-                Text("Day").tag(InsightGroupByInterval.day)
-                Text("Week").tag(InsightGroupByInterval.week)
-                Text("Month").tag(InsightGroupByInterval.month)
+                Text("Hour").tag(QueryGranularity.hour)
+                Text("Day").tag(QueryGranularity.day)
+                Text("Week").tag(QueryGranularity.week)
+                Text("Month").tag(QueryGranularity.month)
             }
             .pickerStyle(SegmentedPickerStyle())
         }
