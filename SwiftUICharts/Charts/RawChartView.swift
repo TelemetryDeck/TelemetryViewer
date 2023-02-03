@@ -66,7 +66,8 @@ public struct SingleValueView: View {
         VStack(alignment: .leading) {
             if let lastData = insightData.data.last,
                let doubleValue = lastData.yAxisValue,
-               let dateValue = xAxisDefinition(insightData: lastData, groupBy: insightData.groupBy) {
+               let dateValue = xAxisDefinition(insightData: lastData, groupBy: insightData.groupBy)
+            {
                 VStack(alignment: .leading) {
                     ValueAndUnitView(value: Double(doubleValue), unit: "", shouldFormatBigNumbers: true)
                         .foregroundColor(isSelected ? .cardBackground : .primary)
@@ -188,6 +189,10 @@ func dateString(from chartDataPoint: ChartDataPoint, groupedBy groupByInterval: 
         case .month:
             formatter.setLocalizedDateFormatFromTemplate("MMMM yyyy")
             formatter.timeZone = TimeZone(abbreviation: "UTC")
+            return formatter.string(from: date)
+        default:
+            formatter.dateStyle = .long
+            formatter.timeStyle = .long
             return formatter.string(from: date)
         }
     }

@@ -95,6 +95,22 @@ public struct ChartDataSet {
             return date.isInCurrentWeek
         case .month:
             return date.isInCurrentMonth
+        case .all:
+            return true
+        case .none:
+            return false
+        case .second:
+            return false
+        case .minute:
+            return date.isInCurrent(.minute)
+        case .fifteen_minute:
+            return date.isInCurrent(.hour)
+        case .thirty_minute:
+            return date.isInCurrent(.hour)
+        case .quarter:
+            return date.isInCurrent(.quarter)
+        case .year:
+            return date.isInCurrentYear
         }
     }
 }

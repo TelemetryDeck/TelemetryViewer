@@ -103,6 +103,7 @@ class EditorViewModel: ObservableObject {
             groupID: groupID,
             order: order,
             title: title,
+            type: breakdownKey.isEmpty ? .timeseries : .topN,
             accentColor: accentColor != "" ? accentColor : nil,
             signalType: signalType.isEmpty ? nil : signalType,
             uniqueUser: uniqueUser,

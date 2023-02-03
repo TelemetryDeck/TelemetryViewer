@@ -60,6 +60,7 @@ struct MockData {
         groupID: UUID(),
         order: 0,
         title: "Preview",
+        type: .timeseries,
         accentColor: nil,
         widgetable: false,
         customQuery: nil,
