@@ -42,7 +42,7 @@ public struct ChartDataSet {
             var data: [ChartDataPoint] = []
 
             for row in timeSeriesRows {
-                let yValue = row.result.values.first ?? 0
+                let yValue = row.result.values.first?.value ?? 0
                 let yInt = Int64(yValue)
                 data.append(ChartDataPoint(xAxisDate: row.timestamp, yAxisValue: yInt))
             }
