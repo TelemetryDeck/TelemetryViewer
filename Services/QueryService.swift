@@ -74,14 +74,23 @@ class QueryService: ObservableObject {
 
     func getInsightQuery(ofInsightWithID insightID: DTOv2.Insight.ID) async throws -> CustomQuery {
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<CustomQuery, Error>) in
-            let url = api.urlForPath(apiVersion: .v3, "insights", insightID.uuidString, "query",
-                                     Formatter.iso8601noFS.string(from: timeWindowBeginningDate),
-                                     Formatter.iso8601noFS.string(from: timeWindowEndDate),
-                                     "\(isTestingMode ? "true" : "live")")
-            api.get(url) { (result: Result<CustomQuery, TransferError>) in
+            let url = api.urlForPath(apiVersion: .v3, "insights", insightID.uuidString, "query")
+
+            struct ProduceQueryBody: Codable {
+                /// Is Test Mode enabled? (nil means false)
+                public var testMode: Bool?
+                
+                /// Which time intervals are we looking at?
+                public var relativeInterval: RelativeTimeInterval?
+                public var interval: QueryTimeInterval?
+            }
+            
+            let produceQueryBody = ProduceQueryBody(testMode: isTestingMode, interval: .init(beginningDate: timeWindowBeginningDate, endDate: timeWindowEndDate))
+            
+            
+            api.post(produceQueryBody, to: url) { (result: Result<CustomQuery, TransferError>) in
                 switch result {
                 case .success(let query):
-
                     continuation.resume(returning: query)
 
                 case .failure(let error):
