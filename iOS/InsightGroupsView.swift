@@ -109,6 +109,7 @@ struct InsightGroupsView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(appService.app(withID: appID)?.name ?? "Loading...")
+        .navigationViewStyle(.stack)
     }
 
     private var groupSelector: some View {
