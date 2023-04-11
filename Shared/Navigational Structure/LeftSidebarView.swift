@@ -85,14 +85,24 @@ struct LeftSidebarView: View {
                     Button {
                         URL(string: "https://dashboard.telemetrydeck.com/user/organization")!.open()
                     } label: {
-                        Label("Organization Settings", systemImage: "app.badge")
+                        HStack {
+                            Label("Organization Settings", systemImage: "app.badge")
+                            Spacer()
+                            Image(systemName: "arrow.up.right.square")
+                                .foregroundColor(.gray)
+                        }
                     }
 
                     if api.user != nil {
                         Button {
                             URL(string: "https://dashboard.telemetrydeck.com/user/profile")!.open()
                         } label: {
-                            Label("User Settings", systemImage: "gear")
+                            HStack {
+                                Label("User Settings", systemImage: "gear")
+                                Spacer()
+                                Image(systemName: "arrow.up.right.square")
+                                    .foregroundColor(.gray)
+                            }
                         }
                     }
                 #endif
