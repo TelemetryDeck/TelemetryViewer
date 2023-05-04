@@ -7,12 +7,21 @@
 
 import SwiftUI
 import DataTransferObjects
+import TelemetryClient
 
 struct LoginView: View {
     @EnvironmentObject var api: APIClient
     @State private var loginRequestBody = LoginRequestBody()
     @State private var isLoading = false
     @State private var showLoginErrorMessage = false
+    
+    @AppStorage("welcomeScreenCohort") var welcomeScreenCohort: String = {
+        if Bool.random() {
+            return "B"
+        } else {
+            return "A"
+        }
+    }()
 
     var body: some View {
         Form {
@@ -84,6 +93,9 @@ struct LoginView: View {
             }
         }
         .navigationTitle("Login")
+        .onAppear {
+            TelemetryManager.send("LoginViewAppear", with: ["welcomeScreenCohort": welcomeScreenCohort])
+        }
     }
 
     func login() {

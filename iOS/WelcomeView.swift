@@ -6,14 +6,31 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct WelcomeView: View {
+    @AppStorage("welcomeScreenCohort") var welcomeScreenCohort: String = {
+        if Bool.random() {
+            return "B"
+        } else {
+            return "A"
+        }
+    }()
+
+    var appIconPath: String {
+        if welcomeScreenCohort == "B" {
+            return "Logo_Sticker"
+        }
+
+        return "appIcon"
+    }
+
     var body: some View {
         NavigationView {
             VStack(spacing: 15) {
                 HStack {
                     Spacer()
-                    Image("appIcon")
+                    Image(appIconPath)
                         .resizable()
                         .scaledToFit()
                     Spacer()
@@ -25,8 +42,8 @@ struct WelcomeView: View {
                 Button("Register Your Account") {
                     URL(string: "https://dashboard.telemetrydeck.com/registration/organization")!.open()
                 }
-                    .buttonStyle(SecondaryButtonStyle())
-                    .padding(.horizontal)
+                .buttonStyle(SecondaryButtonStyle())
+                .padding(.horizontal)
 
                 AdaptiveStack(spacing: 15) {
                     NavigationLink("Forgot Password?", destination: PasswordResetView())
@@ -50,6 +67,9 @@ struct WelcomeView: View {
             }
             .padding()
             .navigationTitle("Welcome to TelemetryDeck")
+        }
+        .onAppear {
+            TelemetryManager.send("WelcomeViewAppear", with: ["welcomeScreenCohort": welcomeScreenCohort])
         }
     }
 }

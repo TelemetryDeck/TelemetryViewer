@@ -197,7 +197,6 @@
 		C51CB79027566296005A3FB9 /* ConditionalViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D14218273471EE0029CA03 /* ConditionalViewModifier.swift */; };
 		C51CB7912756646D005A3FB9 /* TelemetrySignalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* TelemetrySignalTypes.swift */; };
 		C51CB7922756646E005A3FB9 /* TelemetrySignalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* TelemetrySignalTypes.swift */; };
-		C51CB79327566482005A3FB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
 		C51CB794275664B2005A3FB9 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6431912739A5BB009A33C4 /* AsyncOperation.swift */; };
 		C51CB795275664B3005A3FB9 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6431912739A5BB009A33C4 /* AsyncOperation.swift */; };
 		C51CB79627566504005A3FB9 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
@@ -209,7 +208,6 @@
 		C56B91F927C536D60085839A /* QueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B91F827C536D60085839A /* QueryView.swift */; };
 		C56B91FA27C536D60085839A /* QueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B91F827C536D60085839A /* QueryView.swift */; };
 		C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
-		C581F4E1271B25B20031E99C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE239FE24D3687D00053370 /* Assets.xcassets */; };
 		C581F4E5271B29470031E99C /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
 		C581F4E6271B29780031E99C /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D469726CC4C5D008814A9 /* ErrorService.swift */; };
 		C581F4F5271B2B6B0031E99C /* TelemetrySignalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98AABB250BC30200FF26FD /* TelemetrySignalTypes.swift */; };
@@ -1331,7 +1329,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C51CB79327566482005A3FB9 /* Assets.xcassets in Resources */,
 				C5551E5527C3CBEB005847B6 /* Assets.xcassets in Resources */,
 				C51CB76127566107005A3FB9 /* Assets.xcassets in Resources */,
 			);
@@ -1341,7 +1338,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C581F4E1271B25B20031E99C /* Assets.xcassets in Resources */,
 				C5551E5427C3CBEB005847B6 /* Assets.xcassets in Resources */,
 				C5A8D86B270C5D800032560A /* Assets.xcassets in Resources */,
 			);

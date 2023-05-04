@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TelemetryDeck/models",
       "state" : {
-        "revision" : "4cb1a6a75add87086b522019e64532c3a460daea",
-        "version" : "1.9.0"
+        "revision" : "60939c676b8a0267eb5cf8a769431ad12408700d",
+        "version" : "1.9.2"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AppTelemetry/SwiftClient",
       "state" : {
-        "revision" : "f87b6b069ee8d9ae7a500cebcf3a6059695c5025",
-        "version" : "1.4.1"
+        "revision" : "cb34730027fcf560005aad57f2b53506064b228f",
+        "version" : "1.4.3"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/markiv/SwiftUI-Shimmer",
       "state" : {
-        "revision" : "965a7cbcbf094cbcf22b9251a2323bdc3432e171",
-        "version" : "1.1.0"
+        "revision" : "17b66b0e7d94d2d3f220bbcb021b5026436f06c7",
+        "version" : "1.3.0"
       }
     }
   ],
