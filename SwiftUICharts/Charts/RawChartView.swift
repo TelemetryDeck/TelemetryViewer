@@ -65,14 +65,13 @@ public struct SingleValueView: View {
     public var body: some View {
         VStack(alignment: .leading) {
             if let lastData = insightData.data.last,
-               let doubleValue = lastData.yAxisValue,
-               let dateValue = xAxisDefinition(insightData: lastData, groupBy: insightData.groupBy)
+               let doubleValue = lastData.yAxisValue
             {
                 VStack(alignment: .leading) {
                     ValueAndUnitView(value: Double(doubleValue), unit: "", shouldFormatBigNumbers: true)
                         .foregroundColor(isSelected ? .cardBackground : .primary)
 
-                    dateValue
+                    xAxisDefinition(insightData: lastData, groupBy: insightData.groupBy)
                         .subtitleStyle()
                         .foregroundColor(isSelected ? .cardBackground : .grayColor)
                 }
@@ -145,23 +144,21 @@ public struct RawTableView: View {
         GridItem(.flexible(maximum: 200), spacing: nil, alignment: .leading),
         GridItem(.flexible(), spacing: nil, alignment: .trailing)
     ]
-
+    
     public var body: some View {
         LazyVGrid(columns: columns) {
-            if let data = insightData.data {
-                ForEach(data, id: \.xAxisValue) { dataRow in
-                    Group {
-                        Text(dataRow.xAxisDate != nil && family == .systemSmall ? dataRow.xAxisDate!.dateString(ofStyle: .short) : dateString(from: dataRow, groupedBy: insightData.groupBy))
-                            .font(.footnote)
-                            .foregroundColor(isSelected ? .cardBackground : .grayColor)
-
-                        ValueView(value: Double(dataRow.yAxisValue ?? 0), shouldFormatBigNumbers: true)
-                            .foregroundColor(isSelected ? .cardBackground : .none)
-
-                            .foregroundColor(isSelected ? .cardBackground : .none)
-                    }
-                    .padding(.horizontal)
+            ForEach(insightData.data, id: \.xAxisValue) { dataRow in
+                Group {
+                    Text(dataRow.xAxisDate != nil && family == .systemSmall ? dataRow.xAxisDate!.dateString(ofStyle: .short) : dateString(from: dataRow, groupedBy: insightData.groupBy))
+                        .font(.footnote)
+                        .foregroundColor(isSelected ? .cardBackground : .grayColor)
+                    
+                    ValueView(value: Double(dataRow.yAxisValue ?? 0), shouldFormatBigNumbers: true)
+                        .foregroundColor(isSelected ? .cardBackground : .none)
+                    
+                        .foregroundColor(isSelected ? .cardBackground : .none)
                 }
+                .padding(.horizontal)
             }
         }
     }
