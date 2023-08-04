@@ -17,7 +17,7 @@ struct ContentView: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
 
     var body: some View {
-        ChartsExperiment()
+        ChartsExperiment(queryID: nil)
     }
 }
 

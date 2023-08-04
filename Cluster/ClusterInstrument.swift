@@ -22,6 +22,5 @@ struct ClusterInstrument: View {
             QueryRunner(query: query, type: type)
         }
         .padding()
-        .border(.black)
     }
 }
