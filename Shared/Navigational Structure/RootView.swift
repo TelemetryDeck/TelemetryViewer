@@ -15,29 +15,31 @@ struct RootView: View {
     @EnvironmentObject var appService: AppService
 
     var body: some View {
-        if api.userNotLoggedIn {
-            #if os(iOS)
-            WelcomeView()
-
-            #else
-            HStack {
-                Spacer()
-                WelcomeView()
-                    .frame(maxWidth: 600)
-                    .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
-                Spacer()
-            }
-            #endif
-        } else {
-            NavigationView {
-                LeftSidebarView()
-                NoAppSelectedView()
-            }
-            .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
-            .onAppear {
-                WidgetCenter.shared.reloadAllTimelines()
-            }
-        }
+        Text("lkjasl")
+        
+//        if api.userNotLoggedIn {
+//            #if os(iOS)
+//            WelcomeView()
+//
+//            #else
+//            HStack {
+//                Spacer()
+//                WelcomeView()
+//                    .frame(maxWidth: 600)
+//                    .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
+//                Spacer()
+//            }
+//            #endif
+//        } else {
+//            NavigationView {
+//                LeftSidebarView()
+//                NoAppSelectedView()
+//            }
+//            .alert(isPresented: $api.userLoginFailed, content: loginFailedView)
+//            .onAppear {
+//                WidgetCenter.shared.reloadAllTimelines()
+//            }
+//        }
     }
 
     func loginFailedView() -> Alert {
