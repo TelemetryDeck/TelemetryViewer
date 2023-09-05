@@ -87,12 +87,12 @@ extension QueryRunner {
     private func beginAsyncCalculation() async throws -> String {
         // create a query task
         let queryBeginURL = urlForPath(apiVersion: .v3, "query", "calculate-async")
-        print(queryBeginURL)
+//        print(queryBeginURL)
         let queryHTTPBody = try JSONEncoder.telemetryEncoder.encode(query)
         var queryBeginRequest = authenticatedURLRequest(for: queryBeginURL, httpMethod: "POST", httpBody: queryHTTPBody)
         queryBeginRequest.httpMethod = "POST"
         let (data, _) = try await URLSession.shared.data(for: queryBeginRequest)
-        print(String(data: data, encoding: .utf8) ?? "")
+//        print(String(data: data, encoding: .utf8) ?? "")
         guard let taskID = try JSONDecoder.telemetryDecoder.decode([String: String].self, from: data)["queryTaskID"] else {
             throw TransferError.decodeFailed
         }
@@ -103,10 +103,10 @@ extension QueryRunner {
     private func getLastSuccessfulValue(_ taskID: String) async throws {
         // pick up the finished result
         let lastSuccessfulValueURL = urlForPath(apiVersion: .v3, "task", taskID, "lastSuccessfulValue")
-        print(lastSuccessfulValueURL)
+//        print(lastSuccessfulValueURL)
         let lastSuccessfulValueURLRequest = authenticatedURLRequest(for: lastSuccessfulValueURL, httpMethod: "GET")
         let (newQueryResultData, response) = try await URLSession.shared.data(for: lastSuccessfulValueURLRequest)
-        print(String(data: newQueryResultData, encoding: .utf8) ?? "")
+//        print(String(data: newQueryResultData, encoding: .utf8) ?? "")
         if (response as? HTTPURLResponse)?.statusCode == 200 {   
             queryResultWrapper = try JSONDecoder.telemetryDecoder.decode(QueryResultWrapper.self, from: newQueryResultData)
         }
@@ -117,10 +117,10 @@ extension QueryRunner {
         var taskStatus: QueryTaskStatus = .running
         while taskStatus != .successful {
             let taskStatusURL = urlForPath(apiVersion: .v3, "task", taskID, "status")
-            print(taskStatusURL)
+//            print(taskStatusURL)
             let taskStatusURLRequest = authenticatedURLRequest(for: taskStatusURL, httpMethod: "GET")
             let (data, _) = try await URLSession.shared.data(for: taskStatusURLRequest)
-            print(String(data: data, encoding: .utf8) ?? "")
+//            print(String(data: data, encoding: .utf8) ?? "")
             let queryTaskStatus = try JSONDecoder.telemetryDecoder.decode(QueryTaskStatusStruct.self, from: data)
             taskStatus = queryTaskStatus.status
             try await Task.sleep(nanoseconds: 1_000_000_000)

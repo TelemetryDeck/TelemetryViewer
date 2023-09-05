@@ -70,6 +70,7 @@
 		2B6431AB2739A5BB009A33C4 /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6431922739A5BB009A33C4 /* Caching.swift */; };
 		2B6431AC2739A5BB009A33C4 /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6431922739A5BB009A33C4 /* Caching.swift */; };
 		2B670C0026BD8BF7005DA07E /* SidebarSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B670BFF26BD8BF7005DA07E /* SidebarSplitView.swift */; };
+		2B714B8A2AA74E3300660776 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2B714B892AA74E3300660776 /* TelemetryClient */; };
 		2B74555E27230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74555D27230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift */; };
 		2B74555F27230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74555D27230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift */; };
 		2B74556027230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74555D27230648002CBB45 /* ChartDataSet+InsightCalculationResult.swift */; };
@@ -626,6 +627,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B8E174A2A7D953200D9D3E6 /* DataTransferObjects in Frameworks */,
+				2B714B8A2AA74E3300660776 /* TelemetryClient in Frameworks */,
 				2B8E172B2A7D8CAB00D9D3E6 /* RealityKitContent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1253,6 +1255,7 @@
 			packageProductDependencies = (
 				2B8E172A2A7D8CAB00D9D3E6 /* RealityKitContent */,
 				2B8E17492A7D953100D9D3E6 /* DataTransferObjects */,
+				2B714B892AA74E3300660776 /* TelemetryClient */,
 			);
 			productName = TelemetryDeck;
 			productReference = 2B8E17262A7D8CAB00D9D3E6 /* TelemetryDeck.app */;
@@ -2722,6 +2725,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
+		};
+		2B714B892AA74E3300660776 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
 		};
 		2B8E172A2A7D8CAB00D9D3E6 /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -17,10 +17,39 @@ struct ContentView: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
 
     var body: some View {
-        ChartsExperiment(queryID: nil)
+        TabView {
+           Text("RED")
+             .tabItem {
+                Image(systemName: "phone.fill")
+                Text("First Tab")
+           }
+           Text("BLEU")
+             .tabItem {
+                Image(systemName: "tv.fill")
+                Text("Second Tab")
+          }
+        }
+        
+        
+//        TabView {
+//            ChartsExperiment()
+//                .tabItem {
+//                    Image(systemName: "person.crop.circle")
+//                    Text("Users")
+//                }
+//            
+//            ChartsExperiment()
+//                .tabItem {
+//                    Image(systemName: "person.crop.circle")
+//                    Text("Versions")
+//                }
+//            
+//            ChartsExperiment()
+//                .tabItem {
+//                    Image(systemName: "person.crop.circle")
+//                    Text("Features")
+//                }
+//        }
+//        
     }
-}
-
-#Preview {
-    ContentView()
 }

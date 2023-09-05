@@ -8,6 +8,7 @@
 import Charts
 import DataTransferObjects
 import SwiftUI
+import TelemetryClient
 
 
 let queries: [String: CustomQuery] = [
@@ -39,9 +40,50 @@ extension TimeSeriesQueryResultRow: Identifiable {
 }
 
 struct ChartsExperiment: View {
-    let queryID: String?
-    
     var body: some View {
-        ClusterInstrument(query: queries[queryID ?? "default"]!, title: queryID ?? "default", type: .bar).padding()
+        Grid(horizontalSpacing: 15, verticalSpacing: 15) {
+            GridRow {
+                ClusterInstrument(query: queries["default"]!, title: "default", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+                    .rotation3DEffect(.init(angle: .degrees(-5), axis: .x), anchor: .bottom)
+                    
+//                    .transform3DEffect(.init(rotation: .init(angle: .degrees(5), axis: .y)))
+                ClusterInstrument(query: queries["daily-users"]!, title: "Daily Users", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+                    .rotation3DEffect(.init(angle: .degrees(-5), axis: .x), anchor: .bottom)
+                ClusterInstrument(query: queries["monthly-signals"]!, title: "Monthly Signals", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+                    .rotation3DEffect(.init(angle: .degrees(-5), axis: .x), anchor: .bottom)
+//                    .transform3DEffect(.init(rotation: .init(angle: .degrees(-5), axis: .y)))
+            }
+            GridRow {
+                ClusterInstrument(query: queries["default"]!, title: "default", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+//                    .transform3DEffect(.init(rotation: .init(angle: .degrees(5), axis: .y)))
+                ClusterInstrument(query: queries["daily-users"]!, title: "Daily Users", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+                ClusterInstrument(query: queries["monthly-signals"]!, title: "Monthly Signals", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+//                    .transform3DEffect(.init(rotation: .init(angle: .degrees(-5), axis: .y)))
+            }
+            GridRow {
+                ClusterInstrument(query: queries["default"]!, title: "default", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+                    .transform3DEffect(.init(rotation: .init(angle: .degrees(5), axis: .x)))
+//                    .transform3DEffect(.init(rotation: .init(angle: .degrees(5), axis: .y)))
+                ClusterInstrument(query: queries["daily-users"]!, title: "Daily Users", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+                    .transform3DEffect(.init(rotation: .init(angle: .degrees(5), axis: .x)))
+                ClusterInstrument(query: queries["monthly-signals"]!, title: "Monthly Signals", type: .bar).padding()
+                    .glassBackgroundEffect(in: .rect(cornerRadius: 15))
+                    .transform3DEffect(.init(rotation: .init(angle: .degrees(5), axis: .x)))
+//                    .transform3DEffect(.init(rotation: .init(angle: .degrees(-5), axis: .y)))
+            }
+            
+        }
+        
+            .onAppear() {
+                TelemetryManager.send("ChartsExperimentShown", for: "cant-generate-user")
+            }
     }
 }

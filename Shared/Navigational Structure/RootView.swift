@@ -15,7 +15,7 @@ struct RootView: View {
     @EnvironmentObject var appService: AppService
 
     var body: some View {
-        ChartsExperiment()
+        Text("lkjasl")
         
 //        if api.userNotLoggedIn {
 //            #if os(iOS)
