@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AppTelemetry/SwiftClient",
       "state" : {
-        "revision" : "cb34730027fcf560005aad57f2b53506064b228f",
-        "version" : "1.4.3"
+        "revision" : "98500be378267abaa072ed08c2caf7da6493489e",
+        "version" : "1.5.0"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/markiv/SwiftUI-Shimmer",
       "state" : {
-        "revision" : "17b66b0e7d94d2d3f220bbcb021b5026436f06c7",
-        "version" : "1.3.0"
+        "revision" : "1f3a620e4abe890d00008cb2af7023d810b433a7",
+        "version" : "1.4.0"
       }
     }
   ],
