@@ -23,6 +23,10 @@ extension InsightDisplayMode {
             return "Displays a pie chart for the insight's data. This is especially helpful in combination with the 'breakdown' function."
         case .funnelChart:
             return "(Unsupported in this app)"
+        case .experimentChart:
+            return "(Unsupported in this app)"
+        case .matrix:
+            return "(Unsupported in this app)"
         }
     }
 

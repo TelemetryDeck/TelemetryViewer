@@ -11,8 +11,8 @@ import DataTransferObjects
 struct MockData {
     static let exampleOrganization: DTOv1.Organization = .init(id: UUID(), name: "breakthesystem", isSuperOrg: true, createdAt: Date(), updatedAt: Date())
 
-    static let app1: DTOv2.App = .init(id: UUID(), name: "Test App", organizationID: UUID(), insightGroupIDs: [])
-    static let app2: DTOv2.App = .init(id: UUID(), name: "Other Test App", organizationID: UUID(), insightGroupIDs: [])
+    static let app1: DTOv2.App = .init(id: UUID(), name: "Test App", organizationID: UUID(), insightGroupIDs: [], settings: .init())
+    static let app2: DTOv2.App = .init(id: UUID(), name: "Other Test App", organizationID: UUID(), insightGroupIDs: [], settings: .init())
 
     static let examplePayload: [String: String] = [
         "isTestFlight": "true"
