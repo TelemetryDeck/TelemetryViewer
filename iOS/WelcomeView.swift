@@ -68,6 +68,7 @@ struct WelcomeView: View {
             .padding()
             .navigationTitle("Welcome to TelemetryDeck")
         }
+        .navigationViewStyle(.stack)
         .onAppear {
             TelemetryManager.send("WelcomeViewAppear", with: ["welcomeScreenCohort": welcomeScreenCohort])
         }
