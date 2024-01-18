@@ -38,7 +38,6 @@ struct Telemetry_ViewerApp: App {
                 .environmentObject(insightService)
                 .environmentObject(signalsService)
                 .environmentObject(lexiconService)
-                .environmentObject(orgService)
                 .environmentObject(iconFinderService)
                 .environmentObject(queryService)
         }
