@@ -2,7 +2,7 @@
 
 TelemetryViewer is a macOS and iOS app for interacting with [TelemetryDeck](https://telemetrydeck.com), displaying insights, showing groups and finding out more about your app's customers.
 
-It is written by the TelemetryDeck team and the TelemetryDeck community. While being officially supported, it usually lags a bit behind the *canonical* TelemetryDeck web app client, the [Dashboard](https://dashboard.telemetrydeck.com).
+It is written by the TelemetryDeck community and usually lags a bit behind the *official* TelemetryDeck web app client, the [Dashboard](https://dashboard.telemetrydeck.com).
 
 [TelemetryDeck](https://telemetrydeck.com) is an analytics service for apps and web apps. The makers of TelemetryDeck take great care to not ever process or store personally identifiable information, making TelemetryDeck one of the most privacy conscious analytics tools out there. 
 
