@@ -569,9 +569,9 @@
 		DCDC6F12253EECA90012D9A7 /* Numbers+Bound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Bound.swift"; sourceTree = "<group>"; };
 		DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_ViewerApp_iOS.swift; sourceTree = "<group>"; };
 		DCE239FE24D3687D00053370 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DCE23A0324D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCE23A0324D3687D00053370 /* TelemetryDeck Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TelemetryDeck Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE23A0624D3687D00053370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telemetry Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCE23A0B24D3687D00053370 /* TelemetryDeck Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TelemetryDeck Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE23A0D24D3687D00053370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCEC64AF26025AAF00BEF69C /* PasswordResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetView.swift; sourceTree = "<group>"; };
 		DCF7CD3F254A08B900BFA23B /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
@@ -1052,8 +1052,8 @@
 		DCE23A0424D3687D00053370 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DCE23A0324D3687D00053370 /* Telemetry Viewer.app */,
-				DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */,
+				DCE23A0324D3687D00053370 /* TelemetryDeck Viewer.app */,
+				DCE23A0B24D3687D00053370 /* TelemetryDeck Viewer.app */,
 				C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */,
 				C5A8D8AC270C821A0032560A /* TelemetryDeckIntents.appex */,
 				C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */,
@@ -1234,7 +1234,7 @@
 				C5AD4B6327D3928600CD7E4C /* DataTransferObjects */,
 			);
 			productName = "Telemetry Viewer (iOS)";
-			productReference = DCE23A0324D3687D00053370 /* Telemetry Viewer.app */;
+			productReference = DCE23A0324D3687D00053370 /* TelemetryDeck Viewer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DCE23A0A24D3687D00053370 /* Telemetry Viewer (macOS) */ = {
@@ -1257,7 +1257,7 @@
 				2B0769DB2722EA350024D8A7 /* DataTransferObjects */,
 			);
 			productName = "Telemetry Viewer (macOS)";
-			productReference = DCE23A0B24D3687D00053370 /* Telemetry Viewer.app */;
+			productReference = DCE23A0B24D3687D00053370 /* TelemetryDeck Viewer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2255,7 +2255,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID)";
-				PRODUCT_NAME = "Telemetry Viewer";
+				PRODUCT_NAME = "TelemetryDeck Viewer";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2281,7 +2281,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID)";
-				PRODUCT_NAME = "Telemetry Viewer";
+				PRODUCT_NAME = "TelemetryDeck Viewer";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2311,7 +2311,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID)";
-				PRODUCT_NAME = "Telemetry Viewer";
+				PRODUCT_NAME = "TelemetryDeck Viewer";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -2339,7 +2339,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(DEVELOPER_BUNDLE_ID)";
-				PRODUCT_NAME = "Telemetry Viewer";
+				PRODUCT_NAME = "TelemetryDeck Viewer";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
