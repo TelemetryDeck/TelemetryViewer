@@ -2434,8 +2434,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
+				branch = feature/metricKit;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

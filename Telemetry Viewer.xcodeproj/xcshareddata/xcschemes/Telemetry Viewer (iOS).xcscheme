@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DCE23A0224D3687D00053370"
-               BuildableName = "Telemetry Viewer.app"
+               BuildableName = "TelemetryDeck Viewer.app"
                BlueprintName = "Telemetry Viewer (iOS)"
                ReferencedContainer = "container:Telemetry Viewer.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCE23A0224D3687D00053370"
-            BuildableName = "Telemetry Viewer.app"
+            BuildableName = "TelemetryDeck Viewer.app"
             BlueprintName = "Telemetry Viewer (iOS)"
             ReferencedContainer = "container:Telemetry Viewer.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCE23A0224D3687D00053370"
-            BuildableName = "Telemetry Viewer.app"
+            BuildableName = "TelemetryDeck Viewer.app"
             BlueprintName = "Telemetry Viewer (iOS)"
             ReferencedContainer = "container:Telemetry Viewer.xcodeproj">
          </BuildableReference>
