@@ -122,6 +122,7 @@ struct TelemetryDeckWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             TelemetryDeckWidgetEntryView(entry: entry)
         }
+        .contentMarginsDisabled()
         .configurationDisplayName("Telemetry Deck Widget")
         .description("If no Insights are available here, make sure you are logged in. You can search for Insights by name, app, or display type")
     }
