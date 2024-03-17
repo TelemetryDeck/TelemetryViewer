@@ -19,29 +19,30 @@ struct ChartRangeView: View {
         GeometryReader { reader in
             let percentage = 1 - (lastValue / Double(chartDataSet.highestValue - chartDataSet.lowestValue))
 
-            ZStack {
-                if percentage < 0.9 {
-                    Text(BigNumberFormatter.shortDisplay(for: "\(chartDataSet.lowestValue)"))
-                        .position(x: 10, y: reader.size.height)
-                        .foregroundColor(isSelected ? .cardBackground : .none)
-                }
-
+            ZStack(alignment: .trailing) {
                 if percentage > 0.1 {
                     Text(BigNumberFormatter.shortDisplay(for: "\(chartDataSet.highestValue)"))
-                        .position(x: 10, y: 0)
+                        .lineLimit(1)
+                        .position(x: 10, y: family.isTiny ? 5 : 0)
                         .foregroundColor(isSelected ? .cardBackground : .none)
                 }
 
                 if !percentage.isNaN {
                     Text(BigNumberFormatter.shortDisplay(for: "\(lastValue)"))
-                        .frame(width: 30)
-                        .multilineTextAlignment(.trailing)
+                        
+                        .lineLimit(1)
                         .foregroundColor(.accentColor)
                         .position(x: 10, y: reader.size.height * CGFloat(percentage))
                 }
+                
+                if percentage < 0.9 {
+                    Text(BigNumberFormatter.shortDisplay(for: "\(chartDataSet.lowestValue)"))
+                        .position(x: 10, y: family.isTiny ? reader.size.height - 5 : reader.size.height)
+                        .foregroundColor(isSelected ? .cardBackground : .none)
+                }
             }
         }
-        .font(family == .systemSmall ? Font.system(size: 12, design: .default) : .footnote)
-        .frame(width: family == .systemSmall ? 25 : 30)
+        .font(family.isSmall ? Font.system(size: 12, design: .default) : .footnote)
+        .frame(maxWidth: family.isSmall ? 25 : 30)
     }
 }

@@ -56,7 +56,9 @@ public struct BarChartView: View {
                 }
                 .padding(.leading, geo.size.width < 200 ? 10 : 15)
                 .padding(.trailing, geo.size.width < 200 ? 2 : 4)
-                .padding(.bottom)
+                .if(geo.size.height > 200) {
+                    $0.padding()
+                }
             }
 
             if hoveringDataEntry != nil {

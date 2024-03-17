@@ -15,6 +15,14 @@
 		2B0769DA2722EA2F0024D8A7 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0769D92722EA2F0024D8A7 /* DataTransferObjects */; };
 		2B0769DC2722EA350024D8A7 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0769DB2722EA350024D8A7 /* DataTransferObjects */; };
 		2B0769DE2722EA3B0024D8A7 /* DataTransferObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */; };
+		2B0ACDA828E45AB00087C50E /* WidgetFamily+Small.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0ACDA728E45AB00087C50E /* WidgetFamily+Small.swift */; };
+		2B0ACDA928E45AB00087C50E /* WidgetFamily+Small.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0ACDA728E45AB00087C50E /* WidgetFamily+Small.swift */; };
+		2B0ACDAA28E45AB00087C50E /* WidgetFamily+Small.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0ACDA728E45AB00087C50E /* WidgetFamily+Small.swift */; };
+		2B0ACDAB28E45AB00087C50E /* WidgetFamily+Small.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0ACDA728E45AB00087C50E /* WidgetFamily+Small.swift */; };
+		2B0ACDAD28E463A40087C50E /* GeometryReader+SizeClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0ACDAC28E463A40087C50E /* GeometryReader+SizeClasses.swift */; };
+		2B0ACDAE28E463A40087C50E /* GeometryReader+SizeClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0ACDAC28E463A40087C50E /* GeometryReader+SizeClasses.swift */; };
+		2B0ACDAF28E463A40087C50E /* GeometryReader+SizeClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0ACDAC28E463A40087C50E /* GeometryReader+SizeClasses.swift */; };
+		2B0ACDB028E463A40087C50E /* GeometryReader+SizeClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0ACDAC28E463A40087C50E /* GeometryReader+SizeClasses.swift */; };
 		2B135E1626E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
 		2B135E1726E113E000CC0A40 /* Optional+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */; };
 		2B1D468926CC4423008814A9 /* OrgService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D468826CC4423008814A9 /* OrgService.swift */; };
@@ -420,6 +428,8 @@
 
 /* Begin PBXFileReference section */
 		2B00509027035C85009C609C /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		2B0ACDA728E45AB00087C50E /* WidgetFamily+Small.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WidgetFamily+Small.swift"; sourceTree = "<group>"; };
+		2B0ACDAC28E463A40087C50E /* GeometryReader+SizeClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeometryReader+SizeClasses.swift"; sourceTree = "<group>"; };
 		2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+RawRepresentable.swift"; sourceTree = "<group>"; };
 		2B1D468826CC4423008814A9 /* OrgService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgService.swift; sourceTree = "<group>"; };
 		2B1D469726CC4C5D008814A9 /* ErrorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorService.swift; sourceTree = "<group>"; };
@@ -1005,6 +1015,8 @@
 				DCDC6F12253EECA90012D9A7 /* Numbers+Bound.swift */,
 				DCD52C492541FFE3003F12C6 /* ColSpan.swift */,
 				2B135E1526E113E000CC0A40 /* Optional+RawRepresentable.swift */,
+				2B0ACDA728E45AB00087C50E /* WidgetFamily+Small.swift */,
+				2B0ACDAC28E463A40087C50E /* GeometryReader+SizeClasses.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -1526,6 +1538,7 @@
 				C51CB78727566264005A3FB9 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
 				C5F4D34D28ACF48000EBB667 /* DonutChart.swift in Sources */,
 				C51CB77D2756623E005A3FB9 /* DashedCardView.swift in Sources */,
+				2B0ACDAB28E45AB00087C50E /* WidgetFamily+Small.swift in Sources */,
 				C5F4D35D28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */,
 				C51CB79627566504005A3FB9 /* Color+Hex.swift in Sources */,
 				C51CB77C2756623B005A3FB9 /* Helpers.swift in Sources */,
@@ -1537,6 +1550,7 @@
 				C51CB78527566258005A3FB9 /* ConditionalViewModifier.swift in Sources */,
 				C5F4D33D28ACF48000EBB667 /* RawChartView.swift in Sources */,
 				C51CB77F27566243005A3FB9 /* Color.swift in Sources */,
+				2B0ACDB028E463A40087C50E /* GeometryReader+SizeClasses.swift in Sources */,
 				C5F4D33128ACF48000EBB667 /* ChartBottomView.swift in Sources */,
 				C51CB7912756646D005A3FB9 /* TelemetrySignalTypes.swift in Sources */,
 				C5F4D36128ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
@@ -1584,6 +1598,7 @@
 				C5CE3D59271AFCE2005232EC /* AdaptiveStack.swift in Sources */,
 				C5F4D34C28ACF48000EBB667 /* DonutChart.swift in Sources */,
 				C5CE3D4F271AFCE2005232EC /* OptionalToggle.swift in Sources */,
+				2B0ACDAA28E45AB00087C50E /* WidgetFamily+Small.swift in Sources */,
 				C5F4D35C28ACF48000EBB667 /* ValueUnitAndTitleView.swift in Sources */,
 				C5A8D87D270C65F90032560A /* InsightService.swift in Sources */,
 				C5A8D882270C66190032560A /* ErrorService.swift in Sources */,
@@ -1595,6 +1610,7 @@
 				C5CE3D57271AFCE2005232EC /* Buttonstyles.swift in Sources */,
 				C5F4D33C28ACF48000EBB667 /* RawChartView.swift in Sources */,
 				2B6431A72739A5BB009A33C4 /* AsyncOperation.swift in Sources */,
+				2B0ACDAF28E463A40087C50E /* GeometryReader+SizeClasses.swift in Sources */,
 				C5F4D33028ACF48000EBB667 /* ChartBottomView.swift in Sources */,
 				C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */,
 				C5F4D36028ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
@@ -1641,6 +1657,7 @@
 				2BA5D50726CD1403008FBF8F /* InsightCard.swift in Sources */,
 				DC4F7DBA25067C3000B54561 /* OrganizationSettingsView.swift in Sources */,
 				2B745562272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
+				2B0ACDAD28E463A40087C50E /* GeometryReader+SizeClasses.swift in Sources */,
 				C5F4D34A28ACF48000EBB667 /* DonutChart.swift in Sources */,
 				2BC522EA2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */,
 				DCB5F9F625F29BF4004C4922 /* InsightGroupEditor.swift in Sources */,
@@ -1662,6 +1679,7 @@
 				2BDD35062710727900CB2AA5 /* EditorModeView.swift in Sources */,
 				C56B91F927C536D60085839A /* QueryView.swift in Sources */,
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
+				2B0ACDA828E45AB00087C50E /* WidgetFamily+Small.swift in Sources */,
 				2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */,
 				2BBFCA11267D05E40013DC74 /* DetailSidebar.swift in Sources */,
 				C5F4D33628ACF48000EBB667 /* ChartRangeView.swift in Sources */,
@@ -1844,8 +1862,10 @@
 				2B61B94F264C08D4003F62C4 /* SignalsService.swift in Sources */,
 				C5F4D33F28ACF48000EBB667 /* RoundedCorners.swift in Sources */,
 				DC627EF025A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
+				2B0ACDA928E45AB00087C50E /* WidgetFamily+Small.swift in Sources */,
 				6351A78A277C9EDA003AF559 /* InsightDisplayMode+Extensions.swift in Sources */,
 				2BA5D50226CD05CC008FBF8F /* InsightGroupsView.swift in Sources */,
+				2B0ACDAE28E463A40087C50E /* GeometryReader+SizeClasses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

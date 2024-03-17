@@ -35,35 +35,41 @@ public struct LineChart: View {
     }
 
     public var body: some View {
-        VStack {
-            HStack {
-                ZStack(alignment: .topTrailing) {
-                    LineChartShape(data: chartDataSet, shouldCloseShape: true, selectedChartDataPoint: nil).fill(
-                        LinearGradient(gradient: Gradient(colors: [Color.accentColor.opacity(0.2), Color.accentColor.opacity(0.0)]), startPoint: .top, endPoint: .bottom)
-                    )
-                    LineChartShape(data: chartDataSet, shouldCloseShape: false, selectedChartDataPoint: selectedChartDataPoint)
-                        .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+        GeometryReader { geo in
+            VStack {
+                HStack {
+                    ZStack(alignment: .topTrailing) {
+                        LineChartShape(data: chartDataSet, shouldCloseShape: true, selectedChartDataPoint: nil).fill(
+                            LinearGradient(gradient: Gradient(colors: [Color.accentColor.opacity(0.2), Color.accentColor.opacity(0.0)]), startPoint: .top, endPoint: .bottom)
+                        )
+                        LineChartShape(data: chartDataSet, shouldCloseShape: false, selectedChartDataPoint: selectedChartDataPoint)
+                            .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
 
-                    if selectedChartDataPoint != nil {
-                        ChartHoverLabel(dataEntry: selectedChartDataPoint!, interval: chartDataSet.groupBy ?? .day)
-                            .padding()
+                        if selectedChartDataPoint != nil {
+                            ChartHoverLabel(dataEntry: selectedChartDataPoint!, interval: chartDataSet.groupBy ?? .day)
+                                .padding()
+                        }
+
+                        hoverLayer
                     }
 
-                    hoverLayer
+                    if let lastValue = chartDataSet.data.last?.yAxisValue {
+                        ChartRangeView(lastValue: Double(lastValue), chartDataSet: chartDataSet, isSelected: isSelected)
+                    }
                 }
 
-                if let lastValue = chartDataSet.data.last?.yAxisValue {
-                    ChartRangeView(lastValue: Double(lastValue), chartDataSet: chartDataSet, isSelected: isSelected)
+                if !geo.isTinyHeight {
+                    ChartBottomView(insightData: chartDataSet, isSelected: isSelected)
+                        .padding(.trailing, 30)
+                        .padding(.leading, 10)
                 }
             }
-
-            ChartBottomView(insightData: chartDataSet, isSelected: isSelected)
-                .padding(.trailing, 30)
-                .padding(.leading, 10)
+            .font(.footnote)
+            .foregroundColor(Color.grayColor)
+            .if(!geo.isTinyHeight) {
+                $0.padding()
+            }
         }
-        .font(.footnote)
-        .foregroundColor(Color.grayColor)
-        .padding(.bottom)
     }
 }
 
