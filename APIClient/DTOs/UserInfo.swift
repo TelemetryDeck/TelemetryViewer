@@ -17,5 +17,4 @@ struct UserInfoDTO: Identifiable, Codable {
     public var receiveMarketingEmails: Bool?
     public var receiveReports: ReportSendingRate
 
-
 }

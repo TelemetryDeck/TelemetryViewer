@@ -51,7 +51,7 @@ struct CreateNewAppView: View {
         }
     }
 
-    func copyAppIDSection(newApp: DTOv2.App) -> some View {
+    func copyAppIDSection(newApp: AppInfo) -> some View {
         Section {
             Button(newApp.id.uuidString) {
                 saveToClipBoard(newApp.id.uuidString)
@@ -61,7 +61,7 @@ struct CreateNewAppView: View {
         }
     }
 
-    func documentationSection(newApp: DTOv2.App) -> some View {
+    func documentationSection(newApp: AppInfo) -> some View {
         Section {
             Button("Open Documentation") {
                 URL(string: "https://telemetrydeck.com/pages/quickstart.html")?.open()

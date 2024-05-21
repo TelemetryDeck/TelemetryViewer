@@ -15,9 +15,9 @@ class CreateNewAppViewModel: ObservableObject {
     let appService: AppService
 
     @Published var appName: String = "New App"
-    @Published var existingApps: [DTOv2.App] = []
+    @Published var existingApps: [AppInfo] = []
     @Published var createDefaultInsights: Bool = true
-    @Published var createdApp: DTOv2.App?
+    @Published var createdApp: AppInfo?
 
     @Binding var newAppViewShown: Bool
 
@@ -47,8 +47,8 @@ class CreateNewAppViewModel: ObservableObject {
         return .valid
     }
 
-    func appsFromAppIDs() -> [DTOv2.App] {
-        var apps: [DTOv2.App] = []
+    func appsFromAppIDs() -> [AppInfo] {
+        var apps: [AppInfo] = []
         guard orgService.organization != nil else { return [] }
         for appID in orgService.organization!.appIDs {
             guard appService.app(withID: appID) != nil else { continue }
@@ -58,7 +58,7 @@ class CreateNewAppViewModel: ObservableObject {
     }
 
     func createNewApp() {
-        appService.create(appNamed: appName) { (result: Result<DTOv2.App, TransferError>) in
+        appService.create(appNamed: appName) { (result: Result<AppInfo, TransferError>) in
             switch result {
             case let .failure(error):
                 print(error)

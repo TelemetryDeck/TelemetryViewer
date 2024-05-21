@@ -12,7 +12,7 @@ struct EmptyAppView: View {
     @EnvironmentObject var appService: AppService
 
     let appID: UUID
-    private var app: DTOv2.App? { appService.app(withID: appID) }
+    private var app: AppInfo? { appService.app(withID: appID) }
 
     var body: some View {
         VStack(spacing: 20) {
