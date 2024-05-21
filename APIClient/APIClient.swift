@@ -93,8 +93,9 @@ final class APIClient: ObservableObject {
 }
 
 extension APIClient {
+
     func login(loginRequestBody: LoginRequestBody, callback: @escaping (Bool) -> Void) {
-        let url = urlForPath("users", "login")
+        let url = urlForPath(apiVersion: .v3,"users", "login")
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -103,7 +104,6 @@ extension APIClient {
         URLSession.shared.dataTask(with: request) { data, _, _ in
             if let data = data {
                 print(String(decoding: data, as: UTF8.self))
-
                 if let decodedResponse = try? JSONDecoder.telemetryDecoder.decode(UserTokenDTO.self, from: data) {
                     DispatchQueue.main.async {
                         self.userToken = decodedResponse
