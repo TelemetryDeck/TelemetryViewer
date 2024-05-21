@@ -72,7 +72,7 @@ final class APIClient: ObservableObject {
     /// The end of the currently displayed time window. If nil, defaults to date()
     @Published var timeWindowEnd: Date?
 
-    @Published var user: DTOv1.UserDTO?
+    @Published var user: UserInfoDTO?
     @Published var userNotLoggedIn: Bool = true
     @Published var userLoginFailed: Bool = false
     var userLoginErrorMessage: String?
@@ -197,12 +197,12 @@ extension APIClient {
         }
     }
 
-    func getUserInformation(callback: ((Result<DTOv1.UserDTO, TransferError>) -> Void)? = nil) {
+    func getUserInformation(callback: ((Result<UserInfoDTO, TransferError>) -> Void)? = nil) {
         userLoginFailed = false
 
-        let url = urlForPath("users", "me")
+        let url = urlForPath(apiVersion: .v3, "users", "info")
 
-        get(url) { (result: Result<DTOv1.UserDTO, TransferError>) in
+        get(url) { (result: Result<UserInfoDTO, TransferError>) in
             switch result {
             case let .success(userDTO):
                 #if canImport(TelemetryClient)
@@ -222,41 +222,6 @@ extension APIClient {
                     self.userLoginErrorMessage = error.localizedDescription
                     self.handleError(error)
                 }
-            }
-
-            callback?(result)
-        }
-    }
-
-    func updatePassword(with passwordChangeRequest: PasswordChangeRequestBody, callback: ((Result<DTOv1.UserDTO, TransferError>) -> Void)? = nil) {
-        let url = urlForPath("users", "updatePassword")
-
-        post(passwordChangeRequest, to: url) { [unowned self] (result: Result<DTOv1.UserDTO, TransferError>) in
-            switch result {
-            case let .success(userDTO):
-                DispatchQueue.main.async {
-                    self.user = userDTO
-                    self.logout()
-                }
-            case let .failure(error):
-                self.handleError(error)
-            }
-
-            callback?(result)
-        }
-    }
-
-    func updateUser(with dto: DTOv1.UserDTO, callback: ((Result<DTOv1.UserDTO, TransferError>) -> Void)? = nil) {
-        let url = urlForPath("users", "updateUser")
-
-        post(dto, to: url) { [unowned self] (result: Result<DTOv1.UserDTO, TransferError>) in
-            switch result {
-            case let .success(userDTO):
-                DispatchQueue.main.async {
-                    self.user = userDTO
-                }
-            case let .failure(error):
-                self.handleError(error)
             }
 
             callback?(result)
