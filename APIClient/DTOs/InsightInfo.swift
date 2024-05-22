@@ -39,9 +39,6 @@ public struct InsightInfo: Codable, Hashable, Identifiable {
     /// If true, only include at the newest signal from each user
     public var uniqueUser: Bool
 
-    /// Only include signals that match all of these key-values in the payload
-    public var filters: [String: String]
-
     /// If set, break down the values in this key
     public var breakdownKey: String?
 
@@ -71,7 +68,6 @@ public struct InsightInfo: Codable, Hashable, Identifiable {
         customQuery: CustomQuery? = nil,
         signalType: String?,
         uniqueUser: Bool,
-        filters: [String: String],
         breakdownKey: String?,
         groupBy: QueryGranularity?,
         displayMode: InsightDisplayMode,
@@ -88,7 +84,6 @@ public struct InsightInfo: Codable, Hashable, Identifiable {
         self.customQuery = customQuery
         self.signalType = signalType
         self.uniqueUser = uniqueUser
-        self.filters = filters
         self.breakdownKey = breakdownKey
         self.groupBy = groupBy
         self.displayMode = displayMode

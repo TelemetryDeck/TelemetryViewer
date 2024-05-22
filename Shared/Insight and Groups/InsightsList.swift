@@ -12,7 +12,7 @@ struct InsightsList: View {
     let groupID: DTOv2.Group.ID
     let isSelectable: Bool
 
-    @Binding var selectedInsightID: DTOv2.Insight.ID?
+    @Binding var selectedInsightID: InsightGroupInfo.ID?
     @Binding var sidebarVisible: Bool
     @EnvironmentObject var groupService: GroupService
 

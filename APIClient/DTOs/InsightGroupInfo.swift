@@ -22,4 +22,10 @@ public struct InsightGroupInfo: Codable, Hashable, Identifiable {
     public var appID: UUID
     public var insights: [InsightInfo]
 
+    public var insightIDs: [UUID] {
+        insights.map { insight in
+            insight.id
+        }
+    }
+
 }
