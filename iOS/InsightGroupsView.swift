@@ -24,7 +24,6 @@ struct InsightGroupsView: View {
     @State var selectedInsightGroupID: DTOv2.Group.ID?
     @State var selectedInsightID: DTOv2.Insight.ID?
     @State private var showDatePicker: Bool = false
-    @State private var showEditMode: Bool = false
 
     @Environment(\.horizontalSizeClass) var sizeClass
 
@@ -66,10 +65,6 @@ struct InsightGroupsView: View {
             }
 
             .alwaysHideNavigationBar()
-            .background(
-                NavigationLink(destination: EditorModeView(appID: appID), isActive: $showEditMode) {
-                    EmptyView()
-                })
             .onAppear {
                 selectedInsightGroupID = appService.app(withID: appID)?.insightGroupIDs.first
                 TelemetryManager.send("InsightGroupsAppear")
@@ -93,14 +88,6 @@ struct InsightGroupsView: View {
                 }
             }
             .toolbar {
-                ToolbarItem {
-                    // We're hiding all editors on iOS because we want the iOS app to be a
-                    // Viewer App only. Remove the .hidden() modifier to show the button to
-                    // toggle editor mode, but beware this is unsupported.
-                    editModeButton
-                        .hidden()
-                }
-
                 ToolbarItemGroup(placement: .bottomBar) {
                     Toggle("Test Mode", isOn: $queryService.isTestingMode.animation())
                     datePickerButton
@@ -158,14 +145,6 @@ struct InsightGroupsView: View {
             }
         } label: {
             Label("New Group", systemImage: "plus")
-        }
-    }
-
-    private var editModeButton: some View {
-        Button {
-            self.showEditMode = true
-        } label: {
-            Label("Edit Insights", systemImage: "square.and.pencil")
         }
     }
 }

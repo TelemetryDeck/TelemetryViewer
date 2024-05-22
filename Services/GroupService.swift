@@ -13,11 +13,11 @@ class GroupService: ObservableObject {
     private let api: APIClient
     private let errorService: ErrorService
 
-    private let loadingState = Cache<DTOv2.Group.ID, LoadingState>()
+    private let loadingState = Cache<InsightGroupInfo.ID, LoadingState>()
 
     var loadingCancellable: AnyCancellable?
 
-    @Published var groupsDictionary = [DTOv2.Group.ID: DTOv2.Group]()
+    @Published var groupsDictionary = [InsightGroupInfo.ID: InsightGroupInfo]()
 
     init(api: APIClient, errors: ErrorService) {
         self.api = api
@@ -43,26 +43,26 @@ class GroupService: ObservableObject {
         return loadingState
     }
 
-    func group(withID groupID: DTOv2.Group.ID) -> DTOv2.Group? {
+    func group(withID groupID: InsightGroupInfo.ID) -> InsightGroupInfo? {
         return groupsDictionary[groupID]
     }
 
-    func retrieveGroup(with groupID: DTOv2.Group.ID) {
+    func retrieveGroup(with groupID: InsightGroupInfo.ID) {
         performRetrieval(ofGroupWithID: groupID)
     }
 
-    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<DTOv2.Group, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath(apiVersion: .v2, "groups")
+    func create(insightGroupNamed: String, for appID: UUID, callback: ((Result<InsightGroupInfo, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath(apiVersion: .v3, "groups")
 
-        api.post(["title": insightGroupNamed, "appID": appID.uuidString], to: url) { (result: Result<DTOv2.Group, TransferError>) in
+        api.post(["title": insightGroupNamed, "appID": appID.uuidString], to: url) { (result: Result<InsightGroupInfo, TransferError>) in
             callback?(result)
         }
     }
 
-    func update(insightGroup: DTOv2.Group, in appID: UUID, callback: ((Result<DTOv2.Group, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath(apiVersion: .v2, "groups", insightGroup.id.uuidString)
+    func update(insightGroup: InsightGroupInfo, in appID: UUID, callback: ((Result<InsightGroupInfo, TransferError>) -> Void)? = nil) {
+        let url = api.urlForPath(apiVersion: .v3, "groups", insightGroup.id.uuidString)
 
-        api.patch(insightGroup, to: url) { (result: Result<DTOv2.Group, TransferError>) in
+        api.patch(insightGroup, to: url) { (result: Result<InsightGroupInfo, TransferError>) in
             callback?(result)
         }
     }
@@ -78,7 +78,7 @@ class GroupService: ObservableObject {
 }
 
 private extension GroupService {
-    func performRetrieval(ofGroupWithID groupID: DTOv2.Group.ID) {
+    func performRetrieval(ofGroupWithID groupID: InsightGroupInfo.ID) {
         switch loadingState(for: groupID) {
         case .loading, .error:
             return
@@ -88,9 +88,9 @@ private extension GroupService {
 
         loadingState[groupID] = .loading
 
-        let url = api.urlForPath(apiVersion: .v2, "groups", groupID.uuidString)
+        let url = api.urlForPath(apiVersion: .v3, "groups", groupID.uuidString)
 
-        api.get(url) { [weak self] (result: Result<DTOv2.Group, TransferError>) in
+        api.get(url) { [weak self] (result: Result<InsightGroupInfo, TransferError>) in
 
             switch result {
             case let .success(group):

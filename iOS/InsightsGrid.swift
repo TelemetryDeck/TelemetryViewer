@@ -10,10 +10,10 @@ import SwiftUI
 
 struct InsightsGrid: View {
     @EnvironmentObject var insightService: InsightService
-    @Binding var selectedInsightID: DTOv2.Insight.ID?
+    @Binding var selectedInsightID: InsightInfo.ID?
     @Binding var sidebarVisible: Bool
 
-    let insightGroup: DTOv2.Group
+    let insightGroup: InsightGroupInfo
     let isSelectable: Bool
 
     var body: some View {

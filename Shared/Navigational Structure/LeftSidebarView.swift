@@ -14,7 +14,6 @@ struct LeftSidebarView: View {
     @EnvironmentObject var appService: AppService
     @EnvironmentObject var groupService: GroupService
     @EnvironmentObject var insightService: InsightService
-    @State var newAppViewShown: Bool = false
     @State private var showingAlert = false
 
     #if os(macOS)
@@ -58,20 +57,6 @@ struct LeftSidebarView: View {
                             }
                         }
                     }
-                }
-                Button {
-                    newAppViewShown = true
-                } label: {
-                    Label("Add a new app", systemImage: "plus.square.dashed")
-                }
-                .sheet(isPresented: $newAppViewShown) {
-                    #if os(macOS)
-                        CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
-                    #else
-                        NavigationView {
-                            CreateNewAppView(createNewAppViewModel: .init(api: api, appService: appService, orgService: orgService, newAppViewShown: $newAppViewShown))
-                        }
-                    #endif
                 }
 
             } header: {
@@ -202,18 +187,10 @@ struct LeftSidebarView: View {
                 }
                 .tag(Selection.recentSignals(app: appID))
 
-                NavigationLink(tag: Selection.editApp(app: app.id), selection: $sidebarSelection) {
-                    AppEditor(appID: app.id, appName: app.name)
-                } label: {
-                    Label("Edit App", systemImage: "square.and.pencil")
-                }
-                .tag(Selection.editApp(app: appID))
-
             } else {
                 TinyLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: "Insights")
                 TinyLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: "Signal Types")
                 TinyLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: "Recent Signals")
-                TinyLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: "Edit App")
             }
         } label: {
             LabelLoadingStateIndicator(loadingState: appService.loadingStateDictionary[appID] ?? .idle, title: appService.appDictionary[appID]?.name, systemImage: "sensor.tag.radiowaves.forward")
