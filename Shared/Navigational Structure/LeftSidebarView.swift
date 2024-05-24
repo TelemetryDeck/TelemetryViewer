@@ -125,6 +125,7 @@ struct LeftSidebarView: View {
             if let organization = try? await orgService.retrieveOrganisation() {
                 DispatchQueue.main.async {
                     orgService.organization = organization
+                    orgService.getOrganisation()
                 }
             }
         }
