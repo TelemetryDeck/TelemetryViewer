@@ -32,8 +32,7 @@ struct QueryRunner: View {
             Task {
                 do {
                     try await getQueryResult()
-                }
-                catch {
+                } catch {
                     print(error)
                 }
             }
@@ -46,7 +45,6 @@ struct QueryRunner: View {
             isLoading = false
         }
 
-        //let taskID = try await beginAsyncCalculation()
         let taskID = try await beginAsyncCalcV2()
 
         try await getLastSuccessfulValue(taskID)
@@ -58,47 +56,21 @@ struct QueryRunner: View {
 }
 
 extension QueryRunner {
-    private enum ApiVersion: String {
-        case v1
-        case v2
-        case v3
-    }
-
-    private func urlForPath(apiVersion: ApiVersion = .v1, _ path: String..., appendTrailingSlash _: Bool = false) -> URL {
-        URL(string: "https://api.telemetrydeck.com/api/" + "\(apiVersion.rawValue)/" + path.joined(separator: "/") + "/")!
-    }
-
-    private func authenticatedURLRequest(for url: URL, httpMethod: String, httpBody: Data? = nil, contentType: String = "application/json; charset=utf-8") -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod
-        request.setValue(contentType, forHTTPHeaderField: "Content-Type")
-        request.setValue(UserTokenDTO(id: UUID(uuidString: "7c736171-9c56-4573-b72f-f9f881c12d7b"), value: "QL41IC283ELWFYXRHC6G22VMTPFK7A3GN1L6INTHPCJGTKA4Y76YZF572P1H2U8OR6HQHUXKWP91M2URKUA49SFCYKQ2XZ8WS0WMR28N2I91OCTDHJMYBAQAIKG2QO73", user: [:]).bearerTokenAuthString, forHTTPHeaderField: "Authorization")
-
-        if let httpBody = httpBody {
-            request.httpBody = httpBody
-        }
-
-        return request
-    }
-}
-
-extension QueryRunner {
 
     private func beginAsyncCalcV2() async throws -> String {
         // create a query task
-        let queryBeginURL = api.urlForPath(apiVersion: .v3, "query","calculate-async")
+        let queryBeginURL = api.urlForPath(apiVersion: .v3, "query", "calculate-async")
 
         var queryCopy = query
 
         if queryCopy.intervals == nil && queryCopy.relativeIntervals == nil{
             switch queryService.timeWindowBeginning {
-            case .absolute(date: _):
+            case .absolute:
                 queryCopy.intervals = [.init(beginningDate: queryService.timeWindowBeginningDate, endDate: queryService.timeWindowEndDate)]
             default:
                 queryCopy.relativeIntervals = [RelativeTimeInterval(beginningDate: queryService.timeWindowBeginning.toRelativeDate(), endDate: queryService.timeWindowEnd.toRelativeDate())]
             }
         }
-
 
         let response: [String: String] = try await api.post(data: queryCopy, url: queryBeginURL)
         guard let taskID = response["queryTaskID"] else {
@@ -110,7 +82,7 @@ extension QueryRunner {
 
     private func getLastSuccessfulValue(_ taskID: String) async throws {
         // pick up the finished result
-        let lastSuccessfulValueURL = urlForPath(apiVersion: .v3, "task", taskID, "lastSuccessfulValue")
+        let lastSuccessfulValueURL = api.urlForPath(apiVersion: .v3, "task", taskID, "lastSuccessfulValue")
         queryResultWrapper = try await api.get(url: lastSuccessfulValueURL)
     }
 
@@ -118,7 +90,7 @@ extension QueryRunner {
         // wait for the task to finish caluclating
         var taskStatus: QueryTaskStatus = .running
         while taskStatus != .successful {
-            let taskStatusURL = urlForPath(apiVersion: .v3, "task", taskID, "status")
+            let taskStatusURL = api.urlForPath(apiVersion: .v3, "task", taskID, "status")
 
             let queryTaskStatus: QueryTaskStatusStruct = try await api.get(url: taskStatusURL)
 
@@ -152,7 +124,7 @@ extension RelativeDateDescription {
             }
         case .goBack(let days):
             RelativeDate(.beginning, of: .day, adding: -days)
-        case .absolute(let date):
+        case .absolute:
             RelativeDate(.beginning, of: .day, adding: -30)
         }
     }

@@ -10,7 +10,6 @@ import Charts
 import DataTransferObjects
 
 struct LineChartTimeSeries: View {
-    //let query: CustomQuery
     let result: TimeSeriesQueryResult
 
     var body: some View {
@@ -22,7 +21,6 @@ struct LineChartTimeSeries: View {
                 )
             }
             .interpolationMethod(.cardinal)
-
 
             ForEach(result.rows, id: \.timestamp) { row in
                 AreaMark(x: .value("Date", row.timestamp),

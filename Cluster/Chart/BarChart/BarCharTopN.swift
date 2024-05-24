@@ -10,7 +10,6 @@ import Charts
 import DataTransferObjects
 
 struct BarChartTopN: View {
-    //let query: CustomQuery
     let result: TopNQueryResult
 
     var body: some View {

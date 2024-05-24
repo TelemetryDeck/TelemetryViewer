@@ -8,7 +8,6 @@
 import SwiftUI
 import DataTransferObjects
 
-
 struct ClusterInstrument: View {
     @EnvironmentObject var api: APIClient
 
@@ -26,4 +25,3 @@ struct ClusterInstrument: View {
         .padding()
     }
 }
-

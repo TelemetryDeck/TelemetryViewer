@@ -1275,12 +1275,13 @@
 				DCE239FF24D3687D00053370 /* Sources */,
 				DCE23A0024D3687D00053370 /* Frameworks */,
 				DCE23A0124D3687D00053370 /* Resources */,
-				DC7DEE9D258A355F00BEA712 /* ShellScript */,
+				DC7DEE9D258A355F00BEA712 /* Run Script */,
 				C5A8D875270C5D800032560A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				809E189D2C009A1400E83D74 /* PBXTargetDependency */,
 				C5A8D870270C5D800032560A /* PBXTargetDependency */,
 				C5A8D8C5270C821B0032560A /* PBXTargetDependency */,
 			);
@@ -1360,6 +1361,7 @@
 				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
 				2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */,
+				809E189B2C00998C00E83D74 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
 			projectDirPath = "";
@@ -1501,7 +1503,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Use Xcode's copy of the Git binary\nGIT=`xcrun -find git`\n\n# Use the commit count as CFBundleVersion\nGIT_COMMIT_COUNT=`${GIT} rev-list --count HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_COUNT}\" \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n";
 		};
-		DC7DEE9D258A355F00BEA712 /* ShellScript */ = {
+		DC7DEE9D258A355F00BEA712 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1511,6 +1513,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -1926,6 +1929,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		809E189D2C009A1400E83D74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 809E189C2C009A1400E83D74 /* SwiftLintBuildToolPlugin */;
+		};
 		C5A8D870270C5D800032560A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C5A8D862270C5D7A0032560A /* TelemetryDeckWidgetExtension */;
@@ -2496,6 +2503,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		809E189B2C00998C00E83D74 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.1;
+			};
+		};
 		C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TelemetryDeck/models";
@@ -2545,6 +2560,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
+		};
+		809E189C2C009A1400E83D74 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809E189B2C00998C00E83D74 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		C51CB76227566148005A3FB9 /* DataTransferObjects */ = {
 			isa = XCSwiftPackageProductDependency;

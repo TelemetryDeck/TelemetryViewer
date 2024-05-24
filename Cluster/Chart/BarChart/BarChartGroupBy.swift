@@ -10,7 +10,6 @@ import Charts
 import DataTransferObjects
 
 struct BarChartGroupBy: View {
-    //let query: CustomQuery
     let result: GroupByQueryResult
 
     var body: some View {
