@@ -40,7 +40,7 @@ struct InsightGroupsView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 0) {
-                StatusMessageDisplay()
+                //StatusMessageDisplay()
 
                 TestModeIndicator()
 
@@ -59,7 +59,7 @@ struct InsightGroupsView: View {
 
                     selectedInsightGroupID.map {
                         GroupView(groupID: $0, selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible)
-                            .background(Color.separatorColor)
+                            .background(Color.Zinc100)
                     }
                 }
             }

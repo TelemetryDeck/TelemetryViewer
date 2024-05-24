@@ -17,38 +17,14 @@ struct InsightsGrid: View {
     let isSelectable: Bool
 
     var body: some View {
-        let allInsights = insightGroup.insightIDs.map {
-            ($0, insightService.insight(withID: $0))
-        }
 
-        let loadedInsights = allInsights.filter { $0.1 != nil }
-        let loadingInsights = allInsights.filter { $0.1 == nil }
-        let expandedInsights = loadedInsights.filter { $0.1?.isExpanded == true }.sorted { $0.1?.order ?? 0 < $1.1?.order ?? 0 }
-        let unexpandedInsights = loadedInsights.filter { $0.1?.isExpanded == false }.sorted { $0.1?.order ?? 0 < $1.1?.order ?? 0 }
-
-        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 800), spacing: spacing)], alignment: .leading, spacing: spacing) {
-            ForEach(expandedInsights.map { $0.0 }, id: \.self) { insightID in
-                InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID, isSelectable: isSelectable)
-                    .id(insightID)
-            }
-
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
-                ForEach(unexpandedInsights.map { $0.0 }, id: \.self) { insightID in
-                    InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID, isSelectable: isSelectable)
-                        .id(insightID)
+        VStack{
+            ForEach(insightGroup.insights, id: \.id) { insight in
+                if let query = insight.query {
+                    ClusterInstrument(query: query, title: insight.title, type: insight.displayMode)
+                } else {
+                    Text("Couldn't get query")
                 }
-            }
-
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: spacing)], alignment: .leading, spacing: spacing) {
-                ForEach(loadingInsights.map { $0.0 }, id: \.self) { insightID in
-                    InsightCard(selectedInsightID: $selectedInsightID, sidebarVisible: $sidebarVisible, insightID: insightID, isSelectable: isSelectable)
-                        .id(insightID)
-                }
-            }
-        }
-        .refreshable {
-            for insightID in insightGroup.insightIDs {
-                insightService.taskRetrieveInsight(with: insightID)
             }
         }
     }

@@ -79,15 +79,13 @@ class QueryService: ObservableObject {
             struct ProduceQueryBody: Codable {
                 /// Is Test Mode enabled? (nil means false)
                 public var testMode: Bool?
-                
                 /// Which time intervals are we looking at?
                 public var relativeInterval: RelativeTimeInterval?
                 public var interval: QueryTimeInterval?
             }
-            
+
             let produceQueryBody = ProduceQueryBody(testMode: isTestingMode, interval: .init(beginningDate: timeWindowBeginningDate, endDate: timeWindowEndDate))
-            
-            
+
             api.post(produceQueryBody, to: url) { (result: Result<CustomQuery, TransferError>) in
                 switch result {
                 case .success(let query):
@@ -103,13 +101,13 @@ class QueryService: ObservableObject {
 
     func createTask(forQuery query: CustomQuery) async throws -> [String: String] {
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[String: String], Error>) in
-            
+
             // If the query has no specified interval, give it the default interval
             var query = query
             if query.relativeIntervals == nil && query.intervals == nil {
                 query.intervals = [.init(beginningDate: timeWindowBeginningDate, endDate: timeWindowEndDate)]
             }
-            
+
             let url = api.urlForPath(apiVersion: .v3, "query", "calculate-async")
             api.post(query, to: url) { (result: Result<[String: String], TransferError>) in
                 switch result {
