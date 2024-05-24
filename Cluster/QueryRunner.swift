@@ -10,9 +10,10 @@ import SwiftUI
 
 struct QueryRunner: View {
     @EnvironmentObject var api: APIClient
+    @EnvironmentObject var queryService: QueryService
 
     let query: CustomQuery
-    let type: ClusterChart.ChartType
+    let type: InsightDisplayMode
 
     @State var queryResultWrapper: QueryResultWrapper?
     @State var isLoading: Bool = false
@@ -93,30 +94,24 @@ extension QueryRunner {
 
 extension QueryRunner {
 
-    // currently inactivate and replaced by V2
-    private func beginAsyncCalculation() async throws -> String {
-        // create a query task
-        let queryBeginURL = urlForPath(apiVersion: .v3, "query", "calculate-async")
-        let queryHTTPBody = try JSONEncoder.telemetryEncoder.encode(query)
-        var queryBeginRequest = authenticatedURLRequest(for: queryBeginURL, httpMethod: "POST", httpBody: queryHTTPBody)
-        queryBeginRequest.httpMethod = "POST"
-        let (data, _) = try await URLSession.shared.data(for: queryBeginRequest)
-//        print(String(data: data, encoding: .utf8) ?? "")
-        guard let taskID = try JSONDecoder.telemetryDecoder.decode([String: String].self, from: data)["queryTaskID"] else {
-            throw TransferError.decodeFailed
-        }
-
-        return taskID
-    }
-
     private func beginAsyncCalcV2() async throws -> String {
         // create a query task
         let queryBeginURL = api.urlForPath(apiVersion: .v3, "query","calculate-async")
-        let queryHTTPBody = try JSONEncoder.telemetryEncoder.encode(query)
 
-        let queryBeginRequest = api.authenticatedURLRequest(for: queryBeginURL, httpMethod: "POST", httpBody: queryHTTPBody)
-        let (data, _) = try await URLSession.shared.data(for: queryBeginRequest)
-        guard let taskID = try JSONDecoder.telemetryDecoder.decode([String: String].self, from: data)["queryTaskID"] else {
+        var queryCopy = query
+
+        if queryCopy.intervals == nil && queryCopy.relativeIntervals == nil{
+            switch queryService.timeWindowBeginning {
+            case .absolute(date: let date):
+                queryCopy.intervals = [.init(beginningDate: queryService.timeWindowBeginningDate, endDate: queryService.timeWindowEndDate)]
+            default:
+                queryCopy.relativeIntervals = [RelativeTimeInterval(beginningDate: queryService.timeWindowBeginning.toRelativeDate(), endDate: queryService.timeWindowEnd.toRelativeDate())]
+            }
+        }
+
+
+        let response: [String: String] = try await api.post(data: queryCopy, url: queryBeginURL)
+        guard let taskID = response["queryTaskID"] else {
             throw TransferError.decodeFailed
         }
 
@@ -126,11 +121,7 @@ extension QueryRunner {
     private func getLastSuccessfulValue(_ taskID: String) async throws {
         // pick up the finished result
         let lastSuccessfulValueURL = urlForPath(apiVersion: .v3, "task", taskID, "lastSuccessfulValue")
-        let lastSuccessfulValueURLRequest = authenticatedURLRequest(for: lastSuccessfulValueURL, httpMethod: "GET")
-        let (newQueryResultData, response) = try await URLSession.shared.data(for: lastSuccessfulValueURLRequest)
-        if (response as? HTTPURLResponse)?.statusCode == 200 {
-            queryResultWrapper = try JSONDecoder.telemetryDecoder.decode(QueryResultWrapper.self, from: newQueryResultData)
-        }
+        queryResultWrapper = try await api.get(url: lastSuccessfulValueURL)
     }
 
     private func waitUntilTaskStatusIsSuccessful(_ taskID: String) async throws {
@@ -138,17 +129,62 @@ extension QueryRunner {
         var taskStatus: QueryTaskStatus = .running
         while taskStatus != .successful {
             let taskStatusURL = urlForPath(apiVersion: .v3, "task", taskID, "status")
-//            print(taskStatusURL)
-            let taskStatusURLRequest = authenticatedURLRequest(for: taskStatusURL, httpMethod: "GET")
-            let (data, _) = try await URLSession.shared.data(for: taskStatusURLRequest)
-//            print(String(data: data, encoding: .utf8) ?? "")
-            let queryTaskStatus = try JSONDecoder.telemetryDecoder.decode(QueryTaskStatusStruct.self, from: data)
+
+            let queryTaskStatus: QueryTaskStatusStruct = try await api.get(url: taskStatusURL)
+
             taskStatus = queryTaskStatus.status
+
             try await Task.sleep(nanoseconds: 1_000_000_000)
         }
 
         if taskStatus == .error {
             throw TransferError.serverError(message: "The server returned an error")
+        }
+    }
+}
+
+extension RelativeDateDescription {
+    func toRelativeDate() -> RelativeDate{
+        switch self {
+        case .end(let of):
+            switch of {
+            case .current(let calendarComponent):
+                RelativeDate(.end, of: RelativeDate.RelativeDateComponent.from(calenderComponent: calendarComponent), adding: 0)
+            case .previous(let calendarComponent):
+                RelativeDate(.end, of: RelativeDate.RelativeDateComponent.from(calenderComponent: calendarComponent), adding: -1)
+            }
+        case .beginning(let of):
+            switch of {
+            case .current(let calendarComponent):
+                RelativeDate(.beginning, of: RelativeDate.RelativeDateComponent.from(calenderComponent: calendarComponent), adding: 0)
+            case .previous(let calendarComponent):
+                RelativeDate(.beginning, of: RelativeDate.RelativeDateComponent.from(calenderComponent: calendarComponent), adding: -1)
+            }
+        case .goBack(let days):
+            RelativeDate(.beginning, of: .day, adding: -days)
+        case .absolute(let date):
+            RelativeDate(.beginning, of: .day, adding: -30)
+        }
+    }
+}
+
+extension RelativeDate.RelativeDateComponent {
+    static func from (calenderComponent: Calendar.Component) -> Self {
+        switch calenderComponent {
+        case .hour:
+                .hour
+        case .day:
+                .day
+        case .weekOfYear:
+                .week
+        case .month:
+                .month
+        case .quarter:
+                .quarter
+        case .year:
+                .year
+        default:
+                .day
         }
     }
 }

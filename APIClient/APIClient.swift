@@ -414,6 +414,17 @@ extension APIClient {
         runTask(with: request, completion: completion)
     }
 
+    @available(macOS 12.0, *)
+    func post<Input: Encodable, Output: Decodable>(data: Input, url: URL) async throws -> Output {
+        #if DEBUG
+            print("🌍 POST", url)
+        #endif
+
+        var request = authenticatedURLRequest(for: url, httpMethod: "POST")
+        request.httpBody = try? JSONEncoder.telemetryEncoder.encode(data)
+        return try await runAsyncTask(with: request)
+    }
+
     func post<Input: Encodable, Output: Decodable>(_ data: Input, to url: URL, defaultValue _: Output? = nil, completion: @escaping (Result<Output, TransferError>) -> Void) {
         #if DEBUG
             print("🌍 POST", url)

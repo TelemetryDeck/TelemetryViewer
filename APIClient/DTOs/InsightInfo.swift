@@ -27,12 +27,6 @@ public struct InsightInfo: Codable, Hashable, Identifiable {
     /// What kind of insight is this?
     public var type: InsightType
 
-    /// If set, display the chart with this accent color, otherwise fall back to default color
-    public var accentColor: String?
-
-    /// If set, use the custom query in this property instead of constructing a query out of the options below
-    public var customQuery: CustomQuery?
-
     /// Which signal types are we interested in? If nil, do not filter by signal type
     public var signalType: String?
 
@@ -57,15 +51,17 @@ public struct InsightInfo: Codable, Hashable, Identifiable {
     /// The date this query was last run
     public var lastRunAt: Date?
 
+    /// The query to calculate this insight
+    public var query: CustomQuery?
+
     public init(
         id: UUID,
         groupID: UUID,
         order: Double?,
         title: String,
         type: InsightType,
-        accentColor: String? = nil,
+        accentColor _: String? = nil,
         widgetable _: Bool? = false,
-        customQuery: CustomQuery? = nil,
         signalType: String?,
         uniqueUser: Bool,
         breakdownKey: String?,
@@ -73,15 +69,14 @@ public struct InsightInfo: Codable, Hashable, Identifiable {
         displayMode: InsightDisplayMode,
         isExpanded: Bool,
         lastRunTime: TimeInterval?,
-        lastRunAt: Date?
+        lastRunAt: Date?,
+        query: CustomQuery?
     ) {
         self.id = id
         self.groupID = groupID
         self.order = order
         self.title = title
         self.type = type
-        self.accentColor = accentColor
-        self.customQuery = customQuery
         self.signalType = signalType
         self.uniqueUser = uniqueUser
         self.breakdownKey = breakdownKey
@@ -90,5 +85,6 @@ public struct InsightInfo: Codable, Hashable, Identifiable {
         self.isExpanded = isExpanded
         self.lastRunTime = lastRunTime
         self.lastRunAt = lastRunAt
+        self.query = query
     }
 }

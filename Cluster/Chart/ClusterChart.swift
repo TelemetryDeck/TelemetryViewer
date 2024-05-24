@@ -10,25 +10,19 @@ import DataTransferObjects
 
 /// Cluster/Chart – given a query and a result, displays the result
 struct ClusterChart: View {
-    enum ChartType {
-        case bar
-        case line
-    }
 
     let query: CustomQuery
     let result: QueryResult
-    let type: ChartType
+    let type: InsightDisplayMode
 
     var body: some View {
         switch type {
-        case .bar:
-            VStack{
-                ClusterBarChart(query: query, result: result)
-            }
-        case .line:
-            VStack {
-                ClusterLineChart(query: query, result: result)
-            }
+        case .barChart:
+            ClusterBarChart(query: query, result: result)
+        case .lineChart:
+            ClusterLineChart(query: query, result: result)
+        default:
+            Text("Not supported")
         }
     }
 }

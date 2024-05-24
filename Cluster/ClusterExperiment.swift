@@ -44,15 +44,15 @@ struct ChartsExperiment: View {
 
     var body: some View {
         VStack {
-                ClusterInstrument(query: queries["default"]!, title: "default", type: .bar)
+                ClusterInstrument(query: queries["default"]!, title: "default", type: .barChart)
                  //   .glassBackgroundEffect(in: .rect(cornerRadius: 15))
                  //   .rotation3DEffect(.init(angle: .degrees(-5), axis: .x), anchor: .bottom)
 
 //                    .transform3DEffect(.init(rotation: .init(angle: .degrees(5), axis: .y)))
-                ClusterInstrument(query: queries["daily-users"]!, title: "Daily Users", type: .line)
+                ClusterInstrument(query: queries["daily-users"]!, title: "Daily Users", type: .lineChart)
                  //   .glassBackgroundEffect(in: .rect(cornerRadius: 15))
                  //   .rotation3DEffect(.init(angle: .degrees(-5), axis: .x), anchor: .bottom)
-                ClusterInstrument(query: queries["monthly-signals"]!, title: "Monthly Signals", type: .bar)
+                ClusterInstrument(query: queries["monthly-signals"]!, title: "Monthly Signals", type: .barChart)
                  //  .glassBackgroundEffect(in: .rect(cornerRadius: 15))
                  //  .rotation3DEffect(.init(angle: .degrees(-5), axis: .x), anchor: .bottom)
 //                   .transform3DEffect(.init(rotation: .init(angle: .degrees(-5), axis: .y)))
