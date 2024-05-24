@@ -16,12 +16,19 @@ struct ClusterInstrument: View {
     let type: InsightDisplayMode
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(title)
-                .font(.title)
-                .padding(.bottom)
+                .font(.headline)
+                .fontWeight(.medium)
+                .foregroundStyle(Color.Zinc600)
+                .padding(.top)
+                .padding(.horizontal)
             QueryRunner(query: query, type: type)
         }
-        .padding()
+        .compositingGroup()
+        .background(.background)
+        .shadow(color: .gray.opacity(0.15), radius: 5, x: 0, y: 2)
+        .border(Color.Zinc200, width: 1.0)
+        .padding(.vertical, 5)
     }
 }

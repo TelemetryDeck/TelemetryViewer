@@ -19,14 +19,27 @@ struct QueryRunner: View {
     @State var isLoading: Bool = false
 
     var body: some View {
-        VStack {
+        VStack(spacing: 10){
             if let queryResult = queryResultWrapper?.result {
                 ClusterChart(query: query, result: queryResult, type: type)
+                    .padding(.horizontal)
             }
 
-            if isLoading {
-                Text("Loading...")
+            HStack(spacing: 3){
+                Spacer()
+                if let queryResultWrapper = queryResultWrapper {
+                    Text("Updated")
+                    Text(queryResultWrapper.calculationFinishedAt, style: .relative)
+                    Text("ago")
+
+                } else {
+                    Text("Calculating...")
+                }
             }
+            .font(.footnote)
+            .foregroundStyle(Color.Zinc400)
+            .padding(8)
+            .background(Color.Zinc50)
         }
         .onAppear {
             Task {

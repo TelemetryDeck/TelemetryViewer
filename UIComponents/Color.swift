@@ -20,4 +20,11 @@ extension Color {
     static let telemetryOrange = Color("Torange")
     static let cardBackground = Color("CardBackgroundColor")
     static let customTextColor = Color("CustomTextColor")
+
+    static let Zinc50 = Color("Zinc50")
+    static let Zinc100 = Color("Zinc100")
+    static let Zinc200 = Color("Zinc200")
+    static let Zinc400 = Color("Zinc400")
+    static let Zinc600 = Color("Zinc600")
+
 }
