@@ -69,7 +69,7 @@ struct InsightCard: View {
             Group {
                 // This shows an error Sondrine if no internet connection
                 if let displaymode = insightService.insightDictionary[insightID]?.displayMode, let query = customQuery {
-                    QueryView(viewModel: QueryViewModel(queryService: queryService, customQuery: query, displayMode: displaymode, isSelected: isSelected))
+                    QueryViewV2(viewModel: QueryViewModel(queryService: queryService, customQuery: query, displayMode: displaymode, isSelected: isSelected))
                 } else {
                     SondrineLoadingStateIndicator(loadingState: loadingState)
                 }

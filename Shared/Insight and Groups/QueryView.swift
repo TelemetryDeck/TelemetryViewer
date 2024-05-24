@@ -7,6 +7,7 @@
 
 import DataTransferObjects
 import SwiftUI
+import Charts
 
 // @State var customQuery: CustomQuery
 
@@ -245,6 +246,85 @@ struct QueryView: View {
                         }
                     }
             }
+        }
+        .task {
+            await viewModel.retrieveResults()
+        }
+        .onReceive(viewModel.runningTimer) { _ in
+            Task {
+                await viewModel.checkIfStillRunning()
+            }
+        }
+        .onReceive(viewModel.successTimer) { _ in
+            Task {
+                await viewModel.checkStatus()
+            }
+        }
+    }
+}
+
+struct QueryViewV2: View {
+    @StateObject var viewModel: QueryViewModel
+
+    //let displayMode: String
+
+    var body: some View {
+        VStack {
+            if let queryResult = viewModel.queryResult?.result, let chartDataSet = viewModel.chartDataSet{
+                switch viewModel.displayMode {
+                case .raw:
+                    RawChartView(chartDataSet: chartDataSet, isSelected: viewModel.isSelected)
+                case .pieChart:
+                    DonutChartView(chartDataset: chartDataSet, isSelected: viewModel.isSelected)
+                        .padding(.bottom)
+                        .padding(.horizontal)
+                case .lineChart:
+                    ClusterLineChart(query: viewModel.customQuery, result: queryResult)
+                case .barChart:
+                    ClusterBarChart(query: viewModel.customQuery, result: queryResult)
+                default:
+                    Text("\(viewModel.displayMode.rawValue.capitalized) is not supported in this version.")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+            } else {
+                SondrineLoadingStateIndicator(loadingState: viewModel.loadingState)
+                    .onTapGesture {
+                        Task {
+                            await viewModel.retrieveResults()
+                        }
+                    }
+            }
+
+            /*if let chartDataSet = viewModel.chartDataSet {
+                switch viewModel.displayMode {
+                case .raw:
+                    RawChartView(chartDataSet: chartDataSet, isSelected: viewModel.isSelected)
+                case .pieChart:
+                    DonutChartView(chartDataset: chartDataSet, isSelected: viewModel.isSelected)
+                        .padding(.bottom)
+                        .padding(.horizontal)
+                case .lineChart:
+                    LineChart(chartDataSet: chartDataSet, isSelected: viewModel.isSelected)
+                case .barChart:
+                    BarChartView(chartDataSet: chartDataSet, isSelected: viewModel.isSelected)
+                default:
+                    Text("\(viewModel.displayMode.rawValue.capitalized) is not supported in this version.")
+                        .font(.footnote)
+                        .foregroundColor(.grayColor)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+            } else {
+                SondrineLoadingStateIndicator(loadingState: viewModel.loadingState)
+                    .onTapGesture {
+                        Task {
+                            await viewModel.retrieveResults()
+                        }
+                    }
+            }*/
         }
         .task {
             await viewModel.retrieveResults()

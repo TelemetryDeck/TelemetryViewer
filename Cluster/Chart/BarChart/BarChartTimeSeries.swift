@@ -10,7 +10,7 @@ import Charts
 import DataTransferObjects
 
 struct BarChartTimeSeries: View {
-    let query: CustomQuery
+    //let query: CustomQuery
     let result: TimeSeriesQueryResult
 
     var body: some View {

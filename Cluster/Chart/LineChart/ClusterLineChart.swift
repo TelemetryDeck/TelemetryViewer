@@ -16,7 +16,7 @@ struct ClusterLineChart: View {
         switch query.queryType {
         case .timeseries:
             if case let .timeSeries(result) = result {
-                LineChartTimeSeries(query: query, result: result)
+                LineChartTimeSeries(result: result)
             } else {
                 Text("Mismatch in query type and result type")
             }

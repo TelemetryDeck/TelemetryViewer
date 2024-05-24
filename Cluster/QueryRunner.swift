@@ -92,10 +92,11 @@ extension QueryRunner {
 }
 
 extension QueryRunner {
+
+    // currently inactivate and replaced by V2
     private func beginAsyncCalculation() async throws -> String {
         // create a query task
         let queryBeginURL = urlForPath(apiVersion: .v3, "query", "calculate-async")
-//        print(queryBeginURL)
         let queryHTTPBody = try JSONEncoder.telemetryEncoder.encode(query)
         var queryBeginRequest = authenticatedURLRequest(for: queryBeginURL, httpMethod: "POST", httpBody: queryHTTPBody)
         queryBeginRequest.httpMethod = "POST"
@@ -109,17 +110,15 @@ extension QueryRunner {
     }
 
     private func beginAsyncCalcV2() async throws -> String {
+        // create a query task
         let queryBeginURL = api.urlForPath(apiVersion: .v3, "query","calculate-async")
         let queryHTTPBody = try JSONEncoder.telemetryEncoder.encode(query)
+
         let queryBeginRequest = api.authenticatedURLRequest(for: queryBeginURL, httpMethod: "POST", httpBody: queryHTTPBody)
         let (data, _) = try await URLSession.shared.data(for: queryBeginRequest)
-
         guard let taskID = try JSONDecoder.telemetryDecoder.decode([String: String].self, from: data)["queryTaskID"] else {
             throw TransferError.decodeFailed
         }
-        print("Task ID is: \(taskID)")
-        print("Task ID is: \(taskID)")
-        print("Task ID is: \(taskID)")
 
         return taskID
     }
@@ -127,10 +126,8 @@ extension QueryRunner {
     private func getLastSuccessfulValue(_ taskID: String) async throws {
         // pick up the finished result
         let lastSuccessfulValueURL = urlForPath(apiVersion: .v3, "task", taskID, "lastSuccessfulValue")
-//        print(lastSuccessfulValueURL)
         let lastSuccessfulValueURLRequest = authenticatedURLRequest(for: lastSuccessfulValueURL, httpMethod: "GET")
         let (newQueryResultData, response) = try await URLSession.shared.data(for: lastSuccessfulValueURLRequest)
-//        print(String(data: newQueryResultData, encoding: .utf8) ?? "")
         if (response as? HTTPURLResponse)?.statusCode == 200 {
             queryResultWrapper = try JSONDecoder.telemetryDecoder.decode(QueryResultWrapper.self, from: newQueryResultData)
         }

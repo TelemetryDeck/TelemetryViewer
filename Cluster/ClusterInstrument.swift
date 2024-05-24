@@ -26,3 +26,13 @@ struct ClusterInstrument: View {
         .padding()
     }
 }
+
+struct cluster: View {
+    @EnvironmentObject var api: APIClient
+
+    let query: CustomQuery
+    let displayMode: ClusterChart.ChartType
+    var body: some View {
+        QueryRunner(query: query, type: displayMode)
+    }
+}

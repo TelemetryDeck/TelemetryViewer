@@ -173,6 +173,8 @@
 		80AD3EA02BFF306F00BBD7EB /* BarChartTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */; };
 		80AD3EA32BFF33D900BBD7EB /* ClusterLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EA22BFF33D900BBD7EB /* ClusterLineChart.swift */; };
 		80AD3EA52BFF33FF00BBD7EB /* LineChartTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EA42BFF33FF00BBD7EB /* LineChartTimeSeries.swift */; };
+		80AD3EAC2BFF6BE000BBD7EB /* BarChartGroupBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EAB2BFF6BE000BBD7EB /* BarChartGroupBy.swift */; };
+		80AD3EAE2BFF6D2200BBD7EB /* BarCharTopN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EAD2BFF6D2200BBD7EB /* BarCharTopN.swift */; };
 		C5173B41283D52E40018CE9F /* InsightsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5173B40283D52E40018CE9F /* InsightsGrid.swift */; };
 		C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
 		C51CB73C27565F76005A3FB9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A8D8AD270C821A0032560A /* Intents.framework */; platformFilter = maccatalyst; };
@@ -526,6 +528,8 @@
 		80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartTimeSeries.swift; sourceTree = "<group>"; };
 		80AD3EA22BFF33D900BBD7EB /* ClusterLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterLineChart.swift; sourceTree = "<group>"; };
 		80AD3EA42BFF33FF00BBD7EB /* LineChartTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartTimeSeries.swift; sourceTree = "<group>"; };
+		80AD3EAB2BFF6BE000BBD7EB /* BarChartGroupBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartGroupBy.swift; sourceTree = "<group>"; };
+		80AD3EAD2BFF6D2200BBD7EB /* BarCharTopN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCharTopN.swift; sourceTree = "<group>"; };
 		C5173B40283D52E40018CE9F /* InsightsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsGrid.swift; sourceTree = "<group>"; };
 		C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CB74C275660E0005A3FB9 /* TelemetryDeckMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -883,8 +887,10 @@
 		80AD3E9C2BFF303E00BBD7EB /* BarChart */ = {
 			isa = PBXGroup;
 			children = (
-				80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */,
 				80AD3E9D2BFF305100BBD7EB /* ClusterBarChart.swift */,
+				80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */,
+				80AD3EAB2BFF6BE000BBD7EB /* BarChartGroupBy.swift */,
+				80AD3EAD2BFF6D2200BBD7EB /* BarCharTopN.swift */,
 			);
 			path = BarChart;
 			sourceTree = "<group>";
@@ -1701,6 +1707,7 @@
 			files = (
 				2B21FCDD26FDCA6A00A8A55B /* GroupView.swift in Sources */,
 				2BBFCA09267D05E40013DC74 /* Color.swift in Sources */,
+				80AD3EAE2BFF6D2200BBD7EB /* BarCharTopN.swift in Sources */,
 				2B1D469B26CC4F45008814A9 /* AppService.swift in Sources */,
 				DCD52C4A2541FFE3003F12C6 /* ColSpan.swift in Sources */,
 				2BA5D50B26CDAA58008FBF8F /* InsightResultService.swift in Sources */,
@@ -1710,6 +1717,7 @@
 				2B21FCD526FDC33F00A8A55B /* InsightGroupsView.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				2B379D2126FBC3A300714BE6 /* IconFinderService.swift in Sources */,
+				80AD3EAC2BFF6BE000BBD7EB /* BarChartGroupBy.swift in Sources */,
 				C5CD589D2810368400671359 /* ThreeCirclesInATrenchcode.swift in Sources */,
 				2BBFC9FF267D05E40013DC74 /* OrderSetter.swift in Sources */,
 				2BA5D50726CD1403008FBF8F /* InsightCard.swift in Sources */,
