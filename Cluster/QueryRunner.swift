@@ -24,16 +24,6 @@ struct QueryRunner: View {
                 ClusterChart(query: query, result: queryResult, type: type)
             }
 
-            if let queryResultWrapper = queryResultWrapper {
-                VStack{
-                    Text("Calculation took \(queryResultWrapper.calculationDuration) seconds")
-                    Text("Last updated \(queryResultWrapper.calculationFinishedAt)")
-                }
-                .foregroundStyle(.orange)
-                .font(.system(size: 10))
-                .multilineTextAlignment(.leading)
-            }
-
             if isLoading {
                 Text("Loading...")
             }
@@ -102,7 +92,7 @@ extension QueryRunner {
 
         if queryCopy.intervals == nil && queryCopy.relativeIntervals == nil{
             switch queryService.timeWindowBeginning {
-            case .absolute(date: let date):
+            case .absolute(date: _):
                 queryCopy.intervals = [.init(beginningDate: queryService.timeWindowBeginningDate, endDate: queryService.timeWindowEndDate)]
             default:
                 queryCopy.relativeIntervals = [RelativeTimeInterval(beginningDate: queryService.timeWindowBeginning.toRelativeDate(), endDate: queryService.timeWindowEnd.toRelativeDate())]

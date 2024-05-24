@@ -64,12 +64,6 @@ struct LeftSidebarView: View {
             }
 
             Section {
-                ChartsExperiment()
-            } header: {
-                Text("Testing")
-            }
-
-            Section {
                 LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
 
                 #if os(iOS)

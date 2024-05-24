@@ -15,7 +15,7 @@ struct LineChartTimeSeries: View {
 
     var body: some View {
         Chart {
-            ForEach(result.rows) { row in
+            ForEach(result.rows, id: \.timestamp) { row in
                 LineMark(
                     x: .value("Date", row.timestamp),
                     y: .value("Total Count", row.result["count"]?.value ?? 0)
@@ -24,7 +24,7 @@ struct LineChartTimeSeries: View {
             .interpolationMethod(.cardinal)
 
 
-            ForEach(result.rows) { row in
+            ForEach(result.rows, id: \.timestamp) { row in
                 AreaMark(x: .value("Date", row.timestamp),
                          y: .value("Total Count", row.result["count"]?.value ?? 0))
             }

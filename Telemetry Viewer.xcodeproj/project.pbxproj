@@ -166,7 +166,6 @@
 		80AD3E942BFF2A7300BBD7EB /* QueryRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E932BFF2A7300BBD7EB /* QueryRunner.swift */; };
 		80AD3E972BFF2AA200BBD7EB /* ClusterChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E962BFF2AA200BBD7EB /* ClusterChart.swift */; };
 		80AD3E992BFF2B0A00BBD7EB /* ClusterInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E982BFF2B0A00BBD7EB /* ClusterInstrument.swift */; };
-		80AD3E9B2BFF2B3100BBD7EB /* ClusterExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E9A2BFF2B3100BBD7EB /* ClusterExperiment.swift */; };
 		80AD3E9E2BFF305100BBD7EB /* ClusterBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E9D2BFF305100BBD7EB /* ClusterBarChart.swift */; };
 		80AD3EA02BFF306F00BBD7EB /* BarChartTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */; };
 		80AD3EA32BFF33D900BBD7EB /* ClusterLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EA22BFF33D900BBD7EB /* ClusterLineChart.swift */; };
@@ -520,7 +519,6 @@
 		80AD3E932BFF2A7300BBD7EB /* QueryRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRunner.swift; sourceTree = "<group>"; };
 		80AD3E962BFF2AA200BBD7EB /* ClusterChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterChart.swift; sourceTree = "<group>"; };
 		80AD3E982BFF2B0A00BBD7EB /* ClusterInstrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterInstrument.swift; sourceTree = "<group>"; };
-		80AD3E9A2BFF2B3100BBD7EB /* ClusterExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterExperiment.swift; sourceTree = "<group>"; };
 		80AD3E9D2BFF305100BBD7EB /* ClusterBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterBarChart.swift; sourceTree = "<group>"; };
 		80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartTimeSeries.swift; sourceTree = "<group>"; };
 		80AD3EA22BFF33D900BBD7EB /* ClusterLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterLineChart.swift; sourceTree = "<group>"; };
@@ -863,7 +861,6 @@
 		80AD3E922BFF28AF00BBD7EB /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
-				80AD3E9A2BFF2B3100BBD7EB /* ClusterExperiment.swift */,
 				80AD3E982BFF2B0A00BBD7EB /* ClusterInstrument.swift */,
 				80AD3E932BFF2A7300BBD7EB /* QueryRunner.swift */,
 				80AD3E952BFF2A9600BBD7EB /* Chart */,
@@ -1726,7 +1723,6 @@
 				80AD3E992BFF2B0A00BBD7EB /* ClusterInstrument.swift in Sources */,
 				C5F4D36628ACF48000EBB667 /* TextModifiers.swift in Sources */,
 				2B61B94E264C08D4003F62C4 /* SignalsService.swift in Sources */,
-				80AD3E9B2BFF2B3100BBD7EB /* ClusterExperiment.swift in Sources */,
 				2B1D46A126CC52DD008814A9 /* InsightService.swift in Sources */,
 				2BBFCA07267D05E40013DC74 /* OptionalToggle.swift in Sources */,
 				C5F4D35228ACF48000EBB667 /* ChartDataPoint.swift in Sources */,
