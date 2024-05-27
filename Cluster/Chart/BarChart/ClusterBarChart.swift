@@ -19,15 +19,9 @@ struct ClusterBarChart: View {
             } else {
                 Text("Mismatch in query type and result type 1")
             }
-        /*case .groupBy:
-            if case let .groupBy(result) = result {
-                BarChartGroupBy(result: result)
-            } else {
-                Text("Mismatch in query type and result type 2")
-            }*/
         case .topN:
             if case let .topN(result) = result {
-                BarChartTopN(result: result)
+                BarChartTopN(topNQueryResult: result, query: query)
             } else {
                 Text("Mismatch in query type and result type 2")
             }
