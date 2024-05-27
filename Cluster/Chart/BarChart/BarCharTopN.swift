@@ -13,6 +13,15 @@ struct BarChartTopN: View {
     let topNQueryResult: TopNQueryResult
     let query: CustomQuery
 
+    var colorsForAggregators: [String: Color] {
+        let aggregatorNames = query.aggregations?.map { agg in
+            getAggregatorName(aggregator: agg)
+        } ?? []
+
+        let colors = Dictionary(uniqueKeysWithValues: zip(aggregatorNames, Color.chartColors))
+        return colors
+    }
+
     var body: some View {
 
         Chart {
@@ -21,8 +30,13 @@ struct BarChartTopN: View {
                 ForEach(row.result, id: \.self) { (rowResult: AdaptableQueryResultItem) in
 
                     ForEach(query.aggregations ?? [], id: \.self) { (aggregator: Aggregator) in
-                        if let metric = getMetric(rowResult: rowResult) {
-                            getBarMark(timeStamp: row.timestamp, name: getAggregatorName(aggregator: aggregator), metric: metric)
+                        if let metricValue = getMetricValue(rowResult: rowResult), let metric = query.metric {
+                            getBarMark(
+                                timeStamp: row.timestamp,
+                                name: getAggregatorName(aggregator: aggregator),
+                                metricValue: metricValue,
+                                metricName: rowResult.dimensions[getDimensionName(from: query.dimension) ?? "Not found"] ?? "Not Found"
+                            )
                         }
                     }
 
@@ -30,9 +44,30 @@ struct BarChartTopN: View {
 
             }
         }
+       // .chartForegroundStyleScale()
 
     }
 
+    func getBarMark(timeStamp: Date, name: String, metricValue: Double, metricName: String) -> some ChartContent {
+        print("MetricName: \(metricName)")
+        print("Dimension: \(getDimensionName(from: query.dimension) ?? "Not found")")
+        return BarMark(
+            x: .value("Date", timeStamp),
+            y: .value(name, metricValue)
+        )
+        .foregroundStyle(by: .value(getDimensionName(from: query.dimension) ?? "Not found", metricName))
+    }
+
+    func getDimensionName(from: DimensionSpec?) -> String? {
+        switch from {
+        case .default(let defaultDimensionSpec):
+            defaultDimensionSpec.outputName
+        case .extraction(let extractionDimensionSpec):
+            extractionDimensionSpec.outputName
+        case .none:
+            nil
+        }
+    }
     // swiftlint:disable cyclomatic_complexity
     // swiftlint:disable function_body_length
     func getAggregatorName(aggregator: Aggregator) -> String {
@@ -94,7 +129,7 @@ struct BarChartTopN: View {
     // swiftlint:enable cyclomatic_complexity
     // swiftlint:enable function_body_length
 
-    func getMetric(rowResult: AdaptableQueryResultItem) -> Double? {
+    func getMetricValue(rowResult: AdaptableQueryResultItem) -> Double? {
         guard let metric = query.metric, let metricName = getMetricName(metric: metric) else {
             return nil
         }
@@ -111,13 +146,6 @@ struct BarChartTopN: View {
         default:
             return nil
         }
-    }
-
-    func getBarMark(timeStamp: Date, name: String, metric: Double) -> BarMark {
-        BarMark(
-            x: .value("Date", timeStamp),
-            y: .value(name, metric)
-        )
     }
 
 }
