@@ -36,14 +36,10 @@ struct BarChartTopN: View {
             }
         }
         .chartForegroundStyleScale(range: Color.chartColors)
-        /*.chartXAxis {
-            AxisMarks(values: .stride(by: .hour)) { date in
-                AxisValueLabel(format: .dateTime.hour())
-            }
-        }*/
 
     }
 
+    // swiftlint:disable cyclomatic_complexity
     func granularity() -> Calendar.Component{
         switch query.granularity {
         case .all:
@@ -72,12 +68,12 @@ struct BarChartTopN: View {
                 .year
         }
     }
+    // swiftlint:enable cyclomatic_complexity
 
     func getBarMark(timeStamp: Date, name: String, metricValue: Double, metricName: String) -> some ChartContent {
         return BarMark(
             x: .value("Date", timeStamp, unit: granularity()),
             y: .value(name, metricValue)
-           // width: .fixed(200),
         )
         .foregroundStyle(by: .value(getDimensionName(from: query.dimension) ?? "Not found", metricName))
     }
@@ -180,67 +176,3 @@ struct BarChartTopN: View {
     }
 
 }
-
-/*
- {
-   "aggregations": [
-     {
-       "fieldName": "count",
-       "name": "count",
-       "type": "longSum"
-     }
-   ],
-   "appID": "A5811BD5-87E6-4915-B419-9E48A2C39470",
-   "baseFilters": "thisApp",
-   "dimension": {
-     "dimension": "appVersion",
-     "outputName": "appVersion",
-     "type": "default"
-   },
-   "filter": {
-     "fields": [
-       {
-         "dimension": "type",
-         "type": "selector",
-         "value": "GoalView Actions"
-       }
-     ],
-     "type": "and"
-   },
-   "granularity": "all",
-   "metric": {
-     "metric": "count",
-     "type": "numeric"
-   },
-   "queryType": "topN",
-   "threshold": 200
- }
-
-
-
-
- 🌍 GET https://api.telemetrydeck.com/api/v3/task/1632de773afdcabbf7f8a26b6579019b81420604b16e2e3a2fafb456a158589e/lastSuccessfulValue/
- ⬅️ {
-   "calculationFinishedAt" : "2024-05-27T07:40:55+0000",
-   "result" : {
-     "type" : "topNResult",
-     "rows" : [
-       {
-         "result" : [
-           {
-             "appVersion" : "1.96",
-             "count" : 268
-           },
-           {
-             "appVersion" : "1.97",
-             "count" : 186
-           }
-         ],
-         "timestamp" : "2024-04-27T00:00:00+0000"
-       }
-     ]
-   },
-   "calculationDuration" : 0.36362302303314209
- }
-
- */
