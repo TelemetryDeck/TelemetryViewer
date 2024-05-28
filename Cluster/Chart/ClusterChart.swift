@@ -21,6 +21,8 @@ struct ClusterChart: View {
             ClusterBarChart(query: query, result: result)
         case .lineChart:
             ClusterLineChart(query: query, result: result)
+        case .pieChart:
+            ClusterPieChart(query: query, result: result)
         default:
             Text("Not supported")
         }
