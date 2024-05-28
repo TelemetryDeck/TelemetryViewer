@@ -164,7 +164,8 @@
 		80427FF72BFE2AF4007E89CC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80427FDF2BFE2AF4007E89CC /* UserInfo.swift */; };
 		80427FF82BFE2AF4007E89CC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80427FDF2BFE2AF4007E89CC /* UserInfo.swift */; };
 		8083DD692C05C9C300596926 /* ClusterPieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8083DD682C05C9C300596926 /* ClusterPieChart.swift */; };
-		8083DD6B2C05C9FE00596926 /* PieChartGroupBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8083DD6A2C05C9FE00596926 /* PieChartGroupBy.swift */; };
+		8083DD6B2C05C9FE00596926 /* PieChartTopN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8083DD6A2C05C9FE00596926 /* PieChartTopN.swift */; };
+		8083DD6D2C05EA0100596926 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8083DD6C2C05EA0100596926 /* Extensions.swift */; };
 		80AD3E942BFF2A7300BBD7EB /* QueryRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E932BFF2A7300BBD7EB /* QueryRunner.swift */; };
 		80AD3E972BFF2AA200BBD7EB /* ClusterChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E962BFF2AA200BBD7EB /* ClusterChart.swift */; };
 		80AD3E992BFF2B0A00BBD7EB /* ClusterInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E982BFF2B0A00BBD7EB /* ClusterInstrument.swift */; };
@@ -518,7 +519,8 @@
 		80427FDE2BFE2AF4007E89CC /* InsightInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightInfo.swift; sourceTree = "<group>"; };
 		80427FDF2BFE2AF4007E89CC /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		8083DD682C05C9C300596926 /* ClusterPieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterPieChart.swift; sourceTree = "<group>"; };
-		8083DD6A2C05C9FE00596926 /* PieChartGroupBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartGroupBy.swift; sourceTree = "<group>"; };
+		8083DD6A2C05C9FE00596926 /* PieChartTopN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartTopN.swift; sourceTree = "<group>"; };
+		8083DD6C2C05EA0100596926 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		80AD3E932BFF2A7300BBD7EB /* QueryRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRunner.swift; sourceTree = "<group>"; };
 		80AD3E962BFF2AA200BBD7EB /* ClusterChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterChart.swift; sourceTree = "<group>"; };
 		80AD3E982BFF2B0A00BBD7EB /* ClusterInstrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterInstrument.swift; sourceTree = "<group>"; };
@@ -864,7 +866,7 @@
 			isa = PBXGroup;
 			children = (
 				8083DD682C05C9C300596926 /* ClusterPieChart.swift */,
-				8083DD6A2C05C9FE00596926 /* PieChartGroupBy.swift */,
+				8083DD6A2C05C9FE00596926 /* PieChartTopN.swift */,
 			);
 			path = PieChart;
 			sourceTree = "<group>";
@@ -883,6 +885,7 @@
 			isa = PBXGroup;
 			children = (
 				80AD3E962BFF2AA200BBD7EB /* ClusterChart.swift */,
+				8083DD6C2C05EA0100596926 /* Extensions.swift */,
 				8083DD672C05C9AC00596926 /* PieChart */,
 				80AD3EA12BFF33C100BBD7EB /* LineChart */,
 				80AD3E9C2BFF303E00BBD7EB /* BarChart */,
@@ -1747,6 +1750,7 @@
 				80AD3E9E2BFF305100BBD7EB /* ClusterBarChart.swift in Sources */,
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				80AD3EA52BFF33FF00BBD7EB /* LineChartTimeSeries.swift in Sources */,
+				8083DD6D2C05EA0100596926 /* Extensions.swift in Sources */,
 				2B1D469E26CC51A8008814A9 /* GroupService.swift in Sources */,
 				C56B91F927C536D60085839A /* QueryView.swift in Sources */,
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
@@ -1788,7 +1792,7 @@
 				2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
-				8083DD6B2C05C9FE00596926 /* PieChartGroupBy.swift in Sources */,
+				8083DD6B2C05C9FE00596926 /* PieChartTopN.swift in Sources */,
 				C5F4D33A28ACF48000EBB667 /* RawChartView.swift in Sources */,
 				C5F4D35E28ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
 				C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */,
@@ -2341,7 +2345,7 @@
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2367,7 +2371,7 @@
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -14,9 +14,9 @@ struct ClusterPieChart: View {
 
     var body: some View {
         switch query.queryType {
-        case .groupBy:
-            if case let .groupBy(result) = result {
-                PieChartGroupBy(result: result, query: query)
+        case .topN:
+            if case let .topN(result) = result {
+                PieChartTopN(topNQueryResult: result, query: query)
             }
         default:
             Text("\(query.queryType.rawValue) bar charts are not supported.")

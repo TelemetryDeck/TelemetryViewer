@@ -1,15 +1,15 @@
 //
-//  BarCharTopN.swift
+//  PieChartGroupBy.swift
 //  Telemetry Viewer (iOS)
 //
-//  Created by Lukas on 23.05.24.
+//  Created by Lukas on 28.05.24.
 //
 
 import SwiftUI
 import Charts
 import DataTransferObjects
 
-struct BarChartTopN: View {
+struct PieChartTopN: View {
     let topNQueryResult: TopNQueryResult
     let query: CustomQuery
 
@@ -22,12 +22,20 @@ struct BarChartTopN: View {
 
                     ForEach(query.aggregations ?? [], id: \.self) { (aggregator: Aggregator) in
                         if let metricValue = getMetricValue(rowResult: rowResult){
-                            getBarMark(
-                                timeStamp: row.timestamp,
-                                name: aggregator.name,
-                                metricValue: metricValue,
-                                metricName: getMetricName(rowResult: rowResult)
-                            )
+                            if query.granularity != .all {
+                                getBarMark(
+                                    timeStamp: row.timestamp,
+                                    name: aggregator.name,
+                                    metricValue: metricValue,
+                                    metricName: getMetricName(rowResult: rowResult)
+                                )
+                            } else {
+                                getSectorMark(
+                                    name: aggregator.name,
+                                    metricValue: metricValue,
+                                    metricName: getMetricName(rowResult: rowResult)
+                                )
+                            }
                         }
                     }
 
@@ -39,10 +47,21 @@ struct BarChartTopN: View {
 
     }
 
+    func getSectorMark(name: String, metricValue: Double, metricName: String) -> some ChartContent {
+        return SectorMark(
+            angle: .value(name, metricValue),
+            innerRadius: .ratio(0.5),
+            angularInset: 1.0
+        )
+        .cornerRadius(2)
+        .foregroundStyle(by: .value(query.dimension?.name ?? "No value", metricName))
+    }
+
     func getBarMark(timeStamp: Date, name: String, metricValue: Double, metricName: String) -> some ChartContent {
         return BarMark(
             x: .value("Date", timeStamp, unit: query.granularityAsCalendarComponent),
-            y: .value(name, metricValue)
+            y: .value(name, metricValue),
+            stacking: .normalized
         )
         .foregroundStyle(by: .value(query.dimension?.name ?? "No value", metricName))
         .cornerRadius(2)

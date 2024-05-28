@@ -20,6 +20,7 @@ struct BarChartTimeSeries: View {
                     x: .value("Date", row.timestamp, unit: granularity()),
                     y: .value("Total Count", row.result["count"]?.value ?? 0)
                 )
+                .cornerRadius(2)
             }
         }
     }
