@@ -13,15 +13,6 @@ struct BarChartTopN: View {
     let topNQueryResult: TopNQueryResult
     let query: CustomQuery
 
-    var colorsForAggregators: [String: Color] {
-        let aggregatorNames = query.aggregations?.map { agg in
-            getAggregatorName(aggregator: agg)
-        } ?? []
-
-        let colors = Dictionary(uniqueKeysWithValues: zip(aggregatorNames, Color.chartColors))
-        return colors
-    }
-
     var body: some View {
 
         Chart {
@@ -30,12 +21,12 @@ struct BarChartTopN: View {
                 ForEach(row.result, id: \.self) { (rowResult: AdaptableQueryResultItem) in
 
                     ForEach(query.aggregations ?? [], id: \.self) { (aggregator: Aggregator) in
-                        if let metricValue = getMetricValue(rowResult: rowResult), let metric = query.metric {
+                        if let metricValue = getMetricValue(rowResult: rowResult){
                             getBarMark(
                                 timeStamp: row.timestamp,
                                 name: getAggregatorName(aggregator: aggregator),
                                 metricValue: metricValue,
-                                metricName: rowResult.dimensions[getDimensionName(from: query.dimension) ?? "Not found"] ?? "Not Found"
+                                metricName: getMetricName(rowResult: rowResult)
                             )
                         }
                     }
@@ -44,16 +35,49 @@ struct BarChartTopN: View {
 
             }
         }
-       // .chartForegroundStyleScale()
+        .chartForegroundStyleScale(range: Color.chartColors)
+        /*.chartXAxis {
+            AxisMarks(values: .stride(by: .hour)) { date in
+                AxisValueLabel(format: .dateTime.hour())
+            }
+        }*/
 
     }
 
+    func granularity() -> Calendar.Component{
+        switch query.granularity {
+        case .all:
+                .month
+        case .none:
+                .month
+        case .second:
+                .hour
+        case .minute:
+                .hour
+        case .fifteen_minute:
+                .hour
+        case .thirty_minute:
+                .hour
+        case .hour:
+                .hour
+        case .day:
+                .day
+        case .week:
+                .weekOfYear
+        case .month:
+                .month
+        case .quarter:
+                .quarter
+        case .year:
+                .year
+        }
+    }
+
     func getBarMark(timeStamp: Date, name: String, metricValue: Double, metricName: String) -> some ChartContent {
-        print("MetricName: \(metricName)")
-        print("Dimension: \(getDimensionName(from: query.dimension) ?? "Not found")")
         return BarMark(
-            x: .value("Date", timeStamp),
+            x: .value("Date", timeStamp, unit: granularity()),
             y: .value(name, metricValue)
+           // width: .fixed(200),
         )
         .foregroundStyle(by: .value(getDimensionName(from: query.dimension) ?? "Not found", metricName))
     }
@@ -68,6 +92,13 @@ struct BarChartTopN: View {
             nil
         }
     }
+
+    func getMetricName(rowResult: AdaptableQueryResultItem) -> String{
+        let dimensionName = getDimensionName(from: query.dimension) ?? "Not found"
+        let metricName = rowResult.dimensions[dimensionName] ?? "Not found"
+        return metricName
+    }
+
     // swiftlint:disable cyclomatic_complexity
     // swiftlint:disable function_body_length
     func getAggregatorName(aggregator: Aggregator) -> String {
