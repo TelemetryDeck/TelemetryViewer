@@ -17,7 +17,6 @@ extension Color {
         static let separatorColor = Color(UIColor.separator)
     #endif
 
-    static let telemetryOrange = Color("Torange")
     static let cardBackground = Color("CardBackgroundColor")
     static let customTextColor = Color("CustomTextColor")
 
@@ -26,5 +25,32 @@ extension Color {
     static let Zinc200 = Color("Zinc200")
     static let Zinc400 = Color("Zinc400")
     static let Zinc600 = Color("Zinc600")
+
+    static let telemetryOrange = Color("Torange")
+    static let telemetryAmber = Color("Tamber")
+    static let telemetryLime = Color("Tlime")
+    static let telemetryEmerald = Color("Temerald")
+    static let telemetryCyan = Color("Tcyan")
+    static let telemetrySky = Color("Tsky")
+    static let telemetryIndigo = Color("Tindigo")
+    static let telemetryFuchsia = Color("Tfuchsia")
+    static let telemetryRose = Color("Trose")
+
+    static var chartColors: [Color] {
+        [
+        telemetryOrange,
+        telemetryAmber,
+        telemetryLime,
+        telemetryEmerald,
+        telemetryCyan,
+        telemetrySky,
+        telemetryIndigo,
+        telemetryFuchsia,
+        telemetryRose
+        ]
+    }
+
+
+
 
 }
