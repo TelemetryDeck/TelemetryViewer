@@ -15,15 +15,11 @@ struct ClusterBarChart: View {
         switch query.queryType {
         case .timeseries:
             if case let .timeSeries(result) = result {
-                BarChartTimeSeries(result: result)
-            } else {
-                Text("Mismatch in query type and result type 1")
+                BarChartTimeSeries(result: result, query: query)
             }
         case .topN:
             if case let .topN(result) = result {
                 BarChartTopN(topNQueryResult: result, query: query)
-            } else {
-                Text("Mismatch in query type and result type 2")
             }
         default:
             Text("\(query.queryType.rawValue) bar charts are not supported.")
