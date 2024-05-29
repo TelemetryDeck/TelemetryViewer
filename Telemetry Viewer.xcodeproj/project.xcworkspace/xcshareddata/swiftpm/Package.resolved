@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AppTelemetry/SwiftClient",
       "state" : {
-        "revision" : "d20ccc4b8266cf739eede58cdfc7e9c6ffb41cda",
-        "version" : "1.5.1"
+        "revision" : "0c5dcdd868dc92a4c528c0e7a42d33f8c5b32506",
+        "version" : "2.0.0"
       }
     },
     {
