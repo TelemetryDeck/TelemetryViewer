@@ -1,5 +1,5 @@
 {
-  "originHash" : "c77feac7351e9360f94da77ea6664ee97c0a4c27540c7ad522fe8a1013e98df7",
+  "originHash" : "f8e3bc17593c91188fe60d4ec5bfc7210d4af2746c843213d20918d38b8a21ca",
   "pins" : [
     {
       "identity" : "collectionconcurrencykit",
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AppTelemetry/SwiftClient",
       "state" : {
-        "branch" : "feature/metricKit",
-        "revision" : "d6f99f022477f544c363a4bd7a097970a3bdbd7f"
+        "revision" : "0c5dcdd868dc92a4c528c0e7a42d33f8c5b32506",
+        "version" : "2.0.0"
       }
     },
     {
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/markiv/SwiftUI-Shimmer",
       "state" : {
-        "revision" : "5659a623567cefe258d1e3e67cb65585fbb6ecb6",
-        "version" : "1.4.2"
+        "revision" : "e3aa4226b0fafe345ca1c920f516b6a2f3e0aacc",
+        "version" : "1.5.0"
       }
     },
     {
