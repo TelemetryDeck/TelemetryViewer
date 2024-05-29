@@ -2323,7 +2323,7 @@
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2349,7 +2349,7 @@
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2517,8 +2517,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
-				branch = feature/metricKit;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
