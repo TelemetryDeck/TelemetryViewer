@@ -50,6 +50,33 @@ struct QueryRunner: View {
                 }
             }
         }
+        .onChange(of: queryService.isTestingMode) {
+            Task {
+                do {
+                    try await getQueryResult()
+                } catch {
+                    print(error)
+                }
+            }
+        }
+        .onChange(of: queryService.timeWindowBeginning) {
+            Task {
+                do {
+                    try await getQueryResult()
+                } catch {
+                    print(error)
+                }
+            }
+        }
+        .onChange(of: queryService.timeWindowEnd) {
+            Task {
+                do {
+                    try await getQueryResult()
+                } catch {
+                    print(error)
+                }
+            }
+        }
     }
 
     private func getQueryResult() async throws {
@@ -83,6 +110,9 @@ extension QueryRunner {
             default:
                 queryCopy.relativeIntervals = [RelativeTimeInterval(beginningDate: queryService.timeWindowBeginning.toRelativeDate(), endDate: queryService.timeWindowEnd.toRelativeDate())]
             }
+        }
+        if queryCopy.testMode == nil {
+            queryCopy.testMode = queryService.isTestingMode
         }
 
         let response: [String: String] = try await api.post(data: queryCopy, url: queryBeginURL)

@@ -231,8 +231,6 @@
 		C5551E5327C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
 		C5551E5427C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
 		C5551E5527C3CBEB005847B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5551E5127C3CBEB005847B6 /* Assets.xcassets */; };
-		C56B91F927C536D60085839A /* QueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B91F827C536D60085839A /* QueryView.swift */; };
-		C56B91FA27C536D60085839A /* QueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B91F827C536D60085839A /* QueryView.swift */; };
 		C581F4E0271B22FD0031E99C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00509027035C85009C609C /* Color+Hex.swift */; };
 		C581F4E5271B29470031E99C /* InsightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D46A026CC52DD008814A9 /* InsightService.swift */; };
 		C581F4E6271B29780031E99C /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D469726CC4C5D008814A9 /* ErrorService.swift */; };
@@ -533,7 +531,6 @@
 		C5551E5727C3CC78005847B6 /* ThreeCirclesInATrenchcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeCirclesInATrenchcode.swift; sourceTree = "<group>"; };
 		C5551E5827C3CC78005847B6 /* SondrineAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SondrineAnimation.swift; sourceTree = "<group>"; };
 		C5551E5927C3CC78005847B6 /* AnimatedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCircle.swift; sourceTree = "<group>"; };
-		C56B91F827C536D60085839A /* QueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryView.swift; sourceTree = "<group>"; };
 		C598487627CFBB7A00026772 /* QueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryService.swift; sourceTree = "<group>"; };
 		C5A8D863270C5D7A0032560A /* TelemetryDeckWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A8D867270C5D7B0032560A /* TelemetryDeckWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidget.swift; sourceTree = "<group>"; };
@@ -1012,7 +1009,6 @@
 				2B21FCD626FDC38500A8A55B /* NewInsightMenu.swift */,
 				2B21FCDE26FDCAE200A8A55B /* InsightsList.swift */,
 				6351A788277C9ED8003AF559 /* InsightDisplayMode+Extensions.swift */,
-				C56B91F827C536D60085839A /* QueryView.swift */,
 			);
 			path = "Insight and Groups";
 			sourceTree = "<group>";
@@ -1738,7 +1734,6 @@
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				80AD3EA52BFF33FF00BBD7EB /* LineChartTimeSeries.swift in Sources */,
 				2B1D469E26CC51A8008814A9 /* GroupService.swift in Sources */,
-				C56B91F927C536D60085839A /* QueryView.swift in Sources */,
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
 				2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */,
 				2BBFCA11267D05E40013DC74 /* DetailSidebar.swift in Sources */,
@@ -1823,7 +1818,6 @@
 				C5F4D32B28ACF48000EBB667 /* ChartHoverLabel.swift in Sources */,
 				C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */,
 				2BC522EB2625FCEF00E643AC /* HelpAndFeedbackView.swift in Sources */,
-				C56B91FA27C536D60085839A /* QueryView.swift in Sources */,
 				DC5F3A8A25A364C00057AA59 /* EmptyInsightGroupView.swift in Sources */,
 				2B46280C2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				2BBFCA1E267D05E40013DC74 /* URL+Open.swift in Sources */,
