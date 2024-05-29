@@ -17,15 +17,28 @@ struct QueryRunner: View {
 
     @State var queryResultWrapper: QueryResultWrapper?
     @State var isLoading: Bool = false
+    @State var taskID: String = ""
 
     var body: some View {
         VStack(spacing: 10){
             if let queryResult = queryResultWrapper?.result {
                 ClusterChart(query: query, result: queryResult, type: type)
+                    .frame(height: 135)
+                    .id(queryResultWrapper)
                     .padding(.horizontal)
+            } else {
+                SondrineAnimation()
+                    .frame(width: 100, height: 100)
+                    .opacity(0.5)
+                    .padding()
             }
 
             HStack(spacing: 3){
+                if isLoading {
+                    ProgressView()
+                        .scaleEffect(0.75)
+                        .frame(height: 5)
+                }
                 Spacer()
                 if let queryResultWrapper = queryResultWrapper {
                     Text("Updated")
@@ -85,7 +98,7 @@ struct QueryRunner: View {
             isLoading = false
         }
 
-        let taskID = try await beginAsyncCalcV2()
+        taskID = try await beginAsyncCalcV2()
 
         try await getLastSuccessfulValue(taskID)
 
