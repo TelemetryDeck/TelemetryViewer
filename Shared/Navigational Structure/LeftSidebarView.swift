@@ -66,6 +66,8 @@ struct LeftSidebarView: View {
             Section {
                 LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
 
+                OrganisationSwitcher()
+
                 #if os(iOS)
                     Button {
                         URL(string: "https://dashboard.telemetrydeck.com/user/organization")!.open()

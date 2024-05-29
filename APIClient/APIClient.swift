@@ -54,6 +54,8 @@ final class APIClient: ObservableObject {
         }
     }
 
+    @AppStorage("currentOrganisationID") var _currentOrganisationID: String?
+
     @Published var registrationStatus: RegistrationStatus?
 
     @Published var userToken: UserTokenDTO? {
@@ -387,6 +389,9 @@ extension APIClient {
         request.httpMethod = httpMethod
         request.setValue(contentType, forHTTPHeaderField: "Content-Type")
         request.setValue(userToken?.bearerTokenAuthString, forHTTPHeaderField: "Authorization")
+        if let currentOrgID = _currentOrganisationID {
+            request.setValue(currentOrgID, forHTTPHeaderField: "td-organization-id")
+        }
 
         if let httpBody = httpBody {
             request.httpBody = httpBody
