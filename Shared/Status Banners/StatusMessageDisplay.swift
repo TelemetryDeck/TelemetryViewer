@@ -12,6 +12,13 @@ struct StatusMessageDisplay: View {
     @EnvironmentObject var api: APIClient
     @EnvironmentObject var errorService: ErrorService
 
+    @AppStorage("dismissedNotificationsIDs4") var _dismissedNotificationsIDs: String = ""
+
+    var dismissedNotificationsIDs: [String] {
+        let x = _dismissedNotificationsIDs.split(separator: ",")
+        return x.map { String($0) }
+    }
+
     @State var statusMessages: [DTOv2.StatusMessage] = []
 
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
@@ -19,13 +26,27 @@ struct StatusMessageDisplay: View {
     var body: some View {
         VStack(spacing: 0) {
             ForEach(statusMessages) { message in
-                StatusMessageBanner(statusMessage: message)
+                if !dismissedNotificationsIDs.contains(message.id) {
+                    StatusMessageBanner(statusMessage: message)
+                        .onTapGesture {
+                            dismissNotification(id: message.id)
+                        }
+                }
             }
         }
         .onAppear(perform: loadMessages)
         .onReceive(timer) { _ in
             loadMessages()
         }
+    }
+
+    func dismissNotification(id: String) {
+        if dismissedNotificationsIDs.count > 20 {
+            let dismissedNotificationsIDsCopy = dismissedNotificationsIDs.suffix(20)
+            _dismissedNotificationsIDs = dismissedNotificationsIDsCopy.joined(separator: ",")
+            _dismissedNotificationsIDs.append(",")
+        }
+        _dismissedNotificationsIDs.append(id + ",")
     }
 
     func loadMessages() {

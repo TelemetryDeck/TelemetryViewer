@@ -50,7 +50,11 @@ struct StatusMessageBanner: View {
                     #endif
                 }
 
-                Spacer()
+                Image(systemName: "xmark")
+                    .font(.system(size: 18))
+                    .padding(.horizontal, 4)
+                    .padding(.vertical, 10)
+                    .foregroundColor(Color.secondary)
             }
         }
     }
