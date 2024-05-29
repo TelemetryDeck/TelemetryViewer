@@ -163,6 +163,9 @@
 		80427FF62BFE2AF4007E89CC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80427FDF2BFE2AF4007E89CC /* UserInfo.swift */; };
 		80427FF72BFE2AF4007E89CC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80427FDF2BFE2AF4007E89CC /* UserInfo.swift */; };
 		80427FF82BFE2AF4007E89CC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80427FDF2BFE2AF4007E89CC /* UserInfo.swift */; };
+		8083DD692C05C9C300596926 /* ClusterPieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8083DD682C05C9C300596926 /* ClusterPieChart.swift */; };
+		8083DD6B2C05C9FE00596926 /* PieChartTopN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8083DD6A2C05C9FE00596926 /* PieChartTopN.swift */; };
+		8083DD6D2C05EA0100596926 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8083DD6C2C05EA0100596926 /* Extensions.swift */; };
 		80AD3E942BFF2A7300BBD7EB /* QueryRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E932BFF2A7300BBD7EB /* QueryRunner.swift */; };
 		80AD3E972BFF2AA200BBD7EB /* ClusterChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E962BFF2AA200BBD7EB /* ClusterChart.swift */; };
 		80AD3E992BFF2B0A00BBD7EB /* ClusterInstrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E982BFF2B0A00BBD7EB /* ClusterInstrument.swift */; };
@@ -170,7 +173,6 @@
 		80AD3EA02BFF306F00BBD7EB /* BarChartTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */; };
 		80AD3EA32BFF33D900BBD7EB /* ClusterLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EA22BFF33D900BBD7EB /* ClusterLineChart.swift */; };
 		80AD3EA52BFF33FF00BBD7EB /* LineChartTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EA42BFF33FF00BBD7EB /* LineChartTimeSeries.swift */; };
-		80AD3EAC2BFF6BE000BBD7EB /* BarChartGroupBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EAB2BFF6BE000BBD7EB /* BarChartGroupBy.swift */; };
 		80AD3EAE2BFF6D2200BBD7EB /* BarCharTopN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD3EAD2BFF6D2200BBD7EB /* BarCharTopN.swift */; };
 		C5173B41283D52E40018CE9F /* InsightsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5173B40283D52E40018CE9F /* InsightsGrid.swift */; };
 		C51CB73627565EB5005A3FB9 /* TelemetryDeckWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5A8D869270C5D7B0032560A /* TelemetryDeckWidget.intentdefinition */; };
@@ -514,6 +516,9 @@
 		80427FDD2BFE2AF4007E89CC /* InsightGroupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightGroupInfo.swift; sourceTree = "<group>"; };
 		80427FDE2BFE2AF4007E89CC /* InsightInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightInfo.swift; sourceTree = "<group>"; };
 		80427FDF2BFE2AF4007E89CC /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		8083DD682C05C9C300596926 /* ClusterPieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterPieChart.swift; sourceTree = "<group>"; };
+		8083DD6A2C05C9FE00596926 /* PieChartTopN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartTopN.swift; sourceTree = "<group>"; };
+		8083DD6C2C05EA0100596926 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		80AD3E932BFF2A7300BBD7EB /* QueryRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRunner.swift; sourceTree = "<group>"; };
 		80AD3E962BFF2AA200BBD7EB /* ClusterChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterChart.swift; sourceTree = "<group>"; };
 		80AD3E982BFF2B0A00BBD7EB /* ClusterInstrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterInstrument.swift; sourceTree = "<group>"; };
@@ -521,7 +526,6 @@
 		80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartTimeSeries.swift; sourceTree = "<group>"; };
 		80AD3EA22BFF33D900BBD7EB /* ClusterLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterLineChart.swift; sourceTree = "<group>"; };
 		80AD3EA42BFF33FF00BBD7EB /* LineChartTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartTimeSeries.swift; sourceTree = "<group>"; };
-		80AD3EAB2BFF6BE000BBD7EB /* BarChartGroupBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartGroupBy.swift; sourceTree = "<group>"; };
 		80AD3EAD2BFF6D2200BBD7EB /* BarCharTopN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCharTopN.swift; sourceTree = "<group>"; };
 		C5173B40283D52E40018CE9F /* InsightsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsGrid.swift; sourceTree = "<group>"; };
 		C51CB73B27565F76005A3FB9 /* TelemetryDeckMacIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelemetryDeckMacIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -855,6 +859,15 @@
 			path = DTOs;
 			sourceTree = "<group>";
 		};
+		8083DD672C05C9AC00596926 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				8083DD682C05C9C300596926 /* ClusterPieChart.swift */,
+				8083DD6A2C05C9FE00596926 /* PieChartTopN.swift */,
+			);
+			path = PieChart;
+			sourceTree = "<group>";
+		};
 		80AD3E922BFF28AF00BBD7EB /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
@@ -869,6 +882,8 @@
 			isa = PBXGroup;
 			children = (
 				80AD3E962BFF2AA200BBD7EB /* ClusterChart.swift */,
+				8083DD6C2C05EA0100596926 /* Extensions.swift */,
+				8083DD672C05C9AC00596926 /* PieChart */,
 				80AD3EA12BFF33C100BBD7EB /* LineChart */,
 				80AD3E9C2BFF303E00BBD7EB /* BarChart */,
 			);
@@ -880,7 +895,6 @@
 			children = (
 				80AD3E9D2BFF305100BBD7EB /* ClusterBarChart.swift */,
 				80AD3E9F2BFF306F00BBD7EB /* BarChartTimeSeries.swift */,
-				80AD3EAB2BFF6BE000BBD7EB /* BarChartGroupBy.swift */,
 				80AD3EAD2BFF6D2200BBD7EB /* BarCharTopN.swift */,
 			);
 			path = BarChart;
@@ -1709,7 +1723,6 @@
 				2B21FCD526FDC33F00A8A55B /* InsightGroupsView.swift in Sources */,
 				DCB02B722502781A00304964 /* LoginView.swift in Sources */,
 				2B379D2126FBC3A300714BE6 /* IconFinderService.swift in Sources */,
-				80AD3EAC2BFF6BE000BBD7EB /* BarChartGroupBy.swift in Sources */,
 				C5CD589D2810368400671359 /* ThreeCirclesInATrenchcode.swift in Sources */,
 				2BBFC9FF267D05E40013DC74 /* OrderSetter.swift in Sources */,
 				2B745562272306DD002CBB45 /* ChartDataPoint+InsightCalculationResult.swift in Sources */,
@@ -1733,6 +1746,7 @@
 				80AD3E9E2BFF305100BBD7EB /* ClusterBarChart.swift in Sources */,
 				2B3CC0DC264D4AFE0038B528 /* LexiconService.swift in Sources */,
 				80AD3EA52BFF33FF00BBD7EB /* LineChartTimeSeries.swift in Sources */,
+				8083DD6D2C05EA0100596926 /* Extensions.swift in Sources */,
 				2B1D469E26CC51A8008814A9 /* GroupService.swift in Sources */,
 				2B1D468926CC4423008814A9 /* OrgService.swift in Sources */,
 				2B21FCDF26FDCAE200A8A55B /* InsightsList.swift in Sources */,
@@ -1773,11 +1787,13 @@
 				2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
 				DC45BB1C24E27F12004E6392 /* SignalView.swift in Sources */,
+				8083DD6B2C05C9FE00596926 /* PieChartTopN.swift in Sources */,
 				C5F4D33A28ACF48000EBB667 /* RawChartView.swift in Sources */,
 				C5F4D35E28ACF48000EBB667 /* BigNumberFormatter.swift in Sources */,
 				C5D14219273471EF0029CA03 /* ConditionalViewModifier.swift in Sources */,
 				C5F4D36228ACF48000EBB667 /* SingleKeyValueView.swift in Sources */,
 				63C4E9582778C54D00344E20 /* SignalListExplanationView.swift in Sources */,
+				8083DD692C05C9C300596926 /* ClusterPieChart.swift in Sources */,
 				2BBFCA25267D05E40013DC74 /* ProgressView+Scale.swift in Sources */,
 				80AD3E942BFF2A7300BBD7EB /* QueryRunner.swift in Sources */,
 				2BBFCA29267D05E40013DC74 /* Binding+OnUpdate.swift in Sources */,
