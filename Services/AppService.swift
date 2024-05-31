@@ -75,42 +75,4 @@ class AppService: ObservableObject {
             }
         }
     }
-
-    func create(appNamed name: String, callback: ((Result<AppInfo, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath(apiVersion: .v3, "apps")
-
-        api.post(["name": name], to: url) { [unowned self] (result: Result<AppInfo, TransferError>) in
-
-            if let app = try? result.get() {
-                appDictionary[app.id] = app
-                orgService.organization?.appIDs.append(app.id)
-            }
-
-            callback?(result)
-        }
-    }
-
-    func update(appID: UUID, newName: String, callback: ((Result<AppInfo, TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath(apiVersion: .v3, "apps", appID.uuidString)
-
-        api.patch(["name": newName], to: url) { [unowned self] (result: Result<AppInfo, TransferError>) in
-
-            if let app = try? result.get() {
-                appDictionary[app.id] = app
-            }
-
-            callback?(result)
-        }
-    }
-
-    func delete(appID: UUID, callback: ((Result<[String: String], TransferError>) -> Void)? = nil) {
-        let url = api.urlForPath(apiVersion: .v2, "apps", appID.uuidString)
-
-        api.delete(url) { [unowned self] (result: Result<[String: String], TransferError>) in
-
-            appDictionary[appID] = nil
-            orgService.organization?.appIDs = (orgService.organization?.appIDs.filter { $0 != appID })!
-            callback?(result)
-        }
-    }
 }

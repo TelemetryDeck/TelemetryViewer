@@ -36,6 +36,23 @@ struct LeftSidebarView: View {
         case editApp(app: UUID)
     }
 
+    func getApps(organization: DTOv2.Organization?) {
+        Task {
+            for appID in organization?.appIDs ?? [] {
+                if let app = try? await appService.retrieveApp(withID: appID) {
+                    DispatchQueue.main.async {
+                        app.insightGroupIDs.forEach { groupID in
+                            if !(groupService.groupsDictionary.keys.contains(groupID)) {
+                                groupService.retrieveGroup(with: groupID)
+                            }
+                        }
+                        appService.appDictionary[app.id] = app
+                    }
+                }
+            }
+        }
+    }
+
     var body: some View {
         List {
             Section {
@@ -43,19 +60,11 @@ struct LeftSidebarView: View {
                     ForEach(organization.appIDs, id: \.self) { appID in
                         section(for: appID)
                     }
+                    .onChange(of: orgService.organization) {
+                        getApps(organization: orgService.organization)
+                    }
                     .task {
-                        for appID in organization.appIDs {
-                            if let app = try? await appService.retrieveApp(withID: appID) {
-                                DispatchQueue.main.async {
-                                    app.insightGroupIDs.forEach { groupID in
-                                        if !(groupService.groupsDictionary.keys.contains(groupID)) {
-                                            groupService.retrieveGroup(with: groupID)
-                                        }
-                                    }
-                                    appService.appDictionary[app.id] = app
-                                }
-                            }
-                        }
+                        getApps(organization: orgService.organization)
                     }
                 }
 
@@ -64,7 +73,7 @@ struct LeftSidebarView: View {
             }
 
             Section {
-                LoadingStateIndicator(loadingState: orgService.loadingState, title: orgService.organization?.name)
+                OrganisationSwitcher()
 
                 #if os(iOS)
                     Button {

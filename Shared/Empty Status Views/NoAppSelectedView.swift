@@ -22,11 +22,6 @@ struct NoAppSelectedView: View {
                     Text("To start, create your first App. You can use that App's unique identifier to send signals from your code.")
                         .foregroundColor(.grayColor)
                     VStack {
-                        Button("Create First App") {
-                            appService.create(appNamed: "New App")
-                        }
-                        .buttonStyle(SmallPrimaryButtonStyle())
-
                         Button("Documentation: Sending Signals") {
                             #if os(macOS)
                                 NSWorkspace.shared.open(URL(string: "https://telemetrydeck.com/pages/quickstart.html")!)

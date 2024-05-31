@@ -22,13 +22,7 @@ class OrgService: ObservableObject {
         self.errorService = errors
     }
 
-    // Wasn't getting called before -> Never leaving loading state.
-    // For now called when retrieveOrganisations also called
-    // Maybe move getCode into the retrieve Func?
     func getOrganisation() {
-        let locallyCachedOrganization = retrieveFromDisk()
-        self.organization = locallyCachedOrganization
-
         self.loadingState = .loading
 
         Task {
@@ -57,8 +51,6 @@ class OrgService: ObservableObject {
                 switch result {
                 case let .success(org):
 
-                    self.saveToDisk(org: org)
-
                     continuation.resume(returning: org)
 
                 case let .failure(error):
@@ -68,32 +60,10 @@ class OrgService: ObservableObject {
             }
         }
     }
-}
 
-/// this is interesting, do we want this for more than the org?
-private extension OrgService {
-    var organizationCacheFilePath: URL {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
-        let cachesDirectoryUrl = urls[0]
-        let fileUrl = cachesDirectoryUrl.appendingPathComponent("telemetrydeck.organization.json")
-        let filePath = fileUrl.path
-
-        if !fileManager.fileExists(atPath: filePath) {
-            let contents = Data()
-            fileManager.createFile(atPath: filePath, contents: contents)
-        }
-
-        return fileUrl
-    }
-
-    func saveToDisk(org: DTOv2.Organization) {
-        guard let data = try? JSONEncoder.telemetryEncoder.encode(org) else { return }
-        try? data.write(to: self.organizationCacheFilePath, options: .atomic)
-    }
-
-    func retrieveFromDisk() -> DTOv2.Organization? {
-        guard let data = try? Data(contentsOf: organizationCacheFilePath) else { return nil }
-        return try? JSONDecoder.telemetryDecoder.decode(DTOv2.Organization.self, from: data)
+    func allOrganizations() async throws -> [OrganizationInfo]{
+        let url = api.urlForPath(apiVersion: .v3, "organizations")
+        return try await api.get(url: url)
     }
 }
+
