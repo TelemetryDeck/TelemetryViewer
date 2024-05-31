@@ -22,9 +22,6 @@ class OrgService: ObservableObject {
         self.errorService = errors
     }
 
-    // Wasn't getting called before -> Never leaving loading state.
-    // For now called when retrieveOrganisations also called
-    // Maybe move getCode into the retrieve Func?
     func getOrganisation() {
         self.loadingState = .loading
 
