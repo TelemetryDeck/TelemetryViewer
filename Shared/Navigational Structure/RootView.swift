@@ -17,7 +17,8 @@ struct RootView: View {
     var body: some View {
         if api.userNotLoggedIn {
             #if os(iOS)
-            WelcomeView()
+
+            TestPurchaseView()
 
             #else
             HStack {

@@ -84,6 +84,11 @@
 		2B781B8626F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */; };
 		2B781B8726F4A6D80062DBDC /* StatusMessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */; };
 		2B78C82C2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78C82B2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift */; };
+		2B87B7872C75DDD200F96BB9 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 2B87B7862C75DDD200F96BB9 /* RevenueCat */; };
+		2B87B7892C75DDD200F96BB9 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B87B7882C75DDD200F96BB9 /* RevenueCatUI */; };
+		2B87B78D2C75E31A00F96BB9 /* Configuration2.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 2B87B78C2C75E31A00F96BB9 /* Configuration2.storekit */; };
+		2B87B78F2C75E3A100F96BB9 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2B87B78E2C75E3A100F96BB9 /* StoreKitTestCertificate.cer */; };
+		2B87B7932C75E4DE00F96BB9 /* TestPurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87B7922C75E4DE00F96BB9 /* TestPurchaseView.swift */; };
 		2BA0397E26AAE19B004A9E48 /* MacOs12SignalTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */; };
 		2BA5D50226CD05CC008FBF8F /* InsightGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */; };
 		2BA5D50526CD0E5B008FBF8F /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5D50326CD0E5B008FBF8F /* GroupView.swift */; };
@@ -481,6 +486,9 @@
 		2B781B8526F4A6D80062DBDC /* StatusMessageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageDisplay.swift; sourceTree = "<group>"; };
 		2B78C82B2722F839000924A0 /* TelemetryDeckWidgetEntryViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelemetryDeckWidgetEntryViews.swift; sourceTree = "<group>"; };
 		2B7E2BA426AF19560059CE34 /* Telemetry_Viewer_Mac_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry_Viewer_Mac_UITests.swift; sourceTree = "<group>"; };
+		2B87B78C2C75E31A00F96BB9 /* Configuration2.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration2.storekit; sourceTree = "<group>"; };
+		2B87B78E2C75E3A100F96BB9 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoreKitTestCertificate.cer; path = ../../../Downloads/StoreKitTestCertificate.cer; sourceTree = "<group>"; };
+		2B87B7922C75E4DE00F96BB9 /* TestPurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPurchaseView.swift; sourceTree = "<group>"; };
 		2BA0397D26AAE19B004A9E48 /* MacOs12SignalTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOs12SignalTypesView.swift; sourceTree = "<group>"; };
 		2BA5D50026CD05CC008FBF8F /* InsightGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGroupsView.swift; sourceTree = "<group>"; };
 		2BA5D50326CD0E5B008FBF8F /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
@@ -657,8 +665,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B87B7872C75DDD200F96BB9 /* RevenueCat in Frameworks */,
 				C5AD4B6427D3928600CD7E4C /* DataTransferObjects in Frameworks */,
 				2B0769DE2722EA3B0024D8A7 /* DataTransferObjects in Frameworks */,
+				2B87B7892C75DDD200F96BB9 /* RevenueCatUI in Frameworks */,
 				DC9C0831252CD622001C0F94 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1156,8 +1166,11 @@
 				2B21FCDC26FDCA6A00A8A55B /* GroupView.swift */,
 				2B21FCD426FDC33F00A8A55B /* InsightGroupsView.swift */,
 				DCE239FC24D3687C00053370 /* Telemetry_ViewerApp_iOS.swift */,
+				2B87B78C2C75E31A00F96BB9 /* Configuration2.storekit */,
+				2B87B78E2C75E3A100F96BB9 /* StoreKitTestCertificate.cer */,
 				2B462816272B272300515530 /* TestModeIndicator.swift */,
 				DCB02B6A2502773D00304964 /* WelcomeView.swift */,
+				2B87B7922C75E4DE00F96BB9 /* TestPurchaseView.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1302,7 +1315,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				809E189D2C009A1400E83D74 /* PBXTargetDependency */,
 				C5A8D870270C5D800032560A /* PBXTargetDependency */,
 				C5A8D8C5270C821B0032560A /* PBXTargetDependency */,
 			);
@@ -1311,6 +1323,8 @@
 				DC9C0830252CD622001C0F94 /* TelemetryClient */,
 				2B0769DD2722EA3B0024D8A7 /* DataTransferObjects */,
 				C5AD4B6327D3928600CD7E4C /* DataTransferObjects */,
+				2B87B7862C75DDD200F96BB9 /* RevenueCat */,
+				2B87B7882C75DDD200F96BB9 /* RevenueCatUI */,
 			);
 			productName = "Telemetry Viewer (iOS)";
 			productReference = DCE23A0324D3687D00053370 /* TelemetryDeck Viewer.app */;
@@ -1382,7 +1396,7 @@
 				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
 				2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */,
-				809E189B2C00998C00E83D74 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				2B87B7852C75DDD200F96BB9 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
 			projectDirPath = "";
@@ -1436,9 +1450,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BBFCA05267D05E40013DC74 /* README.md in Resources */,
+				2B87B78D2C75E31A00F96BB9 /* Configuration2.storekit in Resources */,
 				DCC8CB762563103E0019267A /* Illustrations.xcassets in Resources */,
 				C5551E5227C3CBEB005847B6 /* Assets.xcassets in Resources */,
 				DCE23A1324D3687D00053370 /* Assets.xcassets in Resources */,
+				2B87B78F2C75E3A100F96BB9 /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1800,6 +1816,7 @@
 				DC627EEF25A35B6A00C1DF33 /* EmptyAppView.swift in Sources */,
 				6351A784277C6431003AF559 /* CustomPickers.swift in Sources */,
 				80AD3EA02BFF306F00BBD7EB /* BarChartTimeSeries.swift in Sources */,
+				2B87B7932C75E4DE00F96BB9 /* TestPurchaseView.swift in Sources */,
 				DCB02B6B2502773D00304964 /* WelcomeView.swift in Sources */,
 				2B46280B2728699E00515530 /* StatusMessageContainer.swift in Sources */,
 				2BBFCA33267D05E40013DC74 /* AdaptiveStack.swift in Sources */,
@@ -1957,10 +1974,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		809E189D2C009A1400E83D74 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 809E189C2C009A1400E83D74 /* SwiftLintBuildToolPlugin */;
-		};
 		C5A8D870270C5D800032560A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C5A8D862270C5D7A0032560A /* TelemetryDeckWidgetExtension */;
@@ -2531,12 +2544,12 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		809E189B2C00998C00E83D74 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+		2B87B7852C75DDD200F96BB9 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint";
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.55.1;
+				minimumVersion = 5.2.3;
 			};
 		};
 		C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */ = {
@@ -2551,8 +2564,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = "feature/api-v2";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -2589,10 +2602,15 @@
 			package = 2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
 		};
-		809E189C2C009A1400E83D74 /* SwiftLintBuildToolPlugin */ = {
+		2B87B7862C75DDD200F96BB9 /* RevenueCat */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 809E189B2C00998C00E83D74 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintBuildToolPlugin";
+			package = 2B87B7852C75DDD200F96BB9 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		2B87B7882C75DDD200F96BB9 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B87B7852C75DDD200F96BB9 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
 		};
 		C51CB76227566148005A3FB9 /* DataTransferObjects */ = {
 			isa = XCSwiftPackageProductDependency;

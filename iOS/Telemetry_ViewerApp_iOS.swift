@@ -5,6 +5,7 @@
 //  Created by Daniel Jilg on 30.07.20.
 //
 
+import RevenueCat
 import SwiftUI
 import TelemetryClient
 
@@ -43,7 +44,7 @@ struct Telemetry_ViewerApp: App {
         }
         .onChange(of: scenePhase) { newScenePhase in
             if newScenePhase == .active {
-                TelemetryManager.generateNewSession()
+                TelemetryDeck.generateNewSession()
             }
         }
     }
@@ -66,9 +67,13 @@ struct Telemetry_ViewerApp: App {
         self.iconFinderService = IconFinderService(api: api)
 
         let configuration = TelemetryManagerConfiguration(appID: "79167A27-EBBF-4012-9974-160624E5D07B")
-        TelemetryManager.initialize(with: configuration)
+        TelemetryDeck.initialize(config: configuration)
 
         UserDefaults.standard.register(defaults: ["isTestingMode": true])
+
+        Purchases.logLevel = .debug
+        let randomNumber = Int.random(in: 0 ... 1000)
+        Purchases.configure(withAPIKey: "appl_divLZofqLldecaxInylrJZcRPVs", appUserID: "REVENUECAT_USER_DANIEL_\(randomNumber)")
     }
 
     // telemetryviewer://login/<bearertoken>
