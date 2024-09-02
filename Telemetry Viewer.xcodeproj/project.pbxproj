@@ -1382,7 +1382,6 @@
 				DC9C082F252CD622001C0F94 /* XCRemoteSwiftPackageReference "SwiftClient" */,
 				2B25EAE726D3EEE700BBBB1B /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				C5AD4B6227D3928600CD7E4C /* XCRemoteSwiftPackageReference "models" */,
-				809E189B2C00998C00E83D74 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = DCE23A0424D3687D00053370 /* Products */;
 			projectDirPath = "";
@@ -2353,7 +2352,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "iOS/Telemetry Viewer (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 740;
+				CURRENT_PROJECT_VERSION = 744;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -2379,7 +2378,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "iOS/Telemetry Viewer (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 740;
+				CURRENT_PROJECT_VERSION = 744;
 				DEVELOPMENT_TEAM = FL4V655A94;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -2551,8 +2550,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
